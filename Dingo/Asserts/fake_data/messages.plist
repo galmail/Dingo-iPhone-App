@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>name</key>
+		<string>John Smith</string>
+		<key>message</key>
+		<string>Last line of convo goes here</string>
+		<key>date</key>
+		<date>2014-06-13T02:48:55Z</date>
+		<key>icon</key>
+		<string>john_smith.png</string>
+		<key>event</key>
+		<string>Jay-Z Live</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Mike Scott</string>
+		<key>message</key>
+		<string>Last line of convo goes here</string>
+		<key>date</key>
+		<date>2014-06-03T14:48:55Z</date>
+		<key>icon</key>
+		<string>mike_scott.png</string>
+		<key>event</key>
+		<string>Jay-Z Live</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Joe Bloggs</string>
+		<key>message</key>
+		<string>Last line of convo goes here</string>
+		<key>date</key>
+		<date>2014-06-03T02:48:55Z</date>
+		<key>icon</key>
+		<string>joe_bloggs.png</string>
+		<key>event</key>
+		<string>Olly Murs</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Tom Davids</string>
+		<key>message</key>
+		<string>Last line of convo goes here</string>
+		<key>date</key>
+		<date>2014-06-03T02:48:55Z</date>
+		<key>icon</key>
+		<string>tom_davids.png</string>
+	</dict>
+</array>
+</plist>

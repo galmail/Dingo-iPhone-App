@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+    <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CategoryCell">
+            <connections>
+                <outlet property="backImageView" destination="4i7-z9-lIr" id="M4p-Dx-Vpw"/>
+                <outlet property="foregroundView" destination="JWj-RL-HLa" id="bij-7U-Ql4"/>
+                <outlet property="indicatorImageView" destination="hZz-dI-CFK" id="KAD-g7-P0g"/>
+                <outlet property="nameLabel" destination="ZGd-ek-aXZ" id="Dcx-FJ-saI"/>
+                <outlet property="view" destination="1" id="gG4-ya-tVT"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="1">
+            <rect key="frame" x="0.0" y="0.0" width="140" height="85"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="theatre.png" id="4i7-z9-lIr" userLabel="back">
+                    <rect key="frame" x="0.0" y="0.0" width="140" height="85"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                </imageView>
+                <view hidden="YES" alpha="0.49999999999999961" contentMode="scaleToFill" id="JWj-RL-HLa" userLabel="foreground">
+                    <rect key="frame" x="0.0" y="0.0" width="140" height="85"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                </view>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comedy &amp; Theatre" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZGd-ek-aXZ" userLabel="name">
+                    <rect key="frame" x="9" y="49" width="93" height="39"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="category_default.png" id="RfV-Xo-th7" userLabel="frame">
+                    <rect key="frame" x="111" y="58" width="23" height="22"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
+                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="category_highlighted.png" id="hZz-dI-CFK" userLabel="select_indicator">
+                    <rect key="frame" x="111" y="58" width="23" height="22"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="category_default.png" width="23" height="23"/>
+        <image name="category_highlighted.png" width="23" height="23"/>
+        <image name="theatre.png" width="140" height="86"/>
+    </resources>
+</document>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>name</key>
+		<string>John Smith</string>
+		<key>icon</key>
+		<string>john_smith.png</string>
+		<key>event</key>
+		<string>Jay-Z Live</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Mike Scott</string>
+		<key>icon</key>
+		<string>mike_scott.png</string>
+		<key>event</key>
+		<string>Jay-Z Live</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Joe Bloggs</string>
+		<key>icon</key>
+		<string>Joe_bloggs.png</string>
+		<key>event</key>
+		<string>Olly Murs</string>
+	</dict>
+</array>
+</plist>
