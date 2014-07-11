@@ -5,36 +5,36 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>FC51CD6F-04F5-4E64-9553-24272B14B335</string>
+	<string>4226586E-7EBA-48CB-92DD-D4DE3A3E2142</string>
 	<key>IDESourceControlProjectName</key>
 	<string>Dingo</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>22963483-D7DF-41F8-9367-0C9F8B51C83A</key>
-		<string>https://github.com/pyctex/Dingo.git</string>
+		<key>07DB8A61-F598-4A9E-822B-EF6D4A961E49</key>
+		<string>https://bitbucket.org/dingoapp/dingo-iphone-app/</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Dingo.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>22963483-D7DF-41F8-9367-0C9F8B51C83A</key>
+		<key>07DB8A61-F598-4A9E-822B-EF6D4A961E49</key>
 		<string>..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/pyctex/Dingo.git</string>
+	<string>https://bitbucket.org/dingoapp/dingo-iphone-app/</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>22963483-D7DF-41F8-9367-0C9F8B51C83A</string>
+	<string>07DB8A61-F598-4A9E-822B-EF6D4A961E49</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>22963483-D7DF-41F8-9367-0C9F8B51C83A</string>
+			<string>07DB8A61-F598-4A9E-822B-EF6D4A961E49</string>
 			<key>IDESourceControlWCCName</key>
-			<string>Dingo</string>
+			<string>dev</string>
 		</dict>
 	</array>
 </dict>
