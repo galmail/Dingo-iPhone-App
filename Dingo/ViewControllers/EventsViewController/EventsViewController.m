@@ -15,16 +15,16 @@
 #import "SectionHeaderView.h"
 #import "TicketsViewController.h"
 #import "DingoUISettings.h"
+#import "AppManager.h"
 
 static const CGSize iconSize = {28, 32};
 static const CGFloat categoriesHeight = 140;
 
 @implementation EventsViewController{
-    NSMutableArray * tipBGImages;
-    NSMutableArray * tipTextImages;
     
     UIButton * btnContinue;
     UIView * tipsView;
+    UIImageView *msgView;
     int tipIndex;
 }
 
@@ -38,8 +38,12 @@ static const CGFloat categoriesHeight = 140;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self setupNavigationBar];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     
-    if (1==1) {
+    if ([[AppManager sharedManager] justInstalled]) {
         [self setupTips];
     }
 }
@@ -141,99 +145,68 @@ static const CGFloat categoriesHeight = 140;
 #pragma mark
 
 - (void)setupTips{
-    tipsView  = [[UIView alloc] initWithFrame:[[[UIApplication sharedApplication] delegate] window].frame];
     
-    tipBGImages = [NSMutableArray new];
-    tipTextImages = [NSMutableArray new];
-    tipIndex = 0;
+    tipsView  = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds ];
+    tipIndex = 1;
     
-    for (int i=1; i<5; i++) {
-        UIImageView * img = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"welcome%dBG",i]]];
-        
-        img.frame = [[[UIApplication sharedApplication] delegate] window].frame;
-        
-        [tipsView addSubview:img];
-        if (i>1) {
-            img.alpha = 0;
-        }
-        
-        [tipBGImages addObject:img];
-    }
-    
+    UIImageView *imgTipBG = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"welcome%dBG%@", tipIndex, IS_IPHONE_5 ? @"-568h" : @""]]];
+    imgTipBG.tag = 111;
+    [tipsView addSubview:imgTipBG];
+   
     //message BG
-    UIImageView * imgMessageBG = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"messageBG"]];
-    imgMessageBG.frame = CGRectMake(40, ([[[UIApplication sharedApplication] delegate] window].frame.size.height-214)/2-50, 240, 214);
-    [tipsView addSubview:imgMessageBG];
+    msgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"messageBG"]];
+    msgView.center = CGPointMake([UIScreen mainScreen].bounds.size.width/2, [UIScreen mainScreen].bounds.size.height/2-20);
+    msgView.userInteractionEnabled = YES;
+    [tipsView addSubview:msgView];
     
+    UIImageView *imgText = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"welcomeText%d",tipIndex]]];
+    imgText.contentMode = UIViewContentModeScaleAspectFit;
+    imgText.center = CGPointMake(msgView.frame.size.width/2, msgView.frame.size.height/2-20);
+    imgText.tag = 222;
+    [msgView addSubview:imgText];
     
-    
-    NSArray * heights = @[@180,@140,@160,@180];
-    
-    for (int i=1; i<5; i++) {
-        
-        UIImageView * imgText = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"welcomeText%d",i]]];
-        imgText.frame = CGRectMake(0, (tipsView.frame.size.height-[heights[i-1] integerValue])/2-70, 320, [heights[i-1] integerValue]);
-        
-        [tipsView addSubview:imgText];
-        if (i>1) {
-            imgText.alpha = 0;
-        }
-        
-        [tipTextImages addObject:imgText];
-    }
-    
-    
-    
-    btnContinue = [[UIButton alloc] initWithFrame:CGRectMake(50, 280, 220, 40)];
+    btnContinue = [[UIButton alloc] initWithFrame:CGRectMake(10, 160, 220, 40)];
     [btnContinue setImage:[UIImage imageNamed:@"btnContinue"] forState:UIControlStateNormal];
     [btnContinue addTarget:self action:@selector(btnContinueTap:) forControlEvents:UIControlEventTouchUpInside];
     
-    
-    
-    
-    
+    [msgView addSubview:btnContinue];
     [[[[UIApplication sharedApplication] delegate] window] addSubview:tipsView];
     
-    [[[[UIApplication sharedApplication] delegate] window] addSubview:btnContinue];
 }
 
 - (IBAction)btnContinueTap:(id)sender{
-    if (tipIndex==2) {
+    if (tipIndex==3) {
         [btnContinue setImage:[UIImage imageNamed:@"btnFinish"] forState:UIControlStateNormal];
     }
-    [UIView animateWithDuration:0.3
-                     animations:^{
-                         if (tipIndex!=3) {
-                             ((UIImageView*)tipBGImages[tipIndex]).alpha = 0;
-                             ((UIImageView*)tipTextImages[tipIndex]).alpha = 0;
-                         }
-                         if (tipIndex<3) {
-                             ((UIImageView*)tipBGImages[tipIndex+1]).alpha = 1;
-                             ((UIImageView*)tipTextImages[tipIndex+1]).alpha = 1;
-                         }
-                         
-                     }
-                     completion:^(BOOL finished){
-                         if(finished){
-                             tipIndex++;
-                             if (tipIndex==4) {
-                                 [UIView animateWithDuration:0.3
-                                                  animations:^{
-                                                      tipsView.alpha = 0;
-                                                      btnContinue.alpha = 0;
-                                                  }
-                                                  completion:^(BOOL finished){
-                                                      if(finished){
-                                                          [tipsView removeFromSuperview];
-                                                          [btnContinue removeFromSuperview];
-                                                          tipBGImages = nil;
-                                                          tipTextImages = nil;
-                                                      }
-                                                      
-                                                  }];
-                                 
-                             }
-                         }
-                     }];
+    
+    UIImageView *imgBG = (UIImageView*)[tipsView viewWithTag:111];
+    UIImageView *imgText = (UIImageView*)[msgView viewWithTag:222];
+    [UIView animateWithDuration:0.15 animations:^{
+        
+        imgBG.alpha = 0.7;
+        imgText.alpha = 0.7;
+        
+    } completion:^(BOOL finished) {
+        tipIndex++;
+        
+        if (tipIndex == 5) {
+            [UIView animateWithDuration:0.15 animations:^{
+                tipsView.alpha = 0;
+            } completion:^(BOOL finished) {
+                [tipsView removeFromSuperview];
+                tipsView = nil;
+                msgView = nil;
+                btnContinue = nil;
+            }];
+        } else {
+        
+            imgBG.image = [UIImage imageNamed:[NSString stringWithFormat:@"welcome%dBG%@", tipIndex, IS_IPHONE_5 ? @"-568h" : @""]];
+            imgText.image = [UIImage imageNamed:[NSString stringWithFormat:@"welcomeText%d", tipIndex]];
+            [UIView animateWithDuration:0.15 animations:^{
+                imgBG.alpha = 1;
+                imgText.alpha = 1;
+            }];
+        }
+    }];
 }
 @end

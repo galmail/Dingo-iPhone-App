@@ -6,8 +6,11 @@
 //  Copyright (c) 2014 Xetra. All rights reserved.
 //
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+#import <CoreLocation/CoreLocation.h>
+
+@interface AppDelegate : UIResponder <UIApplicationDelegate, CLLocationManagerDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) CLLocationManager *locationManager;
 
 @end

@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 Xetra. All rights reserved.
 //
 
+#define IS_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
+
 @interface DingoUISettings : NSObject
 
 + (UIColor *)titleBackgroundColor;

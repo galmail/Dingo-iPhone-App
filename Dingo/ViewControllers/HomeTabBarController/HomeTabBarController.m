@@ -15,7 +15,7 @@
 #import "DingoUtilites.h"
 #import "ListTicketsViewController.h"
 
-static const NSUInteger listTicketsVCIndex = 1;
+static const NSUInteger listTicketsVCIndex = 2;
 
 @interface HomeTabBarController () <UIActionSheetDelegate, UITabBarControllerDelegate>
 

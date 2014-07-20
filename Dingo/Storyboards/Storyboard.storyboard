@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="q5d-Tc-nYt">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="q5d-Tc-nYt">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -34,7 +34,7 @@
         <!--Sliding View Controller-->
         <scene sceneID="TWS-nM-RMY">
             <objects>
-                <viewController id="UKH-da-mT5" customClass="SlidingViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SlidingViewController" id="UKH-da-mT5" customClass="SlidingViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9Zp-LE-eV7">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -70,8 +70,8 @@
                     </tabBar>
                     <connections>
                         <segue destination="Ari-fI-6eC" kind="relationship" relationship="viewControllers" id="36J-3Z-8IJ"/>
-                        <segue destination="0ch-Q5-uzn" kind="relationship" relationship="viewControllers" id="AMH-9g-fjh"/>
                         <segue destination="Ami-Q2-yMz" kind="relationship" relationship="viewControllers" id="Kgd-QI-wR8"/>
+                        <segue destination="0ch-Q5-uzn" kind="relationship" relationship="viewControllers" id="AMH-9g-fjh"/>
                         <segue destination="a55-Qq-l9A" kind="relationship" relationship="viewControllers" id="DiM-zC-pCA"/>
                         <segue destination="CS2-sn-rok" kind="relationship" relationship="viewControllers" id="Oix-sB-wwu"/>
                     </connections>
@@ -1144,132 +1144,57 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Log_in.jpg" id="MYY-Dw-sPc" userLabel="mockup">
-                                <rect key="frame" x="0.0" y="-65" width="320" height="569"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blueBG.png" id="tC2-Vk-7SE">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dingo_logo.png" id="eSF-II-zVA" userLabel="Logo">
-                                <rect key="frame" x="138" y="17" width="43" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <view contentMode="scaleToFill" id="Rzv-ZV-5NN" userLabel="fb_login_view">
-                                <rect key="frame" x="-11" y="66" width="341" height="121"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="7LE-Jv-vSi" userLabel="fb_login_button">
-                                        <rect key="frame" x="46" y="20" width="248" height="36"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="fb_button.png">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <segue destination="Bdc-pp-ydq" kind="push" id="XTj-mt-knu"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There will be no evidence of Dingo on your Facebook unless you decide to share something with your friends" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Lnv-If-vBX" userLabel="fb_description">
-                                        <rect key="frame" x="20" y="57" width="301" height="40"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="11"/>
-                                        <color key="textColor" red="0.1333333333" green="0.40000000000000002" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
-                            </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="or_icon.png" id="pcY-wv-FSo" userLabel="or_icon">
-                                <rect key="frame" x="149" y="178" width="22" height="22"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
-                            </imageView>
-                            <view contentMode="scaleToFill" id="1iX-Z2-nEj" userLabel="login_view">
-                                <rect key="frame" x="17" y="200" width="286" height="205"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="First Name*" minimumFontSize="17" id="xje-6Q-Rhi" userLabel="first_name_field" customClass="DingoField">
-                                        <rect key="frame" x="21" y="20" width="245" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <color key="tintColor" red="0.85882352939999995" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <color key="textColor" red="0.92156862750000001" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
-                                        <connections>
-                                            <outlet property="delegate" destination="1lZ-5W-lRB" id="GaH-WJ-PeU"/>
-                                        </connections>
-                                    </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Surname" minimumFontSize="17" id="pTW-nI-I9p" userLabel="surname_field" customClass="DingoField">
-                                        <rect key="frame" x="20" y="64" width="245" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <color key="tintColor" red="0.85882352939999995" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <color key="textColor" red="0.92156862750000001" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
-                                        <connections>
-                                            <outlet property="delegate" destination="1lZ-5W-lRB" id="fzk-o6-wbo"/>
-                                        </connections>
-                                    </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Email*" minimumFontSize="17" id="FF2-9E-hnH" userLabel="email_field" customClass="DingoField">
-                                        <rect key="frame" x="20" y="109" width="245" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <color key="tintColor" red="0.85882352939999995" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <color key="textColor" red="0.92156862750000001" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
-                                        <connections>
-                                            <outlet property="delegate" destination="1lZ-5W-lRB" id="kI8-ey-bZH"/>
-                                        </connections>
-                                    </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="EnK-aA-X8Q" userLabel="login_button" customClass="RoundedButton">
-                                        <rect key="frame" x="20" y="154" width="245" height="33"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.23921568630000001" green="0.56470588239999997" blue="0.67450980390000004" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <color key="tintColor" red="0.1960784314" green="0.3921568627" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
-                                        <state key="normal" title="Log in">
-                                            <color key="titleColor" red="0.85882352939999995" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <segue destination="Bdc-pp-ydq" kind="push" id="iHO-hs-cbD"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
-                            </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="or_icon.png" id="fE1-zl-Cgr" userLabel="or_icon">
-                                <rect key="frame" x="149" y="406" width="22" height="22"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
+                                <rect key="frame" x="139" y="55" width="43" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="JHs-st-1bz" userLabel="guest_login_button" customClass="DingoButton">
-                                <rect key="frame" x="37" y="451" width="245" height="33"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="36" y="361" width="248" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.23921568630000001" green="0.56470588239999997" blue="0.67450980390000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="tintColor" red="0.1960784314" green="0.3921568627" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Continue as Guest">
-                                    <color key="titleColor" red="0.85882352939999995" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" image="btnGuest.png">
                                     <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue destination="Bdc-pp-ydq" kind="push" id="mV4-j7-CwJ"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="7LE-Jv-vSi" userLabel="fb_login_button">
+                                <rect key="frame" x="25" y="150" width="270" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="btnFBLogin.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnFBLoginTap:" destination="1lZ-5W-lRB" eventType="touchUpInside" id="EeV-Ck-tBv"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There will be no evidence of Dingo on your Facebook unless you decide to share something with your friends" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Lnv-If-vBX" userLabel="fb_description">
+                                <rect key="frame" x="25" y="206" width="270" height="53"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                                <color key="textColor" red="0.1333333333" green="0.40000000000000002" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="or_icon.png" id="pcY-wv-FSo" userLabel="or_icon">
+                                <rect key="frame" x="138" y="284" width="44" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.2470588235" green="0.59999999999999998" blue="0.73333333329999995" alpha="1" colorSpace="calibratedRGB"/>
                     </scrollView>
                     <navigationItem key="navigationItem" title="Dingo profile" id="tT3-vd-E5d"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="emailField" destination="FF2-9E-hnH" id="y1J-hv-DRd"/>
-                        <outlet property="firstNameField" destination="xje-6Q-Rhi" id="Ccb-WZ-dRT"/>
                         <outlet property="scrollView" destination="m2l-X7-fHn" id="fDp-vS-shP"/>
-                        <outlet property="surnameField" destination="pTW-nI-I9p" id="LRA-6n-kzY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5jJ-h3-ThO" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3068,11 +2993,13 @@
         <image name="EventIcon.png" width="60" height="59"/>
         <image name="HomeIcon.png" width="28" height="26"/>
         <image name="ListTicketsIcon.png" width="46" height="33"/>
-        <image name="Log_in.jpg" width="320" height="568"/>
         <image name="add_photo_icon.png" width="76" height="75"/>
         <image name="arrow.png" width="6" height="10"/>
         <image name="arrow_white.png" width="5" height="9"/>
+        <image name="blueBG.png" width="320" height="568"/>
         <image name="bookmarked_icon.png" width="30" height="30"/>
+        <image name="btnFBLogin.png" width="279" height="39"/>
+        <image name="btnGuest.png" width="248" height="35"/>
         <image name="categories.png" width="320" height="142"/>
         <image name="concerts.png" width="140" height="100"/>
         <image name="contact_us_icon.png" width="30" height="30"/>
@@ -3080,7 +3007,6 @@
         <image name="faq_cell.png" width="320" height="252"/>
         <image name="faq_icon.png" width="30" height="30"/>
         <image name="faq_icon_gray.png" width="50" height="50"/>
-        <image name="fb_button.png" width="248" height="36"/>
         <image name="feature_cell.png" width="320" height="141"/>
         <image name="featured_icon.png" width="35" height="33"/>
         <image name="home_icon.png" width="28" height="26"/>
@@ -3094,7 +3020,7 @@
         <image name="messages_icon.png" width="32" height="26"/>
         <image name="nav_back_icon.png" width="14" height="24"/>
         <image name="offers_cells.png" width="320" height="85"/>
-        <image name="or_icon.png" width="22" height="22"/>
+        <image name="or_icon.png" width="43" height="43"/>
         <image name="preview_cell.png" width="320" height="93"/>
         <image name="search_icon.png" width="26" height="26"/>
         <image name="search_icon_gray.png" width="50" height="50"/>
@@ -3114,6 +3040,5 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="MsU-EW-bYV"/>
-        <segue reference="mV4-j7-CwJ"/>
     </inferredMetricsTieBreakers>
 </document>
