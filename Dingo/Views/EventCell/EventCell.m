@@ -51,6 +51,9 @@ const CGFloat eventCellHeight = 78;
 #pragma mark - Custom
 
 - (void)buildWithData:(NSDictionary *)data {
+    
+    return;
+    
     NSDictionary *dict = [[DataManager shared] dataByCategoryName:data[@"category"]];
     self.backImageView.image = [[UIImage imageNamed:dict[@"back"]] blurredImageWithRadius:5
                                                                                iterations:1

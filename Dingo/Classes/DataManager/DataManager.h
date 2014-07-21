@@ -6,6 +6,9 @@
 //  Copyright (c) 2014 Xetra. All rights reserved.
 //
 
+
+#import "EventCategory.h"
+
 @interface DataManager : NSObject
 
 + (DataManager *)shared;
@@ -30,7 +33,8 @@
 - (NSString *)offersGroupTitleByIndex:(NSUInteger)groupIndex;
 
 - (NSArray *)allCategories;
-- (NSDictionary *)dataByCategoryName:(NSString *)name;
+- (void)allCategoriesWithCompletion:( void (^) (BOOL finished))handler;
+- (EventCategory *)dataByCategoryName:(NSString *)name;
 - (NSUInteger)categoryIndexByName:(NSString *)name;
 
 @end

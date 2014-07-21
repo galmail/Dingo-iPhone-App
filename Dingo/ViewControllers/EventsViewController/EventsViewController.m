@@ -33,6 +33,10 @@ static const CGFloat categoriesHeight = 140;
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    
+    [[DataManager shared] allCategoriesWithCompletion:^(BOOL finished) {
+        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

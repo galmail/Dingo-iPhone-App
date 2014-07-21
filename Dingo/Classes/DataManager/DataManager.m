@@ -9,8 +9,12 @@
 #import "DataManager.h"
 
 #import "DingoUtilites.h"
+#import "WebServiceManager.h"
+#import "AppManager.h"
+
 
 typedef void (^GroupsDelegate)(NSDictionary *eventDescription, NSUInteger groupIndex);
+
 
 @implementation DataManager
 
@@ -248,20 +252,62 @@ typedef void (^GroupsDelegate)(NSDictionary *eventDescription, NSUInteger groupI
 #pragma mark - Categories Requests
 
 - (NSArray *)allCategories {
-    static NSArray *categories = nil;
-    if (categories) {
-        return categories;
-    }
+
+    NSManagedObjectContext *context = [AppManager sharedManager].managedObjectContext;
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"EventCategory"];
+    NSError *error = nil;
+    NSArray *categories = [context executeFetchRequest:request error:&error];
     
-    categories = [self loadRecordsFromPlist:@"categories"];
     return categories;
 }
 
-- (NSDictionary *)dataByCategoryName:(NSString *)name {
+- (void)allCategoriesWithCompletion:( void (^) (BOOL finished))handler {
+    
+    [WebServiceManager categories:nil completion:^(id response, NSError *error) {
+    
+        if (response[@"categories"]) {
+            NSArray *categories = response[@"categories"];
+            for (NSDictionary *category in categories) {
+                [self addOrUpdateCategory:category];
+            }
+            
+            [[AppManager sharedManager] saveContext];
+        }
+        handler(YES);
+        
+    }];
+}
+
+- (void)addOrUpdateCategory:(NSDictionary*)info {
+    NSManagedObjectContext *context = [AppManager sharedManager].managedObjectContext;
+    
+    NSString *categoryID = info[@"id"];
+    NSString *name = info[@"name"];
+    NSString *thumbUrl = info[@"thumb"];
+    
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"EventCategory"];
+    request.predicate = [NSPredicate predicateWithFormat:@"category_id == %@", categoryID];
+    
+    NSError *error = nil;
+    EventCategory *category = nil;
+    NSArray *categories = [context executeFetchRequest:request error:&error];
+    if (categories.count > 0) {
+        category = categories[0];
+    } else {
+        category = [NSEntityDescription insertNewObjectForEntityForName:@"EventCategory" inManagedObjectContext:context];
+        category.category_id = categoryID;
+    }
+    
+    category.name = name;
+    category.thumbUrl = thumbUrl;
+   
+}
+
+- (EventCategory *)dataByCategoryName:(NSString *)name {
     NSArray *cats = [self allCategories];
-    for (NSDictionary *dict in cats) {
-        if ([name isEqualToString:dict[@"name"]]) {
-            return dict;
+    for (EventCategory *cat in cats) {
+        if ([name isEqualToString:cat.name]) {
+            return cat;
         }
     }
     
@@ -269,10 +315,10 @@ typedef void (^GroupsDelegate)(NSDictionary *eventDescription, NSUInteger groupI
 }
 
 - (NSUInteger)categoryIndexByName:(NSString *)name {
-    NSArray *cats = [[DataManager shared] allCategories];
+    NSArray *cats = [self allCategories];
     NSUInteger index = 0;
-    for (NSDictionary *dict in cats) {
-        if ([name isEqualToString:dict[@"name"]]) {
+    for (EventCategory *cat in cats) {
+        if ([name isEqualToString:cat.name]) {
             return index;
         }
         index++;
