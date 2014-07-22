@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-
+#import "TestFlight.h"
 #import "DingoUISettings.h"
 
 #import <FacebookSDK/FacebookSDK.h>
@@ -25,6 +25,7 @@
                                              forState:UIControlStateSelected];
     [[UISwitch appearance] setTintColor:[DingoUISettings foregroundColor]];
     
+    [TestFlight takeOff:@"196f5c4b-025a-4cbe-9b82-7eb4917931f7"];
     
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
