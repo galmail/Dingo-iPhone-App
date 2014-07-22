@@ -68,11 +68,38 @@ const CGFloat eventCellHeight = 78;
     }
    
     self.name = data.name;
-    self.location = @""; //data[@"location"];
+    self.location = [self eventLocation:data];
     self.begin = data.date;
     self.blurView.blurRadius = 5;
     self.blurView.dynamic = NO;
     self.blurView.hidden = YES;
+}
+
+- (NSString *)eventLocation:(Event *)data {
+    
+    NSString *location = @"";
+    if (data.address.length > 0) {
+        location = data.address;
+    }
+    
+    if (data.city.length > 0) {
+        
+        if (location.length > 0) {
+            location = [location stringByAppendingString:[NSString stringWithFormat:@", %@", data.city]];
+        } else {
+            location = data.city;
+        }
+    }
+    
+    if (data.postalCode.length > 0) {
+        if (location.length > 0) {
+            location = [location stringByAppendingString:[NSString stringWithFormat:@", %@", data.postalCode]];
+        } else {
+            location = data.postalCode;
+        }
+    }
+    
+    return location;
 }
 
 @end

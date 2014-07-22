@@ -99,6 +99,10 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     event.fromPrice = [NSNumber numberWithFloat:[info[@"min_price"] floatValue]];
     event.tickets = [NSNumber numberWithInt:[info[@"available_tickets"] intValue]];
     
+    event.address = info[@"address"];
+    event.city = info[@"city"];
+    event.postalCode = info[@"postcode"];
+    
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
     formatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSSSZ";

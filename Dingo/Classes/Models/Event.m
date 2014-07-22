@@ -21,5 +21,8 @@
 @dynamic featured;
 @dynamic fromPrice;
 @dynamic tickets;
+@dynamic address;
+@dynamic city;
+@dynamic postalCode;
 
 @end

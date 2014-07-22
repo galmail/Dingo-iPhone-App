@@ -22,5 +22,8 @@
 @property (nonatomic, retain) NSNumber * featured;
 @property (nonatomic, retain) NSNumber * fromPrice;
 @property (nonatomic, retain) NSNumber * tickets;
+@property (nonatomic, retain) NSString * address;
+@property (nonatomic, retain) NSString * city;
+@property (nonatomic, retain) NSString * postalCode;
 
 @end
