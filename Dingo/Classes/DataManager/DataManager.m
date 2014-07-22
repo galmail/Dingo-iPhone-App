@@ -41,6 +41,17 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     return events;
 }
 
+- (NSArray *)featuredEvents {
+    
+    NSManagedObjectContext *context = [AppManager sharedManager].managedObjectContext;
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Event"];
+    request.predicate = [NSPredicate predicateWithFormat:@"featured == 1"];
+    NSError *error = nil;
+    NSArray *events = [context executeFetchRequest:request error:&error];
+    
+    return events;
+}
+
 - (void)allEventsWithCompletion:( void (^) (BOOL finished))handler {
     
     [WebServiceManager events:nil completion:^(id response, NSError *error) {

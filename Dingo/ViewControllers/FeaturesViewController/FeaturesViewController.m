@@ -40,13 +40,13 @@
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [[[DataManager shared] allEvents] count];
+    return [[[DataManager shared] featuredEvents] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString * const cellId = @"FeatureCell";
     TicketCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
-    NSDictionary *data = [[DataManager shared] allEvents][indexPath.row];
+    Event *data = [[DataManager shared] allEvents][indexPath.row];
     [cell buildWithData:data];
     return cell;
 }
