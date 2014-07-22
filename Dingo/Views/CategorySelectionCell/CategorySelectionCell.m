@@ -11,6 +11,7 @@
 #import "DataManager.h"
 #import "CategoryCell.h"
 #import "TwoModeButton.h"
+#import "EventCategory.h"
 
 @interface CategorySelectionCell () <UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -48,9 +49,10 @@
     
     CategoryCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CategoryCell"
                                                                    forIndexPath:indexPath];
-    NSDictionary *data;
+    EventCategory *data;
     NSUInteger index = indexPath.row;
     DataManager *manager = [DataManager shared];
+    
     if (self.multipleSelection) {
         data = [manager allCategories][index];
     } else {
@@ -61,9 +63,9 @@
     [cell buildWithData:data];
     
     if (self.multipleSelection) {
-        cell.selected = [self.favoriteCategories containsObject:data[@"name"]];
+        cell.selected = [self.favoriteCategories containsObject:data.name];
     } else {
-        cell.selected = [self.favoriteCategory isEqualToString:data[@"name"]];
+        cell.selected = [self.favoriteCategory isEqualToString:data.name];
     }
     
     if (cell.selected) {

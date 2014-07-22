@@ -6,18 +6,24 @@
 //  Copyright (c) 2014 Xetra. All rights reserved.
 //
 
+
+#import "EventCategory.h"
+#import "Event.h"
+
 @interface DataManager : NSObject
 
 + (DataManager *)shared;
 
 - (NSArray *)allEvents;
+- (NSArray *)featuredEvents;
+- (void)allEventsWithCompletion:( void (^) (BOOL finished))handler;
 - (NSUInteger)eventsDateRange;
 - (NSArray *)eventsBeforeDate:(NSDate *)date;
 - (NSArray *)eventsAfterDate:(NSDate *)date;
 
 - (NSUInteger)eventsGroupsCount;
 - (NSUInteger)eventsCountWithGroupIndex:(NSUInteger)group;
-- (NSDictionary *)eventDescriptionByIndexPath:(NSIndexPath *)path;
+- (Event *)eventDescriptionByIndexPath:(NSIndexPath *)path;
 - (NSDate *)eventGroupDateByIndex:(NSUInteger)groupIndex;
 
 - (NSArray *)allTicketsByEventName:(NSString *)name;
@@ -30,7 +36,9 @@
 - (NSString *)offersGroupTitleByIndex:(NSUInteger)groupIndex;
 
 - (NSArray *)allCategories;
-- (NSDictionary *)dataByCategoryName:(NSString *)name;
+- (void)allCategoriesWithCompletion:( void (^) (BOOL finished))handler;
+- (EventCategory *)dataByCategoryName:(NSString *)name;
+- (EventCategory *)dataByCategoryID:(NSString *)categoryID;
 - (NSUInteger)categoryIndexByName:(NSString *)name;
 
 @end

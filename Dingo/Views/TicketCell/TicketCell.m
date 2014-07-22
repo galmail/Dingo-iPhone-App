@@ -30,7 +30,7 @@ const CGFloat featureCellHeight = 140;
 #pragma mark - Setters
 
 - (void)setPrice:(float)price {
-    self.startPriceLabel.text = [NSString stringWithFormat:@"$%.f", price];
+    self.startPriceLabel.text = [NSString stringWithFormat:@"$%.02f", price];
 }
 
 - (void)setTickets:(uint)tickets {
@@ -39,18 +39,18 @@ const CGFloat featureCellHeight = 140;
 
 #pragma mark - Custom
 
-+ (id)buildWithData:(NSDictionary *)data {
++ (id)buildWithData:(Event *)data {
     TicketCell *cell = [[TicketCell alloc] init];
     [cell loadUIFromXib];
     [cell buildWithData:data];
     return cell;
 }
 
-- (void)buildWithData:(NSDictionary *)data {
+- (void)buildWithData:(Event *)data {
     [super buildWithData:data];
-    self.price = [data[@"price"] floatValue];
-    self.discountView.discount = [data[@"discount"] intValue];
-    self.tickets = [data[@"tickets"] intValue];
+    self.price = [data.fromPrice floatValue];
+    self.discountView.discount = 0;//[data[@"discount"] intValue];
+    self.tickets = [data.tickets intValue];
 }
 
 #pragma mark - Private

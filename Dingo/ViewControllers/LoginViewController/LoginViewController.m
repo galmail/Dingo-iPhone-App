@@ -14,7 +14,10 @@
 
 #import "SlidingViewController.h"
 
-@interface LoginViewController () <UITextFieldDelegate>
+@interface LoginViewController () <UITextFieldDelegate> {
+    
+    __weak IBOutlet UIView *loadingView;
+}
 
 @property (nonatomic, weak) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, weak) UITextField *activeField;
@@ -28,6 +31,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    loadingView.hidden = YES;
+    loadingView.layer.cornerRadius = 5;
     self.scrollView.contentSize = self.scrollView.frame.size;
     
     if ([AppManager sharedManager].token) {
@@ -39,6 +44,7 @@
 
 - (IBAction)btnFBLoginTap:(id)sender {
     
+    loadingView.hidden = NO;
     [FBSession openActiveSessionWithReadPermissions:@[@"email", @"user_birthday", @"user_location"]
                                        allowLoginUI:YES
                                   completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
@@ -46,6 +52,8 @@
                                       if (error) {
                                           UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
                                           [alert show];
+                                          
+                                          loadingView.hidden = YES;
                                       } else {
                                           if (state == FBSessionStateOpen) {
                                               
@@ -55,17 +63,19 @@
                                               [request startWithCompletionHandler:^(FBRequestConnection *connection, id<FBGraphUser> user, NSError *error) {
                                                   if (user) {
                                                       
-                                                      
-                                                      // change date format from MM/DD/YYYY to DD/MM/YYYY
-                                                      NSArray *dateArray = [user.birthday componentsSeparatedByString:@"/"];
-                                                      dateArray = @[ dateArray[1], dateArray[0], dateArray[2]];
-                                                      NSString *birtday = [dateArray componentsJoinedByString:@"/"];
+                                                      NSString *birtday = nil;
+                                                      if(user.birthday.length > 0) {
+                                                          // change date format from MM/DD/YYYY to DD/MM/YYYY
+                                                          NSArray *dateArray = [user.birthday componentsSeparatedByString:@"/"];
+                                                          dateArray = @[ dateArray[1], dateArray[0], dateArray[2]];
+                                                          birtday = [dateArray componentsJoinedByString:@"/"];
+                                                      }
                                                       
                                                       NSDictionary *params = @{ @"name" : user.name,
                                                                                 @"email" : user[@"email"],
                                                                                 @"password" : user.objectID,
-                                                                                @"date_of_birth": birtday,
-                                                                                @"city":[[user.location.name componentsSeparatedByString:@","] firstObject],
+                                                                                @"date_of_birth": birtday.length > 0 ? birtday : @"",
+                                                                                @"city": user.location ? [[user.location.name componentsSeparatedByString:@","] firstObject] : @"",
                                                                                 @"photo_url":user[@"picture"][@"data"][@"url"],
                                                                                 @"device_uid":[[UIDevice currentDevice] uniqueDeviceIdentifier],
                                                                                 @"device_brand":@"Apple",
@@ -80,6 +90,8 @@
                                                           if (error) {
                                                               UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
                                                               [alert show];
+                                                              
+                                                              loadingView.hidden = YES;
                                                           } else {
                                                               if (response) {
                                                                   
@@ -134,12 +146,20 @@
                                                                   UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Unable to sign up, please try later" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
                                                                   [alert show];
                                                               }
+                                                              
+                                                              loadingView.hidden = YES;
                                                           }
                                                           
                                                           
                                                       }];
+                                                  } else {
+                                                      loadingView.hidden = YES;
                                                   }
+                                                  
+                                                  
                                               }];
+                                          } else {
+                                              loadingView.hidden = YES;
                                           }
                                       }
                                       

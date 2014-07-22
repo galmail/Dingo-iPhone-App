@@ -50,19 +50,56 @@ const CGFloat eventCellHeight = 78;
 
 #pragma mark - Custom
 
-- (void)buildWithData:(NSDictionary *)data {
-    NSDictionary *dict = [[DataManager shared] dataByCategoryName:data[@"category"]];
-    self.backImageView.image = [[UIImage imageNamed:dict[@"back"]] blurredImageWithRadius:5
+- (void)buildWithData:(Event *)data {
+    
+    EventCategory *category = [[DataManager shared] dataByCategoryID:data.category_id];
+    
+    self.backImageView.image = [[UIImage imageWithData:category.thumb] blurredImageWithRadius:5
                                                                                iterations:1
                                                                                 tintColor:[UIColor colorWithWhite:.2
                                                                                                             alpha:.3]];
-    self.iconImageView.image = [UIImage imageNamed:data[@"icon"]];
-    self.name = data[@"name"];
-    self.location = data[@"location"];
-    self.begin = data[@"begin"];
+    if (data.thumb) {
+         self.iconImageView.image = [UIImage imageWithData:data.thumb];
+    } else {
+        NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:data.thumbUrl]];
+        data.thumb = imageData;
+        [data.managedObjectContext save:nil];
+        self.iconImageView.image = [UIImage imageWithData:data.thumb];
+    }
+   
+    self.name = data.name;
+    self.location = [self eventLocation:data];
+    self.begin = data.date;
     self.blurView.blurRadius = 5;
     self.blurView.dynamic = NO;
     self.blurView.hidden = YES;
+}
+
+- (NSString *)eventLocation:(Event *)data {
+    
+    NSString *location = @"";
+    if (data.address.length > 0) {
+        location = data.address;
+    }
+    
+    if (data.city.length > 0) {
+        
+        if (location.length > 0) {
+            location = [location stringByAppendingString:[NSString stringWithFormat:@", %@", data.city]];
+        } else {
+            location = data.city;
+        }
+    }
+    
+    if (data.postalCode.length > 0) {
+        if (location.length > 0) {
+            location = [location stringByAppendingString:[NSString stringWithFormat:@", %@", data.postalCode]];
+        } else {
+            location = data.postalCode;
+        }
+    }
+    
+    return location;
 }
 
 @end

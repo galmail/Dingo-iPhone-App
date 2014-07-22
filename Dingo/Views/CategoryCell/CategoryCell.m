@@ -8,6 +8,7 @@
 
 #import "CategoryCell.h"
 
+
 @interface CategoryCell ()
 
 @property (nonatomic, strong) IBOutlet UIView *view;
@@ -30,14 +31,23 @@
 
 #pragma mark - Custom
 
-- (void)buildWithData:(NSDictionary *)data {
+- (void)buildWithData:(EventCategory *)data {
     [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([self class])
                                   owner:self
                                 options:nil];
     [self addSubview:self.view];
     
-    self.back = [UIImage imageNamed:data[@"back"]];
-    self.name = data[@"name"];
+    if (data.thumb) {
+        self.back = [UIImage imageWithData:data.thumb];
+    } else {
+        NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:data.thumbUrl]];
+        data.thumb = imageData;
+        [data.managedObjectContext save:nil];
+        
+        self.back = [UIImage imageWithData:data.thumb];
+    }
+    
+    self.name = data.name;
 }
 
 #pragma mark - Setters
