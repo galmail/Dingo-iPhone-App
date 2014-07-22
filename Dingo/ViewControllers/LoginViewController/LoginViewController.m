@@ -55,17 +55,19 @@
                                               [request startWithCompletionHandler:^(FBRequestConnection *connection, id<FBGraphUser> user, NSError *error) {
                                                   if (user) {
                                                       
-                                                      
-                                                      // change date format from MM/DD/YYYY to DD/MM/YYYY
-                                                      NSArray *dateArray = [user.birthday componentsSeparatedByString:@"/"];
-                                                      dateArray = @[ dateArray[1], dateArray[0], dateArray[2]];
-                                                      NSString *birtday = [dateArray componentsJoinedByString:@"/"];
+                                                      NSString *birtday = nil;
+                                                      if(user.birthday.length > 0) {
+                                                          // change date format from MM/DD/YYYY to DD/MM/YYYY
+                                                          NSArray *dateArray = [user.birthday componentsSeparatedByString:@"/"];
+                                                          dateArray = @[ dateArray[1], dateArray[0], dateArray[2]];
+                                                          birtday = [dateArray componentsJoinedByString:@"/"];
+                                                      }
                                                       
                                                       NSDictionary *params = @{ @"name" : user.name,
                                                                                 @"email" : user[@"email"],
                                                                                 @"password" : user.objectID,
-                                                                                @"date_of_birth": birtday,
-                                                                                @"city":[[user.location.name componentsSeparatedByString:@","] firstObject],
+                                                                                @"date_of_birth": birtday.length > 0 ? birtday : @"",
+                                                                                @"city": user.location ? [[user.location.name componentsSeparatedByString:@","] firstObject] : @"",
                                                                                 @"photo_url":user[@"picture"][@"data"][@"url"],
                                                                                 @"device_uid":[[UIDevice currentDevice] uniqueDeviceIdentifier],
                                                                                 @"device_brand":@"Apple",
