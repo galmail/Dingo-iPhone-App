@@ -14,7 +14,10 @@
 
 #import "SlidingViewController.h"
 
-@interface LoginViewController () <UITextFieldDelegate>
+@interface LoginViewController () <UITextFieldDelegate> {
+    
+    __weak IBOutlet UIView *loadingView;
+}
 
 @property (nonatomic, weak) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, weak) UITextField *activeField;
@@ -28,6 +31,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    loadingView.hidden = YES;
+    loadingView.layer.cornerRadius = 5;
     self.scrollView.contentSize = self.scrollView.frame.size;
     
     if ([AppManager sharedManager].token) {
@@ -39,6 +44,7 @@
 
 - (IBAction)btnFBLoginTap:(id)sender {
     
+    loadingView.hidden = NO;
     [FBSession openActiveSessionWithReadPermissions:@[@"email", @"user_birthday", @"user_location"]
                                        allowLoginUI:YES
                                   completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
@@ -46,6 +52,8 @@
                                       if (error) {
                                           UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
                                           [alert show];
+                                          
+                                          loadingView.hidden = YES;
                                       } else {
                                           if (state == FBSessionStateOpen) {
                                               
@@ -82,6 +90,8 @@
                                                           if (error) {
                                                               UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
                                                               [alert show];
+                                                              
+                                                              loadingView.hidden = YES;
                                                           } else {
                                                               if (response) {
                                                                   
@@ -136,12 +146,20 @@
                                                                   UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Unable to sign up, please try later" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
                                                                   [alert show];
                                                               }
+                                                              
+                                                              loadingView.hidden = YES;
                                                           }
                                                           
                                                           
                                                       }];
+                                                  } else {
+                                                      loadingView.hidden = YES;
                                                   }
+                                                  
+                                                  
                                               }];
+                                          } else {
+                                              loadingView.hidden = YES;
                                           }
                                       }
                                       
