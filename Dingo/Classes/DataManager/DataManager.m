@@ -13,7 +13,7 @@
 #import "AppManager.h"
 
 
-typedef void (^GroupsDelegate)(NSDictionary *eventDescription, NSUInteger groupIndex);
+typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
 
 
 @implementation DataManager
@@ -32,13 +32,69 @@ typedef void (^GroupsDelegate)(NSDictionary *eventDescription, NSUInteger groupI
 #pragma mark - Events Requests
 
 - (NSArray *)allEvents {
-    static NSArray *events = nil;
-    if (events) {
-        return events;
+    
+    NSManagedObjectContext *context = [AppManager sharedManager].managedObjectContext;
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Event"];
+    NSError *error = nil;
+    NSArray *events = [context executeFetchRequest:request error:&error];
+    
+    return events;
+}
+
+- (void)allEventsWithCompletion:( void (^) (BOOL finished))handler {
+    
+    [WebServiceManager events:nil completion:^(id response, NSError *error) {
+        
+        if (response[@"events"]) {
+            NSArray *events = response[@"events"];
+            for (NSDictionary *event in events) {
+                [self addOrUpdateEvent:event];
+            }
+            
+            [[AppManager sharedManager] saveContext];
+        }
+        handler(YES);
+        
+    }];
+}
+
+- (void)addOrUpdateEvent:(NSDictionary *)info {
+    NSManagedObjectContext *context = [AppManager sharedManager].managedObjectContext;
+    
+    NSString *eventID = info[@"id"];
+    NSString *name = info[@"name"];
+    NSString *thumbUrl = info[@"thumb"];
+    NSString *categoryID = info[@"category_id"];
+    NSString *description = info[@"description"];
+    
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Event"];
+    request.predicate = [NSPredicate predicateWithFormat:@"event_id == %@", eventID];
+    
+    NSError *error = nil;
+    Event *event = nil;
+    NSArray *events = [context executeFetchRequest:request error:&error];
+    if (events.count > 0) {
+        event = events[0];
+    } else {
+        event = [NSEntityDescription insertNewObjectForEntityForName:@"Event" inManagedObjectContext:context];
+        event.event_id = eventID;
     }
     
-    events = [self loadRecordsFromPlist:@"events"];
-    return events;
+    event.name = name;
+    event.event_desc = description;
+    event.category_id = categoryID;
+    event.thumbUrl = thumbUrl;
+    event.featured = [NSNumber numberWithInt:[info[@"featured"] intValue]];
+    event.fromPrice = [NSNumber numberWithFloat:[info[@"min_price"] floatValue]];
+    event.tickets = [NSNumber numberWithInt:[info[@"available_tickets"] intValue]];
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
+    formatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSSSZ";
+    
+    NSDate *date = [formatter dateFromString:info[@"date"]];
+    event.date = date;
+ 
 }
 
 - (NSUInteger)eventsDateRange {
@@ -92,7 +148,7 @@ typedef void (^GroupsDelegate)(NSDictionary *eventDescription, NSUInteger groupI
 
 - (NSUInteger)eventsGroupsCount {
     __block NSUInteger groupsCount = 0;
-    GroupsDelegate delegate = ^(NSDictionary *eventDescription, NSUInteger groupIndex) {
+    GroupsDelegate delegate = ^(Event *eventDescription, NSUInteger groupIndex) {
         if (groupIndex > groupsCount) {
             groupsCount = groupIndex;
         }
@@ -104,7 +160,7 @@ typedef void (^GroupsDelegate)(NSDictionary *eventDescription, NSUInteger groupI
 
 - (NSUInteger)eventsCountWithGroupIndex:(NSUInteger)group {
     __block NSUInteger eventsCount = 0;
-    GroupsDelegate delegate = ^(NSDictionary *eventDescription, NSUInteger groupIndex) {
+    GroupsDelegate delegate = ^(Event *eventDescription, NSUInteger groupIndex) {
         if (groupIndex == group) {
             eventsCount++;
         }
@@ -114,10 +170,10 @@ typedef void (^GroupsDelegate)(NSDictionary *eventDescription, NSUInteger groupI
     return eventsCount;
 }
 
-- (NSDictionary *)eventDescriptionByIndexPath:(NSIndexPath *)path {
+- (Event *)eventDescriptionByIndexPath:(NSIndexPath *)path {
     __block uint eventsIndex = 0;
-    __block NSDictionary *dict = nil;
-    GroupsDelegate delegate = ^(NSDictionary *eventDescription, NSUInteger groupIndex) {
+    __block Event *event = nil;
+    GroupsDelegate delegate = ^(Event *eventDescription, NSUInteger groupIndex) {
         if (groupIndex != path.section) {
             return;
         }
@@ -126,21 +182,21 @@ typedef void (^GroupsDelegate)(NSDictionary *eventDescription, NSUInteger groupI
             return;
         }
         
-        dict = eventDescription;
+        event = eventDescription;
     };
     
     [self enumerateEventGroups:&delegate];
-    return dict;
+    return event;
 }
 
 - (NSDate *)eventGroupDateByIndex:(NSUInteger)groupIndex {
     __block NSDate *date = nil;
-    GroupsDelegate delegate = ^(NSDictionary *eventDescription, NSUInteger grIndx) {
+    GroupsDelegate delegate = ^(Event *eventDescription, NSUInteger grIndx) {
         if (groupIndex != grIndx) {
             return;
         }
         
-        date = eventDescription[@"begin"];
+        date = eventDescription.date;
     };
     
     [self enumerateEventGroups:&delegate];
@@ -314,6 +370,20 @@ typedef void (^GroupsDelegate)(NSDictionary *eventDescription, NSUInteger groupI
     return nil;
 }
 
+- (EventCategory *)dataByCategoryID:(NSString *)categoryID {
+    NSManagedObjectContext *context = [AppManager sharedManager].managedObjectContext;
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"EventCategory"];
+    request.predicate = [NSPredicate predicateWithFormat:@"category_id == %@", categoryID];
+
+    NSError *error = nil;
+    NSArray *categories = [context executeFetchRequest:request error:&error];
+    if (categories.count > 0) {
+        return categories[0];
+    }
+    
+    return nil;
+}
+
 - (NSUInteger)categoryIndexByName:(NSString *)name {
     NSArray *cats = [self allCategories];
     NSUInteger index = 0;
@@ -342,15 +412,15 @@ typedef void (^GroupsDelegate)(NSDictionary *eventDescription, NSUInteger groupI
     NSDate *curDate = nil;
     uint groupIndex = 0;
     
-    for (NSDictionary *dict in events) {
-        NSDate *date = dict[@"begin"];
+    for (Event *event in events) {
+        NSDate *date = event.date;//dict[@"begin"];
         
         if (curDate && [DingoUtilites daysBetween:curDate and:date]) {
             groupIndex++;
         }
         
         curDate = date;
-        (*delegate)(dict, groupIndex);
+        (*delegate)(event, groupIndex);
     }
 }
 

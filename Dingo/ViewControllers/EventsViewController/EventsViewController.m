@@ -35,8 +35,17 @@ static const CGFloat categoriesHeight = 140;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
     [[DataManager shared] allCategoriesWithCompletion:^(BOOL finished) {
-        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
+        [[DataManager shared] allEventsWithCompletion:^(BOOL finished) {
+            [self.tableView reloadData];
+            
+            if ([[AppManager sharedManager] justInstalled]) {
+                [self setupTips];
+            }
+        }];
+
     }];
+    
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -46,10 +55,6 @@ static const CGFloat categoriesHeight = 140;
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
-    if ([[AppManager sharedManager] justInstalled]) {
-        [self setupTips];
-    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -130,7 +135,7 @@ static const CGFloat categoriesHeight = 140;
     TicketCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellId];
     [cell loadUIFromXib];
     
-    NSDictionary *data = [[DataManager shared] eventDescriptionByIndexPath:path];
+    Event *data = [[DataManager shared] eventDescriptionByIndexPath:path];
     [cell buildWithData:data];
     return cell;
 }

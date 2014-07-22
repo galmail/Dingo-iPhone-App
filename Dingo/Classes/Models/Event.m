@@ -2,7 +2,7 @@
 //  Event.m
 //  Dingo
 //
-//  Created by Asatur Galstyan on 7/21/14.
+//  Created by Asatur Galstyan on 7/22/14.
 //  Copyright (c) 2014 Dingo. All rights reserved.
 //
 
@@ -19,5 +19,7 @@
 @dynamic thumb;
 @dynamic thumbUrl;
 @dynamic featured;
+@dynamic fromPrice;
+@dynamic tickets;
 
 @end

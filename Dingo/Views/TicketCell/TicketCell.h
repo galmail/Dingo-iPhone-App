@@ -12,7 +12,7 @@ extern const CGFloat featureCellHeight;
 
 @interface TicketCell : EventCell
 
-+ (id)buildWithData:(NSDictionary *)data;
++ (id)buildWithData:(Event *)data;
 - (void)loadUIFromXib;
 
 @end

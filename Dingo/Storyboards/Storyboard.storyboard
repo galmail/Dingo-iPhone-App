@@ -1189,7 +1189,7 @@
                                 <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
                             </imageView>
                             <view alpha="0.89999999999999991" contentMode="scaleToFill" id="i4Y-fT-O0o">
-                                <rect key="frame" x="100" y="192" width="120" height="120"/>
+                                <rect key="frame" x="100" y="110" width="120" height="120"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <subviews>
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" id="IgJ-DD-Ki5">

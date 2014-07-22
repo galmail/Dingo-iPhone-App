@@ -6,9 +6,11 @@
         <attribute name="event_desc" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="event_id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="featured" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="fromPrice" optional="YES" attributeType="Float" defaultValueString="0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="thumb" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="thumbUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tickets" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
     </entity>
     <entity name="EventCategory" representedClassName="EventCategory" syncable="YES">
         <attribute name="category_id" optional="YES" attributeType="String" syncable="YES"/>
@@ -18,6 +20,6 @@
     </entity>
     <elements>
         <element name="EventCategory" positionX="-63" positionY="-18" width="128" height="103"/>
-        <element name="Event" positionX="-54" positionY="18" width="128" height="165"/>
+        <element name="Event" positionX="-54" positionY="18" width="128" height="193"/>
     </elements>
 </model>

@@ -2,7 +2,7 @@
 //  Event.h
 //  Dingo
 //
-//  Created by Asatur Galstyan on 7/21/14.
+//  Created by Asatur Galstyan on 7/22/14.
 //  Copyright (c) 2014 Dingo. All rights reserved.
 //
 
@@ -20,5 +20,7 @@
 @property (nonatomic, retain) NSData * thumb;
 @property (nonatomic, retain) NSString * thumbUrl;
 @property (nonatomic, retain) NSNumber * featured;
+@property (nonatomic, retain) NSNumber * fromPrice;
+@property (nonatomic, retain) NSNumber * tickets;
 
 @end
