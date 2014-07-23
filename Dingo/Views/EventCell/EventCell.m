@@ -54,10 +54,12 @@ const CGFloat eventCellHeight = 78;
     
     EventCategory *category = [[DataManager shared] dataByCategoryID:data.category_id];
     
-    self.backImageView.image = [[UIImage imageWithData:category.thumb] blurredImageWithRadius:5
-                                                                               iterations:1
-                                                                                tintColor:[UIColor colorWithWhite:.2
-                                                                                                            alpha:.3]];
+    if (category.thumb) {
+        self.backImageView.image = [[UIImage imageWithData:category.thumb] blurredImageWithRadius:5
+                                                                                       iterations:1
+                                                                                        tintColor:[UIColor colorWithWhite:0.2 alpha:0.3]];
+    }
+    
     if (data.thumb) {
          self.iconImageView.image = [UIImage imageWithData:data.thumb];
     } else {

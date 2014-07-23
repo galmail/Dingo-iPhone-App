@@ -25,6 +25,14 @@ static const NSUInteger mainPhotoDownloadedCellIndex = 3;
 
 @implementation UploadPhotosViewController
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    if (!self.photos) {
+        self.photos = [NSMutableArray new];
+    }
+}
+
 #pragma mark - UICollectionViewDataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView
@@ -132,7 +140,7 @@ static const NSUInteger mainPhotoDownloadedCellIndex = 3;
 
 - (IBAction)back {
     if (self.delegate) {
-        [self.delegate displayPhotos:[self.photos copy]];
+        [self.delegate displayPhotos:[self.photos copy] mainPhoto:self.mainPhotoImageView.image];
     }
     
     [self.navigationController popViewControllerAnimated:YES];

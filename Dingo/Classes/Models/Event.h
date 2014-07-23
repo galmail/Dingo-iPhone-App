@@ -2,7 +2,7 @@
 //  Event.h
 //  Dingo
 //
-//  Created by Asatur Galstyan on 7/22/14.
+//  Created by Asatur Galstyan on 7/23/14.
 //  Copyright (c) 2014 Dingo. All rights reserved.
 //
 
@@ -25,5 +25,6 @@
 @property (nonatomic, retain) NSString * address;
 @property (nonatomic, retain) NSString * city;
 @property (nonatomic, retain) NSString * postalCode;
+@property (nonatomic, retain) NSDate * endDate;
 
 @end

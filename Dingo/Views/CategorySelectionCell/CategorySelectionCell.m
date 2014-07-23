@@ -18,7 +18,7 @@
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet TwoModeButton *multipleModeButton;
 @property (nonatomic, strong) NSMutableArray *favoriteCategories;
-@property (nonatomic, strong) NSString *favoriteCategory;
+
 
 @end
 
@@ -34,8 +34,8 @@
     
     self.multipleSelection = YES;
     self.favoriteCategories = [NSMutableArray array];
-    [self.favoriteCategories addObjectsFromArray:@[@"Concerts", @"Comedy & Theatre"]];
-    self.favoriteCategory = [self.favoriteCategories firstObject];
+//    [self.favoriteCategories addObjectsFromArray:@[@"Concerts", @"Comedy & Theatre"]];
+//    self.favoriteCategory = [self.favoriteCategories firstObject];
     
     return self;
 }
@@ -53,12 +53,15 @@
     NSUInteger index = indexPath.row;
     DataManager *manager = [DataManager shared];
     
-    if (self.multipleSelection) {
-        data = [manager allCategories][index];
-    } else {
-        NSString *catName = self.favoriteCategories[index];
-        data = [manager dataByCategoryName:catName];
-    }
+    
+    data = [manager allCategories][index];
+    
+//    if (self.multipleSelection) {
+//        data = [manager allCategories][index];
+//    } else {
+//        NSString *catName = self.favoriteCategories[index];
+//        data = [manager dataByCategoryName:catName];
+//    }
     
     [cell buildWithData:data];
     
@@ -79,14 +82,15 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView
      numberOfItemsInSection:(NSInteger)section {
-    return self.multipleSelection ? [[DataManager shared] allCategories].count : self.favoriteCategories.count;
+//    return self.multipleSelection ? [[DataManager shared] allCategories].count : self.favoriteCategories.count;
+    return [[DataManager shared] allCategories].count;
 }
 
 #pragma mark - UICollectionViewDelegate
 
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
-    return self.favoriteCategories.count > 1;
-}
+//- (BOOL)collectionView:(UICollectionView *)collectionView shouldDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
+//    return self.favoriteCategories.count > 1;
+//}
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     CategoryCell *cell = (CategoryCell *)[collectionView cellForItemAtIndexPath:indexPath];
@@ -133,8 +137,8 @@
 
 - (void)useAllCategories {
     NSArray *cats = [[DataManager shared] allCategories];
-    for (NSDictionary *dict in cats) {
-        NSString *name = dict[@"name"];
+    for (EventCategory *category in cats) {
+        NSString *name = category.name;
         if ([self.favoriteCategories containsObject:name]) {
             continue;
         }

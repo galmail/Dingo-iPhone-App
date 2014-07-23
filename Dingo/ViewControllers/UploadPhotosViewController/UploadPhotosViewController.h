@@ -8,7 +8,7 @@
 
 @protocol UploadPhotosVCDelegate
 
-- (void)displayPhotos:(NSArray *)array;
+- (void)displayPhotos:(NSArray *)array mainPhoto:(UIImage *)mainPhoto;
 
 @end
 

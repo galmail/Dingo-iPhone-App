@@ -49,6 +49,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.photosPreviewCell.photos = [self.photos mutableCopy];
+    
+    self.ticketsCountlabel.text = [self.ticket.number_of_tickets stringValue];
+    self.faceValueLabel.text = [self.ticket.face_value_per_ticket stringValue];
+    self.descriptionTextView.text = self.ticket.ticket_desc;
+    self.paymentLabel.text = self.ticket.payment_options;
+    
+//    [self.proposalCell setName:self.event.name];
+//    [self.proposalCell setLocation:self.event.address];
+    
+    [self.proposalCell buildWithData:self.event];
 }
 
 #pragma mark - UIActions

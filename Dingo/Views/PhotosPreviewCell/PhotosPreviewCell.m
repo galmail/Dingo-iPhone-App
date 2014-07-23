@@ -82,9 +82,11 @@ static const NSUInteger photosPerPage = 2;
 
 - (void)loadPhotos {
     self.photos = [NSMutableArray array];
+    
+    return;
     NSArray *cats = [[DataManager shared] allCategories];
-    for (NSDictionary *dict in cats) {
-        [self.photos addObject:[UIImage imageNamed:dict[@"back"]]];
+    for (EventCategory *category in cats) {
+        [self.photos addObject:[UIImage imageWithData:category.thumb]];
     }
 }
 

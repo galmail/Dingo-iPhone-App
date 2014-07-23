@@ -17,6 +17,8 @@
 		3AB28AE8197BCC3A009C1DDC /* welcome4BG-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AB28AE7197BCC3A009C1DDC /* welcome4BG-568h@2x.png */; };
 		3AB28AEF197D9DA4009C1DDC /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB28AEE197D9DA4009C1DDC /* Event.m */; };
 		3AB28AF8197D9F9D009C1DDC /* EventCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB28AF7197D9F9D009C1DDC /* EventCategory.m */; };
+		3AB28B02197EE8CE009C1DDC /* ZSTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB28B01197EE8CE009C1DDC /* ZSTextField.m */; };
+		3AB28B05197EFA62009C1DDC /* Ticket.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB28B04197EFA62009C1DDC /* Ticket.m */; };
 		3AF360A619767564009A14FD /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AF360A519767564009A14FD /* FacebookSDK.framework */; };
 		3AF360AB197687E2009A14FD /* AppManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF360AA197687E2009A14FD /* AppManager.m */; };
 		3AF360AE197687F5009A14FD /* WebServiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF360AD197687F5009A14FD /* WebServiceManager.m */; };
@@ -194,6 +196,10 @@
 		3AB28AEE197D9DA4009C1DDC /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Event.m; path = Dingo/Classes/Models/Event.m; sourceTree = SOURCE_ROOT; };
 		3AB28AF6197D9F9D009C1DDC /* EventCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventCategory.h; sourceTree = "<group>"; };
 		3AB28AF7197D9F9D009C1DDC /* EventCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventCategory.m; sourceTree = "<group>"; };
+		3AB28B00197EE8CE009C1DDC /* ZSTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSTextField.h; sourceTree = "<group>"; };
+		3AB28B01197EE8CE009C1DDC /* ZSTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSTextField.m; sourceTree = "<group>"; };
+		3AB28B03197EFA62009C1DDC /* Ticket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Ticket.h; path = Dingo/Classes/Models/Ticket.h; sourceTree = SOURCE_ROOT; };
+		3AB28B04197EFA62009C1DDC /* Ticket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Ticket.m; path = Dingo/Classes/Models/Ticket.m; sourceTree = SOURCE_ROOT; };
 		3AF360A519767564009A14FD /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		3AF360A9197687E2009A14FD /* AppManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppManager.h; sourceTree = "<group>"; };
 		3AF360AA197687E2009A14FD /* AppManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppManager.m; sourceTree = "<group>"; };
@@ -441,6 +447,8 @@
 		3AB28AEC197D9D83009C1DDC /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				3AB28B03197EFA62009C1DDC /* Ticket.h */,
+				3AB28B04197EFA62009C1DDC /* Ticket.m */,
 				3AB28AED197D9DA4009C1DDC /* Event.h */,
 				3AB28AEE197D9DA4009C1DDC /* Event.m */,
 				3AB28AF6197D9F9D009C1DDC /* EventCategory.h */,
@@ -448,6 +456,16 @@
 			);
 			name = Models;
 			path = Classes/Models;
+			sourceTree = "<group>";
+		};
+		3AB28AFF197EE8B4009C1DDC /* CustomClasses */ = {
+			isa = PBXGroup;
+			children = (
+				3AB28B00197EE8CE009C1DDC /* ZSTextField.h */,
+				3AB28B01197EE8CE009C1DDC /* ZSTextField.m */,
+			);
+			name = CustomClasses;
+			path = Classes/CustomClasses;
 			sourceTree = "<group>";
 		};
 		3AF360A419767564009A14FD /* Frameworks */ = {
@@ -714,6 +732,7 @@
 		3F10DE67193C5476002D3B43 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				3AB28AFF197EE8B4009C1DDC /* CustomClasses */,
 				3AB28AEC197D9D83009C1DDC /* Models */,
 				3F10DE0719388EC1002D3B43 /* AppDelegate */,
 				3AF360BA1976AB03009A14FD /* UIDevice+Additions */,
@@ -1535,7 +1554,9 @@
 				3AF360B319768F15009A14FD /* Dingo.xcdatamodeld in Sources */,
 				3F10DE1119388EC1002D3B43 /* AppDelegate.m in Sources */,
 				3F3D565C195182F900FB2774 /* SearchTicketsViewController.m in Sources */,
+				3AB28B05197EFA62009C1DDC /* Ticket.m in Sources */,
 				3F08EC1719473AAF00CDFBD8 /* TwoModeButton.m in Sources */,
+				3AB28B02197EE8CE009C1DDC /* ZSTextField.m in Sources */,
 				3F98FCEE1941AB7700E6B3C4 /* SelectCityViewController.m in Sources */,
 				3F98FCC7193F66C500E6B3C4 /* SideMenuViewController.m in Sources */,
 				3F10DE66193C536E002D3B43 /* DingoNavigationController.m in Sources */,

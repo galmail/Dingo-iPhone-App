@@ -10,16 +10,22 @@
 
 @implementation ProposalCell
 
+- (void)buildWithData:(Event *)data {
+    [super buildWithData:data];
+}
+
 - (void)setBegin:(NSDate *)begin {
     // don't remove, because proposal cell didn't have time label
 }
 
 - (void)setName:(NSString *)name {
-    [super setName:@"Seller name place"];
+    [super setName:name];
 }
 
 - (void)setLocation:(NSString *)location {
-    [super setLocation:@"Current proposal description"];
+    [super setLocation:location];
 }
+
+
 
 @end
