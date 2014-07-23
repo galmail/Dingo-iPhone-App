@@ -25,15 +25,22 @@
                                              forState:UIControlStateSelected];
     [[UISwitch appearance] setTintColor:[DingoUISettings foregroundColor]];
     
-    //[TestFlight takeOff:@"196f5c4b-025a-4cbe-9b82-7eb4917931f7"];
-    
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
     self.locationManager.distanceFilter = 50;
     [self.locationManager startUpdatingLocation];
     
+    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeBadge)];
+    
+    //[TestFlight takeOff:@"196f5c4b-025a-4cbe-9b82-7eb4917931f7"];
+    
     return YES;
+}
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    // Show the device token obtained from apple to the log
+    NSLog(@"deviceToken: %@", deviceToken);
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
