@@ -38,8 +38,10 @@
     return YES;
 }
 
-- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)dataDeviceToken {
     // Show the device token obtained from apple to the log
+    NSString *deviceToken = [[dataDeviceToken description] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
+    deviceToken = [deviceToken stringByReplacingOccurrencesOfString:@" " withString:@""];
     NSLog(@"deviceToken: %@", deviceToken);
 }
 
