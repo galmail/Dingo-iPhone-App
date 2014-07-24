@@ -32,7 +32,20 @@
     self.locationManager.distanceFilter = 50;
     [self.locationManager startUpdatingLocation];
     
+    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeBadge)];
+    
     return YES;
+}
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    // Show the device token obtained from apple to the log
+//    NSLog(@"deviceToken: %@", deviceToken);
+    
+    NSString *newToken = [deviceToken description];
+	newToken = [newToken stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
+	newToken = [newToken stringByReplacingOccurrencesOfString:@" " withString:@""];
+    
+    [AppManager sharedManager].deviceToken = newToken;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
