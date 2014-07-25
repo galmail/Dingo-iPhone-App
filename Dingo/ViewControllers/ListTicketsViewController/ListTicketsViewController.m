@@ -39,6 +39,18 @@ static const NSUInteger payPalCellIndex = 15;
     
     Ticket* ticket;
     Event* event;
+    
+    __weak IBOutlet UILabel *lblName;
+    __weak IBOutlet UILabel *lblAddress;
+    __weak IBOutlet UILabel *lblCity;
+    __weak IBOutlet UILabel *lblPostCode;
+    __weak IBOutlet UILabel *lblFromDate;
+    __weak IBOutlet UILabel *lblToDate;
+    __weak IBOutlet UILabel *lblPrice;
+    __weak IBOutlet UILabel *lblFaceValue;
+    __weak IBOutlet UILabel *lblTicketCount;
+    __weak IBOutlet UILabel *lblDescription;
+    
 }
 
 @property (nonatomic, weak) IBOutlet ZSTextField *nameField;
@@ -179,44 +191,75 @@ static const NSUInteger payPalCellIndex = 15;
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     
     if (textField == self.nameField) {
-        event.name = self.nameField.text;
+        if (self.nameField.text.length > 0) {
+            event.name = self.nameField.text;
+            lblName.textColor = [UIColor blackColor];
+        }
+        
     }
     
     if (textField == self.addressField) {
-        event.address = self.addressField.text;
+        if (self.addressField.text.length > 0) {
+            event.address = self.addressField.text;
+            lblAddress.textColor = [UIColor blackColor];
+        }
     }
     
     if (textField == self.cityField) {
-        event.city = self.cityField.text;
+        if (self.cityField.text.length > 0) {
+            event.city = self.cityField.text;
+            lblCity.textColor = [UIColor blackColor];
+        }
     }
     
     if (textField == self.postCodeField) {
-        event.postalCode = self.postCodeField.text;
+        if (self.postCodeField.text.length > 0) {
+            event.postalCode = self.postCodeField.text;
+            lblPostCode.textColor = [UIColor blackColor];
+        }
+        
     }
     
     if (textField == self.startDateField) {
-        NSDateFormatter *formatter =[[NSDateFormatter alloc] init];
-        formatter.dateFormat = @"hh:mm dd/MM/yyyy";
-        event.date = [formatter dateFromString:self.startDateField.text];
+        
+        if (self.startDateField.text.length > 0) {
+            NSDateFormatter *formatter =[[NSDateFormatter alloc] init];
+            formatter.dateFormat = @"hh:mm dd/MM/yyyy";
+            event.date = [formatter dateFromString:self.startDateField.text];
+            lblFromDate.textColor= [UIColor blackColor];
+        }
     }
     
     if (textField == self.endDateField) {
-        NSDateFormatter *formatter =[[NSDateFormatter alloc] init];
-        formatter.dateFormat = @"hh:mm dd/MM/yyyy";
-        event.endDate = [formatter dateFromString:self.endDateField.text];
+        if (self.endDateField.text.length > 0) {
+            NSDateFormatter *formatter =[[NSDateFormatter alloc] init];
+            formatter.dateFormat = @"hh:mm dd/MM/yyyy";
+            event.endDate = [formatter dateFromString:self.endDateField.text];
+            lblToDate.textColor = [UIColor blackColor];
+        }
     }
     
     if (textField == self.priceField) {
-        ticket.price = @([self.priceField.text floatValue]);
-        event.fromPrice = @([self.priceField.text floatValue]);
+        if (self.endDateField.text.length > 0) {
+            ticket.price = @([self.priceField.text floatValue]);
+            event.fromPrice = @([self.priceField.text floatValue]);
+            lblPrice.textColor = [UIColor blackColor];
+        }
+        
     }
 
     if (textField == self.faceValueField) {
-        ticket.face_value_per_ticket = @([self.faceValueField.text floatValue]);
+        if (self.faceValueField.text.length > 0) {
+            ticket.face_value_per_ticket = @([self.faceValueField.text floatValue]);
+            lblFaceValue.textColor = [UIColor blackColor];
+        }
     }
 
     if (textField == self.ticketsCountField) {
-        ticket.number_of_tickets = @([self.ticketsCountField.text intValue]);
+        if (self.ticketsCountField.text.length > 0) {
+            ticket.number_of_tickets = @([self.ticketsCountField.text intValue]);
+            lblTicketCount.textColor = [UIColor blackColor];
+        }
     }
     
 }
@@ -236,7 +279,57 @@ static const NSUInteger payPalCellIndex = 15;
 
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
     
-    return YES;
+    BOOL requiredInfoFilled = YES;
+    if (self.nameField.text.length == 0) {
+        requiredInfoFilled = NO;
+        lblName.textColor = [UIColor redColor];
+    }
+    
+    if (self.addressField.text.length == 0) {
+        requiredInfoFilled = NO;
+        lblAddress.textColor = [UIColor redColor];
+    }
+    
+    if (self.cityField.text.length == 0) {
+        requiredInfoFilled = NO;
+        lblCity.textColor = [UIColor redColor];
+    }
+    
+    if (self.postCodeField.text.length == 0) {
+        requiredInfoFilled = NO;
+        lblPostCode.textColor = [UIColor redColor];
+    }
+    
+    if (self.startDateField.text.length == 0) {
+        requiredInfoFilled = NO;
+        lblFromDate.textColor = [UIColor redColor];
+    }
+    
+    if (self.endDateField.text.length == 0) {
+        requiredInfoFilled = NO;
+        lblToDate.textColor = [UIColor redColor];
+    }
+    
+    if (self.priceField.text.length == 0) {
+        requiredInfoFilled = NO;
+        lblPrice.textColor = [UIColor redColor];
+    }
+
+    if (self.faceValueField.text.length == 0) {
+        requiredInfoFilled = NO;
+        lblFaceValue.textColor = [UIColor redColor];
+    }
+    
+    if (self.ticketsCountField.text.length == 0) {
+        requiredInfoFilled = NO;
+        lblTicketCount.textColor = [UIColor redColor];
+    }
+    
+    if (!requiredInfoFilled) {
+        [self.tableView setContentOffset:CGPointZero];
+    }
+
+    return requiredInfoFilled;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -286,10 +379,14 @@ static const NSUInteger payPalCellIndex = 15;
     
     if (sender == self.startDatePicker) {
         self.startDateField.text = [formatter stringFromDate:self.startDatePicker.date];
+        event.date = self.startDatePicker.date;
+        lblFromDate.textColor = [UIColor blackColor];
     }
     
     if (sender == self.endDatePicker) {
         self.endDateField.text = [formatter stringFromDate:self.endDatePicker.date];
+        event.endDate = self.endDatePicker.date;
+        lblToDate.textColor = [UIColor blackColor];
     }
 
 }

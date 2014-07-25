@@ -82,6 +82,37 @@ static NSString* signInUrl = @"http://dingoapp.herokuapp.com/users/sign_in";
     });
 }
 
++ (void)createEvent:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler {
+    
+    NSMutableURLRequest *request = [self requestForPostMethod:@"events" withParams:[params urlEncodedString]];
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        NSURLResponse* response = nil;
+        NSError *error = nil;
+        NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+        
+        dispatch_async(dispatch_get_main_queue(), ^(void){
+            handler([data objectFromJSONData], error);
+        });
+        
+    });
+}
+
++ (void)createTicket:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler {
+    NSMutableURLRequest *request = [self requestForPostMethod:@"tickets" withParams:[params urlEncodedString]];
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        NSURLResponse* response = nil;
+        NSError *error = nil;
+        NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+        
+        dispatch_async(dispatch_get_main_queue(), ^(void){
+            handler([data objectFromJSONData], error);
+        });
+        
+    });
+}
+
 #pragma mark - requests
 
 + (NSMutableURLRequest *) requestForGetURL:(NSString *)url withParams:(NSString *)params {
@@ -105,6 +136,25 @@ static NSString* signInUrl = @"http://dingoapp.herokuapp.com/users/sign_in";
     url =[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:60.0f];
     [request setHTTPMethod:@"GET"];
+    
+    [request setValue:[AppManager sharedManager].token forHTTPHeaderField:@"X-User-Token"];
+    [request setValue:[AppManager sharedManager].userInfo[@"email"] forHTTPHeaderField:@"X-User-Email"];
+    
+    return request;
+}
+
++ (NSMutableURLRequest *) requestForPostMethod:(NSString *)method withParams:(NSString *)params {
+    
+    NSString* url = [NSString stringWithFormat:@"%@%@", apiUrl, method];
+    url =[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:60.0f];
+    
+    if (params.length > 0) {
+        NSData *postData = [params dataUsingEncoding:NSUTF8StringEncoding];
+        [request setHTTPBody:postData];
+    }
+    
+    [request setHTTPMethod:@"POST"];
     
     [request setValue:[AppManager sharedManager].token forHTTPHeaderField:@"X-User-Token"];
     [request setValue:[AppManager sharedManager].userInfo[@"email"] forHTTPHeaderField:@"X-User-Email"];

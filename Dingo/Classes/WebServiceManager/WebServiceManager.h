@@ -14,5 +14,7 @@
 + (void)signIn:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler;
 + (void)categories:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler;
 + (void)events:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler;
++ (void)createEvent:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler;
++ (void)createTicket:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler;
 
 @end

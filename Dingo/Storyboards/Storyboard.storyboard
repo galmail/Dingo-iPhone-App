@@ -769,6 +769,16 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <outlet property="endDateField" destination="uhK-tf-iQe" id="UrF-Kj-e6H"/>
                         <outlet property="endDatePicker" destination="kuX-g7-QI2" id="LEO-rH-Y4A"/>
                         <outlet property="faceValueField" destination="cnc-Ig-W8J" id="iuz-Yb-ZnR"/>
+                        <outlet property="lblAddress" destination="wky-zQ-ryw" id="QRK-av-AA4"/>
+                        <outlet property="lblCity" destination="zoP-kp-GXg" id="DRD-8q-gTs"/>
+                        <outlet property="lblDescription" destination="vGO-jg-007" id="eu8-a9-nAF"/>
+                        <outlet property="lblFaceValue" destination="Kym-UH-5ai" id="3TH-P9-xd5"/>
+                        <outlet property="lblFromDate" destination="W37-ab-aQb" id="k0G-d4-hYd"/>
+                        <outlet property="lblName" destination="9WU-dT-zfE" id="V8o-Od-fu4"/>
+                        <outlet property="lblPostCode" destination="ky8-fo-jPP" id="PTp-IS-aEh"/>
+                        <outlet property="lblPrice" destination="Y0J-NZ-d2g" id="etf-K5-Dz2"/>
+                        <outlet property="lblTicketCount" destination="KSj-F0-c1r" id="KSO-gv-ZXI"/>
+                        <outlet property="lblToDate" destination="XpQ-MG-k2c" id="4ve-XE-7d7"/>
                         <outlet property="nameField" destination="Zvo-Jf-zwM" id="Es0-WH-Xs7"/>
                         <outlet property="paypalCell" destination="mYs-b0-maE" id="9vu-gr-w6E"/>
                         <outlet property="paypalSwitch" destination="r7U-K6-SDI" id="hXR-Tu-CLs"/>

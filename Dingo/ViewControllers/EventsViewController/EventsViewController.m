@@ -33,6 +33,11 @@ static const CGFloat categoriesHeight = 140;
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self setupNavigationBar];
     
     [[DataManager shared] allCategoriesWithCompletion:^(BOOL finished) {
         [[DataManager shared] allEventsWithCompletion:^(BOOL finished) {
@@ -42,15 +47,8 @@ static const CGFloat categoriesHeight = 140;
                 [self setupTips];
             }
         }];
-
+        
     }];
-    
-    
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [self setupNavigationBar];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
