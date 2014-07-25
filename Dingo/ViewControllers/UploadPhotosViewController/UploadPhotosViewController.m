@@ -31,6 +31,8 @@ static const NSUInteger mainPhotoDownloadedCellIndex = 3;
     if (!self.photos) {
         self.photos = [NSMutableArray new];
     }
+    
+    self.mainPhotoImageView.image = self.mainPhoto;
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -82,6 +84,7 @@ static const NSUInteger mainPhotoDownloadedCellIndex = 3;
     
     if (self.isMainPhotoLoading) {
         self.mainPhotoImageView.image = image;
+        self.mainPhoto = image;
         [self.tableView reloadData];
     } else {
         [self.photos insertObject:image atIndex:0];
@@ -140,7 +143,7 @@ static const NSUInteger mainPhotoDownloadedCellIndex = 3;
 
 - (IBAction)back {
     if (self.delegate) {
-        [self.delegate displayPhotos:[self.photos copy] mainPhoto:self.mainPhotoImageView.image];
+        [self.delegate displayPhotos:[self.photos copy] mainPhoto:self.mainPhoto];
     }
     
     [self.navigationController popViewControllerAnimated:YES];

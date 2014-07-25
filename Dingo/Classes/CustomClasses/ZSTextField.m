@@ -24,6 +24,33 @@ NSArray *data;
     return self;
 }
 
+
+- (void) showToolbarWithDone {
+    
+    UIView * keyboardHeader = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+    keyboardHeader.backgroundColor = [UIColor darkGrayColor];
+    UIImage *image = [UIImage imageNamed:@"barButton"];
+    image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 12, 0.0, 12)];
+    UIButton *btnDone = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btnDone setFrame:CGRectMake(240, 6, 70, 33)];
+    
+    [btnDone setBackgroundImage:image forState:UIControlStateNormal];
+    [btnDone setTitle:@"Done" forState:UIControlStateNormal];
+    btnDone.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:16.0f];
+    [btnDone addTarget:self action:@selector(closeKeyboard:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [keyboardHeader addSubview:btnDone];
+    self.inputAccessoryView = keyboardHeader;
+    
+}
+
+- (void)closeKeyboard:(id)sender {
+    
+    if  ([self isFirstResponder]) {
+        [self resignFirstResponder];
+    }
+}
+
 - (void)layoutSubviews
 {
     [super layoutSubviews];
@@ -115,6 +142,9 @@ NSArray *data;
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
+    cell.selectionStyle = UITableViewCellSelectionStyleDefault;
+    cell.userInteractionEnabled = YES;
+    
     NSDictionary *dataForRowAtIndexPath = [[self applyFilterWithSearchQuery:self.text] objectAtIndex:indexPath.row];
     [cell setBackgroundColor:[UIColor clearColor]];
     [[cell textLabel] setText:[dataForRowAtIndexPath objectForKey:@"DisplayText"]];
@@ -154,9 +184,9 @@ NSArray *data;
         [self.superview addGestureRecognizer:tapRecognizer];
         
         tableViewController = [[UITableViewController alloc] init];
-        tableViewController.tableView.userInteractionEnabled = YES;
         [tableViewController.tableView setDelegate:self];
         [tableViewController.tableView setDataSource:self];
+
         if (self.backgroundColor == nil) {
             //Background color has not been set by the user. Use default color instead.
             [tableViewController.tableView setBackgroundColor:[UIColor colorWithRed:240.0/255.0 green:240.0/255.0 blue:240.0/255.0 alpha:1.0]];
@@ -176,7 +206,10 @@ NSArray *data;
         else{
             [tableViewController.tableView setFrame:self.popoverSize];
         }
+        tableViewController.tableView.userInteractionEnabled = YES;
+        
         [[self superview] addSubview:tableViewController.tableView];
+        
         tableViewController.tableView.alpha = 0.0;
         [UIView animateWithDuration:0.3
                          animations:^{
@@ -191,6 +224,22 @@ NSArray *data;
     else{
         [tableViewController.tableView reloadData];
     }
+}
+
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
+    
+    // Convert the point to the target view's coordinate system.
+    // The target view isn't necessarily the immediate subview
+    CGPoint pointForTargetView = [tableViewController.tableView convertPoint:point fromView:self];
+    
+    if (CGRectContainsPoint(tableViewController.tableView.bounds, pointForTargetView)) {
+        
+        // The target view may have its view hierarchy,
+        // so call its hitTest method to return the right hit-test view
+        return [tableViewController.tableView hitTest:pointForTargetView withEvent:event];
+    }
+    
+    return [super hitTest:point withEvent:event];
 }
 
 - (void)tapped:(UIGestureRecognizer *)gesture

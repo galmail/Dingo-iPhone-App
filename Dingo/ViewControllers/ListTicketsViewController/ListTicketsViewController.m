@@ -59,9 +59,9 @@ static const NSUInteger payPalCellIndex = 15;
 @property (nonatomic, weak) IBOutlet UITextField *postCodeField;
 @property (nonatomic, weak) IBOutlet UITextField *startDateField;
 @property (nonatomic, weak) IBOutlet UITextField *endDateField;
-@property (nonatomic, weak) IBOutlet UITextField *priceField;
-@property (nonatomic, weak) IBOutlet UITextField *faceValueField;
-@property (nonatomic, weak) IBOutlet UITextField *ticketsCountField;
+@property (nonatomic, weak) IBOutlet ZSTextField *priceField;
+@property (nonatomic, weak) IBOutlet ZSTextField *faceValueField;
+@property (nonatomic, weak) IBOutlet ZSTextField *ticketsCountField;
 @property (nonatomic, weak) IBOutlet UITextView *descriptionTextView;
 @property (nonatomic, weak) IBOutlet UISwitch *paypalSwitch;
 @property (nonatomic, weak) IBOutlet UISwitch *cashSwitch;
@@ -92,6 +92,10 @@ static const NSUInteger payPalCellIndex = 15;
     
     ticket = [[Ticket alloc] initWithEntity:[NSEntityDescription entityForName:@"Ticket" inManagedObjectContext:[AppManager sharedManager].managedObjectContext] insertIntoManagedObjectContext:nil];
     event = [[Event alloc] initWithEntity:[NSEntityDescription entityForName:@"Event" inManagedObjectContext:[AppManager sharedManager].managedObjectContext] insertIntoManagedObjectContext:nil];
+    
+    [self.priceField showToolbarWithDone];
+    [self.faceValueField showToolbarWithDone];
+    [self.ticketsCountField showToolbarWithDone];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -280,53 +284,57 @@ static const NSUInteger payPalCellIndex = 15;
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
     
     BOOL requiredInfoFilled = YES;
-    if (self.nameField.text.length == 0) {
-        requiredInfoFilled = NO;
-        lblName.textColor = [UIColor redColor];
-    }
     
-    if (self.addressField.text.length == 0) {
-        requiredInfoFilled = NO;
-        lblAddress.textColor = [UIColor redColor];
-    }
-    
-    if (self.cityField.text.length == 0) {
-        requiredInfoFilled = NO;
-        lblCity.textColor = [UIColor redColor];
-    }
-    
-    if (self.postCodeField.text.length == 0) {
-        requiredInfoFilled = NO;
-        lblPostCode.textColor = [UIColor redColor];
-    }
-    
-    if (self.startDateField.text.length == 0) {
-        requiredInfoFilled = NO;
-        lblFromDate.textColor = [UIColor redColor];
-    }
-    
-    if (self.endDateField.text.length == 0) {
-        requiredInfoFilled = NO;
-        lblToDate.textColor = [UIColor redColor];
-    }
-    
-    if (self.priceField.text.length == 0) {
-        requiredInfoFilled = NO;
-        lblPrice.textColor = [UIColor redColor];
-    }
-
-    if (self.faceValueField.text.length == 0) {
-        requiredInfoFilled = NO;
-        lblFaceValue.textColor = [UIColor redColor];
-    }
-    
-    if (self.ticketsCountField.text.length == 0) {
-        requiredInfoFilled = NO;
-        lblTicketCount.textColor = [UIColor redColor];
-    }
-    
-    if (!requiredInfoFilled) {
-        [self.tableView setContentOffset:CGPointZero];
+    if ([identifier isEqualToString:@"PreviewSegue"]) {
+        
+        if (self.nameField.text.length == 0) {
+            requiredInfoFilled = NO;
+            lblName.textColor = [UIColor redColor];
+        }
+        
+        if (self.addressField.text.length == 0) {
+            requiredInfoFilled = NO;
+            lblAddress.textColor = [UIColor redColor];
+        }
+        
+        if (self.cityField.text.length == 0) {
+            requiredInfoFilled = NO;
+            lblCity.textColor = [UIColor redColor];
+        }
+        
+        if (self.postCodeField.text.length == 0) {
+            requiredInfoFilled = NO;
+            lblPostCode.textColor = [UIColor redColor];
+        }
+        
+        if (self.startDateField.text.length == 0) {
+            requiredInfoFilled = NO;
+            lblFromDate.textColor = [UIColor redColor];
+        }
+        
+        if (self.endDateField.text.length == 0) {
+            requiredInfoFilled = NO;
+            lblToDate.textColor = [UIColor redColor];
+        }
+        
+        if (self.priceField.text.length == 0) {
+            requiredInfoFilled = NO;
+            lblPrice.textColor = [UIColor redColor];
+        }
+        
+        if (self.faceValueField.text.length == 0) {
+            requiredInfoFilled = NO;
+            lblFaceValue.textColor = [UIColor redColor];
+        }
+        
+        if (self.ticketsCountField.text.length == 0) {
+            requiredInfoFilled = NO;
+            lblTicketCount.textColor = [UIColor redColor];
+        }
+        
+        if (!requiredInfoFilled) {
+            [self.tableView setContentOffset:CGPointZero];
+        }
     }
 
     return requiredInfoFilled;
@@ -337,6 +345,7 @@ static const NSUInteger payPalCellIndex = 15;
         UploadPhotosViewController *vc = (UploadPhotosViewController *)segue.destinationViewController;
         vc.delegate = self;
         vc.photos = self.photosPreviewCell.photos;
+        vc.mainPhoto = [UIImage imageWithData:event.thumb];
     } else if ([segue.identifier isEqualToString:@"PreviewSegue"]) {
         
         // payment options
@@ -395,24 +404,23 @@ static const NSUInteger payPalCellIndex = 15;
 
 - (NSArray *)dataForPopoverInTextField:(ZSTextField *)textField {
     
-    NSArray* events = [[DataManager shared] allEvents];
-
-    NSMutableArray *dataForPopover = [NSMutableArray new];
-    for (Event *tmpEvent in events) {
-        [dataForPopover addObject:@{@"DisplayText": tmpEvent.name, @"CustomObject":tmpEvent}];
+    if (textField == self.nameField) {
+        NSArray* events = [[DataManager shared] allEvents];
+        
+        NSMutableArray *dataForPopover = [NSMutableArray new];
+        for (Event *tmpEvent in events) {
+            [dataForPopover addObject:@{@"DisplayText": tmpEvent.name, @"CustomObject":tmpEvent}];
+        }
+        
+        return dataForPopover;
     }
     
-   return dataForPopover;
+    return nil;
 }
 
 - (void)textField:(ZSTextField *)textField didEndEditingWithSelection:(NSDictionary *)result
 {
     
-}
-
-- (BOOL)textFieldShouldSelect:(ZSTextField *)textField
-{
-    return YES;
 }
 
 

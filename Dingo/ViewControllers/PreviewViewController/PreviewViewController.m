@@ -68,48 +68,52 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"hh:mm dd/MM/yyyy";
     
-    // Create event
-    NSDictionary *params = @{ @"category_id" : self.event.category_id,
-                              @"name" : self.event.name,
-                              @"date" : [formatter stringFromDate:self.event.date],
-                              @"end_date" : [formatter stringFromDate:self.event.endDate],
-                              @"address" : self.event.address,
-                              @"city" : self.event.city,
-                              @"postcode" : self.event.postalCode
-                             };
-    
-    [WebServiceManager createEvent:params completion:^(id response, NSError *error) {
-        NSLog(@"response %@", response);
+    if (self.event.event_id.length == 0) {
+        // Create event
+        NSDictionary *params = @{ @"category_id" : self.event.category_id,
+                                  @"name" : self.event.name,
+                                  @"date" : [formatter stringFromDate:self.event.date],
+                                  @"end_date" : [formatter stringFromDate:self.event.endDate],
+                                  @"address" : self.event.address,
+                                  @"city" : self.event.city,
+                                  @"postcode" : self.event.postalCode,
+                                  @"image" : self.event.thumb != nil ? self.event.thumb : @""
+                                  };
         
-        if (response) {
-            NSString *eventID = response[@"id"];
-            if (eventID.length > 0) {
-                
-                // create ticket
-                NSDictionary *params = @{ @"event_id" : eventID,
-                                          @"price" : self.ticket.price,
-                                          @"seat_type" : self.ticket.seat_type.length> 0 ? self.ticket.seat_type : @"",
-                                          @"description" : self.ticket.ticket_desc.length > 0 ? self.ticket.ticket_desc : @"",
-                                          @"delivery_options" : self.ticket.delivery_options.length > 0 ? self.ticket.delivery_options : @"",
-                                          @"payment_options" : self.ticket.payment_options.length > 0 ? self.ticket.payment_options : @"",
-                                          @"number_of_tickets" : self.ticket.number_of_tickets,
-                                          @"face_value_per_ticket" : self.ticket.face_value_per_ticket
-                                          };
-                
-                [WebServiceManager createTicket:params completion:^(id response, NSError *error) {
-                    if (response[@"id"]) {
-                        // ticket created
-                        
-                        [self.navigationController popViewControllerAnimated:NO];
-                        [self.navigationController.tabBarController setSelectedIndex:0];
-                    }
+        [WebServiceManager createEvent:params completion:^(id response, NSError *error) {
+            NSLog(@"response %@", response);
+            
+            if (response) {
+                NSString *eventID = response[@"id"];
+                if (eventID.length > 0) {
                     
-                }];
-                
+                    // create ticket
+                    NSDictionary *params = @{ @"event_id" : eventID,
+                                              @"price" : [self.ticket.price stringValue],
+                                              @"seat_type" : self.ticket.seat_type.length> 0 ? self.ticket.seat_type : @"",
+                                              @"description" : self.ticket.ticket_desc.length > 0 ? self.ticket.ticket_desc : @"",
+                                              @"delivery_options" : self.ticket.delivery_options.length > 0 ? self.ticket.delivery_options : @"",
+                                              @"payment_options" : self.ticket.payment_options.length > 0 ? self.ticket.payment_options : @"",
+                                              @"number_of_tickets" : [self.ticket.number_of_tickets stringValue],
+                                              @"face_value_per_ticket" : [self.ticket.face_value_per_ticket stringValue]
+                                              };
+                    
+                    [WebServiceManager createTicket:params photos:self.photos completion:^(id response, NSError *error) {
+                        if (response[@"id"]) {
+                            // ticket created
+                            
+                            [self.navigationController popViewControllerAnimated:NO];
+                            [self.navigationController.tabBarController setSelectedIndex:0];
+                        }
+                        
+                    }];
+                    
+                }
             }
-        }
-        
-    }];
+            
+        }];
+    }
+
     
     
 }

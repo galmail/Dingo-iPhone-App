@@ -17,6 +17,8 @@
 @property (nonatomic) CGRect popoverSize;
 @property (nonatomic) UIColor *seperatorColor;
 
+- (void) showToolbarWithDone;
+
 @end
 
 
