@@ -33,19 +33,26 @@ static const CGFloat categoriesHeight = 140;
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(refreshInvoked:forState:) forControlEvents:UIControlEventValueChanged];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self setupNavigationBar];
     
+    [self.refreshControl beginRefreshing];
     [[DataManager shared] allCategoriesWithCompletion:^(BOOL finished) {
         [[DataManager shared] allEventsWithCompletion:^(BOOL finished) {
             [self.tableView reloadData];
             
             if ([[AppManager sharedManager] justInstalled]) {
                 [self setupTips];
+                
+            
             }
+            [self.refreshControl endRefreshing];
         }];
         
     }];
@@ -58,6 +65,24 @@ static const CGFloat categoriesHeight = 140;
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     self.parentViewController.navigationItem.titleView = nil;
+}
+
+-(void) refreshInvoked:(id)sender forState:(UIControlState)state {
+    
+    [self.refreshControl beginRefreshing];
+    [[DataManager shared] allCategoriesWithCompletion:^(BOOL finished) {
+        [[DataManager shared] allEventsWithCompletion:^(BOOL finished) {
+            [self.tableView reloadData];
+            
+            if ([[AppManager sharedManager] justInstalled]) {
+                [self setupTips];
+                
+                
+            }
+            [self.refreshControl endRefreshing];
+        }];
+        
+    }];
 }
 
 #pragma mark - UITableViewDelegate
