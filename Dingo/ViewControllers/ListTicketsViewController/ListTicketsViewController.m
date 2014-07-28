@@ -367,9 +367,8 @@ static const NSUInteger payPalCellIndex = 15;
         ticket.ticket_desc = self.descriptionTextView.text;
         
         // selected category
-        if (self.categoriesCell.favoriteCategory) {
-            EventCategory *cat = [[DataManager shared] dataByCategoryName:self.categoriesCell.favoriteCategory];
-            event.category_id = cat.category_id;
+        if (self.categoriesCell.selectedCategory) {
+            event.category_id = self.categoriesCell.selectedCategory;
         }
         
         PreviewViewController *vc = (PreviewViewController *)segue.destinationViewController;

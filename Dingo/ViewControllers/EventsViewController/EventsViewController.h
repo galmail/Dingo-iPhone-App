@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 Xetra. All rights reserved.
 //
 
-@interface EventsViewController : UITableViewController
+#import "CategorySelectionCell.h"
+
+@interface EventsViewController : UITableViewController <CategorySelectionDelegate>
 
 @end

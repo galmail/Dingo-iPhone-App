@@ -54,10 +54,28 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
 
 - (void)allEventsWithCompletion:( void (^) (BOOL finished))handler {
     
-    [WebServiceManager events:nil completion:^(id response, NSError *error) {
+    NSDictionary* params = nil;
+    if ([AppManager sharedManager].currentLocation != nil) {
+        params = @{@"location": [NSString stringWithFormat:@"%f,%f", [AppManager sharedManager].currentLocation.coordinate.latitude, [AppManager sharedManager].currentLocation.coordinate.longitude]};
+    }
+    
+    [WebServiceManager events:params completion:^(id response, NSError *error) {
         
         if (response[@"events"]) {
             NSArray *events = response[@"events"];
+            
+            // remove deleted events from local database
+            NSArray *eventIDs = [events valueForKey:@"id"];
+            NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Event"];
+            request.predicate = [NSPredicate predicateWithFormat:@"NOT (event_id IN %@)", eventIDs];
+            
+            NSArray *eventsToRemove = [[AppManager sharedManager].managedObjectContext executeFetchRequest:request error:nil];
+            if (eventsToRemove.count) {
+                for (Event *toRemove in eventsToRemove) {
+                    [[AppManager sharedManager].managedObjectContext deleteObject:toRemove];
+                }
+            }
+            
             for (NSDictionary *event in events) {
                 [self addOrUpdateEvent:event];
             }
@@ -173,6 +191,20 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     return groupsCount + 1;
 }
 
+- (NSUInteger)eventsGroupsCountForCategories:(NSArray*)categories {
+    
+    __block NSUInteger groupsCount = 0;
+    GroupsDelegate delegate = ^(Event *eventDescription, NSUInteger groupIndex) {
+        if (groupIndex > groupsCount) {
+            groupsCount = groupIndex;
+        }
+    };
+    
+    [self enumerateEventGroups:&delegate categories:categories];
+    return groupsCount;
+    
+}
+
 - (NSUInteger)eventsCountWithGroupIndex:(NSUInteger)group {
     __block NSUInteger eventsCount = 0;
     GroupsDelegate delegate = ^(Event *eventDescription, NSUInteger groupIndex) {
@@ -217,6 +249,34 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     [self enumerateEventGroups:&delegate];
     return date;
 }
+
++ (NSString *)eventLocation:(Event *)data {
+    
+    NSString *location = @"";
+    if (data.address.length > 0) {
+        location = data.address;
+    }
+    
+    if (data.city.length > 0) {
+        
+        if (location.length > 0) {
+            location = [location stringByAppendingString:[NSString stringWithFormat:@", %@", data.city]];
+        } else {
+            location = data.city;
+        }
+    }
+    
+    if (data.postalCode.length > 0) {
+        if (location.length > 0) {
+            location = [location stringByAppendingString:[NSString stringWithFormat:@", %@", data.postalCode]];
+        } else {
+            location = data.postalCode;
+        }
+    }
+    
+    return location;
+}
+
 
 #pragma mark - Other Requests
 
@@ -338,6 +398,20 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     
         if (response[@"categories"]) {
             NSArray *categories = response[@"categories"];
+            
+            
+            // remove deleted categories from local database
+            NSArray *categoryIDs = [categories valueForKey:@"id"];
+            NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"EventCategory"];
+            request.predicate = [NSPredicate predicateWithFormat:@"NOT (category_id IN %@)", categoryIDs];
+            
+            NSArray *categoriesToRemove = [[AppManager sharedManager].managedObjectContext executeFetchRequest:request error:nil];
+            if (categoriesToRemove.count) {
+                for (EventCategory *toRemove in categoriesToRemove) {
+                    [[AppManager sharedManager].managedObjectContext deleteObject:toRemove];
+                }
+            }
+            
             for (NSDictionary *category in categories) {
                 [self addOrUpdateCategory:category];
             }
@@ -438,6 +512,34 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
         (*delegate)(event, groupIndex);
     }
 }
+
+- (void)enumerateEventGroups:(GroupsDelegate *)delegate categories:(NSArray*)categories {
+    if (!delegate) {
+        return;
+    }
+    
+    NSArray *events = [self allEvents];
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"category_id IN %@", categories];
+    events = [events filteredArrayUsingPredicate:predicate];
+    
+    NSDate *curDate = nil;
+    uint groupIndex = 0;
+    
+    for (Event *event in events) {
+        NSDate *date = event.date;//dict[@"begin"];
+        
+        if (curDate && [DingoUtilites daysBetween:curDate and:date]) {
+            groupIndex++;
+        } else {
+            groupIndex = 1;
+        }
+        
+        curDate = date;
+        (*delegate)(event, groupIndex);
+    }
+}
+
 
 - (void)enumerateOffersGroups:(GroupsDelegate *)delegate {
     if (!delegate) {

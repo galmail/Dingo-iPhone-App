@@ -21,8 +21,10 @@
 - (NSUInteger)eventsDateRange;
 - (NSArray *)eventsBeforeDate:(NSDate *)date;
 - (NSArray *)eventsAfterDate:(NSDate *)date;
++ (NSString *)eventLocation:(Event *)data;
 
 - (NSUInteger)eventsGroupsCount;
+- (NSUInteger)eventsGroupsCountForCategories:(NSArray*)categories;
 - (NSUInteger)eventsCountWithGroupIndex:(NSUInteger)group;
 - (Event *)eventDescriptionByIndexPath:(NSIndexPath *)path;
 - (NSDate *)eventGroupDateByIndex:(NSUInteger)groupIndex;

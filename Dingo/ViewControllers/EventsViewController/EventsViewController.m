@@ -9,7 +9,7 @@
 #import "EventsViewController.h"
 
 #import "TicketCell.h"
-#import "CategorySelectionCell.h"
+
 #import "DataManager.h"
 #import "DingoUtilites.h"
 #import "SectionHeaderView.h"
@@ -26,6 +26,8 @@ static const CGFloat categoriesHeight = 140;
     UIView * tipsView;
     UIImageView *msgView;
     int tipIndex;
+    
+    NSArray *selectedCategories;
 }
 
 #pragma mark - UIViewController
@@ -36,23 +38,26 @@ static const CGFloat categoriesHeight = 140;
     
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(refreshInvoked:forState:) forControlEvents:UIControlEventValueChanged];
+    
+    selectedCategories = [[[DataManager shared] allCategories] valueForKey:@"category_id"];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self setupNavigationBar];
     
-    [self.refreshControl beginRefreshing];
     [[DataManager shared] allCategoriesWithCompletion:^(BOOL finished) {
+        if (!selectedCategories) {
+            selectedCategories = [[[DataManager shared] allCategories] valueForKey:@"category_id"];
+        }
         [[DataManager shared] allEventsWithCompletion:^(BOOL finished) {
+            
             [self.tableView reloadData];
             
             if ([[AppManager sharedManager] justInstalled]) {
                 [self setupTips];
-                
-            
             }
-            [self.refreshControl endRefreshing];
         }];
         
     }];
@@ -122,7 +127,7 @@ static const CGFloat categoriesHeight = 140;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return [[DataManager shared] eventsGroupsCount] + 1;
+    return [[DataManager shared] eventsGroupsCountForCategories:selectedCategories] + 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -166,7 +171,11 @@ static const CGFloat categoriesHeight = 140;
 - (UITableViewCell *)buildCategoriesCell {
     static NSString * const cellId = @"CategoriesCell";
     CategorySelectionCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellId];
+    cell.delegate = self;
     [cell buildByUserPreferences];
+    [cell refresh];
+    cell.selectedCategories = [selectedCategories mutableCopy];
+    
     return cell;
 }
 
@@ -241,4 +250,12 @@ static const CGFloat categoriesHeight = 140;
         }
     }];
 }
+
+#pragma mark CategorySelection methods 
+
+-(void)didSelectedCategories:(NSArray *)selectionArray {
+    selectedCategories = selectionArray;
+    [self.tableView reloadData];
+}
+
 @end

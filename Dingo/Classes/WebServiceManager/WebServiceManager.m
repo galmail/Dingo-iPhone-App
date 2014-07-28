@@ -14,8 +14,26 @@
 static NSString* apiUrl = @"http://dingoapp.herokuapp.com/api/v1/";
 static NSString* signUpUrl = @"http://dingoapp.herokuapp.com/users/sign_up";
 static NSString* signInUrl = @"http://dingoapp.herokuapp.com/users/sign_in";
+static NSString* geocodeUrl = @"https://maps.googleapis.com/maps/api/geocode/json";
 
 @implementation WebServiceManager
+
++ (void)addressToLocation:(NSString *)address completion:( void (^) (id response, NSError *error))handler {
+    
+    NSMutableURLRequest *request = [self requestForGetURL:geocodeUrl withParams:[NSString stringWithFormat:@"address=%@", address]];
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        NSURLResponse* response = nil;
+        NSError *error = nil;
+        NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+        
+        dispatch_async(dispatch_get_main_queue(), ^(void){
+            handler([data objectFromJSONData], error);
+        });
+        
+    });
+
+}
 
 + (void)signUp:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler {
 
@@ -68,7 +86,7 @@ static NSString* signInUrl = @"http://dingoapp.herokuapp.com/users/sign_in";
 
 + (void)events:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler {
     
-    NSMutableURLRequest *request = [self requestForGetMethod:@"events" withParams:nil];
+    NSMutableURLRequest *request = [self requestForGetMethod:@"events" withParams:[params urlEncodedString]];
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
         NSURLResponse* response = nil;

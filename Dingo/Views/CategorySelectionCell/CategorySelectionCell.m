@@ -13,11 +13,13 @@
 #import "TwoModeButton.h"
 #import "EventCategory.h"
 
-@interface CategorySelectionCell () <UICollectionViewDataSource, UICollectionViewDelegate>
+@interface CategorySelectionCell () <UICollectionViewDataSource, UICollectionViewDelegate> {
+    NSArray *allCategories;
+}
 
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet TwoModeButton *multipleModeButton;
-@property (nonatomic, strong) NSMutableArray *favoriteCategories;
+
 
 
 @end
@@ -33,11 +35,20 @@
     }
     
     self.multipleSelection = YES;
-    self.favoriteCategories = [NSMutableArray array];
+    self.selectedCategories = [NSMutableArray array];
 //    [self.favoriteCategories addObjectsFromArray:@[@"Concerts", @"Comedy & Theatre"]];
 //    self.favoriteCategory = [self.favoriteCategories firstObject];
     
+    allCategories = [[DataManager shared] allCategories];
+     
     return self;
+}
+
+- (void) refresh {
+ 
+    allCategories = [[DataManager shared] allCategories];
+    [self.collectionView reloadData];
+  
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -51,10 +62,9 @@
                                                                    forIndexPath:indexPath];
     EventCategory *data;
     NSUInteger index = indexPath.row;
-    DataManager *manager = [DataManager shared];
     
     
-    data = [manager allCategories][index];
+    data = allCategories[index];
     
 //    if (self.multipleSelection) {
 //        data = [manager allCategories][index];
@@ -66,9 +76,9 @@
     [cell buildWithData:data];
     
     if (self.multipleSelection) {
-        cell.selected = [self.favoriteCategories containsObject:data.name];
+        cell.selected = [self.selectedCategories containsObject:data.category_id];
     } else {
-        cell.selected = [self.favoriteCategory isEqualToString:data.name];
+        cell.selected = [self.selectedCategory isEqualToString:data.category_id];
     }
     
     if (cell.selected) {
@@ -83,7 +93,7 @@
 - (NSInteger)collectionView:(UICollectionView *)collectionView
      numberOfItemsInSection:(NSInteger)section {
 //    return self.multipleSelection ? [[DataManager shared] allCategories].count : self.favoriteCategories.count;
-    return [[DataManager shared] allCategories].count;
+    return allCategories.count;
 }
 
 #pragma mark - UICollectionViewDelegate
@@ -93,23 +103,32 @@
 //}
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    CategoryCell *cell = (CategoryCell *)[collectionView cellForItemAtIndexPath:indexPath];
-    self.favoriteCategory = cell.name;
+    
+    EventCategory *data = allCategories[indexPath.row];
+    
+    self.selectedCategory = data.category_id;
     
     if (self.multipleSelection) {
-        [self addCategoryToFavorites:cell.name];
+        [self addCategoryToSelected:data.category_id];
+    } else {
+        if ([self.delegate respondsToSelector:@selector(didSelectedCategories:)]) {
+            [self.delegate didSelectedCategories:@[self.selectedCategory]];
+        }
     }
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
-    CategoryCell *cell = (CategoryCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    EventCategory *data = allCategories[indexPath.row];
     
-    if ([self.favoriteCategory isEqualToString:cell.name]) {
-        self.favoriteCategory = [self.favoriteCategories firstObject];
+    if ([self.selectedCategory isEqualToString:data.category_id]) {
+        self.selectedCategory = [self.selectedCategories firstObject];
+        if ([self.delegate respondsToSelector:@selector(didSelectedCategories:)]) {
+            [self.delegate didSelectedCategories:@[self.selectedCategory]];
+        }
     }
     
     if (self.multipleSelection) {
-        [self.favoriteCategories removeObject:cell.name];
+        [self removeFavoriteCategory:data.category_id];
     }
 }
 
@@ -122,29 +141,41 @@
 }
 
 - (void)addFavoriteCategory:(NSString *)category {
-    if ([self.favoriteCategories containsObject:category]) {
+    if ([self.selectedCategories containsObject:category]) {
         return;
     }
     
-    [self.favoriteCategories addObject:category];
+    [self.selectedCategories addObject:category];
     [self.collectionView reloadData];
+    
+    if ([self.delegate respondsToSelector:@selector(didSelectedCategories:)]) {
+        [self.delegate didSelectedCategories:self.selectedCategories];
+    }
+
 }
 
 - (void)removeFavoriteCategory:(NSString *)category {
-    [self.favoriteCategories removeObject:category];
+    [self.selectedCategories removeObject:category];
     [self.collectionView reloadData];
+    
+    if ([self.delegate respondsToSelector:@selector(didSelectedCategories:)]) {
+        [self.delegate didSelectedCategories:self.selectedCategories];
+    }
+
 }
 
 - (void)useAllCategories {
+   
     NSArray *cats = [[DataManager shared] allCategories];
     for (EventCategory *category in cats) {
-        NSString *name = category.name;
-        if ([self.favoriteCategories containsObject:name]) {
+        NSString *name = category.category_id;
+        if ([self.selectedCategories containsObject:name]) {
             continue;
         }
         
-        [self addCategoryToFavorites:name];
+        [self.selectedCategories addObject:name];
     }
+
 }
 
 #pragma mark - UIActions
@@ -164,24 +195,13 @@
 
 #pragma mark - Private
 
-- (void)addCategoryToFavorites:(NSString *)catName {
-    [self.favoriteCategories addObject:catName];
-    DataManager *manager = [DataManager shared];
+- (void)addCategoryToSelected:(NSString *)cat_id {
+    [self.selectedCategories addObject:cat_id];
     
-    NSArray *sorted = [self.favoriteCategories sortedArrayUsingComparator: ^(NSString *string1, NSString *string2) {
-        NSInteger first = [manager categoryIndexByName:string1];
-        NSInteger second = [manager categoryIndexByName:string2];
-        
-        if (first < second) {
-            return NSOrderedAscending;
-        } else if (first > second) {
-            return NSOrderedDescending;
-        } else {
-            return NSOrderedSame;
-        }
-    }];
-    
-    self.favoriteCategories = [sorted mutableCopy];
+    if ([self.delegate respondsToSelector:@selector(didSelectedCategories:)]) {
+        [self.delegate didSelectedCategories:self.selectedCategories];
+    }
+
 }
 
 @end
