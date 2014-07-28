@@ -39,8 +39,6 @@
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     // Show the device token obtained from apple to the log
-//    NSLog(@"deviceToken: %@", deviceToken);
-    
     NSString *newToken = [deviceToken description];
 	newToken = [newToken stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
 	newToken = [newToken stringByReplacingOccurrencesOfString:@" " withString:@""];
