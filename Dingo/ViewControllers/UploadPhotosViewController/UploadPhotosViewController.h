@@ -8,13 +8,14 @@
 
 @protocol UploadPhotosVCDelegate
 
-- (void)displayPhotos:(NSArray *)array;
+- (void)displayPhotos:(NSArray *)array mainPhoto:(UIImage *)mainPhoto;
 
 @end
 
 @interface UploadPhotosViewController : UITableViewController
 
 @property (nonatomic, strong) NSMutableArray *photos;
+@property (nonatomic, strong) UIImage *mainPhoto;
 @property (nonatomic, weak) id <UploadPhotosVCDelegate> delegate;
 
 @end

@@ -10,4 +10,6 @@
 
 @interface ProposalCell : TicketCell
 
+- (void)buildWithData:(Event *)data;
+
 @end

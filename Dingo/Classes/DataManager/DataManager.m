@@ -117,8 +117,8 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     BOOL before = NO;
     BOOL after = NO;
     
-    for (NSDictionary *dict in events) {
-        NSDate *date = dict[@"begin"];
+    for (Event *dict in events) {
+        NSDate *date = dict.date;
         if ([DingoUtilites daysBetween:date and:[NSDate date]] > 0) {
             before = YES;
             continue;
@@ -137,8 +137,8 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     NSArray *events = [self allEvents];
     NSMutableArray *result = [NSMutableArray array];
     
-    for (NSDictionary *dict in events) {
-        NSDate *curDate = dict[@"begin"];
+    for (Event *dict in events) {
+        NSDate *curDate = dict.date;
         if ([DingoUtilites daysBetween:curDate and:date] > 0) {
             [result addObject:dict];
         }
@@ -151,8 +151,8 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     NSArray *events = [self allEvents];
     NSMutableArray *result = [NSMutableArray array];
     
-    for (NSDictionary *dict in events) {
-        NSDate *curDate = dict[@"begin"];
+    for (Event *dict in events) {
+        NSDate *curDate = dict.date;
         if ([DingoUtilites daysBetween:date and:curDate] >= 0) {
             [result addObject:dict];
         }
@@ -223,9 +223,9 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
 - (NSArray *)allTicketsByEventName:(NSString *)name {
     NSArray *events = [self allEvents];
     NSMutableArray *tickets = [NSMutableArray array];
-    for (NSDictionary *dict in events) {
-        if ([name isEqualToString:dict[@"name"]]) {
-            [tickets addObject:dict];
+    for (Event *event in events) {
+        if ([name isEqualToString:event.name]) {
+            [tickets addObject:event];
         }
     }
     

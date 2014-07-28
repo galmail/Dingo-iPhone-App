@@ -17,6 +17,7 @@
 @property (nonatomic, strong) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
 @property (nonatomic, strong) NSString *token;
+@property (nonatomic, strong) NSString *deviceToken;
 @property (nonatomic, strong) NSDictionary *userInfo;
 @property (nonatomic, strong) CLLocation* currentLocation;
 

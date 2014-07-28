@@ -40,6 +40,11 @@
 }
 
 + (NSString *)eventFormattedDate:(NSDate *)date {
+    
+    if (!date) {
+        return nil;
+    }
+    
     switch ([DingoUtilites daysBetween:[NSDate date] and:date]) {
         case -2:
             return @"Day before yesterday";

@@ -9,6 +9,7 @@
 @interface CategorySelectionCell : UITableViewCell
 
 @property (nonatomic) BOOL multipleSelection;
+@property (nonatomic, strong) NSString *favoriteCategory;
 
 - (void)addFavoriteCategory:(NSString *)category;
 - (void)removeFavoriteCategory:(NSString *)category;

@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "TestFlight.h"
+
 #import "DingoUISettings.h"
 
 #import <FacebookSDK/FacebookSDK.h>
@@ -25,6 +25,7 @@
                                              forState:UIControlStateSelected];
     [[UISwitch appearance] setTintColor:[DingoUISettings foregroundColor]];
     
+    
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
@@ -33,16 +34,16 @@
     
     [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeBadge)];
     
-    //[TestFlight takeOff:@"196f5c4b-025a-4cbe-9b82-7eb4917931f7"];
-    
     return YES;
 }
 
-- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)dataDeviceToken {
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     // Show the device token obtained from apple to the log
-    NSString *deviceToken = [[dataDeviceToken description] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
-    deviceToken = [deviceToken stringByReplacingOccurrencesOfString:@" " withString:@""];
-    NSLog(@"deviceToken: %@", deviceToken);
+    NSString *newToken = [deviceToken description];
+	newToken = [newToken stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
+	newToken = [newToken stringByReplacingOccurrencesOfString:@" " withString:@""];
+    
+    [AppManager sharedManager].deviceToken = newToken;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

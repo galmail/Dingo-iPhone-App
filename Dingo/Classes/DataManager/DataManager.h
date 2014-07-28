@@ -9,6 +9,7 @@
 
 #import "EventCategory.h"
 #import "Event.h"
+#import "Ticket.h"
 
 @interface DataManager : NSObject
 

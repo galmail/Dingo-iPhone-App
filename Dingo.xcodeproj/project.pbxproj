@@ -7,10 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2AF22618197EFDDD0010EAC9 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AF22612197EFDDD0010EAC9 /* libTestFlight.a */; };
-		2AF22619197EFDDD0010EAC9 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 2AF22613197EFDDD0010EAC9 /* README.md */; };
-		2AF2261A197EFDDD0010EAC9 /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = 2AF22614197EFDDD0010EAC9 /* release_notes.md */; };
-		2AF2261C197EFE520010EAC9 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AF2261B197EFE520010EAC9 /* libz.dylib */; };
 		3A98E0A71977D57C006DA28A /* blueBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A98E0A61977D57C006DA28A /* blueBG@2x.png */; };
 		3A98E0A91977D78B006DA28A /* btnFBLogin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A98E0A81977D78B006DA28A /* btnFBLogin@2x.png */; };
 		3A98E0AB1977E53F006DA28A /* btnGuest@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A98E0AA1977E53F006DA28A /* btnGuest@2x.png */; };
@@ -21,6 +17,8 @@
 		3AB28AE8197BCC3A009C1DDC /* welcome4BG-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AB28AE7197BCC3A009C1DDC /* welcome4BG-568h@2x.png */; };
 		3AB28AEF197D9DA4009C1DDC /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB28AEE197D9DA4009C1DDC /* Event.m */; };
 		3AB28AF8197D9F9D009C1DDC /* EventCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB28AF7197D9F9D009C1DDC /* EventCategory.m */; };
+		3AB28B02197EE8CE009C1DDC /* ZSTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB28B01197EE8CE009C1DDC /* ZSTextField.m */; };
+		3AB28B05197EFA62009C1DDC /* Ticket.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB28B04197EFA62009C1DDC /* Ticket.m */; };
 		3AF360A619767564009A14FD /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AF360A519767564009A14FD /* FacebookSDK.framework */; };
 		3AF360AB197687E2009A14FD /* AppManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF360AA197687E2009A14FD /* AppManager.m */; };
 		3AF360AE197687F5009A14FD /* WebServiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF360AD197687F5009A14FD /* WebServiceManager.m */; };
@@ -186,13 +184,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2AF22612197EFDDD0010EAC9 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
-		2AF22613197EFDDD0010EAC9 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		2AF22614197EFDDD0010EAC9 /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
-		2AF22615197EFDDD0010EAC9 /* TestFlight+AsyncLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+AsyncLogging.h"; sourceTree = "<group>"; };
-		2AF22616197EFDDD0010EAC9 /* TestFlight+ManualSessions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+ManualSessions.h"; sourceTree = "<group>"; };
-		2AF22617197EFDDD0010EAC9 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
-		2AF2261B197EFE520010EAC9 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		3A98E0A61977D57C006DA28A /* blueBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueBG@2x.png"; sourceTree = "<group>"; };
 		3A98E0A81977D78B006DA28A /* btnFBLogin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnFBLogin@2x.png"; sourceTree = "<group>"; };
 		3A98E0AA1977E53F006DA28A /* btnGuest@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnGuest@2x.png"; sourceTree = "<group>"; };
@@ -205,6 +196,10 @@
 		3AB28AEE197D9DA4009C1DDC /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Event.m; path = Dingo/Classes/Models/Event.m; sourceTree = SOURCE_ROOT; };
 		3AB28AF6197D9F9D009C1DDC /* EventCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventCategory.h; sourceTree = "<group>"; };
 		3AB28AF7197D9F9D009C1DDC /* EventCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventCategory.m; sourceTree = "<group>"; };
+		3AB28B00197EE8CE009C1DDC /* ZSTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSTextField.h; sourceTree = "<group>"; };
+		3AB28B01197EE8CE009C1DDC /* ZSTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSTextField.m; sourceTree = "<group>"; };
+		3AB28B03197EFA62009C1DDC /* Ticket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Ticket.h; path = Dingo/Classes/Models/Ticket.h; sourceTree = SOURCE_ROOT; };
+		3AB28B04197EFA62009C1DDC /* Ticket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Ticket.m; path = Dingo/Classes/Models/Ticket.m; sourceTree = SOURCE_ROOT; };
 		3AF360A519767564009A14FD /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		3AF360A9197687E2009A14FD /* AppManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppManager.h; sourceTree = "<group>"; };
 		3AF360AA197687E2009A14FD /* AppManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppManager.m; sourceTree = "<group>"; };
@@ -434,13 +429,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2AF2261C197EFE520010EAC9 /* libz.dylib in Frameworks */,
 				3A98E0AD197802EA006DA28A /* CoreLocation.framework in Frameworks */,
 				3AF360B019768CF8009A14FD /* CoreData.framework in Frameworks */,
 				3F3D56541951797900FB2774 /* MessageUI.framework in Frameworks */,
 				3F08EC0619471D6B00CDFBD8 /* Accelerate.framework in Frameworks */,
 				3F10DDDB19388E6F002D3B43 /* CoreGraphics.framework in Frameworks */,
-				2AF22618197EFDDD0010EAC9 /* libTestFlight.a in Frameworks */,
 				3F10DDDD19388E6F002D3B43 /* UIKit.framework in Frameworks */,
 				3F10DDD919388E6F002D3B43 /* Foundation.framework in Frameworks */,
 				3E24F9C81D9E48F08275CAA9 /* libPods-Dingo.a in Frameworks */,
@@ -451,22 +444,11 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2AF22611197EFDDD0010EAC9 /* TestFlightSDK3.0.2 */ = {
-			isa = PBXGroup;
-			children = (
-				2AF22612197EFDDD0010EAC9 /* libTestFlight.a */,
-				2AF22613197EFDDD0010EAC9 /* README.md */,
-				2AF22614197EFDDD0010EAC9 /* release_notes.md */,
-				2AF22615197EFDDD0010EAC9 /* TestFlight+AsyncLogging.h */,
-				2AF22616197EFDDD0010EAC9 /* TestFlight+ManualSessions.h */,
-				2AF22617197EFDDD0010EAC9 /* TestFlight.h */,
-			);
-			path = TestFlightSDK3.0.2;
-			sourceTree = "<group>";
-		};
 		3AB28AEC197D9D83009C1DDC /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				3AB28B03197EFA62009C1DDC /* Ticket.h */,
+				3AB28B04197EFA62009C1DDC /* Ticket.m */,
 				3AB28AED197D9DA4009C1DDC /* Event.h */,
 				3AB28AEE197D9DA4009C1DDC /* Event.m */,
 				3AB28AF6197D9F9D009C1DDC /* EventCategory.h */,
@@ -476,10 +458,19 @@
 			path = Classes/Models;
 			sourceTree = "<group>";
 		};
+		3AB28AFF197EE8B4009C1DDC /* CustomClasses */ = {
+			isa = PBXGroup;
+			children = (
+				3AB28B00197EE8CE009C1DDC /* ZSTextField.h */,
+				3AB28B01197EE8CE009C1DDC /* ZSTextField.m */,
+			);
+			name = CustomClasses;
+			path = Classes/CustomClasses;
+			sourceTree = "<group>";
+		};
 		3AF360A419767564009A14FD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2AF22611197EFDDD0010EAC9 /* TestFlightSDK3.0.2 */,
 				3AF360A519767564009A14FD /* FacebookSDK.framework */,
 			);
 			path = Frameworks;
@@ -579,7 +570,6 @@
 		3F10DDD719388E6F002D3B43 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2AF2261B197EFE520010EAC9 /* libz.dylib */,
 				3A98E0AC197802EA006DA28A /* CoreLocation.framework */,
 				3AF360AF19768CF8009A14FD /* CoreData.framework */,
 				3F3D56531951797900FB2774 /* MessageUI.framework */,
@@ -742,6 +732,7 @@
 		3F10DE67193C5476002D3B43 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				3AB28AFF197EE8B4009C1DDC /* CustomClasses */,
 				3AB28AEC197D9D83009C1DDC /* Models */,
 				3F10DE0719388EC1002D3B43 /* AppDelegate */,
 				3AF360BA1976AB03009A14FD /* UIDevice+Additions */,
@@ -1443,7 +1434,6 @@
 				3F62C6B21948318F00D7D6B1 /* tickets_frame_white@2x.png in Resources */,
 				3A98E0AB1977E53F006DA28A /* btnGuest@2x.png in Resources */,
 				3F62C6E81949B67800D7D6B1 /* concerts@2x.png in Resources */,
-				2AF2261A197EFDDD0010EAC9 /* release_notes.md in Resources */,
 				84A457041970182C000ABA73 /* welcomeText3@2x.png in Resources */,
 				3F62C6B51948318F00D7D6B1 /* contact_us_icon@2x.png in Resources */,
 				84A456FB1970182C000ABA73 /* welcomeText2.png in Resources */,
@@ -1471,7 +1461,6 @@
 				3F08EC1919473DB400CDFBD8 /* SectionEventHeaderView.xib in Resources */,
 				84A456FC1970182C000ABA73 /* welcomeText3.png in Resources */,
 				3F62C6AC1948318F00D7D6B1 /* category_highlighted@2x.png in Resources */,
-				2AF22619197EFDDD0010EAC9 /* README.md in Resources */,
 				3F62C6981948318F00D7D6B1 /* feature_cell@2x.png in Resources */,
 				3F62C6A11948318F00D7D6B1 /* offers_section_header@2x.png in Resources */,
 				3F62C6B71948318F00D7D6B1 /* listing_icon@2x.png in Resources */,
@@ -1565,7 +1554,9 @@
 				3AF360B319768F15009A14FD /* Dingo.xcdatamodeld in Sources */,
 				3F10DE1119388EC1002D3B43 /* AppDelegate.m in Sources */,
 				3F3D565C195182F900FB2774 /* SearchTicketsViewController.m in Sources */,
+				3AB28B05197EFA62009C1DDC /* Ticket.m in Sources */,
 				3F08EC1719473AAF00CDFBD8 /* TwoModeButton.m in Sources */,
+				3AB28B02197EE8CE009C1DDC /* ZSTextField.m in Sources */,
 				3F98FCEE1941AB7700E6B3C4 /* SelectCityViewController.m in Sources */,
 				3F98FCC7193F66C500E6B3C4 /* SideMenuViewController.m in Sources */,
 				3F10DE66193C536E002D3B43 /* DingoNavigationController.m in Sources */,
@@ -1686,8 +1677,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Gal Dubitski (X3UBXF7TMN)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Gal Dubitski (X3UBXF7TMN)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_NS_ASSERTIONS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1697,12 +1688,8 @@
 				GCC_PREFIX_HEADER = "Dingo/Supporting files/Dingo.temp_caseinsensitive_rename.temp_caseinsensitive_rename-Prefix.pch";
 				INFOPLIST_FILE = "Dingo/Supporting files/Dingo.temp_caseinsensitive_rename.temp_caseinsensitive_rename-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Dingo/Frameworks/TestFlightSDK3.0.2",
-				);
 				PRODUCT_NAME = Dingo;
-				PROVISIONING_PROFILE = "D4F696C3-FEAE-4264-A4D4-C459146E722D";
+				PROVISIONING_PROFILE = "9FDCD103-D6F6-4FD5-8C63-E106EA29BCAD";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1714,8 +1701,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Tocarta International SL (H7W3N7L3PK)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Tocarta International SL (H7W3N7L3PK)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				ENABLE_NS_ASSERTIONS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1725,12 +1712,8 @@
 				GCC_PREFIX_HEADER = "Dingo/Supporting files/Dingo.temp_caseinsensitive_rename.temp_caseinsensitive_rename-Prefix.pch";
 				INFOPLIST_FILE = "Dingo/Supporting files/Dingo.temp_caseinsensitive_rename.temp_caseinsensitive_rename-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Dingo/Frameworks/TestFlightSDK3.0.2",
-				);
 				PRODUCT_NAME = Dingo;
-				PROVISIONING_PROFILE = "D4F696C3-FEAE-4264-A4D4-C459146E722D";
+				PROVISIONING_PROFILE = "9FDCD103-D6F6-4FD5-8C63-E106EA29BCAD";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 Xetra. All rights reserved.
 //
 
+#import "Ticket.h"
+
 @interface ListTicketsViewController : UITableViewController
 
 @property (nonatomic) BOOL changed;
