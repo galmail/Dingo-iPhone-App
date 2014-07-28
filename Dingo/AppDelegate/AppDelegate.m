@@ -12,6 +12,7 @@
 
 #import <FacebookSDK/FacebookSDK.h>
 #import "AppManager.h"
+#import "SlidingViewController.h"
 
 @implementation AppDelegate
 
@@ -33,6 +34,11 @@
     [self.locationManager startUpdatingLocation];
     
     [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeBadge)];
+    
+    if ([AppManager sharedManager].token) {
+        SlidingViewController *viewController = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"SlidingViewController"];
+        self.window.rootViewController = viewController;
+    }
     
     return YES;
 }
