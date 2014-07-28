@@ -16,6 +16,7 @@
 #import "TicketsViewController.h"
 #import "DingoUISettings.h"
 #import "AppManager.h"
+#import "ZSLoadingView.h"
 
 static const CGSize iconSize = {28, 32};
 static const CGFloat categoriesHeight = 140;
@@ -40,27 +41,30 @@ static const CGFloat categoriesHeight = 140;
     [self.refreshControl addTarget:self action:@selector(refreshInvoked:forState:) forControlEvents:UIControlEventValueChanged];
     
     selectedCategories = [[[DataManager shared] allCategories] valueForKey:@"category_id"];
-
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [self setupNavigationBar];
+ 
+    ZSLoadingView *loadingView =[[ZSLoadingView alloc] initWithLabel:@"Loading events ..."];
+    [loadingView show];
     
     [[DataManager shared] allCategoriesWithCompletion:^(BOOL finished) {
         if (!selectedCategories) {
             selectedCategories = [[[DataManager shared] allCategories] valueForKey:@"category_id"];
         }
         [[DataManager shared] allEventsWithCompletion:^(BOOL finished) {
-            
             [self.tableView reloadData];
-            
+            [loadingView hide];
             if ([[AppManager sharedManager] justInstalled]) {
                 [self setupTips];
             }
         }];
         
     }];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self setupNavigationBar];
+    
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
