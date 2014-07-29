@@ -23,6 +23,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 //    [self.tableView setContentInset:UIEdgeInsetsMake(0, 0, dingoTabBarHeight, 0)];
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(refreshInvoked:forState:) forControlEvents:UIControlEventValueChanged];
+    
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
@@ -30,6 +34,17 @@
     [super viewWillAppear:animated];
     self.parentViewController.navigationItem.title = self.navigationItem.title;
 }
+
+-(void) refreshInvoked:(id)sender forState:(UIControlState)state {
+    
+    [self.refreshControl beginRefreshing];
+    
+    [[DataManager shared] allEventsWithCompletion:^(BOOL finished) {
+        [self.tableView reloadData];
+        [self.refreshControl endRefreshing];
+    }];
+}
+
 
 #pragma mark - UITableViewDelegate
 
@@ -46,7 +61,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString * const cellId = @"FeatureCell";
     TicketCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
-    Event *data = [[DataManager shared] allEvents][indexPath.row];
+    Event *data = [[DataManager shared] featuredEvents][indexPath.row];
     [cell buildWithData:data];
     return cell;
 }

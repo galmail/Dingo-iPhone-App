@@ -54,9 +54,9 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
 
 - (void)allEventsWithCompletion:( void (^) (BOOL finished))handler {
     
-    NSDictionary* params = nil;
+    NSDictionary* params = @{@"city":[AppManager sharedManager].userInfo[@"city"]};
     if ([AppManager sharedManager].currentLocation != nil) {
-        params = @{@"location": [NSString stringWithFormat:@"%f,%f", [AppManager sharedManager].currentLocation.coordinate.latitude, [AppManager sharedManager].currentLocation.coordinate.longitude]};
+        params = @{@"location": [NSString stringWithFormat:@"%f,%f", [AppManager sharedManager].currentLocation.coordinate.latitude, [AppManager sharedManager].currentLocation.coordinate.longitude], @"city":[AppManager sharedManager].userInfo[@"city"]};
     }
     
     [WebServiceManager events:params completion:^(id response, NSError *error) {
