@@ -75,7 +75,7 @@
                                                                                 @"email" : user[@"email"],
                                                                                 @"password" : [NSString stringWithFormat:@"fb%@", user.objectID],
                                                                                 @"date_of_birth": birtday.length > 0 ? birtday : @"",
-                                                                                @"city": user.location ? [[user.location.name componentsSeparatedByString:@","] firstObject] : @"",
+                                                                                @"city": user.location ? [[user.location.name componentsSeparatedByString:@","] firstObject] : @"London",
                                                                                 @"photo_url":user[@"picture"][@"data"][@"url"],
                                                                                 @"device_uid":[AppManager sharedManager].deviceToken.length > 0 ? [AppManager sharedManager].deviceToken : @"",
                                                                                 @"device_brand":@"Apple",
@@ -98,7 +98,7 @@
                                                                   if (response[@"authentication_token"]) {
                                                                       [AppManager sharedManager].token = response[@"authentication_token"];
                                                                       
-                                                                      [AppManager sharedManager].userInfo = @{@"email":user[@"email"], @"name": user.name};
+                                                                      [AppManager sharedManager].userInfo = @{@"email":user[@"email"], @"name": user.name, @"city":user.location ? [[user.location.name componentsSeparatedByString:@","] firstObject] : @"London"};
                                                                       
                                                                       SlidingViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SlidingViewController"];
                                                                       viewController.modalTransitionStyle =  UIModalTransitionStyleFlipHorizontal;
@@ -122,7 +122,7 @@
                                                                                   if ([response[@"success"] boolValue]) {
                                                                                       [AppManager sharedManager].token = response[@"auth_token"];
                                                                                       
-                                                                                      [AppManager sharedManager].userInfo = @{@"email":user[@"email"], @"name": user.name};
+                                                                                      [AppManager sharedManager].userInfo = @{@"email":user[@"email"], @"name": user.name, @"city" : user.location ? [[user.location.name componentsSeparatedByString:@","] firstObject] : @"London"};
                                                                                       
                                                                                       SlidingViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SlidingViewController"];
                                                                                       viewController.modalTransitionStyle =  UIModalTransitionStyleFlipHorizontal;
@@ -179,7 +179,8 @@
                               @"device_brand":@"Apple",
                               @"device_model": [[UIDevice currentDevice] platformString],
                               @"device_os":[[UIDevice currentDevice] systemVersion],
-                              @"device_location" : [NSString stringWithFormat:@"%f,%f", [AppManager sharedManager].currentLocation.coordinate.latitude, [AppManager sharedManager].currentLocation.coordinate.longitude ]
+                              @"device_location" : [NSString stringWithFormat:@"%f,%f", [AppManager sharedManager].currentLocation.coordinate.latitude, [AppManager sharedManager].currentLocation.coordinate.longitude ],
+                              @"city": @"London"
                               };
     
     [WebServiceManager signUp:params completion:^(id response, NSError *error) {
@@ -195,7 +196,7 @@
                 if (response[@"authentication_token"]) {
                     [AppManager sharedManager].token = response[@"authentication_token"];
                     
-                    [AppManager sharedManager].userInfo = @{@"email":email, @"name": @"Guest"};
+                    [AppManager sharedManager].userInfo = @{@"email":email, @"name": @"Guest", @"city": @"London"};
                     
                     SlidingViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SlidingViewController"];
                     viewController.modalTransitionStyle =  UIModalTransitionStyleFlipHorizontal;
@@ -219,7 +220,7 @@
                                 if ([response[@"success"] boolValue]) {
                                     [AppManager sharedManager].token = response[@"auth_token"];
                                     
-                                    [AppManager sharedManager].userInfo = @{@"email":email, @"name": @"Guest"};
+                                    [AppManager sharedManager].userInfo = @{@"email":email, @"name": @"Guest", @"city": @"London"};
                                     
                                     SlidingViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SlidingViewController"];
                                     viewController.modalTransitionStyle =  UIModalTransitionStyleFlipHorizontal;
