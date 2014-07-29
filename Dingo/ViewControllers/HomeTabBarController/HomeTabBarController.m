@@ -85,6 +85,7 @@ static const NSUInteger listTicketsVCIndex = 2;
     switch (buttonIndex) {
         case 0:
             NSLog(@"Save");
+            [[self listTicketsVC] saveDraft];
             break;
             
         case 1:

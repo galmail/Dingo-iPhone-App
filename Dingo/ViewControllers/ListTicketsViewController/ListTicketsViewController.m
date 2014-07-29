@@ -79,7 +79,19 @@ static const NSUInteger payPalCellIndex = 15;
     self.categoriesCell.multipleSelection = NO;
     [self.categoriesCell useAllCategories];
     self.paypalSwitch.on = NO;
-    self.changed = YES;
+    
+    if ([AppManager sharedManager].draftTicket) {
+        self.nameField.text = [AppManager sharedManager].draftTicket[@"name"];
+        self.addressField.text = [AppManager sharedManager].draftTicket[@"address"];
+        self.cityField.text = [AppManager sharedManager].draftTicket[@"city"];
+        self.postCodeField.text = [AppManager sharedManager].draftTicket[@"postCode"];
+        self.startDateField.text = [AppManager sharedManager].draftTicket[@"startDate"];
+        self.endDateField.text = [AppManager sharedManager].draftTicket[@"endDate"];
+        self.descriptionTextView.text = [AppManager sharedManager].draftTicket[@"description"];
+        
+        self.categoriesCell.selectedCategory = [AppManager sharedManager].draftTicket[@"categoryID"];
+    }
+    
     
     [self.nameField setPopoverSize:CGRectMake(0, self.nameField.frame.origin.y + self.nameField.frame.size.height, 320.0, 100.0)];
     
@@ -104,12 +116,50 @@ static const NSUInteger payPalCellIndex = 15;
     self.parentViewController.navigationItem.title = self.navigationItem.title;
 }
 
+- (void)saveDraft {
+    [AppManager sharedManager].draftTicket = [[NSMutableDictionary alloc] init];
+    
+    [[AppManager sharedManager].draftTicket setValue:self.nameField.text forKey:@"name"];
+    [[AppManager sharedManager].draftTicket setValue:self.addressField.text forKey:@"address"];
+    [[AppManager sharedManager].draftTicket setValue:self.cityField.text forKey:@"city"];
+    [[AppManager sharedManager].draftTicket setValue:self.postCodeField.text forKey:@"postCode"];
+    [[AppManager sharedManager].draftTicket setValue:self.startDateField.text forKey:@"startDate"];
+    [[AppManager sharedManager].draftTicket setValue:self.endDateField.text forKey:@"endDate"];
+    [[AppManager sharedManager].draftTicket setValue:self.priceField.text forKey:@"price"];
+    [[AppManager sharedManager].draftTicket setValue:self.faceValueField.text forKey:@"faceValue"];
+    [[AppManager sharedManager].draftTicket setValue:self.ticketsCountField.text forKey:@"ticketCount"];
+    [[AppManager sharedManager].draftTicket setValue:self.descriptionTextView.text forKey:@"description"];
+    [[AppManager sharedManager].draftTicket setValue:self.categoriesCell.selectedCategory forKey:@"categoryID"];
+    
+    
+    // payment options
+    NSString *payment_options = @"";
+    if (self.paypalSwitch.on) {
+        payment_options = @"paypal";
+    }
+    
+    if (self.cashSwitch.on) {
+        if (payment_options.length > 0) {
+            payment_options = [payment_options stringByAppendingString:@",cash"];
+        } else {
+            payment_options = @"cash";
+        }
+    }
+    
+    [[AppManager sharedManager].draftTicket setValue:payment_options forKey:@"paymentOption"];
+    
+}
+
 #pragma mark - UploadPhotosVCDelegate
 
 - (void)displayPhotos:(NSArray *)array mainPhoto:(UIImage*)mainPhoto {
     self.photosPreviewCell.photos = [array mutableCopy];
     event.thumb = UIImagePNGRepresentation(mainPhoto);
     [self.tableView reloadData];
+    if (array.count > 0 || mainPhoto) {
+        self.changed = YES;
+    }
+    
 }
 
 #pragma mark - UITableViewDataSource
@@ -187,6 +237,7 @@ static const NSUInteger payPalCellIndex = 15;
         if (self.nameField.text.length > 0) {
             event.name = self.nameField.text;
             lblName.textColor = [UIColor blackColor];
+            self.changed = YES;
         }
         
     }
@@ -195,6 +246,7 @@ static const NSUInteger payPalCellIndex = 15;
         if (self.addressField.text.length > 0) {
             event.address = self.addressField.text;
             lblAddress.textColor = [UIColor blackColor];
+            self.changed = YES;
         }
     }
     
@@ -202,6 +254,7 @@ static const NSUInteger payPalCellIndex = 15;
         if (self.cityField.text.length > 0) {
             event.city = self.cityField.text;
             lblCity.textColor = [UIColor blackColor];
+            self.changed = YES;
         }
     }
     
@@ -220,6 +273,7 @@ static const NSUInteger payPalCellIndex = 15;
             formatter.dateFormat = @"hh:mm dd/MM/yyyy";
             event.date = [formatter dateFromString:self.startDateField.text];
             lblFromDate.textColor= [UIColor blackColor];
+            self.changed = YES;
         }
     }
     
@@ -229,6 +283,7 @@ static const NSUInteger payPalCellIndex = 15;
             formatter.dateFormat = @"hh:mm dd/MM/yyyy";
             event.endDate = [formatter dateFromString:self.endDateField.text];
             lblToDate.textColor = [UIColor blackColor];
+            self.changed = YES;
         }
     }
     
@@ -237,6 +292,7 @@ static const NSUInteger payPalCellIndex = 15;
             ticket.price = @([self.priceField.text floatValue]);
             event.fromPrice = @([self.priceField.text floatValue]);
             lblPrice.textColor = [UIColor blackColor];
+            self.changed = YES;
         }
         
     }
@@ -252,6 +308,7 @@ static const NSUInteger payPalCellIndex = 15;
         if (self.ticketsCountField.text.length > 0) {
             ticket.number_of_tickets = @([self.ticketsCountField.text intValue]);
             lblTicketCount.textColor = [UIColor blackColor];
+            self.changed = YES;
         }
     }
     
@@ -260,12 +317,13 @@ static const NSUInteger payPalCellIndex = 15;
 #pragma mark - UIActions
 
 - (IBAction)cashSwitchValueChanged {
-    
+    self.changed = YES;
 }
 
 - (IBAction)paypalSwitchValueChanged {
     [self.tableView beginUpdates];
     [self.tableView endUpdates];
+    self.changed = YES;
 }
 
 #pragma mark - Navigation

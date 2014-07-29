@@ -20,6 +20,7 @@
 @property (nonatomic, strong) NSString *deviceToken;
 @property (nonatomic, strong) NSDictionary *userInfo;
 @property (nonatomic, strong) CLLocation* currentLocation;
+@property (nonatomic, strong) NSMutableDictionary *draftTicket;
 
 +(AppManager *)sharedManager;
 

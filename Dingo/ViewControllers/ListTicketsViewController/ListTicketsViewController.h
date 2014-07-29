@@ -12,4 +12,6 @@
 
 @property (nonatomic) BOOL changed;
 
+- (void)saveDraft;
+
 @end
