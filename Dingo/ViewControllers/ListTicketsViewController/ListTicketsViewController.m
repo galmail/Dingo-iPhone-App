@@ -17,25 +17,19 @@
 #import "PreviewViewController.h"
 
 #import "ZSTextField.h"
+#import "ZSDatePicker.h"
 #import "AppManager.h"
 
 
 static const CGFloat paypalCellShrinkedHeight = 72;
 static const CGFloat paypalCellExpandedHeight = 130;
 
-static const CGFloat dateCellExpandedHeight = 200;
-static const CGFloat dateCellShrinkedHeight = 36;
-
-static const NSUInteger startDateCellIndex = 5;
-static const NSUInteger endDateCellIndex = 6;
 static const NSUInteger previewPhotosCellIndex = 12;
 static const NSUInteger editPhotosCellIndex = 13;
 static const NSUInteger uploadPhotosCellIndex = 14;
 static const NSUInteger payPalCellIndex = 15;
 
-@interface ListTicketsViewController () <UITextFieldDelegate, UITableViewDataSource, UploadPhotosVCDelegate, ZSTextFieldDelegate> {
-    BOOL showStartDatePicker;
-    BOOL showEndDatePicker;
+@interface ListTicketsViewController () <UITextFieldDelegate, UITableViewDataSource, UploadPhotosVCDelegate, ZSTextFieldDelegate, ZSDatePickerDelegate > {
     
     Ticket* ticket;
     Event* event;
@@ -51,6 +45,8 @@ static const NSUInteger payPalCellIndex = 15;
     __weak IBOutlet UILabel *lblTicketCount;
     __weak IBOutlet UILabel *lblDescription;
     
+    ZSDatePicker *startDatePicker;
+    ZSDatePicker *endDatePicker;
 }
 
 @property (nonatomic, weak) IBOutlet ZSTextField *nameField;
@@ -69,8 +65,7 @@ static const NSUInteger payPalCellIndex = 15;
 @property (nonatomic, weak) IBOutlet CategorySelectionCell *categoriesCell;
 @property (weak, nonatomic) IBOutlet PhotosPreviewCell *photosPreviewCell;
 @property (nonatomic, weak) IBOutlet UITableViewCell *paypalCell;
-@property (nonatomic, weak) IBOutlet UIDatePicker *startDatePicker;
-@property (nonatomic, weak) IBOutlet UIDatePicker *endDatePicker;
+
 
 @end
 
@@ -86,8 +81,6 @@ static const NSUInteger payPalCellIndex = 15;
     self.paypalSwitch.on = NO;
     self.changed = YES;
     
-    showStartDatePicker = showEndDatePicker = NO;
-    
     [self.nameField setPopoverSize:CGRectMake(0, self.nameField.frame.origin.y + self.nameField.frame.size.height, 320.0, 100.0)];
     
     ticket = [[Ticket alloc] initWithEntity:[NSEntityDescription entityForName:@"Ticket" inManagedObjectContext:[AppManager sharedManager].managedObjectContext] insertIntoManagedObjectContext:nil];
@@ -96,6 +89,14 @@ static const NSUInteger payPalCellIndex = 15;
     [self.priceField showToolbarWithDone];
     [self.faceValueField showToolbarWithDone];
     [self.ticketsCountField showToolbarWithDone];
+    
+    startDatePicker = [[ZSDatePicker alloc] initWithDate:[NSDate date]];
+    startDatePicker.delegate = self;
+    self.startDateField.inputView = startDatePicker;
+    
+    endDatePicker = [[ZSDatePicker alloc] initWithDate:[NSDate date]];
+    endDatePicker.delegate = self;
+    self.endDateField.inputView = endDatePicker;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -115,18 +116,6 @@ static const NSUInteger payPalCellIndex = 15;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.row) {
-        case startDateCellIndex: {
-            self.startDatePicker.hidden = !showStartDatePicker;
-            
-            return showStartDatePicker ? dateCellExpandedHeight : dateCellShrinkedHeight;
-            break;
-        }
-        case endDateCellIndex: {
-            self.endDatePicker.hidden = !showEndDatePicker;
-            
-            return showEndDatePicker ? dateCellExpandedHeight : dateCellShrinkedHeight;
-            break;
-        }
         case payPalCellIndex:
             return self.paypalSwitch.on ? paypalCellExpandedHeight : paypalCellShrinkedHeight;
             
@@ -148,23 +137,23 @@ static const NSUInteger payPalCellIndex = 15;
 
 #pragma mark - UITextFieldDelegate
 
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
-    if (textField == self.startDateField) {
-        showStartDatePicker = !showStartDatePicker;
-        [self.tableView reloadData];
-        
-        return NO;
-    }
-    
-    if (textField == self.endDateField) {
-        showEndDatePicker = !showEndDatePicker;
-        [self.tableView reloadData];
-        
-        return NO;
-    }
-    
-    return YES;
-}
+//- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+//    if (textField == self.startDateField) {
+//        showStartDatePicker = !showStartDatePicker;
+//        [self.tableView reloadData];
+//        
+//        return NO;
+//    }
+//    
+//    if (textField == self.endDateField) {
+//        showEndDatePicker = !showEndDatePicker;
+//        [self.tableView reloadData];
+//        
+//        return NO;
+//    }
+//    
+//    return YES;
+//}
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
@@ -378,28 +367,7 @@ static const NSUInteger payPalCellIndex = 15;
     }
 }
 
-#pragma mark UIDatePicker 
-
-- (IBAction)dateChanged:(id)sender {
-    
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = @"hh:mm dd/MM/yyyy";
-    
-    if (sender == self.startDatePicker) {
-        self.startDateField.text = [formatter stringFromDate:self.startDatePicker.date];
-        event.date = self.startDatePicker.date;
-        lblFromDate.textColor = [UIColor blackColor];
-    }
-    
-    if (sender == self.endDatePicker) {
-        self.endDateField.text = [formatter stringFromDate:self.endDatePicker.date];
-        event.endDate = self.endDatePicker.date;
-        lblToDate.textColor = [UIColor blackColor];
-    }
-
-}
-
-#pragma mark ZSTextFieldDelegate 
+#pragma mark ZSTextFieldDelegate
 
 - (NSArray *)dataForPopoverInTextField:(ZSTextField *)textField {
     
@@ -422,5 +390,34 @@ static const NSUInteger payPalCellIndex = 15;
     
 }
 
+#pragma mark ZSDatePickerDelegate 
+
+- (void)pickerDidPressDone:(ZSDatePicker*)picker withDate:(NSDate *)date {
+
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"hh:mm dd/MM/yyyy";
+    
+    if (picker == startDatePicker) {
+        [self.startDateField resignFirstResponder];
+        self.startDateField.text = [formatter stringFromDate:date];
+    }
+
+    if (picker == endDatePicker) {
+        [self.endDateField resignFirstResponder];
+        self.endDateField.text = [formatter stringFromDate:date];
+    }
+}
+
+- (void)pickerDidPressCancel:(ZSDatePicker*)picker {
+    
+    if (picker == startDatePicker) {
+        [self.startDateField resignFirstResponder];
+    }
+    
+    if (picker == endDatePicker) {
+        [self.endDateField resignFirstResponder];
+    }
+    
+}
 
 @end

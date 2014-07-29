@@ -11,6 +11,8 @@
 		3A98E0A91977D78B006DA28A /* btnFBLogin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A98E0A81977D78B006DA28A /* btnFBLogin@2x.png */; };
 		3A98E0AB1977E53F006DA28A /* btnGuest@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A98E0AA1977E53F006DA28A /* btnGuest@2x.png */; };
 		3A98E0AD197802EA006DA28A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A98E0AC197802EA006DA28A /* CoreLocation.framework */; };
+		3A9DB5521986E0E100861899 /* ZSLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9DB5511986E0E100861899 /* ZSLoadingView.m */; };
+		3A9DB5581988245300861899 /* ZSDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9DB5571988245300861899 /* ZSDatePicker.m */; };
 		3AB28AE0197BB486009C1DDC /* welcome1BG-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AB28ADF197BB486009C1DDC /* welcome1BG-568h@2x.png */; };
 		3AB28AE2197BC572009C1DDC /* welcome2BG-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AB28AE1197BC572009C1DDC /* welcome2BG-568h@2x.png */; };
 		3AB28AE6197BC9E9009C1DDC /* welcome3BG-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AB28AE5197BC9E9009C1DDC /* welcome3BG-568h@2x.png */; };
@@ -188,6 +190,10 @@
 		3A98E0A81977D78B006DA28A /* btnFBLogin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnFBLogin@2x.png"; sourceTree = "<group>"; };
 		3A98E0AA1977E53F006DA28A /* btnGuest@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnGuest@2x.png"; sourceTree = "<group>"; };
 		3A98E0AC197802EA006DA28A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		3A9DB5501986E0E100861899 /* ZSLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSLoadingView.h; sourceTree = "<group>"; };
+		3A9DB5511986E0E100861899 /* ZSLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSLoadingView.m; sourceTree = "<group>"; };
+		3A9DB5561988245300861899 /* ZSDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSDatePicker.h; sourceTree = "<group>"; };
+		3A9DB5571988245300861899 /* ZSDatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSDatePicker.m; sourceTree = "<group>"; };
 		3AB28ADF197BB486009C1DDC /* welcome1BG-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "welcome1BG-568h@2x.png"; sourceTree = "<group>"; };
 		3AB28AE1197BC572009C1DDC /* welcome2BG-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "welcome2BG-568h@2x.png"; sourceTree = "<group>"; };
 		3AB28AE5197BC9E9009C1DDC /* welcome3BG-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "welcome3BG-568h@2x.png"; sourceTree = "<group>"; };
@@ -463,6 +469,10 @@
 			children = (
 				3AB28B00197EE8CE009C1DDC /* ZSTextField.h */,
 				3AB28B01197EE8CE009C1DDC /* ZSTextField.m */,
+				3A9DB5501986E0E100861899 /* ZSLoadingView.h */,
+				3A9DB5511986E0E100861899 /* ZSLoadingView.m */,
+				3A9DB5561988245300861899 /* ZSDatePicker.h */,
+				3A9DB5571988245300861899 /* ZSDatePicker.m */,
 			);
 			name = CustomClasses;
 			path = Classes/CustomClasses;
@@ -1551,8 +1561,10 @@
 				3F2864F4194B29F3002A3576 /* AnswerViewController.m in Sources */,
 				3AF360B61976A4D0009A14FD /* JSON.m in Sources */,
 				3AB28AEF197D9DA4009C1DDC /* Event.m in Sources */,
+				3A9DB5581988245300861899 /* ZSDatePicker.m in Sources */,
 				3AF360B319768F15009A14FD /* Dingo.xcdatamodeld in Sources */,
 				3F10DE1119388EC1002D3B43 /* AppDelegate.m in Sources */,
+				3A9DB5521986E0E100861899 /* ZSLoadingView.m in Sources */,
 				3F3D565C195182F900FB2774 /* SearchTicketsViewController.m in Sources */,
 				3AB28B05197EFA62009C1DDC /* Ticket.m in Sources */,
 				3F08EC1719473AAF00CDFBD8 /* TwoModeButton.m in Sources */,
@@ -1689,7 +1701,7 @@
 				INFOPLIST_FILE = "Dingo/Supporting files/Dingo.temp_caseinsensitive_rename.temp_caseinsensitive_rename-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = Dingo;
-				PROVISIONING_PROFILE = "9FDCD103-D6F6-4FD5-8C63-E106EA29BCAD";
+				PROVISIONING_PROFILE = "A184E267-0386-41B9-BBD3-C91C84791C95";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1713,7 +1725,7 @@
 				INFOPLIST_FILE = "Dingo/Supporting files/Dingo.temp_caseinsensitive_rename.temp_caseinsensitive_rename-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = Dingo;
-				PROVISIONING_PROFILE = "9FDCD103-D6F6-4FD5-8C63-E106EA29BCAD";
+				PROVISIONING_PROFILE = "A184E267-0386-41B9-BBD3-C91C84791C95";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

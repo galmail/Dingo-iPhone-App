@@ -300,11 +300,11 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="200" id="Tim-ht-Kl4" userLabel="from">
-                                        <rect key="frame" x="0.0" y="224" width="320" height="200"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="36" id="Tim-ht-Kl4" userLabel="from">
+                                        <rect key="frame" x="0.0" y="224" width="320" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Tim-ht-Kl4" id="BwE-mR-BlM">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="199"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="35"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="From*:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="W37-ab-aQb" userLabel="label">
@@ -324,45 +324,14 @@
                                                         <outlet property="delegate" destination="0ch-Q5-uzn" id="rQM-iK-QPz"/>
                                                     </connections>
                                                 </textField>
-                                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" id="YFC-Mg-apY">
-                                                    <rect key="frame" x="0.0" y="36" width="320" height="162"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                                    <date key="date" timeIntervalSinceReferenceDate="427746361.71380001">
-                                                        <!--2014-07-22 18:26:01 +0000-->
-                                                    </date>
-                                                    <timeZone key="timeZone" name="America/Los_Angeles">
-                                                        <data key="data">
-VFppZgAAAAAAAAAAAAAAAAAAAAAAAAAEAAAABAAAAAAAAAC5AAAABAAAABCepkign7sVkKCGKqChmveQ
-y4kaoNIj9HDSYSYQ1v50INiArZDa/tGg28CQENzes6DdqayQ3r6VoN+JjpDgnneg4WlwkOJ+WaDjSVKQ
-5F47oOUpNJDmR1gg5xJREOgnOiDo8jMQ6gccIOrSFRDr5v4g7LH3EO3G4CDukdkQ76/8oPBxuxDxj96g
-8n/BkPNvwKD0X6OQ9U+ioPY/hZD3L4Sg+CiiEPkPZqD6CIQQ+viDIPvoZhD82GUg/chIEP64RyD/qCoQ
-AJgpIAGIDBACeAsgA3EokARhJ6AFUQqQBkEJoAcw7JAHjUOgCRDOkAmtvyAK8LCQC+CvoAzZzRANwJGg
-DrmvEA+priAQmZEQEYmQIBJ5cxATaXIgFFlVEBVJVCAWOTcQFyk2IBgiU5AZCRggGgI1kBryNKAb4heQ
-HNIWoB3B+ZAesfigH6HbkCB2KyAhgb2QIlYNICNq2hAkNe8gJUq8ECYV0SAnKp4QJ/7toCkKgBAp3s+g
-KupiECu+saAs036QLZ6ToC6zYJAvfnWgMJNCkDFnkiAycySQM0d0IDRTBpA1J1YgNjLokDcHOCA4HAUQ
-OOcaIDn75xA6xvwgO9vJEDywGKA9u6sQPo/6oD+bjRBAb9ygQYSpkEJPvqBDZIuQRC+goEVEbZBF89Mg
-Ry2KEEfTtSBJDWwQSbOXIErtThBLnLOgTNZqkE18laBOtkyQT1x3oFCWLpBRPFmgUnYQkFMcO6BUVfKQ
-VPwdoFY11JBW5TogWB7xEFjFHCBZ/tMQWqT+IFvetRBchOAgXb6XEF5kwiBfnnkQYE3eoGGHlZBiLcCg
-Y2d3kGQNoqBlR1mQZe2EoGcnO5BnzWagaQcdkGmtSKBq5v+Qa5ZlIGzQHBBtdkcgbq/+EG9WKSBwj+AQ
-cTYLIHJvwhBzFe0gdE+kEHT/CaB2OMCQdt7roHgYopB4vs2gefiEkHqer6B72GaQfH6RoH24SJB+XnOg
-f5gqkAABAAECAwEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
-AQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
-AQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
-AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
-</data>
-                                                    </timeZone>
-                                                    <connections>
-                                                        <action selector="dateChanged:" destination="0ch-Q5-uzn" eventType="valueChanged" id="PbZ-y1-lG1"/>
-                                                    </connections>
-                                                </datePicker>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="200" id="yvx-5g-Qee" userLabel="to">
-                                        <rect key="frame" x="0.0" y="424" width="320" height="200"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="36" id="yvx-5g-Qee" userLabel="to">
+                                        <rect key="frame" x="0.0" y="260" width="320" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yvx-5g-Qee" id="R4F-nh-Gut">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="199"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="35"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To*:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="XpQ-MG-k2c" userLabel="label">
@@ -382,42 +351,11 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                                         <outlet property="delegate" destination="0ch-Q5-uzn" id="d1E-bP-Tdc"/>
                                                     </connections>
                                                 </textField>
-                                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" id="kuX-g7-QI2">
-                                                    <rect key="frame" x="0.0" y="36" width="320" height="162"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                                    <date key="date" timeIntervalSinceReferenceDate="427746361.71380001">
-                                                        <!--2014-07-22 18:26:01 +0000-->
-                                                    </date>
-                                                    <timeZone key="timeZone" name="America/Los_Angeles">
-                                                        <data key="data">
-VFppZgAAAAAAAAAAAAAAAAAAAAAAAAAEAAAABAAAAAAAAAC5AAAABAAAABCepkign7sVkKCGKqChmveQ
-y4kaoNIj9HDSYSYQ1v50INiArZDa/tGg28CQENzes6DdqayQ3r6VoN+JjpDgnneg4WlwkOJ+WaDjSVKQ
-5F47oOUpNJDmR1gg5xJREOgnOiDo8jMQ6gccIOrSFRDr5v4g7LH3EO3G4CDukdkQ76/8oPBxuxDxj96g
-8n/BkPNvwKD0X6OQ9U+ioPY/hZD3L4Sg+CiiEPkPZqD6CIQQ+viDIPvoZhD82GUg/chIEP64RyD/qCoQ
-AJgpIAGIDBACeAsgA3EokARhJ6AFUQqQBkEJoAcw7JAHjUOgCRDOkAmtvyAK8LCQC+CvoAzZzRANwJGg
-DrmvEA+priAQmZEQEYmQIBJ5cxATaXIgFFlVEBVJVCAWOTcQFyk2IBgiU5AZCRggGgI1kBryNKAb4heQ
-HNIWoB3B+ZAesfigH6HbkCB2KyAhgb2QIlYNICNq2hAkNe8gJUq8ECYV0SAnKp4QJ/7toCkKgBAp3s+g
-KupiECu+saAs036QLZ6ToC6zYJAvfnWgMJNCkDFnkiAycySQM0d0IDRTBpA1J1YgNjLokDcHOCA4HAUQ
-OOcaIDn75xA6xvwgO9vJEDywGKA9u6sQPo/6oD+bjRBAb9ygQYSpkEJPvqBDZIuQRC+goEVEbZBF89Mg
-Ry2KEEfTtSBJDWwQSbOXIErtThBLnLOgTNZqkE18laBOtkyQT1x3oFCWLpBRPFmgUnYQkFMcO6BUVfKQ
-VPwdoFY11JBW5TogWB7xEFjFHCBZ/tMQWqT+IFvetRBchOAgXb6XEF5kwiBfnnkQYE3eoGGHlZBiLcCg
-Y2d3kGQNoqBlR1mQZe2EoGcnO5BnzWagaQcdkGmtSKBq5v+Qa5ZlIGzQHBBtdkcgbq/+EG9WKSBwj+AQ
-cTYLIHJvwhBzFe0gdE+kEHT/CaB2OMCQdt7roHgYopB4vs2gefiEkHqer6B72GaQfH6RoH24SJB+XnOg
-f5gqkAABAAECAwEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
-AQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
-AQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
-AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
-</data>
-                                                    </timeZone>
-                                                    <connections>
-                                                        <action selector="dateChanged:" destination="0ch-Q5-uzn" eventType="valueChanged" id="rhh-av-P8m"/>
-                                                    </connections>
-                                                </datePicker>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="36" id="Acg-t3-FuR" userLabel="price">
-                                        <rect key="frame" x="0.0" y="624" width="320" height="36"/>
+                                        <rect key="frame" x="0.0" y="296" width="320" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Acg-t3-FuR" id="f9W-bO-y7O">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="35"/>
@@ -444,7 +382,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="36" id="0G6-hu-OVc" userLabel="face_value">
-                                        <rect key="frame" x="0.0" y="660" width="320" height="36"/>
+                                        <rect key="frame" x="0.0" y="332" width="320" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0G6-hu-OVc" id="E0R-78-XN1">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="35"/>
@@ -471,7 +409,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="36" id="9V0-ht-c1n" userLabel="tickets_count">
-                                        <rect key="frame" x="0.0" y="696" width="320" height="36"/>
+                                        <rect key="frame" x="0.0" y="368" width="320" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9V0-ht-c1n" id="YE9-RF-Ru3">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="35"/>
@@ -498,7 +436,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="80" id="wNJ-JT-hqY" userLabel="description">
-                                        <rect key="frame" x="0.0" y="732" width="320" height="80"/>
+                                        <rect key="frame" x="0.0" y="404" width="320" height="80"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wNJ-JT-hqY" id="m4S-5v-Oui">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
@@ -523,7 +461,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CategoriesCell" rowHeight="140" id="pSm-UF-4tn" userLabel="cats_cell" customClass="CategorySelectionCell">
-                                        <rect key="frame" x="0.0" y="812" width="320" height="140"/>
+                                        <rect key="frame" x="0.0" y="484" width="320" height="140"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pSm-UF-4tn" id="IQE-OS-XE9">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="139"/>
@@ -579,7 +517,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="PhotoPreview" rowHeight="120" id="NIR-m4-Mbl" userLabel="photos_preview" customClass="PhotosPreviewCell">
-                                        <rect key="frame" x="0.0" y="952" width="320" height="120"/>
+                                        <rect key="frame" x="0.0" y="624" width="320" height="120"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NIR-m4-Mbl" id="uTv-6F-aJO">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="119"/>
@@ -588,7 +526,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="50" id="gsq-uB-F9m" userLabel="edit_photos">
-                                        <rect key="frame" x="0.0" y="1072" width="320" height="50"/>
+                                        <rect key="frame" x="0.0" y="744" width="320" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gsq-uB-F9m" id="3Pv-9v-xYc">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
@@ -612,7 +550,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="60" id="Cx6-da-9WP" userLabel="upload_photos">
-                                        <rect key="frame" x="0.0" y="1122" width="320" height="60"/>
+                                        <rect key="frame" x="0.0" y="794" width="320" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Cx6-da-9WP" id="1a6-cJ-D3g">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
@@ -636,7 +574,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="130" id="mYs-b0-maE" userLabel="pay_pal_cell">
-                                        <rect key="frame" x="0.0" y="1182" width="320" height="130"/>
+                                        <rect key="frame" x="0.0" y="854" width="320" height="130"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mYs-b0-maE" id="nIR-pQ-9bt">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="129"/>
@@ -675,7 +613,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="50" id="rZw-iq-oOE" userLabel="cash_cell">
-                                        <rect key="frame" x="0.0" y="1312" width="320" height="50"/>
+                                        <rect key="frame" x="0.0" y="984" width="320" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rZw-iq-oOE" id="Uja-HW-6Ss">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
@@ -700,7 +638,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="80" id="iY9-ie-fUm" userLabel="delivery">
-                                        <rect key="frame" x="0.0" y="1362" width="320" height="80"/>
+                                        <rect key="frame" x="0.0" y="1034" width="320" height="80"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iY9-ie-fUm" id="f7f-1F-BhZ">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
@@ -725,7 +663,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="60" id="A1I-8k-N3d" userLabel="preview">
-                                        <rect key="frame" x="0.0" y="1442" width="320" height="60"/>
+                                        <rect key="frame" x="0.0" y="1114" width="320" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="A1I-8k-N3d" id="KPT-58-DNw">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
@@ -767,7 +705,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <outlet property="cityField" destination="GE7-Yc-gfY" id="vNR-5D-jJI"/>
                         <outlet property="descriptionTextView" destination="2gK-n0-UrV" id="sXd-U9-e7I"/>
                         <outlet property="endDateField" destination="uhK-tf-iQe" id="UrF-Kj-e6H"/>
-                        <outlet property="endDatePicker" destination="kuX-g7-QI2" id="LEO-rH-Y4A"/>
                         <outlet property="faceValueField" destination="cnc-Ig-W8J" id="iuz-Yb-ZnR"/>
                         <outlet property="lblAddress" destination="wky-zQ-ryw" id="QRK-av-AA4"/>
                         <outlet property="lblCity" destination="zoP-kp-GXg" id="DRD-8q-gTs"/>
@@ -786,7 +723,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <outlet property="postCodeField" destination="CQw-pt-NTo" id="WMK-wb-Vff"/>
                         <outlet property="priceField" destination="JJp-Kk-sDB" id="q7g-AD-XNP"/>
                         <outlet property="startDateField" destination="UwW-Y7-gqV" id="g5A-WX-ur9"/>
-                        <outlet property="startDatePicker" destination="YFC-Mg-apY" id="e4m-Xc-EmU"/>
                         <outlet property="ticketDeliveryTextView" destination="6pw-BG-Ex2" id="ePN-DR-tkO"/>
                         <outlet property="ticketsCountField" destination="UYE-sY-cfm" id="f9T-1h-kyx"/>
                     </connections>
