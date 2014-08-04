@@ -46,7 +46,7 @@ static const CGFloat categoriesHeight = 140;
     [loadingView show];
     
     [[DataManager shared] allCategoriesWithCompletion:^(BOOL finished) {
-        if (!selectedCategories) {
+        if (!selectedCategories.count) {
             selectedCategories = [[[DataManager shared] allCategories] valueForKey:@"category_id"];
         }
         [[DataManager shared] allEventsWithCompletion:^(BOOL finished) {
