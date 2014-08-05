@@ -45,4 +45,11 @@
                            alpha:colors[3] * lighterFactor];
 }
 
++ (UIFont *)fontWithSize:(CGFloat)fontSize {
+    return [UIFont fontWithName:@"SourceSansPro-Regular" size:fontSize];
+}
+
++ (UIFont *)boldFontWithSize:(CGFloat)fontSize {
+    return [UIFont fontWithName:@"SourceSansPro-Semibold" size:fontSize];
+}
 @end

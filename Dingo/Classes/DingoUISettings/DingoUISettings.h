@@ -16,4 +16,7 @@
 + (UIColor *)unimportantItemColor;
 + (UIColor *)makeHighLightedColorByColor:(UIColor *)color;
 
++ (UIFont *)fontWithSize:(CGFloat)fontSize;
++ (UIFont *)boldFontWithSize:(CGFloat)fontSize;
+
 @end

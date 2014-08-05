@@ -12,6 +12,7 @@
 
 #import "DataManager.h"
 #import "DingoUtilites.h"
+#import "DingoUISettings.h"
 #import "UIImage+Overlay.h"
 
 const CGFloat eventCellHeight = 78;
@@ -29,6 +30,14 @@ const CGFloat eventCellHeight = 78;
 
 @implementation EventCell
 
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    
+    self.nameLabel.font = [DingoUISettings boldFontWithSize:24];
+    self.locationLabel.font = [DingoUISettings fontWithSize:14];
+    self.timeLabel.font = [DingoUISettings fontWithSize:12];
+}
+
 #pragma mark - Setters
 
 - (void)setBegin:(NSDate *)begin {
@@ -41,6 +50,7 @@ const CGFloat eventCellHeight = 78;
 - (void)setName:(NSString *)name {
     _name = name;
     self.nameLabel.text = name;
+    
 }
 
 - (void)setLocation:(NSString *)location {

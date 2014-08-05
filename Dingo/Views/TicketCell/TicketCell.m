@@ -29,6 +29,13 @@ const CGFloat featureCellHeight = 140;
 
 #pragma mark - Setters
 
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    
+    self.startPriceLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:36];
+    
+}
+
 - (void)setPrice:(float)price {
     self.startPriceLabel.text = [NSString stringWithFormat:@"$%.02f", price];
 }

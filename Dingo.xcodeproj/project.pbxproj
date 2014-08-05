@@ -17,6 +17,9 @@
 		3A9DB564198C270B00861899 /* TicketInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3A9DB563198C270B00861899 /* TicketInfo.plist */; };
 		3AA332F7198F5ED500C8DAA8 /* Ticket.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA332F6198F5ED500C8DAA8 /* Ticket.m */; };
 		3AA332FC1990DDA900C8DAA8 /* ZSTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA332FB1990DDA900C8DAA8 /* ZSTextView.m */; };
+		3AA332FF1990F50600C8DAA8 /* SourceSansPro-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3AA332FE1990F50600C8DAA8 /* SourceSansPro-Regular.otf */; };
+		3AA3330119910D4E00C8DAA8 /* SourceSansPro-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3AA3330019910D4E00C8DAA8 /* SourceSansPro-Bold.otf */; };
+		3AA4359619911D2900D626D1 /* SourceSansPro-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3AA4359519911D2900D626D1 /* SourceSansPro-Semibold.otf */; };
 		3AB28AE0197BB486009C1DDC /* welcome1BG-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AB28ADF197BB486009C1DDC /* welcome1BG-568h@2x.png */; };
 		3AB28AE2197BC572009C1DDC /* welcome2BG-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AB28AE1197BC572009C1DDC /* welcome2BG-568h@2x.png */; };
 		3AB28AE6197BC9E9009C1DDC /* welcome3BG-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AB28AE5197BC9E9009C1DDC /* welcome3BG-568h@2x.png */; };
@@ -204,6 +207,9 @@
 		3AA332F6198F5ED500C8DAA8 /* Ticket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ticket.m; sourceTree = "<group>"; };
 		3AA332FA1990DDA900C8DAA8 /* ZSTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSTextView.h; sourceTree = "<group>"; };
 		3AA332FB1990DDA900C8DAA8 /* ZSTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSTextView.m; sourceTree = "<group>"; };
+		3AA332FE1990F50600C8DAA8 /* SourceSansPro-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Regular.otf"; sourceTree = "<group>"; };
+		3AA3330019910D4E00C8DAA8 /* SourceSansPro-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Bold.otf"; sourceTree = "<group>"; };
+		3AA4359519911D2900D626D1 /* SourceSansPro-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Semibold.otf"; sourceTree = "<group>"; };
 		3AB28ADF197BB486009C1DDC /* welcome1BG-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "welcome1BG-568h@2x.png"; sourceTree = "<group>"; };
 		3AB28AE1197BC572009C1DDC /* welcome2BG-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "welcome2BG-568h@2x.png"; sourceTree = "<group>"; };
 		3AB28AE5197BC9E9009C1DDC /* welcome3BG-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "welcome3BG-568h@2x.png"; sourceTree = "<group>"; };
@@ -458,6 +464,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3AA332FD1990F50600C8DAA8 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				3AA4359519911D2900D626D1 /* SourceSansPro-Semibold.otf */,
+				3AA3330019910D4E00C8DAA8 /* SourceSansPro-Bold.otf */,
+				3AA332FE1990F50600C8DAA8 /* SourceSansPro-Regular.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		3AB28AEC197D9D83009C1DDC /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -866,6 +882,7 @@
 			children = (
 				3AF360B119768F15009A14FD /* Dingo.xcdatamodeld */,
 				3A9DB563198C270B00861899 /* TicketInfo.plist */,
+				3AA332FD1990F50600C8DAA8 /* Fonts */,
 				3F62C6E11949B67800D7D6B1 /* categories */,
 				3F62C6D419499D9400D7D6B1 /* fake_data */,
 				841B048E196AE9DA000DC53C /* Tips */,
@@ -1411,6 +1428,7 @@
 				3F62C6D919499D9400D7D6B1 /* categories.plist in Resources */,
 				3F2864EC194B2851002A3576 /* faq_cell@2x.png in Resources */,
 				3F79701E19547D1300739EE8 /* PhotosPreviewCell.xib in Resources */,
+				3AA332FF1990F50600C8DAA8 /* SourceSansPro-Regular.otf in Resources */,
 				3F62C6A91948318F00D7D6B1 /* tom_davids@2x.png in Resources */,
 				84A456F61970182C000ABA73 /* btnContinue.png in Resources */,
 				3F62C6A81948318F00D7D6B1 /* olly_murs@2x.png in Resources */,
@@ -1475,6 +1493,7 @@
 				84A456F71970182C000ABA73 /* btnFinish.png in Resources */,
 				84A456FD1970182C000ABA73 /* welcomeText4.png in Resources */,
 				3F62C69B1948318F00D7D6B1 /* list_tickets_cell4@2x.png in Resources */,
+				3AA3330119910D4E00C8DAA8 /* SourceSansPro-Bold.otf in Resources */,
 				3A98E0A91977D78B006DA28A /* btnFBLogin@2x.png in Resources */,
 				3F62C6AD1948318F00D7D6B1 /* dingo_logo@2x.png in Resources */,
 				3AB28AE0197BB486009C1DDC /* welcome1BG-568h@2x.png in Resources */,
@@ -1483,6 +1502,7 @@
 				3F7970141954684300739EE8 /* Storyboard.storyboard in Resources */,
 				3F08EC1919473DB400CDFBD8 /* SectionEventHeaderView.xib in Resources */,
 				3A9DB564198C270B00861899 /* TicketInfo.plist in Resources */,
+				3AA4359619911D2900D626D1 /* SourceSansPro-Semibold.otf in Resources */,
 				84A456FC1970182C000ABA73 /* welcomeText3.png in Resources */,
 				3F62C6AC1948318F00D7D6B1 /* category_highlighted@2x.png in Resources */,
 				3F62C6981948318F00D7D6B1 /* feature_cell@2x.png in Resources */,
