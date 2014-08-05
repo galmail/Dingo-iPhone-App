@@ -63,7 +63,7 @@ const CGFloat featureCellHeight = 140;
 #pragma mark - Private
 
 - (void)loadUIFromXib {
-    if ([self.subviews containsObject:self.view]) {
+    if ([self.contentView.subviews containsObject:self.view]) {
         return;
     }
     

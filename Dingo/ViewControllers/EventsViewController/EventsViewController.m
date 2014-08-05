@@ -63,8 +63,6 @@ static const CGFloat categoriesHeight = 140;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self setupNavigationBar];
-    
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
