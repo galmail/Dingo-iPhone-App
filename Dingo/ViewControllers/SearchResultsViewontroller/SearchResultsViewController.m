@@ -71,7 +71,7 @@
     TicketCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellId];
     [cell loadUIFromXib];
     
-    NSDictionary *data = [[DataManager shared] eventDescriptionByIndexPath:path];
+    Event *data = [[DataManager shared] eventDescriptionByIndexPath:path];
     [cell buildWithData:data];
     return cell;
 }

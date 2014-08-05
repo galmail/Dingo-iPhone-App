@@ -56,7 +56,7 @@
 - (UITableViewCell *)buildEventCellForIndex:(NSUInteger)index {
     static NSString * const ticketsCellName = @"ProposalCell";
     ProposalCell *cell = [self.tableView dequeueReusableCellWithIdentifier:ticketsCellName];    
-    NSDictionary *data = [[DataManager shared] allTicketsByEventName:self.eventData.name][index];
+    Event *data = [[DataManager shared] allTicketsByEventName:self.eventData.name][index];
     [cell buildWithData:data];
     return cell;
 }

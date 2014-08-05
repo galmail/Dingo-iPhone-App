@@ -104,7 +104,7 @@
         index += self.firstSectionCellsCount;
     }
     
-    NSDictionary *data = [[DataManager shared] allEvents][index];
+    Event *data = [[DataManager shared] allEvents][index];
     [cell buildWithData:data];
     return cell;
 }
