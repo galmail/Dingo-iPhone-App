@@ -12,6 +12,7 @@
 #import "PhotosPreviewCell.h"
 #import "WebServiceManager.h"
 #import "ZSLoadingView.h"
+#import "AppManager.h"
 
 static const NSUInteger photosCellIndex = 1;
 
@@ -63,6 +64,10 @@ static const NSUInteger photosCellIndex = 1;
     self.deliveryLabel.text = self.ticket.delivery_options;
     
     [self.proposalCell buildWithData:self.event];
+    
+    self.sellerNameLabel.text = [AppManager sharedManager].userInfo[@"name"];
+    self.sellerInfolabel.text = @"";
+    self.sellerImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[AppManager sharedManager].userInfo[@"photo_url"]]]];
 }
 
 #pragma mark - UITableViewDataSource

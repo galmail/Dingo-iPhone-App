@@ -98,7 +98,7 @@
                                                                   if (response[@"authentication_token"]) {
                                                                       [AppManager sharedManager].token = response[@"authentication_token"];
                                                                       
-                                                                      [AppManager sharedManager].userInfo = @{@"email":user[@"email"], @"name": user.name, @"city":user.location ? [[user.location.name componentsSeparatedByString:@","] firstObject] : @"London"};
+                                                                      [AppManager sharedManager].userInfo = @{@"email":user[@"email"], @"name": user.name, @"photo_url":user[@"picture"][@"data"][@"url"], @"city":user.location ? [[user.location.name componentsSeparatedByString:@","] firstObject] : @"London"};
                                                                       
                                                                       SlidingViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SlidingViewController"];
                                                                       viewController.modalTransitionStyle =  UIModalTransitionStyleFlipHorizontal;
@@ -122,7 +122,7 @@
                                                                                   if ([response[@"success"] boolValue]) {
                                                                                       [AppManager sharedManager].token = response[@"auth_token"];
                                                                                       
-                                                                                      [AppManager sharedManager].userInfo = @{@"email":user[@"email"], @"name": user.name, @"city" : user.location ? [[user.location.name componentsSeparatedByString:@","] firstObject] : @"London"};
+                                                                                      [AppManager sharedManager].userInfo = @{@"email":user[@"email"], @"name": user.name, @"photo_url":user[@"picture"][@"data"][@"url"], @"city" : user.location ? [[user.location.name componentsSeparatedByString:@","] firstObject] : @"London"};
                                                                                       
                                                                                       SlidingViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SlidingViewController"];
                                                                                       viewController.modalTransitionStyle =  UIModalTransitionStyleFlipHorizontal;
