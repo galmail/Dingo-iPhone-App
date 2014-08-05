@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ticketTypes</key>
+	<array>
+		<string>e-Ticket</string>
+		<string>Paper</string>
+	</array>
+	<key>paymentOptions</key>
+	<array>
+		<string>PayPal</string>
+		<string>Pay in Person</string>
+	</array>
+	<key>deliveryOptions</key>
+	<array>
+		<string>Collection</string>
+		<string>Royal Mail</string>
+		<string>Urgent Delivery</string>
+	</array>
+</dict>
+</plist>

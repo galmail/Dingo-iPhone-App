@@ -10,8 +10,10 @@
 
 #import "ProposalCell.h"
 #import "PhotosPreviewCell.h"
-
 #import "WebServiceManager.h"
+#import "ZSLoadingView.h"
+
+static const NSUInteger photosCellIndex = 1;
 
 @interface PreviewViewController ()
 
@@ -21,7 +23,8 @@
 @property (nonatomic, weak) IBOutlet UILabel *faceValueLabel;
 @property (nonatomic, weak) IBOutlet UITextView *descriptionTextView;
 @property (nonatomic, weak) IBOutlet UILabel *paymentLabel;
-@property (nonatomic, weak) IBOutlet UITextView *collectionTextView;
+@property (weak, nonatomic) IBOutlet UILabel *ticketTypeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *deliveryLabel;
 @property (nonatomic, weak) IBOutlet UIButton *contactCellerButton;
 @property (nonatomic, weak) IBOutlet UIButton *requestToBuyButton;
 @property (nonatomic, weak) IBOutlet UIImageView *sellerImageView;
@@ -56,18 +59,35 @@
     self.faceValueLabel.text = [self.ticket.face_value_per_ticket stringValue];
     self.descriptionTextView.text = self.ticket.ticket_desc;
     self.paymentLabel.text = self.ticket.payment_options;
+    self.ticketTypeLabel.text = self.ticket.ticket_type;
+    self.deliveryLabel.text = self.ticket.delivery_options;
     
     [self.proposalCell buildWithData:self.event];
+}
+
+#pragma mark - UITableViewDataSource
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    switch (indexPath.row) {
+        case photosCellIndex:
+            if (self.photosPreviewCell.photos.count == 0) {
+                return 0;
+            }
+            break;
+    }
+    
+    return [super tableView:tableView heightForRowAtIndexPath:indexPath];
 }
 
 #pragma mark - UIActions
 
 - (IBAction)confirm {
-//    [self back];
-    
+
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"hh:mm dd/MM/yyyy";
     
+    ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please wait..."];
+    [loadingView show];
     if (self.event.event_id.length == 0) {
         
         // get event location form address and then create event
@@ -89,9 +109,9 @@
                                       @"name" : self.event.name,
                                       @"date" : [formatter stringFromDate:self.event.date],
                                       @"end_date" : [formatter stringFromDate:self.event.endDate],
-                                      @"address" : self.event.address,
-                                      @"city" : self.event.city,
-                                      @"postcode" : self.event.postalCode,
+                                      @"address" : self.event.address.length > 0 ? self.event.address : @"",
+                                      @"city" : self.event.city.length > 0 ? self.event.city : @"",
+                                      @"postcode" : self.event.postalCode.length > 0 ? self.event.postalCode : @"",
                                       @"location" : location,
                                       @"image" : self.event.thumb != nil ? self.event.thumb : @""
                                       
@@ -112,20 +132,25 @@
                                                   @"delivery_options" : self.ticket.delivery_options.length > 0 ? self.ticket.delivery_options : @"",
                                                   @"payment_options" : self.ticket.payment_options.length > 0 ? self.ticket.payment_options : @"",
                                                   @"number_of_tickets" : [self.ticket.number_of_tickets stringValue],
-                                                  @"face_value_per_ticket" : [self.ticket.face_value_per_ticket stringValue]
+                                                  @"face_value_per_ticket" : [self.ticket.face_value_per_ticket stringValue],
+                                                  @"ticket_type" : self.ticket.ticket_type
                                                   };
                         
                         [WebServiceManager createTicket:params photos:self.photos completion:^(id response, NSError *error) {
                             if (response[@"id"]) {
                                 // ticket created
-                                
-                                [self.navigationController popViewControllerAnimated:NO];
-                                [self.navigationController.tabBarController setSelectedIndex:0];
+                                [self.navigationController.viewControllers[0] setSelectedIndex:0];
+                                [self.navigationController popToRootViewControllerAnimated:YES];
+
                             }
+                            
+                            [loadingView hide];
                             
                         }];
                         
                     }
+                } else {
+                    [loadingView hide];
                 }
                 
             }];
@@ -133,6 +158,30 @@
         }];
         
 
+    } else {
+        // create ticket
+        NSDictionary *params = @{ @"event_id" : self.event.event_id,
+                                  @"price" : [self.ticket.price stringValue],
+                                  @"seat_type" : self.ticket.seat_type.length> 0 ? self.ticket.seat_type : @"",
+                                  @"description" : self.ticket.ticket_desc.length > 0 ? self.ticket.ticket_desc : @"",
+                                  @"delivery_options" : self.ticket.delivery_options.length > 0 ? self.ticket.delivery_options : @"",
+                                  @"payment_options" : self.ticket.payment_options.length > 0 ? self.ticket.payment_options : @"",
+                                  @"number_of_tickets" : [self.ticket.number_of_tickets stringValue],
+                                  @"face_value_per_ticket" : [self.ticket.face_value_per_ticket stringValue],
+                                  @"ticket_type" : self.ticket.ticket_type
+                                  };
+        
+        [WebServiceManager createTicket:params photos:self.photos completion:^(id response, NSError *error) {
+            if (response[@"id"]) {
+                // ticket created
+                [self.navigationController.viewControllers[0] setSelectedIndex:0];
+                [self.navigationController popToRootViewControllerAnimated:YES];
+
+            }
+            
+            [loadingView hide];
+            
+        }];
     }
 
     
@@ -145,7 +194,7 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-#pragma mark 
+#pragma mark
 
 
 

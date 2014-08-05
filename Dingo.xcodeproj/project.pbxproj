@@ -13,6 +13,10 @@
 		3A98E0AD197802EA006DA28A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A98E0AC197802EA006DA28A /* CoreLocation.framework */; };
 		3A9DB5521986E0E100861899 /* ZSLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9DB5511986E0E100861899 /* ZSLoadingView.m */; };
 		3A9DB5581988245300861899 /* ZSDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9DB5571988245300861899 /* ZSDatePicker.m */; };
+		3A9DB55B1988F2D000861899 /* ZSPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9DB55A1988F2D000861899 /* ZSPickerView.m */; };
+		3A9DB564198C270B00861899 /* TicketInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3A9DB563198C270B00861899 /* TicketInfo.plist */; };
+		3AA332F7198F5ED500C8DAA8 /* Ticket.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA332F6198F5ED500C8DAA8 /* Ticket.m */; };
+		3AA332FC1990DDA900C8DAA8 /* ZSTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA332FB1990DDA900C8DAA8 /* ZSTextView.m */; };
 		3AB28AE0197BB486009C1DDC /* welcome1BG-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AB28ADF197BB486009C1DDC /* welcome1BG-568h@2x.png */; };
 		3AB28AE2197BC572009C1DDC /* welcome2BG-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AB28AE1197BC572009C1DDC /* welcome2BG-568h@2x.png */; };
 		3AB28AE6197BC9E9009C1DDC /* welcome3BG-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AB28AE5197BC9E9009C1DDC /* welcome3BG-568h@2x.png */; };
@@ -20,7 +24,6 @@
 		3AB28AEF197D9DA4009C1DDC /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB28AEE197D9DA4009C1DDC /* Event.m */; };
 		3AB28AF8197D9F9D009C1DDC /* EventCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB28AF7197D9F9D009C1DDC /* EventCategory.m */; };
 		3AB28B02197EE8CE009C1DDC /* ZSTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB28B01197EE8CE009C1DDC /* ZSTextField.m */; };
-		3AB28B05197EFA62009C1DDC /* Ticket.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB28B04197EFA62009C1DDC /* Ticket.m */; };
 		3AF360A619767564009A14FD /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AF360A519767564009A14FD /* FacebookSDK.framework */; };
 		3AF360AB197687E2009A14FD /* AppManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF360AA197687E2009A14FD /* AppManager.m */; };
 		3AF360AE197687F5009A14FD /* WebServiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF360AD197687F5009A14FD /* WebServiceManager.m */; };
@@ -194,6 +197,13 @@
 		3A9DB5511986E0E100861899 /* ZSLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSLoadingView.m; sourceTree = "<group>"; };
 		3A9DB5561988245300861899 /* ZSDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSDatePicker.h; sourceTree = "<group>"; };
 		3A9DB5571988245300861899 /* ZSDatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSDatePicker.m; sourceTree = "<group>"; };
+		3A9DB5591988F2D000861899 /* ZSPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSPickerView.h; sourceTree = "<group>"; };
+		3A9DB55A1988F2D000861899 /* ZSPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSPickerView.m; sourceTree = "<group>"; };
+		3A9DB563198C270B00861899 /* TicketInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TicketInfo.plist; sourceTree = "<group>"; };
+		3AA332F5198F5ED500C8DAA8 /* Ticket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ticket.h; sourceTree = "<group>"; };
+		3AA332F6198F5ED500C8DAA8 /* Ticket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ticket.m; sourceTree = "<group>"; };
+		3AA332FA1990DDA900C8DAA8 /* ZSTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSTextView.h; sourceTree = "<group>"; };
+		3AA332FB1990DDA900C8DAA8 /* ZSTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSTextView.m; sourceTree = "<group>"; };
 		3AB28ADF197BB486009C1DDC /* welcome1BG-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "welcome1BG-568h@2x.png"; sourceTree = "<group>"; };
 		3AB28AE1197BC572009C1DDC /* welcome2BG-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "welcome2BG-568h@2x.png"; sourceTree = "<group>"; };
 		3AB28AE5197BC9E9009C1DDC /* welcome3BG-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "welcome3BG-568h@2x.png"; sourceTree = "<group>"; };
@@ -204,8 +214,6 @@
 		3AB28AF7197D9F9D009C1DDC /* EventCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventCategory.m; sourceTree = "<group>"; };
 		3AB28B00197EE8CE009C1DDC /* ZSTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSTextField.h; sourceTree = "<group>"; };
 		3AB28B01197EE8CE009C1DDC /* ZSTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSTextField.m; sourceTree = "<group>"; };
-		3AB28B03197EFA62009C1DDC /* Ticket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Ticket.h; path = Dingo/Classes/Models/Ticket.h; sourceTree = SOURCE_ROOT; };
-		3AB28B04197EFA62009C1DDC /* Ticket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Ticket.m; path = Dingo/Classes/Models/Ticket.m; sourceTree = SOURCE_ROOT; };
 		3AF360A519767564009A14FD /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		3AF360A9197687E2009A14FD /* AppManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppManager.h; sourceTree = "<group>"; };
 		3AF360AA197687E2009A14FD /* AppManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppManager.m; sourceTree = "<group>"; };
@@ -453,12 +461,12 @@
 		3AB28AEC197D9D83009C1DDC /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				3AB28B03197EFA62009C1DDC /* Ticket.h */,
-				3AB28B04197EFA62009C1DDC /* Ticket.m */,
 				3AB28AED197D9DA4009C1DDC /* Event.h */,
 				3AB28AEE197D9DA4009C1DDC /* Event.m */,
 				3AB28AF6197D9F9D009C1DDC /* EventCategory.h */,
 				3AB28AF7197D9F9D009C1DDC /* EventCategory.m */,
+				3AA332F5198F5ED500C8DAA8 /* Ticket.h */,
+				3AA332F6198F5ED500C8DAA8 /* Ticket.m */,
 			);
 			name = Models;
 			path = Classes/Models;
@@ -473,6 +481,10 @@
 				3A9DB5511986E0E100861899 /* ZSLoadingView.m */,
 				3A9DB5561988245300861899 /* ZSDatePicker.h */,
 				3A9DB5571988245300861899 /* ZSDatePicker.m */,
+				3A9DB5591988F2D000861899 /* ZSPickerView.h */,
+				3A9DB55A1988F2D000861899 /* ZSPickerView.m */,
+				3AA332FA1990DDA900C8DAA8 /* ZSTextView.h */,
+				3AA332FB1990DDA900C8DAA8 /* ZSTextView.m */,
 			);
 			name = CustomClasses;
 			path = Classes/CustomClasses;
@@ -853,6 +865,7 @@
 			isa = PBXGroup;
 			children = (
 				3AF360B119768F15009A14FD /* Dingo.xcdatamodeld */,
+				3A9DB563198C270B00861899 /* TicketInfo.plist */,
 				3F62C6E11949B67800D7D6B1 /* categories */,
 				3F62C6D419499D9400D7D6B1 /* fake_data */,
 				841B048E196AE9DA000DC53C /* Tips */,
@@ -1469,6 +1482,7 @@
 				84A456FF1970182C000ABA73 /* welcome1BG@2x.png in Resources */,
 				3F7970141954684300739EE8 /* Storyboard.storyboard in Resources */,
 				3F08EC1919473DB400CDFBD8 /* SectionEventHeaderView.xib in Resources */,
+				3A9DB564198C270B00861899 /* TicketInfo.plist in Resources */,
 				84A456FC1970182C000ABA73 /* welcomeText3.png in Resources */,
 				3F62C6AC1948318F00D7D6B1 /* category_highlighted@2x.png in Resources */,
 				3F62C6981948318F00D7D6B1 /* feature_cell@2x.png in Resources */,
@@ -1538,6 +1552,7 @@
 				3F98FC90193E09E000E6B3C4 /* MessagesViewController.m in Sources */,
 				3F98FCC3193F4E9B00E6B3C4 /* SlidingViewController.m in Sources */,
 				3F62C6C119489C3900D7D6B1 /* SideMenuCell.m in Sources */,
+				3AA332F7198F5ED500C8DAA8 /* Ticket.m in Sources */,
 				3F62C6F91949DA4F00D7D6B1 /* SideMenuSegue.m in Sources */,
 				3F79701019544CFC00739EE8 /* PreviewViewController.m in Sources */,
 				3AB28AF8197D9F9D009C1DDC /* EventCategory.m in Sources */,
@@ -1546,6 +1561,7 @@
 				3F2864E8194B179C002A3576 /* TermsViewController.m in Sources */,
 				3F7C4E221951CC31003302A0 /* SettingsViewController.m in Sources */,
 				3F7C4E261951D98A003302A0 /* SearchResultsViewController.m in Sources */,
+				3A9DB55B1988F2D000861899 /* ZSPickerView.m in Sources */,
 				3F7C4E3719543651003302A0 /* PhotosPreviewCell.m in Sources */,
 				3F10DE1519388EC1002D3B43 /* main.m in Sources */,
 				3F7C4E1C1951C349003302A0 /* UIImage+Overlay.m in Sources */,
@@ -1556,6 +1572,7 @@
 				3F3D564E1951704C00FB2774 /* ManageListsViewController.m in Sources */,
 				3F62C6CE1948A2BE00D7D6B1 /* TicketCell.m in Sources */,
 				3AF360C01976AB49009A14FD /* NSString+MD5Additions.m in Sources */,
+				3AA332FC1990DDA900C8DAA8 /* ZSTextView.m in Sources */,
 				3F98FCA0193F003D00E6B3C4 /* DataManager.m in Sources */,
 				3AF360B91976A629009A14FD /* NSDictionary+UrlEncoding.m in Sources */,
 				3F2864F4194B29F3002A3576 /* AnswerViewController.m in Sources */,
@@ -1566,7 +1583,6 @@
 				3F10DE1119388EC1002D3B43 /* AppDelegate.m in Sources */,
 				3A9DB5521986E0E100861899 /* ZSLoadingView.m in Sources */,
 				3F3D565C195182F900FB2774 /* SearchTicketsViewController.m in Sources */,
-				3AB28B05197EFA62009C1DDC /* Ticket.m in Sources */,
 				3F08EC1719473AAF00CDFBD8 /* TwoModeButton.m in Sources */,
 				3AB28B02197EE8CE009C1DDC /* ZSTextField.m in Sources */,
 				3F98FCEE1941AB7700E6B3C4 /* SelectCityViewController.m in Sources */,

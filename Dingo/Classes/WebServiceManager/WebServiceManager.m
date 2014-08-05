@@ -15,7 +15,8 @@ static NSString* apiUrl = @"http://dingoapp.herokuapp.com/api/v1/";
 static NSString* signUpUrl = @"http://dingoapp.herokuapp.com/users/sign_up";
 static NSString* signInUrl = @"http://dingoapp.herokuapp.com/users/sign_in";
 static NSString* geocodeUrl = @"https://maps.googleapis.com/maps/api/geocode/json";
-
+static NSString* placesUrl = @"https://maps.googleapis.com/maps/api/place/autocomplete/json";
+static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/details/json";
 @implementation WebServiceManager
 
 + (void)addressToLocation:(NSString *)address completion:( void (^) (id response, NSError *error))handler {
@@ -33,6 +34,41 @@ static NSString* geocodeUrl = @"https://maps.googleapis.com/maps/api/geocode/jso
         
     });
 
+}
+
++ (void)fetchLocations:(NSString *)location completion:(void (^) (id response, NSError *error))handler {
+    
+    NSMutableURLRequest *request = [self requestForGetURL:placesUrl withParams:[NSString stringWithFormat:@"input=%@&sensor=true&key=%@", [location stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding], @"AIzaSyCALgR21D52FM31HEtwP_5m4WsZVRdwJl4"]];
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        NSURLResponse* response = nil;
+        NSError *error = nil;
+        NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+        
+        dispatch_async(dispatch_get_main_queue(), ^(void){
+            handler([data objectFromJSONData], error);
+        });
+        
+    });
+    
+}
+
+
++ (void)fetchLocationDetails:(NSString *)placeID completion:(void (^) (id response, NSError *error))handler {
+    
+    NSMutableURLRequest *request = [self requestForGetURL:placeDetailUrl withParams:[NSString stringWithFormat:@"placeid=%@&key=%@", placeID, @"AIzaSyCALgR21D52FM31HEtwP_5m4WsZVRdwJl4"]];
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        NSURLResponse* response = nil;
+        NSError *error = nil;
+        NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+        
+        dispatch_async(dispatch_get_main_queue(), ^(void){
+            handler([data objectFromJSONData], error);
+        });
+        
+    });
+    
 }
 
 + (void)signUp:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler {

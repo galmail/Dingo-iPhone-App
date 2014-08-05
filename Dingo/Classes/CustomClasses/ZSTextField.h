@@ -16,8 +16,10 @@
 @property (nonatomic) UIColor *backgroundColor;
 @property (nonatomic) CGRect popoverSize;
 @property (nonatomic) UIColor *seperatorColor;
+@property (nonatomic) BOOL applyFilter;
 
 - (void) showToolbarWithDone;
+- (void) setAutocompleteData:(NSArray*)autoCompleteData;
 
 @end
 

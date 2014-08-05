@@ -32,10 +32,11 @@
         <attribute name="seat_type" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="ticket_desc" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="ticket_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="ticket_type" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="EventCategory" positionX="-63" positionY="-18" width="128" height="103"/>
         <element name="Event" positionX="-54" positionY="18" width="128" height="253"/>
-        <element name="Ticket" positionX="-36" positionY="117" width="128" height="180"/>
+        <element name="EventCategory" positionX="-63" positionY="-18" width="128" height="103"/>
+        <element name="Ticket" positionX="-36" positionY="117" width="128" height="195"/>
     </elements>
 </model>

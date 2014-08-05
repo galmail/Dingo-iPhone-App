@@ -8,12 +8,19 @@
 
 #import "ZSTextField.h"
 
+@interface ZSTextField () {
+
+
+    
+    NSArray *data;
+
+}
+@end
+
 @implementation ZSTextField
 
 UITableViewController *results;
 UITableViewController *tableViewController;
-
-NSArray *data;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -24,6 +31,11 @@ NSArray *data;
     return self;
 }
 
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    
+    self.applyFilter = YES;
+}
 
 - (void) showToolbarWithDone {
     
@@ -51,6 +63,12 @@ NSArray *data;
     }
 }
 
+- (void) setAutocompleteData:(NSArray*)autoCompleteData {
+    data =  autoCompleteData;
+    self.clipsToBounds = NO;
+    [self provideSuggestions];
+}
+
 - (void)layoutSubviews
 {
     [super layoutSubviews];
@@ -59,7 +77,9 @@ NSArray *data;
         
         if ([self.delegate respondsToSelector:@selector(dataForPopoverInTextField:)]) {
             data = [self.delegate dataForPopoverInTextField:self];
-            [self provideSuggestions];
+            if (data) {
+                [self provideSuggestions];
+            }
         }
         else{
             NSLog(@"ZSTextField: You have not implemented the requred methods of the protocol.");
@@ -165,9 +185,14 @@ NSArray *data;
 
 - (NSArray *)applyFilterWithSearchQuery:(NSString *)filter
 {
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"DisplayText BEGINSWITH[cd] %@", filter];
-    NSArray *filteredGoods = [NSArray arrayWithArray:[data filteredArrayUsingPredicate:predicate]];
-    return filteredGoods;
+    if (self.applyFilter) {
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"DisplayText BEGINSWITH[cd] %@", filter];
+        NSArray *filteredGoods = [NSArray arrayWithArray:[data filteredArrayUsingPredicate:predicate]];
+        return filteredGoods;
+
+    }
+    
+    return data;
 }
 
 #pragma mark Popover Method(s)
@@ -176,12 +201,6 @@ NSArray *data;
 {
     //Providing suggestions
     if (tableViewController.tableView.superview == nil && [[self applyFilterWithSearchQuery:self.text] count] > 0) {
-        //Add a tap gesture recogniser to dismiss the suggestions view when the user taps outside the suggestions view
-        UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped:)];
-        [tapRecognizer setNumberOfTapsRequired:1];
-        [tapRecognizer setCancelsTouchesInView:NO];
-        [tapRecognizer setDelegate:self];
-        [self.superview addGestureRecognizer:tapRecognizer];
         
         tableViewController = [[UITableViewController alloc] init];
         [tableViewController.tableView setDelegate:self];
@@ -205,11 +224,11 @@ NSArray *data;
         }
         else{
             [tableViewController.tableView setFrame:self.popoverSize];
+            [tableViewController.tableView setContentSize:self.popoverSize.size];
         }
-        tableViewController.tableView.userInteractionEnabled = YES;
         
         [[self superview] addSubview:tableViewController.tableView];
-        
+
         tableViewController.tableView.alpha = 0.0;
         [UIView animateWithDuration:0.3
                          animations:^{
@@ -230,6 +249,7 @@ NSArray *data;
     
     // Convert the point to the target view's coordinate system.
     // The target view isn't necessarily the immediate subview
+    
     CGPoint pointForTargetView = [tableViewController.tableView convertPoint:point fromView:self];
     
     if (CGRectContainsPoint(tableViewController.tableView.bounds, pointForTargetView)) {
@@ -240,11 +260,6 @@ NSArray *data;
     }
     
     return [super hitTest:point withEvent:event];
-}
-
-- (void)tapped:(UIGestureRecognizer *)gesture
-{
-    
 }
 
 @end
