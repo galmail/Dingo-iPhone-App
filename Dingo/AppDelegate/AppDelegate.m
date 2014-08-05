@@ -13,6 +13,8 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import "AppManager.h"
 #import "SlidingViewController.h"
+#import "UIDevice+Additions.h"
+#import "WebServiceManager.h"
 
 @implementation AppDelegate
 
@@ -50,6 +52,19 @@
 	newToken = [newToken stringByReplacingOccurrencesOfString:@" " withString:@""];
     
     [AppManager sharedManager].deviceToken = newToken;
+    
+    
+    NSDictionary *params = @{ @"uid":[AppManager sharedManager].deviceToken.length > 0 ? [AppManager sharedManager].deviceToken : @"",
+                              @"brand":@"Apple",
+                              @"model": [[UIDevice currentDevice] platformString],
+                              @"os":[[UIDevice currentDevice] systemVersion],
+                              @"app_version": [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"],
+                              @"location" : [NSString stringWithFormat:@"%f,%f", [AppManager sharedManager].currentLocation.coordinate.latitude, [AppManager sharedManager].currentLocation.coordinate.longitude ]
+                              };
+    [WebServiceManager registerDevice:params completion:^(id response, NSError *error) {
+        
+    }];
+    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

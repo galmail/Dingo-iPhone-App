@@ -22,4 +22,6 @@
 + (void)fetchLocations:(NSString *)location completion:(void (^) (id response, NSError *error))handler;
 + (void)fetchLocationDetails:(NSString *)placeID completion:(void (^) (id response, NSError *error))handler;
 
++ (void)registerDevice:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler;
+
 @end
