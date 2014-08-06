@@ -37,7 +37,13 @@ const CGFloat featureCellHeight = 140;
 }
 
 - (void)setPrice:(float)price {
-    self.startPriceLabel.text = [NSString stringWithFormat:@"$%.02f", price];
+    
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    [formatter setAllowsFloats:YES];
+    [formatter setMaximumFractionDigits:2];
+    NSString *strPrice = [formatter stringFromNumber:[NSNumber numberWithFloat:price]];
+    
+    self.startPriceLabel.text = [NSString stringWithFormat:@"£%@", strPrice];
 }
 
 - (void)setTickets:(uint)tickets {
