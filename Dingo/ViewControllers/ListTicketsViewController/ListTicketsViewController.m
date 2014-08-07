@@ -437,12 +437,15 @@ static const NSUInteger payPalCellIndex = 13;
             event = result[@"CustomObject"];
             
             self.locationField.text = [DataManager eventLocation:event];
+            self.locationField.enabled = NO;
             
             NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
             formatter.dateFormat = @"hh:mm dd/MM/yyyy";
             
             self.startDateField.text =  [formatter stringFromDate:event.date];
             self.endDateField.text = [formatter stringFromDate:event.endDate];
+            
+            self.startDateField.enabled = self.endDateField.enabled = NO;
         }
        
     }
