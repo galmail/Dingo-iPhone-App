@@ -26,8 +26,11 @@
 - (NSUInteger)eventsGroupsCount;
 - (NSUInteger)eventsGroupsCountForCategories:(NSArray*)categories;
 - (NSUInteger)eventsCountWithGroupIndex:(NSUInteger)group;
+- (NSUInteger)eventsCountWithGroupIndex:(NSUInteger)group categories:(NSArray*)categories;
 - (Event *)eventDescriptionByIndexPath:(NSIndexPath *)path;
+- (Event *)eventDescriptionByIndexPath:(NSIndexPath *)path categories:(NSArray*)categories;
 - (NSDate *)eventGroupDateByIndex:(NSUInteger)groupIndex;
+- (NSDate *)eventGroupDateByIndex:(NSUInteger)groupIndex categories:(NSArray*)categories;
 
 - (NSArray *)allTicketsByEventName:(NSString *)name;
 - (NSArray *)allFriends;

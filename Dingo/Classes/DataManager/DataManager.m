@@ -35,6 +35,7 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     
     NSManagedObjectContext *context = [AppManager sharedManager].managedObjectContext;
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Event"];
+    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES]];
     NSError *error = nil;
     NSArray *events = [context executeFetchRequest:request error:&error];
     
@@ -201,7 +202,7 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     };
     
     [self enumerateEventGroups:&delegate categories:categories];
-    return groupsCount;
+    return groupsCount+1;
     
 }
 
@@ -216,6 +217,19 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     [self enumerateEventGroups:&delegate];
     return eventsCount;
 }
+
+- (NSUInteger)eventsCountWithGroupIndex:(NSUInteger)group categories:(NSArray*)categories {
+    __block NSUInteger eventsCount = 0;
+    GroupsDelegate delegate = ^(Event *eventDescription, NSUInteger groupIndex) {
+        if (groupIndex == group) {
+            eventsCount++;
+        }
+    };
+    
+    [self enumerateEventGroups:&delegate categories:categories];
+    return eventsCount;
+}
+
 
 - (Event *)eventDescriptionByIndexPath:(NSIndexPath *)path {
     __block uint eventsIndex = 0;
@@ -236,6 +250,25 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     return event;
 }
 
+- (Event *)eventDescriptionByIndexPath:(NSIndexPath *)path categories:categories {
+    __block uint eventsIndex = 0;
+    __block Event *event = nil;
+    GroupsDelegate delegate = ^(Event *eventDescription, NSUInteger groupIndex) {
+        if (groupIndex != path.section) {
+            return;
+        }
+        
+        if (eventsIndex++ != path.row) {
+            return;
+        }
+        
+        event = eventDescription;
+    };
+    
+    [self enumerateEventGroups:&delegate categories:categories];
+    return event;
+}
+
 - (NSDate *)eventGroupDateByIndex:(NSUInteger)groupIndex {
     __block NSDate *date = nil;
     GroupsDelegate delegate = ^(Event *eventDescription, NSUInteger grIndx) {
@@ -247,6 +280,20 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     };
     
     [self enumerateEventGroups:&delegate];
+    return date;
+}
+
+- (NSDate *)eventGroupDateByIndex:(NSUInteger)groupIndex categories:categories{
+    __block NSDate *date = nil;
+    GroupsDelegate delegate = ^(Event *eventDescription, NSUInteger grIndx) {
+        if (groupIndex != grIndx) {
+            return;
+        }
+        
+        date = eventDescription.date;
+    };
+    
+    [self enumerateEventGroups:&delegate categories:categories];
     return date;
 }
 
@@ -529,15 +576,17 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     for (Event *event in events) {
         NSDate *date = event.date;//dict[@"begin"];
         
+        
         if (curDate && [DingoUtilites daysBetween:curDate and:date]) {
             groupIndex++;
-        } else {
-            groupIndex = 1;
         }
         
         curDate = date;
+    
         (*delegate)(event, groupIndex);
     }
+    
+    
 }
 
 

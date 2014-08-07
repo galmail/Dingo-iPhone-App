@@ -103,7 +103,7 @@ static const CGFloat categoriesHeight = 140;
         return nil;
     }
     
-    NSDate *date = [[DataManager shared] eventGroupDateByIndex:section - 1];
+    NSDate *date = [[DataManager shared] eventGroupDateByIndex:section - 1 categories:selectedCategories];
     NSString *title = [DingoUtilites eventFormattedDate:date];
     static NSString * const sectionHeader = @"SectionHeaderView";
     return [SectionHeaderView buildWithTitle:title fromXibNamed:sectionHeader];
@@ -125,7 +125,7 @@ static const CGFloat categoriesHeight = 140;
         return 1;
     }
     
-    return [[DataManager shared] eventsCountWithGroupIndex:section - 1];
+    return [[DataManager shared] eventsCountWithGroupIndex:section - 1 categories:selectedCategories];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -146,7 +146,7 @@ static const CGFloat categoriesHeight = 140;
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     TicketsViewController *vc = (TicketsViewController *)segue.destinationViewController;
     NSIndexPath *selectedCellPath = [self adjustedPath:[self.tableView indexPathForSelectedRow]];
-    vc.eventData = [[DataManager shared] eventDescriptionByIndexPath:selectedCellPath];
+    vc.eventData = [[DataManager shared] eventDescriptionByIndexPath:selectedCellPath categories:selectedCategories];
 }
 
 #pragma mark - Private
@@ -165,7 +165,7 @@ static const CGFloat categoriesHeight = 140;
     TicketCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellId];
     [cell loadUIFromXib];
     
-    Event *data = [[DataManager shared] eventDescriptionByIndexPath:path];
+    Event *data = [[DataManager shared] eventDescriptionByIndexPath:path categories:selectedCategories];
     [cell buildWithData:data];
     return cell;
 }
