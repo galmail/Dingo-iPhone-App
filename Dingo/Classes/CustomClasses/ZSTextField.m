@@ -63,6 +63,59 @@ UITableViewController *tableViewController;
     }
 }
 
+- (void) showToolbarWithPrev:(BOOL)prevEnabled next:(BOOL)nextEnabled done:(BOOL)doneEnabled {
+    
+    UIView * keyboardHeader = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+    keyboardHeader.backgroundColor = [UIColor darkGrayColor];
+
+    UIButton *btnDone = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btnDone setFrame:CGRectMake(240, 6, 70, 33)];
+    [btnDone setTitle:@"Done" forState:UIControlStateNormal];
+    btnDone.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:16.0f];
+    [btnDone addTarget:self action:@selector(closeKeyboard:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [keyboardHeader addSubview:btnDone];
+    
+    UIButton *btnPrev = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btnPrev setFrame:CGRectMake(10, 6, 80, 33)];
+    [btnPrev setTitle:@"Previous" forState:UIControlStateNormal];
+    btnPrev.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:16.0f];
+    btnPrev.tag = 1;
+    [btnPrev addTarget:self action:@selector(nextPrevHandlerDidChange:) forControlEvents:UIControlEventTouchUpInside];
+    [keyboardHeader addSubview:btnPrev];
+    
+    UIButton *btnNext = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btnNext setFrame:CGRectMake(90, 6, 70, 33)];
+    [btnNext setTitle:@"Next" forState:UIControlStateNormal];
+    btnNext.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:16.0f];
+    btnNext.tag = 2;
+    [btnNext addTarget:self action:@selector(nextPrevHandlerDidChange:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [keyboardHeader addSubview:btnNext];
+    self.inputAccessoryView = keyboardHeader;
+    
+}
+
+- (void)nextPrevHandlerDidChange:(id)sender {
+    if (!self.delegate) return;
+    
+    switch ([(UIBarButtonItem*)sender tag])
+    {
+        case 1:
+            if ([self.delegate respondsToSelector:@selector(previousDidPressed:)]) {
+                [self.delegate previousDidPressed:self];
+            }
+            break;
+        case 2:
+            if ([self.delegate respondsToSelector:@selector(nextDidPressed:)]) {
+                [self.delegate nextDidPressed:self];
+            }
+            break;
+        default:
+            break;
+    }
+}
+
 - (void) setAutocompleteData:(NSArray*)autoCompleteData {
     data =  autoCompleteData;
     self.clipsToBounds = NO;
@@ -94,15 +147,7 @@ UITableViewController *tableViewController;
 
 - (BOOL)resignFirstResponder
 {
-    [UIView animateWithDuration:0.3
-                     animations:^{
-                         [tableViewController.tableView setAlpha:0.0];
-                     }
-                     completion:^(BOOL finished){
-                         [tableViewController.tableView removeFromSuperview];
-                         tableViewController = nil;
-                     }];
-    [self handleExit];
+ 
     return [super resignFirstResponder];
 }
 
@@ -179,6 +224,16 @@ UITableViewController *tableViewController;
 {
     self.text = [[[self applyFilterWithSearchQuery:self.text] objectAtIndex:indexPath.row] objectForKey:@"DisplayText"];
     [self resignFirstResponder];
+    
+    [UIView animateWithDuration:0.3
+                     animations:^{
+                         [tableViewController.tableView setAlpha:0.0];
+                     }
+                     completion:^(BOOL finished){
+                         [tableViewController.tableView removeFromSuperview];
+                         tableViewController = nil;
+                     }];
+    [self handleExit];
 }
 
 #pragma mark Filter Method

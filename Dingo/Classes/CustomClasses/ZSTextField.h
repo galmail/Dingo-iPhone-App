@@ -19,6 +19,7 @@
 @property (nonatomic) BOOL applyFilter;
 
 - (void) showToolbarWithDone;
+- (void) showToolbarWithPrev:(BOOL)prevEnabled next:(BOOL)nextEnabled done:(BOOL)doneEnabled;
 - (void) setAutocompleteData:(NSArray*)autoCompleteData;
 
 @end
@@ -34,5 +35,8 @@
 
 - (void)textField:(ZSTextField *)textField didEndEditingWithSelection:(NSDictionary *)result;
 - (BOOL)textFieldShouldSelect:(ZSTextField *)textField;
+
+- (void)nextDidPressed:(ZSTextField*)textField;
+- (void)previousDidPressed:(ZSTextField*)textField;
 
 @end

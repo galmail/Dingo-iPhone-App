@@ -32,7 +32,8 @@
 - (NSDate *)eventGroupDateByIndex:(NSUInteger)groupIndex;
 - (NSDate *)eventGroupDateByIndex:(NSUInteger)groupIndex categories:(NSArray*)categories;
 
-- (NSArray *)allTicketsByEventName:(NSString *)name;
+- (NSArray *)allTicketsByEventID:(NSString *)eventID;
+- (void)allTicketsByEventID:(NSString *)eventID completion:( void (^) (BOOL finished))handler;
 - (NSArray *)allFriends;
 - (NSArray *)allCities;
 

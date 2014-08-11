@@ -19,6 +19,7 @@
 @property (nonatomic, strong) NSString *selectedCategory;
 @property (nonatomic, strong) NSMutableArray *selectedCategories;
 @property (nonatomic, assign) id<CategorySelectionDelegate> delegate;
+@property (nonatomic, assign) BOOL readOnly;
 
 - (void)addFavoriteCategory:(NSString *)category;
 - (void)removeFavoriteCategory:(NSString *)category;

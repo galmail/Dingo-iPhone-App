@@ -7,8 +7,27 @@
 //
 
 #import "ProposalCell.h"
+#import "DingoUISettings.h"
+
+@interface ProposalCell ()
+
+@property (nonatomic, weak) IBOutlet UILabel *startPriceLabel;
+@property (nonatomic, weak) IBOutlet UILabel *nameLabel;
+
+@end
 
 @implementation ProposalCell
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    
+    self.nameLabel.font = [DingoUISettings fontWithSize:20];
+    self.startPriceLabel.font = [DingoUISettings fontWithSize:20];
+}
+
+- (void)buildWithTicketData:(Ticket*)data {
+    [super buildWithTicketData:data];
+}
 
 - (void)buildWithData:(Event *)data {
     [super buildWithData:data];

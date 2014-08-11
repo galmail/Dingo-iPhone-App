@@ -66,6 +66,13 @@ const CGFloat featureCellHeight = 140;
     self.tickets = [data.tickets intValue];
 }
 
+- (void)buildWithTicketData:(Ticket *)data {
+//    [super buildWithData:data];
+    self.price = [data.price floatValue];
+    self.discountView.discount = 0;//[data[@"discount"] intValue];
+    self.tickets = [data.number_of_tickets intValue];
+}
+
 #pragma mark - Private
 
 - (void)loadUIFromXib {

@@ -8,12 +8,14 @@
 
 #import "ZSPickerView.h"
 
-@interface ZSPickerView() <UIPickerViewDataSource, UIPickerViewDelegate> {
+@interface ZSPickerView() <UIPickerViewDataSource, UIPickerViewDelegate, UITableViewDataSource, UITableViewDelegate> {
  
     NSArray *items;
     UIPickerView *picker;
+    UITableView *tblPicker;
     
     NSDictionary *selectedValue;
+    NSMutableArray *selectedItems;
 }
 
 @end
@@ -29,12 +31,14 @@
     return self;
 }
 
-- (id)initWithItems:(NSArray*)pickerItems {
+- (id)initWithItems:(NSArray*)pickerItems allowMultiSelection:(BOOL)allow {
 
     self = [super init];
     if (self) {
         
         items = pickerItems;
+        
+        self.allowMultiSelection = allow;
         
         CGRect pickerFrame;
         
@@ -62,10 +66,26 @@
         [self addSubview: toolbar];
         
         
-        picker = [[UIPickerView alloc] initWithFrame:pickerFrame];
-        picker.dataSource = self;
-        picker.delegate = self;
-        [self addSubview: picker];
+        if (allow) {
+            
+            selectedItems = [[NSMutableArray alloc] init];
+            
+            tblPicker = [[UITableView alloc] initWithFrame:pickerFrame];
+            tblPicker.separatorStyle = UITableViewCellSeparatorStyleNone;
+            tblPicker.dataSource = self;
+            tblPicker.delegate = self;
+            
+            [self addSubview: tblPicker];
+            
+        } else {
+        
+            picker = [[UIPickerView alloc] initWithFrame:pickerFrame];
+            picker.dataSource = self;
+            picker.delegate = self;
+            
+            [self addSubview: picker];
+            
+        }
     }
     return self;
 }
@@ -73,7 +93,21 @@
 - (void)done {
     
     if ([self.delegate respondsToSelector: @selector(pickerViewDidPressDone:withInfo:)]) {
-        [self.delegate pickerViewDidPressDone:self withInfo:selectedValue];
+        
+        if (self.allowMultiSelection) {
+            
+            if  (selectedItems.count == 0) {
+                [selectedItems addObject:items[0]];
+            }
+            
+            [self.delegate pickerViewDidPressDone:self withInfo:selectedItems];
+        } else {
+            if  (!selectedValue) {
+                selectedValue = items[0];
+            }
+            
+            [self.delegate pickerViewDidPressDone:self withInfo:selectedValue];
+        }
     }
 }
 
@@ -86,22 +120,57 @@
     
 }
 
-#pragma mark UIPickerView methods
+#pragma mark UITableView methods
 
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [items count];
 }
 
+- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+    
+    NSString *value = items[indexPath.row];
+    if ([selectedItems indexOfObject:value]!= NSNotFound) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    } else {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
+    
+    cell.textLabel.text = value;
+    
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    NSString *value = items[indexPath.row];
+    if ([selectedItems indexOfObject:value] == NSNotFound) {
+        [selectedItems addObject:value];
+    } else {
+        [selectedItems removeObject:value];
+    }
+    
+    [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    
+}
+
+#pragma mark UIPickerView methods
+
+- (NSInteger) numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+    return 1;
+}
+
 - (NSInteger) pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-    return [items[component] count];
+    return [items count];
 }
 
 - (NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    return items[component][row];
+    return items[row];
 }
 
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    selectedValue = items[component][row];
+    selectedValue = items[row];
 }
 
 @end

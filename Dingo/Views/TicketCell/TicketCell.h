@@ -7,12 +7,14 @@
 //
 
 #import "EventCell.h"
+#import "Ticket.h"
 
 extern const CGFloat featureCellHeight;
 
 @interface TicketCell : EventCell
 
 + (id)buildWithData:(Event *)data;
+- (void)buildWithTicketData:(Ticket *)data;
 - (void)loadUIFromXib;
 
 @end

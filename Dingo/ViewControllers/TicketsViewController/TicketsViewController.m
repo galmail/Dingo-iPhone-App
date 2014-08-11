@@ -23,6 +23,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    
+    [[DataManager shared] allTicketsByEventID:self.eventData.event_id completion:^(BOOL finished) {
+        [self.tableView reloadData];
+    }];
 }
 
 #pragma mark - UITableViewDelegate
@@ -32,7 +36,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [[DataManager shared] allTicketsByEventName:self.eventData.name].count + 1;
+    return [[DataManager shared] allTicketsByEventID:self.eventData.event_id].count + 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -56,8 +60,8 @@
 - (UITableViewCell *)buildEventCellForIndex:(NSUInteger)index {
     static NSString * const ticketsCellName = @"ProposalCell";
     ProposalCell *cell = [self.tableView dequeueReusableCellWithIdentifier:ticketsCellName];    
-    Event *data = [[DataManager shared] allTicketsByEventName:self.eventData.name][index];
-    [cell buildWithData:data];
+    Event *data = [[DataManager shared] allTicketsByEventID:self.eventData.event_id][index];
+    [cell buildWithTicketData:data];
     return cell;
 }
 

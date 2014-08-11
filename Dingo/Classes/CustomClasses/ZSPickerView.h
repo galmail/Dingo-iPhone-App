@@ -20,7 +20,7 @@
 
 @interface ZSPickerView : UIView
 
-- (id)initWithItems:(NSArray*)items;
+- (id)initWithItems:(NSArray*)pickerItems allowMultiSelection:(BOOL)allow;
 
 @property (nonatomic, assign) id<ZSPickerDelegate> delegate;
 @property (nonatomic, assign) BOOL allowMultiSelection;

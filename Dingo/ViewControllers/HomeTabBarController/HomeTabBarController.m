@@ -14,6 +14,7 @@
 #import "DingoUISettings.h"
 #import "DingoUtilites.h"
 #import "ListTicketsViewController.h"
+#import "AppManager.h"
 
 static const NSUInteger listTicketsVCIndex = 2;
 
@@ -90,6 +91,7 @@ static const NSUInteger listTicketsVCIndex = 2;
             
         case 1:
             NSLog(@"Don't Save");
+            [AppManager sharedManager].draftTicket = nil;
             break;
     }
     

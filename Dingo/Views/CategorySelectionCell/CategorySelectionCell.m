@@ -48,6 +48,7 @@
  
     allCategories = [[DataManager shared] allCategories];
     [self.collectionView reloadData];
+    self.collectionView.userInteractionEnabled = !self.readOnly;
   
 }
 
@@ -103,6 +104,10 @@
 //}
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (self.readOnly) {
+        return;
+    }
     
     EventCategory *data = allCategories[indexPath.row];
     

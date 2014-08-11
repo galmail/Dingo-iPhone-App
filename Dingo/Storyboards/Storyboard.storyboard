@@ -2985,7 +2985,7 @@ You will receive the funds two days after the event or once the buyer confirms t
                         <outlet property="deliveryLabel" destination="5x1-Fy-Kbp" id="Xuy-MO-XZY"/>
                         <outlet property="descriptionTextView" destination="7EF-eQ-FNJ" id="j04-pA-uSz"/>
                         <outlet property="faceValueLabel" destination="44a-Pn-Dc1" id="7i0-gt-ox9"/>
-                        <outlet property="paymentLabel" destination="Zkt-bo-Vkw" id="5RM-i7-fEz"/>
+                        <outlet property="paymentLabel" destination="FTB-PO-qsW" id="s3r-Zu-dHe"/>
                         <outlet property="photosPreviewCell" destination="lZ7-ou-GCU" id="K2B-qy-rRj"/>
                         <outlet property="proposalCell" destination="anG-hn-Ces" id="zPc-h0-MtK"/>
                         <outlet property="requestToBuyButton" destination="gBg-A7-PU7" id="eUS-Ub-wLe"/>

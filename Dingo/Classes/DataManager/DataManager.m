@@ -128,6 +128,7 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     
     NSDate *date = [formatter dateFromString:info[@"date"]];
     event.date = date;
+    event.endDate = [formatter dateFromString:info[@"end_date"]];
  
 }
 
@@ -327,16 +328,78 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
 
 #pragma mark - Other Requests
 
-- (NSArray *)allTicketsByEventName:(NSString *)name {
-    NSArray *events = [self allEvents];
-    NSMutableArray *tickets = [NSMutableArray array];
-    for (Event *event in events) {
-        if ([name isEqualToString:event.name]) {
-            [tickets addObject:event];
+- (NSArray *)allTicketsByEventID:(NSString *)eventID {
+    
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Ticket"];
+    request.predicate = [NSPredicate predicateWithFormat:@"event_id == %@", eventID];
+    NSArray *tickets = [[AppManager sharedManager].managedObjectContext executeFetchRequest:request error:nil];
+    
+    if (tickets.count) {
+        return tickets;
+    }
+
+    return nil;
+}
+
+- (void)allTicketsByEventID:(NSString *)eventID completion:( void (^) (BOOL finished))handler {
+    
+    NSDictionary *params = @{@"event_id":eventID};
+    [WebServiceManager tickets:params completion:^(id response, NSError *error) {
+        if (response[@"tickets"]) {
+            NSArray *tickets = response[@"tickets"];
+            
+            // remove deleted tickets from local database
+            NSArray *ticketIDs = [tickets valueForKey:@"id"];
+            NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Ticket"];
+            request.predicate = [NSPredicate predicateWithFormat:@"NOT (ticket_id IN %@)", ticketIDs];
+            
+            NSArray *ticketsToRemove = [[AppManager sharedManager].managedObjectContext executeFetchRequest:request error:nil];
+            if (ticketsToRemove.count) {
+                for (Ticket *toRemove in ticketsToRemove) {
+                    [[AppManager sharedManager].managedObjectContext deleteObject:toRemove];
+                }
+            }
+            
+            for (NSDictionary *ticket in tickets) {
+                [self addOrUpdateTicket:ticket];
+            }
+            
+            [[AppManager sharedManager] saveContext];
         }
+        handler(YES);
+    }];
+}
+
+
+- (void)addOrUpdateTicket:(NSDictionary *)info {
+    NSManagedObjectContext *context = [AppManager sharedManager].managedObjectContext;
+    
+    NSString *ticketID = info[@"id"];
+    NSString *eventID = info[@"event_id"];
+    NSString *description = info[@"description"];
+    
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Ticket"];
+    request.predicate = [NSPredicate predicateWithFormat:@"ticket_id == %@", ticketID];
+    
+    NSError *error = nil;
+    Ticket *ticket = nil;
+    NSArray *tickets = [context executeFetchRequest:request error:&error];
+    if (tickets.count > 0) {
+        ticket = tickets[0];
+    } else {
+        ticket = [NSEntityDescription insertNewObjectForEntityForName:@"Ticket" inManagedObjectContext:context];
+        ticket.ticket_id = ticketID;
     }
     
-    return [tickets copy];
+    ticket.ticket_desc = description;
+    ticket.event_id = eventID;
+    ticket.delivery_options = info[@"delivery_options"];
+    ticket.number_of_tickets = @([info[@"number_of_tickets"] intValue]);
+    ticket.payment_options = info[@"payment_options"];
+    ticket.price = @([info[@"price"] floatValue]);
+    ticket.seat_type = info[@"seat_type"];
+
+    
 }
 
 - (NSArray *)allFriends {

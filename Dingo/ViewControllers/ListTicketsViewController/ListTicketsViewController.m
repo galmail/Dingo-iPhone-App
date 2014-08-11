@@ -85,14 +85,7 @@ static const NSUInteger payPalCellIndex = 13;
     self.categoriesCell.multipleSelection = NO;
     [self.categoriesCell useAllCategories];
     
-    if ([AppManager sharedManager].draftTicket) {
-        self.nameField.text = [AppManager sharedManager].draftTicket[@"name"];
-        self.startDateField.text = [AppManager sharedManager].draftTicket[@"startDate"];
-        self.endDateField.text = [AppManager sharedManager].draftTicket[@"endDate"];
-        self.descriptionTextView.text = [AppManager sharedManager].draftTicket[@"description"];
-        
-        self.categoriesCell.selectedCategory = [AppManager sharedManager].draftTicket[@"categoryID"];
-    }
+ 
     
     
     [self.nameField setPopoverSize:CGRectMake(0, self.nameField.frame.origin.y + self.nameField.frame.size.height, 320.0, 130.0)];
@@ -101,9 +94,9 @@ static const NSUInteger payPalCellIndex = 13;
     ticket = [[Ticket alloc] initWithEntity:[NSEntityDescription entityForName:@"Ticket" inManagedObjectContext:[AppManager sharedManager].managedObjectContext] insertIntoManagedObjectContext:nil];
     event = [[Event alloc] initWithEntity:[NSEntityDescription entityForName:@"Event" inManagedObjectContext:[AppManager sharedManager].managedObjectContext] insertIntoManagedObjectContext:nil];
     
-    [self.priceField showToolbarWithDone];
-    [self.faceValueField showToolbarWithDone];
-    [self.ticketsCountField showToolbarWithDone];
+    [self.priceField showToolbarWithPrev:YES next:YES done:YES];
+    [self.faceValueField showToolbarWithPrev:YES next:YES done:YES];
+    [self.ticketsCountField showToolbarWithPrev:YES next:YES done:YES];
     
     startDatePicker = [[ZSDatePicker alloc] initWithDate:[NSDate date]];
     startDatePicker.delegate = self;
@@ -116,16 +109,16 @@ static const NSUInteger payPalCellIndex = 13;
     NSDictionary *ticketInfo = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"TicketInfo.plist" ofType:nil]];
     
  
-    ticketTypePicker = [[ZSPickerView alloc] initWithItems:@[ticketInfo[@"ticketTypes"]]];
+    ticketTypePicker = [[ZSPickerView alloc] initWithItems:ticketInfo[@"ticketTypes"] allowMultiSelection:NO];
     ticketTypePicker.delegate = self;
     self.ticketTypeField.inputView = ticketTypePicker;
     
-    paymentPicker = [[ZSPickerView alloc] initWithItems:@[ticketInfo[@"paymentOptions"]]];
+    paymentPicker = [[ZSPickerView alloc] initWithItems:ticketInfo[@"paymentOptions"] allowMultiSelection:YES];
     paymentPicker.delegate = self;
     self.paymentField.inputView = paymentPicker;
     
     
-    deliveryPicker = [[ZSPickerView alloc] initWithItems:@[ticketInfo[@"deliveryOptions"]]];
+    deliveryPicker = [[ZSPickerView alloc] initWithItems:ticketInfo[@"deliveryOptions"] allowMultiSelection:YES];
     deliveryPicker.delegate = self;
     self.deliveryField.inputView = deliveryPicker;
     
@@ -138,12 +131,46 @@ static const NSUInteger payPalCellIndex = 13;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.parentViewController.navigationItem.title = self.navigationItem.title;
+    
+    if ([AppManager sharedManager].draftTicket) {
+        
+        self.nameField.text = [AppManager sharedManager].draftTicket[@"name"];
+        self.locationField.text= [AppManager sharedManager].draftTicket[@"location"];
+        self.startDateField.text = [AppManager sharedManager].draftTicket[@"startDate"];
+        self.endDateField.text = [AppManager sharedManager].draftTicket[@"endDate"];
+        self.descriptionTextView.text = [AppManager sharedManager].draftTicket[@"description"];
+        self.priceField.text = [AppManager sharedManager].draftTicket[@"price"];
+        self.faceValueField.text= [AppManager sharedManager].draftTicket[@"faceValue"];
+        self.ticketsCountField.text = [AppManager sharedManager].draftTicket[@"ticketCount"];
+        self.ticketTypeField.text = [AppManager sharedManager].draftTicket[@"ticketType"];
+        self.deliveryField.text = [AppManager sharedManager].draftTicket[@"deliveryOption"];
+        self.paymentField.text = [AppManager sharedManager].draftTicket[@"paymentOption"];
+        
+        self.categoriesCell.selectedCategory = [AppManager sharedManager].draftTicket[@"categoryID"];
+        [self.categoriesCell refresh];
+    } else {
+        self.nameField.text = nil;
+        self.locationField.text = nil;
+        self.startDateField.text = nil;
+        self.endDateField.text = nil;
+        self.priceField.text = nil;
+        self.faceValueField.text = nil;
+        self.ticketsCountField.text = nil;
+        self.descriptionTextView.text = nil;
+        self.ticketTypeField.text = nil;
+        self.paymentField.text = nil;
+        self.deliveryField.text = nil;
+        
+        self.categoriesCell.selectedCategory = nil;
+        [self.categoriesCell refresh];
+    }
 }
 
 - (void)saveDraft {
     [AppManager sharedManager].draftTicket = [[NSMutableDictionary alloc] init];
     
     [[AppManager sharedManager].draftTicket setValue:self.nameField.text forKey:@"name"];
+    [[AppManager sharedManager].draftTicket setValue:self.locationField.text forKey:@"location"];
     [[AppManager sharedManager].draftTicket setValue:self.startDateField.text forKey:@"startDate"];
     [[AppManager sharedManager].draftTicket setValue:self.endDateField.text forKey:@"endDate"];
     [[AppManager sharedManager].draftTicket setValue:self.priceField.text forKey:@"price"];
@@ -151,9 +178,9 @@ static const NSUInteger payPalCellIndex = 13;
     [[AppManager sharedManager].draftTicket setValue:self.ticketsCountField.text forKey:@"ticketCount"];
     [[AppManager sharedManager].draftTicket setValue:self.descriptionTextView.text forKey:@"description"];
     [[AppManager sharedManager].draftTicket setValue:self.categoriesCell.selectedCategory forKey:@"categoryID"];
-    [[AppManager sharedManager].draftTicket setValue:self.paymentField forKey:@"paymentOption"];
-    [[AppManager sharedManager].draftTicket setValue:self.ticketTypeField forKey:@"ticketType"];
-    [[AppManager sharedManager].draftTicket setValue:self.deliveryField forKey:@"deliveryOption"];
+    [[AppManager sharedManager].draftTicket setValue:self.paymentField.text forKey:@"paymentOption"];
+    [[AppManager sharedManager].draftTicket setValue:self.ticketTypeField.text forKey:@"ticketType"];
+    [[AppManager sharedManager].draftTicket setValue:self.deliveryField.text forKey:@"deliveryOption"];
     
 }
 
@@ -216,6 +243,18 @@ static const NSUInteger payPalCellIndex = 13;
     
     if (textField == self.nameField) {
         if (self.nameField.text.length > 0) {
+           
+            
+            if (event.event_id &&  ![event.name isEqual:self.nameField.text]) {
+                event.event_id = nil;
+                self.locationField.enabled = YES;
+                self.startDateField.enabled = YES;
+                self.endDateField.enabled = YES;
+
+                self.categoriesCell.readOnly = NO;
+                [self.categoriesCell refresh];
+            }
+            
             event.name = self.nameField.text;
             lblName.textColor = [UIColor blackColor];
             self.changed = YES;
@@ -373,6 +412,9 @@ static const NSUInteger payPalCellIndex = 13;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    [self saveDraft];
+    
     if ([segue.identifier isEqualToString:@"EditPhotosSegue"]) {
         UploadPhotosViewController *vc = (UploadPhotosViewController *)segue.destinationViewController;
         vc.delegate = self;
@@ -446,6 +488,11 @@ static const NSUInteger payPalCellIndex = 13;
             self.endDateField.text = [formatter stringFromDate:event.endDate];
             
             self.startDateField.enabled = self.endDateField.enabled = NO;
+            
+            self.categoriesCell.selectedCategory = event.category_id;
+            self.categoriesCell.readOnly = YES;
+            [self.categoriesCell refresh];
+            
         }
        
     }
@@ -484,6 +531,35 @@ static const NSUInteger payPalCellIndex = 13;
     return NO;
 }
 
+- (void)nextDidPressed:(ZSTextField*)textField {
+    if (textField == self.priceField) {
+        [self.faceValueField becomeFirstResponder];
+    }
+    
+    if (textField == self.faceValueField) {
+        [self.ticketsCountField becomeFirstResponder];
+    }
+    
+    if (textField == self.ticketsCountField) {
+        [self.ticketTypeField becomeFirstResponder];
+    }
+}
+
+- (void)previousDidPressed:(ZSTextField*)textField {
+    
+    if (textField == self.priceField) {
+        [self.endDateField becomeFirstResponder];
+    }
+    
+    if (textField == self.faceValueField) {
+        [self.priceField becomeFirstResponder];
+    }
+    
+    if (textField == self.ticketsCountField) {
+        [self.faceValueField becomeFirstResponder];
+    }
+}
+
 #pragma mark ZSDatePickerDelegate 
 
 - (void)pickerDidPressDone:(ZSDatePicker*)picker withDate:(NSDate *)date {
@@ -516,7 +592,7 @@ static const NSUInteger payPalCellIndex = 13;
 
 #pragma mark ZSPickerView methods
 
-- (void)pickerViewDidPressDone:(ZSPickerView *)picker withInfo:(NSString*)selectionInfo {
+- (void)pickerViewDidPressDone:(ZSPickerView *)picker withInfo:(id)selectionInfo {
 
     self.changed = YES;
 
@@ -528,7 +604,7 @@ static const NSUInteger payPalCellIndex = 13;
     }
     
     if (picker == paymentPicker) {
-        self.paymentField.text = selectionInfo;
+        self.paymentField.text = [selectionInfo componentsJoinedByString:@", "];
         [self.paymentField resignFirstResponder];
         
         [self.tableView beginUpdates];
@@ -537,7 +613,7 @@ static const NSUInteger payPalCellIndex = 13;
     
     if (picker == deliveryPicker) {
         
-        self.deliveryField.text = selectionInfo;
+        self.deliveryField.text = [selectionInfo componentsJoinedByString:@", "];
         [self.deliveryField resignFirstResponder];
     }
 }
@@ -559,6 +635,7 @@ static const NSUInteger payPalCellIndex = 13;
 - (void)didSelectedCategories:(NSArray*)categories {
     if (categories.count) {
         lblCategory.textColor = [UIColor darkGrayColor];
+        self.changed = YES;
     }
 }
 
