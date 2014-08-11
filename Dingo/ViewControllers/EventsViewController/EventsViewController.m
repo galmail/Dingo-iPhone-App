@@ -19,7 +19,7 @@
 #import "ZSLoadingView.h"
 
 static const CGSize iconSize = {28, 32};
-static const CGFloat categoriesHeight = 140;
+static const CGFloat categoriesHeight = 110;
 
 @implementation EventsViewController{
     

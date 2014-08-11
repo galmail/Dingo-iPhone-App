@@ -13,7 +13,9 @@
 
 const CGFloat featureCellHeight = 140;
 
-@interface TicketCell ()
+@interface TicketCell () {
+    Event* event;
+}
 
 @property (nonatomic, strong) IBOutlet UIView *view;
 @property (nonatomic, weak) IBOutlet UILabel *startPriceLabel;
@@ -43,7 +45,11 @@ const CGFloat featureCellHeight = 140;
     [formatter setMaximumFractionDigits:2];
     NSString *strPrice = [formatter stringFromNumber:[NSNumber numberWithFloat:price]];
     
-    self.startPriceLabel.text = [NSString stringWithFormat:@"£%@", strPrice];
+    if ([event.tickets intValue] > 1) {
+        self.startPriceLabel.text = [NSString stringWithFormat:@"from £%@", strPrice];
+    } else {
+        self.startPriceLabel.text = [NSString stringWithFormat:@"£%@", strPrice];
+    }
 }
 
 - (void)setTickets:(uint)tickets {
@@ -53,6 +59,7 @@ const CGFloat featureCellHeight = 140;
 #pragma mark - Custom
 
 + (id)buildWithData:(Event *)data {
+    
     TicketCell *cell = [[TicketCell alloc] init];
     [cell loadUIFromXib];
     [cell buildWithData:data];
@@ -61,6 +68,9 @@ const CGFloat featureCellHeight = 140;
 
 - (void)buildWithData:(Event *)data {
     [super buildWithData:data];
+    
+    event = data;
+    
     self.price = [data.fromPrice floatValue];
     self.discountView.discount = 0;//[data[@"discount"] intValue];
     self.tickets = [data.tickets intValue];
