@@ -11,6 +11,8 @@
 #import "TicketCell.h"
 #import "DataManager.h"
 #import "DingoUISettings.h"
+#import "DingoUtilites.h"
+#import "SectionHeaderView.h"
 
 @interface FeaturesViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -54,14 +56,32 @@
 
 #pragma mark - UITableViewDataSource
 
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return [[DataManager shared] featuredEventsGroupsCount];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [[[DataManager shared] featuredEvents] count];
+    return [[DataManager shared] featuredEventsCountWithGroupIndex:section];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return sectionHeaderHeight;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+
+    NSDate *date = [[DataManager shared] featuredEventGroupDateByIndex:section];
+    NSString *title = [DingoUtilites eventFormattedDate:date];
+    static NSString * const sectionHeader = @"SectionHeaderView";
+    return [SectionHeaderView buildWithTitle:title fromXibNamed:sectionHeader];
+    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString * const cellId = @"FeatureCell";
     TicketCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
-    Event *data = [[DataManager shared] featuredEvents][indexPath.row];
+    Event *data = [[DataManager shared] featuredEventDescriptionByIndexPath:indexPath];
     [cell buildWithData:data];
     return cell;
 }

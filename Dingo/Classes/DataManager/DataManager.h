@@ -24,12 +24,19 @@
 + (NSString *)eventLocation:(Event *)data;
 
 - (NSUInteger)eventsGroupsCount;
+- (NSUInteger)featuredEventsGroupsCount;
 - (NSUInteger)eventsGroupsCountForCategories:(NSArray*)categories;
+
 - (NSUInteger)eventsCountWithGroupIndex:(NSUInteger)group;
+- (NSUInteger)featuredEventsCountWithGroupIndex:(NSUInteger)group;
 - (NSUInteger)eventsCountWithGroupIndex:(NSUInteger)group categories:(NSArray*)categories;
+
 - (Event *)eventDescriptionByIndexPath:(NSIndexPath *)path;
+- (Event *)featuredEventDescriptionByIndexPath:(NSIndexPath *)path;
 - (Event *)eventDescriptionByIndexPath:(NSIndexPath *)path categories:(NSArray*)categories;
+
 - (NSDate *)eventGroupDateByIndex:(NSUInteger)groupIndex;
+- (NSDate *)featuredEventGroupDateByIndex:(NSUInteger)groupIndex;
 - (NSDate *)eventGroupDateByIndex:(NSUInteger)groupIndex categories:(NSArray*)categories;
 
 - (NSArray *)allTicketsByEventID:(NSString *)eventID;
