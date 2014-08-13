@@ -144,9 +144,19 @@ static const CGFloat categoriesHeight = 110;
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    TicketsViewController *vc = (TicketsViewController *)segue.destinationViewController;
     NSIndexPath *selectedCellPath = [self adjustedPath:[self.tableView indexPathForSelectedRow]];
-    vc.eventData = [[DataManager shared] eventDescriptionByIndexPath:selectedCellPath categories:selectedCategories];
+    Event* event= [[DataManager shared] eventDescriptionByIndexPath:selectedCellPath categories:selectedCategories];
+    
+    if ([event.tickets intValue] > 1) {
+        TicketsViewController *vc = (TicketsViewController *)segue.destinationViewController;
+        vc.eventData = event;
+    } else {
+        // TODO: need to show ticket detail
+        
+        TicketsViewController *vc = (TicketsViewController *)segue.destinationViewController;
+        vc.eventData = event;
+    }
+
 }
 
 #pragma mark - Private

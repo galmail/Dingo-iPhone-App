@@ -137,4 +137,13 @@
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
+
+#pragma mark ---
+
++ (void)showAlert:(NSString*)message {
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alert show];
+}
+
 @end

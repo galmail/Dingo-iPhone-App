@@ -18,7 +18,7 @@
 
 @property (nonatomic, strong) NSString *token;
 @property (nonatomic, strong) NSString *deviceToken;
-@property (nonatomic, strong) NSDictionary *userInfo;
+@property (nonatomic, strong) NSMutableDictionary *userInfo;
 @property (nonatomic, strong) CLLocation* currentLocation;
 @property (nonatomic, strong) NSMutableDictionary *draftTicket;
 
@@ -28,5 +28,7 @@
 
 - (void)save;
 - (void)saveContext;
+
++ (void)showAlert:(NSString*)message;
 
 @end

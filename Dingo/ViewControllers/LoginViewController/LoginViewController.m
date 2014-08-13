@@ -11,6 +11,7 @@
 #import "UIDevice+Additions.h"
 #import "WebServiceManager.h"
 #import "AppManager.h"
+#import "SelectCityViewController.h"
 
 #import "SlidingViewController.h"
 
@@ -58,7 +59,7 @@
                                           if (state == FBSessionStateOpen) {
                                               
                                               FBRequest *request = [FBRequest requestForMe];
-                                              [request.parameters setValue:@"id,name,email,picture,birthday,location" forKey:@"fields"];
+                                              [request.parameters setValue:@"id,name,first_name,last_name,email,picture,birthday,location" forKey:@"fields"];
                                               
                                               [request startWithCompletionHandler:^(FBRequestConnection *connection, id<FBGraphUser> user, NSError *error) {
                                                   if (user) {
@@ -71,7 +72,8 @@
                                                           birtday = [dateArray componentsJoinedByString:@"/"];
                                                       }
                                                       
-                                                      NSDictionary *params = @{ @"name" : user.name,
+                                                      NSDictionary *params = @{ @"name" : user.first_name,
+                                                                                @"surname": user.last_name,
                                                                                 @"email" : user[@"email"],
                                                                                 @"password" : [NSString stringWithFormat:@"fb%@", user.objectID],
                                                                                 @"date_of_birth": birtday.length > 0 ? birtday : @"",
@@ -98,11 +100,11 @@
                                                                   if (response[@"authentication_token"]) {
                                                                       [AppManager sharedManager].token = response[@"authentication_token"];
                                                                       
-                                                                      [AppManager sharedManager].userInfo = @{@"email":user[@"email"], @"name": user.name, @"photo_url":user[@"picture"][@"data"][@"url"], @"city":user.location ? [[user.location.name componentsSeparatedByString:@","] firstObject] : @"London"};
+                                                                      [AppManager sharedManager].userInfo = [@{@"email":user[@"email"], @"name": user.first_name, @"photo_url":user[@"picture"][@"data"][@"url"], @"city":user.location ? [[user.location.name componentsSeparatedByString:@","] firstObject] : @"London"} mutableCopy];
                                                                       
-                                                                      SlidingViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SlidingViewController"];
-                                                                      viewController.modalTransitionStyle =  UIModalTransitionStyleFlipHorizontal;
-                                                                      [self presentViewController:viewController animated:YES completion:nil];
+                                                                      SelectCityViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SelectCityViewController"];
+                                                                      
+                                                                      [self.navigationController pushViewController:viewController animated:YES];
                                                                   } else {
                                                                       
                                                                       // login
@@ -122,11 +124,11 @@
                                                                                   if ([response[@"success"] boolValue]) {
                                                                                       [AppManager sharedManager].token = response[@"auth_token"];
                                                                                       
-                                                                                      [AppManager sharedManager].userInfo = @{@"email":user[@"email"], @"name": user.name, @"photo_url":user[@"picture"][@"data"][@"url"], @"city" : user.location ? [[user.location.name componentsSeparatedByString:@","] firstObject] : @"London"};
+                                                                                      [AppManager sharedManager].userInfo = [@{@"email":user[@"email"], @"name": user.first_name, @"photo_url":user[@"picture"][@"data"][@"url"], @"city" : user.location ? [[user.location.name componentsSeparatedByString:@","] firstObject] : @"London"} mutableCopy];
                                                                                       
-                                                                                      SlidingViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SlidingViewController"];
-                                                                                      viewController.modalTransitionStyle =  UIModalTransitionStyleFlipHorizontal;
-                                                                                      [self presentViewController:viewController animated:YES completion:nil];
+                                                                                      SelectCityViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SelectCityViewController"];
+                                                                                      
+                                                                                      [self.navigationController pushViewController:viewController animated:YES];
                                                                                       
                                                                                   } else {
                                                                                       UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Unable to sign in, please try later" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -167,6 +169,7 @@
 }
 
 - (IBAction)btnGuestTap:(id)sender {
+    
     loadingView.hidden = NO;
     
     NSString *email = [NSString stringWithFormat:@"%@@guest.dingoapp.co.uk", [[UIDevice currentDevice] uniqueDeviceIdentifier]];
@@ -196,11 +199,12 @@
                 if (response[@"authentication_token"]) {
                     [AppManager sharedManager].token = response[@"authentication_token"];
                     
-                    [AppManager sharedManager].userInfo = @{@"email":email, @"name": @"Guest", @"city": @"London"};
+                    [AppManager sharedManager].userInfo = [@{@"email":email, @"name": @"Guest"} mutableCopy];
                     
-                    SlidingViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SlidingViewController"];
-                    viewController.modalTransitionStyle =  UIModalTransitionStyleFlipHorizontal;
-                    [self presentViewController:viewController animated:YES completion:nil];
+                    SelectCityViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SelectCityViewController"];
+                    
+                    [self.navigationController pushViewController:viewController animated:YES];
+
                 } else {
                     
                     // login
@@ -220,11 +224,11 @@
                                 if ([response[@"success"] boolValue]) {
                                     [AppManager sharedManager].token = response[@"auth_token"];
                                     
-                                    [AppManager sharedManager].userInfo = @{@"email":email, @"name": @"Guest", @"city": @"London"};
+                                    [AppManager sharedManager].userInfo = [@{@"email":email, @"name": @"Guest"} mutableCopy];
                                     
-                                    SlidingViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SlidingViewController"];
-                                    viewController.modalTransitionStyle =  UIModalTransitionStyleFlipHorizontal;
-                                    [self presentViewController:viewController animated:YES completion:nil];
+                                    SelectCityViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SelectCityViewController"];
+                                    
+                                    [self.navigationController pushViewController:viewController animated:YES];
                                     
                                 } else {
                                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Unable to sign in, please try later" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];

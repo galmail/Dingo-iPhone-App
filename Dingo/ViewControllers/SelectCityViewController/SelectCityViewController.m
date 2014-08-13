@@ -7,48 +7,60 @@
 //
 
 #import "SelectCityViewController.h"
+#import "SlidingViewController.h"
 
 #import "DataManager.h"
 #import "DingoUISettings.h"
 
-@interface SelectCityViewController () <UIPickerViewDelegate, UIPickerViewDataSource>
+#import "AppManager.h"
+#import "ZSPickerView.h"
 
-@property (nonatomic, weak) IBOutlet UIPickerView *cityPicker;
+@interface SelectCityViewController () <ZSPickerDelegate>{
+    
+    __weak IBOutlet UILabel *lblCity;
+    __weak IBOutlet UITextField *txtCity;
+    
+    ZSPickerView *cityPicker;
+}
 
 @end
 
 @implementation SelectCityViewController
 
-#pragma mark - UIPickerViewDataSource
-
-- (NSAttributedString *)pickerView:(UIPickerView *)pickerView
-             attributedTitleForRow:(NSInteger)row
-                      forComponent:(NSInteger)component {
+- (void)viewDidLoad {
+    [super viewDidLoad];
     
-    NSString *title = [[DataManager shared] allCities][row];
-    UIColor *color = [DingoUISettings foregroundColor];
-    return [[NSAttributedString alloc] initWithString:title
-                                           attributes:@{NSForegroundColorAttributeName:color}];
+    lblCity.font = txtCity.font = [DingoUISettings fontWithSize:16];
+    
+    cityPicker = [[ZSPickerView alloc] initWithItems:[[DataManager shared] allCities] allowMultiSelection:NO];
+    cityPicker.delegate = self;
+    txtCity.inputView = cityPicker;
+    
 }
 
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-    return [[DataManager shared] allCities].count;
+- (IBAction)done:(id)sender {
+    if (txtCity.text.length > 0) {
+        
+        [[AppManager sharedManager].userInfo setObject:txtCity.text forKey:@"city"];
+        
+        SlidingViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SlidingViewController"];
+        viewController.modalTransitionStyle =  UIModalTransitionStyleFlipHorizontal;
+        [self presentViewController:viewController animated:YES completion:nil];
+    } else {
+        [AppManager showAlert:@"Please select city"];
+    }
 }
 
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
-    return 1;
+#pragma mark ZSPickerDelegate methods
+
+- (void)pickerViewDidPressDone:(ZSPickerView*)picker withInfo:(id)selectionInfo {
+    
+    txtCity.text = selectionInfo;
+    [txtCity resignFirstResponder];
 }
 
-#pragma mark - UIPickerViewDelegate
-
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    NSLog(@"%@ selected", [[DataManager shared] allCities][row]);
-}
-
-#pragma mark - Navigation
-
-- (IBAction)back {
-    [self.navigationController popViewControllerAnimated:YES];
+- (void)pickerViewDidPressCancel:(ZSPickerView*)picker {
+    [txtCity resignFirstResponder];
 }
 
 @end

@@ -350,7 +350,7 @@
 		3F62C6CC1948A2BE00D7D6B1 /* TicketCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketCell.m; sourceTree = "<group>"; };
 		3F62C6CD1948A2BE00D7D6B1 /* TicketCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TicketCell.xib; sourceTree = "<group>"; };
 		3F62C6D519499D9400D7D6B1 /* categories.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = categories.plist; sourceTree = "<group>"; };
-		3F62C6D619499D9400D7D6B1 /* cities.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = cities.plist; sourceTree = "<group>"; };
+		3F62C6D619499D9400D7D6B1 /* cities.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = cities.plist; path = fake_data/cities.plist; sourceTree = "<group>"; };
 		3F62C6D719499D9400D7D6B1 /* events.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = events.plist; sourceTree = "<group>"; };
 		3F62C6D819499D9400D7D6B1 /* messages.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = messages.plist; sourceTree = "<group>"; };
 		3F62C6DE1949A55600D7D6B1 /* EventCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EventCell.h; path = EventCell/EventCell.h; sourceTree = "<group>"; };
@@ -882,6 +882,7 @@
 			children = (
 				3AF360B119768F15009A14FD /* Dingo.xcdatamodeld */,
 				3A9DB563198C270B00861899 /* TicketInfo.plist */,
+				3F62C6D619499D9400D7D6B1 /* cities.plist */,
 				3AA332FD1990F50600C8DAA8 /* Fonts */,
 				3F62C6E11949B67800D7D6B1 /* categories */,
 				3F62C6D419499D9400D7D6B1 /* fake_data */,
@@ -1070,7 +1071,6 @@
 			isa = PBXGroup;
 			children = (
 				3F62C6D519499D9400D7D6B1 /* categories.plist */,
-				3F62C6D619499D9400D7D6B1 /* cities.plist */,
 				3F62C6D719499D9400D7D6B1 /* events.plist */,
 				3F62C6D819499D9400D7D6B1 /* messages.plist */,
 			);
