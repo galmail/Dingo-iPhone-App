@@ -1347,6 +1347,7 @@ You will receive the funds two days after the event or once the buyer confirms t
                                 <connections>
                                     <outlet property="discountView" destination="HgD-Td-Yh3" id="BPO-rw-OdP"/>
                                     <outlet property="iconImageView" destination="gch-Cn-2Q9" id="q2C-no-iRa"/>
+                                    <outlet property="imgIcon" destination="gch-Cn-2Q9" id="xC3-5J-XMW"/>
                                     <outlet property="locationLabel" destination="CAn-Rk-Pwp" id="q9P-U2-NbS"/>
                                     <outlet property="nameLabel" destination="qbj-wf-vQt" id="8Nh-AZ-zQK"/>
                                     <outlet property="startPriceLabel" destination="a6J-Rh-1hF" id="Zxm-c4-7PY"/>

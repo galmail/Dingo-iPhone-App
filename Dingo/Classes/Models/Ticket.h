@@ -2,7 +2,7 @@
 //  Ticket.h
 //  Dingo
 //
-//  Created by Asatur Galstyan on 8/4/14.
+//  Created by Asatur Galstyan on 8/13/14.
 //  Copyright (c) 2014 Dingo. All rights reserved.
 //
 
@@ -22,5 +22,11 @@
 @property (nonatomic, retain) NSString * ticket_desc;
 @property (nonatomic, retain) NSString * ticket_id;
 @property (nonatomic, retain) NSString * ticket_type;
+@property (nonatomic, retain) NSData * photo1;
+@property (nonatomic, retain) NSData * photo2;
+@property (nonatomic, retain) NSData * photo3;
+@property (nonatomic, retain) NSNumber * user_id;
+@property (nonatomic, retain) NSString * user_name;
+@property (nonatomic, retain) NSData * user_photo;
 
 @end

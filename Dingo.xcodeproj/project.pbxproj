@@ -15,11 +15,11 @@
 		3A9DB5581988245300861899 /* ZSDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9DB5571988245300861899 /* ZSDatePicker.m */; };
 		3A9DB55B1988F2D000861899 /* ZSPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9DB55A1988F2D000861899 /* ZSPickerView.m */; };
 		3A9DB564198C270B00861899 /* TicketInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3A9DB563198C270B00861899 /* TicketInfo.plist */; };
-		3AA332F7198F5ED500C8DAA8 /* Ticket.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA332F6198F5ED500C8DAA8 /* Ticket.m */; };
 		3AA332FC1990DDA900C8DAA8 /* ZSTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA332FB1990DDA900C8DAA8 /* ZSTextView.m */; };
 		3AA332FF1990F50600C8DAA8 /* SourceSansPro-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3AA332FE1990F50600C8DAA8 /* SourceSansPro-Regular.otf */; };
 		3AA3330119910D4E00C8DAA8 /* SourceSansPro-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3AA3330019910D4E00C8DAA8 /* SourceSansPro-Bold.otf */; };
 		3AA4359619911D2900D626D1 /* SourceSansPro-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3AA4359519911D2900D626D1 /* SourceSansPro-Semibold.otf */; };
+		3AA4B7C8199B885D008B129C /* Ticket.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA4B7C7199B885D008B129C /* Ticket.m */; };
 		3AB28AE0197BB486009C1DDC /* welcome1BG-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AB28ADF197BB486009C1DDC /* welcome1BG-568h@2x.png */; };
 		3AB28AE2197BC572009C1DDC /* welcome2BG-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AB28AE1197BC572009C1DDC /* welcome2BG-568h@2x.png */; };
 		3AB28AE6197BC9E9009C1DDC /* welcome3BG-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AB28AE5197BC9E9009C1DDC /* welcome3BG-568h@2x.png */; };
@@ -203,13 +203,13 @@
 		3A9DB5591988F2D000861899 /* ZSPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSPickerView.h; sourceTree = "<group>"; };
 		3A9DB55A1988F2D000861899 /* ZSPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSPickerView.m; sourceTree = "<group>"; };
 		3A9DB563198C270B00861899 /* TicketInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TicketInfo.plist; sourceTree = "<group>"; };
-		3AA332F5198F5ED500C8DAA8 /* Ticket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ticket.h; sourceTree = "<group>"; };
-		3AA332F6198F5ED500C8DAA8 /* Ticket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ticket.m; sourceTree = "<group>"; };
 		3AA332FA1990DDA900C8DAA8 /* ZSTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSTextView.h; sourceTree = "<group>"; };
 		3AA332FB1990DDA900C8DAA8 /* ZSTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSTextView.m; sourceTree = "<group>"; };
 		3AA332FE1990F50600C8DAA8 /* SourceSansPro-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Regular.otf"; sourceTree = "<group>"; };
 		3AA3330019910D4E00C8DAA8 /* SourceSansPro-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Bold.otf"; sourceTree = "<group>"; };
 		3AA4359519911D2900D626D1 /* SourceSansPro-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Semibold.otf"; sourceTree = "<group>"; };
+		3AA4B7C6199B885D008B129C /* Ticket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ticket.h; sourceTree = "<group>"; };
+		3AA4B7C7199B885D008B129C /* Ticket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ticket.m; sourceTree = "<group>"; };
 		3AB28ADF197BB486009C1DDC /* welcome1BG-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "welcome1BG-568h@2x.png"; sourceTree = "<group>"; };
 		3AB28AE1197BC572009C1DDC /* welcome2BG-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "welcome2BG-568h@2x.png"; sourceTree = "<group>"; };
 		3AB28AE5197BC9E9009C1DDC /* welcome3BG-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "welcome3BG-568h@2x.png"; sourceTree = "<group>"; };
@@ -481,8 +481,8 @@
 				3AB28AEE197D9DA4009C1DDC /* Event.m */,
 				3AB28AF6197D9F9D009C1DDC /* EventCategory.h */,
 				3AB28AF7197D9F9D009C1DDC /* EventCategory.m */,
-				3AA332F5198F5ED500C8DAA8 /* Ticket.h */,
-				3AA332F6198F5ED500C8DAA8 /* Ticket.m */,
+				3AA4B7C6199B885D008B129C /* Ticket.h */,
+				3AA4B7C7199B885D008B129C /* Ticket.m */,
 			);
 			name = Models;
 			path = Classes/Models;
@@ -1572,7 +1572,6 @@
 				3F98FC90193E09E000E6B3C4 /* MessagesViewController.m in Sources */,
 				3F98FCC3193F4E9B00E6B3C4 /* SlidingViewController.m in Sources */,
 				3F62C6C119489C3900D7D6B1 /* SideMenuCell.m in Sources */,
-				3AA332F7198F5ED500C8DAA8 /* Ticket.m in Sources */,
 				3F62C6F91949DA4F00D7D6B1 /* SideMenuSegue.m in Sources */,
 				3F79701019544CFC00739EE8 /* PreviewViewController.m in Sources */,
 				3AB28AF8197D9F9D009C1DDC /* EventCategory.m in Sources */,
@@ -1611,6 +1610,7 @@
 				3F98FD081945EECE00E6B3C4 /* DiscountView.m in Sources */,
 				3F62C6C819489F9A00D7D6B1 /* EventsViewController.m in Sources */,
 				3AF360AB197687E2009A14FD /* AppManager.m in Sources */,
+				3AA4B7C8199B885D008B129C /* Ticket.m in Sources */,
 				3F10DE6F193C54C4002D3B43 /* DingoUISettings.m in Sources */,
 				3F98FC2C193DC6F100E6B3C4 /* ListTicketsViewController.m in Sources */,
 				3F7C4E181951C1F4003302A0 /* FXBlurView.m in Sources */,

@@ -2,7 +2,7 @@
 //  Ticket.m
 //  Dingo
 //
-//  Created by Asatur Galstyan on 8/4/14.
+//  Created by Asatur Galstyan on 8/13/14.
 //  Copyright (c) 2014 Dingo. All rights reserved.
 //
 
@@ -21,5 +21,11 @@
 @dynamic ticket_desc;
 @dynamic ticket_id;
 @dynamic ticket_type;
+@dynamic photo1;
+@dynamic photo2;
+@dynamic photo3;
+@dynamic user_id;
+@dynamic user_name;
+@dynamic user_photo;
 
 @end

@@ -13,6 +13,7 @@
 
 @property (nonatomic, weak) IBOutlet UILabel *startPriceLabel;
 @property (nonatomic, weak) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *imgIcon;
 
 @end
 
@@ -27,6 +28,14 @@
 
 - (void)buildWithTicketData:(Ticket*)data {
     [super buildWithTicketData:data];
+    
+    self.name = data.user_name;
+    self.location = data.ticket_desc;
+    
+    if (data.user_photo) {
+        self.imgIcon.image = [UIImage imageWithData:data.user_photo];
+    }
+    
 }
 
 - (void)buildWithData:(Event *)data {

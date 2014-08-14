@@ -456,7 +456,22 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     ticket.payment_options = info[@"payment_options"];
     ticket.price = @([info[@"price"] floatValue]);
     ticket.seat_type = info[@"seat_type"];
+    if (info[@"photo1_thumb"]) {
+        ticket.photo1 = [NSData dataWithContentsOfURL:[NSURL URLWithString:info[@"photo1_thumb"]]];
+    }
+    if (info[@"photo2_thumb"]) {
+        ticket.photo2 = [NSData dataWithContentsOfURL:[NSURL URLWithString:info[@"photo2_thumb"]]];
+    }
+    if (info[@"photo3_thumb"]) {
+        ticket.photo1 = [NSData dataWithContentsOfURL:[NSURL URLWithString:info[@"photo3_thumb"]]];
+    }
+    ticket.user_id = @([info[@"user_id"] intValue]);
+    ticket.user_name = info[@"user_name"];
 
+    NSString *user_photo_url = info[@"user_photo"];
+    user_photo_url = [user_photo_url stringByReplacingOccurrencesOfString:@"%26" withString:@"&"];
+    NSData  *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:user_photo_url]];
+    ticket.user_photo = data;
     
 }
 
