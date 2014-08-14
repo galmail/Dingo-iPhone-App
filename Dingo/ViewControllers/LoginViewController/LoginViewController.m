@@ -176,6 +176,7 @@
     NSString *pass = [NSString stringWithFormat:@"uid%@", [[UIDevice currentDevice] uniqueDeviceIdentifier]];
     
     NSDictionary *params = @{ @"name" : @"Guest",
+                              @"surname": @"",
                               @"email" : email,
                               @"password" : pass,
                               @"device_uid": [AppManager sharedManager].deviceToken.length > 0 ? [AppManager sharedManager].deviceToken : @"" ,

@@ -22,9 +22,12 @@
 #import "ZSPickerView.h"
 #import "AppManager.h"
 #import "WebServiceManager.h"
+#import <FacebookSDK/FacebookSDK.h>
+#import "ZSLoadingView.h"
+#import "UIDevice+Additions.h"
 
-static const CGFloat paypalCellShrinkedHeight = 36;
-static const CGFloat paypalCellExpandedHeight = 170;
+static const CGFloat paypalCellShrinkedHeight = 120;
+static const CGFloat paypalCellExpandedHeight = 240;
 
 static const NSUInteger previewPhotosCellIndex = 10;
 static const NSUInteger editPhotosCellIndex = 11;
@@ -56,6 +59,11 @@ static const NSUInteger payPalCellIndex = 13;
     ZSPickerView *ticketTypePicker;
     ZSPickerView *deliveryPicker;
 
+    __weak IBOutlet UISwitch *cashSwitch;
+    __weak IBOutlet UISwitch *paypalSwitch;
+    __weak IBOutlet UISwitch *inPersonSwitch;
+    __weak IBOutlet UISwitch *electronicSwitch;
+    __weak IBOutlet UISwitch *postSwitch;
 }
 
 @property (nonatomic, weak) IBOutlet ZSTextField *nameField;
@@ -67,11 +75,8 @@ static const NSUInteger payPalCellIndex = 13;
 @property (nonatomic, weak) IBOutlet ZSTextField *ticketsCountField;
 @property (weak, nonatomic) IBOutlet UITextField *ticketTypeField;
 @property (nonatomic, weak) IBOutlet ZSTextView *descriptionTextView;
-@property (weak, nonatomic) IBOutlet UITextField *paymentField;
 @property (nonatomic, weak) IBOutlet CategorySelectionCell *categoriesCell;
 @property (weak, nonatomic) IBOutlet PhotosPreviewCell *photosPreviewCell;
-@property (weak, nonatomic) IBOutlet UITextField *deliveryField;
-
 
 @end
 
@@ -84,9 +89,10 @@ static const NSUInteger payPalCellIndex = 13;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.categoriesCell.multipleSelection = NO;
     [self.categoriesCell useAllCategories];
-    
  
     
+    lblName.font = lblLocation.font = lblFromDate.font = lblToDate.font = lblPrice.font = lblFaceValue.font = lblTicketCount.font = lblTicketType.font = [DingoUISettings fontWithSize:13];
+    lblPayment.font = lbldelivery.font = [DingoUISettings fontWithSize:18];
     
     [self.nameField setPopoverSize:CGRectMake(0, self.nameField.frame.origin.y + self.nameField.frame.size.height, 320.0, 130.0)];
     [self.locationField setPopoverSize:CGRectMake(0, self.locationField.frame.origin.y + self.locationField.frame.size.height, 320.0, 130.0)];
@@ -112,15 +118,7 @@ static const NSUInteger payPalCellIndex = 13;
     ticketTypePicker = [[ZSPickerView alloc] initWithItems:ticketInfo[@"ticketTypes"] allowMultiSelection:NO];
     ticketTypePicker.delegate = self;
     self.ticketTypeField.inputView = ticketTypePicker;
-    
-    paymentPicker = [[ZSPickerView alloc] initWithItems:ticketInfo[@"paymentOptions"] allowMultiSelection:YES];
-    paymentPicker.delegate = self;
-    self.paymentField.inputView = paymentPicker;
-    
-    
-    deliveryPicker = [[ZSPickerView alloc] initWithItems:ticketInfo[@"deliveryOptions"] allowMultiSelection:YES];
-    deliveryPicker.delegate = self;
-    self.deliveryField.inputView = deliveryPicker;
+
     
     self.descriptionTextView.placeholder = @"Add comments about event or ticket and delivery method e.g. pick up from my house or meet in central London";
     [self.descriptionTextView showToolbarWithDone];
@@ -143,8 +141,15 @@ static const NSUInteger payPalCellIndex = 13;
         self.faceValueField.text= [AppManager sharedManager].draftTicket[@"faceValue"];
         self.ticketsCountField.text = [AppManager sharedManager].draftTicket[@"ticketCount"];
         self.ticketTypeField.text = [AppManager sharedManager].draftTicket[@"ticketType"];
-        self.deliveryField.text = [AppManager sharedManager].draftTicket[@"deliveryOption"];
-        self.paymentField.text = [AppManager sharedManager].draftTicket[@"paymentOption"];
+        
+        NSString *paymentOptions = [AppManager sharedManager].draftTicket[@"paymentOptions"];
+        paypalSwitch.on = [paymentOptions rangeOfString:@"PayPal"].location != NSNotFound;
+        cashSwitch.on = [paymentOptions rangeOfString:@"Cash in person"].location != NSNotFound;
+
+        NSString *deliveryOptions = [AppManager sharedManager].draftTicket[@"deliveryOptions"];
+        inPersonSwitch.on = [deliveryOptions rangeOfString:@"In Person"].location != NSNotFound;
+        electronicSwitch.on = [deliveryOptions rangeOfString:@"Electronic"].location != NSNotFound;
+        postSwitch.on =  [deliveryOptions rangeOfString:@"Post"].location != NSNotFound;
         
         self.categoriesCell.selectedCategory = [AppManager sharedManager].draftTicket[@"categoryID"];
         [self.categoriesCell refresh];
@@ -158,8 +163,8 @@ static const NSUInteger payPalCellIndex = 13;
         self.ticketsCountField.text = nil;
         self.descriptionTextView.text = nil;
         self.ticketTypeField.text = nil;
-        self.paymentField.text = nil;
-        self.deliveryField.text = nil;
+        paypalSwitch.on = NO;
+        cashSwitch.on = YES;
         
         self.categoriesCell.selectedCategory = nil;
         [self.categoriesCell refresh];
@@ -178,9 +183,9 @@ static const NSUInteger payPalCellIndex = 13;
     [[AppManager sharedManager].draftTicket setValue:self.ticketsCountField.text forKey:@"ticketCount"];
     [[AppManager sharedManager].draftTicket setValue:self.descriptionTextView.text forKey:@"description"];
     [[AppManager sharedManager].draftTicket setValue:self.categoriesCell.selectedCategory forKey:@"categoryID"];
-    [[AppManager sharedManager].draftTicket setValue:self.paymentField.text forKey:@"paymentOption"];
+    [[AppManager sharedManager].draftTicket setValue:ticket.payment_options forKey:@"paymentOptions"];
     [[AppManager sharedManager].draftTicket setValue:self.ticketTypeField.text forKey:@"ticketType"];
-    [[AppManager sharedManager].draftTicket setValue:self.deliveryField.text forKey:@"deliveryOption"];
+    [[AppManager sharedManager].draftTicket setValue:ticket.delivery_options forKey:@"deliveryOptions"];
     
 }
 
@@ -201,7 +206,7 @@ static const NSUInteger payPalCellIndex = 13;
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.row) {
         case payPalCellIndex:
-            return [self.paymentField.text isEqual:@"PayPal"] ? paypalCellExpandedHeight : paypalCellShrinkedHeight;
+            return paypalSwitch.on ? paypalCellExpandedHeight : paypalCellShrinkedHeight;
             break;
         case editPhotosCellIndex: case previewPhotosCellIndex:
             if (!self.photosPreviewCell.photos.count) {
@@ -322,27 +327,20 @@ static const NSUInteger payPalCellIndex = 13;
             self.changed = YES;
         }
     }
-    
-    if (textField == self.paymentField) {
-        if (self.paymentField.text.length > 0) {
-            lblPayment.textColor = [UIColor blackColor];
-            self.changed = YES;
-        }
-    }
-
-    if (textField == self.deliveryField) {
-        if (self.deliveryField.text.length > 0) {
-            lbldelivery.textColor = [UIColor blackColor];
-            self.changed = YES;
-        }
-    }
-
-    
+  
 }
 
 #pragma mark - Navigation
 
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
+    
+    if ([[AppManager sharedManager].userInfo[@"name"] isEqualToString:@"Guest"]) {
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Facebook login is required when selling tickets to promote a safe community. Don’t worry, we won’t share anything on your wall." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Login", nil];
+        [alert show];
+        return NO;
+    }
+    
 
     BOOL requiredInfoFilled = YES;
     
@@ -388,12 +386,7 @@ static const NSUInteger payPalCellIndex = 13;
             lblTicketType.textColor = [UIColor redColor];
         }
         
-        if (self.paymentField.text.length == 0) {
-            requiredInfoFilled = NO;
-            lblPayment.textColor = [UIColor redColor];
-        }
-        
-        if (self.deliveryField.text.length == 0) {
+        if (!inPersonSwitch.on && !electronicSwitch.on && !postSwitch.on ) {
             requiredInfoFilled = NO;
             lbldelivery.textColor = [UIColor redColor];
         }
@@ -401,6 +394,11 @@ static const NSUInteger payPalCellIndex = 13;
         if (self.categoriesCell.selectedCategory.length == 0) {
             requiredInfoFilled = NO;
             lblCategory.textColor = [UIColor redColor];
+        }
+        
+        if (!paypalSwitch.on && !cashSwitch.on) {
+            requiredInfoFilled = NO;
+            lblPayment.textColor = [UIColor redColor];
         }
         
         if (!requiredInfoFilled) {
@@ -422,8 +420,44 @@ static const NSUInteger payPalCellIndex = 13;
         vc.mainPhoto = [UIImage imageWithData:event.thumb];
     } else if ([segue.identifier isEqualToString:@"PreviewSegue"]) {
         
-        ticket.payment_options = self.paymentField.text;
-        ticket.delivery_options = self.deliveryField.text;
+        NSString *paymentOption = @"";
+        if (cashSwitch.on) {
+            paymentOption = @"Cash in persion";
+        }
+        
+        if (paypalSwitch.on) {
+            if (paymentOption.length > 0) {
+                paymentOption = [paymentOption stringByAppendingFormat:@", %@", @"PayPal"];
+            } else {
+                paymentOption = @"PayPal";
+            }
+        }
+       
+        ticket.payment_options = paymentOption;
+        
+        NSString *deliveryOptions = @"";
+        if (inPersonSwitch.on) {
+            deliveryOptions = @"In Persion";
+        }
+        
+        if (electronicSwitch.on) {
+            if (deliveryOptions.length > 0) {
+                deliveryOptions = [deliveryOptions stringByAppendingFormat:@", %@", @"Electronic"];
+            } else {
+                deliveryOptions = @"Electronic";
+            }
+        }
+        
+        if (postSwitch.on) {
+            if (deliveryOptions.length > 0) {
+                deliveryOptions = [deliveryOptions stringByAppendingFormat:@", %@", @"Post"];
+            } else {
+                deliveryOptions = @"Post";
+            }
+        }
+        
+        ticket.delivery_options = deliveryOptions;
+        
         ticket.ticket_type = self.ticketTypeField.text;
         ticket.ticket_desc = self.descriptionTextView.text;
         
@@ -602,34 +636,13 @@ static const NSUInteger payPalCellIndex = 13;
         self.ticketTypeField.text = selectionInfo;
         [self.ticketTypeField resignFirstResponder];
     }
-    
-    if (picker == paymentPicker) {
-        self.paymentField.text = [selectionInfo componentsJoinedByString:@", "];
-        [self.paymentField resignFirstResponder];
-        
-        [self.tableView beginUpdates];
-        [self.tableView endUpdates];
-    }
-    
-    if (picker == deliveryPicker) {
-        
-        self.deliveryField.text = [selectionInfo componentsJoinedByString:@", "];
-        [self.deliveryField resignFirstResponder];
-    }
 }
 
 - (void)pickerViewDidPressCancel:(ZSPickerView *)picker {
     if (picker == ticketTypePicker) {
         [self.ticketTypeField resignFirstResponder];
     }
-    
-    if (picker == paymentPicker) {
-        [self.paymentField resignFirstResponder];
-    }
-    
-    if (picker == deliveryPicker) {
-        [self.deliveryField resignFirstResponder];
-    }
+
 }
 
 - (void)didSelectedCategories:(NSArray*)categories {
@@ -638,5 +651,175 @@ static const NSUInteger payPalCellIndex = 13;
         self.changed = YES;
     }
 }
+
+- (IBAction)cashChanged:(id)sender {
+    if(cashSwitch.on) {
+        lblPayment.textColor = [UIColor darkGrayColor];
+    }
+}
+
+- (IBAction)paypalChanged:(id)sender {
+    
+    if(paypalSwitch.on) {
+        lblPayment.textColor = [UIColor darkGrayColor];
+    }
+    
+    [self.tableView beginUpdates];
+    [self.tableView endUpdates];
+}
+
+- (IBAction)inPersonChanged:(id)sender {
+    if(inPersonSwitch.on) {
+        lbldelivery.textColor = [UIColor darkGrayColor];
+    }
+}
+
+- (IBAction)electronicChanged:(id)sender {
+    if(electronicSwitch.on) {
+        lbldelivery.textColor = [UIColor darkGrayColor];
+    }
+}
+
+- (IBAction)postChanged:(id)sender {
+    if(postSwitch.on) {
+        lbldelivery.textColor = [UIColor darkGrayColor];
+    }
+}
+
+#pragma mark UIAlertView delegates
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 1) {
+        [self fbLogin];
+    }
+}
+
+#pragma mark Fb login
+
+- (void)fbLogin {
+    
+    ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please wait..."];
+    [loadingView show];
+    [FBSession openActiveSessionWithReadPermissions:@[@"email", @"user_birthday", @"user_location"]
+                                       allowLoginUI:YES
+                                  completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
+                                      
+                                      if (error) {
+                                          UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                                          [alert show];
+                                          
+                                          [loadingView hide];
+                                      } else {
+                                          if (state == FBSessionStateOpen) {
+                                              
+                                              FBRequest *request = [FBRequest requestForMe];
+                                              [request.parameters setValue:@"id,name,first_name,last_name,email,picture,birthday,location" forKey:@"fields"];
+                                              
+                                              [request startWithCompletionHandler:^(FBRequestConnection *connection, id<FBGraphUser> user, NSError *error) {
+                                                  if (user) {
+                                                      
+                                                      NSString *birtday = nil;
+                                                      if(user.birthday.length > 0) {
+                                                          // change date format from MM/DD/YYYY to DD/MM/YYYY
+                                                          NSArray *dateArray = [user.birthday componentsSeparatedByString:@"/"];
+                                                          dateArray = @[ dateArray[1], dateArray[0], dateArray[2]];
+                                                          birtday = [dateArray componentsJoinedByString:@"/"];
+                                                      }
+                                                      
+                                                      NSDictionary *params = @{ @"name" : user.first_name,
+                                                                                @"surname": user.last_name,
+                                                                                @"email" : user[@"email"],
+                                                                                @"password" : [NSString stringWithFormat:@"fb%@", user.objectID],
+                                                                                @"date_of_birth": birtday.length > 0 ? birtday : @"",
+                                                                                @"city": user.location ? [[user.location.name componentsSeparatedByString:@","] firstObject] : @"London",
+                                                                                @"photo_url":user[@"picture"][@"data"][@"url"],
+                                                                                @"device_uid":[AppManager sharedManager].deviceToken.length > 0 ? [AppManager sharedManager].deviceToken : @"",
+                                                                                @"device_brand":@"Apple",
+                                                                                @"device_model": [[UIDevice currentDevice] platformString],
+                                                                                @"device_os":[[UIDevice currentDevice] systemVersion],
+                                                                                @"device_location" : [NSString stringWithFormat:@"%f,%f", [AppManager sharedManager].currentLocation.coordinate.latitude, [AppManager sharedManager].currentLocation.coordinate.longitude ]
+                                                                                };
+                                                      
+                                                      
+                                                      [WebServiceManager signUp:params completion:^(id response, NSError *error) {
+                                                          NSLog(@"response %@", response);
+                                                          if (error) {
+                                                              UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                                                              [alert show];
+                                                              
+                                                              [loadingView hide];
+                                                          } else {
+                                                              if (response) {
+                                                                  
+                                                                  if (response[@"authentication_token"]) {
+                                                                      [AppManager sharedManager].token = response[@"authentication_token"];
+                                                                      
+                                                                      [AppManager sharedManager].userInfo = [@{@"email":user[@"email"], @"name": user.first_name, @"photo_url":user[@"picture"][@"data"][@"url"], @"city":user.location ? [[user.location.name componentsSeparatedByString:@","] firstObject] : @"London"} mutableCopy];
+                                                                      
+                                                                      
+                                                                      [self performSegueWithIdentifier:@"PreviewSegue" sender:self];
+                                                                  } else {
+                                                                      
+                                                                      // login
+                                                                      NSDictionary *params = @{ @"email" : user[@"email"],
+                                                                                                @"password" : [NSString stringWithFormat:@"fb%@", user.objectID]
+                                                                                                };
+                                                                      
+                                                                      [WebServiceManager signIn:params completion:^(id response, NSError *error) {
+                                                                          NSLog(@"response %@", response);
+                                                                          if (error ) {
+                                                                              UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                                                                              [alert show];
+                                                                          } else {
+                                                                              
+                                                                              if (response) {
+                                                                                  
+                                                                                  if ([response[@"success"] boolValue]) {
+                                                                                      [AppManager sharedManager].token = response[@"auth_token"];
+                                                                                      
+                                                                                      [AppManager sharedManager].userInfo = [@{@"email":user[@"email"], @"name": user.first_name, @"photo_url":user[@"picture"][@"data"][@"url"], @"city" : user.location ? [[user.location.name componentsSeparatedByString:@","] firstObject] : @"London"} mutableCopy];
+                                                                                      
+                                                                                      [self performSegueWithIdentifier:@"PreviewSegue" sender:self];
+                                                                                      
+                                                                                  } else {
+                                                                                      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Unable to sign in, please try later" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                                                                                      [alert show];
+                                                                                  }
+                                                                                  
+                                                                              } else {
+                                                                                  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Unable to sign in, please try later" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                                                                                  [alert show];
+                                                                              }
+                                                                          }
+                                                                      }];
+                                                                      
+                                                                  }
+                                                                  
+                                                              } else {
+                                                                  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Unable to sign up, please try later" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                                                                  [alert show];
+                                                              }
+                                                              
+                                                              [loadingView hide];
+                                                          }
+                                                          
+                                                          
+                                                      }];
+                                                  } else {
+                                                      [loadingView hide];
+                                                  }
+                                                  
+                                                  
+                                              }];
+                                          } else {
+                                              [loadingView hide];
+                                          }
+                                      }
+                                      
+                                  }];
+}
+
+
+
 
 @end

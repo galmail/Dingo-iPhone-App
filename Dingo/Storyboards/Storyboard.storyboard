@@ -517,73 +517,136 @@
                                             <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="169" id="x9w-r8-lYm" userLabel="payment_method">
-                                        <rect key="frame" x="0.0" y="738" width="320" height="169"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="240" id="x9w-r8-lYm" userLabel="payment_method">
+                                        <rect key="frame" x="0.0" y="738" width="320" height="240"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="x9w-r8-lYm" id="XEr-Dx-b6o">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="168"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="239"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Payment method*:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gBd-SU-3UR" userLabel="label">
-                                                    <rect key="frame" x="12" y="7" width="129" height="21"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How do you want to be paid?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gBd-SU-3UR" userLabel="label">
+                                                    <rect key="frame" x="12" y="7" width="293" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
-                                                    <color key="textColor" red="0.27450980390000002" green="0.27450980390000002" blue="0.27450980390000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="18"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Payment method" minimumFontSize="17" id="Cqa-4A-QxU" userLabel="payment_field">
-                                                    <rect key="frame" x="146" y="3" width="174" height="30"/>
+                                                <view contentMode="scaleToFill" id="mck-1L-5nM">
+                                                    <rect key="frame" x="0.0" y="36" width="320" height="203"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="textColor" red="0.51372549020000002" green="0.51372549020000002" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                    <connections>
-                                                        <outlet property="delegate" destination="0ch-Q5-uzn" id="ehW-sy-hvg"/>
-                                                    </connections>
-                                                </textField>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sgB-tD-bzw" userLabel="label">
-                                                    <rect key="frame" x="0.0" y="36" width="320" height="133"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" red="0.88235294119999996" green="0.88235294119999996" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <string key="text">Dingo charges a 10% commission for all transactions made through the app. This includes all the PayPal fees and your seller insurance!
+                                                    <subviews>
+                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sgB-tD-bzw" userLabel="label">
+                                                            <rect key="frame" x="0.0" y="70" width="320" height="133"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <string key="text">Dingo charges a 10% commission for all transactions made through the app. This includes all the PayPal fees and your seller insurance!
 
 You will receive the funds two days after the event or once the buyer confirms the validity of the tickets. This protects members of the Dingo community!</string>
-                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
-                                                    <color key="textColor" red="0.51372549020000002" green="0.51372549020000002" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                            <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
+                                                            <color key="textColor" red="0.51372549020000002" green="0.51372549020000002" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cash in Person" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Cho-gI-VJv">
+                                                            <rect key="frame" x="33" y="10" width="144" height="25"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                            <color key="textColor" red="0.51372549020000002" green="0.51372549020000002" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PayPal" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ja8-wb-icT">
+                                                            <rect key="frame" x="33" y="48" width="144" height="25"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                            <color key="textColor" red="0.51372549020000002" green="0.51372549020000002" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="nNR-Va-ebl">
+                                                            <rect key="frame" x="241" y="7" width="51" height="31"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <connections>
+                                                                <action selector="cashChanged:" destination="0ch-Q5-uzn" eventType="valueChanged" id="aoJ-qI-hpX"/>
+                                                            </connections>
+                                                        </switch>
+                                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="DCz-gd-JXi">
+                                                            <rect key="frame" x="241" y="45" width="51" height="31"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <connections>
+                                                                <action selector="paypalChanged:" destination="0ch-Q5-uzn" eventType="valueChanged" id="Ts4-FQ-eCb"/>
+                                                            </connections>
+                                                        </switch>
+                                                    </subviews>
+                                                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                                </view>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="36" id="iY9-ie-fUm" userLabel="delivery">
-                                        <rect key="frame" x="0.0" y="907" width="320" height="36"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="160" id="iY9-ie-fUm" userLabel="delivery">
+                                        <rect key="frame" x="0.0" y="978" width="320" height="160"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iY9-ie-fUm" id="f7f-1F-BhZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="35"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="159"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delivery method*:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ORv-E1-qj8" userLabel="label">
-                                                    <rect key="frame" x="13" y="6" width="127" height="21"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delivery method(s):" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ORv-E1-qj8" userLabel="label">
+                                                    <rect key="frame" x="13" y="6" width="287" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
+                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="18"/>
                                                     <color key="textColor" red="0.27450980390000002" green="0.27450980390000002" blue="0.27450980390000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Delivery" minimumFontSize="17" id="RUg-FF-CHY" userLabel="payment_field">
-                                                    <rect key="frame" x="146" y="2" width="174" height="30"/>
+                                                <view contentMode="scaleToFill" id="5kR-mi-tY0">
+                                                    <rect key="frame" x="0.0" y="36" width="320" height="124"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="textColor" red="0.51372549020000002" green="0.51372549020000002" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                    <connections>
-                                                        <outlet property="delegate" destination="0ch-Q5-uzn" id="JKe-o5-Wwv"/>
-                                                    </connections>
-                                                </textField>
+                                                    <subviews>
+                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="In Person" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Mf6-Ub-ggw">
+                                                            <rect key="frame" x="33" y="10" width="144" height="25"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                            <color key="textColor" red="0.51372549020000002" green="0.51372549020000002" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Electronic" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AsE-SO-WVM">
+                                                            <rect key="frame" x="33" y="49" width="144" height="25"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                            <color key="textColor" red="0.51372549020000002" green="0.51372549020000002" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Post" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Qa0-dD-ZKF">
+                                                            <rect key="frame" x="33" y="84" width="144" height="25"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                            <color key="textColor" red="0.51372549020000002" green="0.51372549020000002" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="fu5-PS-z1s">
+                                                            <rect key="frame" x="241" y="7" width="51" height="31"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <connections>
+                                                                <action selector="inPersonChanged:" destination="0ch-Q5-uzn" eventType="valueChanged" id="Ldp-8j-4eg"/>
+                                                            </connections>
+                                                        </switch>
+                                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="gV3-Rk-P38">
+                                                            <rect key="frame" x="241" y="45" width="51" height="31"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <connections>
+                                                                <action selector="electronicChanged:" destination="0ch-Q5-uzn" eventType="valueChanged" id="Rhc-zr-7mX"/>
+                                                            </connections>
+                                                        </switch>
+                                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="HcK-bm-y7f">
+                                                            <rect key="frame" x="241" y="84" width="51" height="31"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <connections>
+                                                                <action selector="postChanged:" destination="0ch-Q5-uzn" eventType="valueChanged" id="cjy-MJ-UYp"/>
+                                                            </connections>
+                                                        </switch>
+                                                    </subviews>
+                                                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                                </view>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="80" id="wNJ-JT-hqY" userLabel="description">
-                                        <rect key="frame" x="0.0" y="943" width="320" height="80"/>
+                                        <rect key="frame" x="0.0" y="1138" width="320" height="80"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wNJ-JT-hqY" id="m4S-5v-Oui">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
@@ -608,7 +671,7 @@ You will receive the funds two days after the event or once the buyer confirms t
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="60" id="A1I-8k-N3d" userLabel="preview">
-                                        <rect key="frame" x="0.0" y="1023" width="320" height="60"/>
+                                        <rect key="frame" x="0.0" y="1218" width="320" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="A1I-8k-N3d" id="KPT-58-DNw">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
@@ -644,11 +707,13 @@ You will receive the funds two days after the event or once the buyer confirms t
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="1177"/>
                     <connections>
+                        <outlet property="cashSwitch" destination="nNR-Va-ebl" id="Tw7-gh-9lS"/>
                         <outlet property="categoriesCell" destination="pSm-UF-4tn" id="zmT-e6-XOf"/>
-                        <outlet property="deliveryField" destination="RUg-FF-CHY" id="vzv-5p-hPU"/>
                         <outlet property="descriptionTextView" destination="2gK-n0-UrV" id="sXd-U9-e7I"/>
+                        <outlet property="electronicSwitch" destination="gV3-Rk-P38" id="LLA-FM-cWR"/>
                         <outlet property="endDateField" destination="uhK-tf-iQe" id="UrF-Kj-e6H"/>
                         <outlet property="faceValueField" destination="cnc-Ig-W8J" id="iuz-Yb-ZnR"/>
+                        <outlet property="inPersonSwitch" destination="fu5-PS-z1s" id="8GU-cI-0bJ"/>
                         <outlet property="lblCategory" destination="TOH-cs-6iv" id="9DX-rc-G4o"/>
                         <outlet property="lblDescription" destination="vGO-jg-007" id="eu8-a9-nAF"/>
                         <outlet property="lblFaceValue" destination="Kym-UH-5ai" id="3TH-P9-xd5"/>
@@ -663,8 +728,9 @@ You will receive the funds two days after the event or once the buyer confirms t
                         <outlet property="lbldelivery" destination="ORv-E1-qj8" id="ZhM-RJ-l7H"/>
                         <outlet property="locationField" destination="2AT-Jc-vjr" id="zu2-lJ-fPT"/>
                         <outlet property="nameField" destination="Zvo-Jf-zwM" id="Es0-WH-Xs7"/>
-                        <outlet property="paymentField" destination="Cqa-4A-QxU" id="p80-9C-KTo"/>
+                        <outlet property="paypalSwitch" destination="DCz-gd-JXi" id="gbU-E4-HTP"/>
                         <outlet property="photosPreviewCell" destination="NIR-m4-Mbl" id="WKx-KX-MVp"/>
+                        <outlet property="postSwitch" destination="HcK-bm-y7f" id="i41-U5-zSA"/>
                         <outlet property="priceField" destination="JJp-Kk-sDB" id="q7g-AD-XNP"/>
                         <outlet property="startDateField" destination="UwW-Y7-gqV" id="g5A-WX-ur9"/>
                         <outlet property="ticketTypeField" destination="Mg5-PR-17G" id="ETi-Xf-w0t"/>

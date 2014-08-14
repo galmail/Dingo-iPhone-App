@@ -9,8 +9,8 @@
 	</array>
 	<key>paymentOptions</key>
 	<array>
+		<string>Cash in person</string>
 		<string>PayPal</string>
-		<string>Pay in Person</string>
 	</array>
 	<key>deliveryOptions</key>
 	<array>
