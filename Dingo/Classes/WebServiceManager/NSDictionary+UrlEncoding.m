@@ -21,7 +21,7 @@ static NSString *urlEncode(id object) {
                                                                                                     NULL,
                                                                                                     (__bridge CFStringRef) string,
                                                                                                     NULL,
-                                                                                                    CFSTR("!*'();:@&=+$,/?%#[]\" "),
+                                                                                                    CFSTR("!*'();:&=+$,/?%#[]\" "),
                                                                                                     kCFStringEncodingUTF8));
     return escapedString;
 }
