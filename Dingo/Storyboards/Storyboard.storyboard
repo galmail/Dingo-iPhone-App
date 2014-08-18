@@ -749,7 +749,7 @@ You will receive the funds two days after the event or once the buyer confirms t
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="static" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="GFH-c1-Lem">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.18823529411764706" green="0.20784313725490194" blue="0.28627450980392155" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.24705882352941178" green="0.26666666666666666" blue="0.35686274509803922" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="sectionIndexTrackingBackgroundColor" red="0.18823529411764706" green="0.20784313725490194" blue="0.28627450980392155" alpha="0.0" colorSpace="calibratedRGB"/>
                         <sections>
                             <tableViewSection id="kCZ-WC-IHw">
@@ -762,13 +762,15 @@ You will receive the funds two days after the event or once the buyer confirms t
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Menu" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HI0-7q-1TM" userLabel="title">
-                                                    <rect key="frame" x="28" y="36" width="55" height="21"/>
+                                                    <rect key="frame" x="28" y="37" width="55" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="11"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="12"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
@@ -779,14 +781,14 @@ You will receive the funds two days after the event or once the buyer confirms t
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="58"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bookmarked_icon.png" id="OUO-u2-XSK" userLabel="icon">
-                                                    <rect key="frame" x="28" y="13" width="30" height="30"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ticket_alerts_icon.png" id="OUO-u2-XSK" userLabel="icon">
+                                                    <rect key="frame" x="29" y="15" width="25" height="25"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                 </imageView>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bookmarked Tickets" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zH8-2r-O0H" userLabel="title">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ticket Alerts" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zH8-2r-O0H" userLabel="title">
                                                     <rect key="frame" x="76" y="17" width="138" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="11"/>
+                                                    <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="14"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -797,7 +799,7 @@ You will receive the funds two days after the event or once the buyer confirms t
                                             </subviews>
                                             <color key="backgroundColor" red="0.14117647058823529" green="0.15686274509803921" blue="0.22352941176470587" alpha="0.0" colorSpace="calibratedRGB"/>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.18823529411764706" green="0.20784313725490194" blue="0.28627450980392155" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <segue destination="AHi-D2-7Wp" kind="custom" customClass="SideMenuSegue" id="iwK-Kb-reE"/>
                                         </connections>
@@ -810,13 +812,13 @@ You will receive the funds two days after the event or once the buyer confirms t
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="listing_icon.png" id="em2-jz-mRg" userLabel="icon">
-                                                    <rect key="frame" x="28" y="13" width="30" height="30"/>
+                                                    <rect key="frame" x="28" y="15" width="29" height="25"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Manage Listings" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Aa2-Tf-8Nc" userLabel="title">
                                                     <rect key="frame" x="76" y="17" width="138" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="11"/>
+                                                    <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="14"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -827,7 +829,7 @@ You will receive the funds two days after the event or once the buyer confirms t
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.18823529411764706" green="0.20784313725490194" blue="0.28627450980392155" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <segue destination="NDK-Xp-Bqe" kind="custom" customClass="SideMenuSegue" id="EcW-Cw-qiT"/>
                                         </connections>
@@ -840,13 +842,13 @@ You will receive the funds two days after the event or once the buyer confirms t
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="settings_icon.png" id="H3l-Gc-2kX" userLabel="icon">
-                                                    <rect key="frame" x="28" y="13" width="30" height="30"/>
+                                                    <rect key="frame" x="28" y="14" width="27" height="27"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="96f-UA-5s4" userLabel="title">
                                                     <rect key="frame" x="76" y="17" width="138" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="11"/>
+                                                    <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="14"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -857,7 +859,7 @@ You will receive the funds two days after the event or once the buyer confirms t
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.18823529411764706" green="0.20784313725490194" blue="0.28627450980392155" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <segue destination="luz-yd-ISX" kind="custom" customClass="SideMenuSegue" id="2Rq-1R-HLJ"/>
                                         </connections>
@@ -870,13 +872,13 @@ You will receive the funds two days after the event or once the buyer confirms t
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="faq_icon.png" id="TVG-FQ-rxJ" userLabel="icon">
-                                                    <rect key="frame" x="28" y="13" width="30" height="30"/>
+                                                    <rect key="frame" x="28" y="13" width="27" height="27"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FAQ's" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FaZ-my-25L" userLabel="title">
                                                     <rect key="frame" x="76" y="17" width="138" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="11"/>
+                                                    <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="14"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -887,7 +889,7 @@ You will receive the funds two days after the event or once the buyer confirms t
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.18823529411764706" green="0.20784313725490194" blue="0.28627450980392155" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <segue destination="nbS-gB-7Es" kind="custom" customClass="SideMenuSegue" id="Jxm-Hb-8cd"/>
                                         </connections>
@@ -899,14 +901,14 @@ You will receive the funds two days after the event or once the buyer confirms t
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="58"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="terms_icon.png" id="oF7-vL-apN" userLabel="icon">
-                                                    <rect key="frame" x="28" y="13" width="30" height="30"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="about_icon.png" id="oF7-vL-apN" userLabel="icon">
+                                                    <rect key="frame" x="28" y="14" width="27" height="27"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                 </imageView>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Terms and Conditions" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jVP-pn-uft" userLabel="title">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jVP-pn-uft" userLabel="title">
                                                     <rect key="frame" x="76" y="17" width="138" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="11"/>
+                                                    <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="14"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -917,7 +919,7 @@ You will receive the funds two days after the event or once the buyer confirms t
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.18823529411764706" green="0.20784313725490194" blue="0.28627450980392155" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <segue destination="tzc-81-0gB" kind="custom" customClass="SideMenuSegue" id="2MU-VW-7ZH"/>
                                         </connections>
@@ -936,7 +938,7 @@ You will receive the funds two days after the event or once the buyer confirms t
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact us" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="r2J-vz-fpC" userLabel="title">
                                                     <rect key="frame" x="76" y="17" width="138" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="11"/>
+                                                    <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="14"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -947,7 +949,7 @@ You will receive the funds two days after the event or once the buyer confirms t
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.18823529411764706" green="0.20784313725490194" blue="0.28627450980392155" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -957,6 +959,15 @@ You will receive the funds two days after the event or once the buyer confirms t
                             <outlet property="delegate" destination="NC4-qB-j4L" id="gZt-fQ-nyO"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="lblTitle1" destination="HI0-7q-1TM" id="z6D-KR-GAJ"/>
+                        <outlet property="lblTitle2" destination="zH8-2r-O0H" id="ALk-5c-Sgv"/>
+                        <outlet property="lblTitle3" destination="Aa2-Tf-8Nc" id="lga-NU-eMl"/>
+                        <outlet property="lblTitle4" destination="96f-UA-5s4" id="5dP-iy-64b"/>
+                        <outlet property="lblTitle5" destination="FaZ-my-25L" id="gf3-bj-N9P"/>
+                        <outlet property="lblTitle6" destination="jVP-pn-uft" id="ine-dh-11z"/>
+                        <outlet property="lblTitle7" destination="r2J-vz-fpC" id="1Oo-uc-bi4"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wj2-Ob-mDF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -3095,18 +3106,18 @@ You will receive the funds two days after the event or once the buyer confirms t
         <image name="EventIcon.png" width="60" height="59"/>
         <image name="HomeIcon.png" width="28" height="26"/>
         <image name="ListTicketsIcon.png" width="46" height="33"/>
+        <image name="about_icon.png" width="27" height="27"/>
         <image name="add_photo_icon.png" width="76" height="75"/>
         <image name="arrow.png" width="6" height="10"/>
         <image name="arrow_white.png" width="5" height="9"/>
         <image name="blueBG.png" width="320" height="568"/>
-        <image name="bookmarked_icon.png" width="30" height="30"/>
         <image name="btnFBLogin.png" width="279" height="39"/>
         <image name="btnGuest.png" width="248" height="35"/>
         <image name="concerts.png" width="140" height="100"/>
         <image name="contact_us_icon.png" width="30" height="30"/>
         <image name="dingo_logo.png" width="43" height="50"/>
         <image name="faq_cell.png" width="320" height="252"/>
-        <image name="faq_icon.png" width="30" height="30"/>
+        <image name="faq_icon.png" width="25" height="27"/>
         <image name="faq_icon_gray.png" width="50" height="50"/>
         <image name="featured_icon.png" width="35" height="33"/>
         <image name="home_icon.png" width="28" height="26"/>
@@ -3114,7 +3125,7 @@ You will receive the funds two days after the event or once the buyer confirms t
         <image name="jz_live.png" width="59" height="60"/>
         <image name="list_tickets_icon.png" width="46" height="33"/>
         <image name="list_tickets_separator.png" width="314" height="1"/>
-        <image name="listing_icon.png" width="30" height="30"/>
+        <image name="listing_icon.png" width="29" height="25"/>
         <image name="menu_icon.png" width="25" height="25"/>
         <image name="messages_cell.png" width="320" height="83"/>
         <image name="messages_icon.png" width="32" height="26"/>
@@ -3124,10 +3135,10 @@ You will receive the funds two days after the event or once the buyer confirms t
         <image name="preview_cell.png" width="320" height="93"/>
         <image name="search_icon.png" width="26" height="26"/>
         <image name="search_icon_gray.png" width="50" height="50"/>
-        <image name="settings_icon.png" width="30" height="30"/>
+        <image name="settings_icon.png" width="27" height="27"/>
         <image name="settings_icon_gray.png" width="50" height="50"/>
         <image name="t&amp;c_icon_gray.png" width="50" height="50"/>
-        <image name="terms_icon.png" width="30" height="30"/>
+        <image name="ticket_alerts_icon.png" width="25" height="25"/>
         <image name="tickets_frame.png" width="55" height="36"/>
         <image name="tickets_frame_gray.png" width="35" height="22"/>
         <image name="tickets_frame_white.png" width="46" height="33"/>

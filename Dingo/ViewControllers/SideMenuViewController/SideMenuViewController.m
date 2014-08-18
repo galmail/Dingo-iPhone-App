@@ -11,6 +11,7 @@
 #import <MessageUI/MessageUI.h>
 
 #import "ECSlidingViewController.h"
+#import "DingoUISettings.h"
 
 static const CGFloat cellHeight = 58;
 static const NSUInteger cellsCount = 6;
@@ -19,7 +20,16 @@ static const NSUInteger contactUsRowIndex = 6;
 
 static NSString * const supportEmail = @"info@dingoapp.co.uk";
 
-@interface SideMenuViewController () <UITableViewDelegate, MFMailComposeViewControllerDelegate>
+@interface SideMenuViewController () <UITableViewDelegate, MFMailComposeViewControllerDelegate>{
+    
+    IBOutlet UILabel *lblTitle1;
+    IBOutlet UILabel *lblTitle2;
+    IBOutlet UILabel *lblTitle3;
+    IBOutlet UILabel *lblTitle4;
+    IBOutlet UILabel *lblTitle5;
+    IBOutlet UILabel *lblTitle6;
+    IBOutlet UILabel *lblTitle7;
+}
 
 @end
 
@@ -29,6 +39,18 @@ static NSString * const supportEmail = @"info@dingoapp.co.uk";
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    //font
+    lblTitle1.font = [DingoUISettings fontWithSize:12];
+    lblTitle2.font = [DingoUISettings fontWithSize:14];
+    lblTitle3.font = [DingoUISettings fontWithSize:14];
+    lblTitle4.font = [DingoUISettings fontWithSize:14];
+    lblTitle5.font = [DingoUISettings fontWithSize:14];
+    lblTitle6.font = [DingoUISettings fontWithSize:14];
+    lblTitle7.font = [DingoUISettings fontWithSize:14];
+
+    //
+    
     [self layoutTableView];
 }
 
