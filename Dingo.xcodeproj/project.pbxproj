@@ -704,6 +704,8 @@
 			isa = PBXGroup;
 			children = (
 				849C90A819A4EBC9000B585E /* AboutViewController */,
+				3AA48FFF199E1C4B00C7E8ED /* TicketDetailViewController */,
+				3F62C6C519489F9A00D7D6B1 /* TicketsViewController */,
 				3F79700D19544CC900739EE8 /* PreviewViewController */,
 				3F7C4E2B1952D59D003302A0 /* UploadPhotosViewController */,
 				3F2864F1194B29CA002A3576 /* AnswerViewController */,

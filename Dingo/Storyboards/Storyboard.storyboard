@@ -1776,6 +1776,9 @@ You will receive the funds two days after the event or once the buyer confirms t
                                 <state key="normal" image="btnTermsAndConditions.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="tzc-81-0gB" kind="push" id="y68-Lh-Y8j"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="RmA-s2-txj">
                                 <rect key="frame" x="0.0" y="96" width="320" height="48"/>
