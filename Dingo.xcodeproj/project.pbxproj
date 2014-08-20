@@ -19,6 +19,7 @@
 		3AA332FF1990F50600C8DAA8 /* SourceSansPro-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3AA332FE1990F50600C8DAA8 /* SourceSansPro-Regular.otf */; };
 		3AA3330119910D4E00C8DAA8 /* SourceSansPro-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3AA3330019910D4E00C8DAA8 /* SourceSansPro-Bold.otf */; };
 		3AA4359619911D2900D626D1 /* SourceSansPro-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3AA4359519911D2900D626D1 /* SourceSansPro-Semibold.otf */; };
+		3AA49002199E1C6700C7E8ED /* TicketDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA49001199E1C6700C7E8ED /* TicketDetailViewController.m */; };
 		3AA4B7C8199B885D008B129C /* Ticket.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA4B7C7199B885D008B129C /* Ticket.m */; };
 		3AB28AE0197BB486009C1DDC /* welcome1BG-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AB28ADF197BB486009C1DDC /* welcome1BG-568h@2x.png */; };
 		3AB28AE2197BC572009C1DDC /* welcome2BG-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AB28AE1197BC572009C1DDC /* welcome2BG-568h@2x.png */; };
@@ -27,6 +28,7 @@
 		3AB28AEF197D9DA4009C1DDC /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB28AEE197D9DA4009C1DDC /* Event.m */; };
 		3AB28AF8197D9F9D009C1DDC /* EventCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB28AF7197D9F9D009C1DDC /* EventCategory.m */; };
 		3AB28B02197EE8CE009C1DDC /* ZSTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB28B01197EE8CE009C1DDC /* ZSTextField.m */; };
+		3AC8525519A4CF9C00FCDE16 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AC8525419A4CF9C00FCDE16 /* MapKit.framework */; };
 		3AF360A619767564009A14FD /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AF360A519767564009A14FD /* FacebookSDK.framework */; };
 		3AF360AB197687E2009A14FD /* AppManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF360AA197687E2009A14FD /* AppManager.m */; };
 		3AF360AE197687F5009A14FD /* WebServiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF360AD197687F5009A14FD /* WebServiceManager.m */; };
@@ -208,6 +210,8 @@
 		3AA332FE1990F50600C8DAA8 /* SourceSansPro-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Regular.otf"; sourceTree = "<group>"; };
 		3AA3330019910D4E00C8DAA8 /* SourceSansPro-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Bold.otf"; sourceTree = "<group>"; };
 		3AA4359519911D2900D626D1 /* SourceSansPro-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Semibold.otf"; sourceTree = "<group>"; };
+		3AA49000199E1C6700C7E8ED /* TicketDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketDetailViewController.h; sourceTree = "<group>"; };
+		3AA49001199E1C6700C7E8ED /* TicketDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketDetailViewController.m; sourceTree = "<group>"; };
 		3AA4B7C6199B885D008B129C /* Ticket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ticket.h; sourceTree = "<group>"; };
 		3AA4B7C7199B885D008B129C /* Ticket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ticket.m; sourceTree = "<group>"; };
 		3AB28ADF197BB486009C1DDC /* welcome1BG-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "welcome1BG-568h@2x.png"; sourceTree = "<group>"; };
@@ -220,6 +224,7 @@
 		3AB28AF7197D9F9D009C1DDC /* EventCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventCategory.m; sourceTree = "<group>"; };
 		3AB28B00197EE8CE009C1DDC /* ZSTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSTextField.h; sourceTree = "<group>"; };
 		3AB28B01197EE8CE009C1DDC /* ZSTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSTextField.m; sourceTree = "<group>"; };
+		3AC8525419A4CF9C00FCDE16 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		3AF360A519767564009A14FD /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		3AF360A9197687E2009A14FD /* AppManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppManager.h; sourceTree = "<group>"; };
 		3AF360AA197687E2009A14FD /* AppManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppManager.m; sourceTree = "<group>"; };
@@ -449,6 +454,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3AC8525519A4CF9C00FCDE16 /* MapKit.framework in Frameworks */,
 				3A98E0AD197802EA006DA28A /* CoreLocation.framework in Frameworks */,
 				3AF360B019768CF8009A14FD /* CoreData.framework in Frameworks */,
 				3F3D56541951797900FB2774 /* MessageUI.framework in Frameworks */,
@@ -472,6 +478,15 @@
 				3AA332FE1990F50600C8DAA8 /* SourceSansPro-Regular.otf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		3AA48FFF199E1C4B00C7E8ED /* TicketDetailViewController */ = {
+			isa = PBXGroup;
+			children = (
+				3AA49000199E1C6700C7E8ED /* TicketDetailViewController.h */,
+				3AA49001199E1C6700C7E8ED /* TicketDetailViewController.m */,
+			);
+			path = TicketDetailViewController;
 			sourceTree = "<group>";
 		};
 		3AB28AEC197D9D83009C1DDC /* Models */ = {
@@ -608,6 +623,7 @@
 		3F10DDD719388E6F002D3B43 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3AC8525419A4CF9C00FCDE16 /* MapKit.framework */,
 				3A98E0AC197802EA006DA28A /* CoreLocation.framework */,
 				3AF360AF19768CF8009A14FD /* CoreData.framework */,
 				3F3D56531951797900FB2774 /* MessageUI.framework */,
@@ -668,6 +684,8 @@
 		3F10DE451938B24F002D3B43 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				3AA48FFF199E1C4B00C7E8ED /* TicketDetailViewController */,
+				3F62C6C519489F9A00D7D6B1 /* TicketsViewController */,
 				3F79700D19544CC900739EE8 /* PreviewViewController */,
 				3F7C4E2B1952D59D003302A0 /* UploadPhotosViewController */,
 				3F2864F1194B29CA002A3576 /* AnswerViewController */,
@@ -689,7 +707,6 @@
 				3F98FCC4193F66A800E6B3C4 /* SideMenuViewController */,
 				3F98FCC0193F4E7A00E6B3C4 /* SlidingViewController */,
 				3F2864E5194B177E002A3576 /* TermsViewController */,
-				3F62C6C519489F9A00D7D6B1 /* TicketsViewController */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1592,6 +1609,7 @@
 				3F62C6CE1948A2BE00D7D6B1 /* TicketCell.m in Sources */,
 				3AF360C01976AB49009A14FD /* NSString+MD5Additions.m in Sources */,
 				3AA332FC1990DDA900C8DAA8 /* ZSTextView.m in Sources */,
+				3AA49002199E1C6700C7E8ED /* TicketDetailViewController.m in Sources */,
 				3F98FCA0193F003D00E6B3C4 /* DataManager.m in Sources */,
 				3AF360B91976A629009A14FD /* NSDictionary+UrlEncoding.m in Sources */,
 				3F2864F4194B29F3002A3576 /* AnswerViewController.m in Sources */,

@@ -7,6 +7,7 @@
 //
 
 #import "TicketsViewController.h"
+#import "TicketDetailViewController.h"
 
 #import "ProposalCell.h"
 #import "DataManager.h"
@@ -47,6 +48,19 @@
         return [self buildEventCell];
     }
     
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSUInteger index = indexPath.row;
+    if (index) {
+        Ticket *data = [[DataManager shared] allTicketsByEventID:self.eventData.event_id][index-1];
+        
+        TicketDetailViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"TicketDetailViewController"];
+        viewController.event = self.eventData;
+        viewController.ticket = data;
+        
+        [self.navigationController pushViewController:viewController animated:YES];
+    }
 }
 
 #pragma mark - Navigation
