@@ -64,6 +64,9 @@ static const NSUInteger payPalCellIndex = 13;
     __weak IBOutlet UISwitch *inPersonSwitch;
     __weak IBOutlet UISwitch *electronicSwitch;
     __weak IBOutlet UISwitch *postSwitch;
+    __weak IBOutlet UISwitch *eticketSwitch;
+    __weak IBOutlet UISwitch *paperSwitch;
+    
 }
 
 @property (nonatomic, weak) IBOutlet ZSTextField *nameField;
@@ -91,8 +94,8 @@ static const NSUInteger payPalCellIndex = 13;
     [self.categoriesCell useAllCategories];
  
     
-    lblName.font = lblLocation.font = lblFromDate.font = lblToDate.font = lblPrice.font = lblFaceValue.font = lblTicketCount.font = lblTicketType.font = [DingoUISettings fontWithSize:13];
-    lblPayment.font = lbldelivery.font = [DingoUISettings fontWithSize:18];
+    lblName.font = lblLocation.font = lblFromDate.font = lblToDate.font = lblPrice.font = lblFaceValue.font = lblTicketCount.font = [DingoUISettings fontWithSize:13];
+    lblPayment.font = lbldelivery.font = lblTicketType.font = [DingoUISettings fontWithSize:18];
     
     [self.nameField setPopoverSize:CGRectMake(0, self.nameField.frame.origin.y + self.nameField.frame.size.height, 320.0, 130.0)];
     [self.locationField setPopoverSize:CGRectMake(0, self.locationField.frame.origin.y + self.locationField.frame.size.height, 320.0, 130.0)];
@@ -380,12 +383,7 @@ static const NSUInteger payPalCellIndex = 13;
             requiredInfoFilled = NO;
             lblTicketCount.textColor = [UIColor redColor];
         }
-        
-        if (self.ticketTypeField.text.length == 0) {
-            requiredInfoFilled = NO;
-            lblTicketType.textColor = [UIColor redColor];
-        }
-        
+
         if (!inPersonSwitch.on && !electronicSwitch.on && !postSwitch.on ) {
             requiredInfoFilled = NO;
             lbldelivery.textColor = [UIColor redColor];
@@ -399,6 +397,11 @@ static const NSUInteger payPalCellIndex = 13;
         if (!paypalSwitch.on && !cashSwitch.on) {
             requiredInfoFilled = NO;
             lblPayment.textColor = [UIColor redColor];
+        }
+        
+        if (!eticketSwitch.on && !paperSwitch.on) {
+            requiredInfoFilled = NO;
+            lblTicketType.textColor = [UIColor redColor];
         }
         
         if (!requiredInfoFilled) {
@@ -458,7 +461,21 @@ static const NSUInteger payPalCellIndex = 13;
         
         ticket.delivery_options = deliveryOptions;
         
-        ticket.ticket_type = self.ticketTypeField.text;
+        NSString *ticketTypes = @"";
+        if (eticketSwitch.on) {
+            ticketTypes = @"e-Ticket";
+        }
+        
+        if (paperSwitch.on) {
+            if (ticketTypes.length > 0) {
+                ticketTypes = [ticketTypes stringByAppendingFormat:@", %@", @"Paper"];
+            } else {
+                ticketTypes = @"Paper";
+            }
+        }
+        
+        ticket.ticket_type = ticketTypes;
+        
         ticket.ticket_desc = self.descriptionTextView.text;
         
         // selected category
@@ -684,6 +701,21 @@ static const NSUInteger payPalCellIndex = 13;
     if(postSwitch.on) {
         lbldelivery.textColor = [UIColor darkGrayColor];
     }
+}
+
+- (IBAction)eticketChanged:(id)sender {
+    
+    if(eticketSwitch.on) {
+        lblTicketType.textColor = [UIColor darkGrayColor];
+    }
+}
+
+- (IBAction)paperChanged:(id)sender {
+    
+    if(paperSwitch.on) {
+        lblTicketType.textColor = [UIColor darkGrayColor];
+    }
+
 }
 
 #pragma mark UIAlertView delegates
