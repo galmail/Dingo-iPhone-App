@@ -921,7 +921,7 @@ You will receive the funds two days after the event or once the buyer confirms t
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
-                                            <segue destination="tzc-81-0gB" kind="custom" customClass="SideMenuSegue" id="2MU-VW-7ZH"/>
+                                            <segue destination="dYC-GJ-niM" kind="custom" customClass="SideMenuSegue" id="b3q-fk-hhG"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="58" id="flt-Yu-fpM" userLabel="contact_us" customClass="SideMenuCell">
@@ -1731,6 +1731,52 @@ You will receive the funds two days after the event or once the buyer confirms t
             </objects>
             <point key="canvasLocation" x="3975" y="-811"/>
         </scene>
+        <!--About View Controller - About-->
+        <scene sceneID="AkQ-0P-YXh">
+            <objects>
+                <viewController storyboardIdentifier="AboutViewController" id="dYC-GJ-niM" customClass="AboutViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bmK-jr-ySY">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="about_logo.png" id="3O5-to-gOo">
+                                <rect key="frame" x="71" y="223" width="179" height="122"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="nMH-hU-ujR">
+                                <rect key="frame" x="0.0" y="35" width="320" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="btnTermsAndConditions.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="RmA-s2-txj">
+                                <rect key="frame" x="0.0" y="96" width="320" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="btnPrivacyPolicy.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.92549019607843142" green="0.92156862745098034" blue="0.90980392156862744" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="About" id="nIa-xo-X8u">
+                        <barButtonItem key="leftBarButtonItem" image="nav_back_icon.png" id="T4k-PH-4o8" userLabel="back">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="back" destination="dYC-GJ-niM" id="afs-xt-OzR"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AAk-3u-d5G" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3619" y="1326"/>
+        </scene>
         <!--Terms View Controller - Terms and Conditions-->
         <scene sceneID="7JT-iQ-Hkd">
             <objects>
@@ -1777,7 +1823,7 @@ You will receive the funds two days after the event or once the buyer confirms t
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Yg-YK-2xE" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="fOv-Fo-HO9"/>
             </objects>
-            <point key="canvasLocation" x="3987" y="1349"/>
+            <point key="canvasLocation" x="3987" y="1326"/>
         </scene>
         <!--View Controller - FAQ's-->
         <scene sceneID="joS-fd-sKr">
@@ -3107,12 +3153,15 @@ You will receive the funds two days after the event or once the buyer confirms t
         <image name="HomeIcon.png" width="28" height="26"/>
         <image name="ListTicketsIcon.png" width="46" height="33"/>
         <image name="about_icon.png" width="27" height="27"/>
+        <image name="about_logo.png" width="179" height="121"/>
         <image name="add_photo_icon.png" width="76" height="75"/>
         <image name="arrow.png" width="6" height="10"/>
         <image name="arrow_white.png" width="5" height="9"/>
         <image name="blueBG.png" width="320" height="568"/>
         <image name="btnFBLogin.png" width="279" height="39"/>
         <image name="btnGuest.png" width="248" height="35"/>
+        <image name="btnPrivacyPolicy.png" width="320" height="48"/>
+        <image name="btnTermsAndConditions.png" width="320" height="48"/>
         <image name="concerts.png" width="140" height="100"/>
         <image name="contact_us_icon.png" width="30" height="30"/>
         <image name="dingo_logo.png" width="43" height="50"/>
