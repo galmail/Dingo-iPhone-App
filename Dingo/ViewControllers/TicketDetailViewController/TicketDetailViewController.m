@@ -14,6 +14,7 @@
 #import "AppManager.h"
 #import <MapKit/MapKit.h>
 #import "DataManager.h"
+#import <Social/Social.h>
 
 static const NSUInteger photosCellIndex = 1;
 
@@ -123,6 +124,14 @@ static const NSUInteger photosCellIndex = 1;
 }
 
 - (IBAction)share:(id)sender {
+    
+    NSString *text = [NSString stringWithFormat:@"I am selling tickets to %@, check out Dingo app if you're interested in buying %@" , self.event.name, @"http://dingoapp.co.uk" ];
+   
+    
+    UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:@[text] applicationActivities:nil];
+    activityController.excludedActivityTypes = @[UIActivityTypeAssignToContact, UIActivityTypePrint, UIActivityTypeAddToReadingList, UIActivityTypeAirDrop, UIActivityTypeCopyToPasteboard];
+    
+    [self presentViewController:activityController animated:YES completion:nil];
 }
 
 @end
