@@ -10,12 +10,15 @@
 #import "EventCategory.h"
 #import "Event.h"
 #import "Ticket.h"
+#import "Alert.h"
 
 @interface DataManager : NSObject
 
 + (DataManager *)shared;
++ (NSString*)generateGUID;
 
 - (NSArray *)allEvents;
+- (NSArray *)allAlerts;
 - (NSArray *)featuredEvents;
 - (void)allEventsWithCompletion:( void (^) (BOOL finished))handler;
 - (NSUInteger)eventsDateRange;
@@ -55,4 +58,6 @@
 - (EventCategory *)dataByCategoryID:(NSString *)categoryID;
 - (NSUInteger)categoryIndexByName:(NSString *)name;
 
+- (void)save;
+- (void)addOrUpdateAlert:(NSDictionary *)info;
 @end
