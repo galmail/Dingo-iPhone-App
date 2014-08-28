@@ -7,13 +7,11 @@
 //
 
 #import "ManageListsCell.h"
-
+#import "Ticket.h"
 #import "DingoUISettings.h"
+#import "DataManager.h"
 
 @interface ManageListsCell ()
-
-@property (weak, nonatomic) IBOutlet UILabel *offersLabel;
-@property (nonatomic) NSUInteger offers;
 
 @end
 
@@ -21,16 +19,17 @@
 
 #pragma mark - Setters
 
-- (void)setOffers:(NSUInteger)offers {
-    self.offersLabel.text = [NSString stringWithFormat:@"Offers (%lu)", (unsigned long)offers];
-    self.offersLabel.textColor = offers ? [DingoUISettings titleBackgroundColor] : [DingoUISettings unimportantItemColor];
-}
 
 #pragma mark - Custom
 
-- (void)buildWithData:(NSDictionary *)data {
-    [super buildWithData:data];
-    self.offers = [data[@"offers"] floatValue];
+- (void)buildWithTicketData:(Ticket *)data {
+    [super buildWithTicketData:data];
+    
+    Event *event = [[DataManager shared] eventByID:data.event_id];
+    
+    [self buildWithData:event];
+    
+//    self.offers = [data[@"offers"] floatValue];
 }
 
 @end

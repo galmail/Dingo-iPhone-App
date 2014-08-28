@@ -33,9 +33,18 @@ const CGFloat eventCellHeight = 78;
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    self.nameLabel.font = [DingoUISettings boldFontWithSize:24];
-    self.locationLabel.font = [DingoUISettings fontWithSize:14];
-    self.timeLabel.font = [DingoUISettings fontWithSize:12];
+    if ([NSStringFromClass([self class]) isEqual:@"EventCell"]) {
+        self.nameLabel.font = [DingoUISettings boldFontWithSize:24];
+        self.locationLabel.font = [DingoUISettings fontWithSize:14];
+        self.timeLabel.font = [DingoUISettings fontWithSize:12];
+    }
+    
+    if ([NSStringFromClass([self class]) isEqual:@"ManageListsCell"]) {
+        self.nameLabel.font = [DingoUISettings fontWithSize:18];
+        self.locationLabel.font = [DingoUISettings fontWithSize:14];
+        self.timeLabel.font = [DingoUISettings fontWithSize:12];
+    }
+    
 }
 
 #pragma mark - Setters
