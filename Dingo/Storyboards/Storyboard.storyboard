@@ -822,7 +822,7 @@ You will receive the funds two days after the event or once the buyer confirms t
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
-                                            <segue destination="AHi-D2-7Wp" kind="custom" customClass="SideMenuSegue" id="iwK-Kb-reE"/>
+                                            <segue destination="Qo6-cz-KGE" kind="custom" customClass="SideMenuSegue" id="wvv-Mc-o8B"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="58" id="Ngs-GE-Gfw" userLabel="manage_listings" customClass="SideMenuCell">
@@ -2043,7 +2043,177 @@ You will receive the funds two days after the event or once the buyer confirms t
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0ZO-Wg-diS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3975" y="-1511"/>
+            <point key="canvasLocation" x="3603" y="-1429"/>
+        </scene>
+        <!--Ticket Alerts View Controller - Ticket Alerts-->
+        <scene sceneID="dBD-xR-87A">
+            <objects>
+                <viewController storyboardIdentifier="TicketAlertsViewController" id="Qo6-cz-KGE" customClass="TicketAlertsViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Voc-si-8C8">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyTicketAlerts.png" id="tVn-s8-rpH">
+                                <rect key="frame" x="18" y="10" width="285" height="209"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="22" sectionFooterHeight="22" id="enQ-SO-ZtC">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TicketAlertCell" id="Ubx-57-Bbk" customClass="TicketAlertCell">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="80"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ubx-57-Bbk" id="tUA-0v-wUg">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tickertAlertCellBellIcon.png" id="kLZ-ZD-3yu" userLabel="alert_icon">
+                                                    <rect key="frame" x="9" y="10" width="59" height="59"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ticketAlertCellArrow.png" id="3mz-p7-vmS" userLabel="arrow">
+                                                    <rect key="frame" x="290" y="31" width="10" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="MF3-O7-rgh">
+                                                    <rect key="frame" x="93" y="14" width="133" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Q4M-M4-h1b">
+                                                    <rect key="frame" x="93" y="43" width="144" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <color key="textColor" red="0.1333333333" green="0.1333333333" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="lblDescription" destination="Q4M-M4-h1b" id="N2e-4L-XC0"/>
+                                            <outlet property="lblDescriptionLabel" destination="MF3-O7-rgh" id="XoD-Oa-zoo"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Qo6-cz-KGE" id="dRq-Ir-pQn"/>
+                                    <outlet property="delegate" destination="Qo6-cz-KGE" id="ZTp-dd-ysR"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.92549019607843142" green="0.92156862745098034" blue="0.90980392156862744" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Ticket Alerts" id="BaB-Mp-SZk">
+                        <barButtonItem key="leftBarButtonItem" image="nav_back_icon.png" id="Hpu-dE-RMg" userLabel="back">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="back" destination="Qo6-cz-KGE" id="8Ze-g2-hcm"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="btnNavBarAdd.png" id="Cfk-36-06A" userLabel="add">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="addNewTicketAlert:" destination="Qo6-cz-KGE" id="fzY-i7-LG5"/>
+                                <segue destination="sF4-cH-j8V" kind="push" id="vMY-ji-Qen"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="imgEmptyAlerts" destination="tVn-s8-rpH" id="c6C-ZM-Hcd"/>
+                        <outlet property="tblTicketAlerts" destination="enQ-SO-ZtC" id="2AJ-mT-9C5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MEB-xj-Qmg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3975" y="-1468"/>
+        </scene>
+        <!--Add Ticket Alert View Controller - Ticket Alerts-->
+        <scene sceneID="F4N-3Z-id9">
+            <objects>
+                <viewController storyboardIdentifier="AddTicketAlertViewController" id="sF4-cH-j8V" customClass="AddTicketAlertViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wOh-oM-SUw">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ta_bg_description.png" id="akp-kx-rKt">
+                                <rect key="frame" x="0.0" y="10" width="320" height="35"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="tpe-CL-BST">
+                                <rect key="frame" x="0.0" y="350" width="320" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
+                                <state key="normal" image="btnDeleteAlert.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnDeleteTap:" destination="sF4-cH-j8V" eventType="touchUpInside" id="5gZ-vJ-rF8"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="YTc-QP-iAJ">
+                                <rect key="frame" x="0.0" y="302" width="320" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
+                                <state key="normal" image="btnConfirmAlert.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnConfirmTap:" destination="sF4-cH-j8V" eventType="touchUpInside" id="X7I-nJ-y9J"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Description" minimumFontSize="17" id="7hH-Ao-aD6">
+                                <rect key="frame" x="93" y="13" width="219" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="sF4-cH-j8V" id="4VO-u6-5ka"/>
+                                </connections>
+                            </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ta_big_bell.png" id="deD-pe-Uz3">
+                                <rect key="frame" x="109" y="157" width="102" height="102"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dingo will notify you when a new ticket with this description is listed." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="d2b-Cc-WZf">
+                                <rect key="frame" x="20" y="67" width="281" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.92549019607843142" green="0.92156862745098034" blue="0.90980392156862744" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Ticket Alerts" id="dxn-82-AXk">
+                        <barButtonItem key="leftBarButtonItem" image="nav_back_icon.png" id="zUC-dY-zoO" userLabel="back">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="back" destination="sF4-cH-j8V" id="JN0-wO-r2e"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="btnConfirm" destination="YTc-QP-iAJ" id="rOK-KR-fZx"/>
+                        <outlet property="btnDelete" destination="tpe-CL-BST" id="dqT-jc-SoP"/>
+                        <outlet property="lblHint" destination="d2b-Cc-WZf" id="yhu-BI-VAQ"/>
+                        <outlet property="txtDescription" destination="7hH-Ao-aD6" id="v1z-hl-IOo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pbb-V6-Atm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4360" y="-1468"/>
         </scene>
         <!--Search Tickets View Controller - Search tickets-->
         <scene sceneID="8qX-p6-TVf">
@@ -3600,13 +3770,17 @@ You will receive the funds two days after the event or once the buyer confirms t
         <image name="arrow.png" width="6" height="10"/>
         <image name="arrow_white.png" width="5" height="9"/>
         <image name="blueBG.png" width="320" height="568"/>
+        <image name="btnConfirmAlert.png" width="248" height="40"/>
+        <image name="btnDeleteAlert.png" width="248" height="40"/>
         <image name="btnFBLogin.png" width="279" height="39"/>
         <image name="btnGuest.png" width="248" height="35"/>
+        <image name="btnNavBarAdd.png" width="17" height="18"/>
         <image name="btnPrivacyPolicy.png" width="320" height="48"/>
         <image name="btnTermsAndConditions.png" width="320" height="48"/>
         <image name="concerts.png" width="140" height="100"/>
         <image name="contact_us_icon.png" width="30" height="30"/>
         <image name="dingo_logo.png" width="43" height="50"/>
+        <image name="emptyTicketAlerts.png" width="285" height="209"/>
         <image name="faq_cell.png" width="320" height="252"/>
         <image name="faq_icon.png" width="25" height="27"/>
         <image name="faq_icon_gray.png" width="50" height="50"/>
@@ -3629,6 +3803,10 @@ You will receive the funds two days after the event or once the buyer confirms t
         <image name="settings_icon.png" width="27" height="27"/>
         <image name="settings_icon_gray.png" width="50" height="50"/>
         <image name="t&amp;c_icon_gray.png" width="50" height="50"/>
+        <image name="ta_bg_description.png" width="320" height="35"/>
+        <image name="ta_big_bell.png" width="102" height="102"/>
+        <image name="tickertAlertCellBellIcon.png" width="59" height="59"/>
+        <image name="ticketAlertCellArrow.png" width="10" height="18"/>
         <image name="ticket_alerts_icon.png" width="25" height="25"/>
         <image name="tickets_frame_gray.png" width="35" height="22"/>
         <image name="tickets_frame_white.png" width="46" height="33"/>

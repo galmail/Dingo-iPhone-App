@@ -41,7 +41,16 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     
     return events;
 }
-
+- (NSArray *)allAlerts {
+    
+    NSManagedObjectContext *context = [AppManager sharedManager].managedObjectContext;
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Alerts"];
+    //    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES]];
+    NSError *error = nil;
+    NSArray *alerts = [context executeFetchRequest:request error:&error];
+    
+    return alerts;
+}
 - (NSArray *)featuredEvents {
     
     NSManagedObjectContext *context = [AppManager sharedManager].managedObjectContext;
@@ -129,7 +138,7 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     NSDate *date = [formatter dateFromString:info[@"date"]];
     event.date = date;
     event.endDate = [formatter dateFromString:info[@"end_date"]];
- 
+    
 }
 
 - (NSUInteger)eventsDateRange {
@@ -443,7 +452,7 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     if (tickets.count) {
         return tickets;
     }
-
+    
     return nil;
 }
 
@@ -515,7 +524,7 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     }
     ticket.user_id = @([info[@"user_id"] intValue]);
     ticket.user_name = info[@"user_name"];
-
+    
     NSString *user_photo_url = info[@"user_photo"];
     user_photo_url = [user_photo_url stringByReplacingOccurrencesOfString:@"%26" withString:@"&"];
     NSData  *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:user_photo_url]];
@@ -656,7 +665,7 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
 #pragma mark - Categories Requests
 
 - (NSArray *)allCategories {
-
+    
     NSManagedObjectContext *context = [AppManager sharedManager].managedObjectContext;
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"EventCategory"];
     NSError *error = nil;
@@ -668,7 +677,7 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
 - (void)allCategoriesWithCompletion:( void (^) (BOOL finished))handler {
     
     [WebServiceManager categories:nil completion:^(id response, NSError *error) {
-    
+        
         if (response[@"categories"]) {
             NSArray *categories = response[@"categories"];
             
@@ -718,7 +727,7 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     
     category.name = name;
     category.thumbUrl = thumbUrl;
-   
+    
 }
 
 - (EventCategory *)dataByCategoryName:(NSString *)name {
@@ -736,7 +745,7 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     NSManagedObjectContext *context = [AppManager sharedManager].managedObjectContext;
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"EventCategory"];
     request.predicate = [NSPredicate predicateWithFormat:@"category_id == %@", categoryID];
-
+    
     NSError *error = nil;
     NSArray *categories = [context executeFetchRequest:request error:&error];
     if (categories.count > 0) {
@@ -829,7 +838,7 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
         }
         
         curDate = date;
-    
+        
         (*delegate)(event, groupIndex);
     }
     
@@ -856,5 +865,38 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
         (*delegate)(dict, groupIndex);
     }
 }
+#pragma mark Ticket Alerts
+- (void)addOrUpdateAlert:(NSDictionary *)info {
+    NSManagedObjectContext *context = [AppManager sharedManager].managedObjectContext;
+    
+    NSString *alert_id = info[@"alert_id"];
+    NSString *alert_description = info[@"alert_description"];
+    
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Alerts"];
+    request.predicate = [NSPredicate predicateWithFormat:@"alert_id == %@", alert_id];
+    
+    NSError *error = nil;
+    Alert *alert = nil;
+    NSArray *alerts = [context executeFetchRequest:request error:&error];
+    if (alerts.count > 0) {
+        alert = alerts[0];
+    } else {
+        alert = [NSEntityDescription insertNewObjectForEntityForName:@"Alerts" inManagedObjectContext:context];
+        alert.alert_id = alert_id;
+    }
+    
+    alert.alert_description = alert_description;
+    
+}
 
++ (NSString*)generateGUID{
+    CFUUIDRef theUUID = CFUUIDCreate(NULL);
+    CFStringRef string = CFUUIDCreateString(NULL, theUUID);
+    CFRelease(theUUID);
+    return [NSString stringWithFormat:@"%@", string];
+}
+
+- (void)save{
+    [[AppManager sharedManager] saveContext];
+}
 @end
