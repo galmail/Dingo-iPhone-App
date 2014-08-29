@@ -8,4 +8,6 @@
 
 @interface SearchResultsViewController : UITableViewController
 
+@property(nonatomic,retain)NSArray * searchedEvents;
+
 @end
