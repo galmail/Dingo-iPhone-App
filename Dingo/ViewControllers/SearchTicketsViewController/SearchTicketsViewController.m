@@ -119,10 +119,11 @@
                         NSDate *date = [formatter dateFromString:[dict valueForKey:@"date"]];
                         event.date = date;
                         event.event_desc = [dict valueForKey:@"description"];
-//                        event.end_date = [dict valueForKey:@"end_date"];
+                        date = [formatter dateFromString:[dict valueForKey:@"end_date"]];
+                        event.endDate = date;
                         event.featured = [dict valueForKey:@"featured"];
                         event.event_id = [dict valueForKey:@"id"];
-//                        event. = [dict valueForKey:@"min_price"];
+                        event.fromPrice = [NSNumber numberWithInt:[[dict valueForKey:@"min_price"] integerValue]];
                         event.name = [dict valueForKey:@"name"];
                         event.thumbUrl = [dict valueForKey:@"thumb"];
                         
