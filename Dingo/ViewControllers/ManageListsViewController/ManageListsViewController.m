@@ -12,6 +12,7 @@
 #import "SectionHeaderView.h"
 #import "DataManager.h"
 #import "ECSlidingViewController.h"
+#import "TicketDetailViewController.h"
 
 @interface ManageListsViewController ()
 
@@ -80,7 +81,21 @@
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-//    NSIndexPath *selectedCellPath = [self adjustedPath:[self.tableView indexPathForSelectedRow]];
+    
+    if([segue.identifier isEqual:@"TicketDetailSegue"]) {
+        NSIndexPath *selectedCellPath = [self.tableView indexPathForSelectedRow];
+        NSUInteger index = selectedCellPath.row;
+        if (selectedCellPath.section) {
+            index += self.firstSectionCellsCount;
+        }
+        
+        Ticket *data = [[DataManager shared] userTickets][index];
+
+        TicketDetailViewController *vc = (TicketDetailViewController *)segue.destinationViewController;
+        vc.ticket = data;
+        vc.event = [[DataManager shared] eventByID:data.event_id];
+    }
+    
 }
 
 - (IBAction)back {
