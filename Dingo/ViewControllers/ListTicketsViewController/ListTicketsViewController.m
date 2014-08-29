@@ -94,8 +94,11 @@ static const NSUInteger payPalCellIndex = 13;
     [self.categoriesCell useAllCategories];
  
     
-    lblName.font = lblLocation.font = lblFromDate.font = lblToDate.font = lblPrice.font = lblFaceValue.font = lblTicketCount.font = [DingoUISettings fontWithSize:13];
-    lblPayment.font = lbldelivery.font = lblTicketType.font = [DingoUISettings fontWithSize:18];
+    lblName.font = lblLocation.font = lblFromDate.font = lblToDate.font = lblPrice.font = lblFaceValue.font = lblTicketCount.font = lblTicketType.font = [DingoUISettings fontWithSize:14];
+    lblPayment.font = lbldelivery.font =  [DingoUISettings fontWithSize:18];
+    
+    
+    self.nameField.font = self.locationField.font = self.startDateField.font = self.endDateField.font = self.priceField.font = self.faceValueField.font = self.ticketsCountField.font = [DingoUISettings fontWithSize:15];
     
     [self.nameField setPopoverSize:CGRectMake(0, self.nameField.frame.origin.y + self.nameField.frame.size.height, 320.0, 130.0)];
     [self.locationField setPopoverSize:CGRectMake(0, self.locationField.frame.origin.y + self.locationField.frame.size.height, 320.0, 130.0)];
@@ -195,7 +198,10 @@ static const NSUInteger payPalCellIndex = 13;
 #pragma mark - UploadPhotosVCDelegate
 
 - (void)displayPhotos:(NSArray *)array mainPhoto:(UIImage*)mainPhoto {
+
+    
     self.photosPreviewCell.photos = [array mutableCopy];
+    
     event.thumb = UIImagePNGRepresentation(mainPhoto);
     [self.tableView reloadData];
     if (array.count > 0 || mainPhoto) {
@@ -274,6 +280,7 @@ static const NSUInteger payPalCellIndex = 13;
         if (self.locationField.text.length > 0) {
             lblLocation.textColor = [UIColor blackColor];
             self.changed = YES;
+            
         }
         
     }
@@ -337,7 +344,7 @@ static const NSUInteger payPalCellIndex = 13;
 
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
     
-    if ([[AppManager sharedManager].userInfo[@"name"] isEqualToString:@"Guest"]) {
+    if ([[AppManager sharedManager].userInfo[@"name"] isEqualToString:@"Guest"] && [identifier isEqualToString:@"PreviewSegue"]) {
         
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Facebook login is required when selling tickets to promote a safe community. Don’t worry, we won’t share anything on your wall." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Login", nil];
         [alert show];
@@ -619,13 +626,13 @@ static const NSUInteger payPalCellIndex = 13;
     formatter.dateFormat = @"hh:mm dd/MM/yyyy";
     
     if (picker == startDatePicker) {
-        [self.startDateField resignFirstResponder];
         self.startDateField.text = [formatter stringFromDate:date];
+        [self.startDateField resignFirstResponder];
     }
 
     if (picker == endDatePicker) {
-        [self.endDateField resignFirstResponder];
         self.endDateField.text = [formatter stringFromDate:date];
+        [self.endDateField resignFirstResponder];
     }
 }
 

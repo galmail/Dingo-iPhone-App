@@ -270,19 +270,31 @@ UITableViewController *tableViewController;
         }
         
         [tableViewController.tableView setSeparatorColor:self.seperatorColor];
+        
+        UIView *superView = [self superview];
+        CGRect boundViewframe = [self frame];
+        
+        if ([superView isKindOfClass:NSClassFromString(@"UITableViewCellContentView")]){
+            superView = superView.superview.superview.superview.superview;
+            boundViewframe = [superView convertRect:boundViewframe fromView:self];
+        }
+        
         if (self.popoverSize.size.height == 0.0) {
             //PopoverSize frame has not been set. Use default parameters instead.
             CGRect frameForPresentation = [self frame];
-            frameForPresentation.origin.y += self.frame.size.height;
+            frameForPresentation.origin.y += boundViewframe.size.height;
             frameForPresentation.size.height = 200;
             [tableViewController.tableView setFrame:frameForPresentation];
         }
         else{
-            [tableViewController.tableView setFrame:self.popoverSize];
+            CGRect frameForPresentation = self.popoverSize;
+            frameForPresentation.origin.y += boundViewframe.origin.y;
+            
+            [tableViewController.tableView setFrame:frameForPresentation];
             [tableViewController.tableView setContentSize:self.popoverSize.size];
         }
         
-        [[self superview] addSubview:tableViewController.tableView];
+        [superView addSubview:tableViewController.tableView];
 
         tableViewController.tableView.alpha = 0.0;
         [UIView animateWithDuration:0.3

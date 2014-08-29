@@ -26,6 +26,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    
+    [[DataManager shared] userTicketsWithCompletion:^(BOOL finished) {
+        [self.tableView reloadData];
+    }];
 }
 
 #pragma mark - UITableViewDelegate
@@ -58,15 +62,15 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section) {
-        return [[DataManager shared] eventsAfterDate:[NSDate date]].count;
+        return [[DataManager shared] ticketsAfterDate:[NSDate date]].count;
     } else {
-        self.firstSectionCellsCount = [[DataManager shared] eventsBeforeDate:[NSDate date]].count;
+        self.firstSectionCellsCount = [[DataManager shared] ticketsBeforeDate:[NSDate date]].count;
         return self.firstSectionCellsCount;
     }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return [[DataManager shared] eventsDateRange];;
+    return [[DataManager shared] eventsDateRange];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -102,8 +106,8 @@
         index += self.firstSectionCellsCount;
     }
     
-    Event *data = [[DataManager shared] allEvents][index];
-    [cell buildWithData:data];
+    Ticket *data = [[DataManager shared] userTickets][index];
+    [cell buildWithTicketData:data];
     return cell;
 }
 

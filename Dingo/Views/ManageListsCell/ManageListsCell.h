@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Xetra. All rights reserved.
 //
 
-#import "EventCell.h"
+#import "TicketCell.h"
 
-@interface ManageListsCell : EventCell
+@interface ManageListsCell : TicketCell
 
 @end

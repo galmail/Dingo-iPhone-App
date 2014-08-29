@@ -426,6 +426,20 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     return date;
 }
 
+- (Event*)eventByID:(NSString*)eventID {
+    
+    NSArray *events = [self allEvents];
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"event_id == %@", eventID];
+    
+    NSArray *filteredEvents = [events filteredArrayUsingPredicate:predicate];
+    if (filteredEvents.count) {
+        return filteredEvents[0];
+    }
+    
+    return nil;
+}
+
 + (NSString *)eventLocation:(Event *)data {
     
     NSString *location = @"";
@@ -544,6 +558,48 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     ticket.user_photo = data;
     
 }
+
+- (NSArray *)userTickets {
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Ticket"];
+    request.predicate = [NSPredicate predicateWithFormat:@"user_id == %@", [AppManager sharedManager].userInfo[@"id"]];
+    NSArray *tickets = [[AppManager sharedManager].managedObjectContext executeFetchRequest:request error:nil];
+    
+    if (tickets.count) {
+        return tickets;
+    }
+    
+    return nil;
+}
+
+- (void)userTicketsWithCompletion:( void (^) (BOOL finished))handler {
+    
+    NSDictionary *params = @{@"user_token":[AppManager sharedManager].token};
+    [WebServiceManager tickets:params completion:^(id response, NSError *error) {
+        if (response[@"tickets"]) {
+            NSArray *tickets = response[@"tickets"];
+            
+            // remove deleted tickets from local database
+            NSArray *ticketIDs = [tickets valueForKey:@"id"];
+            NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Ticket"];
+            request.predicate = [NSPredicate predicateWithFormat:@"NOT (ticket_id IN %@)", ticketIDs];
+            
+            NSArray *ticketsToRemove = [[AppManager sharedManager].managedObjectContext executeFetchRequest:request error:nil];
+            if (ticketsToRemove.count) {
+                for (Ticket *toRemove in ticketsToRemove) {
+                    [[AppManager sharedManager].managedObjectContext deleteObject:toRemove];
+                }
+            }
+            
+            for (NSDictionary *ticket in tickets) {
+                [self addOrUpdateTicket:ticket];
+            }
+            
+            [[AppManager sharedManager] saveContext];
+        }
+        handler(YES);
+    }];
+}
+
 
 - (NSArray *)allFriends {
     static NSArray *friends = nil;

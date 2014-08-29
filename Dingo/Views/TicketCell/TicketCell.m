@@ -34,7 +34,17 @@ const CGFloat featureCellHeight = 140;
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    self.startPriceLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:36];
+    NSLog(@"Class %@", NSStringFromClass([self class]));
+    
+    
+    if ([NSStringFromClass([self class]) isEqual:@"TicketCell"]) {
+        self.startPriceLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:36];
+    }
+    
+    if ([NSStringFromClass([self class]) isEqual:@"ManageListsCell"]) {
+        self.startPriceLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:18];
+    }
+    
     
 }
 
@@ -45,9 +55,15 @@ const CGFloat featureCellHeight = 140;
     [formatter setMaximumFractionDigits:2];
     NSString *strPrice = [formatter stringFromNumber:[NSNumber numberWithFloat:price]];
     
-    if ([event.tickets intValue] > 1) {
-        self.startPriceLabel.text = [NSString stringWithFormat:@"from £%@", strPrice];
-    } else {
+    if ([NSStringFromClass([self class]) isEqual:@"TicketCell"]) {
+    
+        if ([event.tickets intValue] > 1) {
+            self.startPriceLabel.text = [NSString stringWithFormat:@"from £%@", strPrice];
+        } else {
+            self.startPriceLabel.text = [NSString stringWithFormat:@"£%@", strPrice];
+        }
+    } else {    
+    
         self.startPriceLabel.text = [NSString stringWithFormat:@"£%@", strPrice];
     }
 }

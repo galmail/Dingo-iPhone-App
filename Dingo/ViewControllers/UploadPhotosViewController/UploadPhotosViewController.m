@@ -131,6 +131,7 @@ static const NSUInteger mainPhotoDownloadedCellIndex = 3;
 
 - (IBAction)removeMainPhoto {
     self.mainPhotoImageView.image = nil;
+    self.mainPhoto = nil;
     [self.tableView beginUpdates];
     [self.tableView endUpdates];
 }

@@ -177,23 +177,17 @@
                         <sections>
                             <tableViewSection id="xAj-k4-fq7" userLabel="section">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="80" id="Lpc-Gw-akk" userLabel="title">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="20" id="Lpc-Gw-akk" userLabel="title">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="20"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Lpc-Gw-akk" id="wmg-UN-Im4">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="19"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tickets_frame.png" id="dgi-YQ-PY5" userLabel="icon_view">
-                                                    <rect key="frame" x="130" y="22" width="60" height="36"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                </imageView>
-                                            </subviews>
                                             <color key="backgroundColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="36" id="CuV-wf-094" userLabel="name">
-                                        <rect key="frame" x="0.0" y="80" width="320" height="36"/>
+                                        <rect key="frame" x="0.0" y="20" width="320" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CuV-wf-094" id="plj-vg-4nE">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="35"/>
@@ -220,7 +214,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="36" id="zNw-WT-IFY" userLabel="location">
-                                        <rect key="frame" x="0.0" y="116" width="320" height="36"/>
+                                        <rect key="frame" x="0.0" y="56" width="320" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zNw-WT-IFY" id="aQa-QS-vLh">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="35"/>
@@ -247,7 +241,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="36" id="Tim-ht-Kl4" userLabel="from">
-                                        <rect key="frame" x="0.0" y="152" width="320" height="36"/>
+                                        <rect key="frame" x="0.0" y="92" width="320" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Tim-ht-Kl4" id="BwE-mR-BlM">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="35"/>
@@ -274,7 +268,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="36" id="yvx-5g-Qee" userLabel="to">
-                                        <rect key="frame" x="0.0" y="188" width="320" height="36"/>
+                                        <rect key="frame" x="0.0" y="128" width="320" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yvx-5g-Qee" id="R4F-nh-Gut">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="35"/>
@@ -301,7 +295,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="36" id="Acg-t3-FuR" userLabel="price">
-                                        <rect key="frame" x="0.0" y="224" width="320" height="36"/>
+                                        <rect key="frame" x="0.0" y="164" width="320" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Acg-t3-FuR" id="f9W-bO-y7O">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="35"/>
@@ -328,7 +322,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="36" id="0G6-hu-OVc" userLabel="face_value">
-                                        <rect key="frame" x="0.0" y="260" width="320" height="36"/>
+                                        <rect key="frame" x="0.0" y="200" width="320" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0G6-hu-OVc" id="E0R-78-XN1">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="35"/>
@@ -355,7 +349,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="36" id="9V0-ht-c1n" userLabel="tickets_count">
-                                        <rect key="frame" x="0.0" y="296" width="320" height="36"/>
+                                        <rect key="frame" x="0.0" y="236" width="320" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9V0-ht-c1n" id="YE9-RF-Ru3">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="35"/>
@@ -382,7 +376,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="126" id="ULl-Fy-wpr" userLabel="ticket_type">
-                                        <rect key="frame" x="0.0" y="332" width="320" height="126"/>
+                                        <rect key="frame" x="0.0" y="272" width="320" height="126"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ULl-Fy-wpr" id="fHo-VX-hxM">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="125"/>
@@ -435,7 +429,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CategoriesCell" rowHeight="140" id="pSm-UF-4tn" userLabel="cats_cell" customClass="CategorySelectionCell">
-                                        <rect key="frame" x="0.0" y="458" width="320" height="140"/>
+                                        <rect key="frame" x="0.0" y="398" width="320" height="140"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pSm-UF-4tn" id="IQE-OS-XE9">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="139"/>
@@ -487,7 +481,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="PhotoPreview" rowHeight="120" id="NIR-m4-Mbl" userLabel="photos_preview" customClass="PhotosPreviewCell">
-                                        <rect key="frame" x="0.0" y="598" width="320" height="120"/>
+                                        <rect key="frame" x="0.0" y="538" width="320" height="120"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NIR-m4-Mbl" id="uTv-6F-aJO">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="119"/>
@@ -496,7 +490,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="50" id="gsq-uB-F9m" userLabel="edit_photos">
-                                        <rect key="frame" x="0.0" y="718" width="320" height="50"/>
+                                        <rect key="frame" x="0.0" y="658" width="320" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gsq-uB-F9m" id="3Pv-9v-xYc">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
@@ -520,7 +514,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="60" id="Cx6-da-9WP" userLabel="upload_photos">
-                                        <rect key="frame" x="0.0" y="768" width="320" height="60"/>
+                                        <rect key="frame" x="0.0" y="708" width="320" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Cx6-da-9WP" id="1a6-cJ-D3g">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
@@ -544,7 +538,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="240" id="x9w-r8-lYm" userLabel="payment_method">
-                                        <rect key="frame" x="0.0" y="828" width="320" height="240"/>
+                                        <rect key="frame" x="0.0" y="768" width="320" height="240"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="x9w-r8-lYm" id="XEr-Dx-b6o">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="239"/>
@@ -606,7 +600,7 @@ You will receive the funds two days after the event or once the buyer confirms t
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="160" id="iY9-ie-fUm" userLabel="delivery">
-                                        <rect key="frame" x="0.0" y="1068" width="320" height="160"/>
+                                        <rect key="frame" x="0.0" y="1008" width="320" height="160"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iY9-ie-fUm" id="f7f-1F-BhZ">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="159"/>
@@ -672,7 +666,7 @@ You will receive the funds two days after the event or once the buyer confirms t
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="80" id="wNJ-JT-hqY" userLabel="description">
-                                        <rect key="frame" x="0.0" y="1228" width="320" height="80"/>
+                                        <rect key="frame" x="0.0" y="1168" width="320" height="80"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wNJ-JT-hqY" id="m4S-5v-Oui">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
@@ -697,7 +691,7 @@ You will receive the funds two days after the event or once the buyer confirms t
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="60" id="A1I-8k-N3d" userLabel="preview">
-                                        <rect key="frame" x="0.0" y="1308" width="320" height="60"/>
+                                        <rect key="frame" x="0.0" y="1248" width="320" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="A1I-8k-N3d" id="KPT-58-DNw">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
@@ -1702,20 +1696,41 @@ You will receive the funds two days after the event or once the buyer confirms t
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Offers (100)" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GXK-v7-rIj" userLabel="offers">
-                                            <rect key="frame" x="234" y="16" width="62" height="46"/>
+                                        <view contentMode="scaleToFill" id="V5n-mf-40V" userLabel="tickets_info">
+                                            <rect key="frame" x="212" y="-12" width="108" height="101"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.23921568627450979" green="0.56470588235294117" blue="0.67450980392156867" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$7" textAlignment="right" lineBreakMode="headTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="1" id="hHs-fo-Qei" userLabel="start_price">
+                                                    <rect key="frame" x="24" y="20" width="53" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" red="0.27450980390000002" green="0.27450980390000002" blue="0.27450980390000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="per ticket" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="1" id="tii-kG-HhH" userLabel="label">
+                                                    <rect key="frame" x="20" y="37" width="56" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="11.5"/>
+                                                    <color key="textColor" red="0.59607843140000005" green="0.59607843140000005" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tickets_frame_gray.png" id="qZR-Z7-MJD" userLabel="frame">
+                                                    <rect key="frame" x="42" y="59" width="35" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10+" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="1" id="dAp-yA-PJ7" userLabel="tickets_count">
+                                                    <rect key="frame" x="32" y="59" width="56" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="11.5"/>
+                                                    <color key="textColor" red="0.59607843140000005" green="0.59607843140000005" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow.png" id="UqH-eL-oru" userLabel="arrow">
                                             <rect key="frame" x="304" y="34" width="6" height="10"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                        </imageView>
-                                        <imageView hidden="YES" userInteractionEnabled="NO" alpha="0.55000001192092896" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EventCell.png" id="7DW-of-2uJ" userLabel="mockup">
-                                            <rect key="frame" x="0.0" y="-1" width="320" height="79"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
@@ -1724,7 +1739,8 @@ You will receive the funds two days after the event or once the buyer confirms t
                                     <outlet property="iconImageView" destination="AVt-oa-XDI" id="fpC-Ph-0oW"/>
                                     <outlet property="locationLabel" destination="LhU-ok-NmY" id="kF3-J3-4MM"/>
                                     <outlet property="nameLabel" destination="HOA-wS-jpy" id="3gz-pa-Ex9"/>
-                                    <outlet property="offersLabel" destination="GXK-v7-rIj" id="joa-SN-8aO"/>
+                                    <outlet property="startPriceLabel" destination="hHs-fo-Qei" id="vYJ-ho-Jox"/>
+                                    <outlet property="ticketsCountLabel" destination="dAp-yA-PJ7" id="2Fw-Hy-zyU"/>
                                     <outlet property="timeLabel" destination="eat-3g-L5O" id="VIt-wT-0Mu"/>
                                     <segue destination="31b-9R-D47" kind="push" id="wgj-ln-2ms"/>
                                 </connections>
@@ -3778,7 +3794,6 @@ You will receive the funds two days after the event or once the buyer confirms t
         <image name="tickertAlertCellBellIcon.png" width="59" height="59"/>
         <image name="ticketAlertCellArrow.png" width="10" height="18"/>
         <image name="ticket_alerts_icon.png" width="25" height="25"/>
-        <image name="tickets_frame.png" width="55" height="36"/>
         <image name="tickets_frame_gray.png" width="35" height="22"/>
         <image name="tickets_frame_white.png" width="46" height="33"/>
         <image name="upload_photos_icon.png" width="65" height="65"/>

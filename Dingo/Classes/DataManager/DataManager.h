@@ -25,6 +25,7 @@
 - (NSArray *)eventsBeforeDate:(NSDate *)date;
 - (NSArray *)eventsAfterDate:(NSDate *)date;
 + (NSString *)eventLocation:(Event *)data;
+- (Event*)eventByID:(NSString*)eventID;
 
 - (NSUInteger)eventsGroupsCount;
 - (NSUInteger)featuredEventsGroupsCount;
@@ -44,6 +45,11 @@
 
 - (NSArray *)allTicketsByEventID:(NSString *)eventID;
 - (void)allTicketsByEventID:(NSString *)eventID completion:( void (^) (BOOL finished))handler;
+- (NSArray *)userTickets;
+- (void)userTicketsWithCompletion:( void (^) (BOOL finished))handler;
+- (NSArray *)ticketsBeforeDate:(NSDate *)date;
+- (NSArray *)ticketsAfterDate:(NSDate *)date;
+
 - (NSArray *)allFriends;
 - (NSArray *)allCities;
 
