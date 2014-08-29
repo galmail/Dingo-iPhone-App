@@ -29,7 +29,7 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    NSDate *date = [[DataManager shared] eventGroupDateByIndex:section];
+    NSDate *date = [[DataManager shared] eventFromSearchGroupDateByIndex:section Events:self.searchedEvents];
     NSString *title = [DingoUtilites eventFormattedDate:date];
     static NSString * const sectionHeader = @"SectionHeaderView";
     return [SectionHeaderView buildWithTitle:title fromXibNamed:sectionHeader];
@@ -42,11 +42,11 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [[DataManager shared] eventsCountWithGroupIndex:section];
+    return [[DataManager shared] eventsFromSearchCountWithGroupIndex:section Events:self.searchedEvents];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return [[DataManager shared] eventsGroupsCount];
+    return [[DataManager shared] eventsFromSearchGroupsCount:self.searchedEvents];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -71,7 +71,7 @@
     TicketCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellId];
     [cell loadUIFromXib];
     
-    Event *data = [[DataManager shared] eventDescriptionByIndexPath:path];
+    Event *data = [[DataManager shared] eventFromSearchDescriptionByIndexPath:path Events:self.searchedEvents];
     [cell buildWithData:data];
     return cell;
 }

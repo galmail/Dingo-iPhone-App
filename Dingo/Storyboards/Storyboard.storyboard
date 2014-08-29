@@ -2223,30 +2223,15 @@ You will receive the funds two days after the event or once the buyer confirms t
                         <sections>
                             <tableViewSection id="xju-S8-i6C" userLabel="section">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="80" id="yyG-h6-gaG" userLabel="title">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yyG-h6-gaG" id="dsK-3q-vug">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="search_icon_gray.png" id="eXG-2D-ycz" userLabel="icon_view">
-                                                    <rect key="frame" x="135" y="15" width="50" height="50"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                </imageView>
-                                            </subviews>
-                                            <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="36" id="Z3Z-i5-lvf" userLabel="keywords">
-                                        <rect key="frame" x="0.0" y="80" width="320" height="36"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Z3Z-i5-lvf" id="xcK-g3-oLD">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="35"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Key words:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4Lx-Ji-vxJ" userLabel="label">
-                                                    <rect key="frame" x="12" y="7" width="129" height="21"/>
+                                                    <rect key="frame" x="9" y="7" width="129" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
                                                     <color key="textColor" red="0.27450980390000002" green="0.27450980390000002" blue="0.27450980390000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -2265,8 +2250,52 @@ You will receive the funds two days after the event or once the buyer confirms t
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="250" id="qL9-gM-DPJ" userLabel="category" customClass="CategorySelectionCell">
+                                        <rect key="frame" x="0.0" y="36" width="320" height="250"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qL9-gM-DPJ" id="ipp-P4-xkl">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="249"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="e8W-1q-Grv" userLabel="label">
+                                                    <rect key="frame" x="13" y="9" width="257" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="18"/>
+                                                    <color key="textColor" red="0.27450980392156865" green="0.27450980392156865" blue="0.27450980392156865" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <collectionView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="ZNQ-OU-jy4">
+                                                    <rect key="frame" x="0.0" y="38" width="320" height="272"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="0.0" id="Vrf-tV-iFC">
+                                                        <size key="itemSize" width="140" height="85"/>
+                                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                        <inset key="sectionInset" minX="13" minY="0.0" maxX="13" maxY="0.0"/>
+                                                    </collectionViewFlowLayout>
+                                                    <cells>
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CategoryCell" id="yO2-I0-yz8" customClass="CategoryCell">
+                                                            <rect key="frame" x="13" y="0.0" width="140" height="84"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                                <rect key="frame" x="0.0" y="0.0" width="140" height="84"/>
+                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                            </view>
+                                                            <size key="customSize" width="140" height="84"/>
+                                                        </collectionViewCell>
+                                                    </cells>
+                                                    <connections>
+                                                        <outlet property="dataSource" destination="qL9-gM-DPJ" id="Shs-QP-NgN"/>
+                                                    </connections>
+                                                </collectionView>
+                                            </subviews>
+                                            <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="36" id="C4f-b7-ixw" userLabel="city">
-                                        <rect key="frame" x="0.0" y="116" width="320" height="36"/>
+                                        <rect key="frame" x="0.0" y="286" width="320" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="C4f-b7-ixw" id="Xbu-7H-1A7">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="35"/>
@@ -2293,7 +2322,7 @@ You will receive the funds two days after the event or once the buyer confirms t
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="36" id="pfh-gM-aut" userLabel="date">
-                                        <rect key="frame" x="0.0" y="152" width="320" height="36"/>
+                                        <rect key="frame" x="0.0" y="322" width="320" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pfh-gM-aut" id="8YW-9X-6nr">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="35"/>
@@ -2319,53 +2348,8 @@ You will receive the funds two days after the event or once the buyer confirms t
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="328" id="qL9-gM-DPJ" userLabel="category" customClass="CategorySelectionCell">
-                                        <rect key="frame" x="0.0" y="188" width="320" height="328"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qL9-gM-DPJ" id="ipp-P4-xkl">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="327"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="e8W-1q-Grv" userLabel="label">
-                                                    <rect key="frame" x="13" y="9" width="257" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="18"/>
-                                                    <color key="textColor" red="0.27450980392156865" green="0.27450980392156865" blue="0.27450980392156865" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <collectionView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="ZNQ-OU-jy4">
-                                                    <rect key="frame" x="-1" y="42" width="320" height="272"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="0.0" id="Vrf-tV-iFC">
-                                                        <size key="itemSize" width="140" height="85"/>
-                                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                                        <inset key="sectionInset" minX="13" minY="0.0" maxX="13" maxY="0.0"/>
-                                                    </collectionViewFlowLayout>
-                                                    <cells>
-                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CategoryCell" id="yO2-I0-yz8" customClass="CategoryCell">
-                                                            <rect key="frame" x="13" y="0.0" width="140" height="84"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                                                <rect key="frame" x="0.0" y="0.0" width="140" height="84"/>
-                                                                <autoresizingMask key="autoresizingMask"/>
-                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                            </view>
-                                                            <size key="customSize" width="140" height="84"/>
-                                                        </collectionViewCell>
-                                                    </cells>
-                                                    <connections>
-                                                        <outlet property="dataSource" destination="qL9-gM-DPJ" id="Shs-QP-NgN"/>
-                                                        <outlet property="delegate" destination="qL9-gM-DPJ" id="WLN-dX-knf"/>
-                                                    </connections>
-                                                </collectionView>
-                                            </subviews>
-                                            <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="60" id="gD6-Z9-Vj0" userLabel="search">
-                                        <rect key="frame" x="0.0" y="516" width="320" height="60"/>
+                                        <rect key="frame" x="0.0" y="358" width="320" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gD6-Z9-Vj0" id="yZW-xB-O6Y">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
@@ -2382,7 +2366,6 @@ You will receive the funds two days after the event or once the buyer confirms t
                                                     </state>
                                                     <connections>
                                                         <action selector="search" destination="CS2-sn-rok" eventType="touchUpInside" id="QGq-ce-dY4"/>
-                                                        <segue destination="s98-3l-4sY" kind="push" id="TVj-zP-IqG"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -2398,10 +2381,14 @@ You will receive the funds two days after the event or once the buyer confirms t
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="690"/>
                     <connections>
-                        <outlet property="categoriesCell" destination="qL9-gM-DPJ" id="lii-OC-VWa"/>
+                        <outlet property="categoriesCell" destination="qL9-gM-DPJ" id="SCv-Ch-P4g"/>
                         <outlet property="cityField" destination="cNV-2F-GX7" id="LtG-NJ-b8d"/>
                         <outlet property="dateField" destination="PrN-wP-ODh" id="rMV-LK-5iN"/>
                         <outlet property="keywordsField" destination="935-TB-Jy5" id="Z4w-tg-CAD"/>
+                        <outlet property="lblCategory" destination="e8W-1q-Grv" id="Hrh-Zt-hb9"/>
+                        <outlet property="lblCity" destination="hvR-UN-a6R" id="Vlx-N3-fOf"/>
+                        <outlet property="lblDate" destination="36d-kx-rjF" id="yey-ge-uGN"/>
+                        <outlet property="lblKeyWords" destination="4Lx-Ji-vxJ" id="SYk-Rx-yk3"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jed-92-4z5" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2671,9 +2658,9 @@ You will receive the funds two days after the event or once the buyer confirms t
         <!--Search Results View Controller - Search Results-->
         <scene sceneID="Qby-84-gyM">
             <objects>
-                <tableViewController id="s98-3l-4sY" customClass="SearchResultsViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SearchResultsViewController" id="s98-3l-4sY" customClass="SearchResultsViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="20" sectionFooterHeight="1" id="H75-By-GnF">
-                        <rect key="frame" x="0.0" y="64" width="320" height="626"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.89411764709999997" green="0.89411764709999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="separatorColor" red="0.57254901960000004" green="0.57254901960000004" blue="0.57254901960000004" alpha="1" colorSpace="calibratedRGB"/>
@@ -3795,7 +3782,6 @@ You will receive the funds two days after the event or once the buyer confirms t
         <image name="or_icon.png" width="43" height="43"/>
         <image name="preview_cell.png" width="320" height="93"/>
         <image name="search_icon.png" width="26" height="26"/>
-        <image name="search_icon_gray.png" width="50" height="50"/>
         <image name="settings_icon.png" width="27" height="27"/>
         <image name="settings_icon_gray.png" width="50" height="50"/>
         <image name="t&amp;c_icon_gray.png" width="50" height="50"/>

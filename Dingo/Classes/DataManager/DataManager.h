@@ -66,4 +66,9 @@
 
 - (void)save;
 - (void)addOrUpdateAlert:(NSDictionary *)info;
+
+- (Event *)eventFromSearchDescriptionByIndexPath:(NSIndexPath *)path Events:(NSArray*)searchedEvents;
+- (NSUInteger)eventsFromSearchCountWithGroupIndex:(NSUInteger)group Events:(NSArray*)searchedEvents;
+- (NSUInteger)eventsFromSearchGroupsCount:(NSArray*)searchedEvents;
+- (NSDate *)eventFromSearchGroupDateByIndex:(NSUInteger)groupIndex Events:(NSArray*)searchedEvents;
 @end

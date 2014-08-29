@@ -190,39 +190,18 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     return [result copy];
 }
 
-- (NSArray *)ticketsBeforeDate:(NSDate *)date {
-    NSArray *tickets = [self userTickets];
-    NSMutableArray *result = [NSMutableArray array];
-    
-    for (Ticket *ticket in tickets) {
-        
-        Event *event = [self eventByID:ticket.event_id];
-        NSDate *curDate = event.date;
-
-        if ([DingoUtilites daysBetween:curDate and:date] > 0) {
-            [result addObject:ticket];
+//T.A. from search result
+- (NSUInteger)eventsFromSearchGroupsCount:(NSArray*)searchedEvents {
+    __block NSUInteger groupsCount = 0;
+    GroupsDelegate delegate = ^(Event *eventDescription, NSUInteger groupIndex) {
+        if (groupIndex > groupsCount) {
+            groupsCount = groupIndex;
         }
-    }
+    };
     
-    return [result copy];
+    [self enumerateEventFromSearchGroups:&delegate Events:searchedEvents];
+    return groupsCount + 1;
 }
-
-- (NSArray *)ticketsAfterDate:(NSDate *)date {
-    NSArray *tickets = [self userTickets];
-    NSMutableArray *result = [NSMutableArray array];
-    
-    for (Ticket *ticket in tickets) {
-        
-        Event *event = [self eventByID:ticket.event_id];
-        NSDate *curDate = event.date;
-        if ([DingoUtilites daysBetween:date and:curDate] >= 0) {
-            [result addObject:ticket];
-        }
-    }
-    
-    return [result copy];
-}
-
 
 - (NSUInteger)eventsGroupsCount {
     __block NSUInteger groupsCount = 0;
@@ -262,6 +241,19 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     
 }
 
+//T.A. from search result
+- (NSUInteger)eventsFromSearchCountWithGroupIndex:(NSUInteger)group Events:(NSArray*)searchedEvents{
+    __block NSUInteger eventsCount = 0;
+    GroupsDelegate delegate = ^(Event *eventDescription, NSUInteger groupIndex) {
+        if (groupIndex == group) {
+            eventsCount++;
+        }
+    };
+    
+    [self enumerateEventFromSearchGroups:&delegate Events:searchedEvents];
+    return eventsCount;
+}
+
 - (NSUInteger)eventsCountWithGroupIndex:(NSUInteger)group {
     __block NSUInteger eventsCount = 0;
     GroupsDelegate delegate = ^(Event *eventDescription, NSUInteger groupIndex) {
@@ -299,6 +291,25 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     return eventsCount;
 }
 
+
+- (Event *)eventFromSearchDescriptionByIndexPath:(NSIndexPath *)path Events:(NSArray*)searchedEvents{
+    __block uint eventsIndex = 0;
+    __block Event *event = nil;
+    GroupsDelegate delegate = ^(Event *eventDescription, NSUInteger groupIndex) {
+        if (groupIndex != path.section) {
+            return;
+        }
+        
+        if (eventsIndex++ != path.row) {
+            return;
+        }
+        
+        event = eventDescription;
+    };
+    
+    [self enumerateEventFromSearchGroups:&delegate Events:searchedEvents];
+    return event;
+}
 
 - (Event *)eventDescriptionByIndexPath:(NSIndexPath *)path {
     __block uint eventsIndex = 0;
@@ -356,6 +367,22 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     [self enumerateEventGroups:&delegate categories:categories];
     return event;
 }
+
+
+- (NSDate *)eventFromSearchGroupDateByIndex:(NSUInteger)groupIndex Events:(NSArray*)searchedEvents{
+    __block NSDate *date = nil;
+    GroupsDelegate delegate = ^(Event *eventDescription, NSUInteger grIndx) {
+        if (groupIndex != grIndx) {
+            return;
+        }
+        
+        date = eventDescription.date;
+    };
+    
+    [self enumerateEventFromSearchGroups:&delegate Events:searchedEvents];
+    return date;
+}
+
 
 - (NSDate *)eventGroupDateByIndex:(NSUInteger)groupIndex {
     __block NSDate *date = nil;
@@ -773,6 +800,31 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     NSString *filePath = [[NSBundle mainBundle] pathForResource:plistName ofType:@"plist"];
     return [[NSArray alloc] initWithContentsOfFile:filePath];
 }
+
+
+//T.A. from search result
+- (void)enumerateEventFromSearchGroups:(GroupsDelegate *)delegate Events:(NSArray*)searchedEvents {
+    if (!delegate) {
+        return;
+    }
+    
+    NSArray *events = searchedEvents;
+    NSDate *curDate = nil;
+    uint groupIndex = 0;
+    
+    for (Event *event in events) {
+        NSDate *date = event.date;
+        
+        if (curDate && [DingoUtilites daysBetween:curDate and:date]) {
+            groupIndex++;
+        }
+        
+        curDate = date;
+        (*delegate)(event, groupIndex);
+    }
+}
+
+
 
 - (void)enumerateEventGroups:(GroupsDelegate *)delegate {
     if (!delegate) {
