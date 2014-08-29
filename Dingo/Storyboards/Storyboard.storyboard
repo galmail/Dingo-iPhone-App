@@ -2288,6 +2288,7 @@ You will receive the funds two days after the event or once the buyer confirms t
                                                     </cells>
                                                     <connections>
                                                         <outlet property="dataSource" destination="qL9-gM-DPJ" id="Shs-QP-NgN"/>
+                                                        <outlet property="delegate" destination="qL9-gM-DPJ" id="wSO-vT-0ae"/>
                                                     </connections>
                                                 </collectionView>
                                             </subviews>

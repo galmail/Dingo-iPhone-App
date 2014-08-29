@@ -12,6 +12,7 @@
 #import "CategorySelectionCell.h"
 #import "DingoUISettings.h"
 #import "DataManager.h"
+#import "ZSLoadingView.h"
 
 @interface SearchTicketsViewController () <UITextFieldDelegate, UITableViewDataSource,CategorySelectionDelegate>{
     
@@ -45,7 +46,7 @@
     [super viewWillAppear:animated];
     self.parentViewController.navigationItem.title = self.navigationItem.title;
     self.categoriesCell.multipleSelection = YES;
- //   self.categoriesCell.delegate = self;
+    self.categoriesCell.delegate = self;
 }
 
 #pragma mark - UITextFieldDelegate
@@ -84,12 +85,14 @@
         [params setValue:self.dateField.text forKey:@"start_date"];
     }
     if (selectedCategories.count>0) {
-        [params setValue:selectedCategories forKey:@"category_ids"];
+        [params setValue:selectedCategories forKey:@"category_ids[]"];
     }
     
-    
+    ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Searching..."];
+    [loadingView show];
     [WebServiceManager searchEvents:params completion:^(id response, NSError *error) {
         NSLog(@"response %@", response);
+        [loadingView hide];
         if (error ) {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alert show];
