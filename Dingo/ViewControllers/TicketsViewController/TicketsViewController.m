@@ -12,6 +12,7 @@
 #import "ProposalCell.h"
 #import "DataManager.h"
 #import "DingoUISettings.h"
+#import "ZSLoadingView.h"
 
 @interface TicketsViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -25,7 +26,10 @@
     [super viewDidLoad];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
+    ZSLoadingView *loadingView =[[ZSLoadingView alloc] initWithLabel:@"Loading tickets ..."];
+    [loadingView show];
     [[DataManager shared] allTicketsByEventID:self.eventData.event_id completion:^(BOOL finished) {
+        [loadingView hide];
         [self.tableView reloadData];
     }];
 }

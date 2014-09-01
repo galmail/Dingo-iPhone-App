@@ -13,7 +13,7 @@
 #import "DataManager.h"
 #import "ECSlidingViewController.h"
 #import "TicketDetailViewController.h"
-
+#import "ZSLoadingView.h"
 @interface ManageListsViewController ()
 
 @property (nonatomic) NSUInteger firstSectionCellsCount;
@@ -28,8 +28,12 @@
     [super viewDidLoad];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
+    ZSLoadingView *loadingView =[[ZSLoadingView alloc] initWithLabel:@"Loading tickets ..."];
+    [loadingView show];
+
     [[DataManager shared] userTicketsWithCompletion:^(BOOL finished) {
         [self.tableView reloadData];
+        [loadingView hide];
     }];
 }
 

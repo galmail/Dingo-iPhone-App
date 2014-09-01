@@ -24,5 +24,6 @@
 @property (nonatomic, assign) id<ZSDatePickerDelegate> delegate;
 
 - (id)initWithDate:(NSDate*)date;
+- (void)setDate:(NSDate*)date;
 
 @end
