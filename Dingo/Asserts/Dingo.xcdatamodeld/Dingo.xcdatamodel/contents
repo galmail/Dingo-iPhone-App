@@ -31,6 +31,7 @@
         <attribute name="event_id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="face_value_per_ticket" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="number_of_tickets" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="offers_count" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="payment_options" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="photo1" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="photo2" optional="YES" attributeType="Binary" syncable="YES"/>
@@ -48,6 +49,6 @@
         <element name="Alerts" positionX="-27" positionY="153" width="128" height="75"/>
         <element name="Event" positionX="-54" positionY="18" width="128" height="253"/>
         <element name="EventCategory" positionX="-63" positionY="-18" width="128" height="103"/>
-        <element name="Ticket" positionX="-36" positionY="117" width="128" height="285"/>
+        <element name="Ticket" positionX="-36" positionY="117" width="128" height="300"/>
     </elements>
 </model>

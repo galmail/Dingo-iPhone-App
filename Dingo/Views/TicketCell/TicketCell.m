@@ -33,10 +33,7 @@ const CGFloat featureCellHeight = 140;
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    
-    NSLog(@"Class %@", NSStringFromClass([self class]));
-    
-    
+ 
     if ([NSStringFromClass([self class]) isEqual:@"TicketCell"]) {
         self.startPriceLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:36];
     }

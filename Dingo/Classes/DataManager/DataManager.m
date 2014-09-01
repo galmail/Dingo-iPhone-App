@@ -190,6 +190,37 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     return [result copy];
 }
 
+- (NSArray *)ticketsBeforeDate:(NSDate *)date {
+    NSArray *tickets = [self userTickets];
+    NSMutableArray *result = [NSMutableArray array];
+
+    for (Ticket *ticket in tickets) {
+        Event *event = [self eventByID:ticket.event_id];
+        NSDate *curDate = event.date;
+        if ([DingoUtilites daysBetween:curDate and:date] > 0) {
+            [result addObject:tickets];
+        }
+    }
+    
+    return [result copy];
+}
+
+- (NSArray *)ticketsAfterDate:(NSDate *)date {
+    NSArray *tickets = [self userTickets];
+    NSMutableArray *result = [NSMutableArray array];
+    
+    for (Ticket *ticket in tickets) {
+        Event *event = [self eventByID:ticket.event_id];
+        NSDate *curDate = event.date;
+        if ([DingoUtilites daysBetween:date and:curDate] >= 0) {
+            [result addObject:tickets];
+        }
+    }
+    
+    return [result copy];
+}
+
+
 //T.A. from search result
 - (NSUInteger)eventsFromSearchGroupsCount:(NSArray*)searchedEvents {
     __block NSUInteger groupsCount = 0;
@@ -556,6 +587,8 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     user_photo_url = [user_photo_url stringByReplacingOccurrencesOfString:@"%26" withString:@"&"];
     NSData  *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:user_photo_url]];
     ticket.user_photo = data;
+    
+    ticket.offers_count =@([info[@"number_of_offers"] intValue]);
     
 }
 

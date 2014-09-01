@@ -7,11 +7,13 @@
 //
 
 #import "Ticket.h"
+#import "Event.h"
 
 @interface ListTicketsViewController : UITableViewController
 
 @property (nonatomic) BOOL changed;
 
 - (void)saveDraft;
+- (void)setTicket:(Ticket*)_ticket event:(Event*)_event;
 
 @end

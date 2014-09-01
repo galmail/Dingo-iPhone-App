@@ -12,6 +12,11 @@
 		3A98E0A91977D78B006DA28A /* btnFBLogin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A98E0A81977D78B006DA28A /* btnFBLogin@2x.png */; };
 		3A98E0AB1977E53F006DA28A /* btnGuest@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A98E0AA1977E53F006DA28A /* btnGuest@2x.png */; };
 		3A98E0AD197802EA006DA28A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A98E0AC197802EA006DA28A /* CoreLocation.framework */; };
+		3A9D206319B1993900FE163E /* btnEditTicket@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A9D206219B1993900FE163E /* btnEditTicket@2x.png */; };
+		3A9D206719B1A21D00FE163E /* BottomEditBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9D206619B1A21D00FE163E /* BottomEditBar.m */; };
+		3A9D206919B1EB3A00FE163E /* BottomEditBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A9D206819B1EB3A00FE163E /* BottomEditBar.xib */; };
+		3A9D206B19B20A1900FE163E /* bottomBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A9D206A19B20A1900FE163E /* bottomBar@2x.png */; };
+		3A9D206E19B39DF600FE163E /* Ticket.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9D206D19B39DF600FE163E /* Ticket.m */; };
 		3A9DB5521986E0E100861899 /* ZSLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9DB5511986E0E100861899 /* ZSLoadingView.m */; };
 		3A9DB5581988245300861899 /* ZSDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9DB5571988245300861899 /* ZSDatePicker.m */; };
 		3A9DB55B1988F2D000861899 /* ZSPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9DB55A1988F2D000861899 /* ZSPickerView.m */; };
@@ -21,7 +26,6 @@
 		3AA3330119910D4E00C8DAA8 /* SourceSansPro-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3AA3330019910D4E00C8DAA8 /* SourceSansPro-Bold.otf */; };
 		3AA4359619911D2900D626D1 /* SourceSansPro-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3AA4359519911D2900D626D1 /* SourceSansPro-Semibold.otf */; };
 		3AA49002199E1C6700C7E8ED /* TicketDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA49001199E1C6700C7E8ED /* TicketDetailViewController.m */; };
-		3AA4B7C8199B885D008B129C /* Ticket.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA4B7C7199B885D008B129C /* Ticket.m */; };
 		3AB28AE0197BB486009C1DDC /* welcome1BG-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AB28ADF197BB486009C1DDC /* welcome1BG-568h@2x.png */; };
 		3AB28AE2197BC572009C1DDC /* welcome2BG-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AB28AE1197BC572009C1DDC /* welcome2BG-568h@2x.png */; };
 		3AB28AE6197BC9E9009C1DDC /* welcome3BG-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AB28AE5197BC9E9009C1DDC /* welcome3BG-568h@2x.png */; };
@@ -229,6 +233,13 @@
 		3A98E0A81977D78B006DA28A /* btnFBLogin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnFBLogin@2x.png"; sourceTree = "<group>"; };
 		3A98E0AA1977E53F006DA28A /* btnGuest@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnGuest@2x.png"; sourceTree = "<group>"; };
 		3A98E0AC197802EA006DA28A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		3A9D206219B1993900FE163E /* btnEditTicket@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnEditTicket@2x.png"; sourceTree = "<group>"; };
+		3A9D206519B1A21D00FE163E /* BottomEditBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BottomEditBar.h; sourceTree = "<group>"; };
+		3A9D206619B1A21D00FE163E /* BottomEditBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BottomEditBar.m; sourceTree = "<group>"; };
+		3A9D206819B1EB3A00FE163E /* BottomEditBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BottomEditBar.xib; sourceTree = "<group>"; };
+		3A9D206A19B20A1900FE163E /* bottomBar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bottomBar@2x.png"; sourceTree = "<group>"; };
+		3A9D206C19B39DF600FE163E /* Ticket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ticket.h; sourceTree = "<group>"; };
+		3A9D206D19B39DF600FE163E /* Ticket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ticket.m; sourceTree = "<group>"; };
 		3A9DB5501986E0E100861899 /* ZSLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSLoadingView.h; sourceTree = "<group>"; };
 		3A9DB5511986E0E100861899 /* ZSLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSLoadingView.m; sourceTree = "<group>"; };
 		3A9DB5561988245300861899 /* ZSDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSDatePicker.h; sourceTree = "<group>"; };
@@ -243,8 +254,6 @@
 		3AA4359519911D2900D626D1 /* SourceSansPro-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Semibold.otf"; sourceTree = "<group>"; };
 		3AA49000199E1C6700C7E8ED /* TicketDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketDetailViewController.h; sourceTree = "<group>"; };
 		3AA49001199E1C6700C7E8ED /* TicketDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketDetailViewController.m; sourceTree = "<group>"; };
-		3AA4B7C6199B885D008B129C /* Ticket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ticket.h; sourceTree = "<group>"; };
-		3AA4B7C7199B885D008B129C /* Ticket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ticket.m; sourceTree = "<group>"; };
 		3AB28ADF197BB486009C1DDC /* welcome1BG-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "welcome1BG-568h@2x.png"; sourceTree = "<group>"; };
 		3AB28AE1197BC572009C1DDC /* welcome2BG-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "welcome2BG-568h@2x.png"; sourceTree = "<group>"; };
 		3AB28AE5197BC9E9009C1DDC /* welcome3BG-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "welcome3BG-568h@2x.png"; sourceTree = "<group>"; };
@@ -536,6 +545,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3A9D206119B1992E00FE163E /* Tickets */ = {
+			isa = PBXGroup;
+			children = (
+				3A9D206A19B20A1900FE163E /* bottomBar@2x.png */,
+				3A9D206219B1993900FE163E /* btnEditTicket@2x.png */,
+			);
+			path = Tickets;
+			sourceTree = "<group>";
+		};
+		3A9D206419B1A20200FE163E /* BottomEditBar */ = {
+			isa = PBXGroup;
+			children = (
+				3A9D206519B1A21D00FE163E /* BottomEditBar.h */,
+				3A9D206619B1A21D00FE163E /* BottomEditBar.m */,
+				3A9D206819B1EB3A00FE163E /* BottomEditBar.xib */,
+			);
+			path = BottomEditBar;
+			sourceTree = "<group>";
+		};
 		3AA332FD1990F50600C8DAA8 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -562,10 +590,10 @@
 				3AB28AEE197D9DA4009C1DDC /* Event.m */,
 				3AB28AF6197D9F9D009C1DDC /* EventCategory.h */,
 				3AB28AF7197D9F9D009C1DDC /* EventCategory.m */,
-				3AA4B7C6199B885D008B129C /* Ticket.h */,
-				3AA4B7C7199B885D008B129C /* Ticket.m */,
 				848CD5D619A74F5900B16DAF /* Alert.h */,
 				848CD5D719A74F5900B16DAF /* Alert.m */,
+				3A9D206C19B39DF600FE163E /* Ticket.h */,
+				3A9D206D19B39DF600FE163E /* Ticket.m */,
 			);
 			name = Models;
 			path = Classes/Models;
@@ -794,6 +822,7 @@
 		3F10DE491938B24F002D3B43 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				3A9D206419B1A20200FE163E /* BottomEditBar */,
 				3F7C4E3319543601003302A0 /* PhotosPreviewCell */,
 				3F7C4E2F19530895003302A0 /* TicketPhotoCell */,
 				3F98FCA8193F031300E6B3C4 /* CategoryCell */,
@@ -969,6 +998,7 @@
 		3F62C6391948318E00D7D6B1 /* Asserts */ = {
 			isa = PBXGroup;
 			children = (
+				3A9D206119B1992E00FE163E /* Tickets */,
 				841C508B19A6082400BD4141 /* TicketAlerts */,
 				84513F0319A4F2AC00C4A254 /* About */,
 				3AF360B119768F15009A14FD /* Dingo.xcdatamodeld */,
@@ -1609,6 +1639,7 @@
 				3F62C68A1948318F00D7D6B1 /* messages_icon@2x.png in Resources */,
 				3F7970121954523300739EE8 /* preview_cell@2x.png in Resources */,
 				3F62C6A01948318F00D7D6B1 /* offers_cells@2x.png in Resources */,
+				3A9D206319B1993900FE163E /* btnEditTicket@2x.png in Resources */,
 				3F79701C19547C9F00739EE8 /* TicketPhotoCell.xib in Resources */,
 				3F98FCFA1942130100E6B3C4 /* SectionHeaderView.xib in Resources */,
 				84A457001970182C000ABA73 /* welcome2BG@2x.png in Resources */,
@@ -1651,6 +1682,7 @@
 				3F62C6B81948318F00D7D6B1 /* settings_icon@2x.png in Resources */,
 				841C50B019A626BB00BD4141 /* btnDeleteAlert@2x.png in Resources */,
 				3F62C6A71948318F00D7D6B1 /* mike_scott@2x.png in Resources */,
+				3A9D206919B1EB3A00FE163E /* BottomEditBar.xib in Resources */,
 				3F62C6911948318F00D7D6B1 /* EventIcon@2x.png in Resources */,
 				84A457081970182C000ABA73 /* btnContinue@2x.png in Resources */,
 				3F62C6AA1948318F00D7D6B1 /* arrow@2x.png in Resources */,
@@ -1691,6 +1723,7 @@
 				841C509219A60A6F00BD4141 /* emptyTicketAlerts.png in Resources */,
 				3F62C6871948318F00D7D6B1 /* home_icon@2x.png in Resources */,
 				3F62C68B1948318F00D7D6B1 /* search_icon@2x.png in Resources */,
+				3A9D206B19B20A1900FE163E /* bottomBar@2x.png in Resources */,
 				3F98FCAD193F038D00E6B3C4 /* CategoryCell.xib in Resources */,
 				3F62C6CF1948A2BE00D7D6B1 /* TicketCell.xib in Resources */,
 				84513F0919A4F2AC00C4A254 /* btnTermsAndConditions@2x.png in Resources */,
@@ -1770,6 +1803,7 @@
 				3F10DE1519388EC1002D3B43 /* main.m in Sources */,
 				3F7C4E1C1951C349003302A0 /* UIImage+Overlay.m in Sources */,
 				3F10DE521938B24F002D3B43 /* RoundedButton.m in Sources */,
+				3A9D206E19B39DF600FE163E /* Ticket.m in Sources */,
 				849C90AB19A4EBC9000B585E /* AboutViewController.m in Sources */,
 				3F62C6C919489F9A00D7D6B1 /* TicketsViewController.m in Sources */,
 				3F08EC0F1947380500CDFBD8 /* OffersViewController.m in Sources */,
@@ -1798,7 +1832,6 @@
 				3F98FD081945EECE00E6B3C4 /* DiscountView.m in Sources */,
 				3F62C6C819489F9A00D7D6B1 /* EventsViewController.m in Sources */,
 				3AF360AB197687E2009A14FD /* AppManager.m in Sources */,
-				3AA4B7C8199B885D008B129C /* Ticket.m in Sources */,
 				3F10DE6F193C54C4002D3B43 /* DingoUISettings.m in Sources */,
 				3F98FC2C193DC6F100E6B3C4 /* ListTicketsViewController.m in Sources */,
 				3F7C4E181951C1F4003302A0 /* FXBlurView.m in Sources */,
@@ -1813,6 +1846,7 @@
 				3F98FD041945D5C200E6B3C4 /* DingoUtilites.m in Sources */,
 				3F7C4E32195308CB003302A0 /* TicketPhotoCell.m in Sources */,
 				3F08EC13194738D500CDFBD8 /* OffersCell.m in Sources */,
+				3A9D206719B1A21D00FE163E /* BottomEditBar.m in Sources */,
 				3F10DE5A1938B7D2002D3B43 /* DingoField.m in Sources */,
 				3F7C4E2E1952D70F003302A0 /* UploadPhotosViewController.m in Sources */,
 				3F2864F0194B2889002A3576 /* FAQViewController.m in Sources */,

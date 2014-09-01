@@ -7,6 +7,7 @@
 //
 
 #import "TicketDetailViewController.h"
+#import "ListTicketsViewController.h"
 #import "ProposalCell.h"
 #import "PhotosPreviewCell.h"
 #import "WebServiceManager.h"
@@ -15,11 +16,14 @@
 #import <MapKit/MapKit.h>
 #import "DataManager.h"
 #import <Social/Social.h>
+#import "BottomEditBar.h"
 
 static const NSUInteger photosCellIndex = 1;
 
 
-@interface TicketDetailViewController ()
+@interface TicketDetailViewController () <BottomBarDelegate> {
+    BottomEditBar *bottomBar;
+}
 
 @property (nonatomic, weak) IBOutlet ProposalCell *proposalCell;
 @property (nonatomic, weak) IBOutlet PhotosPreviewCell *photosPreviewCell;
@@ -98,6 +102,31 @@ static const NSUInteger photosCellIndex = 1;
             
         }
     }];
+    
+    if ([self.ticket.user_id isEqual:[AppManager sharedManager].userInfo[@"id"]]) {
+       
+        bottomBar = [[BottomEditBar alloc] initWithFrame:CGRectMake(0, 0, 360, 65)];
+        CGRect frame = self.view.frame;
+        frame.origin.y = frame.size.height - bottomBar.frame.size.height;
+        frame.size.height = bottomBar.frame.size.height;
+        bottomBar.frame = frame;
+
+        bottomBar.delegate = self;
+        bottomBar.offers = [self.ticket.offers_count integerValue];
+        
+        [self.navigationController.view  addSubview:bottomBar];
+
+    } else {
+        
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    if (bottomBar) {
+        [bottomBar removeFromSuperview];
+    }
 }
 
 #pragma mark - UITableViewDataSource
@@ -114,8 +143,29 @@ static const NSUInteger photosCellIndex = 1;
     return [super tableView:tableView heightForRowAtIndexPath:indexPath];
 }
 
-#pragma mark - UIActions
+#pragma mark - BottomBarDelegate
 
+- (void)editListing {
+//    ListTicketsViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ListTicketsViewController"];
+//    [self.navigationController pushViewController:viewController animated:YES];
+//    
+//    [viewController setTicket:self.ticket event:self.event];
+    
+    
+    [self performSegueWithIdentifier:@"EditTicket" sender:self];
+}
+
+- (void)viewOffers {
+    
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if ([segue.identifier isEqual:@"EditTicket"]) {
+        ListTicketsViewController *viewController = (ListTicketsViewController *)segue.destinationViewController;
+        [viewController setTicket:self.ticket event:self.event];
+    }
+}
 
 #pragma mark - Navigation
 

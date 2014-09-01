@@ -67,6 +67,8 @@ static const NSUInteger payPalCellIndex = 13;
     __weak IBOutlet UISwitch *eticketSwitch;
     __weak IBOutlet UISwitch *paperSwitch;
     
+    BOOL isEditing;
+    
 }
 
 @property (nonatomic, weak) IBOutlet ZSTextField *nameField;
@@ -159,7 +161,7 @@ static const NSUInteger payPalCellIndex = 13;
         
         self.categoriesCell.selectedCategory = [AppManager sharedManager].draftTicket[@"categoryID"];
         [self.categoriesCell refresh];
-    } else {
+    } else if (!isEditing) {
         self.nameField.text = nil;
         self.locationField.text = nil;
         self.startDateField.text = nil;
@@ -175,6 +177,42 @@ static const NSUInteger payPalCellIndex = 13;
         self.categoriesCell.selectedCategory = nil;
         [self.categoriesCell refresh];
     }
+}
+
+- (void)setTicket:(Ticket*)_ticket event:(Event*)_event {
+    ticket = _ticket;
+    event = _event;
+    
+    isEditing = YES;
+    
+    self.nameField.text = event.name;
+    self.locationField.text = [DataManager eventLocation:event];
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"hh:mm dd/MM/yyyy";
+    
+    self.startDateField.text = [formatter stringFromDate:event.date];
+    self.endDateField.text = [formatter stringFromDate:event.endDate];
+
+    self.descriptionTextView.text = event.event_desc;
+    self.priceField.text = [ticket.price stringValue];
+    self.faceValueField.text= [ticket.face_value_per_ticket stringValue];
+    self.ticketsCountField.text = [ticket.number_of_tickets stringValue];
+    self.ticketTypeField.text = ticket.ticket_type;
+    
+    NSString *paymentOptions = ticket.payment_options;
+    paypalSwitch.on = [paymentOptions rangeOfString:@"PayPal"].location != NSNotFound;
+    cashSwitch.on = [paymentOptions rangeOfString:@"Cash in person"].location != NSNotFound;
+    
+    NSString *deliveryOptions = ticket.delivery_options;
+    inPersonSwitch.on = [deliveryOptions rangeOfString:@"In Person"].location != NSNotFound;
+    electronicSwitch.on = [deliveryOptions rangeOfString:@"Electronic"].location != NSNotFound;
+    postSwitch.on =  [deliveryOptions rangeOfString:@"Post"].location != NSNotFound;
+    
+    self.categoriesCell.selectedCategory = event.category_id;
+    [self.categoriesCell refresh];
+    
+    [self.tableView reloadData];
 }
 
 - (void)saveDraft {
