@@ -66,7 +66,6 @@
 		3F10DEA3193C7BF4002D3B43 /* HomeTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F10DEA1193C7BF4002D3B43 /* HomeTabBarController.m */; };
 		3F2864E2194AF891002A3576 /* ManageListsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F2864E1194AF891002A3576 /* ManageListsCell.m */; };
 		3F2864E4194B15FA002A3576 /* t&c_icon_gray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F2864E3194B15FA002A3576 /* t&c_icon_gray@2x.png */; };
-		3F2864E8194B179C002A3576 /* TermsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F2864E7194B179C002A3576 /* TermsViewController.m */; };
 		3F2864EA194B283D002A3576 /* faq_icon_gray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F2864E9194B283D002A3576 /* faq_icon_gray@2x.png */; };
 		3F2864EC194B2851002A3576 /* faq_cell@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F2864EB194B2851002A3576 /* faq_cell@2x.png */; };
 		3F2864F0194B2889002A3576 /* FAQViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F2864EF194B2889002A3576 /* FAQViewController.m */; };
@@ -223,6 +222,10 @@
 		84A457071970182C000ABA73 /* welcomeText2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A456F01970182C000ABA73 /* welcomeText2@2x.png */; };
 		84A457081970182C000ABA73 /* btnContinue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A456F11970182C000ABA73 /* btnContinue@2x.png */; };
 		84A457091970182C000ABA73 /* btnFinish@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A456F21970182C000ABA73 /* btnFinish@2x.png */; };
+		84E2CBEC19B5CDF7003102F3 /* TermsAndCondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E2CBEB19B5CDF7003102F3 /* TermsAndCondViewController.m */; };
+		84E2CBEE19B5D359003102F3 /* TermsConditions.docx in Resources */ = {isa = PBXBuildFile; fileRef = 84E2CBED19B5CF77003102F3 /* TermsConditions.docx */; };
+		84E2CBF019B5D80B003102F3 /* PrivacyPolicy.docx in Resources */ = {isa = PBXBuildFile; fileRef = 84E2CBEF19B5D808003102F3 /* PrivacyPolicy.docx */; };
+		84E2CBF319B5D8CF003102F3 /* PrivacyPolicyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E2CBF219B5D8CF003102F3 /* PrivacyPolicyViewController.m */; };
 		84E4E2EE19A77A360049A6A8 /* ta_alert_cell_delete.png in Resources */ = {isa = PBXBuildFile; fileRef = 84E4E2EC19A77A360049A6A8 /* ta_alert_cell_delete.png */; };
 		84E4E2EF19A77A360049A6A8 /* ta_alert_cell_delete@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84E4E2ED19A77A360049A6A8 /* ta_alert_cell_delete@2x.png */; };
 /* End PBXBuildFile section */
@@ -319,8 +322,6 @@
 		3F2864E0194AF891002A3576 /* ManageListsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ManageListsCell.h; path = ManageListsCell/ManageListsCell.h; sourceTree = "<group>"; };
 		3F2864E1194AF891002A3576 /* ManageListsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ManageListsCell.m; path = ManageListsCell/ManageListsCell.m; sourceTree = "<group>"; };
 		3F2864E3194B15FA002A3576 /* t&c_icon_gray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "t&c_icon_gray@2x.png"; sourceTree = "<group>"; };
-		3F2864E6194B179C002A3576 /* TermsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TermsViewController.h; path = TermsViewController/TermsViewController.h; sourceTree = "<group>"; };
-		3F2864E7194B179C002A3576 /* TermsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TermsViewController.m; path = TermsViewController/TermsViewController.m; sourceTree = "<group>"; };
 		3F2864E9194B283D002A3576 /* faq_icon_gray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "faq_icon_gray@2x.png"; path = "../other_icons/faq_icon_gray@2x.png"; sourceTree = "<group>"; };
 		3F2864EB194B2851002A3576 /* faq_cell@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "faq_cell@2x.png"; sourceTree = "<group>"; };
 		3F2864EE194B2889002A3576 /* FAQViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FAQViewController.h; path = FAQViewController/FAQViewController.h; sourceTree = "<group>"; };
@@ -517,6 +518,12 @@
 		84A456F01970182C000ABA73 /* welcomeText2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "welcomeText2@2x.png"; sourceTree = "<group>"; };
 		84A456F11970182C000ABA73 /* btnContinue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnContinue@2x.png"; sourceTree = "<group>"; };
 		84A456F21970182C000ABA73 /* btnFinish@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnFinish@2x.png"; sourceTree = "<group>"; };
+		84E2CBEA19B5CDF7003102F3 /* TermsAndCondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TermsAndCondViewController.h; sourceTree = "<group>"; };
+		84E2CBEB19B5CDF7003102F3 /* TermsAndCondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TermsAndCondViewController.m; sourceTree = "<group>"; };
+		84E2CBED19B5CF77003102F3 /* TermsConditions.docx */ = {isa = PBXFileReference; lastKnownFileType = file; path = TermsConditions.docx; sourceTree = "<group>"; };
+		84E2CBEF19B5D808003102F3 /* PrivacyPolicy.docx */ = {isa = PBXFileReference; lastKnownFileType = file; path = PrivacyPolicy.docx; sourceTree = "<group>"; };
+		84E2CBF119B5D8CF003102F3 /* PrivacyPolicyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivacyPolicyViewController.h; sourceTree = "<group>"; };
+		84E2CBF219B5D8CF003102F3 /* PrivacyPolicyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivacyPolicyViewController.m; sourceTree = "<group>"; };
 		84E4E2EC19A77A360049A6A8 /* ta_alert_cell_delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ta_alert_cell_delete.png; sourceTree = "<group>"; };
 		84E4E2ED19A77A360049A6A8 /* ta_alert_cell_delete@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ta_alert_cell_delete@2x.png"; sourceTree = "<group>"; };
 		8CEA10389BDB459BA8B0537B /* libPods-Dingo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Dingo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -805,7 +812,7 @@
 				3F7C4E1F1951CC16003302A0 /* SettingsViewController */,
 				3F98FCC4193F66A800E6B3C4 /* SideMenuViewController */,
 				3F98FCC0193F4E7A00E6B3C4 /* SlidingViewController */,
-				3F2864E5194B177E002A3576 /* TermsViewController */,
+				3F2864E5194B177E002A3576 /* About */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -931,13 +938,15 @@
 			name = ManageListsCell;
 			sourceTree = "<group>";
 		};
-		3F2864E5194B177E002A3576 /* TermsViewController */ = {
+		3F2864E5194B177E002A3576 /* About */ = {
 			isa = PBXGroup;
 			children = (
-				3F2864E6194B179C002A3576 /* TermsViewController.h */,
-				3F2864E7194B179C002A3576 /* TermsViewController.m */,
+				84E2CBEA19B5CDF7003102F3 /* TermsAndCondViewController.h */,
+				84E2CBEB19B5CDF7003102F3 /* TermsAndCondViewController.m */,
+				84E2CBF119B5D8CF003102F3 /* PrivacyPolicyViewController.h */,
+				84E2CBF219B5D8CF003102F3 /* PrivacyPolicyViewController.m */,
 			);
-			name = TermsViewController;
+			name = About;
 			sourceTree = "<group>";
 		};
 		3F2864ED194B286D002A3576 /* FAQViewController */ = {
@@ -998,6 +1007,8 @@
 		3F62C6391948318E00D7D6B1 /* Asserts */ = {
 			isa = PBXGroup;
 			children = (
+				84E2CBED19B5CF77003102F3 /* TermsConditions.docx */,
+				84E2CBEF19B5D808003102F3 /* PrivacyPolicy.docx */,
 				3A9D206119B1992E00FE163E /* Tickets */,
 				841C508B19A6082400BD4141 /* TicketAlerts */,
 				84513F0319A4F2AC00C4A254 /* About */,
@@ -1607,6 +1618,7 @@
 				84A456F91970182C000ABA73 /* welcome4BG.png in Resources */,
 				3A98E0A71977D57C006DA28A /* blueBG@2x.png in Resources */,
 				840BA3C019A23D4D00198277 /* ticket_alerts_icon@2x.png in Resources */,
+				84E2CBEE19B5D359003102F3 /* TermsConditions.docx in Resources */,
 				84E4E2EF19A77A360049A6A8 /* ta_alert_cell_delete@2x.png in Resources */,
 				84A457091970182C000ABA73 /* btnFinish@2x.png in Resources */,
 				849F591F19A74C770076B830 /* ta_big_bell@2x.png in Resources */,
@@ -1728,6 +1740,7 @@
 				3F62C6CF1948A2BE00D7D6B1 /* TicketCell.xib in Resources */,
 				84513F0919A4F2AC00C4A254 /* btnTermsAndConditions@2x.png in Resources */,
 				3F62C6DB19499D9400D7D6B1 /* events.plist in Resources */,
+				84E2CBF019B5D80B003102F3 /* PrivacyPolicy.docx in Resources */,
 				84A457051970182C000ABA73 /* welcomeText4@2x.png in Resources */,
 				3F62C6AB1948318F00D7D6B1 /* category_default@2x.png in Resources */,
 				84A457061970182C000ABA73 /* messageBG@2x.png in Resources */,
@@ -1792,9 +1805,9 @@
 				848CD5D819A74F5900B16DAF /* Alert.m in Sources */,
 				3F79701019544CFC00739EE8 /* PreviewViewController.m in Sources */,
 				3AB28AF8197D9F9D009C1DDC /* EventCategory.m in Sources */,
+				84E2CBEC19B5CDF7003102F3 /* TermsAndCondViewController.m in Sources */,
 				3F98FCAB193F033500E6B3C4 /* CategoryCell.m in Sources */,
 				3F98FCF8194212E500E6B3C4 /* SectionHeaderView.m in Sources */,
-				3F2864E8194B179C002A3576 /* TermsViewController.m in Sources */,
 				841C508719A6066500BD4141 /* TicketAlertsViewController.m in Sources */,
 				3F7C4E221951CC31003302A0 /* SettingsViewController.m in Sources */,
 				3F7C4E261951D98A003302A0 /* SearchResultsViewController.m in Sources */,
@@ -1814,6 +1827,7 @@
 				3AA332FC1990DDA900C8DAA8 /* ZSTextView.m in Sources */,
 				3AA49002199E1C6700C7E8ED /* TicketDetailViewController.m in Sources */,
 				3F98FCA0193F003D00E6B3C4 /* DataManager.m in Sources */,
+				84E2CBF319B5D8CF003102F3 /* PrivacyPolicyViewController.m in Sources */,
 				3AF360B91976A629009A14FD /* NSDictionary+UrlEncoding.m in Sources */,
 				3F2864F4194B29F3002A3576 /* AnswerViewController.m in Sources */,
 				3AF360B61976A4D0009A14FD /* JSON.m in Sources */,
