@@ -355,7 +355,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="35"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number of Tickets*:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KSj-F0-c1r" userLabel="label">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number of tickets*:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KSj-F0-c1r" userLabel="label">
                                                     <rect key="frame" x="12" y="7" width="129" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
@@ -735,18 +735,25 @@ You will receive the funds two days after the event or once the buyer confirms t
                         <outlet property="eticketSwitch" destination="ZXl-xX-7L1" id="6tq-3d-b5M"/>
                         <outlet property="faceValueField" destination="cnc-Ig-W8J" id="iuz-Yb-ZnR"/>
                         <outlet property="inPersonSwitch" destination="fu5-PS-z1s" id="8GU-cI-0bJ"/>
+                        <outlet property="lblCash" destination="Cho-gI-VJv" id="VSh-fG-Xmd"/>
                         <outlet property="lblCategory" destination="TOH-cs-6iv" id="9DX-rc-G4o"/>
                         <outlet property="lblDescription" destination="vGO-jg-007" id="eu8-a9-nAF"/>
+                        <outlet property="lblElectrical" destination="AsE-SO-WVM" id="oKT-Vp-zpe"/>
                         <outlet property="lblFaceValue" destination="Kym-UH-5ai" id="3TH-P9-xd5"/>
                         <outlet property="lblFromDate" destination="W37-ab-aQb" id="k0G-d4-hYd"/>
+                        <outlet property="lblInPerson" destination="Mf6-Ub-ggw" id="Z63-JY-8nI"/>
                         <outlet property="lblLocation" destination="wky-zQ-ryw" id="sK3-Oe-Ef6"/>
                         <outlet property="lblName" destination="9WU-dT-zfE" id="V8o-Od-fu4"/>
+                        <outlet property="lblPaper" destination="Cun-rd-dap" id="kBg-7w-XtS"/>
                         <outlet property="lblPayment" destination="gBd-SU-3UR" id="GEu-92-0fD"/>
+                        <outlet property="lblPaypal" destination="ja8-wb-icT" id="Ofd-Bg-9BO"/>
+                        <outlet property="lblPost" destination="Qa0-dD-ZKF" id="Mfb-wb-Yrd"/>
                         <outlet property="lblPrice" destination="Y0J-NZ-d2g" id="etf-K5-Dz2"/>
                         <outlet property="lblTicketCount" destination="KSj-F0-c1r" id="KSO-gv-ZXI"/>
                         <outlet property="lblTicketType" destination="Ysr-cA-cSj" id="TC5-xC-kiT"/>
                         <outlet property="lblToDate" destination="XpQ-MG-k2c" id="4ve-XE-7d7"/>
                         <outlet property="lbldelivery" destination="ORv-E1-qj8" id="ZhM-RJ-l7H"/>
+                        <outlet property="lbleTicket" destination="dZm-Gf-uIy" id="Gu2-Bo-ktV"/>
                         <outlet property="locationField" destination="2AT-Jc-vjr" id="zu2-lJ-fPT"/>
                         <outlet property="nameField" destination="Zvo-Jf-zwM" id="Es0-WH-Xs7"/>
                         <outlet property="paperSwitch" destination="rfj-ir-8fi" id="HrN-Mh-pap"/>

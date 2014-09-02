@@ -68,6 +68,10 @@
     return self;
 }
 
+- (void)setDate:(NSDate*)date {
+    datePicker.date = date;    
+}
+
 - (void)done {
     
     if ([self.delegate respondsToSelector: @selector(pickerDidPressDone:withDate:)]) {

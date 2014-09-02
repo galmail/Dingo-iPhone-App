@@ -51,6 +51,13 @@ static const NSUInteger payPalCellIndex = 13;
     __weak IBOutlet UILabel *lbldelivery;
     __weak IBOutlet UILabel *lblDescription;
     __weak IBOutlet UILabel *lblCategory;
+    __weak IBOutlet UILabel *lbleTicket;
+    __weak IBOutlet UILabel *lblPaper;
+    __weak IBOutlet UILabel *lblCash;
+    __weak IBOutlet UILabel *lblPaypal;
+    __weak IBOutlet UILabel *lblInPerson;
+    __weak IBOutlet UILabel *lblElectrical;
+    __weak IBOutlet UILabel *lblPost;
     
     ZSDatePicker *startDatePicker;
     ZSDatePicker *endDatePicker;
@@ -90,17 +97,18 @@ static const NSUInteger payPalCellIndex = 13;
 #pragma mark - UITableViewController
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.categoriesCell.multipleSelection = NO;
     [self.categoriesCell useAllCategories];
- 
     
     lblName.font = lblLocation.font = lblFromDate.font = lblToDate.font = lblPrice.font = lblFaceValue.font = lblTicketCount.font = lblTicketType.font = [DingoUISettings fontWithSize:14];
-    lblPayment.font = lbldelivery.font =  [DingoUISettings fontWithSize:18];
+    lblPayment.font = lbldelivery.font = lbleTicket.font = lblPaper.font = lblCash.font = lblPaypal.font = lblInPerson.font = lblElectrical.font = lblPost.font = [DingoUISettings fontWithSize:14];
+    lblCategory.font = [DingoUISettings fontWithSize:16];
     
     
-    self.nameField.font = self.locationField.font = self.startDateField.font = self.endDateField.font = self.priceField.font = self.faceValueField.font = self.ticketsCountField.font = [DingoUISettings fontWithSize:15];
+    self.nameField.font = self.locationField.font = self.startDateField.font = self.endDateField.font = self.priceField.font = self.faceValueField.font = self.ticketsCountField.font = [DingoUISettings fontWithSize:14];
     
     [self.nameField setPopoverSize:CGRectMake(0, self.nameField.frame.origin.y + self.nameField.frame.size.height, 320.0, 130.0)];
     [self.locationField setPopoverSize:CGRectMake(0, self.locationField.frame.origin.y + self.locationField.frame.size.height, 320.0, 130.0)];
@@ -171,11 +179,24 @@ static const NSUInteger payPalCellIndex = 13;
         self.ticketsCountField.text = nil;
         self.descriptionTextView.text = nil;
         self.ticketTypeField.text = nil;
+        
         paypalSwitch.on = NO;
         cashSwitch.on = YES;
         
+        eticketSwitch.on = NO;
+        paperSwitch.on = NO;
+        
+        inPersonSwitch.on = NO;
+        electronicSwitch.on = NO;
+        postSwitch.on = NO;
+        
+        event.thumb = nil;
+        self.photosPreviewCell.photos = nil;
+        
         self.categoriesCell.selectedCategory = nil;
         [self.categoriesCell refresh];
+        
+        [self.tableView reloadData];
     }
 }
 
@@ -236,11 +257,13 @@ static const NSUInteger payPalCellIndex = 13;
 #pragma mark - UploadPhotosVCDelegate
 
 - (void)displayPhotos:(NSArray *)array mainPhoto:(UIImage*)mainPhoto {
-
     
     self.photosPreviewCell.photos = [array mutableCopy];
+    if (mainPhoto) {
+        [self.photosPreviewCell.photos insertObject:mainPhoto atIndex:0];
+        event.thumb = UIImagePNGRepresentation(mainPhoto);
+    }
     
-    event.thumb = UIImagePNGRepresentation(mainPhoto);
     [self.tableView reloadData];
     if (array.count > 0 || mainPhoto) {
         self.changed = YES;
@@ -273,6 +296,14 @@ static const NSUInteger payPalCellIndex = 13;
 
 #pragma mark - UITextFieldDelegate
 
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    if (textField == self.endDateField) {
+        if ( self.startDateField.text.length > 0) {
+            [endDatePicker setDate:event.date];
+        }
+    }
+}
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     
@@ -295,7 +326,6 @@ static const NSUInteger payPalCellIndex = 13;
     
     if (textField == self.nameField) {
         if (self.nameField.text.length > 0) {
-           
             
             if (event.event_id &&  ![event.name isEqual:self.nameField.text]) {
                 event.event_id = nil;
@@ -450,6 +480,7 @@ static const NSUInteger payPalCellIndex = 13;
         }
         
         if (!requiredInfoFilled) {
+            [AppManager showAlert:@"Please complete compulsory fields."];
             [self.tableView setContentOffset:CGPointZero];
         }
     }
@@ -464,8 +495,11 @@ static const NSUInteger payPalCellIndex = 13;
     if ([segue.identifier isEqualToString:@"EditPhotosSegue"]) {
         UploadPhotosViewController *vc = (UploadPhotosViewController *)segue.destinationViewController;
         vc.delegate = self;
-        vc.photos = self.photosPreviewCell.photos;
         vc.mainPhoto = [UIImage imageWithData:event.thumb];
+        if (event.thumb && self.photosPreviewCell.photos.count > 0) {
+            [self.photosPreviewCell.photos removeObjectAtIndex:0];
+        }
+        vc.photos = self.photosPreviewCell.photos;
     } else if ([segue.identifier isEqualToString:@"PreviewSegue"]) {
         
         NSString *paymentOption = @"";
@@ -749,16 +783,17 @@ static const NSUInteger payPalCellIndex = 13;
 }
 
 - (IBAction)eticketChanged:(id)sender {
-    
+    paperSwitch.on = !eticketSwitch.on;
     if(eticketSwitch.on) {
         lblTicketType.textColor = [UIColor darkGrayColor];
     }
 }
 
 - (IBAction)paperChanged:(id)sender {
-    
+    eticketSwitch.on = !paperSwitch.on;
     if(paperSwitch.on) {
         lblTicketType.textColor = [UIColor darkGrayColor];
+        eticketSwitch.on = !paperSwitch.on;
     }
 
 }
