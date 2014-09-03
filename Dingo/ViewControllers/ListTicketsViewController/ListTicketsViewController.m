@@ -492,7 +492,7 @@ static const NSUInteger payPalCellIndex = 13;
     
     [self saveDraft];
     
-    if ([segue.identifier isEqualToString:@"EditPhotosSegue"]) {
+    if ([segue.identifier isEqualToString:@"EditPhotosSegue"] || [segue.identifier isEqualToString:@"UploadPhotosSegue"]) {
         UploadPhotosViewController *vc = (UploadPhotosViewController *)segue.destinationViewController;
         vc.delegate = self;
         vc.mainPhoto = [UIImage imageWithData:event.thumb];

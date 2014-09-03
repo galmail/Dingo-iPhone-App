@@ -606,7 +606,7 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
 
 - (void)userTicketsWithCompletion:( void (^) (BOOL finished))handler {
     
-    NSDictionary *params = @{@"user_token":[AppManager sharedManager].token};
+    NSDictionary *params = @{@"auth_token":[AppManager sharedManager].token};
     [WebServiceManager tickets:params completion:^(id response, NSError *error) {
         if (response[@"tickets"]) {
             NSArray *tickets = response[@"tickets"];

@@ -156,7 +156,7 @@ static const NSUInteger photosCellIndex = 1;
 }
 
 - (void)viewOffers {
-    
+     [self performSegueWithIdentifier:@"OffersSegue" sender:self];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

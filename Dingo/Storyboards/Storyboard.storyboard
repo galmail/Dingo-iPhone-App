@@ -530,7 +530,7 @@
                                                         <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
-                                                        <segue destination="PgO-U3-IhL" kind="push" identifier="EditPhotosSegue" id="Xk9-Zd-nfA"/>
+                                                        <segue destination="PgO-U3-IhL" kind="push" identifier="UploadPhotosSegue" id="Xk9-Zd-nfA"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -1554,21 +1554,21 @@ You will receive the funds two days after the event or once the buyer confirms t
         <!--Offert View Controller-->
         <scene sceneID="iZJ-3g-4mG">
             <objects>
-                <tableViewController id="31b-9R-D47" userLabel="Offert View Controller" customClass="OffersViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="OffersViewController" id="31b-9R-D47" userLabel="Offert View Controller" customClass="OffersViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="82" sectionHeaderHeight="22" sectionFooterHeight="22" id="CFE-zN-ySI">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="319" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="OffersCell" rowHeight="86" id="4cA-x2-9pS" userLabel="offers cell" customClass="OffersCell">
-                                <rect key="frame" x="0.0" y="22" width="320" height="86"/>
+                                <rect key="frame" x="0.0" y="22" width="319" height="86"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4cA-x2-9pS" id="guo-J8-uJS">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="85"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="319" height="85"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="offers_cells.png" id="Tby-GB-y8R" userLabel="mockup">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="85"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="319" height="85"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </imageView>
                                         <view contentMode="scaleToFill" id="kO6-fe-H3F" userLabel="user info">
@@ -1590,7 +1590,7 @@ You will receive the funds two days after the event or once the buyer confirms t
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <view contentMode="scaleToFill" id="hgE-cT-Q6m" userLabel="actions">
-                                            <rect key="frame" x="141" y="-8" width="189" height="100"/>
+                                            <rect key="frame" x="140" y="-8" width="189" height="100"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="1FI-C7-4Hh" userLabel="accept button" customClass="TwoModeButton">
@@ -1652,7 +1652,7 @@ You will receive the funds two days after the event or once the buyer confirms t
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7nF-D4-soI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4451" y="-811"/>
+            <point key="canvasLocation" x="3167" y="-2115"/>
         </scene>
         <!--Manage Lists View Controller - Manage Listings-->
         <scene sceneID="1JU-Mj-7Q4">
@@ -3443,6 +3443,7 @@ You will receive the funds two days after the event or once the buyer confirms t
                                             <outlet property="nameLabel" destination="6Z1-KS-jdO" id="Jmk-TU-omL"/>
                                             <outlet property="startPriceLabel" destination="hw3-67-bcE" id="eAu-oO-abL"/>
                                             <outlet property="timeLabel" destination="qgk-pl-Qpf" id="GKq-HS-gGM"/>
+                                            <segue destination="31b-9R-D47" kind="push" identifier="OffersSegue" id="lZf-bR-7Ly"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="PhotoPreview" rowHeight="120" id="JWe-Td-pse" userLabel="photos_preview" customClass="PhotosPreviewCell">
@@ -3605,15 +3606,15 @@ You will receive the funds two days after the event or once the buyer confirms t
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CategoriesCell" rowHeight="140" id="sZH-Rj-wLd" userLabel="location_map">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CategoriesCell" rowHeight="140" id="sZH-Rj-wLd" userLabel="location_map">
                                         <rect key="frame" x="0.0" y="580" width="319" height="140"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sZH-Rj-wLd" id="Jgi-O3-iJQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="286" height="139"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="319" height="139"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" id="27G-7O-DZD">
-                                                    <rect key="frame" x="0.0" y="0.0" width="286" height="139"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="319" height="139"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </mapView>
                                             </subviews>
@@ -3812,6 +3813,6 @@ You will receive the funds two days after the event or once the buyer confirms t
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="DEs-ve-lV3"/>
-        <segue reference="MsU-EW-bYV"/>
+        <segue reference="Xk9-Zd-nfA"/>
     </inferredMetricsTieBreakers>
 </document>
