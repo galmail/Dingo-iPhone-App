@@ -2536,8 +2536,8 @@ You will receive the funds two days after the event or once the buyer confirms t
                                                     <color key="textColor" red="0.27450980390000002" green="0.27450980390000002" blue="0.27450980390000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="mike@scott.com" minimumFontSize="17" id="hKT-Bw-OQL" userLabel="email_field">
-                                                    <rect key="frame" x="146" y="4" width="174" height="30"/>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="mike@scott.com" minimumFontSize="17" id="hKT-Bw-OQL" userLabel="email_field">
+                                                    <rect key="frame" x="146" y="3" width="174" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="textColor" red="0.51372549020000002" green="0.51372549020000002" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -2566,14 +2566,14 @@ You will receive the funds two days after the event or once the buyer confirms t
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My city" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DNM-oY-CFc" userLabel="label">
-                                                    <rect key="frame" x="12" y="7" width="129" height="21"/>
+                                                    <rect key="frame" x="9" y="7" width="129" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
                                                     <color key="textColor" red="0.27450980390000002" green="0.27450980390000002" blue="0.27450980390000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="London" minimumFontSize="17" id="sIm-1F-6HI" userLabel="city_field">
-                                                    <rect key="frame" x="146" y="4" width="174" height="30"/>
+                                                    <rect key="frame" x="146" y="3" width="174" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="textColor" red="0.51372549020000002" green="0.51372549020000002" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -2675,10 +2675,16 @@ You will receive the funds two days after the event or once the buyer confirms t
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Search" image="search_icon.png" id="RrC-0E-Jfk"/>
                     <navigationItem key="navigationItem" title="Settings" id="8g5-LK-Sc8">
-                        <barButtonItem key="leftBarButtonItem" image="nav_back_icon.png" id="4ZX-Bf-OFC" userLabel="back">
+                        <barButtonItem key="leftBarButtonItem" image="nav_back_icon.png" id="TdE-Pk-qmG" userLabel="back">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <action selector="back" destination="luz-yd-ISX" id="NC5-gT-UFW"/>
+                                <action selector="back" destination="luz-yd-ISX" id="jb5-Kf-spM"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="PQF-YN-Zcn">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="save:" destination="luz-yd-ISX" id="e9p-YL-XPS"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -2691,6 +2697,13 @@ You will receive the funds two days after the event or once the buyer confirms t
                         <outlet property="emailField" destination="hKT-Bw-OQL" id="MbI-cU-WBy"/>
                         <outlet property="facebookLoginSwitch" destination="e0f-IS-uil" id="IPG-7o-jTd"/>
                         <outlet property="firstNameField" destination="bie-hZ-yRF" id="LJ1-yo-ZuZ"/>
+                        <outlet property="lblCity" destination="DNM-oY-CFc" id="FcP-55-Tjr"/>
+                        <outlet property="lblDingoEmails" destination="nni-oc-3hi" id="q2L-xz-vcK"/>
+                        <outlet property="lblEmail" destination="S29-Qz-U2K" id="AsF-Sq-7YS"/>
+                        <outlet property="lblFB" destination="efW-7s-kIk" id="AFz-zZ-BqP"/>
+                        <outlet property="lblFirstName" destination="fhc-RE-uvS" id="E7v-2F-MDu"/>
+                        <outlet property="lblPushNot" destination="v5c-gd-YWT" id="GGC-9E-3yF"/>
+                        <outlet property="lblSurname" destination="68j-r1-xYy" id="b5h-01-QBg"/>
                         <outlet property="pushNotificationSwitch" destination="AZs-kR-xco" id="3LK-eT-AHz"/>
                         <outlet property="surnameField" destination="Zgx-PD-lKw" id="JQk-wp-sGu"/>
                     </connections>
