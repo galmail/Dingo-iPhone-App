@@ -35,6 +35,7 @@ static const NSUInteger photosCellIndex = 1;
 @property (weak, nonatomic) IBOutlet UILabel *deliveryLabel;
 @property (nonatomic, weak) IBOutlet UIButton *contactCellerButton;
 @property (nonatomic, weak) IBOutlet UIButton *requestToBuyButton;
+@property (nonatomic, weak) IBOutlet UIButton *offerPriceButton;
 @property (nonatomic, weak) IBOutlet UIImageView *sellerImageView;
 @property (nonatomic, weak) IBOutlet UILabel *sellerNameLabel;
 @property (nonatomic, weak) IBOutlet UILabel *sellerInfolabel;
@@ -102,22 +103,33 @@ static const NSUInteger photosCellIndex = 1;
             
         }
     }];
+   
+
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     
     if ([self.ticket.user_id isEqual:[AppManager sharedManager].userInfo[@"id"]]) {
-       
+        
         bottomBar = [[BottomEditBar alloc] initWithFrame:CGRectMake(0, 0, 360, 65)];
         CGRect frame = self.view.frame;
         frame.origin.y = frame.size.height - bottomBar.frame.size.height;
         frame.size.height = bottomBar.frame.size.height;
         bottomBar.frame = frame;
-
+        
         bottomBar.delegate = self;
         bottomBar.offers = [self.ticket.offers_count integerValue];
         
         [self.navigationController.view  addSubview:bottomBar];
-
-    } else {
         
+        self.contactCellerButton.enabled = self.requestToBuyButton.enabled = self.offerPriceButton.enabled = NO;
+        
+        CGSize contentSize = self.tableView.contentSize;
+        contentSize.height += bottomBar.frame.size.height;
+        self.tableView.contentSize = contentSize;
+    } else {
+        self.contactCellerButton.enabled = self.requestToBuyButton.enabled = self.offerPriceButton.enabled = YES;
     }
 }
 
@@ -159,6 +171,44 @@ static const NSUInteger photosCellIndex = 1;
      [self performSegueWithIdentifier:@"OffersSegue" sender:self];
 }
 
+#pragma mark Actions
+
+- (IBAction)contactSeller:(id)sender {
+    
+}
+
+- (IBAction)requestToBuy:(id)sender {
+    
+    NSDictionary *params = @{@"ticket_id":self.ticket.ticket_id,
+                             @"receiver_id": self.ticket.user_id,
+                             @"num_tickets" :@"1",
+                             @"price":self.ticket.price
+                             };
+    
+    ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please wait..."];
+    [loadingView show];
+    [WebServiceManager sendOffer:params completion:^(id response, NSError *error) {
+        [loadingView hide];
+        
+        if (!error) {
+            if (response[@"id"]) {
+                [AppManager showAlert:@"Offer Sent!"];
+            }
+            
+        } else {
+            [AppManager showAlert:[error localizedDescription]];
+        }
+
+    }];
+    
+}
+
+- (IBAction)offerNewPrice:(id)sender {
+    
+}
+
+#pragma mark - Navigation
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
     if ([segue.identifier isEqual:@"EditTicket"]) {
@@ -166,8 +216,6 @@ static const NSUInteger photosCellIndex = 1;
         [viewController setTicket:self.ticket event:self.event];
     }
 }
-
-#pragma mark - Navigation
 
 - (IBAction)back {
     [self.navigationController popViewControllerAnimated:YES];

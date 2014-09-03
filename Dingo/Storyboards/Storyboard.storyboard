@@ -3671,6 +3671,9 @@ You will receive the funds two days after the event or once the buyer confirms t
                                                     <state key="highlighted">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="contactSeller:" destination="cVf-tz-hLV" eventType="touchUpInside" id="eGn-PN-Ude"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Mg6-mT-7Vv" userLabel="buy_request_button" customClass="TwoModeButton">
                                                     <rect key="frame" x="185" y="49" width="124" height="25"/>
@@ -3686,8 +3689,11 @@ You will receive the funds two days after the event or once the buyer confirms t
                                                     <state key="highlighted">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="requestToBuy:" destination="cVf-tz-hLV" eventType="touchUpInside" id="wMD-af-pa6"/>
+                                                    </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="LDt-WM-2T6" userLabel="buy_request_button" customClass="TwoModeButton">
+                                                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="LDt-WM-2T6" userLabel="offerPrice" customClass="TwoModeButton">
                                                     <rect key="frame" x="185" y="82" width="124" height="25"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -3701,6 +3707,9 @@ You will receive the funds two days after the event or once the buyer confirms t
                                                     <state key="highlighted">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="offerNewPrice:" destination="cVf-tz-hLV" eventType="touchUpInside" id="qoJ-so-dD4"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
@@ -3737,6 +3746,7 @@ You will receive the funds two days after the event or once the buyer confirms t
                         <outlet property="descriptionTextView" destination="w81-uC-d1d" id="pnS-4u-HY6"/>
                         <outlet property="faceValueLabel" destination="HOc-5V-FZY" id="wjJ-24-eNR"/>
                         <outlet property="locationMap" destination="27G-7O-DZD" id="bJM-Wo-fck"/>
+                        <outlet property="offerPriceButton" destination="LDt-WM-2T6" id="dkA-Fs-y68"/>
                         <outlet property="paymentLabel" destination="dQd-bf-Tau" id="VXu-cP-92X"/>
                         <outlet property="photosPreviewCell" destination="JWe-Td-pse" id="6HV-bq-Cfv"/>
                         <outlet property="proposalCell" destination="RAY-EB-PHQ" id="G72-HT-XfJ"/>
