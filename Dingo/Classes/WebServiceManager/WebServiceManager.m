@@ -235,8 +235,26 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
 
 }
 
-+ (void)sendOffer:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler {
++ (void)updateProfile:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler {
     
+    NSMutableURLRequest *request = [self requestForPostMethod:@"users" withParams:[params urlEncodedString]];
+   
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        NSURLResponse* response = nil;
+        NSError *error = nil;
+        NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+        
+        dispatch_async(dispatch_get_main_queue(), ^(void){
+            handler([data objectFromJSONData], error);
+        });
+        
+    });
+    
+}
+
++ (void)sendOffer:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler {
+            
     NSMutableURLRequest *request = [self requestForPostMethod:@"offers" withParams:[params urlEncodedString]];
     
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -250,8 +268,8 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         });
         
     });
+    
 }
-
 
 #pragma mark - requests
 
