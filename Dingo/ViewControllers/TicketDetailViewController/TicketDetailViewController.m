@@ -17,6 +17,7 @@
 #import "DataManager.h"
 #import <Social/Social.h>
 #import "BottomEditBar.h"
+#import "ChatViewController.h"
 
 static const NSUInteger photosCellIndex = 1;
 
@@ -174,7 +175,9 @@ static const NSUInteger photosCellIndex = 1;
 #pragma mark Actions
 
 - (IBAction)contactSeller:(id)sender {
-    
+    ChatViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ChatViewController"];
+
+    [self.navigationController pushViewController:viewController animated:YES];
 }
 
 - (IBAction)requestToBuy:(id)sender {

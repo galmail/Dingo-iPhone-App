@@ -3007,6 +3007,71 @@ You will receive the funds two days after the event or once the buyer confirms t
             </objects>
             <point key="canvasLocation" x="2134" y="-761"/>
         </scene>
+        <!--Chat View Controller - Preview-->
+        <scene sceneID="fY3-Fc-CsO">
+            <objects>
+                <viewController storyboardIdentifier="ChatViewController" id="LXS-WP-D7x" customClass="ChatViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="eoh-tP-b6Z">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="DT3-8v-OaO" customClass="UIBubbleTableView">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="461"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </tableView>
+                            <view contentMode="scaleToFill" id="5jf-pe-WqS">
+                                <rect key="frame" x="0.0" y="448" width="320" height="56"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Message" minimumFontSize="17" id="sih-sa-w6B" customClass="DingoField">
+                                        <rect key="frame" x="4" y="16" width="222" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="LXS-WP-D7x" id="YSs-T0-lg2"/>
+                                        </connections>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="9oY-0w-b7e">
+                                        <rect key="frame" x="234" y="16" width="83" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="btnSend.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="btnSendTap:" destination="LXS-WP-D7x" eventType="touchUpInside" id="iZD-Ry-qpO"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.92549019607843142" green="0.92156862745098034" blue="0.90980392156862744" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Preview" id="k8Z-A2-6Du">
+                        <barButtonItem key="leftBarButtonItem" image="nav_back_icon.png" id="hQm-Tg-YIV">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="back:" destination="LXS-WP-D7x" id="twA-qh-nnh"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="bubbleTable" destination="DT3-8v-OaO" id="QXE-fM-Rcj"/>
+                        <outlet property="textField" destination="sih-sa-w6B" id="83U-Jr-tYr"/>
+                        <outlet property="textInputView" destination="5jf-pe-WqS" id="o5q-8f-vlG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="r05-P5-Mlo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2492" y="-1221"/>
+        </scene>
         <!--Preview View Controller - Preview-->
         <scene sceneID="iIw-Pw-7eU">
             <objects>
@@ -3831,6 +3896,7 @@ You will receive the funds two days after the event or once the buyer confirms t
         <image name="btnGuest.png" width="248" height="35"/>
         <image name="btnNavBarAdd.png" width="17" height="18"/>
         <image name="btnPrivacyPolicy.png" width="320" height="48"/>
+        <image name="btnSend.png" width="83" height="30"/>
         <image name="btnTermsAndConditions.png" width="320" height="48"/>
         <image name="concerts.png" width="140" height="100"/>
         <image name="contact_us_icon.png" width="30" height="30"/>

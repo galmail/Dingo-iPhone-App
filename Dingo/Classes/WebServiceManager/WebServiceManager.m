@@ -370,4 +370,19 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
     return request;
 }
 
++ (void)messages:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler {
+    NSMutableURLRequest *request = [self requestForGetMethod:@"messages" withParams:[params urlEncodedString]];
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        NSURLResponse* response = nil;
+        NSError *error = nil;
+        NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+        
+        dispatch_async(dispatch_get_main_queue(), ^(void){
+            handler([data objectFromJSONData], error);
+        });
+        
+    });
+}
+
 @end
