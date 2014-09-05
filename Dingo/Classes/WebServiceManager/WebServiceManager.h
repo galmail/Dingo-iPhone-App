@@ -26,7 +26,9 @@
 + (void)fetchLocationDetails:(NSString *)placeID completion:(void (^) (id response, NSError *error))handler;
 
 + (void)registerDevice:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler;
+
 + (void)sendOffer:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler;
++ (void)receiveOffers:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler;
 
 + (void)updateProfile:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler;
 @end
