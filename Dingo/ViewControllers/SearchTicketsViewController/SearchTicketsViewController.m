@@ -13,9 +13,12 @@
 #import "DingoUISettings.h"
 #import "DataManager.h"
 #import "ZSLoadingView.h"
+#import "ZSPickerView.h"
+#import "ZSDatePicker.h"
 
-@interface SearchTicketsViewController () <UITextFieldDelegate, UITableViewDataSource,CategorySelectionDelegate>{
-    
+@interface SearchTicketsViewController () <UITextFieldDelegate, UITableViewDataSource,CategorySelectionDelegate,ZSPickerDelegate,ZSDatePickerDelegate>{
+    ZSPickerView *cityPicker;
+    ZSDatePicker * datePicker;
     IBOutlet UILabel *lblKeyWords;
     IBOutlet UILabel *lblCategory;
     IBOutlet UILabel *lblCity;
@@ -37,9 +40,21 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     lblKeyWords.font = [DingoUISettings fontWithSize:14];
-    lblCategory.font = [DingoUISettings fontWithSize:20];
+    lblCategory.font = [DingoUISettings fontWithSize:16];
     lblCity.font = [DingoUISettings fontWithSize:14];
     lblDate.font = [DingoUISettings fontWithSize:14];
+    
+    
+    cityPicker = [[ZSPickerView alloc] initWithItems:[[DataManager shared] allCities] allowMultiSelection:NO];
+    cityPicker.delegate = self;
+    
+    
+    
+    datePicker = [[ZSDatePicker alloc] initWithDate:[NSDate date]];
+    datePicker.delegate = self;
+    self.dateField.inputView = datePicker;
+    
+    self.cityField.inputView = cityPicker;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -103,7 +118,7 @@
                 if (response[@"events"]) {
                     
                     NSArray * events = response[@"events"];
-                     NSMutableArray * searchedEvents = [NSMutableArray new];
+                    NSMutableArray * searchedEvents = [NSMutableArray new];
                     for (NSDictionary * dict in events) {
                         
                         
@@ -150,7 +165,34 @@
         }
     }];
     
+}
+
+
+#pragma mark ZSPickerDelegate methods
+
+- (void)pickerViewDidPressDone:(ZSPickerView*)picker withInfo:(id)selectionInfo {
+    
+    self.cityField.text = selectionInfo;
+    [self.cityField resignFirstResponder];
+}
+
+- (void)pickerViewDidPressCancel:(ZSPickerView*)picker {
+    [self.cityField resignFirstResponder];
+}
+
+#pragma mark ZSDatePickerDelegate
+
+- (void)pickerDidPressDone:(ZSDatePicker*)picker withDate:(NSDate *)date {
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"hh:mm dd/MM/yyyy";
+    
+    self.dateField.text = [formatter stringFromDate:date];
+    [self.dateField resignFirstResponder];
     
 }
 
+- (void)pickerDidPressCancel:(ZSDatePicker*)picker {
+    [self.dateField resignFirstResponder];
+}
 @end

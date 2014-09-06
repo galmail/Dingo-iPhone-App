@@ -12,6 +12,7 @@
 #import "DataManager.h"
 #import "DingoUtilites.h"
 #import "SectionHeaderView.h"
+#import "DingoUISettings.h"
 
 @implementation SearchResultsViewController
 
@@ -20,6 +21,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    if (self.searchedEvents.count==0) {
+        UILabel * lblNoResults = [[UILabel alloc] initWithFrame:CGRectMake(100, 70, 120, 30)];
+        lblNoResults.textColor = [UIColor grayColor];
+        lblNoResults.text = @"No Results Found";
+        lblNoResults.font = [DingoUISettings fontWithSize:16];
+        [self.tableView addSubview:lblNoResults];
+    }
 }
 
 #pragma mark - UITableViewDelegate
