@@ -5,34 +5,34 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>252996EC-82BA-41B2-B3B5-5AC4F2693AA6</string>
+	<string>8A3CA4C0-3E93-4040-9EE1-DA28DE999195</string>
 	<key>IDESourceControlProjectName</key>
 	<string>Dingo</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>541BC065-294F-454A-B376-5B6408F9F324</key>
-		<string>https://bitbucket.org/dingoapp/dingo-iphone-app/</string>
+		<key>552F4B37-87DE-46F4-8573-7927C4E28BF2</key>
+		<string>https://bitbucket.org/dingoapp/dingo-iphone-app.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Dingo.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>541BC065-294F-454A-B376-5B6408F9F324</key>
+		<key>552F4B37-87DE-46F4-8573-7927C4E28BF2</key>
 		<string>..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://bitbucket.org/dingoapp/dingo-iphone-app/</string>
+	<string>https://bitbucket.org/dingoapp/dingo-iphone-app.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>541BC065-294F-454A-B376-5B6408F9F324</string>
+	<string>552F4B37-87DE-46F4-8573-7927C4E28BF2</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>541BC065-294F-454A-B376-5B6408F9F324</string>
+			<string>552F4B37-87DE-46F4-8573-7927C4E28BF2</string>
 			<key>IDESourceControlWCCName</key>
 			<string>dev</string>
 		</dict>
