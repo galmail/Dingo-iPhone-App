@@ -749,13 +749,17 @@ static const NSUInteger payPalCellIndex = 13;
 }
 
 - (IBAction)cashChanged:(id)sender {
+    paypalSwitch.on = !cashSwitch.on;
     if(cashSwitch.on) {
         lblPayment.textColor = [UIColor darkGrayColor];
     }
+    
+    [self.tableView beginUpdates];
+    [self.tableView endUpdates];
 }
 
 - (IBAction)paypalChanged:(id)sender {
-    
+    cashSwitch.on = !paypalSwitch.on;
     if(paypalSwitch.on) {
         lblPayment.textColor = [UIColor darkGrayColor];
     }

@@ -241,7 +241,7 @@ UITableViewController *tableViewController;
 - (NSArray *)applyFilterWithSearchQuery:(NSString *)filter
 {
     if (self.applyFilter) {
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"DisplayText BEGINSWITH[cd] %@", filter];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"DisplayText contains[cd] %@", filter];
         NSArray *filteredGoods = [NSArray arrayWithArray:[data filteredArrayUsingPredicate:predicate]];
         return filteredGoods;
 
