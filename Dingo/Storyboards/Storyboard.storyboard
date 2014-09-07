@@ -2267,35 +2267,44 @@ You will receive the funds two days after the event or once the buyer confirms t
                         <sections>
                             <tableViewSection id="xju-S8-i6C" userLabel="section">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="36" id="Z3Z-i5-lvf" userLabel="keywords">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="36"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="20" id="Z3Z-i5-lvf" userLabel="blank">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="20"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Z3Z-i5-lvf" id="xcK-g3-oLD">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="19"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="36" id="THk-pe-o9U" userLabel="keywords">
+                                        <rect key="frame" x="0.0" y="20" width="320" height="36"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="THk-pe-o9U" id="HB2-3h-blC">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="35"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Key words:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4Lx-Ji-vxJ" userLabel="label">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Key words:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qHf-su-ZXO" userLabel="label">
                                                     <rect key="frame" x="9" y="7" width="129" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
                                                     <color key="textColor" red="0.27450980390000002" green="0.27450980390000002" blue="0.27450980390000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Event Name" minimumFontSize="17" id="935-TB-Jy5" userLabel="keywords_field">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Event Name" minimumFontSize="17" id="hhg-Bt-wcG" userLabel="keywords_field">
                                                     <rect key="frame" x="146" y="4" width="174" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="textColor" red="0.51372549020000002" green="0.51372549020000002" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
-                                                        <outlet property="delegate" destination="CS2-sn-rok" id="zT7-vp-SmI"/>
+                                                        <outlet property="delegate" destination="CS2-sn-rok" id="hlH-zD-d0M"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="250" id="qL9-gM-DPJ" userLabel="category" customClass="CategorySelectionCell">
-                                        <rect key="frame" x="0.0" y="36" width="320" height="250"/>
+                                        <rect key="frame" x="0.0" y="56" width="320" height="250"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qL9-gM-DPJ" id="ipp-P4-xkl">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="249"/>
@@ -2340,7 +2349,7 @@ You will receive the funds two days after the event or once the buyer confirms t
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="36" id="C4f-b7-ixw" userLabel="city">
-                                        <rect key="frame" x="0.0" y="286" width="320" height="36"/>
+                                        <rect key="frame" x="0.0" y="306" width="320" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="C4f-b7-ixw" id="Xbu-7H-1A7">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="35"/>
@@ -2367,7 +2376,7 @@ You will receive the funds two days after the event or once the buyer confirms t
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="36" id="pfh-gM-aut" userLabel="date">
-                                        <rect key="frame" x="0.0" y="322" width="320" height="36"/>
+                                        <rect key="frame" x="0.0" y="342" width="320" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pfh-gM-aut" id="8YW-9X-6nr">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="35"/>
@@ -2394,7 +2403,7 @@ You will receive the funds two days after the event or once the buyer confirms t
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="60" id="gD6-Z9-Vj0" userLabel="search">
-                                        <rect key="frame" x="0.0" y="358" width="320" height="60"/>
+                                        <rect key="frame" x="0.0" y="378" width="320" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gD6-Z9-Vj0" id="yZW-xB-O6Y">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
@@ -2429,11 +2438,10 @@ You will receive the funds two days after the event or once the buyer confirms t
                         <outlet property="categoriesCell" destination="qL9-gM-DPJ" id="SCv-Ch-P4g"/>
                         <outlet property="cityField" destination="cNV-2F-GX7" id="LtG-NJ-b8d"/>
                         <outlet property="dateField" destination="PrN-wP-ODh" id="rMV-LK-5iN"/>
-                        <outlet property="keywordsField" destination="935-TB-Jy5" id="Z4w-tg-CAD"/>
+                        <outlet property="keywordsField" destination="hhg-Bt-wcG" id="6ax-Fb-M1U"/>
                         <outlet property="lblCategory" destination="e8W-1q-Grv" id="Hrh-Zt-hb9"/>
                         <outlet property="lblCity" destination="hvR-UN-a6R" id="Vlx-N3-fOf"/>
                         <outlet property="lblDate" destination="36d-kx-rjF" id="yey-ge-uGN"/>
-                        <outlet property="lblKeyWords" destination="4Lx-Ji-vxJ" id="SYk-Rx-yk3"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jed-92-4z5" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -55,6 +55,8 @@
     self.dateField.inputView = datePicker;
     
     self.cityField.inputView = cityPicker;
+    
+    self.tableView.separatorInset = UIEdgeInsetsZero;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -100,7 +102,7 @@
         [params setValue:self.dateField.text forKey:@"start_date"];
     }
     if (selectedCategories.count>0) {
-        [params setValue:selectedCategories forKey:@"category_ids[]"];
+        [params setValue:[selectedCategories componentsJoinedByString:@","] forKey:@"category_ids[]"];
     }
     
     ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Searching..."];
