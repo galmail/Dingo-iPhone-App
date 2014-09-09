@@ -52,4 +52,9 @@
 + (UIFont *)boldFontWithSize:(CGFloat)fontSize {
     return [UIFont fontWithName:@"SourceSansPro-Semibold" size:fontSize];
 }
+
++ (UIFont *)lightFontWithSize:(CGFloat)fontSize {
+    return [UIFont fontWithName:@"SourceSansPro-Light" size:fontSize];
+}
+
 @end

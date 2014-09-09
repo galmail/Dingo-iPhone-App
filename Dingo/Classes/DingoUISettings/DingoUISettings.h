@@ -18,5 +18,6 @@
 
 + (UIFont *)fontWithSize:(CGFloat)fontSize;
 + (UIFont *)boldFontWithSize:(CGFloat)fontSize;
++ (UIFont *)lightFontWithSize:(CGFloat)fontSize;
 
 @end

@@ -46,6 +46,7 @@
 		<string>SourceSansPro-Regular.otf</string>
 		<string>SourceSansPro-Bold.otf</string>
 		<string>SourceSansPro-Semibold.otf</string>
+		<string>SourceSansPro-Light.otf</string>
 	</array>
 	<key>UIMainStoryboardFile</key>
 	<string>Storyboard</string>

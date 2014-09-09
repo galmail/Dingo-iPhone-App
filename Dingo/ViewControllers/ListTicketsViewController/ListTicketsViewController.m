@@ -565,6 +565,9 @@ static const NSUInteger payPalCellIndex = 13;
         PreviewViewController *vc = (PreviewViewController *)segue.destinationViewController;
         vc.event = event;
         vc.ticket = ticket;
+        if (event.thumb && self.photosPreviewCell.photos.count > 0) {
+            [self.photosPreviewCell.photos removeObjectAtIndex:0];
+        }
         vc.photos = self.photosPreviewCell.photos;
     }
 }
@@ -870,10 +873,10 @@ static const NSUInteger payPalCellIndex = 13;
                                                                   if (response[@"authentication_token"]) {
                                                                       [AppManager sharedManager].token = response[@"authentication_token"];
                                                                       
-                                                                      [AppManager sharedManager].userInfo = [@{@"email":user[@"email"], @"name": user.first_name, @"photo_url":user[@"picture"][@"data"][@"url"], @"city":user.location ? [[user.location.name componentsSeparatedByString:@","] firstObject] : @"London"} mutableCopy];
-                                                                      
-                                                                      
-                                                                      [self performSegueWithIdentifier:@"PreviewSegue" sender:self];
+                                                                      [AppManager sharedManager].userInfo = [@{@"id":response[@"id"],@"email":user[@"email"], @"name": user.first_name, @"photo_url":user[@"picture"][@"data"][@"url"], @"city":user.location ? [[user.location.name componentsSeparatedByString:@","] firstObject] : @"London"} mutableCopy];
+                                                                      if ([self shouldPerformSegueWithIdentifier:@"PreviewSegue" sender:self]) {
+                                                                          [self performSegueWithIdentifier:@"PreviewSegue" sender:self];
+                                                                      }
                                                                   } else {
                                                                       
                                                                       // login
@@ -893,9 +896,11 @@ static const NSUInteger payPalCellIndex = 13;
                                                                                   if ([response[@"success"] boolValue]) {
                                                                                       [AppManager sharedManager].token = response[@"auth_token"];
                                                                                       
-                                                                                      [AppManager sharedManager].userInfo = [@{@"email":user[@"email"], @"name": user.first_name, @"photo_url":user[@"picture"][@"data"][@"url"], @"city" : user.location ? [[user.location.name componentsSeparatedByString:@","] firstObject] : @"London"} mutableCopy];
+                                                                                      [AppManager sharedManager].userInfo = [@{@"id":response[@"id"],@"email":user[@"email"], @"name": user.first_name, @"photo_url":user[@"picture"][@"data"][@"url"], @"city" : user.location ? [[user.location.name componentsSeparatedByString:@","] firstObject] : @"London"} mutableCopy];
                                                                                       
-                                                                                      [self performSegueWithIdentifier:@"PreviewSegue" sender:self];
+                                                                                      if ([self shouldPerformSegueWithIdentifier:@"PreviewSegue" sender:self]) {
+                                                                                          [self performSegueWithIdentifier:@"PreviewSegue" sender:self];
+                                                                                      }
                                                                                       
                                                                                   } else {
                                                                                       UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Unable to sign in, please try later" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
