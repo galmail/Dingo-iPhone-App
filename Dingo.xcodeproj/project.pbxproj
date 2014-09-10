@@ -234,6 +234,7 @@
 		84A457071970182C000ABA73 /* welcomeText2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A456F01970182C000ABA73 /* welcomeText2@2x.png */; };
 		84A457081970182C000ABA73 /* btnContinue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A456F11970182C000ABA73 /* btnContinue@2x.png */; };
 		84A457091970182C000ABA73 /* btnFinish@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A456F21970182C000ABA73 /* btnFinish@2x.png */; };
+		84DB3B9519BDD1B2000EBE9A /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DB3B9419BDD1B2000EBE9A /* Message.m */; };
 		84E2CBEC19B5CDF7003102F3 /* TermsAndCondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E2CBEB19B5CDF7003102F3 /* TermsAndCondViewController.m */; };
 		84E2CBEE19B5D359003102F3 /* TermsConditions.docx in Resources */ = {isa = PBXBuildFile; fileRef = 84E2CBED19B5CF77003102F3 /* TermsConditions.docx */; };
 		84E2CBF019B5D80B003102F3 /* PrivacyPolicy.docx in Resources */ = {isa = PBXBuildFile; fileRef = 84E2CBEF19B5D808003102F3 /* PrivacyPolicy.docx */; };
@@ -549,6 +550,8 @@
 		84A456F01970182C000ABA73 /* welcomeText2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "welcomeText2@2x.png"; sourceTree = "<group>"; };
 		84A456F11970182C000ABA73 /* btnContinue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnContinue@2x.png"; sourceTree = "<group>"; };
 		84A456F21970182C000ABA73 /* btnFinish@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnFinish@2x.png"; sourceTree = "<group>"; };
+		84DB3B9319BDD1B2000EBE9A /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
+		84DB3B9419BDD1B2000EBE9A /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
 		84E2CBEA19B5CDF7003102F3 /* TermsAndCondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TermsAndCondViewController.h; sourceTree = "<group>"; };
 		84E2CBEB19B5CDF7003102F3 /* TermsAndCondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TermsAndCondViewController.m; sourceTree = "<group>"; };
 		84E2CBED19B5CF77003102F3 /* TermsConditions.docx */ = {isa = PBXFileReference; lastKnownFileType = file; path = TermsConditions.docx; sourceTree = "<group>"; };
@@ -632,6 +635,8 @@
 				848CD5D719A74F5900B16DAF /* Alert.m */,
 				3A9D206C19B39DF600FE163E /* Ticket.h */,
 				3A9D206D19B39DF600FE163E /* Ticket.m */,
+				84DB3B9319BDD1B2000EBE9A /* Message.h */,
+				84DB3B9419BDD1B2000EBE9A /* Message.m */,
 			);
 			name = Models;
 			path = Classes/Models;
@@ -1922,6 +1927,7 @@
 				3F10DE66193C536E002D3B43 /* DingoNavigationController.m in Sources */,
 				3F98FD081945EECE00E6B3C4 /* DiscountView.m in Sources */,
 				3F62C6C819489F9A00D7D6B1 /* EventsViewController.m in Sources */,
+				84DB3B9519BDD1B2000EBE9A /* Message.m in Sources */,
 				3AF360AB197687E2009A14FD /* AppManager.m in Sources */,
 				3F10DE6F193C54C4002D3B43 /* DingoUISettings.m in Sources */,
 				3F98FC2C193DC6F100E6B3C4 /* ListTicketsViewController.m in Sources */,

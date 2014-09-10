@@ -61,23 +61,30 @@
     if ([[AppManager sharedManager].userInfo valueForKey:@"surname"]) {
         self.surnameField.text =[[AppManager sharedManager].userInfo valueForKey:@"surname"];
     }
-
+    
     if ([[AppManager sharedManager].userInfo valueForKey:@"city"]) {
         self.cityField.text =[[AppManager sharedManager].userInfo valueForKey:@"city"];
     }
-
+    
     if ([[AppManager sharedManager].userInfo valueForKey:@"email"]) {
         self.emailField.text =[[AppManager sharedManager].userInfo valueForKey:@"email"];
     }
-
-    if ([[AppManager sharedManager].userInfo valueForKey:@"facebookLoginSwitch"]) {
-        self.facebookLoginSwitch.on =[[[AppManager sharedManager].userInfo valueForKey:@"facebookLoginSwitch"] boolValue];
+    
+    if ([[AppManager sharedManager].userInfo valueForKey:@"fb_id"]) {
+        if ([[[AppManager sharedManager].userInfo valueForKey:@"fb_id"] isKindOfClass:[NSNull class]]) {
+            self.facebookLoginSwitch.on = NO;
+        }else{
+            NSString * fb_id = [[AppManager sharedManager].userInfo valueForKey:@"fb_id"];
+            if (fb_id.length == 0) {
+                self.facebookLoginSwitch.on = NO;
+            }
+        }
     }
-    if ([[AppManager sharedManager].userInfo valueForKey:@"dingoEmailsSwitch"]) {
-        self.dingoEmailsSwitch.on =[[[AppManager sharedManager].userInfo valueForKey:@"dingoEmailsSwitch"] boolValue];
+    if ([[AppManager sharedManager].userInfo valueForKey:@"allow_dingo_emails"]) {
+        self.dingoEmailsSwitch.on =[[[AppManager sharedManager].userInfo valueForKey:@"allow_dingo_emails"] boolValue];
     }
-    if ([[AppManager sharedManager].userInfo valueForKey:@"pushNotificationSwitch"]) {
-        self.pushNotificationSwitch.on =[[[AppManager sharedManager].userInfo valueForKey:@"pushNotificationSwitch"] boolValue];
+    if ([[AppManager sharedManager].userInfo valueForKey:@"allow_push_notifications"]) {
+        self.pushNotificationSwitch.on =[[[AppManager sharedManager].userInfo valueForKey:@"allow_push_notifications"] boolValue];
     }
     
 }
@@ -116,6 +123,12 @@
         [params setValue:self.surnameField.text forKey:@"surname"];
     }
     
+    [params setObject:[NSNumber numberWithBool:self.pushNotificationSwitch.on] forKey:@"allow_push_notifications"];
+    [params setObject:[NSNumber numberWithBool:self.dingoEmailsSwitch.on] forKey:@"allow_dingo_emails"];
+    if (![NSNumber numberWithBool:self.facebookLoginSwitch.on]) {
+        [params setObject:@"" forKey:@"fb_id"];
+    }
+    
     ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Searching..."];
     [loadingView show];
     [WebServiceManager updateProfile:params completion:^(id response, NSError *error) {
@@ -132,10 +145,12 @@
             [[AppManager sharedManager].userInfo setValue:self.firstNameField.text forKey:@"name"];
             [[AppManager sharedManager].userInfo setValue:self.cityField.text forKey:@"city"];
             [[AppManager sharedManager].userInfo setValue:self.surnameField.text forKey:@"surname"];
+            if (![NSNumber numberWithBool:self.facebookLoginSwitch.on]) {
+                [[AppManager sharedManager].userInfo setObject:@"" forKey:@"fb_id"];
+            }
             
-            [[AppManager sharedManager].userInfo setObject:[NSNumber numberWithBool:self.facebookLoginSwitch.on] forKey:@"facebookLoginSwitch"];
-            [[AppManager sharedManager].userInfo setObject:[NSNumber numberWithBool:self.pushNotificationSwitch.on] forKey:@"pushNotificationSwitch"];
-            [[AppManager sharedManager].userInfo setObject:[NSNumber numberWithBool:self.dingoEmailsSwitch.on] forKey:@"dingoEmailsSwitch"];
+            [[AppManager sharedManager].userInfo setObject:[NSNumber numberWithBool:self.pushNotificationSwitch.on] forKey:@"allow_push_notifications"];
+            [[AppManager sharedManager].userInfo setObject:[NSNumber numberWithBool:self.dingoEmailsSwitch.on] forKey:@"allow_dingo_emails"];
             
             if (!self.facebookLoginSwitch.on) {
                 // [FBSession ]
