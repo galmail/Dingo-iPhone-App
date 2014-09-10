@@ -72,6 +72,10 @@
     datePicker.date = date;    
 }
 
+- (void)setPickerMode:(UIDatePickerMode)mode {
+    datePicker.datePickerMode = mode;
+}
+
 - (void)done {
     
     if ([self.delegate respondsToSelector: @selector(pickerDidPressDone:withDate:)]) {

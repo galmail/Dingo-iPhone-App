@@ -25,5 +25,6 @@
 
 - (id)initWithDate:(NSDate*)date;
 - (void)setDate:(NSDate*)date;
+- (void)setPickerMode:(UIDatePickerMode)mode;
 
 @end

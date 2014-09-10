@@ -52,6 +52,8 @@
     
     datePicker = [[ZSDatePicker alloc] initWithDate:[NSDate date]];
     datePicker.delegate = self;
+    [datePicker setPickerMode:UIDatePickerModeDate];
+
     self.dateField.inputView = datePicker;
     
     self.cityField.inputView = cityPicker;
@@ -187,7 +189,7 @@
 - (void)pickerDidPressDone:(ZSDatePicker*)picker withDate:(NSDate *)date {
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = @"hh:mm dd/MM/yyyy";
+    formatter.dateFormat = @"dd/MM/yyyy";
     
     self.dateField.text = [formatter stringFromDate:date];
     [self.dateField resignFirstResponder];
