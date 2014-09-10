@@ -329,7 +329,7 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
     if (params.length == 0) {
         url = [NSString stringWithFormat:@"%@%@", apiUrl, method];
     }
-    url =[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//    url =[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:60.0f];
     [request setHTTPMethod:@"GET"];
     

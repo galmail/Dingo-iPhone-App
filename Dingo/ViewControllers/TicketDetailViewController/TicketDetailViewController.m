@@ -110,7 +110,7 @@ static const NSUInteger photosCellIndex = 1;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
+    NSLog(@"user info %@", [AppManager sharedManager].userInfo);
     if ([self.ticket.user_id isEqual:[AppManager sharedManager].userInfo[@"id"]]) {
         
         bottomBar = [[BottomEditBar alloc] initWithFrame:CGRectMake(0, 0, 360, 65)];

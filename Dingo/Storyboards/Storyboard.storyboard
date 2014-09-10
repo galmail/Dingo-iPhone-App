@@ -38,7 +38,7 @@
                     <view key="view" contentMode="scaleToFill" id="9Zp-LE-eV7">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" red="0.18823529411764706" green="0.20784313725490194" blue="0.28627450980392155" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.2470588235" green="0.2666666667" blue="0.35686274509999999" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="yeU-G9-Phv"/>
                     <nil key="simulatedTopBarMetrics"/>
@@ -556,11 +556,11 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
                                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sgB-tD-bzw" userLabel="label">
-                                                            <rect key="frame" x="0.0" y="70" width="320" height="133"/>
+                                                            <rect key="frame" x="5" y="70" width="310" height="133"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <string key="text">Dingo charges a 10% commission for all transactions made through the app. This includes all the PayPal fees and your seller insurance!
+                                                            <string key="text">Dingo charges a 10% commission for transactions made through the app. This covers all Paypal fees and our dispute resolution service. 
 
-You will receive the funds two days after the event or once the buyer confirms the validity of the tickets. This protects members of the Dingo community!</string>
+Dingo will release your funds once the buyer confirms authenticity of the tickets or 2 days after the event. See the FAQ’s for more info.</string>
                                                             <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
                                                             <color key="textColor" red="0.51372549020000002" green="0.51372549020000002" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -679,7 +679,7 @@ You will receive the funds two days after the event or once the buyer confirms t
                                                     <color key="textColor" red="0.27450980390000002" green="0.27450980390000002" blue="0.27450980390000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" id="2gK-n0-UrV" userLabel="description_view" customClass="ZSTextView">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="2gK-n0-UrV" userLabel="description_view" customClass="ZSTextView">
                                                     <rect key="frame" x="8" y="15" width="304" height="64"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -2267,35 +2267,44 @@ You will receive the funds two days after the event or once the buyer confirms t
                         <sections>
                             <tableViewSection id="xju-S8-i6C" userLabel="section">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="36" id="Z3Z-i5-lvf" userLabel="keywords">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="36"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="20" id="Z3Z-i5-lvf" userLabel="blank">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="20"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Z3Z-i5-lvf" id="xcK-g3-oLD">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="19"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="36" id="THk-pe-o9U" userLabel="keywords">
+                                        <rect key="frame" x="0.0" y="20" width="320" height="36"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="THk-pe-o9U" id="HB2-3h-blC">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="35"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Key words:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4Lx-Ji-vxJ" userLabel="label">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Key words:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qHf-su-ZXO" userLabel="label">
                                                     <rect key="frame" x="9" y="7" width="129" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
                                                     <color key="textColor" red="0.27450980390000002" green="0.27450980390000002" blue="0.27450980390000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Event Name" minimumFontSize="17" id="935-TB-Jy5" userLabel="keywords_field">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Event Name" minimumFontSize="17" id="hhg-Bt-wcG" userLabel="keywords_field">
                                                     <rect key="frame" x="146" y="4" width="174" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="textColor" red="0.51372549020000002" green="0.51372549020000002" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
-                                                        <outlet property="delegate" destination="CS2-sn-rok" id="zT7-vp-SmI"/>
+                                                        <outlet property="delegate" destination="CS2-sn-rok" id="hlH-zD-d0M"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="250" id="qL9-gM-DPJ" userLabel="category" customClass="CategorySelectionCell">
-                                        <rect key="frame" x="0.0" y="36" width="320" height="250"/>
+                                        <rect key="frame" x="0.0" y="56" width="320" height="250"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qL9-gM-DPJ" id="ipp-P4-xkl">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="249"/>
@@ -2340,7 +2349,7 @@ You will receive the funds two days after the event or once the buyer confirms t
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="36" id="C4f-b7-ixw" userLabel="city">
-                                        <rect key="frame" x="0.0" y="286" width="320" height="36"/>
+                                        <rect key="frame" x="0.0" y="306" width="320" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="C4f-b7-ixw" id="Xbu-7H-1A7">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="35"/>
@@ -2367,7 +2376,7 @@ You will receive the funds two days after the event or once the buyer confirms t
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="36" id="pfh-gM-aut" userLabel="date">
-                                        <rect key="frame" x="0.0" y="322" width="320" height="36"/>
+                                        <rect key="frame" x="0.0" y="342" width="320" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pfh-gM-aut" id="8YW-9X-6nr">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="35"/>
@@ -2394,7 +2403,7 @@ You will receive the funds two days after the event or once the buyer confirms t
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="60" id="gD6-Z9-Vj0" userLabel="search">
-                                        <rect key="frame" x="0.0" y="358" width="320" height="60"/>
+                                        <rect key="frame" x="0.0" y="378" width="320" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gD6-Z9-Vj0" id="yZW-xB-O6Y">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
@@ -2429,11 +2438,10 @@ You will receive the funds two days after the event or once the buyer confirms t
                         <outlet property="categoriesCell" destination="qL9-gM-DPJ" id="SCv-Ch-P4g"/>
                         <outlet property="cityField" destination="cNV-2F-GX7" id="LtG-NJ-b8d"/>
                         <outlet property="dateField" destination="PrN-wP-ODh" id="rMV-LK-5iN"/>
-                        <outlet property="keywordsField" destination="935-TB-Jy5" id="Z4w-tg-CAD"/>
+                        <outlet property="keywordsField" destination="hhg-Bt-wcG" id="6ax-Fb-M1U"/>
                         <outlet property="lblCategory" destination="e8W-1q-Grv" id="Hrh-Zt-hb9"/>
                         <outlet property="lblCity" destination="hvR-UN-a6R" id="Vlx-N3-fOf"/>
                         <outlet property="lblDate" destination="36d-kx-rjF" id="yey-ge-uGN"/>
-                        <outlet property="lblKeyWords" destination="4Lx-Ji-vxJ" id="SYk-Rx-yk3"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jed-92-4z5" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3183,15 +3191,15 @@ You will receive the funds two days after the event or once the buyer confirms t
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nuber of Tickets:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="CYH-g5-opj" userLabel="label">
                                                     <rect key="frame" x="12" y="7" width="129" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
-                                                    <color key="textColor" red="0.51372549019607838" green="0.51372549019607838" blue="0.51372549019607838" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                                                    <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="tickets ..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DYU-wS-u5g" userLabel="tickets_count">
-                                                    <rect key="frame" x="146" y="7" width="129" height="21"/>
+                                                    <rect key="frame" x="146" y="7" width="120" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
-                                                    <color key="textColor" red="0.51372549020000002" green="0.51372549020000002" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="0.5" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -3205,17 +3213,17 @@ You will receive the funds two days after the event or once the buyer confirms t
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Face value per ticket:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nvh-KU-Sw5" userLabel="label">
-                                                    <rect key="frame" x="12" y="7" width="129" height="21"/>
+                                                    <rect key="frame" x="12" y="7" width="121" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
-                                                    <color key="textColor" red="0.51372549020000002" green="0.51372549020000002" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                                                    <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="face value ..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="44a-Pn-Dc1" userLabel="face_value">
-                                                    <rect key="frame" x="146" y="7" width="129" height="21"/>
+                                                    <rect key="frame" x="146" y="7" width="121" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
-                                                    <color key="textColor" red="0.51372549020000002" green="0.51372549020000002" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="0.5" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -3228,56 +3236,32 @@ You will receive the funds two days after the event or once the buyer confirms t
                                             <rect key="frame" x="0.0" y="0.0" width="319" height="79"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="WyL-FZ-Jdf" userLabel="label">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comments:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="WyL-FZ-Jdf" userLabel="label">
                                                     <rect key="frame" x="13" y="6" width="129" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
-                                                    <color key="textColor" red="0.51372549020000002" green="0.51372549020000002" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                                                    <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" id="7EF-eQ-FNJ" userLabel="description_view" customClass="DingoTextView">
-                                                    <rect key="frame" x="141" y="0.0" width="171" height="79"/>
+                                                    <rect key="frame" x="8" y="20" width="304" height="64"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <string key="text">Description...Description...Description...Description...Description...Description...Description...Description...Description...Description...</string>
-                                                    <color key="textColor" red="0.51372549020000002" green="0.51372549020000002" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="0.5" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
                                                 <view contentMode="scaleToFill" id="M3P-Nd-yXo" userLabel="selection_protector">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
+                                                    <rect key="frame" x="13" y="28" width="320" height="81"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </view>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="36" id="Rqz-Qu-dyx" userLabel="ticket_type">
-                                        <rect key="frame" x="0.0" y="472" width="319" height="36"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Rqz-Qu-dyx" id="c9k-rW-HFX">
-                                            <rect key="frame" x="0.0" y="0.0" width="319" height="35"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ticket Type:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Uny-2s-pgm" userLabel="label">
-                                                    <rect key="frame" x="12" y="7" width="129" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
-                                                    <color key="textColor" red="0.51372549020000002" green="0.51372549020000002" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ticket Type" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Zkt-bo-Vkw" userLabel="face_value">
-                                                    <rect key="frame" x="146" y="7" width="129" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
-                                                    <color key="textColor" red="0.51372549020000002" green="0.51372549020000002" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="36" id="Vls-j4-Qtd" userLabel="payment">
-                                        <rect key="frame" x="0.0" y="508" width="319" height="36"/>
+                                        <rect key="frame" x="0.0" y="472" width="319" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Vls-j4-Qtd" id="mDb-Ms-Cd4">
                                             <rect key="frame" x="0.0" y="0.0" width="319" height="35"/>
@@ -3287,21 +3271,21 @@ You will receive the funds two days after the event or once the buyer confirms t
                                                     <rect key="frame" x="12" y="7" width="129" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
-                                                    <color key="textColor" red="0.51372549020000002" green="0.51372549020000002" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Paypal or in person" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FTB-PO-qsW" userLabel="face_value">
                                                     <rect key="frame" x="146" y="7" width="129" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
-                                                    <color key="textColor" red="0.51372549020000002" green="0.51372549020000002" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="0.5" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="36" id="8X9-MH-lBc" userLabel="collection">
-                                        <rect key="frame" x="0.0" y="544" width="319" height="36"/>
+                                        <rect key="frame" x="0.0" y="508" width="319" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8X9-MH-lBc" id="lfW-ho-ncs">
                                             <rect key="frame" x="0.0" y="0.0" width="319" height="35"/>
@@ -3310,15 +3294,39 @@ You will receive the funds two days after the event or once the buyer confirms t
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delivery:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="O4c-jI-GTZ" userLabel="label">
                                                     <rect key="frame" x="13" y="6" width="129" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
-                                                    <color key="textColor" red="0.51372549020000002" green="0.51372549020000002" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                                                    <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delivery" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5x1-Fy-Kbp" userLabel="face_value">
-                                                    <rect key="frame" x="147" y="6" width="129" height="21"/>
+                                                    <rect key="frame" x="146" y="6" width="164" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
-                                                    <color key="textColor" red="0.51372549020000002" green="0.51372549020000002" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="0.5" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="36" id="Rqz-Qu-dyx" userLabel="ticket_type">
+                                        <rect key="frame" x="0.0" y="544" width="319" height="36"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Rqz-Qu-dyx" id="c9k-rW-HFX">
+                                            <rect key="frame" x="0.0" y="0.0" width="319" height="35"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ticket Type:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Uny-2s-pgm" userLabel="label">
+                                                    <rect key="frame" x="12" y="7" width="129" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                                                    <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ticket Type" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Zkt-bo-Vkw" userLabel="face_value">
+                                                    <rect key="frame" x="146" y="7" width="129" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
+                                                    <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="0.5" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -3330,53 +3338,48 @@ You will receive the funds two days after the event or once the buyer confirms t
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2J2-pf-Tux" id="k6s-J7-ruh">
                                             <rect key="frame" x="0.0" y="0.0" width="319" height="139"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" zoomEnabled="NO" scrollEnabled="NO" rotateEnabled="NO" pitchEnabled="NO" id="hWC-Z6-tmp">
+                                                    <rect key="frame" x="0.0" y="0.0" width="319" height="139"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                </mapView>
+                                            </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.89411764709999997" green="0.89411764709999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="93" id="a69-ME-gfS" userLabel="seller_cell">
-                                        <rect key="frame" x="0.0" y="720" width="319" height="93"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="150" id="a69-ME-gfS" userLabel="seller_cell">
+                                        <rect key="frame" x="0.0" y="720" width="319" height="150"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="a69-ME-gfS" id="3lF-OD-gjJ">
-                                            <rect key="frame" x="0.0" y="0.0" width="319" height="92"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="319" height="149"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="preview_cell.png" id="w6M-ib-HyY" userLabel="mockup">
-                                                    <rect key="frame" x="0.0" y="0.0" width="319" height="92"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                </imageView>
                                                 <view contentMode="scaleToFill" id="viZ-2M-Tsn" userLabel="user_info">
-                                                    <rect key="frame" x="-10" y="-3" width="272" height="90"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="272" height="150"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="joe_bloggs.png" id="fmI-oO-hf0" userLabel="icon" customClass="RoundedImageView">
-                                                            <rect key="frame" x="20" y="20" width="50" height="50"/>
+                                                            <rect key="frame" x="43" y="15" width="100" height="100"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         </imageView>
-                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="John Smith" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DBZ-hW-Zbo" userLabel="name">
-                                                            <rect key="frame" x="80" y="20" width="106" height="21"/>
+                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="John Smith" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DBZ-hW-Zbo" userLabel="name">
+                                                            <rect key="frame" x="8" y="118" width="169" height="21"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
                                                             <color key="textColor" red="0.27450980390000002" green="0.27450980390000002" blue="0.27450980390000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Seller has lees than 34Seller has lees than 34Seller has lees than 34Seller has lees than 34 Seller has lees than 34" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Lfv-I0-AH7" userLabel="seller_info">
-                                                            <rect key="frame" x="80" y="37" width="106" height="53"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="9"/>
-                                                            <color key="textColor" red="0.51372549020000002" green="0.51372549020000002" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </view>
                                                 <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Mli-hJ-o8P" userLabel="contact_button" customClass="TwoModeButton">
-                                                    <rect key="frame" x="185" y="17" width="124" height="25"/>
+                                                    <rect key="frame" x="180" y="17" width="133" height="33"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
+                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="16"/>
                                                     <state key="normal" title="Contact seller">
-                                                        <color key="titleColor" red="0.23921568630000001" green="0.56470588239999997" blue="0.67450980390000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="titleColor" red="0.066666666669999999" green="0.63921568630000003" blue="0.74117647060000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
                                                     <state key="selected">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -3386,12 +3389,27 @@ You will receive the funds two days after the event or once the buyer confirms t
                                                     </state>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="gBg-A7-PU7" userLabel="buy_request_button" customClass="TwoModeButton">
-                                                    <rect key="frame" x="185" y="49" width="124" height="25"/>
+                                                    <rect key="frame" x="180" y="58" width="133" height="33"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
-                                                    <state key="normal" title="Request to buy">
-                                                        <color key="titleColor" red="0.23921568630000001" green="0.56470588239999997" blue="0.67450980390000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="16"/>
+                                                    <state key="normal" title="Buy">
+                                                        <color key="titleColor" red="0.066666666669999999" green="0.63921568630000003" blue="0.74117647060000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                    <state key="selected">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <state key="highlighted">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="I0J-5M-tpX" userLabel="buy_request_button" customClass="TwoModeButton">
+                                                    <rect key="frame" x="180" y="96" width="133" height="33"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="16"/>
+                                                    <state key="normal" title="New Offer">
+                                                        <color key="titleColor" red="0.066666666669999999" green="0.63921568630000003" blue="0.74117647060000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
                                                     <state key="selected">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -3401,20 +3419,20 @@ You will receive the funds two days after the event or once the buyer confirms t
                                                     </state>
                                                 </button>
                                             </subviews>
-                                            <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="60" id="rRl-Sq-6ti" userLabel="confirm">
-                                        <rect key="frame" x="0.0" y="813" width="319" height="60"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="80" id="rRl-Sq-6ti" userLabel="confirm">
+                                        <rect key="frame" x="0.0" y="870" width="319" height="80"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rRl-Sq-6ti" id="yif-ei-lKu">
-                                            <rect key="frame" x="0.0" y="0.0" width="319" height="59"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="319" height="79"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ZaS-Yf-oPx" userLabel="confirm" customClass="DingoButton">
-                                                    <rect key="frame" x="37" y="11" width="246" height="38"/>
+                                                    <rect key="frame" x="36" y="15" width="246" height="38"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" red="0.23921568630000001" green="0.56470588239999997" blue="0.67450980390000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" red="0.066666666669999999" green="0.63921568630000003" blue="0.74117647060000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="19"/>
                                                     <state key="normal" title="Confirm">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -3452,12 +3470,19 @@ You will receive the funds two days after the event or once the buyer confirms t
                         <outlet property="deliveryLabel" destination="5x1-Fy-Kbp" id="Xuy-MO-XZY"/>
                         <outlet property="descriptionTextView" destination="7EF-eQ-FNJ" id="j04-pA-uSz"/>
                         <outlet property="faceValueLabel" destination="44a-Pn-Dc1" id="7i0-gt-ox9"/>
+                        <outlet property="lblComment" destination="WyL-FZ-Jdf" id="hDg-yR-7Pf"/>
+                        <outlet property="lblDelivery" destination="O4c-jI-GTZ" id="Bk4-7D-i3D"/>
+                        <outlet property="lblFaceValue" destination="nvh-KU-Sw5" id="dkb-S7-1GG"/>
+                        <outlet property="lblPayment" destination="Yt2-y0-ldz" id="eCp-5h-SFv"/>
+                        <outlet property="lblTicketCount" destination="CYH-g5-opj" id="118-Vh-3xO"/>
+                        <outlet property="lblTicketType" destination="Uny-2s-pgm" id="N8s-a4-bo8"/>
+                        <outlet property="locationMap" destination="hWC-Z6-tmp" id="0qn-8c-hsa"/>
+                        <outlet property="offerNewButton" destination="I0J-5M-tpX" id="qUo-Dv-fbz"/>
                         <outlet property="paymentLabel" destination="FTB-PO-qsW" id="s3r-Zu-dHe"/>
                         <outlet property="photosPreviewCell" destination="lZ7-ou-GCU" id="K2B-qy-rRj"/>
                         <outlet property="proposalCell" destination="anG-hn-Ces" id="zPc-h0-MtK"/>
                         <outlet property="requestToBuyButton" destination="gBg-A7-PU7" id="eUS-Ub-wLe"/>
                         <outlet property="sellerImageView" destination="fmI-oO-hf0" id="HVz-1e-8CU"/>
-                        <outlet property="sellerInfolabel" destination="Lfv-I0-AH7" id="wTQ-Du-k7O"/>
                         <outlet property="sellerNameLabel" destination="DBZ-hW-Zbo" id="49q-X8-JVn"/>
                         <outlet property="ticketTypeLabel" destination="Zkt-bo-Vkw" id="05L-AJ-xGM"/>
                         <outlet property="ticketsCountlabel" destination="DYU-wS-u5g" id="deU-re-buN"/>
@@ -3918,7 +3943,6 @@ You will receive the funds two days after the event or once the buyer confirms t
         <image name="nav_back_icon.png" width="14" height="24"/>
         <image name="offers_cells.png" width="320" height="85"/>
         <image name="or_icon.png" width="43" height="43"/>
-        <image name="preview_cell.png" width="320" height="93"/>
         <image name="search_icon.png" width="26" height="26"/>
         <image name="settings_icon.png" width="27" height="27"/>
         <image name="settings_icon_gray.png" width="50" height="50"/>

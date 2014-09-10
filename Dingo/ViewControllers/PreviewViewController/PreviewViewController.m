@@ -13,10 +13,20 @@
 #import "WebServiceManager.h"
 #import "ZSLoadingView.h"
 #import "AppManager.h"
+#import <MapKit/MapKit.h>
 
 static const NSUInteger photosCellIndex = 1;
+static const NSUInteger commentCellIndex = 4;
 
-@interface PreviewViewController ()
+@interface PreviewViewController () {
+    
+    __weak IBOutlet UILabel *lblTicketCount;
+    __weak IBOutlet UILabel *lblFaceValue;
+    __weak IBOutlet UILabel *lblComment;
+    __weak IBOutlet UILabel *lblTicketType;
+    __weak IBOutlet UILabel *lblPayment;
+    __weak IBOutlet UILabel *lblDelivery;
+}
 
 @property (nonatomic, weak) IBOutlet ProposalCell *proposalCell;
 @property (nonatomic, weak) IBOutlet PhotosPreviewCell *photosPreviewCell;
@@ -28,9 +38,10 @@ static const NSUInteger photosCellIndex = 1;
 @property (weak, nonatomic) IBOutlet UILabel *deliveryLabel;
 @property (nonatomic, weak) IBOutlet UIButton *contactCellerButton;
 @property (nonatomic, weak) IBOutlet UIButton *requestToBuyButton;
+@property (weak, nonatomic) IBOutlet UIButton *offerNewButton;
 @property (nonatomic, weak) IBOutlet UIImageView *sellerImageView;
 @property (nonatomic, weak) IBOutlet UILabel *sellerNameLabel;
-@property (nonatomic, weak) IBOutlet UILabel *sellerInfolabel;
+@property (weak, nonatomic) IBOutlet MKMapView *locationMap;
 
 @end
 
@@ -56,6 +67,14 @@ static const NSUInteger photosCellIndex = 1;
     [super viewDidLoad];
     self.photosPreviewCell.photos = [self.photos mutableCopy];
     
+    lblTicketCount.font = lblFaceValue.font = lblComment.font = lblTicketType.font = lblPayment.font = lblDelivery.font = [DingoUISettings lightFontWithSize:14];
+    
+    self.ticketsCountlabel.font = self.faceValueLabel.font = self.descriptionTextView.font =  self.paymentLabel.font =  self.ticketTypeLabel.font =  self.deliveryLabel.font = [DingoUISettings lightFontWithSize:14];
+    
+    self.contactCellerButton.titleLabel.font = self.requestToBuyButton.titleLabel.font = self.offerNewButton.titleLabel.font = [DingoUISettings lightFontWithSize:16];
+    
+    self.sellerNameLabel.font = [DingoUISettings fontWithSize:19];
+    
     self.ticketsCountlabel.text = [self.ticket.number_of_tickets stringValue];
     self.faceValueLabel.text = [self.ticket.face_value_per_ticket stringValue];
     self.descriptionTextView.text = self.ticket.ticket_desc;
@@ -65,9 +84,27 @@ static const NSUInteger photosCellIndex = 1;
     
     [self.proposalCell buildWithData:self.event];
     
+    [WebServiceManager addressToLocation:[DataManager eventLocation:self.event] completion:^(id response, NSError *error) {
+        
+        if ([response[@"status"] isEqualToString:@"OK"]) {
+            NSArray *results = response[@"results"];
+            if (results.count > 0) {
+                NSDictionary *result = results[0];
+                
+                CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([result[@"geometry"][@"location"][@"lat"] doubleValue], [result[@"geometry"][@"location"][@"lng"] doubleValue]);
+                MKCoordinateSpan span = MKCoordinateSpanMake(0.01, 0.01);
+                MKCoordinateRegion region = {coord, span};
+                [self.locationMap setRegion:region];
+            }
+            
+        }
+    }];
+
+    
     self.sellerNameLabel.text = [AppManager sharedManager].userInfo[@"name"];
-    self.sellerInfolabel.text = @"";
     self.sellerImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[AppManager sharedManager].userInfo[@"photo_url"]]]];
+    
+    self.tableView.separatorInset = UIEdgeInsetsZero;
 }
 
 #pragma mark - UITableViewDataSource
@@ -79,6 +116,19 @@ static const NSUInteger photosCellIndex = 1;
                 return 0;
             }
             break;
+        case commentCellIndex: {
+            CGSize size = [self.descriptionTextView sizeThatFits:CGSizeMake(self.descriptionTextView.frame.size.width, FLT_MAX)];
+            if (self.descriptionTextView.text.length == 0) {
+                return 36;
+            } else {
+                CGRect frame = self.descriptionTextView.frame;
+                frame.size.height = size.height;
+                self.descriptionTextView.frame = frame;
+                return size.height + 20;
+            }
+            
+            break;
+        }
     }
     
     return [super tableView:tableView heightForRowAtIndexPath:indexPath];
@@ -177,11 +227,18 @@ static const NSUInteger photosCellIndex = 1;
                                   };
         
         [WebServiceManager createTicket:params photos:self.photos completion:^(id response, NSError *error) {
-            if (response[@"id"]) {
-                // ticket created
-                [self.navigationController.viewControllers[0] setSelectedIndex:0];
-                [self.navigationController popToRootViewControllerAnimated:YES];
-
+            if (!error ) {
+                if (response[@"id"]) {
+                    // ticket created
+                    [self.navigationController.viewControllers[0] setSelectedIndex:0];
+                    [self.navigationController popToRootViewControllerAnimated:YES];
+                    
+                } else {
+                    [AppManager showAlert:@"Unable to create ticket."];
+                }
+                
+            } else {
+                [AppManager showAlert:[error localizedDescription]];
             }
             
             [loadingView hide];

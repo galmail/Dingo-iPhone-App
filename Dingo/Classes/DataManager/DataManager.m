@@ -255,7 +255,7 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     };
     
     [self enumerateFeaturedEventGroups:&delegate];
-    return groupsCount ;
+    return groupsCount + 1 ;
 }
 
 - (NSUInteger)eventsGroupsCountForCategories:(NSArray*)categories {

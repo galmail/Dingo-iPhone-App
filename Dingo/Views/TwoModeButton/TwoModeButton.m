@@ -20,6 +20,7 @@
 
     self.layer.borderColor = [DingoUISettings backgroundColor].CGColor;
     self.layer.borderWidth = 1;
+    self.layer.cornerRadius = 2;
     self.selected = NO;
     
     return self;
