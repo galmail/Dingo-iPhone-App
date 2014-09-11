@@ -13,6 +13,8 @@
 #import "DingoUISettings.h"
 #import "DingoUtilites.h"
 #import "SectionHeaderView.h"
+#import "TicketsViewController.h"
+#import "TicketDetailViewController.h"
 
 @interface FeaturesViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -86,33 +88,24 @@
     return cell;
 }
 
-/*
- // Override to support conditional editing of the table view.
- - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
- {
- // Return NO if you do not want the specified item to be editable.
- return YES;
- }
- */
-
-/*
- // Override to support editing the table view.
- - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
- {
- if (editingStyle == UITableViewCellEditingStyleDelete) {
- // Delete the row from the data source
- [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
- }
- else if (editingStyle == UITableViewCellEditingStyleInsert) {
- // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
- }
- }
- */
 
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
+    
+    NSIndexPath *selectedCellPath = [self.tableView indexPathForSelectedRow];
+    Event* event= [[DataManager shared] featuredEventDescriptionByIndexPath:selectedCellPath];
+    
+    if ([event.tickets intValue] > 1) {
+        TicketsViewController *vc = (TicketsViewController *)segue.destinationViewController;
+        vc.eventData = event;
+    } else {
+        // TODO: need to show ticket detail
+        
+        TicketsViewController *vc = (TicketsViewController *)segue.destinationViewController;
+        vc.eventData = event;
+    }
 }
 
 @end

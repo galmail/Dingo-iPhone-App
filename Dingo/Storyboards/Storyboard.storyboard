@@ -1107,8 +1107,8 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
                                             <rect key="frame" x="100" y="7" width="220" height="135"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jay-Z Live 02" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="X1v-SR-aEw" userLabel="name">
-                                                    <rect key="frame" x="25" y="19" width="186" height="28"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jay-Z Live 02" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.59999999999999998" id="X1v-SR-aEw" userLabel="name">
+                                                    <rect key="frame" x="25" y="0.0" width="186" height="55"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="22"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1174,6 +1174,7 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
                                     <outlet property="ticketsCountLabel" destination="mth-51-YnF" id="VZU-9n-yhI"/>
                                     <outlet property="timeLabel" destination="zOj-Ff-7dH" id="ZhC-bv-KGk"/>
                                     <outlet property="view" destination="fHq-Sw-I9L" id="2nD-1Z-ZrF"/>
+                                    <segue destination="UTV-Tz-0Ch" kind="push" id="anJ-Pm-qVd"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -4110,6 +4111,7 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="lKe-yJ-oEi"/>
         <segue reference="Xk9-Zd-nfA"/>
         <segue reference="Gpq-ke-4M3"/>
     </inferredMetricsTieBreakers>
