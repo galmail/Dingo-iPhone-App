@@ -44,6 +44,8 @@
 		3AF360B91976A629009A14FD /* NSDictionary+UrlEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF360B81976A629009A14FD /* NSDictionary+UrlEncoding.m */; };
 		3AF360BD1976AB16009A14FD /* UIDevice+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF360BC1976AB16009A14FD /* UIDevice+Additions.m */; };
 		3AF360C01976AB49009A14FD /* NSString+MD5Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF360BF1976AB49009A14FD /* NSString+MD5Additions.m */; };
+		3AF5402119C1937000FD5A93 /* ImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF5402019C1937000FD5A93 /* ImagesViewController.m */; };
+		3AF5402419C1972100FD5A93 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF5402319C1972100FD5A93 /* MapViewController.m */; };
 		3E24F9C81D9E48F08275CAA9 /* libPods-Dingo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CEA10389BDB459BA8B0537B /* libPods-Dingo.a */; };
 		3F08EBFD194715D500CDFBD8 /* RoundedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F08EBFC194715D500CDFBD8 /* RoundedImageView.m */; };
 		3F08EC0619471D6B00CDFBD8 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F08EC0519471D6B00CDFBD8 /* Accelerate.framework */; };
@@ -297,6 +299,10 @@
 		3AF360BC1976AB16009A14FD /* UIDevice+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+Additions.m"; sourceTree = "<group>"; };
 		3AF360BE1976AB49009A14FD /* NSString+MD5Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5Additions.h"; sourceTree = "<group>"; };
 		3AF360BF1976AB49009A14FD /* NSString+MD5Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5Additions.m"; sourceTree = "<group>"; };
+		3AF5401F19C1937000FD5A93 /* ImagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagesViewController.h; sourceTree = "<group>"; };
+		3AF5402019C1937000FD5A93 /* ImagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagesViewController.m; sourceTree = "<group>"; };
+		3AF5402219C1972100FD5A93 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		3AF5402319C1972100FD5A93 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		3F08EBFB194715D500CDFBD8 /* RoundedImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RoundedImageView.h; path = RoundedImageView/RoundedImageView.h; sourceTree = "<group>"; };
 		3F08EBFC194715D500CDFBD8 /* RoundedImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RoundedImageView.m; path = RoundedImageView/RoundedImageView.m; sourceTree = "<group>"; };
 		3F08EC0319471BCC00CDFBD8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -702,6 +708,24 @@
 			path = "Classes/UIDevice+Additions";
 			sourceTree = "<group>";
 		};
+		3AF5401D19C1924300FD5A93 /* ImagesViewController */ = {
+			isa = PBXGroup;
+			children = (
+				3AF5401F19C1937000FD5A93 /* ImagesViewController.h */,
+				3AF5402019C1937000FD5A93 /* ImagesViewController.m */,
+			);
+			path = ImagesViewController;
+			sourceTree = "<group>";
+		};
+		3AF5401E19C1924300FD5A93 /* MapViewController */ = {
+			isa = PBXGroup;
+			children = (
+				3AF5402219C1972100FD5A93 /* MapViewController.h */,
+				3AF5402319C1972100FD5A93 /* MapViewController.m */,
+			);
+			path = MapViewController;
+			sourceTree = "<group>";
+		};
 		3F08EBFE194715D800CDFBD8 /* RoundedImageView */ = {
 			isa = PBXGroup;
 			children = (
@@ -822,6 +846,8 @@
 		3F10DE451938B24F002D3B43 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				3AF5401D19C1924300FD5A93 /* ImagesViewController */,
+				3AF5401E19C1924300FD5A93 /* MapViewController */,
 				849C90A819A4EBC9000B585E /* AboutViewController */,
 				841C508419A6065400BD4141 /* TicketAlerts */,
 				3AA48FFF199E1C4B00C7E8ED /* TicketDetailViewController */,
@@ -1875,6 +1901,7 @@
 				3F08EBFD194715D500CDFBD8 /* RoundedImageView.m in Sources */,
 				3F2864F8194B430F002A3576 /* QuestionCell.m in Sources */,
 				840CD23C19B8449700699E26 /* UIBubbleTypingTableViewCell.m in Sources */,
+				3AF5402119C1937000FD5A93 /* ImagesViewController.m in Sources */,
 				3F98FC90193E09E000E6B3C4 /* MessagesViewController.m in Sources */,
 				3F98FCC3193F4E9B00E6B3C4 /* SlidingViewController.m in Sources */,
 				3F62C6C119489C3900D7D6B1 /* SideMenuCell.m in Sources */,
@@ -1889,6 +1916,7 @@
 				3F7C4E221951CC31003302A0 /* SettingsViewController.m in Sources */,
 				3F7C4E261951D98A003302A0 /* SearchResultsViewController.m in Sources */,
 				3A9DB55B1988F2D000861899 /* ZSPickerView.m in Sources */,
+				3AF5402419C1972100FD5A93 /* MapViewController.m in Sources */,
 				3F7C4E3719543651003302A0 /* PhotosPreviewCell.m in Sources */,
 				840CD22B19B83D8A00699E26 /* ChatViewController.m in Sources */,
 				3F10DE1519388EC1002D3B43 /* main.m in Sources */,

@@ -70,6 +70,11 @@ static const NSUInteger photosPerPage = 2;
     return cell;
 }
 
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [self.parentViewController performSegueWithIdentifier:@"ImagesSegue" sender:self.parentViewController];
+}
+
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView {
     self.pageControl.currentPage = ceilf(scrollView.contentOffset.x / scrollView.frame.size.width);
 }

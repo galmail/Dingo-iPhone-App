@@ -78,11 +78,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
-    if ([segue.identifier isEqual:@"SearchEventDetail"]) {
-    
-        TicketsViewController *vc = (TicketsViewController *)segue.destinationViewController;
-        
-    }
+
 }
 
 #pragma mark - Private

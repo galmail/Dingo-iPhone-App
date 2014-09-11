@@ -9,5 +9,6 @@
 @interface PhotosPreviewCell : UITableViewCell
 
 @property (nonatomic, strong) NSMutableArray *photos;
+@property (nonatomic, assign) UIViewController *parentViewController;
 
 @end

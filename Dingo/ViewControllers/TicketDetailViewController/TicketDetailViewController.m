@@ -18,12 +18,22 @@
 #import <Social/Social.h>
 #import "BottomEditBar.h"
 #import "ChatViewController.h"
+#import "MapViewController.h"
+#import "ImagesViewController.h"
 
 static const NSUInteger photosCellIndex = 1;
+static const NSUInteger commentCellIndex = 4;
 
 
 @interface TicketDetailViewController () <BottomBarDelegate> {
     BottomEditBar *bottomBar;
+    
+    __weak IBOutlet UILabel *lblTicketCount;
+    __weak IBOutlet UILabel *lblFaceValue;
+    __weak IBOutlet UILabel *lblComment;
+    __weak IBOutlet UILabel *lblTicketType;
+    __weak IBOutlet UILabel *lblPayment;
+    __weak IBOutlet UILabel *lblDelivery;
 }
 
 @property (nonatomic, weak) IBOutlet ProposalCell *proposalCell;
@@ -39,7 +49,6 @@ static const NSUInteger photosCellIndex = 1;
 @property (nonatomic, weak) IBOutlet UIButton *offerPriceButton;
 @property (nonatomic, weak) IBOutlet UIImageView *sellerImageView;
 @property (nonatomic, weak) IBOutlet UILabel *sellerNameLabel;
-@property (nonatomic, weak) IBOutlet UILabel *sellerInfolabel;
 @property (weak, nonatomic) IBOutlet MKMapView *locationMap;
 
 @end
@@ -60,6 +69,13 @@ static const NSUInteger photosCellIndex = 1;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    lblTicketCount.font = lblFaceValue.font = lblComment.font = lblTicketType.font = lblPayment.font = lblDelivery.font = [DingoUISettings lightFontWithSize:14];
+    self.ticketsCountlabel.font = self.faceValueLabel.font = self.descriptionTextView.font =  self.paymentLabel.font =  self.ticketTypeLabel.font =  self.deliveryLabel.font = [DingoUISettings lightFontWithSize:14];
+    
+    self.contactCellerButton.titleLabel.font = self.requestToBuyButton.titleLabel.font = self.offerPriceButton.titleLabel.font = [DingoUISettings lightFontWithSize:16];
+    
+    self.sellerNameLabel.font = [DingoUISettings fontWithSize:19];
     
     NSMutableArray *photos = [NSMutableArray new];
     if (self.ticket.photo1) {
@@ -73,8 +89,9 @@ static const NSUInteger photosCellIndex = 1;
     if (self.ticket.photo3) {
         [photos addObject:[UIImage imageWithData:self.ticket.photo3]];
     }
-
+    
     self.photosPreviewCell.photos = photos;
+    self.photosPreviewCell.parentViewController = self;
     
     self.ticketsCountlabel.text = [self.ticket.number_of_tickets stringValue];
     self.faceValueLabel.text = [self.ticket.face_value_per_ticket stringValue];
@@ -86,7 +103,6 @@ static const NSUInteger photosCellIndex = 1;
     [self.proposalCell buildWithData:self.event];
     
     self.sellerNameLabel.text = self.ticket.user_name;
-    self.sellerInfolabel.text = @"";
     self.sellerImageView.image = [UIImage imageWithData:self.ticket.user_photo];
     
     [WebServiceManager addressToLocation:[DataManager eventLocation:self.event] completion:^(id response, NSError *error) {
@@ -97,7 +113,7 @@ static const NSUInteger photosCellIndex = 1;
                 NSDictionary *result = results[0];
                
                 CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([result[@"geometry"][@"location"][@"lat"] doubleValue], [result[@"geometry"][@"location"][@"lng"] doubleValue]);
-                MKCoordinateSpan span = MKCoordinateSpanMake(1, 1);
+                MKCoordinateSpan span = MKCoordinateSpanMake(0.01, 0.01);
                 MKCoordinateRegion region = {coord, span};
                 [self.locationMap setRegion:region];
             }
@@ -110,18 +126,19 @@ static const NSUInteger photosCellIndex = 1;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    NSLog(@"user info %@", [AppManager sharedManager].userInfo);
+
     if ([self.ticket.user_id isEqual:[AppManager sharedManager].userInfo[@"id"]]) {
         
         bottomBar = [[BottomEditBar alloc] initWithFrame:CGRectMake(0, 0, 360, 65)];
         CGRect frame = self.view.frame;
-        frame.origin.y = frame.size.height - bottomBar.frame.size.height;
+        frame.origin.x = 0;
+        frame.origin.y = frame.origin.y + frame.size.height - bottomBar.frame.size.height;
         frame.size.height = bottomBar.frame.size.height;
+        frame.size.width = 320;
         bottomBar.frame = frame;
         
         bottomBar.delegate = self;
-        bottomBar.offers = [self.ticket.offers_count integerValue];
-        
+       
         [self.navigationController.view  addSubview:bottomBar];
         
         self.contactCellerButton.enabled = self.requestToBuyButton.enabled = self.offerPriceButton.enabled = NO;
@@ -151,6 +168,19 @@ static const NSUInteger photosCellIndex = 1;
                 return 0;
             }
             break;
+        case commentCellIndex: {
+            CGSize size = [self.descriptionTextView sizeThatFits:CGSizeMake(self.descriptionTextView.frame.size.width, FLT_MAX)];
+            if (self.descriptionTextView.text.length == 0) {
+                return 36;
+            } else {
+                CGRect frame = self.descriptionTextView.frame;
+                frame.size.height = size.height;
+                self.descriptionTextView.frame = frame;
+                return size.height + 20;
+            }
+            
+            break;
+        }
     }
     
     return [super tableView:tableView heightForRowAtIndexPath:indexPath];
@@ -217,6 +247,22 @@ static const NSUInteger photosCellIndex = 1;
     if ([segue.identifier isEqual:@"EditTicket"]) {
         ListTicketsViewController *viewController = (ListTicketsViewController *)segue.destinationViewController;
         [viewController setTicket:self.ticket event:self.event];
+    }
+    
+    if ([segue.identifier isEqual:@"MapSegue"]) {
+        
+        UINavigationController *navController = segue.destinationViewController;
+        MapViewController *vc = navController.viewControllers[0];
+        vc.event = self.event;
+       
+    }
+    
+    if ([segue.identifier isEqual:@"ImagesSegue"]) {
+        
+        UINavigationController *navController = segue.destinationViewController;
+        ImagesViewController *vc = navController.viewControllers[0];
+        vc.photos = self.photosPreviewCell.photos;
+        
     }
 }
 

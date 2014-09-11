@@ -11,7 +11,6 @@
 
 @interface BottomEditBar () {
     
-    __weak IBOutlet UILabel *lblOffers;
 }
 
 @end
@@ -37,24 +36,11 @@
 - (void)awakeFromNib {
     
     [super awakeFromNib];
-    lblOffers.font = [DingoUISettings fontWithSize:18];
-}
-
-- (void)setOffers:(NSInteger)offers {
-    
-    lblOffers.text = [NSString stringWithFormat:@"Offers (%d)", offers];
-    
 }
 
 - (IBAction)editListing:(id)sender {
     if ([self.delegate respondsToSelector:@selector(editListing)]) {
         [self.delegate editListing];
-    }
-}
-
-- (IBAction)viewOffers:(id)sender {
-    if ([self.delegate respondsToSelector:@selector(viewOffers)]) {
-        [self.delegate viewOffers];
     }
 }
 

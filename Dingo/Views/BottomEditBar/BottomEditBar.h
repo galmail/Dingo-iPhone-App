@@ -13,13 +13,11 @@
 
 @optional
 - (void)editListing;
-- (void)viewOffers;
 
 @end
 
 @interface BottomEditBar : UIView
 
-@property (nonatomic, assign) NSInteger offers;
 @property (nonatomic, assign) id<BottomBarDelegate> delegate;
 
 @end

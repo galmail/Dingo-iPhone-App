@@ -14,6 +14,7 @@
 #import "ZSLoadingView.h"
 #import "AppManager.h"
 #import <MapKit/MapKit.h>
+#import "MapViewController.h"
 
 static const NSUInteger photosCellIndex = 1;
 static const NSUInteger commentCellIndex = 4;
@@ -132,6 +133,18 @@ static const NSUInteger commentCellIndex = 4;
     }
     
     return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+}
+
+#pragma mark Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqual:@"PreviewMapSegue"]) {
+        
+        UINavigationController *navController = segue.destinationViewController;
+        MapViewController *vc = navController.viewControllers[0];
+        vc.event = self.event;
+        
+    }
 }
 
 #pragma mark - UIActions
