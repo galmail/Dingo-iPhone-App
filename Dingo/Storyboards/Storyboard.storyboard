@@ -3058,7 +3058,7 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
                         <barButtonItem key="leftBarButtonItem" image="nav_back_icon.png" id="hQm-Tg-YIV">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <action selector="back:" destination="LXS-WP-D7x" id="twA-qh-nnh"/>
+                                <action selector="back" destination="LXS-WP-D7x" id="daJ-J4-sP5"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

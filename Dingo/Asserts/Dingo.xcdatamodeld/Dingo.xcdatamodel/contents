@@ -26,6 +26,16 @@
         <attribute name="thumb" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="thumbUrl" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="Messages" representedClassName="Message" syncable="YES">
+        <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="datetime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="message_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="receiver_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sender_avatar" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="sender_avatar_url" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sender_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sender_name" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="Ticket" representedClassName="Ticket" syncable="YES">
         <attribute name="delivery_options" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="event_id" optional="YES" attributeType="String" syncable="YES"/>
@@ -49,6 +59,7 @@
         <element name="Alerts" positionX="-27" positionY="153" width="128" height="75"/>
         <element name="Event" positionX="-54" positionY="18" width="128" height="253"/>
         <element name="EventCategory" positionX="-63" positionY="-18" width="128" height="103"/>
+        <element name="Messages" positionX="-45" positionY="135" width="128" height="163"/>
         <element name="Ticket" positionX="-36" positionY="117" width="128" height="300"/>
     </elements>
 </model>

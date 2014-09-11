@@ -193,7 +193,7 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
 - (NSArray *)ticketsBeforeDate:(NSDate *)date {
     NSArray *tickets = [self userTickets];
     NSMutableArray *result = [NSMutableArray array];
-
+    
     for (Ticket *ticket in tickets) {
         Event *event = [self eventByID:ticket.event_id];
         NSDate *curDate = event.date;
@@ -983,5 +983,83 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
 
 - (void)save{
     [[AppManager sharedManager] saveContext];
+}
+
+
+
+- (void)fetchMessagesByID:(NSString *)ID completion:( void (^) (BOOL finished))handler {
+    
+    //    NSDictionary *params = @{@"event_id":eventID};
+    [WebServiceManager receiveMessages:nil completion:^(id response, NSError *error) {
+        if (response[@"messages"]) {
+            NSArray *messages = response[@"messages"];
+            
+            // remove deleted tickets from local database
+            NSArray *messagesIDs = [messages valueForKey:@"id"];
+            NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Messages"];
+            request.predicate = [NSPredicate predicateWithFormat:@"NOT (message_id IN %@)", messagesIDs];
+            
+            NSArray *messagesToRemove = [[AppManager sharedManager].managedObjectContext executeFetchRequest:request error:nil];
+            if (messagesToRemove.count) {
+                for (Message *toRemove in messagesToRemove) {
+                    [[AppManager sharedManager].managedObjectContext deleteObject:toRemove];
+                }
+            }
+            
+            for (NSDictionary *message in messages) {
+                [self addOrUpdateMessage:message];
+            }
+            
+            [[AppManager sharedManager] saveContext];
+        }
+        handler(YES);
+    }];
+}
+
+
+- (void)addOrUpdateMessage:(NSDictionary *)info {
+    NSManagedObjectContext *context = [AppManager sharedManager].managedObjectContext;
+    
+    NSString *messageID = info[@"id"];
+    
+    
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Messages"];
+    request.predicate = [NSPredicate predicateWithFormat:@"message_id == %@", messageID];
+    
+    NSError *error = nil;
+    Message *message = nil;
+    NSArray *messages = [context executeFetchRequest:request error:&error];
+    if (messages.count > 0) {
+        message = messages[0];
+    } else {
+        message = [NSEntityDescription insertNewObjectForEntityForName:@"Messages" inManagedObjectContext:context];
+        message.message_id = messageID;
+    }
+    
+    
+    message.content = info[@"content"];
+    message.sender_id = [info[@"sender_id"] stringValue];
+    message.receiver_id = [info[@"receiver_id"] stringValue];
+    message.sender_avatar_url = info[@"sender_avatar"];
+    message.sender_name = info[@"sender_name"];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
+    formatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSSSZ";
+    
+    NSDate *date = [formatter dateFromString:info[@"datetime"]];
+    
+    message.datetime = date;
+    
+}
+
+- (NSArray *)allMessages{
+    
+    NSManagedObjectContext *context = [AppManager sharedManager].managedObjectContext;
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Messages"];
+    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"datetime" ascending:YES]];
+    NSError *error = nil;
+    NSArray *events = [context executeFetchRequest:request error:&error];
+    
+    return events;
 }
 @end

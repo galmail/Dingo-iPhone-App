@@ -11,6 +11,7 @@
 #import "Event.h"
 #import "Ticket.h"
 #import "Alert.h"
+#import "Message.h"
 
 @interface DataManager : NSObject
 
@@ -71,4 +72,7 @@
 - (NSUInteger)eventsFromSearchCountWithGroupIndex:(NSUInteger)group Events:(NSArray*)searchedEvents;
 - (NSUInteger)eventsFromSearchGroupsCount:(NSArray*)searchedEvents;
 - (NSDate *)eventFromSearchGroupDateByIndex:(NSUInteger)groupIndex Events:(NSArray*)searchedEvents;
+
+- (void)fetchMessagesByID:(NSString *)ID completion:( void (^) (BOOL finished))handler;
+- (NSArray *)allMessages;
 @end

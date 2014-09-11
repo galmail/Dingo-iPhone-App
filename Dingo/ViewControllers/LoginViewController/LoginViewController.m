@@ -124,7 +124,7 @@
                                                                                   if ([response[@"success"] boolValue]) {
                                                                                       [AppManager sharedManager].token = response[@"auth_token"];
                                                                                       
-                                                                                      [AppManager sharedManager].userInfo = [@{@"id":response[@"id"], @"email":user[@"email"], @"name": user.first_name, @"photo_url":user[@"picture"][@"data"][@"url"], @"city" : user.location ? [[user.location.name componentsSeparatedByString:@","] firstObject] : @"London"} mutableCopy];
+                                                                                      [AppManager sharedManager].userInfo = [@{@"id":response[@"id"], @"email":user[@"email"], @"name": user.first_name, @"surname": response[@"surname"], @"allow_dingo_emails": response[@"allow_dingo_emails"], @"allow_push_notifications":  response[@"allow_push_notifications"], @"fb_id": response[@"fb_id"], @"photo_url":user[@"picture"][@"data"][@"url"], @"city" : user.location ? [[user.location.name componentsSeparatedByString:@","] firstObject] : @"London"} mutableCopy];
                                                                                       
                                                                                       SelectCityViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SelectCityViewController"];
                                                                                       
