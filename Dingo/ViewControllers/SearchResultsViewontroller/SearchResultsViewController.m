@@ -7,6 +7,7 @@
 //
 
 #import "SearchResultsViewController.h"
+#import "TicketsViewController.h"
 
 #import "TicketCell.h"
 #import "DataManager.h"
@@ -61,6 +62,14 @@
     return [self buildEventCellForIndexPath:indexPath];
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    TicketsViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"TicketsViewController"];
+    vc.eventData = [[DataManager shared] eventFromSearchDescriptionByIndexPath:indexPath Events:self.searchedEvents];
+    
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 #pragma mark - Navigation
 
 - (IBAction)back {
@@ -68,8 +77,12 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-//    TicketsViewController *vc = (TicketsViewController *)segue.destinationViewController;
-//    vc.eventData = [[DataManager shared] eventDescriptionByIndexPath:[self.tableView indexPathForSelectedRow]];
+    
+    if ([segue.identifier isEqual:@"SearchEventDetail"]) {
+    
+        TicketsViewController *vc = (TicketsViewController *)segue.destinationViewController;
+        
+    }
 }
 
 #pragma mark - Private

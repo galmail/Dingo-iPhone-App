@@ -102,6 +102,7 @@
     }
     if (self.dateField.text.length>0) {
         [params setValue:self.dateField.text forKey:@"start_date"];
+        [params setValue:self.dateField.text forKey:@"end_date"];
     }
     if (selectedCategories.count>0) {
         [params setValue:[selectedCategories componentsJoinedByString:@","] forKey:@"category_ids[]"];
