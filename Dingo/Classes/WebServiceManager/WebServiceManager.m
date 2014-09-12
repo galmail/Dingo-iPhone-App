@@ -17,7 +17,25 @@ static NSString* signInUrl = @"http://dingoapp.herokuapp.com/users/sign_in";
 static NSString* geocodeUrl = @"https://maps.googleapis.com/maps/api/geocode/json";
 static NSString* placesUrl = @"https://maps.googleapis.com/maps/api/place/autocomplete/json";
 static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/details/json";
+
 @implementation WebServiceManager
+
++ (void)imageFromUrl:(NSString *)imageURL completion:( void (^) (id response, NSError *error))handler {
+
+    NSMutableURLRequest *request = [self requestForGetURL:imageURL withParams:nil];
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        NSURLResponse* response = nil;
+        NSError *error = nil;
+        NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+        
+        dispatch_async(dispatch_get_main_queue(), ^(void){
+            handler(data, error);
+        });
+        
+    });
+    
+}
 
 + (void)addressToLocation:(NSString *)address completion:( void (^) (id response, NSError *error))handler {
     
@@ -316,7 +334,7 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
     if (params.length > 0) {
         url = [NSString stringWithFormat:@"%@?%@", url, params];
     }
-    url =[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//    url =[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:60.0f];
     [request setHTTPMethod:@"GET"];
     

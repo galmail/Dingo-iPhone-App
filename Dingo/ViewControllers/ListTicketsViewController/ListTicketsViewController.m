@@ -76,6 +76,7 @@ static const NSUInteger payPalCellIndex = 13;
     
     BOOL isEditing;
     
+    NSMutableArray *photos;
 }
 
 @property (nonatomic, weak) IBOutlet ZSTextField *nameField;
@@ -118,7 +119,7 @@ static const NSUInteger payPalCellIndex = 13;
     
     [self.priceField showToolbarWithPrev:YES next:YES done:YES];
     [self.faceValueField showToolbarWithPrev:YES next:YES done:YES];
-    [self.ticketsCountField showToolbarWithPrev:YES next:YES done:YES];
+    [self.ticketsCountField showToolbarWithPrev:YES next:NO done:YES];
     
     startDatePicker = [[ZSDatePicker alloc] initWithDate:[NSDate date]];
     startDatePicker.delegate = self;
@@ -156,7 +157,10 @@ static const NSUInteger payPalCellIndex = 13;
         self.priceField.text = [AppManager sharedManager].draftTicket[@"price"];
         self.faceValueField.text= [AppManager sharedManager].draftTicket[@"faceValue"];
         self.ticketsCountField.text = [AppManager sharedManager].draftTicket[@"ticketCount"];
-        self.ticketTypeField.text = [AppManager sharedManager].draftTicket[@"ticketType"];
+        
+        NSString *ticketType = [AppManager sharedManager].draftTicket[@"ticketType"];
+        eticketSwitch.on = [ticketType rangeOfString:@"e-Ticket"].location != NSNotFound;
+        paperSwitch.on = [ticketType rangeOfString:@"Paper"].location != NSNotFound;
         
         NSString *paymentOptions = [AppManager sharedManager].draftTicket[@"paymentOptions"];
         paypalSwitch.on = [paymentOptions rangeOfString:@"PayPal"].location != NSNotFound;
@@ -166,6 +170,16 @@ static const NSUInteger payPalCellIndex = 13;
         inPersonSwitch.on = [deliveryOptions rangeOfString:@"In Person"].location != NSNotFound;
         electronicSwitch.on = [deliveryOptions rangeOfString:@"Electronic"].location != NSNotFound;
         postSwitch.on =  [deliveryOptions rangeOfString:@"Post"].location != NSNotFound;
+        
+        photos = [AppManager sharedManager].draftTicket[@"photos"];
+        if (!photos) {
+            photos = [NSMutableArray new];
+        }
+            
+        self.photosPreviewCell.photos = [photos mutableCopy];
+        if (event.thumb) {
+            [self.photosPreviewCell.photos insertObject:[UIImage imageWithData:event.thumb] atIndex:0];
+        }
         
         self.categoriesCell.selectedCategory = [AppManager sharedManager].draftTicket[@"categoryID"];
         [self.categoriesCell refresh];
@@ -181,7 +195,7 @@ static const NSUInteger payPalCellIndex = 13;
         self.ticketTypeField.text = nil;
         
         paypalSwitch.on = NO;
-        cashSwitch.on = YES;
+        cashSwitch.on = NO;
         
         eticketSwitch.on = NO;
         paperSwitch.on = NO;
@@ -239,6 +253,60 @@ static const NSUInteger payPalCellIndex = 13;
 - (void)saveDraft {
     [AppManager sharedManager].draftTicket = [[NSMutableDictionary alloc] init];
     
+    NSString *paymentOption = @"";
+    if (cashSwitch.on) {
+        paymentOption = @"Cash in person";
+    }
+    
+    if (paypalSwitch.on) {
+        if (paymentOption.length > 0) {
+            paymentOption = [paymentOption stringByAppendingFormat:@", %@", @"PayPal"];
+        } else {
+            paymentOption = @"PayPal";
+        }
+    }
+    
+    ticket.payment_options = paymentOption;
+    
+    NSString *deliveryOptions = @"";
+    if (inPersonSwitch.on) {
+        deliveryOptions = @"In Person";
+    }
+    
+    if (electronicSwitch.on) {
+        if (deliveryOptions.length > 0) {
+            deliveryOptions = [deliveryOptions stringByAppendingFormat:@", %@", @"Electronic"];
+        } else {
+            deliveryOptions = @"Electronic";
+        }
+    }
+    
+    if (postSwitch.on) {
+        if (deliveryOptions.length > 0) {
+            deliveryOptions = [deliveryOptions stringByAppendingFormat:@", %@", @"Post"];
+        } else {
+            deliveryOptions = @"Post";
+        }
+    }
+    
+    ticket.delivery_options = deliveryOptions;
+    
+    NSString *ticketTypes = @"";
+    if (eticketSwitch.on) {
+        ticketTypes = @"e-Ticket";
+    }
+    
+    if (paperSwitch.on) {
+        if (ticketTypes.length > 0) {
+            ticketTypes = [ticketTypes stringByAppendingFormat:@", %@", @"Paper"];
+        } else {
+            ticketTypes = @"Paper";
+        }
+    }
+    
+    ticket.ticket_type = ticketTypes;
+    
+    
     [[AppManager sharedManager].draftTicket setValue:self.nameField.text forKey:@"name"];
     [[AppManager sharedManager].draftTicket setValue:self.locationField.text forKey:@"location"];
     [[AppManager sharedManager].draftTicket setValue:self.startDateField.text forKey:@"startDate"];
@@ -249,25 +317,45 @@ static const NSUInteger payPalCellIndex = 13;
     [[AppManager sharedManager].draftTicket setValue:self.descriptionTextView.text forKey:@"description"];
     [[AppManager sharedManager].draftTicket setValue:self.categoriesCell.selectedCategory forKey:@"categoryID"];
     [[AppManager sharedManager].draftTicket setValue:ticket.payment_options forKey:@"paymentOptions"];
-    [[AppManager sharedManager].draftTicket setValue:self.ticketTypeField.text forKey:@"ticketType"];
+    [[AppManager sharedManager].draftTicket setValue:ticket.ticket_type forKey:@"ticketType"];
     [[AppManager sharedManager].draftTicket setValue:ticket.delivery_options forKey:@"deliveryOptions"];
-    
+    if (photos.count) {
+        [[AppManager sharedManager].draftTicket setObject:photos forKey:@"photos"];
+    }
 }
 
 #pragma mark - UploadPhotosVCDelegate
 
 - (void)displayPhotos:(NSArray *)array mainPhoto:(UIImage*)mainPhoto {
-    
+    photos = [array mutableCopy];
     self.photosPreviewCell.photos = [array mutableCopy];
     if (mainPhoto) {
-        [self.photosPreviewCell.photos insertObject:mainPhoto atIndex:0];
-        event.thumb = UIImagePNGRepresentation(mainPhoto);
+        
+       
+        //Have the image draw itself in the correct orientation if necessary
+        if(!(mainPhoto.imageOrientation == UIImageOrientationUp ||
+             mainPhoto.imageOrientation == UIImageOrientationUpMirrored))
+        {
+            CGSize imgsize = mainPhoto.size;
+            UIGraphicsBeginImageContext(imgsize);
+            [mainPhoto drawInRect:CGRectMake(0.0, 0.0, imgsize.width, imgsize.height)];
+            mainPhoto = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
+        }
+        
+        NSData *rotated = UIImagePNGRepresentation(mainPhoto);
+        
+        
+        [self.photosPreviewCell.photos insertObject:[UIImage imageWithData:rotated] atIndex:0];
+        event.thumb = rotated;
     }
     
     [self.tableView reloadData];
     if (array.count > 0 || mainPhoto) {
         self.changed = YES;
     }
+    
+    [self saveDraft];
     
 }
 
@@ -496,15 +584,12 @@ static const NSUInteger payPalCellIndex = 13;
         UploadPhotosViewController *vc = (UploadPhotosViewController *)segue.destinationViewController;
         vc.delegate = self;
         vc.mainPhoto = [UIImage imageWithData:event.thumb];
-        if (event.thumb && self.photosPreviewCell.photos.count > 0) {
-            [self.photosPreviewCell.photos removeObjectAtIndex:0];
-        }
-        vc.photos = self.photosPreviewCell.photos;
+        vc.photos = photos;
     } else if ([segue.identifier isEqualToString:@"PreviewSegue"]) {
         
         NSString *paymentOption = @"";
         if (cashSwitch.on) {
-            paymentOption = @"Cash in persion";
+            paymentOption = @"Cash in person";
         }
         
         if (paypalSwitch.on) {
@@ -519,7 +604,7 @@ static const NSUInteger payPalCellIndex = 13;
         
         NSString *deliveryOptions = @"";
         if (inPersonSwitch.on) {
-            deliveryOptions = @"In Persion";
+            deliveryOptions = @"In Person";
         }
         
         if (electronicSwitch.on) {
@@ -565,10 +650,7 @@ static const NSUInteger payPalCellIndex = 13;
         PreviewViewController *vc = (PreviewViewController *)segue.destinationViewController;
         vc.event = event;
         vc.ticket = ticket;
-        if (event.thumb && self.photosPreviewCell.photos.count > 0) {
-            [self.photosPreviewCell.photos removeObjectAtIndex:0];
-        }
-        vc.photos = self.photosPreviewCell.photos;
+        vc.photos = photos;
     }
 }
 
@@ -610,6 +692,13 @@ static const NSUInteger payPalCellIndex = 13;
         
         if ([result[@"CustomObject"] isKindOfClass:[Event class]]) {
             event = result[@"CustomObject"];
+            if (event.thumb) {
+                if (!self.photosPreviewCell.photos) {
+                    self.photosPreviewCell.photos = [NSMutableArray new];
+                }
+                [self.photosPreviewCell.photos insertObject:[UIImage imageWithData:event.thumb] atIndex:0];
+                [self.tableView reloadData];
+            }
             
             self.locationField.text = [DataManager eventLocation:event];
             self.locationField.enabled = NO;

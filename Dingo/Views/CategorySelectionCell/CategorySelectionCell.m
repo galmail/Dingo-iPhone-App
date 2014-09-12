@@ -48,7 +48,7 @@
  
     allCategories = [[DataManager shared] allCategories];
     [self.collectionView reloadData];
-    self.collectionView.userInteractionEnabled = !self.readOnly;
+//    self.collectionView.userInteractionEnabled = !self.readOnly;
   
 }
 
@@ -61,6 +61,8 @@
     
     CategoryCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CategoryCell"
                                                                    forIndexPath:indexPath];
+    
+    cell.userInteractionEnabled = !self.readOnly;
     EventCategory *data;
     NSUInteger index = indexPath.row;
     

@@ -16,4 +16,5 @@
 
 - (void)buildWithData:(EventCategory *)data;
 
+
 @end

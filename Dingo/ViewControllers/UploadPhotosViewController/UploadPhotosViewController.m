@@ -83,11 +83,10 @@ static const NSUInteger mainPhotoDownloadedCellIndex = 3;
     UIImage *image = [info valueForKey:UIImagePickerControllerOriginalImage];
     
     if (self.isMainPhotoLoading) {
-        self.mainPhotoImageView.image = image;
-        self.mainPhoto = image;
+        self.mainPhoto = self.mainPhotoImageView.image = image;
         [self.tableView reloadData];
     } else {
-        [self.photos insertObject:image atIndex:0];
+        [self.photos insertObject:self.mainPhotoImageView.image atIndex:0];
         [self.otherPhotosCollectionView reloadData];
     }
     

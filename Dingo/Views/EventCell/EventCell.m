@@ -14,6 +14,7 @@
 #import "DingoUtilites.h"
 #import "DingoUISettings.h"
 #import "UIImage+Overlay.h"
+#import "WebServiceManager.h"
 
 const CGFloat eventCellHeight = 78;
 
@@ -82,10 +83,14 @@ const CGFloat eventCellHeight = 78;
     if (data.thumb) {
          self.iconImageView.image = [UIImage imageWithData:data.thumb];
     } else {
-        NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:data.thumbUrl]];
-        data.thumb = imageData;
-        [data.managedObjectContext save:nil];
-        self.iconImageView.image = [UIImage imageWithData:data.thumb];
+        
+        [WebServiceManager imageFromUrl:data.thumbUrl completion:^(id response, NSError *error) {
+            data.thumb = response;
+            self.iconImageView.image = [UIImage imageWithData:data.thumb];
+            
+            [[AppManager sharedManager] saveContext];
+        }];
+        
     }
    
     self.name = data.name;

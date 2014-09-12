@@ -103,9 +103,15 @@ static const NSUInteger commentCellIndex = 4;
 
     
     self.sellerNameLabel.text = [AppManager sharedManager].userInfo[@"name"];
-    self.sellerImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[AppManager sharedManager].userInfo[@"photo_url"]]]];
     
-    self.tableView.separatorInset = UIEdgeInsetsZero;
+    self.sellerImageView.image = nil;
+    [WebServiceManager imageFromUrl:[AppManager sharedManager].userInfo[@"photo_url"] completion:^(id response, NSError *error) {
+        if (response) {
+            self.sellerImageView.image = [UIImage imageWithData:response];
+        }
+    }];
+    
+   self.tableView.separatorInset = UIEdgeInsetsZero;
 }
 
 #pragma mark - UITableViewDataSource
