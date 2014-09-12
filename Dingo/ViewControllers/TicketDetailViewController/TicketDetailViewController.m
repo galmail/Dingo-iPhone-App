@@ -130,6 +130,7 @@ static const NSUInteger commentCellIndex = 4;
     if ([self.ticket.user_id isEqual:[AppManager sharedManager].userInfo[@"id"]]) {
         
         bottomBar = [[BottomEditBar alloc] initWithFrame:CGRectMake(0, 0, 360, 65)];
+        bottomBar.backgroundColor = [UIColor redColor];
         CGRect frame = self.view.frame;
         frame.origin.x = 0;
         frame.origin.y = frame.origin.y + frame.size.height - bottomBar.frame.size.height;
@@ -146,9 +147,17 @@ static const NSUInteger commentCellIndex = 4;
         CGSize contentSize = self.tableView.contentSize;
         contentSize.height += bottomBar.frame.size.height;
         self.tableView.contentSize = contentSize;
+        
     } else {
         self.contactCellerButton.enabled = self.requestToBuyButton.enabled = self.offerPriceButton.enabled = YES;
     }
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    [self.tableView beginUpdates];
+    [self.tableView endUpdates];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -246,7 +255,8 @@ static const NSUInteger commentCellIndex = 4;
     
     if ([segue.identifier isEqual:@"EditTicket"]) {
         ListTicketsViewController *viewController = (ListTicketsViewController *)segue.destinationViewController;
-        [viewController setTicket:self.ticket event:self.event];
+        viewController.ticket = self.ticket;
+        viewController.event = self.event;
     }
     
     if ([segue.identifier isEqual:@"MapSegue"]) {

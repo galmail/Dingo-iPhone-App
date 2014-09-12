@@ -569,6 +569,8 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     ticket.delivery_options = info[@"delivery_options"];
     ticket.number_of_tickets = @([info[@"number_of_tickets"] intValue]);
     ticket.payment_options = info[@"payment_options"];
+    ticket.ticket_type = info[@"ticket_type"];
+    ticket.face_value_per_ticket =  @([info[@"face_value_per_ticket"] floatValue]);
     ticket.price = @([info[@"price"] floatValue]);
     ticket.seat_type = info[@"seat_type"];
     if (info[@"photo1_thumb"]) {

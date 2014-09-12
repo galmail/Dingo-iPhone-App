@@ -62,7 +62,8 @@
         
         datePicker = [[UIDatePicker alloc] initWithFrame:datePickerFrame];
         datePicker.date = date;
-        datePicker.locale = [NSLocale currentLocale];
+        datePicker.locale = [NSLocale localeWithLocaleIdentifier:@"en_GB"];
+        datePicker.datePickerMode = UIDatePickerModeDateAndTime;
         [self addSubview: datePicker];
     }
     

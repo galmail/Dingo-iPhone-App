@@ -33,11 +33,10 @@ static const NSUInteger previewPhotosCellIndex = 10;
 static const NSUInteger editPhotosCellIndex = 11;
 static const NSUInteger uploadPhotosCellIndex = 12;
 static const NSUInteger payPalCellIndex = 13;
+static const NSUInteger previewCellIndex = 16;
+static const NSUInteger comfirmCellIndex = 17;
 
 @interface ListTicketsViewController () <UITextFieldDelegate, UITableViewDataSource, UploadPhotosVCDelegate, ZSTextFieldDelegate, ZSDatePickerDelegate , ZSPickerDelegate ,CategorySelectionDelegate> {
-    
-    Ticket* ticket;
-    Event* event;
     
     __weak IBOutlet UILabel *lblName;
     __weak IBOutlet UILabel *lblLocation;
@@ -58,6 +57,8 @@ static const NSUInteger payPalCellIndex = 13;
     __weak IBOutlet UILabel *lblInPerson;
     __weak IBOutlet UILabel *lblElectrical;
     __weak IBOutlet UILabel *lblPost;
+    __weak IBOutlet UIButton *btnPreview;
+    __weak IBOutlet UIButton *btnConfirm;
     
     ZSDatePicker *startDatePicker;
     ZSDatePicker *endDatePicker;
@@ -114,8 +115,11 @@ static const NSUInteger payPalCellIndex = 13;
     [self.nameField setPopoverSize:CGRectMake(0, self.nameField.frame.origin.y + self.nameField.frame.size.height, 320.0, 130.0)];
     [self.locationField setPopoverSize:CGRectMake(0, self.locationField.frame.origin.y + self.locationField.frame.size.height, 320.0, 130.0)];
     
-    ticket = [[Ticket alloc] initWithEntity:[NSEntityDescription entityForName:@"Ticket" inManagedObjectContext:[AppManager sharedManager].managedObjectContext] insertIntoManagedObjectContext:nil];
-    event = [[Event alloc] initWithEntity:[NSEntityDescription entityForName:@"Event" inManagedObjectContext:[AppManager sharedManager].managedObjectContext] insertIntoManagedObjectContext:nil];
+    
+    if (self.ticket && self.event) {
+        isEditing = YES;
+        [self setTicket:self.ticket event:self.event];
+    }
     
     [self.priceField showToolbarWithPrev:YES next:YES done:YES];
     [self.faceValueField showToolbarWithPrev:YES next:YES done:YES];
@@ -123,10 +127,12 @@ static const NSUInteger payPalCellIndex = 13;
     
     startDatePicker = [[ZSDatePicker alloc] initWithDate:[NSDate date]];
     startDatePicker.delegate = self;
+    [startDatePicker setPickerMode:UIDatePickerModeDateAndTime];
     self.startDateField.inputView = startDatePicker;
     
     endDatePicker = [[ZSDatePicker alloc] initWithDate:[NSDate date]];
     endDatePicker.delegate = self;
+    [endDatePicker setPickerMode:UIDatePickerModeDateAndTime];
     self.endDateField.inputView = endDatePicker;
     
     NSDictionary *ticketInfo = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"TicketInfo.plist" ofType:nil]];
@@ -146,6 +152,16 @@ static const NSUInteger payPalCellIndex = 13;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.parentViewController.navigationItem.title = self.navigationItem.title;
+
+    
+    if (!self.ticket && !self.event) {
+        self.ticket = [[Ticket alloc] initWithEntity:[NSEntityDescription entityForName:@"Ticket" inManagedObjectContext:[AppManager sharedManager].managedObjectContext] insertIntoManagedObjectContext:nil];
+        
+        self.event = [[Event alloc] initWithEntity:[NSEntityDescription entityForName:@"Event" inManagedObjectContext:[AppManager sharedManager].managedObjectContext] insertIntoManagedObjectContext:nil];
+        
+        isEditing = NO;
+        
+    }
     
     if ([AppManager sharedManager].draftTicket) {
         
@@ -177,8 +193,8 @@ static const NSUInteger payPalCellIndex = 13;
         }
             
         self.photosPreviewCell.photos = [photos mutableCopy];
-        if (event.thumb) {
-            [self.photosPreviewCell.photos insertObject:[UIImage imageWithData:event.thumb] atIndex:0];
+        if (self.event.thumb) {
+            [self.photosPreviewCell.photos insertObject:[UIImage imageWithData:self.event.thumb] atIndex:0];
         }
         
         self.categoriesCell.selectedCategory = [AppManager sharedManager].draftTicket[@"categoryID"];
@@ -204,22 +220,19 @@ static const NSUInteger payPalCellIndex = 13;
         electronicSwitch.on = NO;
         postSwitch.on = NO;
         
-        event.thumb = nil;
+        self.event.thumb = nil;
         self.photosPreviewCell.photos = nil;
         
         self.categoriesCell.selectedCategory = nil;
         [self.categoriesCell refresh];
         
-        [self.tableView reloadData];
     }
+    
+    
 }
 
-- (void)setTicket:(Ticket*)_ticket event:(Event*)_event {
-    ticket = _ticket;
-    event = _event;
-    
-    isEditing = YES;
-    
+- (void)setTicket:(Ticket*)ticket event:(Event*)event {
+   
     self.nameField.text = event.name;
     self.locationField.text = [DataManager eventLocation:event];
     
@@ -233,7 +246,11 @@ static const NSUInteger payPalCellIndex = 13;
     self.priceField.text = [ticket.price stringValue];
     self.faceValueField.text= [ticket.face_value_per_ticket stringValue];
     self.ticketsCountField.text = [ticket.number_of_tickets stringValue];
-    self.ticketTypeField.text = ticket.ticket_type;
+
+    NSString *ticketType = ticket.ticket_type;
+    eticketSwitch.on = [ticketType rangeOfString:@"e-Ticket"].location != NSNotFound;
+    paperSwitch.on = [ticketType rangeOfString:@"Paper"].location != NSNotFound;
+
     
     NSString *paymentOptions = ticket.payment_options;
     paypalSwitch.on = [paymentOptions rangeOfString:@"PayPal"].location != NSNotFound;
@@ -247,10 +264,31 @@ static const NSUInteger payPalCellIndex = 13;
     self.categoriesCell.selectedCategory = event.category_id;
     [self.categoriesCell refresh];
     
-    [self.tableView reloadData];
+    photos = [NSMutableArray new];
+    if (ticket.photo1) {
+        [photos addObject:[UIImage imageWithData:ticket.photo1]];
+    }
+    if (ticket.photo2) {
+        [photos addObject:[UIImage imageWithData:ticket.photo2]];
+    }
+    if (ticket.photo3) {
+        [photos addObject:[UIImage imageWithData:ticket.photo3]];
+    }
+    
+    self.photosPreviewCell.photos = [photos mutableCopy];
+    
+    if (self.event.thumb) {
+        [self.photosPreviewCell.photos insertObject:[UIImage imageWithData:self.event.thumb] atIndex:0];
+    }
+    
 }
 
 - (void)saveDraft {
+    
+    if (isEditing) {
+        return;
+    }
+    
     [AppManager sharedManager].draftTicket = [[NSMutableDictionary alloc] init];
     
     NSString *paymentOption = @"";
@@ -266,7 +304,7 @@ static const NSUInteger payPalCellIndex = 13;
         }
     }
     
-    ticket.payment_options = paymentOption;
+    self.ticket.payment_options = paymentOption;
     
     NSString *deliveryOptions = @"";
     if (inPersonSwitch.on) {
@@ -289,7 +327,7 @@ static const NSUInteger payPalCellIndex = 13;
         }
     }
     
-    ticket.delivery_options = deliveryOptions;
+    self.ticket.delivery_options = deliveryOptions;
     
     NSString *ticketTypes = @"";
     if (eticketSwitch.on) {
@@ -304,7 +342,7 @@ static const NSUInteger payPalCellIndex = 13;
         }
     }
     
-    ticket.ticket_type = ticketTypes;
+    self.ticket.ticket_type = ticketTypes;
     
     
     [[AppManager sharedManager].draftTicket setValue:self.nameField.text forKey:@"name"];
@@ -316,12 +354,29 @@ static const NSUInteger payPalCellIndex = 13;
     [[AppManager sharedManager].draftTicket setValue:self.ticketsCountField.text forKey:@"ticketCount"];
     [[AppManager sharedManager].draftTicket setValue:self.descriptionTextView.text forKey:@"description"];
     [[AppManager sharedManager].draftTicket setValue:self.categoriesCell.selectedCategory forKey:@"categoryID"];
-    [[AppManager sharedManager].draftTicket setValue:ticket.payment_options forKey:@"paymentOptions"];
-    [[AppManager sharedManager].draftTicket setValue:ticket.ticket_type forKey:@"ticketType"];
-    [[AppManager sharedManager].draftTicket setValue:ticket.delivery_options forKey:@"deliveryOptions"];
+    [[AppManager sharedManager].draftTicket setValue:self.ticket.payment_options forKey:@"paymentOptions"];
+    [[AppManager sharedManager].draftTicket setValue:self.ticket.ticket_type forKey:@"ticketType"];
+    [[AppManager sharedManager].draftTicket setValue:self.ticket.delivery_options forKey:@"deliveryOptions"];
     if (photos.count) {
         [[AppManager sharedManager].draftTicket setObject:photos forKey:@"photos"];
     }
+}
+
+- (IBAction)confirm:(id)sender {
+    
+    NSDictionary *params = @{@"ticket_id":self.ticket.ticket_id,
+                             @"price":[self.ticket.price stringValue],
+                             @"ticket_type":self.ticket.ticket_type,
+                             @"description":self.ticket.ticket_desc.length > 0 ? self.ticket.ticket_desc : @"",
+                             @"delivery_options":self.ticket.delivery_options,
+                             @"payment_options":self.ticket.payment_options,
+                             @"number_of_tickets":[self.ticket.number_of_tickets stringValue],
+                             @"face_value_per_ticket":[self.ticket.face_value_per_ticket stringValue]
+                             };
+    
+    [WebServiceManager updateTicket:params photos:photos completion:^(id response, NSError *error) {
+        NSLog(@"response %@", response);
+    }];
 }
 
 #pragma mark - UploadPhotosVCDelegate
@@ -347,7 +402,7 @@ static const NSUInteger payPalCellIndex = 13;
         
         
         [self.photosPreviewCell.photos insertObject:[UIImage imageWithData:rotated] atIndex:0];
-        event.thumb = rotated;
+        self.event.thumb = rotated;
     }
     
     [self.tableView reloadData];
@@ -377,6 +432,20 @@ static const NSUInteger payPalCellIndex = 13;
                 return 0;
             }
             break;
+        case previewCellIndex:
+            btnPreview.hidden = isEditing;
+            if (isEditing) {
+                return 0;
+            }
+            break;
+        case comfirmCellIndex:
+            btnConfirm.hidden = !isEditing;
+            if (!isEditing) {
+                return 0;
+            }
+            break;
+            
+            
     }
     
     return [super tableView:tableView heightForRowAtIndexPath:indexPath];
@@ -387,7 +456,7 @@ static const NSUInteger payPalCellIndex = 13;
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     if (textField == self.endDateField) {
         if ( self.startDateField.text.length > 0) {
-            [endDatePicker setDate:event.date];
+            [endDatePicker setDate:self.event.date];
         }
     }
 }
@@ -415,8 +484,8 @@ static const NSUInteger payPalCellIndex = 13;
     if (textField == self.nameField) {
         if (self.nameField.text.length > 0) {
             
-            if (event.event_id &&  ![event.name isEqual:self.nameField.text]) {
-                event.event_id = nil;
+            if (self.event.event_id &&  ![self.event.name isEqual:self.nameField.text]) {
+                self.event.event_id = nil;
                 self.locationField.enabled = YES;
                 self.startDateField.enabled = YES;
                 self.endDateField.enabled = YES;
@@ -425,7 +494,7 @@ static const NSUInteger payPalCellIndex = 13;
                 [self.categoriesCell refresh];
             }
             
-            event.name = self.nameField.text;
+            self.event.name = self.nameField.text;
             lblName.textColor = [UIColor blackColor];
             self.changed = YES;
         }
@@ -446,7 +515,7 @@ static const NSUInteger payPalCellIndex = 13;
         if (self.startDateField.text.length > 0) {
             NSDateFormatter *formatter =[[NSDateFormatter alloc] init];
             formatter.dateFormat = @"hh:mm dd/MM/yyyy";
-            event.date = [formatter dateFromString:self.startDateField.text];
+            self.event.date = [formatter dateFromString:self.startDateField.text];
             lblFromDate.textColor= [UIColor blackColor];
             self.changed = YES;
         }
@@ -456,7 +525,7 @@ static const NSUInteger payPalCellIndex = 13;
         if (self.endDateField.text.length > 0) {
             NSDateFormatter *formatter =[[NSDateFormatter alloc] init];
             formatter.dateFormat = @"hh:mm dd/MM/yyyy";
-            event.endDate = [formatter dateFromString:self.endDateField.text];
+            self.event.endDate = [formatter dateFromString:self.endDateField.text];
             lblToDate.textColor = [UIColor blackColor];
             self.changed = YES;
         }
@@ -464,8 +533,8 @@ static const NSUInteger payPalCellIndex = 13;
     
     if (textField == self.priceField) {
         if (self.priceField.text.length > 0) {
-            ticket.price = @([self.priceField.text floatValue]);
-            event.fromPrice = @([self.priceField.text floatValue]);
+            self.ticket.price = @([self.priceField.text floatValue]);
+            self.event.fromPrice = @([self.priceField.text floatValue]);
             lblPrice.textColor = [UIColor blackColor];
             self.changed = YES;
         }
@@ -474,14 +543,14 @@ static const NSUInteger payPalCellIndex = 13;
 
     if (textField == self.faceValueField) {
         if (self.faceValueField.text.length > 0) {
-            ticket.face_value_per_ticket = @([self.faceValueField.text floatValue]);
+            self.ticket.face_value_per_ticket = @([self.faceValueField.text floatValue]);
             lblFaceValue.textColor = [UIColor blackColor];
         }
     }
 
     if (textField == self.ticketsCountField) {
         if (self.ticketsCountField.text.length > 0) {
-            ticket.number_of_tickets = @([self.ticketsCountField.text intValue]);
+            self.ticket.number_of_tickets = @([self.ticketsCountField.text intValue]);
             lblTicketCount.textColor = [UIColor blackColor];
             self.changed = YES;
         }
@@ -497,6 +566,10 @@ static const NSUInteger payPalCellIndex = 13;
 }
 
 #pragma mark - Navigation
+
+- (IBAction)back:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
     
@@ -583,7 +656,7 @@ static const NSUInteger payPalCellIndex = 13;
     if ([segue.identifier isEqualToString:@"EditPhotosSegue"] || [segue.identifier isEqualToString:@"UploadPhotosSegue"]) {
         UploadPhotosViewController *vc = (UploadPhotosViewController *)segue.destinationViewController;
         vc.delegate = self;
-        vc.mainPhoto = [UIImage imageWithData:event.thumb];
+        vc.mainPhoto = [UIImage imageWithData:self.event.thumb];
         vc.photos = photos;
     } else if ([segue.identifier isEqualToString:@"PreviewSegue"]) {
         
@@ -600,7 +673,7 @@ static const NSUInteger payPalCellIndex = 13;
             }
         }
        
-        ticket.payment_options = paymentOption;
+        self.ticket.payment_options = paymentOption;
         
         NSString *deliveryOptions = @"";
         if (inPersonSwitch.on) {
@@ -623,7 +696,7 @@ static const NSUInteger payPalCellIndex = 13;
             }
         }
         
-        ticket.delivery_options = deliveryOptions;
+        self.ticket.delivery_options = deliveryOptions;
         
         NSString *ticketTypes = @"";
         if (eticketSwitch.on) {
@@ -638,18 +711,18 @@ static const NSUInteger payPalCellIndex = 13;
             }
         }
         
-        ticket.ticket_type = ticketTypes;
+        self.ticket.ticket_type = ticketTypes;
         
-        ticket.ticket_desc = self.descriptionTextView.text;
+        self.ticket.ticket_desc = self.descriptionTextView.text;
         
         // selected category
         if (self.categoriesCell.selectedCategory) {
-            event.category_id = self.categoriesCell.selectedCategory;
+           self.event.category_id = self.categoriesCell.selectedCategory;
         }
         
         PreviewViewController *vc = (PreviewViewController *)segue.destinationViewController;
-        vc.event = event;
-        vc.ticket = ticket;
+        vc.event = self.event;
+        vc.ticket = self.ticket;
         vc.photos = photos;
     }
 }
@@ -691,27 +764,27 @@ static const NSUInteger payPalCellIndex = 13;
     if (textField == self.nameField) {
         
         if ([result[@"CustomObject"] isKindOfClass:[Event class]]) {
-            event = result[@"CustomObject"];
-            if (event.thumb) {
+            self.event = result[@"CustomObject"];
+            if (self.event.thumb) {
                 if (!self.photosPreviewCell.photos) {
                     self.photosPreviewCell.photos = [NSMutableArray new];
                 }
-                [self.photosPreviewCell.photos insertObject:[UIImage imageWithData:event.thumb] atIndex:0];
+                [self.photosPreviewCell.photos insertObject:[UIImage imageWithData:self.event.thumb] atIndex:0];
                 [self.tableView reloadData];
             }
             
-            self.locationField.text = [DataManager eventLocation:event];
+            self.locationField.text = [DataManager eventLocation:self.event];
             self.locationField.enabled = NO;
             
             NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
             formatter.dateFormat = @"hh:mm dd/MM/yyyy";
             
-            self.startDateField.text =  [formatter stringFromDate:event.date];
-            self.endDateField.text = [formatter stringFromDate:event.endDate];
+            self.startDateField.text =  [formatter stringFromDate:self.event.date];
+            self.endDateField.text = [formatter stringFromDate:self.event.endDate];
             
             self.startDateField.enabled = self.endDateField.enabled = NO;
             
-            self.categoriesCell.selectedCategory = event.category_id;
+            self.categoriesCell.selectedCategory = self.event.category_id;
             self.categoriesCell.readOnly = YES;
             [self.categoriesCell refresh];
             
@@ -729,15 +802,15 @@ static const NSUInteger payPalCellIndex = 13;
                 for (NSDictionary *component in addressComponents) {
                     
                     if ([component[@"types"] containsObject:@"route"]) {
-                        event.address = component[@"long_name"];
+                        self.event.address = component[@"long_name"];
                     }
                     
                     if ([component[@"types"] containsObject:@"locality"]) {
-                        event.city = component[@"long_name"];
+                        self.event.city = component[@"long_name"];
                     }
                     
                     if ([component[@"types"] containsObject:@"postal_code"]) {
-                        event.postalCode = component[@"long_name"];
+                        self.event.postalCode = component[@"long_name"];
                     }
                 }
             }

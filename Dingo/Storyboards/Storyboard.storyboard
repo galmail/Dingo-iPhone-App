@@ -165,12 +165,12 @@
             </objects>
             <point key="canvasLocation" x="1080" y="645"/>
         </scene>
-        <!--List Tickets View Controller - List tickets-->
+        <!--List Tickets View Controller - List ticket-->
         <scene sceneID="ZPo-UF-z9A">
             <objects>
                 <tableViewController id="0ch-Q5-uzn" customClass="ListTicketsViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="static" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="BA9-uN-inm">
-                        <rect key="frame" x="0.0" y="64" width="320" height="1064"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="1113"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="separatorColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
@@ -714,6 +714,30 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
                                             <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="60" id="QQQ-el-OpA" userLabel="preview">
+                                        <rect key="frame" x="0.0" y="1308" width="320" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QQQ-el-OpA" id="ROm-rx-VfI">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="6rn-FT-ODu" userLabel="preview" customClass="DingoButton">
+                                                    <rect key="frame" x="37" y="12" width="246" height="38"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" red="0.23921568630000001" green="0.56470588239999997" blue="0.67450980390000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="19"/>
+                                                    <state key="normal" title="Confirm">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="confirm:" destination="0ch-Q5-uzn" eventType="touchUpInside" id="Nk1-M6-7Dc"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -723,10 +747,19 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="List" image="list_tickets_icon.png" id="6H6-LB-uRk"/>
-                    <navigationItem key="navigationItem" title="List tickets" id="2zk-LX-3BN"/>
+                    <navigationItem key="navigationItem" title="List ticket" id="BnJ-ff-AXB">
+                        <barButtonItem key="leftBarButtonItem" image="nav_back_icon.png" id="JC0-AX-lFY">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="back:" destination="0ch-Q5-uzn" id="Dbm-Vp-Pb5"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="1177"/>
                     <connections>
+                        <outlet property="btnConfirm" destination="6rn-FT-ODu" id="NsT-C6-Ieq"/>
+                        <outlet property="btnPreview" destination="C2t-go-aGL" id="rq8-Bf-eJp"/>
                         <outlet property="cashSwitch" destination="nNR-Va-ebl" id="Tw7-gh-9lS"/>
                         <outlet property="categoriesCell" destination="pSm-UF-4tn" id="zmT-e6-XOf"/>
                         <outlet property="descriptionTextView" destination="2gK-n0-UrV" id="sXd-U9-e7I"/>
@@ -1189,7 +1222,7 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kox-v9-gom" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1080" y="-73"/>
+            <point key="canvasLocation" x="1110" y="-97"/>
         </scene>
         <!--Dingo Navigation Controller-->
         <scene sceneID="l6B-of-Hea">
@@ -1198,7 +1231,7 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="3Xh-St-uTc">
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <color key="barTintColor" red="0.23921568630000001" green="0.56470588239999997" blue="0.67450980390000004" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.066666666669999999" green="0.63921568630000003" blue="0.74117647060000003" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="18"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -4003,6 +4036,7 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
                         <outlet property="sellerNameLabel" destination="1vY-e0-mmC" id="AFX-IN-ebL"/>
                         <outlet property="ticketTypeLabel" destination="zKt-1m-bOa" id="d2Z-iv-5D3"/>
                         <outlet property="ticketsCountlabel" destination="rXx-Fe-B5e" id="pdz-Pq-46R"/>
+                        <segue destination="0ch-Q5-uzn" kind="push" identifier="EditTicket" id="BWJ-EH-Aes"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="den-dz-ZAh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -4111,8 +4145,9 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="lKe-yJ-oEi"/>
-        <segue reference="Xk9-Zd-nfA"/>
+        <segue reference="MsU-EW-bYV"/>
+        <segue reference="BWJ-EH-Aes"/>
         <segue reference="Gpq-ke-4M3"/>
+        <segue reference="anJ-Pm-qVd"/>
     </inferredMetricsTieBreakers>
 </document>

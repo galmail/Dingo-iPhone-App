@@ -86,7 +86,7 @@ static const NSUInteger mainPhotoDownloadedCellIndex = 3;
         self.mainPhoto = self.mainPhotoImageView.image = image;
         [self.tableView reloadData];
     } else {
-        [self.photos insertObject:self.mainPhotoImageView.image atIndex:0];
+        [self.photos insertObject:image atIndex:0];
         [self.otherPhotosCollectionView reloadData];
     }
     

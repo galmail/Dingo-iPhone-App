@@ -21,6 +21,7 @@
 + (void)searchEvents:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler;
 + (void)createEvent:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler;
 + (void)createTicket:(NSDictionary *)params photos:(NSArray*)photos completion:( void (^) (id response, NSError *error))handler;
++ (void)updateTicket:(NSDictionary *)params photos:(NSArray*)photos completion:( void (^) (id response, NSError *error))handler;
 
 + (void)addressToLocation:(NSString *)address completion:( void (^) (id response, NSError *error))handler;
 

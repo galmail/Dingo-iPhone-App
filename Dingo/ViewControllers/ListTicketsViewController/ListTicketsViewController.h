@@ -12,6 +12,8 @@
 @interface ListTicketsViewController : UITableViewController
 
 @property (nonatomic) BOOL changed;
+@property (nonatomic, strong) Ticket *ticket;
+@property (nonatomic, strong) Event *event;
 
 - (void)saveDraft;
 - (void)setTicket:(Ticket*)_ticket event:(Event*)_event;
