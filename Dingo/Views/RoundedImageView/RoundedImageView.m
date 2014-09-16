@@ -26,4 +26,15 @@
     return self;
 }
 
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    
+    self.layer.borderWidth = 1;
+    self.layer.borderColor = [UIColor whiteColor].CGColor;
+    
+    CGSize sz = self.bounds.size;
+    self.layer.cornerRadius = fminf(sz.width / 2, sz.height / 2);
+    self.clipsToBounds = YES;
+}
+
 @end

@@ -25,8 +25,8 @@ static const float fieldBorderSpace = 10;
     }
     
     UIColor *textFieldColor = [self textFieldColor];
-    self.attributedPlaceholder = [[NSAttributedString alloc] initWithString:self.placeholder
-                                                                 attributes:@{NSForegroundColorAttributeName:textFieldColor}];
+//    self.attributedPlaceholder = [[NSAttributedString alloc] initWithString:self.placeholder
+//                                                                 attributes:@{NSForegroundColorAttributeName:textFieldColor}];
     self.layer.borderColor = textFieldColor.CGColor;
     self.layer.borderWidth = 1;
     

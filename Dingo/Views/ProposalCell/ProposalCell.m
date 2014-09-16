@@ -8,6 +8,7 @@
 
 #import "ProposalCell.h"
 #import "DingoUISettings.h"
+#import "DataManager.h"
 
 @interface ProposalCell ()
 
@@ -27,8 +28,12 @@
 }
 
 - (void)buildWithTicketData:(Ticket*)data {
-    [super buildWithTicketData:data];
+
+    Event *event = [[DataManager shared] eventByID:data.event_id];
+    [super buildWithData:event];
     
+    [super buildWithTicketData:data];
+
     self.name = data.user_name;
     self.location = data.ticket_desc;
     

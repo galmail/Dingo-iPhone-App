@@ -43,24 +43,15 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    // The line below sets the snap interval in seconds. This defines how the bubbles will be grouped in time.
-    // Interval of 120 means that if the next messages comes in 2 minutes since the last message, it will be added into the same group.
-    // Groups are delimited with header which contains date and time for the first message in the group.
+    textField.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    textField.font = [DingoUISettings fontWithSize:textField.font.pointSize];
+    
     bubbleData = [NSMutableArray new];
     bubbleTable.snapInterval = 120;
-    
-    // The line below enables avatar support. Avatar can be specified for each bubble with .avatar property of NSBubbleData.
-    // Avatars are enabled for the whole table at once. If particular NSBubbleData misses the avatar, a default placeholder will be set (missingAvatar.png)
+    bubbleTable.bubbleDataSource = self;
     
     bubbleTable.showAvatars = YES;
-    
-    // Uncomment the line below to add "Now typing" bubble
-    // Possible values are
-    //    - NSBubbleTypingTypeSomebody - shows "now typing" bubble on the left
-    //    - NSBubbleTypingTypeMe - shows "now typing" bubble on the right
-    //    - NSBubbleTypingTypeNone - no "now typing" bubble
-    bubbleTable.bubbleDataSource = self;
-    bubbleTable.typingBubble = NSBubbleTypingTypeSomebody;
+    bubbleTable.typingBubble = NSBubbleTypingTypeNobody;
     
     [bubbleTable reloadData];
     
@@ -68,32 +59,31 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
-}
 
+}
 
 - (void)viewWillAppear:(BOOL)animated{
     
     ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Loading..."];
     [loadingView show];
-    [[DataManager shared] fetchMessagesByID:nil completion:^(BOOL finished) {
+    [[DataManager shared] fetchMessagesWithCompletion:^(BOOL finished) {
         
         [loadingView hide];
-        NSArray * messages = [[DataManager shared] allMessages];
+        NSArray * messages = [[DataManager shared] allMessagesWith:self.receiverID];
         
         
         for (Message * msg in messages) {
             NSBubbleData *bubble = nil;
             NSLog(@"%@",[AppManager sharedManager].userInfo);
             if ([msg.sender_id isEqualToString:[[[AppManager sharedManager].userInfo valueForKey:@"id"] stringValue]]) {
-                bubble = [NSBubbleData dataWithText:msg.content date:[NSDate dateWithTimeIntervalSinceNow:-300] type:BubbleTypeMine];
+                bubble = [NSBubbleData dataWithText:msg.content date:msg.datetime type:BubbleTypeMine];
                 
-                NSString *user_photo_url = [AppManager sharedManager].userInfo[@"user_photo"];
-                user_photo_url = [user_photo_url stringByReplacingOccurrencesOfString:@"%26" withString:@"&"];
+                NSString *user_photo_url = [AppManager sharedManager].userInfo[@"photo_url"];
                 NSData  *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:user_photo_url]];
 
-                 bubble.avatar = [UIImage imageWithData:data];
+                bubble.avatar = [UIImage imageWithData:data];
             }else{
-                bubble = [NSBubbleData dataWithText:msg.content date:[NSDate dateWithTimeIntervalSinceNow:-300] type:BubbleTypeSomeoneElse];
+                bubble = [NSBubbleData dataWithText:msg.content date:msg.datetime type:BubbleTypeSomeoneElse];
                 if (msg.sender_avatar_url.length>0) {
                     if (msg.sender_avatar) {
                         bubble.avatar = [UIImage imageWithData:msg.sender_avatar];
@@ -184,11 +174,31 @@
 
 - (IBAction)btnSendTap:(id)sender
 {
-    bubbleTable.typingBubble = NSBubbleTypingTypeNobody;
     
-    NSBubbleData *sayBubble = [NSBubbleData dataWithText:textField.text date:[NSDate dateWithTimeIntervalSinceNow:0] type:BubbleTypeMine];
-    [bubbleData addObject:sayBubble];
-    [bubbleTable reloadData];
+    if (textField.text.length == 0) {
+        return;
+    }
+    
+    NSDictionary *params = @{ @"receiver_id" : self.receiverID, @"content" : textField.text };
+    
+    [WebServiceManager sendMessage:params completion:^(id response, NSError *error) {
+        if (!error) {
+            if (response[@"id"]) {
+                [[DataManager shared] addOrUpdateMessage:response];
+                
+                NSBubbleData *bubble = [NSBubbleData dataWithText:response[@"content"] date:[NSDate dateWithTimeIntervalSinceNow:-300] type:BubbleTypeMine];
+                
+                NSString *user_photo_url = [AppManager sharedManager].userInfo[@"photo_url"];
+                NSData  *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:user_photo_url]];
+                
+                bubble.avatar = [UIImage imageWithData:data];
+                [bubbleData addObject:bubble];
+                
+                [bubbleTable reloadData];
+                
+            }
+        }
+    }];
     
     textField.text = @"";
     [textField resignFirstResponder];

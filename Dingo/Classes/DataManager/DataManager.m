@@ -987,12 +987,11 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     [[AppManager sharedManager] saveContext];
 }
 
+#pragma mark Messages
 
-
-- (void)fetchMessagesByID:(NSString *)ID completion:( void (^) (BOOL finished))handler {
+- (void)fetchMessagesWithCompletion:( void (^) (BOOL finished))handler {
     
-    //    NSDictionary *params = @{@"event_id":eventID};
-    [WebServiceManager receiveMessages:nil completion:^(id response, NSError *error) {
+    [WebServiceManager receiveMessages:@{@"conversations": @"true"} completion:^(id response, NSError *error) {
         if (response[@"messages"]) {
             NSArray *messages = response[@"messages"];
             
@@ -1058,6 +1057,18 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     
     NSManagedObjectContext *context = [AppManager sharedManager].managedObjectContext;
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Messages"];
+    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"datetime" ascending:YES]];
+    NSError *error = nil;
+    NSArray *events = [context executeFetchRequest:request error:&error];
+    
+    return events;
+}
+
+- (NSArray *)allMessagesWith:(NSNumber *)userID {
+    
+    NSManagedObjectContext *context = [AppManager sharedManager].managedObjectContext;
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Messages"];
+    request.predicate = [NSPredicate predicateWithFormat:@"(receiver_id == %@ && sender_id == %@) || (sender_id == %@ && receiver_id == %@)", [userID stringValue], [AppManager sharedManager].userInfo[@"id"],[userID stringValue], [AppManager sharedManager].userInfo[@"id"]];
     request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"datetime" ascending:YES]];
     NSError *error = nil;
     NSArray *events = [context executeFetchRequest:request error:&error];

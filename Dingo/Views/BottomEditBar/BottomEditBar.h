@@ -13,6 +13,7 @@
 
 @optional
 - (void)editListing;
+- (void)deleteListing;
 
 @end
 

@@ -10,6 +10,7 @@
 
 #import "NSBubbleData.h"
 #import <QuartzCore/QuartzCore.h>
+#import "DingoUISettings.h"
 
 @implementation NSBubbleData
 
@@ -39,8 +40,8 @@
 
 #pragma mark - Text bubble
 
-const UIEdgeInsets textInsetsMine = {5, 10, 11, 17};
-const UIEdgeInsets textInsetsSomeone = {5, 15, 11, 10};
+const UIEdgeInsets textInsetsMine = {7, 10, 7, 10};
+const UIEdgeInsets textInsetsSomeone = {7, 10, 7, 10};
 
 + (id)dataWithText:(NSString *)text date:(NSDate *)date type:(NSBubbleType)type
 {
@@ -53,7 +54,7 @@ const UIEdgeInsets textInsetsSomeone = {5, 15, 11, 10};
 
 - (id)initWithText:(NSString *)text date:(NSDate *)date type:(NSBubbleType)type
 {
-    UIFont *font = [UIFont systemFontOfSize:[UIFont systemFontSize]];
+    UIFont *font = [DingoUISettings fontWithSize:[UIFont systemFontSize]];
     CGSize size = [(text ? text : @"") sizeWithFont:font constrainedToSize:CGSizeMake(220, 9999) lineBreakMode:NSLineBreakByWordWrapping];
     
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
@@ -62,6 +63,8 @@ const UIEdgeInsets textInsetsSomeone = {5, 15, 11, 10};
     label.text = (text ? text : @"");
     label.font = font;
     label.backgroundColor = [UIColor clearColor];
+    label.textColor = type == BubbleTypeMine ? [UIColor whiteColor] : [UIColor darkGrayColor];
+
     
 #if !__has_feature(objc_arc)
     [label autorelease];
@@ -73,8 +76,8 @@ const UIEdgeInsets textInsetsSomeone = {5, 15, 11, 10};
 
 #pragma mark - Image bubble
 
-const UIEdgeInsets imageInsetsMine = {11, 13, 16, 22};
-const UIEdgeInsets imageInsetsSomeone = {11, 18, 16, 14};
+const UIEdgeInsets imageInsetsMine = {20, 20, 20, 20};
+const UIEdgeInsets imageInsetsSomeone = {20, 20, 20, 20};
 
 + (id)dataWithImage:(UIImage *)image date:(NSDate *)date type:(NSBubbleType)type
 {

@@ -100,7 +100,7 @@ static const NSUInteger commentCellIndex = 4;
     self.ticketTypeLabel.text = self.ticket.ticket_type;
     self.deliveryLabel.text = self.ticket.delivery_options;
     
-    [self.proposalCell buildWithData:self.event];
+    [self.proposalCell buildWithTicketData:self.ticket];
     
     self.sellerNameLabel.text = self.ticket.user_name;
     self.sellerImageView.image = [UIImage imageWithData:self.ticket.user_photo];
@@ -207,14 +207,37 @@ static const NSUInteger commentCellIndex = 4;
     [self performSegueWithIdentifier:@"EditTicket" sender:self];
 }
 
-- (void)viewOffers {
-     [self performSegueWithIdentifier:@"OffersSegue" sender:self];
+- (void)deleteListing {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Remove Listing?" message:@"" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Confirm", nil];
+    [alert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+
+    if (buttonIndex == 1) {
+        NSDictionary *params = @{@"ticket_id":self.ticket.ticket_id,
+                                 @"price":[self.ticket.price stringValue],
+                                 @"available":@"0"
+                                 };
+        
+        [WebServiceManager updateTicket:params photos:nil completion:^(id response, NSError *error) {
+            NSLog(@"response %@", response);
+            
+            if (!error && [response[@"available"] intValue] == 0) {
+                [[AppManager sharedManager].managedObjectContext deleteObject:self.ticket];
+                
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+            
+        }];
+    }
 }
 
 #pragma mark Actions
 
 - (IBAction)contactSeller:(id)sender {
     ChatViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ChatViewController"];
+    viewController.receiverID = self.ticket.user_id;
 
     [self.navigationController pushViewController:viewController animated:YES];
 }

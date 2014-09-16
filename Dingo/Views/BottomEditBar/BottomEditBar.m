@@ -44,4 +44,10 @@
     }
 }
 
+- (IBAction)deleteListing:(id)sender {
+    if ([self.delegate respondsToSelector:@selector(deleteListing)]) {
+        [self.delegate deleteListing];
+    }
+}
+
 @end

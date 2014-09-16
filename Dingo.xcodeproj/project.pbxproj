@@ -34,6 +34,7 @@
 		3AB28AEF197D9DA4009C1DDC /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB28AEE197D9DA4009C1DDC /* Event.m */; };
 		3AB28AF8197D9F9D009C1DDC /* EventCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB28AF7197D9F9D009C1DDC /* EventCategory.m */; };
 		3AB28B02197EE8CE009C1DDC /* ZSTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB28B01197EE8CE009C1DDC /* ZSTextField.m */; };
+		3AB68BE819C70FFC00057736 /* btnDelete@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AB68BE719C70FFC00057736 /* btnDelete@2x.png */; };
 		3AC8525519A4CF9C00FCDE16 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AC8525419A4CF9C00FCDE16 /* MapKit.framework */; };
 		3AF360A619767564009A14FD /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AF360A519767564009A14FD /* FacebookSDK.framework */; };
 		3AF360AB197687E2009A14FD /* AppManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF360AA197687E2009A14FD /* AppManager.m */; };
@@ -189,10 +190,10 @@
 		840CD23C19B8449700699E26 /* UIBubbleTypingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 840CD23719B8449700699E26 /* UIBubbleTypingTableViewCell.m */; };
 		840CD24419B84ADF00699E26 /* btnSend.png in Resources */ = {isa = PBXBuildFile; fileRef = 840CD24219B84ADF00699E26 /* btnSend.png */; };
 		840CD24519B84ADF00699E26 /* btnSend@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 840CD24319B84ADF00699E26 /* btnSend@2x.png */; };
-		840CD24A19B84B6100699E26 /* bubbleMine.png in Resources */ = {isa = PBXBuildFile; fileRef = 840CD24619B84B6100699E26 /* bubbleMine.png */; };
-		840CD24B19B84B6100699E26 /* bubbleMine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 840CD24719B84B6100699E26 /* bubbleMine@2x.png */; };
-		840CD24C19B84B6100699E26 /* bubbleSomeone.png in Resources */ = {isa = PBXBuildFile; fileRef = 840CD24819B84B6100699E26 /* bubbleSomeone.png */; };
-		840CD24D19B84B6100699E26 /* bubbleSomeone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 840CD24919B84B6100699E26 /* bubbleSomeone@2x.png */; };
+		840CD24A19B84B6100699E26 /* bubbleSomeone.png in Resources */ = {isa = PBXBuildFile; fileRef = 840CD24619B84B6100699E26 /* bubbleSomeone.png */; };
+		840CD24B19B84B6100699E26 /* bubbleSomeone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 840CD24719B84B6100699E26 /* bubbleSomeone@2x.png */; };
+		840CD24C19B84B6100699E26 /* bubbleMine.png in Resources */ = {isa = PBXBuildFile; fileRef = 840CD24819B84B6100699E26 /* bubbleMine.png */; };
+		840CD24D19B84B6100699E26 /* bubbleMine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 840CD24919B84B6100699E26 /* bubbleMine@2x.png */; };
 		841C508719A6066500BD4141 /* TicketAlertsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 841C508619A6066500BD4141 /* TicketAlertsViewController.m */; };
 		841C508A19A6067800BD4141 /* AddTicketAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 841C508919A6067800BD4141 /* AddTicketAlertViewController.m */; };
 		841C508D19A6082400BD4141 /* btnNavBarAdd@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 841C508C19A6082400BD4141 /* btnNavBarAdd@2x.png */; };
@@ -284,6 +285,7 @@
 		3AB28AF7197D9F9D009C1DDC /* EventCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventCategory.m; sourceTree = "<group>"; };
 		3AB28B00197EE8CE009C1DDC /* ZSTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSTextField.h; sourceTree = "<group>"; };
 		3AB28B01197EE8CE009C1DDC /* ZSTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSTextField.m; sourceTree = "<group>"; };
+		3AB68BE719C70FFC00057736 /* btnDelete@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnDelete@2x.png"; sourceTree = "<group>"; };
 		3AC8525419A4CF9C00FCDE16 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		3AF360A519767564009A14FD /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		3AF360A9197687E2009A14FD /* AppManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppManager.h; sourceTree = "<group>"; };
@@ -505,10 +507,10 @@
 		840CD23719B8449700699E26 /* UIBubbleTypingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIBubbleTypingTableViewCell.m; sourceTree = "<group>"; };
 		840CD24219B84ADF00699E26 /* btnSend.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnSend.png; sourceTree = "<group>"; };
 		840CD24319B84ADF00699E26 /* btnSend@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnSend@2x.png"; sourceTree = "<group>"; };
-		840CD24619B84B6100699E26 /* bubbleMine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubbleMine.png; sourceTree = "<group>"; };
-		840CD24719B84B6100699E26 /* bubbleMine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bubbleMine@2x.png"; sourceTree = "<group>"; };
-		840CD24819B84B6100699E26 /* bubbleSomeone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubbleSomeone.png; sourceTree = "<group>"; };
-		840CD24919B84B6100699E26 /* bubbleSomeone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bubbleSomeone@2x.png"; sourceTree = "<group>"; };
+		840CD24619B84B6100699E26 /* bubbleSomeone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubbleSomeone.png; sourceTree = "<group>"; };
+		840CD24719B84B6100699E26 /* bubbleSomeone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bubbleSomeone@2x.png"; sourceTree = "<group>"; };
+		840CD24819B84B6100699E26 /* bubbleMine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubbleMine.png; sourceTree = "<group>"; };
+		840CD24919B84B6100699E26 /* bubbleMine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bubbleMine@2x.png"; sourceTree = "<group>"; };
 		841C508519A6066500BD4141 /* TicketAlertsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketAlertsViewController.h; sourceTree = "<group>"; };
 		841C508619A6066500BD4141 /* TicketAlertsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketAlertsViewController.m; sourceTree = "<group>"; };
 		841C508819A6067800BD4141 /* AddTicketAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTicketAlertViewController.h; sourceTree = "<group>"; };
@@ -597,6 +599,7 @@
 		3A9D206119B1992E00FE163E /* Tickets */ = {
 			isa = PBXGroup;
 			children = (
+				3AB68BE719C70FFC00057736 /* btnDelete@2x.png */,
 				3A9D206A19B20A1900FE163E /* bottomBar@2x.png */,
 				3A9D206219B1993900FE163E /* btnEditTicket@2x.png */,
 			);
@@ -1550,10 +1553,10 @@
 		840CD24119B84ADF00699E26 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
-				840CD24619B84B6100699E26 /* bubbleMine.png */,
-				840CD24719B84B6100699E26 /* bubbleMine@2x.png */,
-				840CD24819B84B6100699E26 /* bubbleSomeone.png */,
-				840CD24919B84B6100699E26 /* bubbleSomeone@2x.png */,
+				840CD24619B84B6100699E26 /* bubbleSomeone.png */,
+				840CD24719B84B6100699E26 /* bubbleSomeone@2x.png */,
+				840CD24819B84B6100699E26 /* bubbleMine.png */,
+				840CD24919B84B6100699E26 /* bubbleMine@2x.png */,
 				840CD24219B84ADF00699E26 /* btnSend.png */,
 				840CD24319B84ADF00699E26 /* btnSend@2x.png */,
 			);
@@ -1722,6 +1725,7 @@
 				84E2CBEE19B5D359003102F3 /* TermsConditions.docx in Resources */,
 				84E4E2EF19A77A360049A6A8 /* ta_alert_cell_delete@2x.png in Resources */,
 				840CD24519B84ADF00699E26 /* btnSend@2x.png in Resources */,
+				3AB68BE819C70FFC00057736 /* btnDelete@2x.png in Resources */,
 				84A457091970182C000ABA73 /* btnFinish@2x.png in Resources */,
 				849F591F19A74C770076B830 /* ta_big_bell@2x.png in Resources */,
 				841C509B19A6129800BD4141 /* tickertAlertCellBellIcon@2x.png in Resources */,
@@ -1739,7 +1743,7 @@
 				841C508D19A6082400BD4141 /* btnNavBarAdd@2x.png in Resources */,
 				841C50AE19A626BB00BD4141 /* btnConfirmAlert@2x.png in Resources */,
 				3AA332FF1990F50600C8DAA8 /* SourceSansPro-Regular.otf in Resources */,
-				840CD24A19B84B6100699E26 /* bubbleMine.png in Resources */,
+				840CD24A19B84B6100699E26 /* bubbleSomeone.png in Resources */,
 				3F62C6A91948318F00D7D6B1 /* tom_davids@2x.png in Resources */,
 				840BA3CA19A23F7B00198277 /* listing_icon.png in Resources */,
 				84A456F61970182C000ABA73 /* btnContinue.png in Resources */,
@@ -1828,7 +1832,7 @@
 				3AA4359619911D2900D626D1 /* SourceSansPro-Semibold.otf in Resources */,
 				84A456FC1970182C000ABA73 /* welcomeText3.png in Resources */,
 				849F591E19A74C770076B830 /* ta_bg_description@2x.png in Resources */,
-				840CD24C19B84B6100699E26 /* bubbleSomeone.png in Resources */,
+				840CD24C19B84B6100699E26 /* bubbleMine.png in Resources */,
 				3F62C6AC1948318F00D7D6B1 /* category_highlighted@2x.png in Resources */,
 				84513F0719A4F2AC00C4A254 /* about_logo@2x.png in Resources */,
 				3F62C6981948318F00D7D6B1 /* feature_cell@2x.png in Resources */,
@@ -1842,12 +1846,12 @@
 				3F62C68B1948318F00D7D6B1 /* search_icon@2x.png in Resources */,
 				3A9D206B19B20A1900FE163E /* bottomBar@2x.png in Resources */,
 				3F98FCAD193F038D00E6B3C4 /* CategoryCell.xib in Resources */,
-				840CD24B19B84B6100699E26 /* bubbleMine@2x.png in Resources */,
+				840CD24B19B84B6100699E26 /* bubbleSomeone@2x.png in Resources */,
 				3F62C6CF1948A2BE00D7D6B1 /* TicketCell.xib in Resources */,
 				84513F0919A4F2AC00C4A254 /* btnTermsAndConditions@2x.png in Resources */,
 				3F62C6DB19499D9400D7D6B1 /* events.plist in Resources */,
 				84E2CBF019B5D80B003102F3 /* PrivacyPolicy.docx in Resources */,
-				840CD24D19B84B6100699E26 /* bubbleSomeone@2x.png in Resources */,
+				840CD24D19B84B6100699E26 /* bubbleMine@2x.png in Resources */,
 				84A457051970182C000ABA73 /* welcomeText4@2x.png in Resources */,
 				3F62C6AB1948318F00D7D6B1 /* category_default@2x.png in Resources */,
 				84A457061970182C000ABA73 /* messageBG@2x.png in Resources */,

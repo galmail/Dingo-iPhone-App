@@ -241,6 +241,10 @@ static const NSUInteger comfirmCellIndex = 17;
     
     self.startDateField.text = [formatter stringFromDate:event.date];
     self.endDateField.text = [formatter stringFromDate:event.endDate];
+    
+    
+    self.nameField.enabled = self.locationField.enabled = NO;
+    self.startDateField.enabled = self.endDateField.enabled = NO;
 
     self.descriptionTextView.text = event.event_desc;
     self.priceField.text = [ticket.price stringValue];
@@ -262,6 +266,7 @@ static const NSUInteger comfirmCellIndex = 17;
     postSwitch.on =  [deliveryOptions rangeOfString:@"Post"].location != NSNotFound;
     
     self.categoriesCell.selectedCategory = event.category_id;
+    self.categoriesCell.readOnly = YES;
     [self.categoriesCell refresh];
     
     photos = [NSMutableArray new];

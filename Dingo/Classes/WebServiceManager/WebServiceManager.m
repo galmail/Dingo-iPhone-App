@@ -39,7 +39,9 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
 
 + (void)addressToLocation:(NSString *)address completion:( void (^) (id response, NSError *error))handler {
     
-    NSMutableURLRequest *request = [self requestForGetURL:geocodeUrl withParams:[NSString stringWithFormat:@"address=%@", address]];
+    NSDictionary *params = @{@"address":address};
+    
+    NSMutableURLRequest *request = [self requestForGetURL:geocodeUrl withParams:[params urlEncodedString]];
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
         NSURLResponse* response = nil;
@@ -333,8 +335,6 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
 
 + (void)receiveMessages:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler {
     
-    NSDictionary* params1 = @{@"conversations": @"true"};
-    params = params1;
     NSMutableURLRequest *request = [self requestForGetMethod:@"messages" withParams:[params urlEncodedString]];
     
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -350,6 +350,23 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
     });
     
 }
+
++ (void)sendMessage:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler {
+    NSMutableURLRequest *request = [self requestForPostMethod:@"messages" withParams:[params urlEncodedString]];
+    
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        NSURLResponse* response = nil;
+        NSError *error = nil;
+        NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+        
+        dispatch_async(dispatch_get_main_queue(), ^(void){
+            handler([data objectFromJSONData], error);
+        });
+        
+    });
+}
+
 
 #pragma mark - requests
 
