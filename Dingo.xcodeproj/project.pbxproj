@@ -8,10 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		3A02687C19A5F9C000C8CD8E /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A02687B19A5F9C000C8CD8E /* Social.framework */; };
+		3A9441D319CB62920003DA85 /* newOffer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A9441D219CB62920003DA85 /* newOffer@2x.png */; };
 		3A98E0A71977D57C006DA28A /* blueBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A98E0A61977D57C006DA28A /* blueBG@2x.png */; };
 		3A98E0A91977D78B006DA28A /* btnFBLogin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A98E0A81977D78B006DA28A /* btnFBLogin@2x.png */; };
 		3A98E0AB1977E53F006DA28A /* btnGuest@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A98E0AA1977E53F006DA28A /* btnGuest@2x.png */; };
 		3A98E0AD197802EA006DA28A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A98E0AC197802EA006DA28A /* CoreLocation.framework */; };
+		3A9C271319C8AFC90007BA34 /* NewOfferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9C271219C8AFC90007BA34 /* NewOfferViewController.m */; };
 		3A9D206319B1993900FE163E /* btnEditTicket@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A9D206219B1993900FE163E /* btnEditTicket@2x.png */; };
 		3A9D206719B1A21D00FE163E /* BottomEditBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9D206619B1A21D00FE163E /* BottomEditBar.m */; };
 		3A9D206919B1EB3A00FE163E /* BottomEditBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A9D206819B1EB3A00FE163E /* BottomEditBar.xib */; };
@@ -249,10 +251,13 @@
 
 /* Begin PBXFileReference section */
 		3A02687B19A5F9C000C8CD8E /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		3A9441D219CB62920003DA85 /* newOffer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "newOffer@2x.png"; sourceTree = "<group>"; };
 		3A98E0A61977D57C006DA28A /* blueBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueBG@2x.png"; sourceTree = "<group>"; };
 		3A98E0A81977D78B006DA28A /* btnFBLogin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnFBLogin@2x.png"; sourceTree = "<group>"; };
 		3A98E0AA1977E53F006DA28A /* btnGuest@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnGuest@2x.png"; sourceTree = "<group>"; };
 		3A98E0AC197802EA006DA28A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		3A9C271119C8AFC90007BA34 /* NewOfferViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewOfferViewController.h; sourceTree = "<group>"; };
+		3A9C271219C8AFC90007BA34 /* NewOfferViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewOfferViewController.m; sourceTree = "<group>"; };
 		3A9D206219B1993900FE163E /* btnEditTicket@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnEditTicket@2x.png"; sourceTree = "<group>"; };
 		3A9D206519B1A21D00FE163E /* BottomEditBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BottomEditBar.h; sourceTree = "<group>"; };
 		3A9D206619B1A21D00FE163E /* BottomEditBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BottomEditBar.m; sourceTree = "<group>"; };
@@ -596,9 +601,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3A9C271019C8AF930007BA34 /* ChatViewController */ = {
+			isa = PBXGroup;
+			children = (
+				840CD22919B83D8A00699E26 /* ChatViewController.h */,
+				840CD22A19B83D8A00699E26 /* ChatViewController.m */,
+			);
+			name = ChatViewController;
+			sourceTree = "<group>";
+		};
+		3A9C271419C8AFCF0007BA34 /* NewOfferViewController */ = {
+			isa = PBXGroup;
+			children = (
+				3A9C271119C8AFC90007BA34 /* NewOfferViewController.h */,
+				3A9C271219C8AFC90007BA34 /* NewOfferViewController.m */,
+			);
+			name = NewOfferViewController;
+			sourceTree = "<group>";
+		};
 		3A9D206119B1992E00FE163E /* Tickets */ = {
 			isa = PBXGroup;
 			children = (
+				3A9441D219CB62920003DA85 /* newOffer@2x.png */,
 				3AB68BE719C70FFC00057736 /* btnDelete@2x.png */,
 				3A9D206A19B20A1900FE163E /* bottomBar@2x.png */,
 				3A9D206219B1993900FE163E /* btnEditTicket@2x.png */,
@@ -881,8 +905,8 @@
 				3F98FCC4193F66A800E6B3C4 /* SideMenuViewController */,
 				3F98FCC0193F4E7A00E6B3C4 /* SlidingViewController */,
 				3F2864E5194B177E002A3576 /* About */,
-				840CD22919B83D8A00699E26 /* ChatViewController.h */,
-				840CD22A19B83D8A00699E26 /* ChatViewController.m */,
+				3A9C271019C8AF930007BA34 /* ChatViewController */,
+				3A9C271419C8AFCF0007BA34 /* NewOfferViewController */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1798,6 +1822,7 @@
 				3F62C6B51948318F00D7D6B1 /* contact_us_icon@2x.png in Resources */,
 				84A456FB1970182C000ABA73 /* welcomeText2.png in Resources */,
 				3F62C6921948318F00D7D6B1 /* jz_live@2x.png in Resources */,
+				3A9441D319CB62920003DA85 /* newOffer@2x.png in Resources */,
 				3F62C6B81948318F00D7D6B1 /* settings_icon@2x.png in Resources */,
 				841C50B019A626BB00BD4141 /* btnDeleteAlert@2x.png in Resources */,
 				3F62C6A71948318F00D7D6B1 /* mike_scott@2x.png in Resources */,
@@ -1963,6 +1988,7 @@
 				3F10DE66193C536E002D3B43 /* DingoNavigationController.m in Sources */,
 				3F98FD081945EECE00E6B3C4 /* DiscountView.m in Sources */,
 				3F62C6C819489F9A00D7D6B1 /* EventsViewController.m in Sources */,
+				3A9C271319C8AFC90007BA34 /* NewOfferViewController.m in Sources */,
 				84DB3B9519BDD1B2000EBE9A /* Message.m in Sources */,
 				3AF360AB197687E2009A14FD /* AppManager.m in Sources */,
 				3F10DE6F193C54C4002D3B43 /* DingoUISettings.m in Sources */,

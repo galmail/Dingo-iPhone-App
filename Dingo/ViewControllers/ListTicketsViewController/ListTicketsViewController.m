@@ -223,8 +223,12 @@ static const NSUInteger comfirmCellIndex = 17;
         self.event.thumb = nil;
         self.photosPreviewCell.photos = nil;
         
+        photos = nil;
+        
         self.categoriesCell.selectedCategory = nil;
         [self.categoriesCell refresh];
+        
+        [self.tableView reloadData];
         
     }
     

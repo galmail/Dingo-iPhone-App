@@ -20,6 +20,7 @@
 #import "ChatViewController.h"
 #import "MapViewController.h"
 #import "ImagesViewController.h"
+#import "NewOfferViewController.h"
 
 static const NSUInteger photosCellIndex = 1;
 static const NSUInteger commentCellIndex = 4;
@@ -116,6 +117,10 @@ static const NSUInteger commentCellIndex = 4;
                 MKCoordinateSpan span = MKCoordinateSpanMake(0.01, 0.01);
                 MKCoordinateRegion region = {coord, span};
                 [self.locationMap setRegion:region];
+                
+                MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
+                annotation.coordinate = coord;
+                [self.locationMap addAnnotation:annotation];
             }
             
         }
@@ -269,6 +274,10 @@ static const NSUInteger commentCellIndex = 4;
 }
 
 - (IBAction)offerNewPrice:(id)sender {
+    
+    NewOfferViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"NewOfferViewController"];
+    viewController.ticket = self.ticket;
+    [self.navigationController pushViewController:viewController animated:YES];
     
 }
 

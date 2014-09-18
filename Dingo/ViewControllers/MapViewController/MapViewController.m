@@ -45,6 +45,10 @@
                 MKCoordinateSpan span = MKCoordinateSpanMake(0.01, 0.01);
                 MKCoordinateRegion region = {coord, span};
                 [mapView setRegion:region];
+                
+                MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
+                annotation.coordinate = coord;
+                [mapView addAnnotation:annotation];
             }
             
         }

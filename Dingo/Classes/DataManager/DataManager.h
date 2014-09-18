@@ -73,7 +73,6 @@
 - (NSUInteger)eventsFromSearchGroupsCount:(NSArray*)searchedEvents;
 - (NSDate *)eventFromSearchGroupDateByIndex:(NSUInteger)groupIndex Events:(NSArray*)searchedEvents;
 
-- (void)fetchMessagesByID:(NSString *)ID completion:( void (^) (BOOL finished))handler;
 - (void)fetchMessagesWithCompletion:( void (^) (BOOL finished))handler;
 - (NSArray *)allMessages;
 - (NSArray *)allMessagesWith:(NSNumber*)userID;

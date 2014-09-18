@@ -96,6 +96,10 @@ static const NSUInteger commentCellIndex = 4;
                 MKCoordinateSpan span = MKCoordinateSpanMake(0.01, 0.01);
                 MKCoordinateRegion region = {coord, span};
                 [self.locationMap setRegion:region];
+                
+                MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
+                annotation.coordinate = coord;
+                [self.locationMap addAnnotation:annotation];
             }
             
         }
