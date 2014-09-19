@@ -249,27 +249,6 @@ static const NSUInteger commentCellIndex = 4;
 
 - (IBAction)requestToBuy:(id)sender {
     
-    NSDictionary *params = @{@"ticket_id":self.ticket.ticket_id,
-                             @"receiver_id": self.ticket.user_id,
-                             @"num_tickets" :@"1",
-                             @"price":self.ticket.price
-                             };
-    
-    ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please wait..."];
-    [loadingView show];
-    [WebServiceManager sendOffer:params completion:^(id response, NSError *error) {
-        [loadingView hide];
-        
-        if (!error) {
-            if (response[@"id"]) {
-                [AppManager showAlert:@"Offer Sent!"];
-            }
-            
-        } else {
-            [AppManager showAlert:[error localizedDescription]];
-        }
-
-    }];
     
 }
 
