@@ -33,8 +33,17 @@ static NSString *urlEncode(id object) {
     NSMutableArray *parts = [NSMutableArray array];
     for (id key in self) {
         id value = [self objectForKey: key];
-        NSString *part = [NSString stringWithFormat: @"%@=%@", urlEncode(key), urlEncode(value)];
-        [parts addObject: part];
+        if ([key rangeOfString:@"[]"].location != NSNotFound ) {
+            NSArray *values = [value componentsSeparatedByString:@","];
+            for (NSString *val in values) {
+                NSString *part = [NSString stringWithFormat: @"%@=%@", urlEncode(key), urlEncode(val)];
+                [parts addObject: part];
+            }
+        } else {
+            NSString *part = [NSString stringWithFormat: @"%@=%@", urlEncode(key), urlEncode(value)];
+            [parts addObject: part];
+
+        }
     }
     return [parts componentsJoinedByString: @"&"];
 }

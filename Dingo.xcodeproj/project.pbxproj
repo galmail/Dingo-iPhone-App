@@ -878,6 +878,7 @@
 		3F10DE451938B24F002D3B43 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				3A9C271419C8AFCF0007BA34 /* NewOfferViewController */,
 				3AF5401D19C1924300FD5A93 /* ImagesViewController */,
 				3AF5401E19C1924300FD5A93 /* MapViewController */,
 				849C90A819A4EBC9000B585E /* AboutViewController */,
@@ -906,7 +907,6 @@
 				3F98FCC0193F4E7A00E6B3C4 /* SlidingViewController */,
 				3F2864E5194B177E002A3576 /* About */,
 				3A9C271019C8AF930007BA34 /* ChatViewController */,
-				3A9C271419C8AFCF0007BA34 /* NewOfferViewController */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
