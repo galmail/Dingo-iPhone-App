@@ -201,7 +201,7 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         NSURLResponse* response = nil;
         NSError *error = nil;
         NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-        
+        NSLog(@"createEvent %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] );
         dispatch_async(dispatch_get_main_queue(), ^(void){
             handler([data objectFromJSONData], error);
         });
@@ -229,7 +229,7 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         NSURLResponse* response = nil;
         NSError *error = nil;
         NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-        
+        NSLog(@"createEvent %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] );
         dispatch_async(dispatch_get_main_queue(), ^(void){
             handler([data objectFromJSONData], error);
         });
@@ -333,6 +333,22 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
     
 }
 
++ (void)makeOrder:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler {
+    NSMutableURLRequest *request = [self requestForPostMethod:@"orders" withParams:[params urlEncodedString]];
+    
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        NSURLResponse* response = nil;
+        NSError *error = nil;
+        NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+        
+        dispatch_async(dispatch_get_main_queue(), ^(void){
+            handler([data objectFromJSONData], error);
+        });
+        
+    });
+}
+
 + (void)receiveMessages:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler {
     
     NSMutableURLRequest *request = [self requestForGetMethod:@"messages" withParams:[params urlEncodedString]];
@@ -402,7 +418,7 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
     
     NSString* url = [NSString stringWithFormat:@"%@%@", apiUrl, method];
     url =[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:60.0f];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:120.0f];
     
     if (params.length > 0) {
         NSData *postData = [params dataUsingEncoding:NSUTF8StringEncoding];
@@ -421,7 +437,7 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
     
     NSString* url = [NSString stringWithFormat:@"%@%@", apiUrl, method];
     url =[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:60.0f];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:120.0f];
  
     [request setHTTPMethod:@"POST"];
     

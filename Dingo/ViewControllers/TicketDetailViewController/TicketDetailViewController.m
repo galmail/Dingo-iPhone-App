@@ -21,6 +21,7 @@
 #import "MapViewController.h"
 #import "ImagesViewController.h"
 #import "NewOfferViewController.h"
+#import "CheckoutViewController.h"
 
 static const NSUInteger photosCellIndex = 1;
 static const NSUInteger commentCellIndex = 4;
@@ -249,7 +250,10 @@ static const NSUInteger commentCellIndex = 4;
 
 - (IBAction)requestToBuy:(id)sender {
     
-    
+    CheckoutViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CheckoutViewController"];
+    viewController.ticket = self.ticket;
+    [self.navigationController pushViewController:viewController animated:YES];
+
 }
 
 - (IBAction)offerNewPrice:(id)sender {

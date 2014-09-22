@@ -33,6 +33,8 @@
 + (void)sendOffer:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler;
 + (void)receiveOffers:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler;
 
++ (void)makeOrder:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler;
+
 + (void)receiveMessages:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler;
 + (void)sendMessage:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler;
 

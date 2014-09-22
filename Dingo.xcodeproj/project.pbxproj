@@ -28,6 +28,8 @@
 		3AA3330119910D4E00C8DAA8 /* SourceSansPro-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3AA3330019910D4E00C8DAA8 /* SourceSansPro-Bold.otf */; };
 		3AA4359619911D2900D626D1 /* SourceSansPro-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3AA4359519911D2900D626D1 /* SourceSansPro-Semibold.otf */; };
 		3AA49002199E1C6700C7E8ED /* TicketDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA49001199E1C6700C7E8ED /* TicketDetailViewController.m */; };
+		3AA89D3919D0501800F8BA27 /* CheckoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA89D3819D0501800F8BA27 /* CheckoutViewController.m */; };
+		3AA89D3C19D053E100F8BA27 /* checkout@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AA89D3B19D053E100F8BA27 /* checkout@2x.png */; };
 		3AAC8AD919BDDD6B00B6D3C8 /* SourceSansPro-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3AAC8AD819BDDD6B00B6D3C8 /* SourceSansPro-Light.otf */; };
 		3AB28AE0197BB486009C1DDC /* welcome1BG-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AB28ADF197BB486009C1DDC /* welcome1BG-568h@2x.png */; };
 		3AB28AE2197BC572009C1DDC /* welcome2BG-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AB28AE1197BC572009C1DDC /* welcome2BG-568h@2x.png */; };
@@ -279,6 +281,9 @@
 		3AA4359519911D2900D626D1 /* SourceSansPro-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Semibold.otf"; sourceTree = "<group>"; };
 		3AA49000199E1C6700C7E8ED /* TicketDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketDetailViewController.h; sourceTree = "<group>"; };
 		3AA49001199E1C6700C7E8ED /* TicketDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketDetailViewController.m; sourceTree = "<group>"; };
+		3AA89D3719D0501800F8BA27 /* CheckoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckoutViewController.h; sourceTree = "<group>"; };
+		3AA89D3819D0501800F8BA27 /* CheckoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckoutViewController.m; sourceTree = "<group>"; };
+		3AA89D3B19D053E100F8BA27 /* checkout@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkout@2x.png"; sourceTree = "<group>"; };
 		3AAC8AD819BDDD6B00B6D3C8 /* SourceSansPro-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Light.otf"; sourceTree = "<group>"; };
 		3AB28ADF197BB486009C1DDC /* welcome1BG-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "welcome1BG-568h@2x.png"; sourceTree = "<group>"; };
 		3AB28AE1197BC572009C1DDC /* welcome2BG-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "welcome2BG-568h@2x.png"; sourceTree = "<group>"; };
@@ -622,6 +627,7 @@
 		3A9D206119B1992E00FE163E /* Tickets */ = {
 			isa = PBXGroup;
 			children = (
+				3AA89D3B19D053E100F8BA27 /* checkout@2x.png */,
 				3A9441D219CB62920003DA85 /* newOffer@2x.png */,
 				3AB68BE719C70FFC00057736 /* btnDelete@2x.png */,
 				3A9D206A19B20A1900FE163E /* bottomBar@2x.png */,
@@ -658,6 +664,15 @@
 				3AA49001199E1C6700C7E8ED /* TicketDetailViewController.m */,
 			);
 			path = TicketDetailViewController;
+			sourceTree = "<group>";
+		};
+		3AA89D3A19D0502700F8BA27 /* CheckoutViewController */ = {
+			isa = PBXGroup;
+			children = (
+				3AA89D3719D0501800F8BA27 /* CheckoutViewController.h */,
+				3AA89D3819D0501800F8BA27 /* CheckoutViewController.m */,
+			);
+			name = CheckoutViewController;
 			sourceTree = "<group>";
 		};
 		3AB28AEC197D9D83009C1DDC /* Models */ = {
@@ -878,6 +893,7 @@
 		3F10DE451938B24F002D3B43 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				3AA89D3A19D0502700F8BA27 /* CheckoutViewController */,
 				3A9C271419C8AFCF0007BA34 /* NewOfferViewController */,
 				3AF5401D19C1924300FD5A93 /* ImagesViewController */,
 				3AF5401E19C1924300FD5A93 /* MapViewController */,
@@ -1848,6 +1864,7 @@
 				3AB28AE0197BB486009C1DDC /* welcome1BG-568h@2x.png in Resources */,
 				841C50A119A6137700BD4141 /* ticketAlertCellArrow@2x.png in Resources */,
 				840BA3C319A23E8100198277 /* about_icon.png in Resources */,
+				3AA89D3C19D053E100F8BA27 /* checkout@2x.png in Resources */,
 				3F62C69E1948318F00D7D6B1 /* messages_cell@2x.png in Resources */,
 				84E4E2EE19A77A360049A6A8 /* ta_alert_cell_delete.png in Resources */,
 				84A456FF1970182C000ABA73 /* welcome1BG@2x.png in Resources */,
@@ -1937,6 +1954,7 @@
 				840CD23C19B8449700699E26 /* UIBubbleTypingTableViewCell.m in Sources */,
 				3AF5402119C1937000FD5A93 /* ImagesViewController.m in Sources */,
 				3F98FC90193E09E000E6B3C4 /* MessagesViewController.m in Sources */,
+				3AA89D3919D0501800F8BA27 /* CheckoutViewController.m in Sources */,
 				3F98FCC3193F4E9B00E6B3C4 /* SlidingViewController.m in Sources */,
 				3F62C6C119489C3900D7D6B1 /* SideMenuCell.m in Sources */,
 				3F62C6F91949DA4F00D7D6B1 /* SideMenuSegue.m in Sources */,
