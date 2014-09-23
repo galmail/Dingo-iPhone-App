@@ -241,7 +241,7 @@ static const NSUInteger comfirmCellIndex = 17;
     self.locationField.text = [DataManager eventLocation:event];
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = @"hh:mm dd/MM/yyyy";
+    formatter.dateFormat = @"HH:mm dd/MM/yyyy";
     
     self.startDateField.text = [formatter stringFromDate:event.date];
     self.endDateField.text = [formatter stringFromDate:event.endDate];
@@ -869,7 +869,7 @@ static const NSUInteger comfirmCellIndex = 17;
 - (void)pickerDidPressDone:(ZSDatePicker*)picker withDate:(NSDate *)date {
 
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = @"hh:mm dd/MM/yyyy";
+    formatter.dateFormat = @"HH:mm dd/MM/yyyy";
     
     if (picker == startDatePicker) {
         self.startDateField.text = [formatter stringFromDate:date];
