@@ -2,7 +2,7 @@
 //  Message.m
 //  Dingo
 //
-//  Created by Tigran Aslanyan on 08.09.14.
+//  Created by Asatur Galstyan on 9/23/14.
 //  Copyright (c) 2014 Dingo. All rights reserved.
 //
 
@@ -15,9 +15,12 @@
 @dynamic datetime;
 @dynamic message_id;
 @dynamic receiver_id;
-@dynamic sender_id;
 @dynamic sender_avatar;
-@dynamic sender_name;
 @dynamic sender_avatar_url;
+@dynamic sender_id;
+@dynamic sender_name;
+@dynamic ticket_id;
+@dynamic new_offer;
+@dynamic from_dingo;
 
 @end

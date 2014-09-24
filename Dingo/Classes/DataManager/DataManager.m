@@ -1051,6 +1051,9 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     
     message.datetime = date;
     
+    message.from_dingo = @( [info[@"from_dingo"] boolValue]);
+    message.new_offer = @( [info[@"new_offer"] boolValue]);
+    message.ticket_id = info[@"ticket_id"];
 }
 
 - (NSArray *)allMessages{
@@ -1064,11 +1067,11 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     return events;
 }
 
-- (NSArray *)allMessagesWith:(NSNumber *)userID {
+- (NSArray *)allMessagesWith:(NSNumber *)userID ticketID:(NSString*)ticketID {
     
     NSManagedObjectContext *context = [AppManager sharedManager].managedObjectContext;
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Messages"];
-    request.predicate = [NSPredicate predicateWithFormat:@"(receiver_id == %@ && sender_id == %@) || (sender_id == %@ && receiver_id == %@)", [userID stringValue], [AppManager sharedManager].userInfo[@"id"],[userID stringValue], [AppManager sharedManager].userInfo[@"id"]];
+    request.predicate = [NSPredicate predicateWithFormat:@"((receiver_id == %@ && sender_id == %@) || (sender_id == %@ && receiver_id == %@)) && ticket_id == %@", [userID stringValue], [AppManager sharedManager].userInfo[@"id"],[userID stringValue], [AppManager sharedManager].userInfo[@"id"], ticketID];
     request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"datetime" ascending:YES]];
     NSError *error = nil;
     NSArray *events = [context executeFetchRequest:request error:&error];

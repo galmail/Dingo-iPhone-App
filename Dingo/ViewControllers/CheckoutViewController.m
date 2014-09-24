@@ -11,8 +11,10 @@
 #import "RoundedImageView.h"
 #import "DingoUISettings.h"
 #import "WebServiceManager.h"
+#import "PayPalMobile.h"
+#import "ChatViewController.h"
 
-@interface CheckoutViewController () {
+@interface CheckoutViewController () <PayPalPaymentDelegate, PayPalFuturePaymentDelegate, PayPalProfileSharingDelegate, UIPopoverControllerDelegate>{
     
     __weak IBOutlet UILabel *lblEvent;
     __weak IBOutlet UILabel *lblNumber;
@@ -30,6 +32,9 @@
     
     NSNumberFormatter *currencyFormatter;
     
+    UIWebView *webView;
+    
+    PayPalConfiguration *payPalConfig;
 }
 
 @end
@@ -66,8 +71,17 @@
     imgSeller.image = [UIImage imageWithData:self.ticket.user_photo];
     
     [self calculateTotal];
+    
+    payPalConfig = [[PayPalConfiguration alloc] init];
+    payPalConfig.acceptCreditCards = YES;
+    payPalConfig.languageOrLocale = @"en";
+    payPalConfig.merchantName = @"Dingo, Inc.";
 
     
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [PayPalMobile preconnectWithEnvironment:PayPalEnvironmentSandbox];
 }
 
 - (void)didReceiveMemoryWarning
@@ -93,6 +107,32 @@
             
             NSLog(@"make order - %@", response);
             if (response) {
+                
+                if ([response[@"success"] boolValue]) {
+//                    webView = [[UIWebView alloc] initWithFrame:self.tableView.bounds];
+//                    webView.scalesPageToFit = YES;
+//                    
+//                    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:response[@"redirect_url"]]]];
+//                    
+//                    [self.view addSubview:webView];
+                    
+                    
+                    PayPalPayment *payment = [[PayPalPayment alloc] init];
+                    payment.amount = (NSDecimalNumber*)[currencyFormatter numberFromString:txtTotal.text];
+                    payment.currencyCode = @"GBP";
+                    payment.shortDescription = @"Dingo Test Payment ";
+
+                    PayPalPaymentViewController *paymentViewController = [[PayPalPaymentViewController alloc] initWithPayment:payment
+                                                                                                                configuration:payPalConfig                                                                                                                     delegate:self];
+                    
+                    [self presentViewController:paymentViewController animated:YES completion:nil];
+
+ 
+                    
+                } else {
+                 
+                    [AppManager showAlert:@"Unable to buy!"];
+                }
                 
             }
         }
@@ -137,5 +177,28 @@
     
     txtTotal.text = [currencyFormatter stringFromNumber:@( total)];
 }
+
+#pragma mark PayPalPaymentDelegate methods
+
+- (void)payPalPaymentViewController:(PayPalPaymentViewController *)paymentViewController didCompletePayment:(PayPalPayment *)completedPayment {
+    NSLog(@"PayPal Payment Success! \n%@",  [completedPayment description]);
+
+    [self dismissViewControllerAnimated:YES completion:^{
+        // redirect to chat screen
+        
+        ChatViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"ChatViewController"];
+        vc.ticket = self.ticket;
+        
+        [self.navigationController pushViewController:vc animated:YES];
+
+    }];
+}
+
+- (void)payPalPaymentDidCancel:(PayPalPaymentViewController *)paymentViewController {
+    NSLog(@"PayPal Payment Canceled");
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 @end

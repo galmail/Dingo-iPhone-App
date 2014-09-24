@@ -523,7 +523,7 @@ static const NSUInteger comfirmCellIndex = 17;
         
         if (self.startDateField.text.length > 0) {
             NSDateFormatter *formatter =[[NSDateFormatter alloc] init];
-            formatter.dateFormat = @"hh:mm dd/MM/yyyy";
+            formatter.dateFormat = @"HH:mm dd/MM/yyyy";
             self.event.date = [formatter dateFromString:self.startDateField.text];
             lblFromDate.textColor= [UIColor blackColor];
             self.changed = YES;
@@ -533,7 +533,7 @@ static const NSUInteger comfirmCellIndex = 17;
     if (textField == self.endDateField) {
         if (self.endDateField.text.length > 0) {
             NSDateFormatter *formatter =[[NSDateFormatter alloc] init];
-            formatter.dateFormat = @"hh:mm dd/MM/yyyy";
+            formatter.dateFormat = @"HH:mm dd/MM/yyyy";
             self.event.endDate = [formatter dateFromString:self.endDateField.text];
             lblToDate.textColor = [UIColor blackColor];
             self.changed = YES;
@@ -1020,9 +1020,10 @@ static const NSUInteger comfirmCellIndex = 17;
                                                                                 @"surname": user.last_name,
                                                                                 @"email" : user[@"email"],
                                                                                 @"password" : [NSString stringWithFormat:@"fb%@", user.objectID],
+                                                                                @"fb_id" : user.objectID,
                                                                                 @"date_of_birth": birtday.length > 0 ? birtday : @"",
                                                                                 @"city": user.location ? [[user.location.name componentsSeparatedByString:@","] firstObject] : @"London",
-                                                                                @"photo_url":user[@"picture"][@"data"][@"url"],
+                                                                                @"photo_url": [NSString stringWithFormat:@"http://graph.facebook.com/v2.0/%@/picture?redirect=1&height=200&type=normal&width=200",user.objectID],//user[@"picture"][@"data"][@"url"],
                                                                                 @"device_uid":[AppManager sharedManager].deviceToken.length > 0 ? [AppManager sharedManager].deviceToken : @"",
                                                                                 @"device_brand":@"Apple",
                                                                                 @"device_model": [[UIDevice currentDevice] platformString],
@@ -1044,7 +1045,8 @@ static const NSUInteger comfirmCellIndex = 17;
                                                                   if (response[@"authentication_token"]) {
                                                                       [AppManager sharedManager].token = response[@"authentication_token"];
                                                                       
-                                                                      [AppManager sharedManager].userInfo = [@{@"id":response[@"id"],@"email":user[@"email"], @"name": user.first_name, @"photo_url":user[@"picture"][@"data"][@"url"], @"city":user.location ? [[user.location.name componentsSeparatedByString:@","] firstObject] : @"London"} mutableCopy];
+                                                                      [AppManager sharedManager].userInfo = [@{ @"id":response[@"id"], @"fb_id" : user.objectID, @"email":user[@"email"], @"name": user.first_name, @"photo_url":[NSString stringWithFormat:@"http://graph.facebook.com/v2.0/%@/picture?redirect=1&height=200&type=normal&width=200",user.objectID], @"city":user.location ? [[user.location.name componentsSeparatedByString:@","] firstObject] : @"London"} mutableCopy];
+                                                                      
                                                                       if ([self shouldPerformSegueWithIdentifier:@"PreviewSegue" sender:self]) {
                                                                           [self performSegueWithIdentifier:@"PreviewSegue" sender:self];
                                                                       }
@@ -1067,7 +1069,7 @@ static const NSUInteger comfirmCellIndex = 17;
                                                                                   if ([response[@"success"] boolValue]) {
                                                                                       [AppManager sharedManager].token = response[@"auth_token"];
                                                                                       
-                                                                                      [AppManager sharedManager].userInfo = [@{@"id":response[@"id"],@"email":user[@"email"], @"name": user.first_name, @"photo_url":user[@"picture"][@"data"][@"url"], @"city" : user.location ? [[user.location.name componentsSeparatedByString:@","] firstObject] : @"London"} mutableCopy];
+                                                                                      [AppManager sharedManager].userInfo = [@{@"id":response[@"id"], @"email":user[@"email"], @"name": user.first_name, @"surname": response[@"surname"], @"allow_dingo_emails": response[@"allow_dingo_emails"], @"allow_push_notifications":  response[@"allow_push_notifications"], @"fb_id":user.objectID, @"photo_url":[NSString stringWithFormat:@"http://graph.facebook.com/v2.0/%@/picture?redirect=1&height=200&type=normal&width=200",user.objectID], @"city" : user.location ? [[user.location.name componentsSeparatedByString:@","] firstObject] : @"London"} mutableCopy];
                                                                                       
                                                                                       if ([self shouldPerformSegueWithIdentifier:@"PreviewSegue" sender:self]) {
                                                                                           [self performSegueWithIdentifier:@"PreviewSegue" sender:self];

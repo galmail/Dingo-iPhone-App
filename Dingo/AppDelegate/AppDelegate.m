@@ -15,6 +15,7 @@
 #import "SlidingViewController.h"
 #import "UIDevice+Additions.h"
 #import "WebServiceManager.h"
+#import "PayPalMobile.h"
 
 @implementation AppDelegate
 
@@ -36,6 +37,10 @@
     [self.locationManager startUpdatingLocation];
     
     [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeBadge)];
+    
+    [PayPalMobile initializeWithClientIdsForEnvironments:@{/*PayPalEnvironmentProduction : @"YOUR_CLIENT_ID_FOR_PRODUCTION",*/
+                                                           PayPalEnvironmentSandbox : @"AWdYAhAitDP7Y1AFRQ6h68YlNcBiMcBgg1Grc-rfMrAqAIG_gHWSupG6E9A_"}];
+
     
     if ([AppManager sharedManager].token) {
         SlidingViewController *viewController = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"SlidingViewController"];

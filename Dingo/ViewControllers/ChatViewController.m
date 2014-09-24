@@ -69,7 +69,7 @@
     [[DataManager shared] fetchMessagesWithCompletion:^(BOOL finished) {
         
         [loadingView hide];
-        NSArray * messages = [[DataManager shared] allMessagesWith:self.receiverID];
+        NSArray * messages = [[DataManager shared] allMessagesWith:self.ticket.user_id ticketID:self.ticket.ticket_id];
         
         
         for (Message * msg in messages) {
@@ -179,7 +179,7 @@
         return;
     }
     
-    NSDictionary *params = @{ @"receiver_id" : self.receiverID, @"content" : textField.text };
+    NSDictionary *params = @{ @"ticket_id": self.ticket.ticket_id, @"receiver_id" : self.ticket.user_id, @"content" : textField.text };
     
     [WebServiceManager sendMessage:params completion:^(id response, NSError *error) {
         if (!error) {

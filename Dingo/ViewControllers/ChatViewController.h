@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Ticket.h"
 
 @interface ChatViewController : UIViewController
 
-@property (nonatomic) NSNumber *receiverID;
+@property (nonatomic) Ticket *ticket;
 
 @end

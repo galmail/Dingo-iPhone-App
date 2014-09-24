@@ -75,7 +75,7 @@
 
 - (void)fetchMessagesWithCompletion:( void (^) (BOOL finished))handler;
 - (NSArray *)allMessages;
-- (NSArray *)allMessagesWith:(NSNumber*)userID;
+- (NSArray *)allMessagesWith:(NSNumber*)userID ticketID:(NSString*)ticketID;
 
 - (void)addOrUpdateMessage:(NSDictionary *)info;
 

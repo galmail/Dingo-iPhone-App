@@ -97,7 +97,7 @@
                 [AppManager showAlert:@"Offer Sent!"];
 
                 ChatViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"ChatViewController"];
-                vc.receiverID = self.ticket.user_id ;
+                vc.ticket = self.ticket;
                 
                 [self.navigationController pushViewController:vc animated:YES];
             }

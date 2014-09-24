@@ -51,6 +51,11 @@
     }
 }
 
+- (IBAction)back:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+
 #pragma mark ZSPickerDelegate methods
 
 - (void)pickerViewDidPressDone:(ZSPickerView*)picker withInfo:(id)selectionInfo {
@@ -62,5 +67,6 @@
 - (void)pickerViewDidPressCancel:(ZSPickerView*)picker {
     [txtCity resignFirstResponder];
 }
+
 
 @end

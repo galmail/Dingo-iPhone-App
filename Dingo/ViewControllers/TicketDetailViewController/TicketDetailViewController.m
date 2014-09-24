@@ -243,7 +243,7 @@ static const NSUInteger commentCellIndex = 4;
 
 - (IBAction)contactSeller:(id)sender {
     ChatViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ChatViewController"];
-    viewController.receiverID = self.ticket.user_id;
+    viewController.ticket = self.ticket;
 
     [self.navigationController pushViewController:viewController animated:YES];
 }
@@ -252,6 +252,7 @@ static const NSUInteger commentCellIndex = 4;
     
     CheckoutViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CheckoutViewController"];
     viewController.ticket = self.ticket;
+    viewController.event = self.event;
     [self.navigationController pushViewController:viewController animated:YES];
 
 }
