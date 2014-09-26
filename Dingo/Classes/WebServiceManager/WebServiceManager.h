@@ -31,6 +31,7 @@
 + (void)registerDevice:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler;
 
 + (void)sendOffer:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler;
++ (void)replyOffer:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler;
 + (void)receiveOffers:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler;
 
 + (void)makeOrder:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler;

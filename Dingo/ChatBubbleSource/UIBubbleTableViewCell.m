@@ -37,17 +37,6 @@
 	[self setupInternalData];
 }
 
-#if !__has_feature(objc_arc)
-- (void) dealloc
-{
-    self.data = nil;
-    self.customView = nil;
-    self.bubbleImage = nil;
-    self.avatarImage = nil;
-    [super dealloc];
-}
-#endif
-
 - (void)setDataInternal:(NSBubbleData *)value
 {
 	self.data = value;
@@ -60,11 +49,8 @@
     
     if (!self.bubbleImage)
     {
-#if !__has_feature(objc_arc)
-        self.bubbleImage = [[[UIImageView alloc] init] autorelease];
-#else
+
         self.bubbleImage = [[UIImageView alloc] init];
-#endif
         [self addSubview:self.bubbleImage];
     }
     
@@ -73,7 +59,15 @@
     CGFloat width = self.data.view.frame.size.width;
     CGFloat height = self.data.view.frame.size.height;
     
-    CGFloat x = (type == BubbleTypeSomeoneElse) ? 0 : self.frame.size.width - width - self.data.insets.left - self.data.insets.right;
+    CGFloat x;
+    switch (type) {
+        case BubbleTypeSomeoneElse:
+            x = 0;
+            break;
+        default:
+            x = self.frame.size.width - width - self.data.insets.left - self.data.insets.right;
+            break;
+    }
     CGFloat y = 0;
     
     // Adjusting the x coordinate for avatar
@@ -92,7 +86,7 @@
         if (delta > 0) y = delta;
         
         if (type == BubbleTypeSomeoneElse) x += 70;
-        if (type == BubbleTypeMine) x -= 70;
+        if (type == BubbleTypeMine || type == BubbleTypeDingo) x -= 70;
     }
     
     [self.customView removeFromSuperview];
@@ -100,15 +94,20 @@
     self.customView.frame = CGRectMake(x + self.data.insets.left, y + self.data.insets.top, width, height);
     [self.contentView addSubview:self.customView];
     
-    if (type == BubbleTypeSomeoneElse)
-    {
-        self.bubbleImage.image = [[UIImage imageNamed:@"bubbleSomeone.png"] stretchableImageWithLeftCapWidth:21 topCapHeight:14];
+    switch (type) {
+        case BubbleTypeMine:
+             self.bubbleImage.image = [[UIImage imageNamed:@"bubbleBlue.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(15, 15, 15, 40)];
+            break;
+        case BubbleTypeSomeoneElse:
+            self.bubbleImage.image = [[UIImage imageNamed:@"bubbleWhite.png"] stretchableImageWithLeftCapWidth:21 topCapHeight:14];
+            break;
+        case BubbleTypeDingo:
+            self.bubbleImage.image = [[UIImage imageNamed:@"bubbleGray.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(15, 15, 15, 20)];
+            break;
+        default:
+            break;
+    }
         
-    }
-    else {
-        self.bubbleImage.image = [[UIImage imageNamed:@"bubbleMine.png"] stretchableImageWithLeftCapWidth:15 topCapHeight:14];
-    }
-    
     self.bubbleImage.frame = CGRectMake(x, y, width + self.data.insets.left + self.data.insets.right, height + self.data.insets.top + self.data.insets.bottom);
     
     

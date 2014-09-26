@@ -14,8 +14,10 @@
 #import "WebServiceManager.h"
 #import "ZSLoadingView.h"
 #import "DataManager.h"
+#import "ZSLabel.h"
+#import "TicketDetailViewController.h"
 
-@interface ChatViewController ()<UIBubbleTableViewDataSource>{
+@interface ChatViewController ()<UIBubbleTableViewDataSource, ZSLabelDelegate, UIActionSheetDelegate>{
     IBOutlet UIBubbleTableView *bubbleTable;
     IBOutlet UIView *textInputView;
     
@@ -74,16 +76,17 @@
         
         for (Message * msg in messages) {
             NSBubbleData *bubble = nil;
-            NSLog(@"%@",[AppManager sharedManager].userInfo);
-            if ([msg.sender_id isEqualToString:[[[AppManager sharedManager].userInfo valueForKey:@"id"] stringValue]]) {
-                bubble = [NSBubbleData dataWithText:msg.content date:msg.datetime type:BubbleTypeMine];
+            NSLog(@"%@",msg);
+            
+            if ([msg.from_dingo boolValue] ) {
                 
-                NSString *user_photo_url = [AppManager sharedManager].userInfo[@"photo_url"];
-                NSData  *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:user_photo_url]];
-
-                bubble.avatar = [UIImage imageWithData:data];
-            }else{
-                bubble = [NSBubbleData dataWithText:msg.content date:msg.datetime type:BubbleTypeSomeoneElse];
+                if ([msg.new_offer boolValue] && [msg.receiver_id isEqualToString:[[AppManager sharedManager].userInfo[@"id"] stringValue]]) {
+                    NSString * offerText = [NSString stringWithFormat:@"<font face='SourceSansPro-Regular' size=14 color='#ffffff'>%@. <a href='accept'>Accept</a> or <a href='reject'>Reject</a> </font>", msg.content];
+                    bubble = [NSBubbleData dataWithText:offerText date:msg.datetime type:BubbleTypeDingo delegate:self];
+                } else {
+                    bubble = [NSBubbleData dataWithText:msg.content date:msg.datetime type:BubbleTypeDingo];
+                }
+                
                 if (msg.sender_avatar_url.length>0) {
                     if (msg.sender_avatar) {
                         bubble.avatar = [UIImage imageWithData:msg.sender_avatar];
@@ -94,6 +97,29 @@
                         bubble.avatar = [UIImage imageWithData:msg.sender_avatar];
                     }
                 }
+            } else {
+                
+                if ([msg.sender_id isEqualToString:[[[AppManager sharedManager].userInfo valueForKey:@"id"] stringValue]]) {
+                    bubble = [NSBubbleData dataWithText:msg.content date:msg.datetime type:BubbleTypeMine];
+                    
+                    NSString *user_photo_url = [AppManager sharedManager].userInfo[@"photo_url"];
+                    NSData  *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:user_photo_url]];
+                    
+                    bubble.avatar = [UIImage imageWithData:data];
+                }else {
+                    bubble = [NSBubbleData dataWithText:msg.content date:msg.datetime type:BubbleTypeSomeoneElse];
+                    if (msg.sender_avatar_url.length>0) {
+                        if (msg.sender_avatar) {
+                            bubble.avatar = [UIImage imageWithData:msg.sender_avatar];
+                        }else{
+                            NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:msg.sender_avatar_url]];
+                            msg.sender_avatar = imageData;
+                            [msg.managedObjectContext save:nil];
+                            bubble.avatar = [UIImage imageWithData:msg.sender_avatar];
+                        }
+                    }
+                }
+                
             }
             
             [bubbleData addObject:bubble];
@@ -115,6 +141,11 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (IBAction)actions:(id)sender {
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"View Listing", @"Report User", @"Block User", nil];
+    
+    [actionSheet showInView:self.view];
+}
 
 //
 //- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -203,4 +234,46 @@
     textField.text = @"";
     [textField resignFirstResponder];
 }
+
+#pragma mark ZSLabelDelegate methods
+
+- (void)ZSLabel:(id)ZSLabel didSelectLinkWithURL:(NSURL*)url {
+    NSString * action = [url absoluteString];
+    
+    if ([action isEqualToString:@"accept"]) {
+        
+    }
+    
+    if ([action isEqualToString:@"reject"]) {
+        
+    }
+}
+
+
+#pragma mark UIActionSheet methods
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+
+    if (buttonIndex == 0) {
+        // View Listing
+        
+        TicketDetailViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"TicketDetailViewController"];
+        viewController.event = [[DataManager shared] eventByID:self.ticket.event_id];
+        viewController.ticket = self.ticket;
+        
+        [self.navigationController pushViewController:viewController animated:YES];
+        
+    }
+    
+    if (buttonIndex == 1) {
+        // Report User
+        
+    }
+    
+    if (buttonIndex == 2) {
+        // Block User
+    }
+
+}
+
 @end

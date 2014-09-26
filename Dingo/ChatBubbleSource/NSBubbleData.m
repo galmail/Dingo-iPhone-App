@@ -11,6 +11,7 @@
 #import "NSBubbleData.h"
 #import <QuartzCore/QuartzCore.h>
 #import "DingoUISettings.h"
+#import "ZSLabel.h"
 
 @implementation NSBubbleData
 
@@ -40,35 +41,88 @@
 
 #pragma mark - Text bubble
 
-const UIEdgeInsets textInsetsMine = {7, 10, 7, 10};
-const UIEdgeInsets textInsetsSomeone = {7, 10, 7, 10};
+const UIEdgeInsets textInsetsMine = {7, 10, 7, 15};
+const UIEdgeInsets textInsetsSomeone = {7, 10, 7, 15};
+
++ (id)dataWithText:(NSString *)text date:(NSDate *)date type:(NSBubbleType)type delegate:(id)delegate
+{
+    return [[NSBubbleData alloc] initWithText:text date:date type:type delegate:delegate];
+}
 
 + (id)dataWithText:(NSString *)text date:(NSDate *)date type:(NSBubbleType)type
 {
-#if !__has_feature(objc_arc)
-    return [[[NSBubbleData alloc] initWithText:text date:date type:type] autorelease];
-#else
     return [[NSBubbleData alloc] initWithText:text date:date type:type];
-#endif    
 }
+
+- (id)initWithText:(NSString *)text date:(NSDate *)date type:(NSBubbleType)type delegate:(id)delegate
+{
+    UIFont *font = [DingoUISettings fontWithSize:[UIFont systemFontSize]];
+    
+    
+    CGRect frame = [(text ? text : @"") boundingRectWithSize:CGSizeMake(200, 9999)
+                                                     options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
+                                                  attributes:@{NSFontAttributeName:font}
+                                                     context:nil];
+    
+    ZSLabel *label = [[ZSLabel alloc] initWithFrame:frame];
+    [label setText:text];
+    frame.size.height = label.optimumSize.height;
+    label.frame = frame;
+    label.delegate = delegate;
+    
+//    UILabel *label = [[UILabel alloc] initWithFrame:frame];
+//    label.numberOfLines = 0;
+//    label.lineBreakMode = NSLineBreakByWordWrapping;
+//    label.text = (text ? text : @"");
+//    label.font = font;
+//    label.backgroundColor = [UIColor clearColor];
+//    
+//    switch (type) {
+//        case BubbleTypeMine:
+//        case BubbleTypeDingo:
+//            label.textColor = [UIColor whiteColor];
+//            break;
+//        case BubbleTypeSomeoneElse:
+//            label.textColor = [UIColor darkGrayColor];
+//            break;
+//        default:
+//            break;
+//    }
+//
+    
+    UIEdgeInsets insets = (type == BubbleTypeMine ? textInsetsMine : textInsetsSomeone);
+    return [self initWithView:label date:date type:type insets:insets];
+}
+
 
 - (id)initWithText:(NSString *)text date:(NSDate *)date type:(NSBubbleType)type
 {
     UIFont *font = [DingoUISettings fontWithSize:[UIFont systemFontSize]];
-    CGSize size = [(text ? text : @"") sizeWithFont:font constrainedToSize:CGSizeMake(220, 9999) lineBreakMode:NSLineBreakByWordWrapping];
+
     
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
+    CGRect frame = [(text ? text : @"") boundingRectWithSize:CGSizeMake(200, 9999)
+                                                     options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
+                                                  attributes:@{NSFontAttributeName:font}
+                                                     context:nil];
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:frame];
     label.numberOfLines = 0;
     label.lineBreakMode = NSLineBreakByWordWrapping;
     label.text = (text ? text : @"");
     label.font = font;
     label.backgroundColor = [UIColor clearColor];
-    label.textColor = type == BubbleTypeMine ? [UIColor whiteColor] : [UIColor darkGrayColor];
-
     
-#if !__has_feature(objc_arc)
-    [label autorelease];
-#endif
+    switch (type) {
+        case BubbleTypeMine:
+        case BubbleTypeDingo:
+            label.textColor = [UIColor whiteColor];
+            break;
+        case BubbleTypeSomeoneElse:
+            label.textColor = [UIColor darkGrayColor];
+            break;
+        default:
+            break;
+    }
     
     UIEdgeInsets insets = (type == BubbleTypeMine ? textInsetsMine : textInsetsSomeone);
     return [self initWithView:label date:date type:type insets:insets];
@@ -81,11 +135,7 @@ const UIEdgeInsets imageInsetsSomeone = {20, 20, 20, 20};
 
 + (id)dataWithImage:(UIImage *)image date:(NSDate *)date type:(NSBubbleType)type
 {
-#if !__has_feature(objc_arc)
-    return [[[NSBubbleData alloc] initWithImage:image date:date type:type] autorelease];
-#else
     return [[NSBubbleData alloc] initWithImage:image date:date type:type];
-#endif    
 }
 
 - (id)initWithImage:(UIImage *)image date:(NSDate *)date type:(NSBubbleType)type
@@ -101,11 +151,6 @@ const UIEdgeInsets imageInsetsSomeone = {20, 20, 20, 20};
     imageView.image = image;
     imageView.layer.cornerRadius = 5.0;
     imageView.layer.masksToBounds = YES;
-
-    
-#if !__has_feature(objc_arc)
-    [imageView autorelease];
-#endif
     
     UIEdgeInsets insets = (type == BubbleTypeMine ? imageInsetsMine : imageInsetsSomeone);
     return [self initWithView:imageView date:date type:type insets:insets];       

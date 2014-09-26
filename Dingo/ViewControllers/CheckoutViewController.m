@@ -14,7 +14,7 @@
 #import "PayPalMobile.h"
 #import "ChatViewController.h"
 
-@interface CheckoutViewController () <PayPalPaymentDelegate, PayPalFuturePaymentDelegate, PayPalProfileSharingDelegate, UIPopoverControllerDelegate>{
+@interface CheckoutViewController () <PayPalPaymentDelegate, UIPopoverControllerDelegate>{
     
     __weak IBOutlet UILabel *lblEvent;
     __weak IBOutlet UILabel *lblNumber;

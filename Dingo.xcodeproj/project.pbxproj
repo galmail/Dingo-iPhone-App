@@ -15,6 +15,11 @@
 		3A97DDBA19D3633600B4C33E /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A97DDB919D3633600B4C33E /* CoreMedia.framework */; };
 		3A97DDBC19D3634E00B4C33E /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A97DDBB19D3634E00B4C33E /* MobileCoreServices.framework */; };
 		3A97DDBE19D3636600B4C33E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A97DDBD19D3636600B4C33E /* SystemConfiguration.framework */; };
+		3A97DDC119D4329200B4C33E /* btnDots@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A97DDBF19D4329200B4C33E /* btnDots@2x.png */; };
+		3A97DDC219D4329200B4C33E /* bubbleWhite@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A97DDC019D4329200B4C33E /* bubbleWhite@2x.png */; };
+		3A97DDC519D4356D00B4C33E /* bubbleGray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A97DDC319D4356D00B4C33E /* bubbleGray@2x.png */; };
+		3A97DDC619D4356D00B4C33E /* bubbleBlue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A97DDC419D4356D00B4C33E /* bubbleBlue@2x.png */; };
+		3A97DDD019D5312700B4C33E /* ZSLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A97DDCF19D5312700B4C33E /* ZSLabel.m */; };
 		3A98E0A71977D57C006DA28A /* blueBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A98E0A61977D57C006DA28A /* blueBG@2x.png */; };
 		3A98E0A91977D78B006DA28A /* btnFBLogin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A98E0A81977D78B006DA28A /* btnFBLogin@2x.png */; };
 		3A98E0AB1977E53F006DA28A /* btnGuest@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A98E0AA1977E53F006DA28A /* btnGuest@2x.png */; };
@@ -273,6 +278,12 @@
 		3A97DDB919D3633600B4C33E /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		3A97DDBB19D3634E00B4C33E /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		3A97DDBD19D3636600B4C33E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		3A97DDBF19D4329200B4C33E /* btnDots@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnDots@2x.png"; sourceTree = "<group>"; };
+		3A97DDC019D4329200B4C33E /* bubbleWhite@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bubbleWhite@2x.png"; sourceTree = "<group>"; };
+		3A97DDC319D4356D00B4C33E /* bubbleGray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bubbleGray@2x.png"; sourceTree = "<group>"; };
+		3A97DDC419D4356D00B4C33E /* bubbleBlue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bubbleBlue@2x.png"; sourceTree = "<group>"; };
+		3A97DDCE19D5312700B4C33E /* ZSLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSLabel.h; sourceTree = "<group>"; };
+		3A97DDCF19D5312700B4C33E /* ZSLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSLabel.m; sourceTree = "<group>"; };
 		3A98E0A61977D57C006DA28A /* blueBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueBG@2x.png"; sourceTree = "<group>"; };
 		3A98E0A81977D78B006DA28A /* btnFBLogin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnFBLogin@2x.png"; sourceTree = "<group>"; };
 		3A98E0AA1977E53F006DA28A /* btnGuest@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnGuest@2x.png"; sourceTree = "<group>"; };
@@ -746,6 +757,8 @@
 				3A9DB55A1988F2D000861899 /* ZSPickerView.m */,
 				3AA332FA1990DDA900C8DAA8 /* ZSTextView.h */,
 				3AA332FB1990DDA900C8DAA8 /* ZSTextView.m */,
+				3A97DDCE19D5312700B4C33E /* ZSLabel.h */,
+				3A97DDCF19D5312700B4C33E /* ZSLabel.m */,
 			);
 			name = CustomClasses;
 			path = Classes/CustomClasses;
@@ -1639,6 +1652,10 @@
 		840CD24119B84ADF00699E26 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				3A97DDC319D4356D00B4C33E /* bubbleGray@2x.png */,
+				3A97DDC419D4356D00B4C33E /* bubbleBlue@2x.png */,
+				3A97DDBF19D4329200B4C33E /* btnDots@2x.png */,
+				3A97DDC019D4329200B4C33E /* bubbleWhite@2x.png */,
 				840CD24619B84B6100699E26 /* bubbleSomeone.png */,
 				840CD24719B84B6100699E26 /* bubbleSomeone@2x.png */,
 				840CD24819B84B6100699E26 /* bubbleMine.png */,
@@ -1803,6 +1820,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F62C6B31948318F00D7D6B1 /* arrow_white@2x.png in Resources */,
+				3A97DDC119D4329200B4C33E /* btnDots@2x.png in Resources */,
 				3F10DE1319388EC1002D3B43 /* InfoPlist.strings in Resources */,
 				84A456F91970182C000ABA73 /* welcome4BG.png in Resources */,
 				3A98E0A71977D57C006DA28A /* blueBG@2x.png in Resources */,
@@ -1875,6 +1893,7 @@
 				3F62C6B11948318F00D7D6B1 /* tickets_frame_gray@2x.png in Resources */,
 				3F62C68D1948318F00D7D6B1 /* or_icon@2x.png in Resources */,
 				3F62C6DA19499D9400D7D6B1 /* cities.plist in Resources */,
+				3A97DDC619D4356D00B4C33E /* bubbleBlue@2x.png in Resources */,
 				3F62C6B21948318F00D7D6B1 /* tickets_frame_white@2x.png in Resources */,
 				3A98E0AB1977E53F006DA28A /* btnGuest@2x.png in Resources */,
 				840BA3BF19A23D4D00198277 /* ticket_alerts_icon.png in Resources */,
@@ -1885,6 +1904,7 @@
 				84A456FB1970182C000ABA73 /* welcomeText2.png in Resources */,
 				3F62C6921948318F00D7D6B1 /* jz_live@2x.png in Resources */,
 				3A9441D319CB62920003DA85 /* newOffer@2x.png in Resources */,
+				3A97DDC519D4356D00B4C33E /* bubbleGray@2x.png in Resources */,
 				3F62C6B81948318F00D7D6B1 /* settings_icon@2x.png in Resources */,
 				841C50B019A626BB00BD4141 /* btnDeleteAlert@2x.png in Resources */,
 				3F62C6A71948318F00D7D6B1 /* mike_scott@2x.png in Resources */,
@@ -1919,6 +1939,7 @@
 				3A9DB564198C270B00861899 /* TicketInfo.plist in Resources */,
 				3AA4359619911D2900D626D1 /* SourceSansPro-Semibold.otf in Resources */,
 				84A456FC1970182C000ABA73 /* welcomeText3.png in Resources */,
+				3A97DDC219D4329200B4C33E /* bubbleWhite@2x.png in Resources */,
 				849F591E19A74C770076B830 /* ta_bg_description@2x.png in Resources */,
 				840CD24C19B84B6100699E26 /* bubbleMine.png in Resources */,
 				3F62C6AC1948318F00D7D6B1 /* category_highlighted@2x.png in Resources */,
@@ -2037,6 +2058,7 @@
 				3AF360B91976A629009A14FD /* NSDictionary+UrlEncoding.m in Sources */,
 				3F2864F4194B29F3002A3576 /* AnswerViewController.m in Sources */,
 				3AF360B61976A4D0009A14FD /* JSON.m in Sources */,
+				3A97DDD019D5312700B4C33E /* ZSLabel.m in Sources */,
 				3AB28AEF197D9DA4009C1DDC /* Event.m in Sources */,
 				841C508A19A6067800BD4141 /* AddTicketAlertViewController.m in Sources */,
 				3A9DB5581988245300861899 /* ZSDatePicker.m in Sources */,

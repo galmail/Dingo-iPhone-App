@@ -3345,16 +3345,23 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
                         </subviews>
                         <color key="backgroundColor" red="0.92549019607843142" green="0.92156862745098034" blue="0.90980392156862744" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" title="Message" id="k8Z-A2-6Du">
-                        <barButtonItem key="leftBarButtonItem" image="nav_back_icon.png" id="hQm-Tg-YIV">
+                        <barButtonItem key="leftBarButtonItem" image="nav_back_icon.png" id="q7z-5g-KlM">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <action selector="back" destination="LXS-WP-D7x" id="daJ-J4-sP5"/>
+                                <action selector="back" destination="LXS-WP-D7x" id="gwR-vk-FQk"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="btnDots.png" id="Kcb-TU-3zN">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="actions:" destination="LXS-WP-D7x" id="qde-vG-Gmd"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
-                    <nil key="simulatedBottomBarMetrics"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
@@ -4556,6 +4563,7 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
         <image name="blueBG.png" width="320" height="568"/>
         <image name="btnConfirmAlert.png" width="248" height="40"/>
         <image name="btnDeleteAlert.png" width="248" height="40"/>
+        <image name="btnDots.png" width="33" height="10"/>
         <image name="btnFBLogin.png" width="279" height="39"/>
         <image name="btnGuest.png" width="248" height="35"/>
         <image name="btnNavBarAdd.png" width="17" height="18"/>
