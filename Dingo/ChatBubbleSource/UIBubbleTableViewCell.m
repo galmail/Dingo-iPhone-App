@@ -68,7 +68,7 @@
             x = self.frame.size.width - width - self.data.insets.left - self.data.insets.right;
             break;
     }
-    CGFloat y = 0;
+    CGFloat y = 10;
     
     // Adjusting the x coordinate for avatar
     if (self.showAvatar)
@@ -79,11 +79,12 @@
         CGFloat avatarX = (type == BubbleTypeSomeoneElse) ? 12 : self.frame.size.width - 62;
         CGFloat avatarY = self.frame.size.height - 50;
         
-        self.avatarImage.frame = CGRectMake(avatarX, avatarY, 50, 50);
+        self.avatarImage.frame = CGRectMake(avatarX, avatarY, 48, 48);
         [self addSubview:self.avatarImage];
         
         CGFloat delta = self.frame.size.height - (self.data.insets.top + self.data.insets.bottom + self.data.view.frame.size.height);
-        if (delta > 0) y = delta;
+
+        if (delta > 0 ) y = delta;
         
         if (type == BubbleTypeSomeoneElse) x += 70;
         if (type == BubbleTypeMine || type == BubbleTypeDingo) x -= 70;

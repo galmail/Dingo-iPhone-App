@@ -73,7 +73,7 @@
         
         [loadingView hide];
         NSArray * messages = [[DataManager shared] allMessagesWith:self.ticket.user_id ticketID:self.ticket.ticket_id];
-        
+        [bubbleData removeAllObjects];
         
         for (Message * msg in messages) {
             NSBubbleData *bubble = nil;

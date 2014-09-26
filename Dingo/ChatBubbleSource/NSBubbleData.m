@@ -130,7 +130,7 @@ const UIEdgeInsets textInsetsSomeone = {7, 10, 7, 15};
 
 #pragma mark - Image bubble
 
-const UIEdgeInsets imageInsetsMine = {20, 20, 20, 20};
+const UIEdgeInsets imageInsetsMine = {40, 20, 20, 20};
 const UIEdgeInsets imageInsetsSomeone = {20, 20, 20, 20};
 
 + (id)dataWithImage:(UIImage *)image date:(NSDate *)date type:(NSBubbleType)type
