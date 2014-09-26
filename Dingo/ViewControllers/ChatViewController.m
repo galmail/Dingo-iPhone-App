@@ -16,8 +16,9 @@
 #import "DataManager.h"
 #import "ZSLabel.h"
 #import "TicketDetailViewController.h"
+#import <MessageUI/MessageUI.h>
 
-@interface ChatViewController ()<UIBubbleTableViewDataSource, ZSLabelDelegate, UIActionSheetDelegate>{
+@interface ChatViewController ()<UIBubbleTableViewDataSource, ZSLabelDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate>{
     IBOutlet UIBubbleTableView *bubbleTable;
     IBOutlet UIView *textInputView;
     
@@ -142,16 +143,31 @@
 }
 
 - (IBAction)actions:(id)sender {
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"View Listing", @"Report User", @"Block User", nil];
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"View Listing", @"Report User", nil];
     
     [actionSheet showInView:self.view];
+    [self changeTextColorForUIActionSheet:actionSheet];
 }
 
-//
-//- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-//{
-//    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
-//}
+- (void) changeTextColorForUIActionSheet:(UIActionSheet*)actionSheet {
+    UIColor *tintColor = [DingoUISettings backgroundColor];
+    
+    NSArray *actionSheetButtons = actionSheet.subviews;
+    for (int i = 0; [actionSheetButtons count] > i; i++) {
+        UIView *view = (UIView*)[actionSheetButtons objectAtIndex:i];
+        if([view isKindOfClass:[UIButton class]]){
+            UIButton *btn = (UIButton*)view;
+            
+//            if ([btn.titleLabel.text isEqual:@"Cancel"]) {
+//                [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//                [btn setBackgroundColor:tintColor];
+//            } else {
+                [btn setTitleColor:tintColor forState:UIControlStateNormal];
+//            }
+            
+        }
+    }
+}
 
 #pragma mark - UIBubbleTableViewDataSource implementation
 
@@ -267,13 +283,26 @@
     
     if (buttonIndex == 1) {
         // Report User
+
+        if (![MFMailComposeViewController canSendMail]) {
+            NSLog(@"Mail sending not available");
+            return;
+        }
         
-    }
-    
-    if (buttonIndex == 2) {
-        // Block User
+        MFMailComposeViewController *mailComposer = [[MFMailComposeViewController alloc] init];
+        [mailComposer setToRecipients:@[@"report@dingoapp.co.uk"]];
+        [mailComposer setMessageBody:@""
+                              isHTML:YES];
+        mailComposer.mailComposeDelegate = self;
+        [self presentViewController:mailComposer animated:YES completion:nil];
     }
 
+}
+
+-(void)mailComposeController:(MFMailComposeViewController *)controller
+         didFinishWithResult:(MFMailComposeResult)result
+                       error:(NSError *)error{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

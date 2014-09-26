@@ -21,6 +21,7 @@
     __weak IBOutlet UILabel *lblPrice;
     __weak IBOutlet UILabel *lblTotal;
     __weak IBOutlet UILabel *lblSeller;
+    __weak IBOutlet UILabel *lblPaymentOption;
     
     __weak IBOutlet ZSTextField *txtName;
     __weak IBOutlet ZSTextField *txtNumber;
@@ -29,6 +30,9 @@
     __weak IBOutlet ZSTextField *txtSellerName;
     __weak IBOutlet RoundedImageView *imgSeller;
     __weak IBOutlet UIButton *btnBuy;
+    __weak IBOutlet UILabel *lblPaypal;
+    __weak IBOutlet UILabel *lblCreditCard;
+    __weak IBOutlet UILabel *lblCash;
     
     NSNumberFormatter *currencyFormatter;
     
@@ -58,7 +62,9 @@
     currencyFormatter.numberStyle = NSNumberFormatterCurrencyStyle;
     currencyFormatter.currencySymbol = @"£";
 
-    lblEvent.font = lblNumber.font = lblPrice.font = lblTotal.font = lblSeller.font = txtTotal.font = txtName.font = txtPrice.font = txtNumber.font = txtSellerName.font = [DingoUISettings lightFontWithSize:14];
+    lblEvent.font = lblNumber.font = lblPrice.font = lblTotal.font = lblSeller.font = lblPaypal.font = lblCreditCard.font = lblCash.font = txtTotal.font = txtName.font = txtPrice.font = txtNumber.font = txtSellerName.font = [DingoUISettings lightFontWithSize:14];
+    
+    lblPaymentOption.font = [DingoUISettings fontWithSize:18];
     
     txtNumber.keyboardType = UIKeyboardTypeNumberPad;
     [txtNumber showToolbarWithDone];
@@ -96,6 +102,16 @@
 
 - (IBAction)buy:(id)sender {
     
+    if ([self.ticket.payment_options rangeOfString:@"Cash"].location != NSNotFound) {
+        ChatViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"ChatViewController"];
+        vc.ticket = self.ticket;
+        
+        [self.navigationController pushViewController:vc animated:YES];
+        
+        return;
+    }
+    
+    
     NSDictionary *params = @{ @"ticket_id" : self.ticket.ticket_id,
                               @"num_tickets": txtNumber.text,
                               @"amount" : [currencyFormatter numberFromString:txtTotal.text],
@@ -109,13 +125,6 @@
             if (response) {
                 
                 if ([response[@"success"] boolValue]) {
-//                    webView = [[UIWebView alloc] initWithFrame:self.tableView.bounds];
-//                    webView.scalesPageToFit = YES;
-//                    
-//                    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:response[@"redirect_url"]]]];
-//                    
-//                    [self.view addSubview:webView];
-                    
                     
                     PayPalPayment *payment = [[PayPalPayment alloc] init];
                     payment.amount = (NSDecimalNumber*)[currencyFormatter numberFromString:txtTotal.text];
@@ -176,6 +185,33 @@
     double total = price * numberOfTickets;
     
     txtTotal.text = [currencyFormatter stringFromNumber:@( total)];
+}
+
+#pragma mark UITableView methods
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    switch (indexPath.row) {
+        case 11:
+        case 12:
+        case 13:
+            if ([self.ticket.payment_options rangeOfString:@"PayPal"].location == NSNotFound) {
+                lblPaypal.hidden = lblCreditCard.hidden = YES;
+                return 0;
+            }
+            break;
+        case 14:
+        case 15:
+            if ([self.ticket.payment_options rangeOfString:@"Cash"].location == NSNotFound) {
+                lblCash.hidden = YES;
+                return 0;
+            }
+            break;
+        default:
+            break;
+    }
+    
+    return [super tableView:tableView heightForRowAtIndexPath:indexPath];
 }
 
 #pragma mark PayPalPaymentDelegate methods
