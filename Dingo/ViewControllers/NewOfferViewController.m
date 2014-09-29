@@ -143,6 +143,23 @@
         txtPrice.text = [currencyFormatter stringFromNumber:@( [txtPrice.text doubleValue])];
     }
     
+    if (textField == txtNumber) {
+        int number = [txtNumber.text intValue];
+        if (self.ticket.number_of_tickets.intValue < number) {
+            [AppManager showAlert:[NSString stringWithFormat:@"You can offer only %d tickets", self.ticket.number_of_tickets.intValue]];
+            
+            txtNumber.text = [self.ticket.number_of_tickets stringValue];
+            
+            return;
+        } else if (number <= 0) {
+            [AppManager showAlert:@"Enter valid number of tickets"];
+            return;
+        }
+    }
+
+    
+
+    
     [self calculateTotal];
 }
 
