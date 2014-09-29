@@ -14,6 +14,7 @@
 #import "SectionHeaderView.h"
 #import "WebServiceManager.h"
 #import "ChatViewController.h"
+#import "ZSLoadingView.h"
 
 @interface MessagesViewController () <UITableViewDelegate, UITableViewDataSource> {
     NSMutableArray *groupedMessages;
@@ -38,8 +39,15 @@
     self.parentViewController.navigationItem.title = self.navigationItem.title;
 //    self.parentViewController.navigationItem.rightBarButtonItem = self.navigationItem.rightBarButtonItem;
     
+    ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please wait..."];
+    [loadingView show];
+    
     [[DataManager shared] fetchMessagesWithCompletion:^(BOOL finished) {
         [self groupMessagesByUser];
+        
+        [[DataManager shared] userTicketsWithCompletion:^(BOOL finished) {
+            [loadingView hide];
+        }];
         
     }];
 }

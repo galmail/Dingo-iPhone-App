@@ -81,7 +81,7 @@
             
             if ([msg.from_dingo boolValue] ) {
                 
-                if ([msg.new_offer boolValue] && [msg.receiver_id isEqualToString:[[AppManager sharedManager].userInfo[@"id"] stringValue]]) {
+                if ([msg.offer_new boolValue] && [msg.receiver_id isEqualToString:[[AppManager sharedManager].userInfo[@"id"] stringValue]]) {
                     NSString * offerText = [NSString stringWithFormat:@"<font face='SourceSansPro-Regular' size=14 color='#ffffff'>%@. <a href='accept'>Accept</a> or <a href='reject'>Reject</a> </font>", msg.content];
                     bubble = [NSBubbleData dataWithText:offerText date:msg.datetime type:BubbleTypeDingo delegate:self];
                 } else {

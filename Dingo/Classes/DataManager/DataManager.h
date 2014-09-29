@@ -16,7 +16,6 @@
 @interface DataManager : NSObject
 
 + (DataManager *)shared;
-+ (NSString*)generateGUID;
 
 - (NSArray *)allEvents;
 - (NSArray *)featuredEvents;

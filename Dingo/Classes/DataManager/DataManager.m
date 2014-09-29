@@ -1021,7 +1021,7 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     message.datetime = date;
     
     message.from_dingo = @( [info[@"from_dingo"] boolValue]);
-    message.new_offer = @( [info[@"new_offer"] boolValue]);
+    message.offer_new = @( [info[@"new_offer"] boolValue]);
     message.ticket_id = info[@"ticket_id"];
 }
 
