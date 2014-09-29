@@ -10,6 +10,7 @@
 #import "AddTicketAlertViewController.h"
 #import "TicketAlertCell.h"
 #import "DataManager.h"
+#import "WebServiceManager.h"
 
 @interface TicketAlertsViewController (){
     
@@ -90,10 +91,20 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [[AppManager sharedManager].managedObjectContext deleteObject:alertsArray[indexPath.row]];
-        [[DataManager shared] save];
-        [alertsArray removeObjectAtIndex:indexPath.row];
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        
+        Alert *alert = alertsArray[indexPath.row];
+        
+        NSDictionary *params = @{@"event_id":alert.event_id,
+                                 @"on":@NO};
+        [WebServiceManager createAlert:params completion:^(id response, NSError *error) {
+            if (response) {
+                [[AppManager sharedManager].managedObjectContext deleteObject:alert];
+                [alertsArray removeObjectAtIndex:indexPath.row];
+                [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+                
+            }
+        }];
+        
     }
 }
 

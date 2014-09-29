@@ -15,6 +15,7 @@ extern const CGFloat eventCellHeight;
 @property (nonatomic, strong) NSString *location;
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic) NSDate *begin;
+@property (nonatomic) BOOL on;
 
 - (void)buildWithData:(Event *)data;
 

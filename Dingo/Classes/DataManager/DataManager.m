@@ -41,16 +41,7 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     
     return events;
 }
-- (NSArray *)allAlerts {
-    
-    NSManagedObjectContext *context = [AppManager sharedManager].managedObjectContext;
-    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Alerts"];
-    //    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES]];
-    NSError *error = nil;
-    NSArray *alerts = [context executeFetchRequest:request error:&error];
-    
-    return alerts;
-}
+
 - (NSArray *)featuredEvents {
     
     NSManagedObjectContext *context = [AppManager sharedManager].managedObjectContext;
@@ -964,40 +955,6 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
         (*delegate)(dict, groupIndex);
     }
 }
-#pragma mark Ticket Alerts
-- (void)addOrUpdateAlert:(NSDictionary *)info {
-    NSManagedObjectContext *context = [AppManager sharedManager].managedObjectContext;
-    
-    NSString *alert_id = info[@"alert_id"];
-    NSString *alert_description = info[@"alert_description"];
-    
-    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Alerts"];
-    request.predicate = [NSPredicate predicateWithFormat:@"alert_id == %@", alert_id];
-    
-    NSError *error = nil;
-    Alert *alert = nil;
-    NSArray *alerts = [context executeFetchRequest:request error:&error];
-    if (alerts.count > 0) {
-        alert = alerts[0];
-    } else {
-        alert = [NSEntityDescription insertNewObjectForEntityForName:@"Alerts" inManagedObjectContext:context];
-        alert.alert_id = alert_id;
-    }
-    
-    alert.alert_description = alert_description;
-    
-}
-
-+ (NSString*)generateGUID{
-    CFUUIDRef theUUID = CFUUIDCreate(NULL);
-    CFStringRef string = CFUUIDCreateString(NULL, theUUID);
-    CFRelease(theUUID);
-    return [NSString stringWithFormat:@"%@", string];
-}
-
-- (void)save{
-    [[AppManager sharedManager] saveContext];
-}
 
 #pragma mark Messages
 
@@ -1090,4 +1047,62 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     
     return events;
 }
+
+#pragma mark Alerts 
+
+- (NSArray *)allAlerts {
+    
+    NSManagedObjectContext *context = [AppManager sharedManager].managedObjectContext;
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Alerts"];
+    //    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES]];
+    NSError *error = nil;
+    NSArray *alerts = [context executeFetchRequest:request error:&error];
+    
+    return alerts;
+}
+
+- (void)allAlertsWithCompletion:( void (^) (BOOL finished))handler {
+    [WebServiceManager userAlerts:nil completion:^(id response, NSError *error) {
+        if (!error) {
+            if (response) {
+                NSArray *alerts = response[@"alerts"];
+                for (NSDictionary *info in alerts) {
+                    [self addOrUpdateAlert:info];
+                }
+                
+                [[AppManager sharedManager] saveContext];
+                handler(true);
+            }
+        }
+    }];
+}
+
+- (void)addOrUpdateAlert:(NSDictionary *)info {
+    NSManagedObjectContext *context = [AppManager sharedManager].managedObjectContext;
+    
+    NSString *alert_id = info[@"id"];
+    
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Alerts"];
+    request.predicate = [NSPredicate predicateWithFormat:@"alert_id == %@", alert_id];
+    
+    NSError *error = nil;
+    Alert *alert = nil;
+    NSArray *alerts = [context executeFetchRequest:request error:&error];
+    if (alerts.count > 0) {
+        alert = alerts[0];
+    } else {
+        alert = [NSEntityDescription insertNewObjectForEntityForName:@"Alerts" inManagedObjectContext:context];
+        alert.alert_id = alert_id;
+    }
+    
+    alert.event_id = info[@"event_id"];
+    if (info[@"on"]) {
+        alert.on = @( [info[@"on"] boolValue]);
+    } else {
+        alert.on = @YES;
+    }
+    
+}
+
+
 @end

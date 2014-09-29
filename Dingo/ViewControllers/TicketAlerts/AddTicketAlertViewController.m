@@ -9,6 +9,7 @@
 #import "AddTicketAlertViewController.h"
 #import "DingoUISettings.h"
 #import "DataManager.h"
+#import "WebServiceManager.h"
 
 @interface AddTicketAlertViewController (){
     
@@ -72,17 +73,23 @@
         return;
     }
     if (!self.alert) {
-        [[DataManager shared] addOrUpdateAlert:@{@"alert_id": [DataManager generateGUID],@"alert_description":txtDescription.text}];
+//        [[DataManager shared] addOrUpdateAlert:@{@"alert_id": [DataManager generateGUID],@"alert_description":txtDescription.text}];
+        
+        NSDictionary *params = @{};
+        
+        [WebServiceManager createAlert:params completion:^(id response, NSError *error) {
+            
+        }];
+        
     }else{
         [[DataManager shared] addOrUpdateAlert:@{@"alert_id": self.alert.alert_id,@"alert_description":txtDescription.text}];
     }
-    [[DataManager shared] save];
+
     [self back];
 }
 
 - (IBAction)btnDeleteTap:(id)sender {
     [[AppManager sharedManager].managedObjectContext deleteObject:self.alert];
-    [[DataManager shared] save];
     [self back];
 }
 

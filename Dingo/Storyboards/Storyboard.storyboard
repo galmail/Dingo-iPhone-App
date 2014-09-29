@@ -1738,10 +1738,22 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="QzJ-hB-k2X">
+                                            <rect key="frame" x="274" y="98" width="29" height="29"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" image="bellOff.png">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <state key="selected" image="bellOn.png"/>
+                                            <connections>
+                                                <action selector="bellOnOff:" destination="UTV-Tz-0Ch" eventType="touchUpInside" id="xqe-kf-amA"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="backImageView" destination="YGu-T0-LiQ" id="c3w-8Y-ByX"/>
+                                    <outlet property="btnBell" destination="QzJ-hB-k2X" id="kkw-s8-3Lo"/>
                                     <outlet property="iconImageView" destination="WFk-rF-f9y" id="hIA-rW-EMt"/>
                                     <outlet property="locationLabel" destination="1dx-wx-j1w" id="HXB-DZ-iIb"/>
                                     <outlet property="nameLabel" destination="JWp-4f-6Aj" id="wAb-dk-dlN"/>
@@ -2497,15 +2509,8 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
                                                     <rect key="frame" x="290" y="31" width="10" height="18"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                 </imageView>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="MF3-O7-rgh">
-                                                    <rect key="frame" x="93" y="14" width="133" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Q4M-M4-h1b">
-                                                    <rect key="frame" x="93" y="43" width="144" height="21"/>
+                                                    <rect key="frame" x="88" y="10" width="189" height="59"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <color key="textColor" red="0.1333333333" green="0.1333333333" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
@@ -2517,7 +2522,6 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="lblDescription" destination="Q4M-M4-h1b" id="N2e-4L-XC0"/>
-                                            <outlet property="lblDescriptionLabel" destination="MF3-O7-rgh" id="XoD-Oa-zoo"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -4652,6 +4656,8 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
         <image name="add_photo_icon.png" width="76" height="75"/>
         <image name="arrow.png" width="6" height="10"/>
         <image name="arrow_white.png" width="5" height="9"/>
+        <image name="bellOff.png" width="29" height="29"/>
+        <image name="bellOn.png" width="29" height="29"/>
         <image name="blueBG.png" width="320" height="568"/>
         <image name="btnConfirmAlert.png" width="248" height="40"/>
         <image name="btnDeleteAlert.png" width="248" height="40"/>

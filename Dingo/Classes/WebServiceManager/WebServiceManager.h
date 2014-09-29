@@ -40,4 +40,8 @@
 + (void)sendMessage:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler;
 
 + (void)updateProfile:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler;
+
++ (void)createAlert:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler;
++ (void)userAlerts:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler;
+
 @end

@@ -19,7 +19,6 @@
 + (NSString*)generateGUID;
 
 - (NSArray *)allEvents;
-- (NSArray *)allAlerts;
 - (NSArray *)featuredEvents;
 - (void)allEventsWithCompletion:( void (^) (BOOL finished))handler;
 - (NSUInteger)eventsDateRange;
@@ -66,7 +65,8 @@
 - (EventCategory *)dataByCategoryID:(NSString *)categoryID;
 - (NSUInteger)categoryIndexByName:(NSString *)name;
 
-- (void)save;
+- (NSArray *)allAlerts;
+- (void)allAlertsWithCompletion:( void (^) (BOOL finished))handler;
 - (void)addOrUpdateAlert:(NSDictionary *)info;
 
 - (Event *)eventFromSearchDescriptionByIndexPath:(NSIndexPath *)path Events:(NSArray*)searchedEvents;

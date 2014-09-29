@@ -96,8 +96,9 @@
     //    [super buildWithData:data];
     
     alert = data;
+    Event *event = [[DataManager shared] eventByID:alert.event_id];
     
-    self.lblDescription.text = data.alert_description;
+    self.lblDescription.text = event.name;
 }
 
 

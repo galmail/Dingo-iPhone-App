@@ -2,7 +2,7 @@
 //  Alert.h
 //  Dingo
 //
-//  Created by Tigran Aslanyan on 22.08.14.
+//  Created by Asatur Galstyan on 9/29/14.
 //  Copyright (c) 2014 Dingo. All rights reserved.
 //
 
@@ -14,5 +14,7 @@
 
 @property (nonatomic, retain) NSString * alert_description;
 @property (nonatomic, retain) NSString * alert_id;
+@property (nonatomic, retain) NSNumber * on;
+@property (nonatomic, retain) NSString * event_id;
 
 @end

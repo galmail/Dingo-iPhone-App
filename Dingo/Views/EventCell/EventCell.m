@@ -26,6 +26,7 @@ const CGFloat eventCellHeight = 78;
 @property (nonatomic, weak) IBOutlet UILabel *timeLabel;
 @property (nonatomic, weak) IBOutlet UIImageView *backImageView;
 @property (nonatomic, weak) IBOutlet FXBlurView *blurView;
+@property (weak, nonatomic) IBOutlet UIButton *btnBell;
 
 @end
 
@@ -66,6 +67,10 @@ const CGFloat eventCellHeight = 78;
 - (void)setLocation:(NSString *)location {
     _location = location;
     self.locationLabel.text = location;
+}
+
+- (void)setOn:(BOOL)on {
+    self.btnBell.selected = on;
 }
 
 #pragma mark - Custom
