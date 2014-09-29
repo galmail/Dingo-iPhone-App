@@ -407,7 +407,7 @@ static const NSUInteger comfirmCellIndex = 17;
             UIGraphicsEndImageContext();
         }
         
-        NSData *rotated = UIImagePNGRepresentation(mainPhoto);
+        NSData *rotated = UIImageJPEGRepresentation(mainPhoto,0.2);
         
         
         [self.photosPreviewCell.photos insertObject:[UIImage imageWithData:rotated] atIndex:0];

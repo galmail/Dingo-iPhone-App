@@ -216,8 +216,9 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         
         NSMutableArray *attachments = [[NSMutableArray alloc] init];
         for (int i = 0; i< photos.count ; i++) {
+            NSData *imageData = UIImageJPEGRepresentation(photos[i], 0.2);
             
-            [attachments addObject:@{@"data": UIImagePNGRepresentation(photos[i]), @"name": [NSString stringWithFormat:@"photo%d", i+1], @"fileName" : [NSString stringWithFormat:@"ticketPhoto_%@", [NSDate date]]}];
+            [attachments addObject:@{@"data": imageData, @"name": [NSString stringWithFormat:@"photo%d", i+1], @"fileName" : [NSString stringWithFormat:@"ticketPhoto_%@", [NSDate date]]}];
         }
         
         request = [self requestForPostMethod:@"tickets" withParams:params withAttachements:attachments];
@@ -243,7 +244,7 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
     NSMutableArray *attachments = [[NSMutableArray alloc] init];
     for (int i = 0; i< photos.count ; i++) {
         
-        [attachments addObject:@{@"data": UIImagePNGRepresentation(photos[i]), @"name": [NSString stringWithFormat:@"photo%d", i+1], @"fileName" : [NSString stringWithFormat:@"ticketPhoto_%@", [NSDate date]]}];
+        [attachments addObject:@{@"data": UIImageJPEGRepresentation(photos[i],0.2), @"name": [NSString stringWithFormat:@"photo%d", i+1], @"fileName" : [NSString stringWithFormat:@"ticketPhoto_%@", [NSDate date]]}];
     }
     
     request = [self requestForPutMethod:[NSString stringWithFormat:@"tickets/%@", params[@"ticket_id"]] withParams:params withAttachements:attachments];
