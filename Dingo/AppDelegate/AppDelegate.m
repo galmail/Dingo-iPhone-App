@@ -36,7 +36,15 @@
     self.locationManager.distanceFilter = 50;
     [self.locationManager startUpdatingLocation];
     
-    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeBadge)];
+    
+    
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+    } else {
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeBadge)];
+    }
+    
+    
     
     [PayPalMobile initializeWithClientIdsForEnvironments:@{/*PayPalEnvironmentProduction : @"YOUR_CLIENT_ID_FOR_PRODUCTION",*/
                                                            PayPalEnvironmentSandbox : @"AWdYAhAitDP7Y1AFRQ6h68YlNcBiMcBgg1Grc-rfMrAqAIG_gHWSupG6E9A_"}];
