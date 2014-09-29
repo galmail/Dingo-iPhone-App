@@ -215,53 +215,138 @@ static const NSUInteger commentCellIndex = 4;
 
 - (void)deleteListing {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Remove Listing?" message:@"" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Confirm", nil];
+    alert.tag = 1;
     [alert show];
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
 
-    if (buttonIndex == 1) {
-        NSDictionary *params = @{@"ticket_id":self.ticket.ticket_id,
-                                 @"price":[self.ticket.price stringValue],
-                                 @"available":@"0"
-                                 };
-        
-        [WebServiceManager updateTicket:params photos:nil completion:^(id response, NSError *error) {
-            NSLog(@"response %@", response);
+    if (alertView.tag == 1 ) {
+        if (buttonIndex == 1) {
+            NSDictionary *params = @{@"ticket_id":self.ticket.ticket_id,
+                                     @"price":[self.ticket.price stringValue],
+                                     @"available":@"0"
+                                     };
             
-            if (!error && [response[@"available"] intValue] == 0) {
-                [[AppManager sharedManager].managedObjectContext deleteObject:self.ticket];
+            [WebServiceManager updateTicket:params photos:nil completion:^(id response, NSError *error) {
+                NSLog(@"response %@", response);
                 
-                [self.navigationController popViewControllerAnimated:YES];
-            }
-            
-        }];
+                if (!error && [response[@"available"] intValue] == 0) {
+                    [[AppManager sharedManager].managedObjectContext deleteObject:self.ticket];
+                    
+                    [self.navigationController popViewControllerAnimated:YES];
+                }
+                
+            }];
+        }
     }
+    
+    if (alertView.tag == 11) {
+        if (buttonIndex == 1) {
+            
+            ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please wait..."];
+            [loadingView show];
+            [WebServiceManager signInWithFBCompletion:^(id response, NSError *error) {
+                if (response) {
+                    ChatViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ChatViewController"];
+                    viewController.ticket = self.ticket;
+                    
+                    [self.navigationController pushViewController:viewController animated:YES];
+                }
+                [loadingView hide];
+            }];
+        }
+    }
+    
+    if (alertView.tag == 12) {
+        if (buttonIndex == 1) {
+            ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please wait..."];
+            [loadingView show];
+            [WebServiceManager signInWithFBCompletion:^(id response, NSError *error) {
+                if (response) {
+                    CheckoutViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CheckoutViewController"];
+                    viewController.ticket = self.ticket;
+                    viewController.event = self.event;
+                    [self.navigationController pushViewController:viewController animated:YES];
+
+                }
+                [loadingView hide];
+            }];
+        }
+    }
+    
+    if (alertView.tag == 13) {
+        if (buttonIndex == 1) {
+            
+            ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please wait..."];
+            [loadingView show];
+            [WebServiceManager signInWithFBCompletion:^(id response, NSError *error) {
+                if (response) {
+                    NewOfferViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"NewOfferViewController"];
+                    viewController.ticket = self.ticket;
+                    [self.navigationController pushViewController:viewController animated:YES];
+                }
+                
+                [loadingView hide];
+            }];
+        }
+    }
+    
+    
 }
 
 #pragma mark Actions
 
 - (IBAction)contactSeller:(id)sender {
-    ChatViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ChatViewController"];
-    viewController.ticket = self.ticket;
+    
+    
+    if (![[AppManager sharedManager].userInfo valueForKey:@"fb_id"]) {
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Log in via Facebook?" message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Login", nil];
+        alert.tag = 11;
+        [alert show];
+        
+    } else {
+        ChatViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ChatViewController"];
+        viewController.ticket = self.ticket;
+        
+        [self.navigationController pushViewController:viewController animated:YES];
 
-    [self.navigationController pushViewController:viewController animated:YES];
+    }
+    
 }
 
 - (IBAction)requestToBuy:(id)sender {
     
-    CheckoutViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CheckoutViewController"];
-    viewController.ticket = self.ticket;
-    viewController.event = self.event;
-    [self.navigationController pushViewController:viewController animated:YES];
+    if (![[AppManager sharedManager].userInfo valueForKey:@"fb_id"]) {
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Log in via Facebook?" message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Login", nil];
+        alert.tag = 12;
+        [alert show];
+        
+    } else {
+        CheckoutViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CheckoutViewController"];
+        viewController.ticket = self.ticket;
+        viewController.event = self.event;
+        [self.navigationController pushViewController:viewController animated:YES];
+
+    }
 
 }
 
 - (IBAction)offerNewPrice:(id)sender {
     
-    NewOfferViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"NewOfferViewController"];
-    viewController.ticket = self.ticket;
-    [self.navigationController pushViewController:viewController animated:YES];
+    if (![[AppManager sharedManager].userInfo valueForKey:@"fb_id"]) {
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Log in via Facebook?" message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Login", nil];
+        alert.tag = 13;
+        [alert show];
+        
+    } else {
+        NewOfferViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"NewOfferViewController"];
+        viewController.ticket = self.ticket;
+        [self.navigationController pushViewController:viewController animated:YES];
+    }
     
 }
 
