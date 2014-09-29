@@ -142,6 +142,7 @@
                                     <outlet property="iconImageView" destination="aQn-5r-DXh" id="GRk-40-whv"/>
                                     <outlet property="lastMessageLabel" destination="kr5-AK-h8W" id="S4C-wv-9vc"/>
                                     <outlet property="nameLabel" destination="3Tz-02-NKP" id="cQQ-jC-ZFu"/>
+                                    <segue destination="LXS-WP-D7x" kind="push" identifier="chatSegue" id="lOy-8g-70h"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -1031,7 +1032,7 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wj2-Ob-mDF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3227" y="-77"/>
+            <point key="canvasLocation" x="3039" y="-645"/>
         </scene>
         <!--Events View Controller - Home-->
         <scene sceneID="TYH-1Q-XM0">
@@ -3463,7 +3464,7 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r05-P5-Mlo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2492" y="-1221"/>
+            <point key="canvasLocation" x="1524" y="645"/>
         </scene>
         <!--Preview View Controller - Preview-->
         <scene sceneID="iIw-Pw-7eU">

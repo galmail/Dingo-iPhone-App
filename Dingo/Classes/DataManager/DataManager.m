@@ -501,6 +501,18 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
 
 #pragma mark - Other Requests
 
+- (Ticket *)ticketByID:(NSString *)ticketID {
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Ticket"];
+    request.predicate = [NSPredicate predicateWithFormat:@"ticket_id == %@", ticketID];
+    NSArray *tickets = [[AppManager sharedManager].managedObjectContext executeFetchRequest:request error:nil];
+    
+    if (tickets.count) {
+        return tickets[0];
+    }
+    
+    return nil;
+}
+
 - (NSArray *)allTicketsByEventID:(NSString *)eventID {
     
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Ticket"];

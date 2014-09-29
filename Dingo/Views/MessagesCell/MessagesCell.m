@@ -10,6 +10,7 @@
 
 #import "DingoUtilites.h"
 
+
 const CGFloat messagesCellHeight = 82;
 
 @interface MessagesCell ()
@@ -25,11 +26,19 @@ const CGFloat messagesCellHeight = 82;
 
 #pragma mark - Custom
 
-- (void)buildWithData:(NSDictionary *)data {
-    self.icon = [UIImage imageNamed:data[@"icon"]];
-    self.name = data[@"name"];
-    self.lastMessage = data[@"message"];
-    self.date = data[@"date"];
+- (void)buildWithData:(Message *)data {
+    
+    if (data.sender_avatar) {
+        self.icon = [UIImage imageWithData:data.sender_avatar];
+    } else {
+        NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:data.sender_avatar_url]];
+        data.sender_avatar = imageData;
+        [data.managedObjectContext save:nil];
+        self.icon = [UIImage imageWithData:data.sender_avatar];
+    }
+    self.name = data.sender_name;
+    self.lastMessage = data.content;
+    self.date = nil;//data[@"date"];
 }
 
 #pragma mark - Setters

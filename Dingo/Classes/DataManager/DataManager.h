@@ -44,6 +44,7 @@
 - (NSDate *)featuredEventGroupDateByIndex:(NSUInteger)groupIndex;
 - (NSDate *)eventGroupDateByIndex:(NSUInteger)groupIndex categories:(NSArray*)categories;
 
+- (Ticket *)ticketByID:(NSString *)ticketID;
 - (NSArray *)allTicketsByEventID:(NSString *)eventID;
 - (void)allTicketsByEventID:(NSString *)eventID completion:( void (^) (BOOL finished))handler;
 - (NSArray *)userTickets;

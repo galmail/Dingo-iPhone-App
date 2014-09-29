@@ -36,7 +36,7 @@ static const NSUInteger listTicketsVCIndex = 2;
     self.navigationItem.hidesBackButton = YES;
     self.nextTabBarIndex = -1;
     self.delegate = self;
-    [self messagesTabBarItem].badgeValue = @"Ya!";
+//    [self messagesTabBarItem].badgeValue = @"Ya!";
 }
 
 #pragma mark - UITabBarControllerDelegate

@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 Xetra. All rights reserved.
 //
 
+#import "Message.h"
+
 extern const CGFloat messagesCellHeight;
 
 @interface MessagesCell : UITableViewCell
@@ -15,6 +17,6 @@ extern const CGFloat messagesCellHeight;
 @property (nonatomic, weak) NSString *lastMessage;
 @property (nonatomic, weak) NSDate *date;
 
-- (void)buildWithData:(NSDictionary *)data;
+- (void)buildWithData:(Message *)data;
 
 @end
