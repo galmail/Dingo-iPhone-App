@@ -28,11 +28,10 @@
     __weak IBOutlet ZSTextField *txtPrice;
     __weak IBOutlet ZSTextField *txtTotal;
     __weak IBOutlet ZSTextField *txtSellerName;
+    __weak IBOutlet ZSTextField *txtPayment;
     __weak IBOutlet RoundedImageView *imgSeller;
     __weak IBOutlet UIButton *btnBuy;
-    __weak IBOutlet UILabel *lblPaypal;
-    __weak IBOutlet UILabel *lblCreditCard;
-    __weak IBOutlet UILabel *lblCash;
+
     
     NSNumberFormatter *currencyFormatter;
     
@@ -62,9 +61,7 @@
     currencyFormatter.numberStyle = NSNumberFormatterCurrencyStyle;
     currencyFormatter.currencySymbol = @"£";
 
-    lblEvent.font = lblNumber.font = lblPrice.font = lblTotal.font = lblSeller.font = lblPaypal.font = lblCreditCard.font = lblCash.font = txtTotal.font = txtName.font = txtPrice.font = txtNumber.font = txtSellerName.font = [DingoUISettings lightFontWithSize:14];
-    
-    lblPaymentOption.font = [DingoUISettings fontWithSize:18];
+    lblEvent.font = lblNumber.font = lblPrice.font = lblTotal.font = lblSeller.font = lblPaymentOption.font = txtPayment.font = txtTotal.font = txtName.font = txtPrice.font = txtNumber.font = txtSellerName.font = [DingoUISettings lightFontWithSize:14];
     
     txtNumber.keyboardType = UIKeyboardTypeNumberPad;
     [txtNumber showToolbarWithDone];
@@ -72,6 +69,14 @@
     txtName.text = self.event.name;
     txtNumber.text = [self.ticket.number_of_tickets stringValue];
     txtPrice.text = [currencyFormatter stringFromNumber:self.ticket.price];
+    
+    if ([self.ticket.payment_options rangeOfString:@"Cash"].location != NSNotFound) {
+        txtPayment.text= @"Cash in person";
+    }
+    
+    if ([self.ticket.payment_options rangeOfString:@"PayPal"].location != NSNotFound) {
+        txtPayment.text= @"PayPal, Credit Card";
+    }
     
     txtSellerName.text = self.ticket.user_name;
     imgSeller.image = [UIImage imageWithData:self.ticket.user_photo];
@@ -189,30 +194,6 @@
 
 #pragma mark UITableView methods
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    switch (indexPath.row) {
-        case 11:
-        case 12:
-        case 13:
-            if ([self.ticket.payment_options rangeOfString:@"PayPal"].location == NSNotFound) {
-                lblPaypal.hidden = lblCreditCard.hidden = YES;
-                return 0;
-            }
-            break;
-        case 14:
-        case 15:
-            if ([self.ticket.payment_options rangeOfString:@"Cash"].location == NSNotFound) {
-                lblCash.hidden = YES;
-                return 0;
-            }
-            break;
-        default:
-            break;
-    }
-    
-    return [super tableView:tableView heightForRowAtIndexPath:indexPath];
-}
 
 #pragma mark PayPalPaymentDelegate methods
 

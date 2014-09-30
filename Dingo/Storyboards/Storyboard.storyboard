@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="q5d-Tc-nYt">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="q5d-Tc-nYt">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <deployment defaultVersion="1792" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
         <!--Dingo Navigation Controller-->
@@ -79,7 +80,7 @@
             </objects>
             <point key="canvasLocation" x="484" y="-73"/>
         </scene>
-        <!--Messages View Controller - Messages-->
+        <!--Messages-->
         <scene sceneID="pER-i1-1My">
             <objects>
                 <tableViewController id="a55-Qq-l9A" customClass="MessagesViewController" sceneMemberID="viewController">
@@ -165,7 +166,7 @@
             </objects>
             <point key="canvasLocation" x="1080" y="645"/>
         </scene>
-        <!--List Tickets View Controller - List ticket-->
+        <!--List ticket-->
         <scene sceneID="ZPo-UF-z9A">
             <objects>
                 <tableViewController id="0ch-Q5-uzn" customClass="ListTicketsViewController" sceneMemberID="viewController">
@@ -1034,7 +1035,7 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
             </objects>
             <point key="canvasLocation" x="3039" y="-645"/>
         </scene>
-        <!--Events View Controller - Home-->
+        <!--Home-->
         <scene sceneID="TYH-1Q-XM0">
             <objects>
                 <tableViewController id="Ari-fI-6eC" customClass="EventsViewController" sceneMemberID="viewController">
@@ -1110,7 +1111,7 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
             </objects>
             <point key="canvasLocation" x="1056" y="-1997"/>
         </scene>
-        <!--Features View Controller - Dingo top picks-->
+        <!--Dingo top picks-->
         <scene sceneID="PSG-Zd-z56">
             <objects>
                 <tableViewController id="Ami-Q2-yMz" customClass="FeaturesViewController" sceneMemberID="viewController">
@@ -1251,7 +1252,7 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
             </objects>
             <point key="canvasLocation" x="70" y="-73"/>
         </scene>
-        <!--Login View Controller - Dingo profile-->
+        <!--Dingo profile-->
         <scene sceneID="WxZ-cE-pt4">
             <objects>
                 <viewController storyboardIdentifier="LoginView" id="1lZ-5W-lRB" customClass="LoginViewController" sceneMemberID="viewController">
@@ -1335,7 +1336,7 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
             </objects>
             <point key="canvasLocation" x="-1325" y="-81"/>
         </scene>
-        <!--Checkout View Controller - Checkout-->
+        <!--Checkout-->
         <scene sceneID="RUO-aJ-2b1">
             <objects>
                 <tableViewController storyboardIdentifier="CheckoutViewController" id="M7a-TM-oGr" customClass="CheckoutViewController" sceneMemberID="viewController">
@@ -1494,6 +1495,39 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="10" id="GvG-Lb-Gt7">
+                                        <rect key="frame" x="0.0" y="262" width="320" height="10"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GvG-Lb-Gt7" id="qG5-Ns-j75">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="9"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="35" id="XGj-VD-naT">
+                                        <rect key="frame" x="0.0" y="227" width="320" height="35"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XGj-VD-naT" id="epS-ma-po1">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="34"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Payment methods:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="oNH-wU-5Zs">
+                                                    <rect key="frame" x="12" y="6" width="155" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="options" minimumFontSize="17" id="LRM-Ux-Njd" customClass="ZSTextField">
+                                                    <rect key="frame" x="150" y="2" width="162" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="0.5" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="10" id="hNX-0E-E7P">
                                         <rect key="frame" x="0.0" y="262" width="320" height="10"/>
                                         <autoresizingMask key="autoresizingMask"/>
@@ -1531,93 +1565,6 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="47" id="EDJ-Oh-VUq">
-                                        <rect key="frame" x="0.0" y="347" width="320" height="47"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EDJ-Oh-VUq" id="ugb-90-qPd">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="46"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Payment Options:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZiE-PL-Dp8">
-                                                    <rect key="frame" x="14" y="20" width="206" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="35" id="DMb-4L-eib">
-                                        <rect key="frame" x="0.0" y="394" width="320" height="35"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DMb-4L-eib" id="3gI-P6-i8U">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="34"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PayPal" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zI8-Dx-3vN">
-                                                    <rect key="frame" x="20" y="6" width="155" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="5" id="rie-N9-gUb">
-                                        <rect key="frame" x="0.0" y="429" width="320" height="5"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rie-N9-gUb" id="2H0-dc-CI1">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="4"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="35" id="lJo-V2-BEQ">
-                                        <rect key="frame" x="0.0" y="434" width="320" height="35"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lJo-V2-BEQ" id="qbN-Jt-jvu">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="34"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Credit card" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hb5-dy-qAj">
-                                                    <rect key="frame" x="20" y="6" width="155" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="5" id="xdH-I9-wwG">
-                                        <rect key="frame" x="0.0" y="469" width="320" height="5"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xdH-I9-wwG" id="vCT-Om-OBj">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="4"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="35" id="rW5-Wy-IB6">
-                                        <rect key="frame" x="0.0" y="474" width="320" height="35"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rW5-Wy-IB6" id="h7R-G0-n35">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="34"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cash in person" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Pdm-Nx-4Qt">
-                                                    <rect key="frame" x="22" y="7" width="155" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="206" id="T0Y-rD-xDh">
                                         <rect key="frame" x="0.0" y="509" width="320" height="206"/>
                                         <autoresizingMask key="autoresizingMask"/>
@@ -1636,7 +1583,6 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
                                                     </state>
                                                     <connections>
                                                         <action selector="buy:" destination="M7a-TM-oGr" eventType="touchUpInside" id="O77-HJ-Ln7"/>
-                                                        <action selector="confirm" destination="GJ0-mg-fJM" eventType="touchUpInside" id="iX8-wa-ODr"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -1663,18 +1609,17 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="btnBuy" destination="cb8-mQ-CJ2" id="d0C-sW-x9C"/>
                         <outlet property="imgSeller" destination="Q9a-32-N4R" id="4BM-KL-v0F"/>
-                        <outlet property="lblCash" destination="Pdm-Nx-4Qt" id="EFX-P9-I0f"/>
-                        <outlet property="lblCreditCard" destination="hb5-dy-qAj" id="AqB-Ch-aP3"/>
                         <outlet property="lblEvent" destination="a8D-36-hkU" id="skw-Ax-zYy"/>
                         <outlet property="lblNumber" destination="0hL-Pw-DXy" id="KOC-Sf-qZ5"/>
-                        <outlet property="lblPaymentOption" destination="ZiE-PL-Dp8" id="QnQ-1Q-JyX"/>
-                        <outlet property="lblPaypal" destination="zI8-Dx-3vN" id="MDF-ui-Oa0"/>
+                        <outlet property="lblPaymentOption" destination="oNH-wU-5Zs" id="Hye-bS-Wqy"/>
                         <outlet property="lblPrice" destination="k7S-7X-cB4" id="g8T-hz-2DO"/>
                         <outlet property="lblSeller" destination="RYk-me-9bA" id="cx9-L8-hCY"/>
                         <outlet property="lblTotal" destination="XE7-eI-4re" id="ppk-Ff-kEF"/>
                         <outlet property="txtName" destination="2fn-45-2Ao" id="iev-CL-Svh"/>
                         <outlet property="txtNumber" destination="Kgp-nv-xTx" id="JgM-4A-5fw"/>
+                        <outlet property="txtPayment" destination="LRM-Ux-Njd" id="i2Y-ce-0Eg"/>
                         <outlet property="txtPrice" destination="PQI-7E-ZsV" id="Ohd-S5-jrG"/>
                         <outlet property="txtSellerName" destination="5Sq-dP-vOK" id="jCG-An-E66"/>
                         <outlet property="txtTotal" destination="a7D-Wa-N0h" id="37e-ml-Bc7"/>
@@ -1871,7 +1816,7 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
             </objects>
             <point key="canvasLocation" x="1734" y="-1997"/>
         </scene>
-        <!--Select City View Controller - Select city-->
+        <!--Select city-->
         <scene sceneID="lah-ML-Gnl">
             <objects>
                 <viewController storyboardIdentifier="SelectCityViewController" id="Bdc-pp-ydq" customClass="SelectCityViewController" sceneMemberID="viewController">
@@ -2045,7 +1990,7 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
             </objects>
             <point key="canvasLocation" x="3167" y="-2115"/>
         </scene>
-        <!--Manage Lists View Controller - Manage Listings-->
+        <!--Manage Listings-->
         <scene sceneID="1JU-Mj-7Q4">
             <objects>
                 <tableViewController id="NDK-Xp-Bqe" customClass="ManageListsViewController" sceneMemberID="viewController">
@@ -2168,7 +2113,7 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
             </objects>
             <point key="canvasLocation" x="3975" y="-811"/>
         </scene>
-        <!--About View Controller - About-->
+        <!--About-->
         <scene sceneID="AkQ-0P-YXh">
             <objects>
                 <viewController storyboardIdentifier="AboutViewController" id="dYC-GJ-niM" customClass="AboutViewController" sceneMemberID="viewController">
@@ -2220,7 +2165,7 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
             </objects>
             <point key="canvasLocation" x="3619" y="1326"/>
         </scene>
-        <!--Privacy Policy View Controller - Privacy Policy-->
+        <!--Privacy Policy-->
         <scene sceneID="ja5-3w-pYw">
             <objects>
                 <viewController storyboardIdentifier="PrivacyPolicyViewController" id="Uj4-ES-fAp" customClass="PrivacyPolicyViewController" sceneMemberID="viewController">
@@ -2261,7 +2206,7 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
             </objects>
             <point key="canvasLocation" x="4061" y="1231"/>
         </scene>
-        <!--Terms And Cond View Controller - Terms and Conditions-->
+        <!--Terms and Conditions-->
         <scene sceneID="nAb-jt-lxt">
             <objects>
                 <viewController storyboardIdentifier="TermsAndCondViewController" id="d1l-Ix-OxN" customClass="TermsAndCondViewController" sceneMemberID="viewController">
@@ -2302,7 +2247,7 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
             </objects>
             <point key="canvasLocation" x="4061" y="1890"/>
         </scene>
-        <!--View Controller - FAQ's-->
+        <!--FAQ's-->
         <scene sceneID="joS-fd-sKr">
             <objects>
                 <tableViewController id="nbS-gB-7Es" customClass="FAQViewController" sceneMemberID="viewController">
@@ -2370,7 +2315,7 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
             </objects>
             <point key="canvasLocation" x="3987" y="649"/>
         </scene>
-        <!--Answer View Controller - Answer-->
+        <!--Answer-->
         <scene sceneID="v8o-VJ-Yh4">
             <objects>
                 <viewController id="e8h-Kk-lLg" customClass="AnswerViewController" sceneMemberID="viewController">
@@ -2428,7 +2373,7 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
             </objects>
             <point key="canvasLocation" x="4463" y="649"/>
         </scene>
-        <!--Bookmarked Tickets View Controller - Bookmarked Tickets-->
+        <!--Bookmarked Tickets-->
         <scene sceneID="cIx-8Z-3aJ">
             <objects>
                 <tableViewController id="AHi-D2-7Wp" customClass="BookmarkedTicketsViewController" sceneMemberID="viewController">
@@ -2476,7 +2421,7 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
             </objects>
             <point key="canvasLocation" x="3603" y="-1429"/>
         </scene>
-        <!--Ticket Alerts View Controller - Ticket Alerts-->
+        <!--Ticket Alerts-->
         <scene sceneID="dBD-xR-87A">
             <objects>
                 <viewController storyboardIdentifier="TicketAlertsViewController" id="Qo6-cz-KGE" customClass="TicketAlertsViewController" sceneMemberID="viewController">
@@ -2560,7 +2505,7 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
             </objects>
             <point key="canvasLocation" x="3975" y="-1468"/>
         </scene>
-        <!--Add Ticket Alert View Controller - Ticket Alerts-->
+        <!--Ticket Alerts-->
         <scene sceneID="F4N-3Z-id9">
             <objects>
                 <viewController storyboardIdentifier="AddTicketAlertViewController" id="sF4-cH-j8V" customClass="AddTicketAlertViewController" sceneMemberID="viewController">
@@ -2638,7 +2583,7 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
             </objects>
             <point key="canvasLocation" x="4360" y="-1468"/>
         </scene>
-        <!--Search Tickets View Controller - Search tickets-->
+        <!--Search tickets-->
         <scene sceneID="8qX-p6-TVf">
             <objects>
                 <tableViewController id="CS2-sn-rok" customClass="SearchTicketsViewController" sceneMemberID="viewController">
@@ -2832,7 +2777,7 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
             </objects>
             <point key="canvasLocation" x="1080" y="1346"/>
         </scene>
-        <!--Settings View Controller - Settings-->
+        <!--Settings-->
         <scene sceneID="pg5-ii-7b5">
             <objects>
                 <tableViewController id="luz-yd-ISX" customClass="SettingsViewController" sceneMemberID="viewController">
@@ -3081,7 +3026,6 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-                    <size key="freeformSize" width="320" height="510"/>
                     <connections>
                         <outlet property="cityField" destination="sIm-1F-6HI" id="8bg-S5-v3p"/>
                         <outlet property="dingoEmailsSwitch" destination="kzD-FH-k5h" id="tCw-BE-kq6"/>
@@ -3104,7 +3048,7 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
             </objects>
             <point key="canvasLocation" x="3975" y="-77"/>
         </scene>
-        <!--Search Results View Controller - Search Results-->
+        <!--Search Results-->
         <scene sceneID="Qby-84-gyM">
             <objects>
                 <tableViewController storyboardIdentifier="SearchResultsViewController" id="s98-3l-4sY" customClass="SearchResultsViewController" sceneMemberID="viewController">
@@ -3144,7 +3088,7 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
             </objects>
             <point key="canvasLocation" x="1484" y="1346"/>
         </scene>
-        <!--Upload Photos View Controller - Upload Photos-->
+        <!--Upload Photos-->
         <scene sceneID="X2Z-81-8cv">
             <objects>
                 <tableViewController id="PgO-U3-IhL" customClass="UploadPhotosViewController" sceneMemberID="viewController">
@@ -3398,7 +3342,7 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
             </objects>
             <point key="canvasLocation" x="2134" y="-761"/>
         </scene>
-        <!--Chat View Controller - Message-->
+        <!--Message-->
         <scene sceneID="fY3-Fc-CsO">
             <objects>
                 <viewController storyboardIdentifier="ChatViewController" id="LXS-WP-D7x" customClass="ChatViewController" sceneMemberID="viewController">
@@ -3470,7 +3414,7 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
             </objects>
             <point key="canvasLocation" x="1524" y="645"/>
         </scene>
-        <!--Preview View Controller - Preview-->
+        <!--Preview-->
         <scene sceneID="iIw-Pw-7eU">
             <objects>
                 <tableViewController id="GJ0-mg-fJM" customClass="PreviewViewController" sceneMemberID="viewController">
@@ -4446,7 +4390,7 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
             </objects>
             <point key="canvasLocation" x="3708" y="-3034"/>
         </scene>
-        <!--New Offer View Controller - New Offer-->
+        <!--New Offer-->
         <scene sceneID="3jw-UO-E8t">
             <objects>
                 <tableViewController storyboardIdentifier="NewOfferViewController" id="v7R-Wn-lL4" customClass="NewOfferViewController" sceneMemberID="viewController">
