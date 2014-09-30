@@ -101,6 +101,14 @@
     [loadingView show];
     [WebServiceManager createAlert:params completion:^(id response, NSError *error) {
         if (response) {
+            
+            if (sender.selected) {
+                [AppManager showAlert:@"Ticket alert for this event has been added. When a new ticket is listed we'll let you know"];
+            } else {
+                [AppManager showAlert:@"Ticket alert removed."];
+                
+            }
+            
             [[DataManager shared] addOrUpdateAlert:response];
         }
         [loadingView hide];
