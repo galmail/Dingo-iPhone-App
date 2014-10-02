@@ -94,7 +94,8 @@
     // Update Alert
     NSDictionary *params = @{@"event_id":self.eventData.event_id,
                              @"on":@(sender.selected),
-                             @"price": self.eventData.fromPrice
+                             @"price": self.eventData.fromPrice,
+                             @"description": self.eventData.name
                              };
     
     ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please wait ..."];
