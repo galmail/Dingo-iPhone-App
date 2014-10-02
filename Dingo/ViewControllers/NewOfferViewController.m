@@ -146,7 +146,7 @@
     if (textField == txtNumber) {
         int number = [txtNumber.text intValue];
         if (self.ticket.number_of_tickets.intValue < number) {
-            [AppManager showAlert:[NSString stringWithFormat:@"You can offer maximum of %d tickets", self.ticket.number_of_tickets.intValue]];
+            [AppManager showAlert:[NSString stringWithFormat:@"Maximum of %d ticket(s)", self.ticket.number_of_tickets.intValue]];
             
             txtNumber.text = [self.ticket.number_of_tickets stringValue];
             
