@@ -7,6 +7,7 @@
 //
 
 #import "QuestionCell.h"
+#import "DingoUISettings.h"
 
 @interface QuestionCell ()
 
@@ -15,6 +16,10 @@
 @end
 
 @implementation QuestionCell
+
+- (void)awakeFromNib {
+    self.questionLabel.font = [DingoUISettings lightFontWithSize:15];
+}
 
 - (void)setQuestion:(NSString *)question {
     _question = question;

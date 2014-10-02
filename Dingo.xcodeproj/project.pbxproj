@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		3A02687C19A5F9C000C8CD8E /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A02687B19A5F9C000C8CD8E /* Social.framework */; };
-		3A1ED88E19D9B494009E188A /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A1ED88D19D9B494009E188A /* Message.m */; };
 		3A9441D319CB62920003DA85 /* newOffer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A9441D219CB62920003DA85 /* newOffer@2x.png */; };
 		3A97DDB419D3627400B4C33E /* libPayPalMobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A97DDAC19D3627400B4C33E /* libPayPalMobile.a */; };
 		3A97DDB619D3630500B4C33E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A97DDB519D3630500B4C33E /* AudioToolbox.framework */; };
@@ -43,9 +42,11 @@
 		3AA3330119910D4E00C8DAA8 /* SourceSansPro-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3AA3330019910D4E00C8DAA8 /* SourceSansPro-Bold.otf */; };
 		3AA4359619911D2900D626D1 /* SourceSansPro-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3AA4359519911D2900D626D1 /* SourceSansPro-Semibold.otf */; };
 		3AA49002199E1C6700C7E8ED /* TicketDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA49001199E1C6700C7E8ED /* TicketDetailViewController.m */; };
+		3AA7811219DAE88A00D3A712 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA7811119DAE88A00D3A712 /* Message.m */; };
 		3AA89D3919D0501800F8BA27 /* CheckoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA89D3819D0501800F8BA27 /* CheckoutViewController.m */; };
 		3AA89D3C19D053E100F8BA27 /* checkout@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AA89D3B19D053E100F8BA27 /* checkout@2x.png */; };
 		3AAC8AD919BDDD6B00B6D3C8 /* SourceSansPro-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3AAC8AD819BDDD6B00B6D3C8 /* SourceSansPro-Light.otf */; };
+		3AADC18F19DD124300023130 /* FAQs.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3AADC18E19DD124300023130 /* FAQs.plist */; };
 		3AB28AE0197BB486009C1DDC /* welcome1BG-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AB28ADF197BB486009C1DDC /* welcome1BG-568h@2x.png */; };
 		3AB28AE2197BC572009C1DDC /* welcome2BG-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AB28AE1197BC572009C1DDC /* welcome2BG-568h@2x.png */; };
 		3AB28AE6197BC9E9009C1DDC /* welcome3BG-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AB28AE5197BC9E9009C1DDC /* welcome3BG-568h@2x.png */; };
@@ -266,8 +267,6 @@
 
 /* Begin PBXFileReference section */
 		3A02687B19A5F9C000C8CD8E /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
-		3A1ED88C19D9B494009E188A /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
-		3A1ED88D19D9B494009E188A /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
 		3A9441D219CB62920003DA85 /* newOffer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "newOffer@2x.png"; sourceTree = "<group>"; };
 		3A97DDAC19D3627400B4C33E /* libPayPalMobile.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libPayPalMobile.a; sourceTree = "<group>"; };
 		3A97DDAD19D3627400B4C33E /* PayPalConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalConfiguration.h; sourceTree = "<group>"; };
@@ -319,10 +318,13 @@
 		3AA4359519911D2900D626D1 /* SourceSansPro-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Semibold.otf"; sourceTree = "<group>"; };
 		3AA49000199E1C6700C7E8ED /* TicketDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketDetailViewController.h; sourceTree = "<group>"; };
 		3AA49001199E1C6700C7E8ED /* TicketDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketDetailViewController.m; sourceTree = "<group>"; };
+		3AA7811019DAE88A00D3A712 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
+		3AA7811119DAE88A00D3A712 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
 		3AA89D3719D0501800F8BA27 /* CheckoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckoutViewController.h; sourceTree = "<group>"; };
 		3AA89D3819D0501800F8BA27 /* CheckoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckoutViewController.m; sourceTree = "<group>"; };
 		3AA89D3B19D053E100F8BA27 /* checkout@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkout@2x.png"; sourceTree = "<group>"; };
 		3AAC8AD819BDDD6B00B6D3C8 /* SourceSansPro-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Light.otf"; sourceTree = "<group>"; };
+		3AADC18E19DD124300023130 /* FAQs.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FAQs.plist; sourceTree = "<group>"; };
 		3AB28ADF197BB486009C1DDC /* welcome1BG-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "welcome1BG-568h@2x.png"; sourceTree = "<group>"; };
 		3AB28AE1197BC572009C1DDC /* welcome2BG-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "welcome2BG-568h@2x.png"; sourceTree = "<group>"; };
 		3AB28AE5197BC9E9009C1DDC /* welcome3BG-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "welcome3BG-568h@2x.png"; sourceTree = "<group>"; };
@@ -741,8 +743,8 @@
 				3A9D206D19B39DF600FE163E /* Ticket.m */,
 				3A97DDDC19D9940300B4C33E /* Alert.h */,
 				3A97DDDD19D9940300B4C33E /* Alert.m */,
-				3A1ED88C19D9B494009E188A /* Message.h */,
-				3A1ED88D19D9B494009E188A /* Message.m */,
+				3AA7811019DAE88A00D3A712 /* Message.h */,
+				3AA7811119DAE88A00D3A712 /* Message.m */,
 			);
 			name = Models;
 			path = Classes/Models;
@@ -1184,6 +1186,7 @@
 				840CD24119B84ADF00699E26 /* Chat */,
 				84E2CBED19B5CF77003102F3 /* TermsConditions.docx */,
 				84E2CBEF19B5D808003102F3 /* PrivacyPolicy.docx */,
+				3AADC18E19DD124300023130 /* FAQs.plist */,
 				3A9D206119B1992E00FE163E /* Tickets */,
 				841C508B19A6082400BD4141 /* TicketAlerts */,
 				84513F0319A4F2AC00C4A254 /* About */,
@@ -1842,6 +1845,7 @@
 				841C509B19A6129800BD4141 /* tickertAlertCellBellIcon@2x.png in Resources */,
 				3F62C6E91949B67800D7D6B1 /* night@2x.png in Resources */,
 				3AB28AE6197BC9E9009C1DDC /* welcome3BG-568h@2x.png in Resources */,
+				3AADC18F19DD124300023130 /* FAQs.plist in Resources */,
 				3F3D565E195184B100FB2774 /* search_icon_gray@2x.png in Resources */,
 				3F62C6A31948318F00D7D6B1 /* select_city@2x.png in Resources */,
 				3F62C6B01948318F00D7D6B1 /* tickets_frame@2x.png in Resources */,
@@ -2068,7 +2072,7 @@
 				3AF360B61976A4D0009A14FD /* JSON.m in Sources */,
 				3A97DDD019D5312700B4C33E /* ZSLabel.m in Sources */,
 				3AB28AEF197D9DA4009C1DDC /* Event.m in Sources */,
-				3A1ED88E19D9B494009E188A /* Message.m in Sources */,
+				3AA7811219DAE88A00D3A712 /* Message.m in Sources */,
 				841C508A19A6067800BD4141 /* AddTicketAlertViewController.m in Sources */,
 				3A9DB5581988245300861899 /* ZSDatePicker.m in Sources */,
 				3AF360B319768F15009A14FD /* Dingo.xcdatamodeld in Sources */,

@@ -15,7 +15,10 @@ static const NSUInteger questionsCount = 3;
 static const CGFloat titleHeight = 80;
 static const CGFloat questionCellHeight = 50;
 
-@interface FAQViewController () <UITableViewDataSource, UITabBarDelegate>
+@interface FAQViewController () <UITableViewDataSource, UITabBarDelegate> {
+    
+    NSArray *questionsArray;
+}
 
 @end
 
@@ -26,12 +29,14 @@ static const CGFloat questionCellHeight = 50;
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    
+    questionsArray = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"FAQs.plist" ofType:nil]];
 }
 
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return questionsCount + 1;
+    return questionsArray.count + 1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -44,7 +49,7 @@ static const CGFloat questionCellHeight = 50;
     }
     
     QuestionCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"QuestionCell"];;
-    cell.question = [NSString stringWithFormat:@"Question %ld", (long)indexPath.row];
+    cell.question = questionsArray[indexPath.row-1][@"question"];
     return cell;
 }
 
@@ -52,8 +57,9 @@ static const CGFloat questionCellHeight = 50;
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     AnswerViewController *vc = segue.destinationViewController;
-    QuestionCell *cell = (QuestionCell *)[self.tableView cellForRowAtIndexPath:[self.tableView indexPathForSelectedRow]];
-    vc.question = cell.question;
+
+    vc.question = questionsArray[[self.tableView indexPathForSelectedRow].row - 1][@"question"];
+    vc.answer = questionsArray[[self.tableView indexPathForSelectedRow].row - 1][@"answer"];
 }
 
 #pragma mark - UIActions

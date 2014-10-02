@@ -7,6 +7,7 @@
 //
 
 #import "AnswerViewController.h"
+#import "DingoUISettings.h"
 
 @interface AnswerViewController ()
 
@@ -21,8 +22,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.questionLabel.font = [DingoUISettings boldFontWithSize:15];
+    self.answerTextView.font = [DingoUISettings lightFontWithSize:14];
+    
     self.questionLabel.text = self.question;
-    self.answerTextView.text = [NSString stringWithFormat:@"Answer for %@", self.question];
+    self.answerTextView.text = self.answer;
 }
 
 #pragma mark - Navigation
