@@ -11,7 +11,6 @@
 #import "AnswerViewController.h"
 #import "QuestionCell.h"
 
-static const NSUInteger questionsCount = 3;
 static const CGFloat titleHeight = 80;
 static const CGFloat questionCellHeight = 50;
 

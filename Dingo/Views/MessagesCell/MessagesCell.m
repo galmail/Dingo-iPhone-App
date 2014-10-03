@@ -9,7 +9,8 @@
 #import "MessagesCell.h"
 
 #import "DingoUtilites.h"
-
+#import "DataManager.h"
+#import "WebServiceManager.h"
 
 const CGFloat messagesCellHeight = 82;
 
@@ -27,17 +28,36 @@ const CGFloat messagesCellHeight = 82;
 #pragma mark - Custom
 
 - (void)buildWithData:(Message *)data {
+
+    NSString *userID = [[AppManager sharedManager].userInfo[@"id"] stringValue];
     
-    if (data.sender_avatar) {
-        self.icon = [UIImage imageWithData:data.sender_avatar];
+    Ticket *ticket =[[DataManager shared] ticketByID:data.ticket_id];
+    
+    if ([[ticket.user_id stringValue] isEqualToString:userID]) {
+        self.icon = nil;
+        if ([data.receiver_id isEqualToString:userID]) {
+            [WebServiceManager imageFromUrl:data.sender_avatar_url completion:^(id response, NSError *error) {
+                self.icon = [UIImage imageWithData:response];
+            }];
+            self.name = data.sender_name;
+        } else {
+            [WebServiceManager imageFromUrl:data.receiver_avatar_url completion:^(id response, NSError *error) {
+                self.icon = [UIImage imageWithData:response];
+            }];
+            self.name = data.receiver_name;
+        }
+        
     } else {
-        NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:data.sender_avatar_url]];
-        data.sender_avatar = imageData;
-        [data.managedObjectContext save:nil];
-        self.icon = [UIImage imageWithData:data.sender_avatar];
+        self.icon = nil;
+        if (ticket.user_photo) {
+            self.icon = [UIImage imageWithData:ticket.user_photo];
+        }
+        
+        self.name = ticket.user_name;
+
     }
-    self.name = data.sender_name;
-    self.lastMessage = data.content;
+    
+        self.lastMessage = data.content;
     self.date = nil;//data[@"date"];
 }
 

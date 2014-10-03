@@ -44,10 +44,7 @@
     
     [[DataManager shared] fetchMessagesWithCompletion:^(BOOL finished) {
         [self groupMessagesByUser];
-        
-        [[DataManager shared] userTicketsWithCompletion:^(BOOL finished) {
-            [loadingView hide];
-        }];
+        [loadingView hide];
         
     }];
 }
@@ -57,33 +54,44 @@
     NSArray *allMessages = [[DataManager shared] allMessages];
     groupedMessages = [NSMutableArray new];
     
-    NSNumber *userID = [AppManager sharedManager].userInfo[@"id"];
-    
-    NSArray * senderIDs = [allMessages valueForKeyPath:@"sender_id"];
-    NSArray * receiverIDs = [allMessages valueForKeyPath:@"receiver_id"];
-    
-    NSMutableSet *set = [NSMutableSet new];
-    [set addObjectsFromArray:senderIDs];
-    [set addObjectsFromArray:receiverIDs];
-    
-    NSMutableArray *userIDs = [[set allObjects] mutableCopy];
-    
-    for (NSString *user_ID in userIDs) {
-        if ([[userID stringValue] isEqualToString:user_ID]) {
-            continue;
-        }
+    NSArray * ticketIDs = [allMessages valueForKeyPath:@"ticket_id"];
+    NSSet *ticketsSet = [NSSet setWithArray:ticketIDs];
+    ticketIDs = [ticketsSet allObjects];
 
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"sender_id == %@ || receiver_id == %@",user_ID, user_ID];
+    for (NSString *ticketID in ticketIDs) {
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"ticket_id == %@ && ticket_id.length > 0" ,ticketID];
         NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"datetime" ascending:NO];
-        
         NSArray* msgArray = [allMessages filteredArrayUsingPredicate:predicate];
-        if (msgArray.count>0) {
-            NSArray *sorted = [msgArray sortedArrayUsingDescriptors:@[sortDescriptor]];
-            
+        
+        if (msgArray.count > 0) {
+             NSArray *sorted = [msgArray sortedArrayUsingDescriptors:@[sortDescriptor]];
             [groupedMessages addObject:sorted[0]];
         }
-        
     }
+    
+    
+//    NSMutableSet *set = [NSMutableSet new];
+//    [set addObjectsFromArray:senderIDs];
+//    [set addObjectsFromArray:receiverIDs];
+//    
+//    NSMutableArray *userIDs = [[set allObjects] mutableCopy];
+    
+//    for (NSString *user_ID in userIDs) {
+//        if ([[userID stringValue] isEqualToString:user_ID]) {
+//            continue;
+//        }
+//
+//        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"sender_id == %@ || receiver_id == %@",user_ID, user_ID];
+//        NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"datetime" ascending:NO];
+//        
+//        NSArray* msgArray = [allMessages filteredArrayUsingPredicate:predicate];
+//        if (msgArray.count>0) {
+//            NSArray *sorted = [msgArray sortedArrayUsingDescriptors:@[sortDescriptor]];
+//            
+//            [groupedMessages addObject:sorted[0]];
+//        }
+//        
+//    }
     
     [self.tableView reloadData];
 }
@@ -98,29 +106,6 @@
     return messagesCellHeight;
 }
 
-//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-//    return sectionEventHeaderHeight;
-//}
-//
-//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-//    NSString *title = [[DataManager shared] allFriends][section * sectionCellsCount][@"event"];
-//    return [SectionHeaderView buildWithTitle:title
-//                                fromXibNamed:@"SectionEventHeaderView"];
-//}
-//
-//- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-//    return YES;
-//}
-
-//- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-//    if (editingStyle == UITableViewCellEditingStyleDelete) {
-//        //        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-//    }
-//}
-//
-//- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    return @"Remove\nConversation";
-//}
 
 #pragma mark - UITableViewDataSource
 
@@ -153,7 +138,9 @@
     Message* msg = groupedMessages[selectedCellPath.row];
     
     ChatViewController *vc = (ChatViewController *)segue.destinationViewController;
-    vc.ticket = [[DataManager shared] ticketByID:msg.ticket_id];
+    Ticket *ticket = [[DataManager shared] ticketByID:msg.ticket_id];
+    
+    vc.ticket = ticket;
     
 }
 

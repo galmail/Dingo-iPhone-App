@@ -29,6 +29,8 @@ static const CGFloat categoriesHeight = 110;
     int tipIndex;
     
     NSArray *selectedCategories;
+    
+    BOOL firstLoad;
 }
 
 #pragma mark - UIViewController
@@ -39,25 +41,10 @@ static const CGFloat categoriesHeight = 110;
     
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(refreshInvoked:forState:) forControlEvents:UIControlEventValueChanged];
+    firstLoad = YES;
     
     selectedCategories = [[[DataManager shared] allCategories] valueForKey:@"category_id"];
- 
-    ZSLoadingView *loadingView =[[ZSLoadingView alloc] initWithLabel:@"Loading events ..."];
-    [loadingView show];
     
-    [[DataManager shared] allCategoriesWithCompletion:^(BOOL finished) {
-        if (!selectedCategories.count) {
-            selectedCategories = [[[DataManager shared] allCategories] valueForKey:@"category_id"];
-        }
-        [[DataManager shared] allEventsWithCompletion:^(BOOL finished) {
-            [self.tableView reloadData];
-            [loadingView hide];
-            if ([[AppManager sharedManager] justInstalled]) {
-                [self setupTips];
-            }
-        }];
-        
-    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -67,6 +54,40 @@ static const CGFloat categoriesHeight = 110;
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    
+    ZSLoadingView *loadingView =[[ZSLoadingView alloc] initWithLabel:@"Loading events ..."];
+    [loadingView show];
+    [[DataManager shared] allCategoriesWithCompletion:^(BOOL finished) {
+        if (!selectedCategories.count) {
+            selectedCategories = [[[DataManager shared] allCategories] valueForKey:@"category_id"];
+        }
+        [[DataManager shared] allEventsWithCompletion:^(BOOL finished) {
+            
+            if (firstLoad) {
+                // load tickets too
+                firstLoad = NO;
+                NSArray *eventIDs = [[[DataManager shared] allEvents] valueForKey:@"event_id"];
+                
+                [[DataManager shared] allTiketsForEvents:[eventIDs mutableCopy] withCompletion:^(BOOL finished) {
+                    [self.tableView reloadData];
+                    [loadingView hide];
+                    if ([[AppManager sharedManager] justInstalled]) {
+                        [self setupTips];
+                    }
+                }];
+            } else {
+                [self.tableView reloadData];
+                [loadingView hide];
+                if ([[AppManager sharedManager] justInstalled]) {
+                    [self setupTips];
+                }
+            }
+            
+           
+           
+        }];
+        
+    }];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -80,7 +101,13 @@ static const CGFloat categoriesHeight = 110;
     [[DataManager shared] allCategoriesWithCompletion:^(BOOL finished) {
         [[DataManager shared] allEventsWithCompletion:^(BOOL finished) {
             [self.tableView reloadData];
-            
+//            NSArray *eventIDs = [[[DataManager shared] allEvents] valueForKey:@"event_id"];
+//            for (NSString *eventID in eventIDs) {
+//                [[DataManager shared] allTicketsByEventID:eventID completion:^(BOOL finished) {
+//                    
+//                }];
+//            }
+
             if ([[AppManager sharedManager] justInstalled]) {
                 [self setupTips];
                 

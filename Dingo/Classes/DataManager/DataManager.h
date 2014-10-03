@@ -43,6 +43,7 @@
 - (NSDate *)eventGroupDateByIndex:(NSUInteger)groupIndex categories:(NSArray*)categories;
 
 - (Ticket *)ticketByID:(NSString *)ticketID;
+- (void)allTiketsForEvents:(NSMutableArray *)events withCompletion:( void (^) (BOOL finished))handler;
 - (NSArray *)allTicketsByEventID:(NSString *)eventID;
 - (void)allTicketsByEventID:(NSString *)eventID completion:( void (^) (BOOL finished))handler;
 - (NSArray *)userTickets;

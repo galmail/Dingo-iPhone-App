@@ -130,9 +130,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    AddTicketAlertViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"AddTicketAlertViewController"];
-    viewController.alert = alertsArray[indexPath.row];
-    [self.navigationController pushViewController:viewController animated:YES];
+//    AddTicketAlertViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"AddTicketAlertViewController"];
+//    viewController.alert = alertsArray[indexPath.row];
+//    [self.navigationController pushViewController:viewController animated:YES];
 }
 
 
@@ -151,8 +151,6 @@
 - (UITableViewCell *)buildAlertCellForIndexPath:(NSIndexPath *)path {
     static NSString * const cellId = @"TicketAlertCell";
     TicketAlertCell *cell = [tblTicketAlerts dequeueReusableCellWithIdentifier:cellId];
-    
-    
     
     Alert *data = alertsArray[path.row];
     [cell buildWithData:data];

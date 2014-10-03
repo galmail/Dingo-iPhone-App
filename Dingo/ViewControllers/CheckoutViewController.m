@@ -11,8 +11,11 @@
 #import "RoundedImageView.h"
 #import "DingoUISettings.h"
 #import "WebServiceManager.h"
-#import "PayPalMobile.h"
+//#import "PayPalMobile.h"
+#import "PayPal.h"
 #import "ChatViewController.h"
+
+static NSString *kPayPalAppID = @"APP-80W284485P519543T";
 
 @interface CheckoutViewController () <PayPalPaymentDelegate, UIPopoverControllerDelegate>{
     
@@ -37,7 +40,7 @@
     
     UIWebView *webView;
     
-    PayPalConfiguration *payPalConfig;
+//    PayPalConfiguration *payPalConfig;
 }
 
 @end
@@ -56,6 +59,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [PayPal initializeWithAppID:kPayPalAppID forEnvironment:ENV_SANDBOX];
     
     currencyFormatter = [[NSNumberFormatter alloc] init];
     currencyFormatter.numberStyle = NSNumberFormatterCurrencyStyle;
@@ -83,16 +88,16 @@
     
     [self calculateTotal];
     
-    payPalConfig = [[PayPalConfiguration alloc] init];
-    payPalConfig.acceptCreditCards = YES;
-    payPalConfig.languageOrLocale = @"en";
-    payPalConfig.merchantName = @"Dingo, Inc.";
-
+//    payPalConfig = [[PayPalConfiguration alloc] init];
+//    payPalConfig.acceptCreditCards = YES;
+//    payPalConfig.languageOrLocale = @"en";
+//    payPalConfig.merchantName = @"Dingo, Inc.";
+//
     
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [PayPalMobile preconnectWithEnvironment:PayPalEnvironmentSandbox];
+//    [PayPalMobile preconnectWithEnvironment:PayPalEnvironmentSandbox];
 }
 
 - (void)didReceiveMemoryWarning
@@ -131,15 +136,15 @@
                 
                 if ([response[@"success"] boolValue]) {
                     
-                    PayPalPayment *payment = [[PayPalPayment alloc] init];
-                    payment.amount = (NSDecimalNumber*)[currencyFormatter numberFromString:txtTotal.text];
-                    payment.currencyCode = @"GBP";
-                    payment.shortDescription = @"Dingo Test Payment ";
-
-                    PayPalPaymentViewController *paymentViewController = [[PayPalPaymentViewController alloc] initWithPayment:payment
-                                                                                                                configuration:payPalConfig                                                                                                                     delegate:self];
-                    
-                    [self presentViewController:paymentViewController animated:YES completion:nil];
+//                    PayPalPayment *payment = [[PayPalPayment alloc] init];
+//                    payment.amount = (NSDecimalNumber*)[currencyFormatter numberFromString:txtTotal.text];
+//                    payment.currencyCode = @"GBP";
+//                    payment.shortDescription = @"Dingo Test Payment ";
+//
+//                    PayPalPaymentViewController *paymentViewController = [[PayPalPaymentViewController alloc] initWithPayment:payment
+//                                                                                                                configuration:payPalConfig                                                                                                                     delegate:self];
+//                    
+//                    [self presentViewController:paymentViewController animated:YES completion:nil];
 
  
                     
@@ -197,6 +202,24 @@
 
 #pragma mark PayPalPaymentDelegate methods
 
+- (void)paymentSuccessWithKey:(NSString *)payKey andStatus:(PayPalPaymentStatus)paymentStatus {
+    
+}
+
+- (void)paymentFailedWithCorrelationID:(NSString *)correlationID {
+    
+}
+
+- (void)paymentCanceled {
+    
+}
+
+- (void)paymentLibraryExit {
+    
+}
+
+
+/*
 - (void)payPalPaymentViewController:(PayPalPaymentViewController *)paymentViewController didCompletePayment:(PayPalPayment *)completedPayment {
     NSLog(@"PayPal Payment Success! \n%@",  [completedPayment description]);
 
@@ -216,6 +239,6 @@
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-
+*/
 
 @end

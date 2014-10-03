@@ -46,6 +46,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    self.title = self.ticket.user_name;
+    
     textField.layer.borderColor = [[UIColor lightGrayColor] CGColor];
     textField.font = [DingoUISettings fontWithSize:textField.font.pointSize];
     

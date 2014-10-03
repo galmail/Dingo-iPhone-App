@@ -504,6 +504,20 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     return nil;
 }
 
+- (void)allTiketsForEvents:(NSMutableArray *)events withCompletion:( void (^) (BOOL finished))handler {
+    
+    if (events.count > 0) {
+        [self allTicketsByEventID:events[0] completion:^(BOOL finished) {
+            [events removeObjectAtIndex:0];
+           
+            [self allTiketsForEvents:events withCompletion:handler];
+        }];
+    } else {
+        handler (YES);
+    }
+    
+}
+
 - (NSArray *)allTicketsByEventID:(NSString *)eventID {
     
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Ticket"];
@@ -527,7 +541,7 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
             // remove deleted tickets from local database
             NSArray *ticketIDs = [tickets valueForKey:@"id"];
             NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Ticket"];
-            request.predicate = [NSPredicate predicateWithFormat:@"NOT (ticket_id IN %@)", ticketIDs];
+            request.predicate = [NSPredicate predicateWithFormat:@"NOT(ticket_id IN %@) && event_id == %@", ticketIDs, eventID];
             
             NSArray *ticketsToRemove = [[AppManager sharedManager].managedObjectContext executeFetchRequest:request error:nil];
             if (ticketsToRemove.count) {
@@ -1009,9 +1023,13 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     
     message.content = info[@"content"];
     message.sender_id = [info[@"sender_id"] stringValue];
-    message.receiver_id = [info[@"receiver_id"] stringValue];
     message.sender_avatar_url = info[@"sender_avatar"];
     message.sender_name = info[@"sender_name"];
+    
+    message.receiver_id = [info[@"receiver_id"] stringValue];
+    message.receiver_avatar_url = info[@"receiver_avatar"];
+    message.receiver_name = info[@"receiver_name"];
+    
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
     formatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSSSZ";
@@ -1023,6 +1041,10 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     message.from_dingo = @( [info[@"from_dingo"] boolValue]);
     message.offer_new = @( [info[@"new_offer"] boolValue]);
     message.ticket_id = info[@"ticket_id"];
+    if (![info[@"offer_id"] isKindOfClass:[NSNull class]]) {
+        message.offer_id = info[@"offer_id"];
+    }
+
 }
 
 - (NSArray *)allMessages{
@@ -1096,6 +1118,7 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     }
     
     alert.event_id = info[@"event_id"];
+    alert.alert_description = info[@"description"];
     if (info[@"on"]) {
         alert.on = @( [info[@"on"] boolValue]);
     } else {

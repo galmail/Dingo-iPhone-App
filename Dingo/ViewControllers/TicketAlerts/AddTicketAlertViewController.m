@@ -10,6 +10,7 @@
 #import "DingoUISettings.h"
 #import "DataManager.h"
 #import "WebServiceManager.h"
+#import "ZSLoadingView.h"
 
 @interface AddTicketAlertViewController (){
     
@@ -75,17 +76,38 @@
     if (!self.alert) {
 //        [[DataManager shared] addOrUpdateAlert:@{@"alert_id": [DataManager generateGUID],@"alert_description":txtDescription.text}];
         
-        NSDictionary *params = @{};
+        NSDictionary *params = @{@"on":@YES,
+                                 @"description": txtDescription.text
+                                 };
         
+        ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please wait ..."];
+        [loadingView show];
         [WebServiceManager createAlert:params completion:^(id response, NSError *error) {
+            if (response) {
+                [[DataManager shared] addOrUpdateAlert:response];
+            }
+            [loadingView hide];
             
+              [self back];
         }];
         
     }else{
-        [[DataManager shared] addOrUpdateAlert:@{@"alert_id": self.alert.alert_id,@"alert_description":txtDescription.text}];
+//        NSDictionary *params = @{@"on":@YES,
+//                                 @"description": self.eventData.name
+//                                 };
+//        
+//        ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please wait ..."];
+//        [loadingView show];
+//        [WebServiceManager createAlert:params completion:^(id response, NSError *error) {
+//            if (response) {
+//                [[DataManager shared] addOrUpdateAlert:response];
+//            }
+//            [loadingView hide];
+//        }];
+
     }
 
-    [self back];
+  
 }
 
 - (IBAction)btnDeleteTap:(id)sender {

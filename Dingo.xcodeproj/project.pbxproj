@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		3A02687C19A5F9C000C8CD8E /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A02687B19A5F9C000C8CD8E /* Social.framework */; };
 		3A9441D319CB62920003DA85 /* newOffer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A9441D219CB62920003DA85 /* newOffer@2x.png */; };
-		3A97DDB419D3627400B4C33E /* libPayPalMobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A97DDAC19D3627400B4C33E /* libPayPalMobile.a */; };
 		3A97DDB619D3630500B4C33E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A97DDB519D3630500B4C33E /* AudioToolbox.framework */; };
 		3A97DDB819D3631800B4C33E /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A97DDB719D3631800B4C33E /* AVFoundation.framework */; };
 		3A97DDBA19D3633600B4C33E /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A97DDB919D3633600B4C33E /* CoreMedia.framework */; };
@@ -42,7 +41,6 @@
 		3AA3330119910D4E00C8DAA8 /* SourceSansPro-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3AA3330019910D4E00C8DAA8 /* SourceSansPro-Bold.otf */; };
 		3AA4359619911D2900D626D1 /* SourceSansPro-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3AA4359519911D2900D626D1 /* SourceSansPro-Semibold.otf */; };
 		3AA49002199E1C6700C7E8ED /* TicketDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA49001199E1C6700C7E8ED /* TicketDetailViewController.m */; };
-		3AA7811219DAE88A00D3A712 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA7811119DAE88A00D3A712 /* Message.m */; };
 		3AA89D3919D0501800F8BA27 /* CheckoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA89D3819D0501800F8BA27 /* CheckoutViewController.m */; };
 		3AA89D3C19D053E100F8BA27 /* checkout@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AA89D3B19D053E100F8BA27 /* checkout@2x.png */; };
 		3AAC8AD919BDDD6B00B6D3C8 /* SourceSansPro-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3AAC8AD819BDDD6B00B6D3C8 /* SourceSansPro-Light.otf */; };
@@ -56,6 +54,8 @@
 		3AB28B02197EE8CE009C1DDC /* ZSTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB28B01197EE8CE009C1DDC /* ZSTextField.m */; };
 		3AB68BE819C70FFC00057736 /* btnDelete@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AB68BE719C70FFC00057736 /* btnDelete@2x.png */; };
 		3AC8525519A4CF9C00FCDE16 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AC8525419A4CF9C00FCDE16 /* MapKit.framework */; };
+		3ACAB73119DEB9C6005DEE64 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACAB73019DEB9C6005DEE64 /* Message.m */; };
+		3ACAB74119DED6E3005DEE64 /* libPayPalMPL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ACAB73619DED6E3005DEE64 /* libPayPalMPL.a */; };
 		3AF360A619767564009A14FD /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AF360A519767564009A14FD /* FacebookSDK.framework */; };
 		3AF360AB197687E2009A14FD /* AppManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF360AA197687E2009A14FD /* AppManager.m */; };
 		3AF360AE197687F5009A14FD /* WebServiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF360AD197687F5009A14FD /* WebServiceManager.m */; };
@@ -67,6 +67,8 @@
 		3AF360C01976AB49009A14FD /* NSString+MD5Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF360BF1976AB49009A14FD /* NSString+MD5Additions.m */; };
 		3AF5402119C1937000FD5A93 /* ImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF5402019C1937000FD5A93 /* ImagesViewController.m */; };
 		3AF5402419C1972100FD5A93 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF5402319C1972100FD5A93 /* MapViewController.m */; };
+		3AFEC18A19DED9E70062AA64 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AFEC18919DED9E70062AA64 /* libz.dylib */; };
+		3AFEC18C19DEDBC70062AA64 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AFEC18B19DEDBC70062AA64 /* libxml2.dylib */; };
 		3E24F9C81D9E48F08275CAA9 /* libPods-Dingo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CEA10389BDB459BA8B0537B /* libPods-Dingo.a */; };
 		3F08EBFD194715D500CDFBD8 /* RoundedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F08EBFC194715D500CDFBD8 /* RoundedImageView.m */; };
 		3F08EC0619471D6B00CDFBD8 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F08EC0519471D6B00CDFBD8 /* Accelerate.framework */; };
@@ -268,14 +270,6 @@
 /* Begin PBXFileReference section */
 		3A02687B19A5F9C000C8CD8E /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		3A9441D219CB62920003DA85 /* newOffer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "newOffer@2x.png"; sourceTree = "<group>"; };
-		3A97DDAC19D3627400B4C33E /* libPayPalMobile.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libPayPalMobile.a; sourceTree = "<group>"; };
-		3A97DDAD19D3627400B4C33E /* PayPalConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalConfiguration.h; sourceTree = "<group>"; };
-		3A97DDAE19D3627400B4C33E /* PayPalFuturePaymentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalFuturePaymentViewController.h; sourceTree = "<group>"; };
-		3A97DDAF19D3627400B4C33E /* PayPalMobile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalMobile.h; sourceTree = "<group>"; };
-		3A97DDB019D3627400B4C33E /* PayPalOAuthScopes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalOAuthScopes.h; sourceTree = "<group>"; };
-		3A97DDB119D3627400B4C33E /* PayPalPayment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalPayment.h; sourceTree = "<group>"; };
-		3A97DDB219D3627400B4C33E /* PayPalPaymentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalPaymentViewController.h; sourceTree = "<group>"; };
-		3A97DDB319D3627400B4C33E /* PayPalProfileSharingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalProfileSharingViewController.h; sourceTree = "<group>"; };
 		3A97DDB519D3630500B4C33E /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		3A97DDB719D3631800B4C33E /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		3A97DDB919D3633600B4C33E /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
@@ -318,8 +312,6 @@
 		3AA4359519911D2900D626D1 /* SourceSansPro-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Semibold.otf"; sourceTree = "<group>"; };
 		3AA49000199E1C6700C7E8ED /* TicketDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketDetailViewController.h; sourceTree = "<group>"; };
 		3AA49001199E1C6700C7E8ED /* TicketDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketDetailViewController.m; sourceTree = "<group>"; };
-		3AA7811019DAE88A00D3A712 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
-		3AA7811119DAE88A00D3A712 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
 		3AA89D3719D0501800F8BA27 /* CheckoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckoutViewController.h; sourceTree = "<group>"; };
 		3AA89D3819D0501800F8BA27 /* CheckoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckoutViewController.m; sourceTree = "<group>"; };
 		3AA89D3B19D053E100F8BA27 /* checkout@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkout@2x.png"; sourceTree = "<group>"; };
@@ -337,6 +329,19 @@
 		3AB28B01197EE8CE009C1DDC /* ZSTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSTextField.m; sourceTree = "<group>"; };
 		3AB68BE719C70FFC00057736 /* btnDelete@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnDelete@2x.png"; sourceTree = "<group>"; };
 		3AC8525419A4CF9C00FCDE16 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		3ACAB72F19DEB9C6005DEE64 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
+		3ACAB73019DEB9C6005DEE64 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
+		3ACAB73619DED6E3005DEE64 /* libPayPalMPL.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libPayPalMPL.a; sourceTree = "<group>"; };
+		3ACAB73719DED6E3005DEE64 /* PayPal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPal.h; sourceTree = "<group>"; };
+		3ACAB73819DED6E3005DEE64 /* PayPalAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalAddress.h; sourceTree = "<group>"; };
+		3ACAB73919DED6E3005DEE64 /* PayPalAdvancedPayment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalAdvancedPayment.h; sourceTree = "<group>"; };
+		3ACAB73A19DED6E3005DEE64 /* PayPalAmounts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalAmounts.h; sourceTree = "<group>"; };
+		3ACAB73B19DED6E3005DEE64 /* PayPalInvoiceData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalInvoiceData.h; sourceTree = "<group>"; };
+		3ACAB73C19DED6E3005DEE64 /* PayPalInvoiceItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalInvoiceItem.h; sourceTree = "<group>"; };
+		3ACAB73D19DED6E3005DEE64 /* PayPalPayment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalPayment.h; sourceTree = "<group>"; };
+		3ACAB73E19DED6E3005DEE64 /* PayPalPreapprovalDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalPreapprovalDetails.h; sourceTree = "<group>"; };
+		3ACAB73F19DED6E3005DEE64 /* PayPalReceiverAmounts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalReceiverAmounts.h; sourceTree = "<group>"; };
+		3ACAB74019DED6E3005DEE64 /* PayPalReceiverPaymentDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalReceiverPaymentDetails.h; sourceTree = "<group>"; };
 		3AF360A519767564009A14FD /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		3AF360A9197687E2009A14FD /* AppManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppManager.h; sourceTree = "<group>"; };
 		3AF360AA197687E2009A14FD /* AppManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppManager.m; sourceTree = "<group>"; };
@@ -356,6 +361,8 @@
 		3AF5402019C1937000FD5A93 /* ImagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagesViewController.m; sourceTree = "<group>"; };
 		3AF5402219C1972100FD5A93 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		3AF5402319C1972100FD5A93 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		3AFEC18919DED9E70062AA64 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		3AFEC18B19DEDBC70062AA64 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		3F08EBFB194715D500CDFBD8 /* RoundedImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RoundedImageView.h; path = RoundedImageView/RoundedImageView.h; sourceTree = "<group>"; };
 		3F08EBFC194715D500CDFBD8 /* RoundedImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RoundedImageView.m; path = RoundedImageView/RoundedImageView.m; sourceTree = "<group>"; };
 		3F08EC0319471BCC00CDFBD8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -625,10 +632,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3AFEC18C19DEDBC70062AA64 /* libxml2.dylib in Frameworks */,
+				3AFEC18A19DED9E70062AA64 /* libz.dylib in Frameworks */,
 				3A97DDBE19D3636600B4C33E /* SystemConfiguration.framework in Frameworks */,
 				3A97DDBC19D3634E00B4C33E /* MobileCoreServices.framework in Frameworks */,
 				3A97DDBA19D3633600B4C33E /* CoreMedia.framework in Frameworks */,
 				3A97DDB819D3631800B4C33E /* AVFoundation.framework in Frameworks */,
+				3ACAB74119DED6E3005DEE64 /* libPayPalMPL.a in Frameworks */,
 				3A97DDB619D3630500B4C33E /* AudioToolbox.framework in Frameworks */,
 				3A02687C19A5F9C000C8CD8E /* Social.framework in Frameworks */,
 				3AC8525519A4CF9C00FCDE16 /* MapKit.framework in Frameworks */,
@@ -636,7 +646,6 @@
 				3AF360B019768CF8009A14FD /* CoreData.framework in Frameworks */,
 				3F3D56541951797900FB2774 /* MessageUI.framework in Frameworks */,
 				3F08EC0619471D6B00CDFBD8 /* Accelerate.framework in Frameworks */,
-				3A97DDB419D3627400B4C33E /* libPayPalMobile.a in Frameworks */,
 				3F10DDDB19388E6F002D3B43 /* CoreGraphics.framework in Frameworks */,
 				3F10DDDD19388E6F002D3B43 /* UIKit.framework in Frameworks */,
 				3F10DDD919388E6F002D3B43 /* Foundation.framework in Frameworks */,
@@ -648,21 +657,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3A97DDAB19D3627400B4C33E /* PayPalMobile */ = {
-			isa = PBXGroup;
-			children = (
-				3A97DDAC19D3627400B4C33E /* libPayPalMobile.a */,
-				3A97DDAD19D3627400B4C33E /* PayPalConfiguration.h */,
-				3A97DDAE19D3627400B4C33E /* PayPalFuturePaymentViewController.h */,
-				3A97DDAF19D3627400B4C33E /* PayPalMobile.h */,
-				3A97DDB019D3627400B4C33E /* PayPalOAuthScopes.h */,
-				3A97DDB119D3627400B4C33E /* PayPalPayment.h */,
-				3A97DDB219D3627400B4C33E /* PayPalPaymentViewController.h */,
-				3A97DDB319D3627400B4C33E /* PayPalProfileSharingViewController.h */,
-			);
-			path = PayPalMobile;
-			sourceTree = "<group>";
-		};
 		3A9C271019C8AF930007BA34 /* ChatViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -743,8 +737,8 @@
 				3A9D206D19B39DF600FE163E /* Ticket.m */,
 				3A97DDDC19D9940300B4C33E /* Alert.h */,
 				3A97DDDD19D9940300B4C33E /* Alert.m */,
-				3AA7811019DAE88A00D3A712 /* Message.h */,
-				3AA7811119DAE88A00D3A712 /* Message.m */,
+				3ACAB72F19DEB9C6005DEE64 /* Message.h */,
+				3ACAB73019DEB9C6005DEE64 /* Message.m */,
 			);
 			name = Models;
 			path = Classes/Models;
@@ -770,10 +764,28 @@
 			path = Classes/CustomClasses;
 			sourceTree = "<group>";
 		};
+		3ACAB73519DED6E3005DEE64 /* PayPalMPL */ = {
+			isa = PBXGroup;
+			children = (
+				3ACAB73619DED6E3005DEE64 /* libPayPalMPL.a */,
+				3ACAB73719DED6E3005DEE64 /* PayPal.h */,
+				3ACAB73819DED6E3005DEE64 /* PayPalAddress.h */,
+				3ACAB73919DED6E3005DEE64 /* PayPalAdvancedPayment.h */,
+				3ACAB73A19DED6E3005DEE64 /* PayPalAmounts.h */,
+				3ACAB73B19DED6E3005DEE64 /* PayPalInvoiceData.h */,
+				3ACAB73C19DED6E3005DEE64 /* PayPalInvoiceItem.h */,
+				3ACAB73D19DED6E3005DEE64 /* PayPalPayment.h */,
+				3ACAB73E19DED6E3005DEE64 /* PayPalPreapprovalDetails.h */,
+				3ACAB73F19DED6E3005DEE64 /* PayPalReceiverAmounts.h */,
+				3ACAB74019DED6E3005DEE64 /* PayPalReceiverPaymentDetails.h */,
+			);
+			path = PayPalMPL;
+			sourceTree = "<group>";
+		};
 		3AF360A419767564009A14FD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				3A97DDAB19D3627400B4C33E /* PayPalMobile */,
+				3ACAB73519DED6E3005DEE64 /* PayPalMPL */,
 				3AF360A519767564009A14FD /* FacebookSDK.framework */,
 			);
 			path = Frameworks;
@@ -891,6 +903,8 @@
 		3F10DDD719388E6F002D3B43 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3AFEC18B19DEDBC70062AA64 /* libxml2.dylib */,
+				3AFEC18919DED9E70062AA64 /* libz.dylib */,
 				3A97DDBD19D3636600B4C33E /* SystemConfiguration.framework */,
 				3A97DDBB19D3634E00B4C33E /* MobileCoreServices.framework */,
 				3A97DDB919D3633600B4C33E /* CoreMedia.framework */,
@@ -2072,7 +2086,7 @@
 				3AF360B61976A4D0009A14FD /* JSON.m in Sources */,
 				3A97DDD019D5312700B4C33E /* ZSLabel.m in Sources */,
 				3AB28AEF197D9DA4009C1DDC /* Event.m in Sources */,
-				3AA7811219DAE88A00D3A712 /* Message.m in Sources */,
+				3ACAB73119DEB9C6005DEE64 /* Message.m in Sources */,
 				841C508A19A6067800BD4141 /* AddTicketAlertViewController.m in Sources */,
 				3A9DB5581988245300861899 /* ZSDatePicker.m in Sources */,
 				3AF360B319768F15009A14FD /* Dingo.xcdatamodeld in Sources */,
@@ -2219,6 +2233,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Dingo/Frameworks/PayPalMobile",
+					"$(PROJECT_DIR)/Dingo/Frameworks/PayPalMPL",
 				);
 				OTHER_LDFLAGS = (
 					"-lc++",
@@ -2251,6 +2266,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Dingo/Frameworks/PayPalMobile",
+					"$(PROJECT_DIR)/Dingo/Frameworks/PayPalMPL",
 				);
 				OTHER_LDFLAGS = (
 					"-lc++",
