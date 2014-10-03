@@ -36,18 +36,33 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-}
-
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
     alertsArray = [NSMutableArray arrayWithArray:[[DataManager shared] allAlerts]];
+    
+    tblTicketAlerts.tableFooterView = [[UIView alloc] init];
     imgEmptyAlerts.hidden = YES;
     tblTicketAlerts.hidden = NO;
     if (alertsArray.count==0) {
         imgEmptyAlerts.hidden = NO;
         tblTicketAlerts.hidden = YES;
     }
-    [tblTicketAlerts reloadData];
+
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    [[DataManager shared] allAlertsWithCompletion:^(BOOL finished) {
+        alertsArray = [NSMutableArray arrayWithArray:[[DataManager shared] allAlerts]];
+        
+        imgEmptyAlerts.hidden = YES;
+        tblTicketAlerts.hidden = NO;
+        if (alertsArray.count==0) {
+            imgEmptyAlerts.hidden = NO;
+            tblTicketAlerts.hidden = YES;
+        }
+        [tblTicketAlerts reloadData];
+    }];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -95,6 +110,7 @@
         Alert *alert = alertsArray[indexPath.row];
         
         NSDictionary *params = @{@"event_id":alert.event_id,
+                                 @"price":@0,
                                  @"on":@NO};
         [WebServiceManager createAlert:params completion:^(id response, NSError *error) {
             if (response) {

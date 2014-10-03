@@ -2520,7 +2520,7 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
                                     <action selector="btnConfirmTap:" destination="sF4-cH-j8V" eventType="touchUpInside" id="X7I-nJ-y9J"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Description" minimumFontSize="17" id="7hH-Ao-aD6">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Description" minimumFontSize="17" id="7hH-Ao-aD6" customClass="ZSTextField">
                                 <rect key="frame" x="93" y="13" width="219" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>

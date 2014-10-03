@@ -11,10 +11,11 @@
 #import "DataManager.h"
 #import "WebServiceManager.h"
 #import "ZSLoadingView.h"
+#import "ZSTextField.h"
 
 @interface AddTicketAlertViewController (){
     
-    IBOutlet UITextField *txtDescription;
+    IBOutlet ZSTextField *txtDescription;
     IBOutlet UILabel *lblHint;
     IBOutlet UIButton *btnDelete;
     IBOutlet UIButton *btnConfirm;
@@ -45,9 +46,13 @@
     lblHint.font = [DingoUISettings fontWithSize:18];
     if (!self.alert) {
         btnDelete.hidden = YES;
+        
+        self.alert = [[Alert alloc] initWithEntity:[NSEntityDescription entityForName:@"Alerts" inManagedObjectContext:[AppManager sharedManager].managedObjectContext] insertIntoManagedObjectContext:nil];
     }else{
         txtDescription.text = self.alert.alert_description;
     }
+    
+     [txtDescription setPopoverSize:CGRectMake(0, txtDescription.frame.origin.y + txtDescription.frame.size.height, 320.0, 130.0)];
 }
 
 - (void)didReceiveMemoryWarning
@@ -72,41 +77,33 @@
     if (txtDescription.text.length == 0) {
         [AppManager showAlert:@"Please enter description."];
         return;
+    } else {
+        NSArray* events = [[DataManager shared] allEvents];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name == %@", txtDescription.text];
+        
+        NSArray *filteredEvents = [events filteredArrayUsingPredicate:predicate];
+        if (filteredEvents.count == 0) {
+            [AppManager showAlert:@"Sorry, no event matches your description"];
+            return;
+        }
     }
-    if (!self.alert) {
-//        [[DataManager shared] addOrUpdateAlert:@{@"alert_id": [DataManager generateGUID],@"alert_description":txtDescription.text}];
+    
+    NSDictionary *params = @{@"on":@YES,
+                             @"description": txtDescription.text,
+                             @"event_id":self.alert.event_id,
+                             @"price":@0
+                             };
+    
+    ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please wait ..."];
+    [loadingView show];
+    [WebServiceManager createAlert:params completion:^(id response, NSError *error) {
+        if (response) {
+            [[DataManager shared] addOrUpdateAlert:response];
+        }
+        [loadingView hide];
         
-        NSDictionary *params = @{@"on":@YES,
-                                 @"description": txtDescription.text
-                                 };
-        
-        ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please wait ..."];
-        [loadingView show];
-        [WebServiceManager createAlert:params completion:^(id response, NSError *error) {
-            if (response) {
-                [[DataManager shared] addOrUpdateAlert:response];
-            }
-            [loadingView hide];
-            
-              [self back];
-        }];
-        
-    }else{
-//        NSDictionary *params = @{@"on":@YES,
-//                                 @"description": self.eventData.name
-//                                 };
-//        
-//        ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please wait ..."];
-//        [loadingView show];
-//        [WebServiceManager createAlert:params completion:^(id response, NSError *error) {
-//            if (response) {
-//                [[DataManager shared] addOrUpdateAlert:response];
-//            }
-//            [loadingView hide];
-//        }];
-
-    }
-
+        [self back];
+    }];
   
 }
 
@@ -121,6 +118,45 @@
     [textField resignFirstResponder];
     return YES;
 }
+
+
+#pragma mark ZSTextFieldDelegate
+
+- (NSArray *)dataForPopoverInTextField:(ZSTextField *)textField {
+    
+    if (textField == txtDescription) {
+        NSArray* events = [[DataManager shared] allEvents];
+        NSMutableArray *dataForPopover = [NSMutableArray new];
+        for (Event *tmpEvent in events) {
+            [dataForPopover addObject:@{@"DisplayText": tmpEvent.name, @"CustomObject":tmpEvent}];
+        }
+        
+        return dataForPopover;
+    }
+    return nil;
+}
+
+- (void)textField:(ZSTextField *)textField didEndEditingWithSelection:(NSDictionary *)result
+{
+    if (textField == txtDescription) {
+        
+        if ([result[@"CustomObject"] isKindOfClass:[Event class]]) {
+            Event *event = result[@"CustomObject"];
+            self.alert.event_id = event.event_id;
+            
+        }
+        
+    }
+}
+
+- (BOOL)textFieldShouldSelect:(ZSTextField *)textField {
+    if (textField == txtDescription) {
+        return YES;
+    }
+    
+    return NO;
+}
+
 
 
 @end
