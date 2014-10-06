@@ -60,6 +60,8 @@
     
     [bubbleTable reloadData];
     
+    NSLog(@"table %@", bubbleTable);
+    
     // Keyboard events
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardWillShowNotification object:nil];

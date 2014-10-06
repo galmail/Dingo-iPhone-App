@@ -3325,13 +3325,13 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
             </objects>
             <point key="canvasLocation" x="2134" y="-761"/>
         </scene>
-        <!--Message-->
+        <!--ChatViewController-->
         <scene sceneID="fY3-Fc-CsO">
             <objects>
-                <viewController storyboardIdentifier="ChatViewController" id="LXS-WP-D7x" customClass="ChatViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChatViewController" id="LXS-WP-D7x" userLabel="ChatViewController" customClass="ChatViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eoh-tP-b6Z">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="DT3-8v-OaO" customClass="UIBubbleTableView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="451"/>
@@ -3383,14 +3383,16 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="bubbleTable" destination="DT3-8v-OaO" id="QXE-fM-Rcj"/>
                         <outlet property="textField" destination="sih-sa-w6B" id="83U-Jr-tYr"/>
                         <outlet property="textInputView" destination="5jf-pe-WqS" id="o5q-8f-vlG"/>
+                        <outlet property="view" destination="eoh-tP-b6Z" id="hOM-ED-nU6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r05-P5-Mlo" userLabel="First Responder" sceneMemberID="firstResponder"/>

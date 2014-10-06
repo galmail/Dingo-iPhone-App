@@ -216,124 +216,15 @@
     
     ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please Wait..."];
     [loadingView show];
-    [FBSession openActiveSessionWithReadPermissions:@[@"email", @"user_birthday", @"user_location"]
-                                       allowLoginUI:YES
-                                  completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
-                                      
-                                      if (error) {
-                                          UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                                          [alert show];
-                                          
-                                          [loadingView hide];
-                                      } else {
-                                          if (state == FBSessionStateOpen) {
-                                              
-                                              FBRequest *request = [FBRequest requestForMe];
-                                              [request.parameters setValue:@"id,name,first_name,last_name,email,picture,birthday,location" forKey:@"fields"];
-                                              
-                                              [request startWithCompletionHandler:^(FBRequestConnection *connection, id<FBGraphUser> user, NSError *error) {
-                                                  if (user) {
-                                                      
-                                                      NSString *birtday = nil;
-                                                      if(user.birthday.length > 0) {
-                                                          // change date format from MM/DD/YYYY to DD/MM/YYYY
-                                                          NSArray *dateArray = [user.birthday componentsSeparatedByString:@"/"];
-                                                          dateArray = @[ dateArray[1], dateArray[0], dateArray[2]];
-                                                          birtday = [dateArray componentsJoinedByString:@"/"];
-                                                      }
-                                                      
-                                                      NSDictionary *params = @{ @"name" : user.first_name,
-                                                                                @"surname": user.last_name,
-                                                                                @"email" : user[@"email"],
-                                                                                @"password" : [NSString stringWithFormat:@"fb%@", user.objectID],
-                                                                                @"fb_id" : user.objectID,
-                                                                                @"date_of_birth": birtday.length > 0 ? birtday : @"",
-                                                                                @"city": user.location ? [[user.location.name componentsSeparatedByString:@","] firstObject] : @"London",
-                                                                                @"photo_url": [NSString stringWithFormat:@"http://graph.facebook.com/v2.0/%@/picture?redirect=1&height=200&type=normal&width=200",user.objectID],//user[@"picture"][@"data"][@"url"],
-                                                                                @"device_uid":[AppManager sharedManager].deviceToken.length > 0 ? [AppManager sharedManager].deviceToken : @"",
-                                                                                @"device_brand":@"Apple",
-                                                                                @"device_model": [[UIDevice currentDevice] platformString],
-                                                                                @"device_os":[[UIDevice currentDevice] systemVersion],
-                                                                                @"device_location" : [NSString stringWithFormat:@"%f,%f", [AppManager sharedManager].currentLocation.coordinate.latitude, [AppManager sharedManager].currentLocation.coordinate.longitude ]
-                                                                                };
-                                                      
-                                                      
-                                                      [WebServiceManager signUp:params completion:^(id response, NSError *error) {
-                                                          NSLog(@"response %@", response);
-                                                          if (error) {
-                                                              UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                                                              [alert show];
-                                                              
-                                                              [loadingView hide];
-                                                          } else {
-                                                              if (response) {
-                                                                  
-                                                                  if (response[@"authentication_token"]) {
-                                                                      [AppManager sharedManager].token = response[@"authentication_token"];
-                                                                      
-                                                                      [AppManager sharedManager].userInfo = [@{ @"id":response[@"id"], @"email":user[@"email"], @"name": user.first_name, @"photo_url":[NSString stringWithFormat:@"http://graph.facebook.com/v2.0/%@/picture?redirect=1&height=200&type=normal&width=200",user.objectID], @"city":user.location ? [[user.location.name componentsSeparatedByString:@","] firstObject] : @"London"} mutableCopy];
-                                                                      
-                                                                      [self reloadData];
-                                                                      
-                                                                  } else {
-                                                                      
-                                                                      // login
-                                                                      NSDictionary *params = @{ @"email" : user[@"email"],
-                                                                                                @"password" : [NSString stringWithFormat:@"fb%@", user.objectID]
-                                                                                                };
-                                                                      
-                                                                      [WebServiceManager signIn:params completion:^(id response, NSError *error) {
-                                                                          NSLog(@"response %@", response);
-                                                                          if (error ) {
-                                                                              UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                                                                              [alert show];
-                                                                          } else {
-                                                                              
-                                                                              if (response) {
-                                                                                  
-                                                                                  if ([response[@"success"] boolValue]) {
-                                                                                      [AppManager sharedManager].token = response[@"auth_token"];
-                                                                                      
-                                                                                      [AppManager sharedManager].userInfo = [@{@"id":response[@"id"], @"email":user[@"email"], @"name": user.first_name, @"surname": response[@"surname"], @"allow_dingo_emails": response[@"allow_dingo_emails"], @"allow_push_notifications":  response[@"allow_push_notifications"], @"fb_id": response[@"fb_id"], @"photo_url":[NSString stringWithFormat:@"http://graph.facebook.com/v2.0/%@/picture?redirect=1&height=200&type=normal&width=200",user.objectID], @"city" : user.location ? [[user.location.name componentsSeparatedByString:@","] firstObject] : @"London"} mutableCopy];
-                                                                                      
-                                                                                      [self reloadData];
-                                                                                      
-                                                                                  } else {
-                                                                                      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Unable to sign in, please try later" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                                                                                      [alert show];
-                                                                                  }
-                                                                                  
-                                                                              } else {
-                                                                                  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Unable to sign in, please try later" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                                                                                  [alert show];
-                                                                              }
-                                                                          }
-                                                                      }];
-                                                                      
-                                                                  }
-                                                                  
-                                                              } else {
-                                                                  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Unable to sign up, please try later" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                                                                  [alert show];
-                                                              }
-                                                              
-                                                              [loadingView hide];
-                                                          }
-                                                          
-                                                          
-                                                      }];
-                                                  } else {
-                                                      [loadingView hide];
-                                                  }
-                                                  
-                                                  
-                                              }];
-                                          } else {
-                                              [loadingView hide];
-                                          }
-                                      }
-                                      
-                                  }];
+    
+    [WebServiceManager signInWithFBCompletion:^(id response, NSError *error) {
+        [loadingView hide];
+        if (response) {
+             [self reloadData];
+        }
+        
+    }];
+
 }
 
 @end

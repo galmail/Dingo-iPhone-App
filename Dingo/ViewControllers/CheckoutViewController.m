@@ -12,7 +12,11 @@
 #import "DingoUISettings.h"
 #import "WebServiceManager.h"
 //#import "PayPalMobile.h"
+
 #import "PayPal.h"
+#import "PayPalPayment.h"
+#import "PayPalAdvancedPayment.h"
+#import "PayPalInvoiceItem.h"
 #import "ChatViewController.h"
 
 static NSString *kPayPalAppID = @"APP-80W284485P519543T";
@@ -146,10 +150,51 @@ static NSString *kPayPalAppID = @"APP-80W284485P519543T";
 //                    
 //                    [self presentViewController:paymentViewController animated:YES completion:nil];
 
- 
+                    NSNumber *total = [currencyFormatter numberFromString:txtTotal.text];
+                    
+                    NSNumber *sellerTotal = @([total floatValue]*0.9f);
+                    
+                    
+                    PayPalAdvancedPayment *advancedPayment = [[PayPalAdvancedPayment alloc] init];
+
+                    advancedPayment.paymentCurrency = @"GBP";
+                    advancedPayment.merchantName = @"Dingo, Inc.";
+                    advancedPayment.ipnUrl = @"http://dingoapp.herokuapp.com/api/v1/paypal/notification?order_id=#{current_order.id}";
+                    
+                    
+                    PayPalReceiverPaymentDetails *receiver = [[PayPalReceiverPaymentDetails alloc] init];
+                    receiver.isPrimary = YES;
+                    receiver.recipient = @"dingo@dingoapp.co.uk";
+                    receiver.subTotal = (NSDecimalNumber*)total;
+//                    receiver.paymentType = TYPE_GOODS;
+
+//                    receiver.invoiceData = [[PayPalInvoiceData alloc] init];
+//                    receiver.invoiceData.totalShipping = 0;
+//                    receiver.invoiceData.totalTax = 0;
+//                    receiver.invoiceData.invoiceItems = [NSMutableArray array];
+//                    
+//                    PayPalInvoiceItem *item = [[PayPalInvoiceItem alloc] init];
+//                    item.totalPrice = receiver.subTotal;
+//                    item.name = self.event.name;
+//                    
+//                    [receiver.invoiceData.invoiceItems addObject:item];
+                    
+                    PayPalReceiverPaymentDetails *receiver1 = [[PayPalReceiverPaymentDetails alloc] init];
+                    receiver1.isPrimary = NO;
+                    receiver1.recipient = @"asatur.galstyan@gmail.com";
+                    receiver1.subTotal = (NSDecimalNumber*)sellerTotal;
+                    
+                    
+                    advancedPayment.receiverPaymentDetails = [NSMutableArray array];
+                    [advancedPayment.receiverPaymentDetails addObjectsFromArray:@[receiver, receiver1]];
+                    
+                   	[PayPal getPayPalInst].feePayer = FEEPAYER_PRIMARYRECEIVER;
+                    [PayPal getPayPalInst].delegate = self;
+                    [PayPal getPayPalInst].shippingEnabled = @NO;
+                    [[PayPal getPayPalInst] advancedCheckoutWithPayment:advancedPayment];
+
                     
                 } else {
-                 
                     [AppManager showAlert:@"Unable to buy!"];
                 }
                 
@@ -216,29 +261,11 @@ static NSString *kPayPalAppID = @"APP-80W284485P519543T";
 
 - (void)paymentLibraryExit {
     
-}
-
-
-/*
-- (void)payPalPaymentViewController:(PayPalPaymentViewController *)paymentViewController didCompletePayment:(PayPalPayment *)completedPayment {
-    NSLog(@"PayPal Payment Success! \n%@",  [completedPayment description]);
-
-    [self dismissViewControllerAnimated:YES completion:^{
-        // redirect to chat screen
-        
-        ChatViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"ChatViewController"];
-        vc.ticket = self.ticket;
-        
-        [self.navigationController pushViewController:vc animated:YES];
-
-    }];
-}
-
-- (void)payPalPaymentDidCancel:(PayPalPaymentViewController *)paymentViewController {
-    NSLog(@"PayPal Payment Canceled");
+    ChatViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"ChatViewController"];
+    vc.ticket = self.ticket;
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController pushViewController:vc animated:YES];
+    
 }
-*/
 
 @end
