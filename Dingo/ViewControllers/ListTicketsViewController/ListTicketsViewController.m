@@ -155,6 +155,8 @@ static const NSUInteger comfirmCellIndex = 17;
 
     
     if (!self.ticket && !self.event) {
+        self.changed = NO;
+        
         self.ticket = [[Ticket alloc] initWithEntity:[NSEntityDescription entityForName:@"Ticket" inManagedObjectContext:[AppManager sharedManager].managedObjectContext] insertIntoManagedObjectContext:nil];
         
         self.event = [[Event alloc] initWithEntity:[NSEntityDescription entityForName:@"Event" inManagedObjectContext:[AppManager sharedManager].managedObjectContext] insertIntoManagedObjectContext:nil];
@@ -200,6 +202,8 @@ static const NSUInteger comfirmCellIndex = 17;
         self.categoriesCell.selectedCategory = [AppManager sharedManager].draftTicket[@"categoryID"];
         [self.categoriesCell refresh];
     } else if (!isEditing) {
+        self.changed = nil;
+        
         self.nameField.text = nil;
         self.locationField.text = nil;
         self.startDateField.text = nil;

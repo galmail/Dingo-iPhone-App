@@ -217,6 +217,8 @@ static const NSUInteger commentCellIndex = 4;
                         [WebServiceManager createTicket:params photos:self.photos completion:^(id response, NSError *error) {
                             if (response[@"id"]) {
                                 // ticket created
+                                
+                                [AppManager sharedManager].draftTicket = nil;
                                 [self.navigationController.viewControllers[0] setSelectedIndex:0];
                                 [self.navigationController popToRootViewControllerAnimated:YES];
 
@@ -253,6 +255,9 @@ static const NSUInteger commentCellIndex = 4;
             if (!error ) {
                 if (response[@"id"]) {
                     // ticket created
+                    
+                    [AppManager sharedManager].draftTicket = nil;
+                    
                     [self.navigationController.viewControllers[0] setSelectedIndex:0];
                     [self.navigationController popToRootViewControllerAnimated:YES];
                     
