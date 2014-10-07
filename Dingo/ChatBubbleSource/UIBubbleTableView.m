@@ -74,16 +74,6 @@
     return self;
 }
 
-#if !__has_feature(objc_arc)
-- (void)dealloc
-{
-    [_bubbleSection release];
-	_bubbleSection = nil;
-	_bubbleDataSource = nil;
-    [super dealloc];
-}
-#endif
-
 #pragma mark - Override
 
 - (void)reloadData
@@ -95,21 +85,12 @@
 	self.bubbleSection = nil;
     
     // Loading new data
-    int count = 0;
-#if !__has_feature(objc_arc)
-    self.bubbleSection = [[[NSMutableArray alloc] init] autorelease];
-#else
+    NSInteger count = 0;
     self.bubbleSection = [[NSMutableArray alloc] init];
-#endif
     
     if (self.bubbleDataSource && (count = [self.bubbleDataSource rowsForBubbleTable:self]) > 0)
     {
-#if !__has_feature(objc_arc)
-        NSMutableArray *bubbleData = [[[NSMutableArray alloc] initWithCapacity:count] autorelease];
-#else
         NSMutableArray *bubbleData = [[NSMutableArray alloc] initWithCapacity:count];
-#endif
-        
         for (int i = 0; i < count; i++)
         {
             NSObject *object = [self.bubbleDataSource bubbleTableView:self dataForRow:i];
@@ -134,11 +115,7 @@
             
             if ([data.date timeIntervalSinceDate:last] > self.snapInterval)
             {
-#if !__has_feature(objc_arc)
-                currentSection = [[[NSMutableArray alloc] init] autorelease];
-#else
                 currentSection = [[NSMutableArray alloc] init];
-#endif
                 [self.bubbleSection addObject:currentSection];
             }
             
@@ -156,7 +133,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    int result = [self.bubbleSection count];
+    NSInteger result = [self.bubbleSection count];
     if (self.typingBubble != NSBubbleTypingTypeNobody) result++;
     return result;
 }
@@ -169,7 +146,7 @@
     return [[self.bubbleSection objectAtIndex:section] count] + 1;
 }
 
-- (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Now typing
 	if (indexPath.section >= [self.bubbleSection count])
@@ -184,7 +161,9 @@
     }
     
     NSBubbleData *data = [[self.bubbleSection objectAtIndex:indexPath.section] objectAtIndex:indexPath.row - 1];
-    return MAX(data.insets.top + data.view.frame.size.height + data.insets.bottom, self.showAvatars ? 52 : 0);
+    
+    CGFloat height = MAX(data.insets.top + data.view.frame.size.height + data.insets.bottom, self.showAvatars ? 52 : 0);
+    return height;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

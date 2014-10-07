@@ -59,8 +59,7 @@
     bubbleTable.typingBubble = NSBubbleTypingTypeNobody;
     
     [bubbleTable reloadData];
-    
-    NSLog(@"table %@", bubbleTable);
+    [bubbleTable scrollBubbleViewToBottomAnimated:YES];
     
     // Keyboard events
     
@@ -70,13 +69,21 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
     
+    [self reloadMessages];
+
+}
+
+- (void)reloadMessages {
     ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Loading..."];
     [loadingView show];
     [[DataManager shared] fetchMessagesWithCompletion:^(BOOL finished) {
         
         [loadingView hide];
-        NSArray * messages = [[DataManager shared] allMessagesWith:self.ticket.user_id ticketID:self.ticket.ticket_id];
+        NSNumber *userID = [AppManager sharedManager].userInfo[@"id"] ;
+        
+        NSArray * messages = [[DataManager shared] allMessagesFor:userID ticketID:self.ticket.ticket_id];
         [bubbleData removeAllObjects];
         
         for (Message * msg in messages) {
@@ -86,7 +93,7 @@
             if ([msg.from_dingo boolValue] ) {
                 
                 if ([msg.offer_new boolValue] && [msg.receiver_id isEqualToString:[[AppManager sharedManager].userInfo[@"id"] stringValue]]) {
-                    NSString * offerText = [NSString stringWithFormat:@"<font face='SourceSansPro-Regular' size=14 color='#ffffff'>%@. <a href='accept'>Accept</a> or <a href='reject'>Reject</a> </font>", msg.content];
+                    NSString * offerText = [NSString stringWithFormat:@"<font face='SourceSansPro-Regular' size=14 color='#ffffff'>%@. <a href='accept_%@'>Accept</a> or <a href='reject_%@'>Reject</a> </font>", msg.content, msg.offer_id, msg.offer_id];
                     bubble = [NSBubbleData dataWithText:offerText date:msg.datetime type:BubbleTypeDingo delegate:self];
                 } else {
                     bubble = [NSBubbleData dataWithText:msg.content date:msg.datetime type:BubbleTypeDingo];
@@ -134,7 +141,6 @@
     }];
 }
 
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -177,6 +183,8 @@
 
 - (NSInteger)rowsForBubbleTable:(UIBubbleTableView *)tableView
 {
+    
+    NSLog(@"count %lu", (unsigned long)[bubbleData count]);
     return [bubbleData count];
 }
 
@@ -260,13 +268,37 @@
 - (void)ZSLabel:(id)ZSLabel didSelectLinkWithURL:(NSURL*)url {
     NSString * action = [url absoluteString];
     
-    if ([action isEqualToString:@"accept"]) {
+    NSArray *offerArray = [action componentsSeparatedByString:@"_"];
+    if (offerArray.count == 2) {
+        NSString *offerID = offerArray[1];
+        NSString *offerAction = offerArray[0];
+
+        if ([offerAction isEqualToString:@"accept"]) {
+            ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please wait..."];
+            [loadingView show];
+            [WebServiceManager replyOffer:@{@"accept_offer": @"1", @"offerID":offerID} completion:^(id response, NSError *error) {
+                [loadingView hide];
+                if (response) {
+                    [self reloadMessages];
+                }
+                
+            }];
+        }
         
+        if ([offerAction isEqualToString:@"reject"]) {
+            ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please wait..."];
+            [loadingView show];
+            [WebServiceManager replyOffer:@{@"accept_offer": @"0", @"offerID":offerID} completion:^(id response, NSError *error) {
+                [loadingView hide];
+                if (response) {
+                    [self reloadMessages];
+                }
+                
+            }];
+        }
     }
     
-    if ([action isEqualToString:@"reject"]) {
-        
-    }
+   
 }
 
 

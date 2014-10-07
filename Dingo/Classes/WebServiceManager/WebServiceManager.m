@@ -685,13 +685,16 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
     [request addValue:contentType forHTTPHeaderField:@"Content-Type"];
     
     // attachments
-    for (NSDictionary *attachment in attachments) {
-        [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-        [body appendData:[[NSString stringWithFormat:@"Content-Disposition: attachment; name=\"%@\"; filename=\"%@.png\"\r\n", attachment[@"name"], attachment[@"fileName"]] dataUsingEncoding:NSUTF8StringEncoding]];
-        [body appendData:[@"Content-Type: image/png\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-        [body appendData:attachment[@"data"]];
-        [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    if (attachments.count) {
+        for (NSDictionary *attachment in attachments) {
+            [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+            [body appendData:[[NSString stringWithFormat:@"Content-Disposition: attachment; name=\"%@\"; filename=\"%@.png\"\r\n", attachment[@"name"], attachment[@"fileName"]] dataUsingEncoding:NSUTF8StringEncoding]];
+            [body appendData:[@"Content-Type: image/png\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+            [body appendData:attachment[@"data"]];
+            [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+        }
     }
+    
     
     // parameters
     for (NSString *key in [params allKeys]) {

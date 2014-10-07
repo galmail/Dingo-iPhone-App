@@ -41,8 +41,8 @@
 
 #pragma mark - Text bubble
 
-const UIEdgeInsets textInsetsMine = {7, 10, 7, 15};
-const UIEdgeInsets textInsetsSomeone = {7, 10, 7, 15};
+const UIEdgeInsets textInsetsMine = {7, 10, 7, 10};
+const UIEdgeInsets textInsetsSomeone = {7, 10, 7, 10};
 
 + (id)dataWithText:(NSString *)text date:(NSDate *)date type:(NSBubbleType)type delegate:(id)delegate
 {
@@ -130,8 +130,8 @@ const UIEdgeInsets textInsetsSomeone = {7, 10, 7, 15};
 
 #pragma mark - Image bubble
 
-const UIEdgeInsets imageInsetsMine = {40, 20, 20, 20};
-const UIEdgeInsets imageInsetsSomeone = {20, 20, 20, 20};
+const UIEdgeInsets imageInsetsMine = {20, 10, 20, 30};
+const UIEdgeInsets imageInsetsSomeone = {20, 10, 20, 30};
 
 + (id)dataWithImage:(UIImage *)image date:(NSDate *)date type:(NSBubbleType)type
 {

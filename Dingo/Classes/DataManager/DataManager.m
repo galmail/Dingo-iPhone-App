@@ -1058,11 +1058,11 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     return events;
 }
 
-- (NSArray *)allMessagesWith:(NSNumber *)userID ticketID:(NSString*)ticketID {
+- (NSArray *)allMessagesFor:(NSNumber *)userID ticketID:(NSString*)ticketID {
     
     NSManagedObjectContext *context = [AppManager sharedManager].managedObjectContext;
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Messages"];
-    request.predicate = [NSPredicate predicateWithFormat:@"((receiver_id == %@ && sender_id == %@) || (sender_id == %@ && receiver_id == %@)) && ticket_id == %@", [userID stringValue], [AppManager sharedManager].userInfo[@"id"],[userID stringValue], [AppManager sharedManager].userInfo[@"id"], ticketID];
+    request.predicate = [NSPredicate predicateWithFormat:@"(receiver_id == %@ || sender_id == %@) && ticket_id == %@", [userID stringValue], [userID stringValue], ticketID];
     request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"datetime" ascending:YES]];
     NSError *error = nil;
     NSArray *events = [context executeFetchRequest:request error:&error];

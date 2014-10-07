@@ -84,7 +84,9 @@
         
         CGFloat delta = self.frame.size.height - (self.data.insets.top + self.data.insets.bottom + self.data.view.frame.size.height);
 
-        if (delta > 0 ) y = delta;
+        if (delta > 0 ) {
+            y = delta;
+        }
         
         if (type == BubbleTypeSomeoneElse) x += 70;
         if (type == BubbleTypeMine || type == BubbleTypeDingo) x -= 70;
@@ -92,7 +94,7 @@
     
     [self.customView removeFromSuperview];
     self.customView = self.data.view;
-    self.customView.frame = CGRectMake(x + self.data.insets.left, y + self.data.insets.top, width, height);
+    self.customView.frame = CGRectMake(x + self.data.insets.left, y + self.data.insets.top-5, width, height);
     [self.contentView addSubview:self.customView];
     
     switch (type) {
@@ -103,13 +105,13 @@
             self.bubbleImage.image = [[UIImage imageNamed:@"bubbleWhite.png"] stretchableImageWithLeftCapWidth:21 topCapHeight:14];
             break;
         case BubbleTypeDingo:
-            self.bubbleImage.image = [[UIImage imageNamed:@"bubbleGray.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(15, 15, 15, 20)];
+            self.bubbleImage.image = [[UIImage imageNamed:@"bubbleGray.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(15, 15, 15, 15)];
             break;
         default:
             break;
     }
         
-    self.bubbleImage.frame = CGRectMake(x, y, width + self.data.insets.left + self.data.insets.right, height + self.data.insets.top + self.data.insets.bottom);
+    self.bubbleImage.frame = CGRectMake(x, y-5, width + self.data.insets.left + self.data.insets.right, height + self.data.insets.top + self.data.insets.bottom);
     
     
     self.contentView.backgroundColor = [UIColor clearColor];
