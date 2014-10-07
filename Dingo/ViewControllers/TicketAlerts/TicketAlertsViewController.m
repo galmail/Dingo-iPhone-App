@@ -8,6 +8,7 @@
 
 #import "TicketAlertsViewController.h"
 #import "AddTicketAlertViewController.h"
+#import "TicketsViewController.h"
 #import "TicketAlertCell.h"
 #import "DataManager.h"
 #import "WebServiceManager.h"
@@ -149,6 +150,13 @@
 //    AddTicketAlertViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"AddTicketAlertViewController"];
 //    viewController.alert = alertsArray[indexPath.row];
 //    [self.navigationController pushViewController:viewController animated:YES];
+    
+    Alert *alert = alertsArray[indexPath.row];
+    
+    TicketsViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"TicketsViewController"];
+    vc.eventData = [[DataManager shared] eventByID:alert.event_id];
+    
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 
