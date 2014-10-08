@@ -27,6 +27,7 @@
 @property (nonatomic, retain) NSString * ticket_type;
 @property (nonatomic, retain) NSNumber * user_id;
 @property (nonatomic, retain) NSString * user_name;
+@property (nonatomic, retain) NSString * user_email;
 @property (nonatomic, retain) NSData * user_photo;
 @property (nonatomic, retain) NSNumber * offers_count;
 

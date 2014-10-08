@@ -38,7 +38,7 @@
     [super willTransitionToState:state];
     if((state & UITableViewCellStateShowingDeleteConfirmationMask) == UITableViewCellStateShowingDeleteConfirmationMask){
         [self recurseAndReplaceSubViewIfDeleteConfirmationControl:self.subviews];
-        [self performSelector:@selector(recurseAndReplaceSubViewIfDeleteConfirmationControl:) withObject:self.subviews afterDelay:0];
+//        [self performSelector:@selector(recurseAndReplaceSubViewIfDeleteConfirmationControl:) withObject:self.subviews afterDelay:0];
     }
 }
 

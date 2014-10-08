@@ -18,6 +18,7 @@
 #import "PayPalAdvancedPayment.h"
 #import "PayPalInvoiceItem.h"
 #import "ChatViewController.h"
+#import "ZSLoadingView.h"
 
 static NSString *kPayPalAppID = @"APP-80W284485P519543T";
 
@@ -45,6 +46,8 @@ static NSString *kPayPalAppID = @"APP-80W284485P519543T";
     UIWebView *webView;
     
 //    PayPalConfiguration *payPalConfig;
+    
+    NSString *payPalKey;
 }
 
 @end
@@ -125,82 +128,34 @@ static NSString *kPayPalAppID = @"APP-80W284485P519543T";
         return;
     }
     
+    payPalKey = nil;
     
-    NSDictionary *params = @{ @"ticket_id" : self.ticket.ticket_id,
-                              @"num_tickets": txtNumber.text,
-                              @"amount" : [currencyFormatter numberFromString:txtTotal.text],
-                              @"delivery_options" : self.ticket.delivery_options
-                             };
+    NSNumber *total = [currencyFormatter numberFromString:txtTotal.text];
+    NSNumber *sellerTotal = @([total floatValue]*0.9f);
     
-    [WebServiceManager makeOrder:params completion:^(id response, NSError *error) {
-        if (!error) {
-            
-            NSLog(@"make order - %@", response);
-            if (response) {
-                
-                if ([response[@"success"] boolValue]) {
-                    
-//                    PayPalPayment *payment = [[PayPalPayment alloc] init];
-//                    payment.amount = (NSDecimalNumber*)[currencyFormatter numberFromString:txtTotal.text];
-//                    payment.currencyCode = @"GBP";
-//                    payment.shortDescription = @"Dingo Test Payment ";
-//
-//                    PayPalPaymentViewController *paymentViewController = [[PayPalPaymentViewController alloc] initWithPayment:payment
-//                                                                                                                configuration:payPalConfig                                                                                                                     delegate:self];
-//                    
-//                    [self presentViewController:paymentViewController animated:YES completion:nil];
-
-                    NSNumber *total = [currencyFormatter numberFromString:txtTotal.text];
-                    
-                    NSNumber *sellerTotal = @([total floatValue]*0.9f);
-                    
-                    
-                    PayPalAdvancedPayment *advancedPayment = [[PayPalAdvancedPayment alloc] init];
-
-                    advancedPayment.paymentCurrency = @"GBP";
-                    advancedPayment.merchantName = @"Dingo, Inc.";
-                    advancedPayment.ipnUrl = @"http://dingoapp.herokuapp.com/api/v1/paypal/notification?order_id=#{current_order.id}";
-                    
-                    
-                    PayPalReceiverPaymentDetails *receiver = [[PayPalReceiverPaymentDetails alloc] init];
-                    receiver.isPrimary = YES;
-                    receiver.recipient = @"dingo@dingoapp.co.uk";
-                    receiver.subTotal = (NSDecimalNumber*)total;
-//                    receiver.paymentType = TYPE_GOODS;
-
-//                    receiver.invoiceData = [[PayPalInvoiceData alloc] init];
-//                    receiver.invoiceData.totalShipping = 0;
-//                    receiver.invoiceData.totalTax = 0;
-//                    receiver.invoiceData.invoiceItems = [NSMutableArray array];
-//                    
-//                    PayPalInvoiceItem *item = [[PayPalInvoiceItem alloc] init];
-//                    item.totalPrice = receiver.subTotal;
-//                    item.name = self.event.name;
-//                    
-//                    [receiver.invoiceData.invoiceItems addObject:item];
-                    
-                    PayPalReceiverPaymentDetails *receiver1 = [[PayPalReceiverPaymentDetails alloc] init];
-                    receiver1.isPrimary = NO;
-                    receiver1.recipient = @"asatur.galstyan@gmail.com";
-                    receiver1.subTotal = (NSDecimalNumber*)sellerTotal;
-                    
-                    
-                    advancedPayment.receiverPaymentDetails = [NSMutableArray array];
-                    [advancedPayment.receiverPaymentDetails addObjectsFromArray:@[receiver, receiver1]];
-                    
-                   	[PayPal getPayPalInst].feePayer = FEEPAYER_PRIMARYRECEIVER;
-                    [PayPal getPayPalInst].delegate = self;
-                    [PayPal getPayPalInst].shippingEnabled = @NO;
-                    [[PayPal getPayPalInst] advancedCheckoutWithPayment:advancedPayment];
-
-                    
-                } else {
-                    [AppManager showAlert:@"Unable to buy!"];
-                }
-                
-            }
-        }
-    }];
+    PayPalAdvancedPayment *advancedPayment = [[PayPalAdvancedPayment alloc] init];
+    
+    advancedPayment.paymentCurrency = @"GBP";
+    advancedPayment.merchantName = @"Dingo, Inc.";
+    
+    PayPalReceiverPaymentDetails *receiver = [[PayPalReceiverPaymentDetails alloc] init];
+    receiver.isPrimary = YES;
+    receiver.recipient = @"dingo@dingoapp.co.uk";
+    receiver.subTotal = (NSDecimalNumber*)total;
+    
+    PayPalReceiverPaymentDetails *receiver1 = [[PayPalReceiverPaymentDetails alloc] init];
+    receiver1.isPrimary = NO;
+    receiver1.recipient = self.ticket.user_email;
+    receiver1.subTotal = (NSDecimalNumber*)sellerTotal;
+    
+    advancedPayment.receiverPaymentDetails = [NSMutableArray array];
+    [advancedPayment.receiverPaymentDetails addObjectsFromArray:@[receiver, receiver1]];
+    
+    [PayPal getPayPalInst].feePayer = FEEPAYER_PRIMARYRECEIVER;
+    [PayPal getPayPalInst].delegate = self;
+    [PayPal getPayPalInst].shippingEnabled = @NO;
+    [[PayPal getPayPalInst] advancedCheckoutWithPayment:advancedPayment];
+    
     
 }
 
@@ -248,7 +203,7 @@ static NSString *kPayPalAppID = @"APP-80W284485P519543T";
 #pragma mark PayPalPaymentDelegate methods
 
 - (void)paymentSuccessWithKey:(NSString *)payKey andStatus:(PayPalPaymentStatus)paymentStatus {
-    
+    payPalKey = payKey;
 }
 
 - (void)paymentFailedWithCorrelationID:(NSString *)correlationID {
@@ -260,12 +215,46 @@ static NSString *kPayPalAppID = @"APP-80W284485P519543T";
 }
 
 - (void)paymentLibraryExit {
-    
-    ChatViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"ChatViewController"];
-    vc.ticket = self.ticket;
-    
-    [self.navigationController pushViewController:vc animated:YES];
-    
+
+    if (payPalKey.length > 0) {
+        NSDictionary *params = @{ @"ticket_id" : self.ticket.ticket_id,
+                                  @"num_tickets": txtNumber.text,
+                                  @"amount" : [currencyFormatter numberFromString:txtTotal.text],
+                                  @"delivery_options" : self.ticket.delivery_options,
+                                  @"order_paid":@"1"
+                                  };
+        
+        ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please wait..."];
+        [loadingView show];
+        
+        [WebServiceManager makeOrder:params completion:^(id response, NSError *error) {
+            [loadingView hide];
+            if (!error) {
+                
+                NSLog(@"make order - %@", response);
+                if (response) {
+                    
+                    if ([response[@"id"] boolValue]) {
+                        
+                        
+                        ChatViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"ChatViewController"];
+                        vc.ticket = self.ticket;
+                        
+                        [self.navigationController pushViewController:vc animated:YES];
+                        
+                        [WebServiceManager payPalSuccess:@{@"order_id":response[@"id"]} completion:^(id response, NSError *error) {
+                            
+                        }];
+
+                        
+                    } else {
+                        [AppManager showAlert:@"Unable to buy!"];
+                    }
+                    
+                }
+            }
+        }];
+    }
 }
 
 @end

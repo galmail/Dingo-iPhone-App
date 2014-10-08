@@ -26,6 +26,7 @@
 @dynamic ticket_type;
 @dynamic user_id;
 @dynamic user_name;
+@dynamic user_email;
 @dynamic user_photo;
 @dynamic offers_count;
 

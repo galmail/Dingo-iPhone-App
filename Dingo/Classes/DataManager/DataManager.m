@@ -601,6 +601,7 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     }
     ticket.user_id = @([info[@"user_id"] intValue]);
     ticket.user_name = info[@"user_name"];
+    ticket.user_email = info[@"user_email"];
     
     NSString *user_photo_url = info[@"user_photo"];
     user_photo_url = [user_photo_url stringByReplacingOccurrencesOfString:@"%26" withString:@"&"];
@@ -1076,6 +1077,7 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     
     NSManagedObjectContext *context = [AppManager sharedManager].managedObjectContext;
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Alerts"];
+    request.predicate = [NSPredicate predicateWithFormat:@"on == 1"];
     //    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES]];
     NSError *error = nil;
     NSArray *alerts = [context executeFetchRequest:request error:&error];
@@ -1088,6 +1090,19 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
         if (!error) {
             if (response) {
                 NSArray *alerts = response[@"alerts"];
+                
+                // remove deleted alerts from local database
+                NSArray *alertIDs = [alerts valueForKey:@"id"];
+                NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Alerts"];
+                request.predicate = [NSPredicate predicateWithFormat:@"NOT (alert_id IN %@)", alertIDs];
+                
+                NSArray *alertsToRemove = [[AppManager sharedManager].managedObjectContext executeFetchRequest:request error:nil];
+                if (alertsToRemove.count) {
+                    for (Alert *toRemove in alertsToRemove) {
+                        [[AppManager sharedManager].managedObjectContext deleteObject:toRemove];
+                    }
+                }
+
                 for (NSDictionary *info in alerts) {
                     [self addOrUpdateAlert:info];
                 }
