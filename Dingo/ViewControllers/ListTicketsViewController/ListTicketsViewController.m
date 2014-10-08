@@ -202,7 +202,7 @@ static const NSUInteger comfirmCellIndex = 17;
         self.categoriesCell.selectedCategory = [AppManager sharedManager].draftTicket[@"categoryID"];
         [self.categoriesCell refresh];
     } else if (!isEditing) {
-        self.changed = nil;
+        self.changed = NO;
         
         self.nameField.text = nil;
         self.locationField.text = nil;

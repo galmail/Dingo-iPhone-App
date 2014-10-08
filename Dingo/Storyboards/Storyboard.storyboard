@@ -83,7 +83,7 @@
         <!--Messages-->
         <scene sceneID="pER-i1-1My">
             <objects>
-                <tableViewController id="a55-Qq-l9A" customClass="MessagesViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="MessagesViewController" id="a55-Qq-l9A" customClass="MessagesViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="82" sectionHeaderHeight="22" sectionFooterHeight="22" id="7lY-GP-1aK">
                         <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -171,7 +171,7 @@
             <objects>
                 <tableViewController id="0ch-Q5-uzn" customClass="ListTicketsViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="static" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="BA9-uN-inm">
-                        <rect key="frame" x="0.0" y="64" width="320" height="1113"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="1064"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="separatorColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
@@ -4633,9 +4633,9 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="BWJ-EH-Aes"/>
         <segue reference="cy6-wl-Zel"/>
-        <segue reference="MsU-EW-bYV"/>
+        <segue reference="AMH-9g-fjh"/>
         <segue reference="lKe-yJ-oEi"/>
+        <segue reference="MsU-EW-bYV"/>
     </inferredMetricsTieBreakers>
 </document>

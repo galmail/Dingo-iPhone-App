@@ -153,7 +153,7 @@ static NSString *kPayPalAppID = @"APP-80W284485P519543T";
     
     [PayPal getPayPalInst].feePayer = FEEPAYER_PRIMARYRECEIVER;
     [PayPal getPayPalInst].delegate = self;
-    [PayPal getPayPalInst].shippingEnabled = @NO;
+    [PayPal getPayPalInst].shippingEnabled = NO;
     [[PayPal getPayPalInst] advancedCheckoutWithPayment:advancedPayment];
     
     

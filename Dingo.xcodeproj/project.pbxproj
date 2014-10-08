@@ -36,6 +36,7 @@
 		3A9DB5581988245300861899 /* ZSDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9DB5571988245300861899 /* ZSDatePicker.m */; };
 		3A9DB55B1988F2D000861899 /* ZSPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9DB55A1988F2D000861899 /* ZSPickerView.m */; };
 		3A9DB564198C270B00861899 /* TicketInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3A9DB563198C270B00861899 /* TicketInfo.plist */; };
+		3AA1607F19E5BF1700895508 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AA1607E19E5BF1700895508 /* FacebookSDK.framework */; };
 		3AA332FC1990DDA900C8DAA8 /* ZSTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA332FB1990DDA900C8DAA8 /* ZSTextView.m */; };
 		3AA332FF1990F50600C8DAA8 /* SourceSansPro-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3AA332FE1990F50600C8DAA8 /* SourceSansPro-Regular.otf */; };
 		3AA3330119910D4E00C8DAA8 /* SourceSansPro-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3AA3330019910D4E00C8DAA8 /* SourceSansPro-Bold.otf */; };
@@ -56,7 +57,6 @@
 		3AC8525519A4CF9C00FCDE16 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AC8525419A4CF9C00FCDE16 /* MapKit.framework */; };
 		3ACAB73119DEB9C6005DEE64 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACAB73019DEB9C6005DEE64 /* Message.m */; };
 		3ACAB74119DED6E3005DEE64 /* libPayPalMPL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ACAB73619DED6E3005DEE64 /* libPayPalMPL.a */; };
-		3AF360A619767564009A14FD /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AF360A519767564009A14FD /* FacebookSDK.framework */; };
 		3AF360AB197687E2009A14FD /* AppManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF360AA197687E2009A14FD /* AppManager.m */; };
 		3AF360AE197687F5009A14FD /* WebServiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF360AD197687F5009A14FD /* WebServiceManager.m */; };
 		3AF360B019768CF8009A14FD /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AF360AF19768CF8009A14FD /* CoreData.framework */; };
@@ -305,6 +305,7 @@
 		3A9DB5591988F2D000861899 /* ZSPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSPickerView.h; sourceTree = "<group>"; };
 		3A9DB55A1988F2D000861899 /* ZSPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSPickerView.m; sourceTree = "<group>"; };
 		3A9DB563198C270B00861899 /* TicketInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TicketInfo.plist; sourceTree = "<group>"; };
+		3AA1607E19E5BF1700895508 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		3AA332FA1990DDA900C8DAA8 /* ZSTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSTextView.h; sourceTree = "<group>"; };
 		3AA332FB1990DDA900C8DAA8 /* ZSTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSTextView.m; sourceTree = "<group>"; };
 		3AA332FE1990F50600C8DAA8 /* SourceSansPro-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Regular.otf"; sourceTree = "<group>"; };
@@ -342,7 +343,6 @@
 		3ACAB73E19DED6E3005DEE64 /* PayPalPreapprovalDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalPreapprovalDetails.h; sourceTree = "<group>"; };
 		3ACAB73F19DED6E3005DEE64 /* PayPalReceiverAmounts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalReceiverAmounts.h; sourceTree = "<group>"; };
 		3ACAB74019DED6E3005DEE64 /* PayPalReceiverPaymentDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalReceiverPaymentDetails.h; sourceTree = "<group>"; };
-		3AF360A519767564009A14FD /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		3AF360A9197687E2009A14FD /* AppManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppManager.h; sourceTree = "<group>"; };
 		3AF360AA197687E2009A14FD /* AppManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppManager.m; sourceTree = "<group>"; };
 		3AF360AC197687F5009A14FD /* WebServiceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebServiceManager.h; sourceTree = "<group>"; };
@@ -633,6 +633,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AFEC18C19DEDBC70062AA64 /* libxml2.dylib in Frameworks */,
+				3AA1607F19E5BF1700895508 /* FacebookSDK.framework in Frameworks */,
 				3AFEC18A19DED9E70062AA64 /* libz.dylib in Frameworks */,
 				3A97DDBE19D3636600B4C33E /* SystemConfiguration.framework in Frameworks */,
 				3A97DDBC19D3634E00B4C33E /* MobileCoreServices.framework in Frameworks */,
@@ -650,7 +651,6 @@
 				3F10DDDD19388E6F002D3B43 /* UIKit.framework in Frameworks */,
 				3F10DDD919388E6F002D3B43 /* Foundation.framework in Frameworks */,
 				3E24F9C81D9E48F08275CAA9 /* libPods-Dingo.a in Frameworks */,
-				3AF360A619767564009A14FD /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -785,8 +785,8 @@
 		3AF360A419767564009A14FD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3AA1607E19E5BF1700895508 /* FacebookSDK.framework */,
 				3ACAB73519DED6E3005DEE64 /* PayPalMPL */,
-				3AF360A519767564009A14FD /* FacebookSDK.framework */,
 			);
 			path = Frameworks;
 			sourceTree = "<group>";

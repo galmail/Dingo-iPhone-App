@@ -131,7 +131,7 @@
                         Event *event = [[Event alloc] initWithEntity:entity insertIntoManagedObjectContext:nil];
                         
                         event.address = [dict valueForKey:@"address"];
-                        event.tickets = [NSNumber numberWithInt:[[dict valueForKey:@"available_tickets"] integerValue]];
+                        event.tickets = [NSNumber numberWithInt:[[dict valueForKey:@"available_tickets"] intValue]];
                         event.category_id = [dict valueForKey:@"category_id"];
                         event.city = [dict valueForKey:@"city"];
                         
@@ -146,7 +146,7 @@
                         event.endDate = date;
                         event.featured = [dict valueForKey:@"featured"];
                         event.event_id = [dict valueForKey:@"id"];
-                        event.fromPrice = [NSNumber numberWithInt:[[dict valueForKey:@"min_price"] integerValue]];
+                        event.fromPrice = [NSNumber numberWithInt:[[dict valueForKey:@"min_price"] intValue]];
                         event.name = [dict valueForKey:@"name"];
                         event.thumbUrl = [dict valueForKey:@"thumb"];
                         
