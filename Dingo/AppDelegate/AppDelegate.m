@@ -18,6 +18,7 @@
 //#import "PayPalMobile.h"
 
 #import "Appirater.h"
+#import "Harpy.h"
 
 @implementation AppDelegate
 
@@ -30,6 +31,9 @@
     [Appirater setSignificantEventsUntilPrompt:-1];
     [Appirater setTimeBeforeReminding:2];
 
+    
+    [[Harpy sharedInstance] setAppID:@"893538091"];
+    [[Harpy sharedInstance] checkVersion];
     
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
@@ -108,6 +112,8 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    
+    [[Harpy sharedInstance] checkVersionDaily];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

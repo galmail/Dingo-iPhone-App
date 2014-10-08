@@ -72,6 +72,8 @@
 		3AA1610619E5C8EF00895508 /* AppiraterLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3AA160DE19E5C8EF00895508 /* AppiraterLocalizable.strings */; };
 		3AA1610719E5C8EF00895508 /* AppiraterLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3AA160E119E5C8EF00895508 /* AppiraterLocalizable.strings */; };
 		3AA1610819E5C8EF00895508 /* AppiraterLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3AA160E419E5C8EF00895508 /* AppiraterLocalizable.strings */; };
+		3AA1610D19E5CBE300895508 /* Harpy.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3AA1610A19E5CBE300895508 /* Harpy.bundle */; };
+		3AA1610E19E5CBE300895508 /* Harpy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA1610C19E5CBE300895508 /* Harpy.m */; };
 		3AA332FC1990DDA900C8DAA8 /* ZSTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA332FB1990DDA900C8DAA8 /* ZSTextView.m */; };
 		3AA332FF1990F50600C8DAA8 /* SourceSansPro-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3AA332FE1990F50600C8DAA8 /* SourceSansPro-Regular.otf */; };
 		3AA3330119910D4E00C8DAA8 /* SourceSansPro-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3AA3330019910D4E00C8DAA8 /* SourceSansPro-Bold.otf */; };
@@ -378,6 +380,9 @@
 		3AA160DF19E5C8EF00895508 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = AppiraterLocalizable.strings; sourceTree = "<group>"; };
 		3AA160E219E5C8EF00895508 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = AppiraterLocalizable.strings; sourceTree = "<group>"; };
 		3AA160E519E5C8EF00895508 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = AppiraterLocalizable.strings; sourceTree = "<group>"; };
+		3AA1610A19E5CBE300895508 /* Harpy.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Harpy.bundle; sourceTree = "<group>"; };
+		3AA1610B19E5CBE300895508 /* Harpy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Harpy.h; sourceTree = "<group>"; };
+		3AA1610C19E5CBE300895508 /* Harpy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Harpy.m; sourceTree = "<group>"; };
 		3AA332FA1990DDA900C8DAA8 /* ZSTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSTextView.h; sourceTree = "<group>"; };
 		3AA332FB1990DDA900C8DAA8 /* ZSTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSTextView.m; sourceTree = "<group>"; };
 		3AA332FE1990F50600C8DAA8 /* SourceSansPro-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Regular.otf"; sourceTree = "<group>"; };
@@ -1069,6 +1074,16 @@
 			path = "zh-Hant.lproj";
 			sourceTree = "<group>";
 		};
+		3AA1610919E5CBE200895508 /* Harpy */ = {
+			isa = PBXGroup;
+			children = (
+				3AA1610A19E5CBE300895508 /* Harpy.bundle */,
+				3AA1610B19E5CBE300895508 /* Harpy.h */,
+				3AA1610C19E5CBE300895508 /* Harpy.m */,
+			);
+			path = Harpy;
+			sourceTree = "<group>";
+		};
 		3AA332FD1990F50600C8DAA8 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -1456,6 +1471,7 @@
 		3F10DE67193C5476002D3B43 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				3AA1610919E5CBE200895508 /* Harpy */,
 				3AA1608019E5C8CC00895508 /* Appirater */,
 				840CD22C19B8449700699E26 /* ChatBubbleSource */,
 				3AB28AFF197EE8B4009C1DDC /* CustomClasses */,
@@ -2370,6 +2386,7 @@
 				3F2864E4194B15FA002A3576 /* t&c_icon_gray@2x.png in Resources */,
 				3F62C6861948318F00D7D6B1 /* featured_icon@2x.png in Resources */,
 				3AB28AE2197BC572009C1DDC /* welcome2BG-568h@2x.png in Resources */,
+				3AA1610D19E5CBE300895508 /* Harpy.bundle in Resources */,
 				3F7C4E291952D009003302A0 /* add_photo_icon@2x.png in Resources */,
 				3F62C6971948318F00D7D6B1 /* feature_bg.jpeg in Resources */,
 				3AA160EF19E5C8EF00895508 /* AppiraterLocalizable.strings in Resources */,
@@ -2546,6 +2563,7 @@
 				3F7C4E181951C1F4003302A0 /* FXBlurView.m in Sources */,
 				3F10DE561938B299002D3B43 /* DingoButton.m in Sources */,
 				3F2864E2194AF891002A3576 /* ManageListsCell.m in Sources */,
+				3AA1610E19E5CBE300895508 /* Harpy.m in Sources */,
 				3F3D56521951712900FB2774 /* BookmarkedTicketsViewController.m in Sources */,
 				3F98FC3C193DFA3400E6B3C4 /* DingoTextView.m in Sources */,
 				3F62C6E01949A55600D7D6B1 /* EventCell.m in Sources */,
