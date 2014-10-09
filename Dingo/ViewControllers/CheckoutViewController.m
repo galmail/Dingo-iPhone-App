@@ -221,7 +221,8 @@ static NSString *kPayPalAppID = @"APP-80W284485P519543T";
                                   @"num_tickets": txtNumber.text,
                                   @"amount" : [currencyFormatter numberFromString:txtTotal.text],
                                   @"delivery_options" : self.ticket.delivery_options,
-                                  @"order_paid":@"1"
+                                  @"order_paid":@"1",
+                                  @"paypal_key":payPalKey
                                   };
         
         ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please wait..."];

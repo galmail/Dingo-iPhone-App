@@ -40,7 +40,6 @@
 		3AA160E619E5C8EF00895508 /* Appirater.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA1608219E5C8EE00895508 /* Appirater.m */; };
 		3AA160E719E5C8EF00895508 /* AppiraterLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3AA1608519E5C8EE00895508 /* AppiraterLocalizable.strings */; };
 		3AA160E819E5C8EF00895508 /* AppiraterLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3AA1608819E5C8EE00895508 /* AppiraterLocalizable.strings */; };
-		3AA160E919E5C8EF00895508 /* CHANGELOG.md in Sources */ = {isa = PBXBuildFile; fileRef = 3AA1608A19E5C8EE00895508 /* CHANGELOG.md */; };
 		3AA160EA19E5C8EF00895508 /* AppiraterLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3AA1608C19E5C8EE00895508 /* AppiraterLocalizable.strings */; };
 		3AA160EB19E5C8EF00895508 /* AppiraterLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3AA1608F19E5C8EE00895508 /* AppiraterLocalizable.strings */; };
 		3AA160EC19E5C8EF00895508 /* AppiraterLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3AA1609219E5C8EE00895508 /* AppiraterLocalizable.strings */; };
@@ -61,7 +60,6 @@
 		3AA160FB19E5C8EF00895508 /* AppiraterLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3AA160BF19E5C8EF00895508 /* AppiraterLocalizable.strings */; };
 		3AA160FC19E5C8EF00895508 /* AppiraterLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3AA160C219E5C8EF00895508 /* AppiraterLocalizable.strings */; };
 		3AA160FD19E5C8EF00895508 /* AppiraterLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3AA160C519E5C8EF00895508 /* AppiraterLocalizable.strings */; };
-		3AA160FE19E5C8EF00895508 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 3AA160C719E5C8EF00895508 /* README.md */; };
 		3AA160FF19E5C8EF00895508 /* AppiraterLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3AA160C919E5C8EF00895508 /* AppiraterLocalizable.strings */; };
 		3AA1610019E5C8EF00895508 /* AppiraterLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3AA160CC19E5C8EF00895508 /* AppiraterLocalizable.strings */; };
 		3AA1610119E5C8EF00895508 /* AppiraterLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3AA160CF19E5C8EF00895508 /* AppiraterLocalizable.strings */; };
@@ -349,7 +347,6 @@
 		3AA1608319E5C8EE00895508 /* AppiraterDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiraterDelegate.h; sourceTree = "<group>"; };
 		3AA1608619E5C8EE00895508 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = AppiraterLocalizable.strings; sourceTree = "<group>"; };
 		3AA1608919E5C8EE00895508 /* ca */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ca; path = AppiraterLocalizable.strings; sourceTree = "<group>"; };
-		3AA1608A19E5C8EE00895508 /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		3AA1608D19E5C8EE00895508 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = AppiraterLocalizable.strings; sourceTree = "<group>"; };
 		3AA1609019E5C8EE00895508 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = AppiraterLocalizable.strings; sourceTree = "<group>"; };
 		3AA1609319E5C8EE00895508 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = AppiraterLocalizable.strings; sourceTree = "<group>"; };
@@ -370,7 +367,6 @@
 		3AA160C019E5C8EF00895508 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = AppiraterLocalizable.strings; sourceTree = "<group>"; };
 		3AA160C319E5C8EF00895508 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = AppiraterLocalizable.strings; sourceTree = "<group>"; };
 		3AA160C619E5C8EF00895508 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = AppiraterLocalizable.strings; sourceTree = "<group>"; };
-		3AA160C719E5C8EF00895508 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		3AA160CA19E5C8EF00895508 /* ro */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ro; path = AppiraterLocalizable.strings; sourceTree = "<group>"; };
 		3AA160CD19E5C8EF00895508 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = AppiraterLocalizable.strings; sourceTree = "<group>"; };
 		3AA160D019E5C8EF00895508 /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = AppiraterLocalizable.strings; sourceTree = "<group>"; };
@@ -785,7 +781,6 @@
 				3AA1608319E5C8EE00895508 /* AppiraterDelegate.h */,
 				3AA1608419E5C8EE00895508 /* ar.lproj */,
 				3AA1608719E5C8EE00895508 /* ca.lproj */,
-				3AA1608A19E5C8EE00895508 /* CHANGELOG.md */,
 				3AA1608B19E5C8EE00895508 /* cs.lproj */,
 				3AA1608E19E5C8EE00895508 /* da.lproj */,
 				3AA1609119E5C8EE00895508 /* de.lproj */,
@@ -806,7 +801,6 @@
 				3AA160BE19E5C8EF00895508 /* pl.lproj */,
 				3AA160C119E5C8EF00895508 /* pt-BR.lproj */,
 				3AA160C419E5C8EF00895508 /* pt.lproj */,
-				3AA160C719E5C8EF00895508 /* README.md */,
 				3AA160C819E5C8EF00895508 /* ro.lproj */,
 				3AA160CB19E5C8EF00895508 /* ru.lproj */,
 				3AA160CE19E5C8EF00895508 /* sk.lproj */,
@@ -2559,7 +2553,6 @@
 				840CD23919B8449700699E26 /* UIBubbleHeaderTableViewCell.m in Sources */,
 				3AA1611119E5DDDA00895508 /* UIDevice+SupportedDevices.m in Sources */,
 				3F10DE66193C536E002D3B43 /* DingoNavigationController.m in Sources */,
-				3AA160E919E5C8EF00895508 /* CHANGELOG.md in Sources */,
 				3F98FD081945EECE00E6B3C4 /* DiscountView.m in Sources */,
 				3F62C6C819489F9A00D7D6B1 /* EventsViewController.m in Sources */,
 				3A9C271319C8AFC90007BA34 /* NewOfferViewController.m in Sources */,
@@ -2585,7 +2578,6 @@
 				3F7C4E2E1952D70F003302A0 /* UploadPhotosViewController.m in Sources */,
 				3F2864F0194B2889002A3576 /* FAQViewController.m in Sources */,
 				3F10DE501938B24F002D3B43 /* LoginViewController.m in Sources */,
-				3AA160FE19E5C8EF00895508 /* README.md in Sources */,
 				3AF360BD1976AB16009A14FD /* UIDevice+Additions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
