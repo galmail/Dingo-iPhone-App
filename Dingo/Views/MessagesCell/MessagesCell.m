@@ -35,7 +35,7 @@ const CGFloat messagesCellHeight = 82;
     
     if ([[ticket.user_id stringValue] isEqualToString:userID]) {
         self.icon = nil;
-        if ([data.receiver_id isEqualToString:userID]) {
+        if ([data.receiver_id isEqualToString:[ticket.user_id stringValue]]) {
             [WebServiceManager imageFromUrl:data.sender_avatar_url completion:^(id response, NSError *error) {
                 self.icon = [UIImage imageWithData:response];
             }];

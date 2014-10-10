@@ -60,7 +60,7 @@
     
     [bubbleTable reloadData];
     [bubbleTable scrollBubbleViewToBottomAnimated:YES];
-    
+   
     // Keyboard events
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardWillShowNotification object:nil];
@@ -138,6 +138,8 @@
         }
         
         [bubbleTable reloadData];
+        [bubbleTable scrollBubbleViewToBottomAnimated:YES];
+        
     }];
 }
 
@@ -254,6 +256,7 @@
                 [bubbleData addObject:bubble];
                 
                 [bubbleTable reloadData];
+                [bubbleTable scrollBubbleViewToBottomAnimated:YES];
                 
             }
         }

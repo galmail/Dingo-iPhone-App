@@ -69,29 +69,7 @@
         }
     }
     
-    
-//    NSMutableSet *set = [NSMutableSet new];
-//    [set addObjectsFromArray:senderIDs];
-//    [set addObjectsFromArray:receiverIDs];
-//    
-//    NSMutableArray *userIDs = [[set allObjects] mutableCopy];
-    
-//    for (NSString *user_ID in userIDs) {
-//        if ([[userID stringValue] isEqualToString:user_ID]) {
-//            continue;
-//        }
-//
-//        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"sender_id == %@ || receiver_id == %@",user_ID, user_ID];
-//        NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"datetime" ascending:NO];
-//        
-//        NSArray* msgArray = [allMessages filteredArrayUsingPredicate:predicate];
-//        if (msgArray.count>0) {
-//            NSArray *sorted = [msgArray sortedArrayUsingDescriptors:@[sortDescriptor]];
-//            
-//            [groupedMessages addObject:sorted[0]];
-//        }
-//        
-//    }
+    groupedMessages = [[groupedMessages sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"datetime" ascending:NO]]] mutableCopy];
     
     [self.tableView reloadData];
 }
