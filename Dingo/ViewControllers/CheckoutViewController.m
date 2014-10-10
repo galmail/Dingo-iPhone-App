@@ -76,6 +76,7 @@ static NSString *kPayPalAppID = @"APP-80W284485P519543T";
     lblEvent.font = lblNumber.font = lblPrice.font = lblTotal.font = lblSeller.font = lblPaymentOption.font = txtPayment.font = txtTotal.font = txtName.font = txtPrice.font = txtNumber.font = txtSellerName.font = [DingoUISettings lightFontWithSize:14];
     
     txtNumber.keyboardType = UIKeyboardTypeNumberPad;
+    txtNumber.enabled = NO;
     [txtNumber showToolbarWithDone];
     
     txtName.text = self.event.name;
@@ -141,6 +142,7 @@ static NSString *kPayPalAppID = @"APP-80W284485P519543T";
     PayPalReceiverPaymentDetails *receiver = [[PayPalReceiverPaymentDetails alloc] init];
     receiver.isPrimary = YES;
     receiver.recipient = @"dingo@dingoapp.co.uk";
+    receiver.paymentType = TYPE_SERVICE;
     receiver.subTotal = (NSDecimalNumber*)total;
     
     PayPalReceiverPaymentDetails *receiver1 = [[PayPalReceiverPaymentDetails alloc] init];
@@ -155,7 +157,6 @@ static NSString *kPayPalAppID = @"APP-80W284485P519543T";
     [PayPal getPayPalInst].delegate = self;
     [PayPal getPayPalInst].shippingEnabled = NO;
     [[PayPal getPayPalInst] advancedCheckoutWithPayment:advancedPayment];
-    
     
 }
 
