@@ -27,11 +27,27 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     
     ZSLoadingView *loadingView =[[ZSLoadingView alloc] initWithLabel:@"Loading tickets ..."];
     [loadingView show];
-
+    
     [[DataManager shared] userTicketsWithCompletion:^(BOOL finished) {
+        NSArray* tickets = [[DataManager shared] userTickets];
+        if (tickets.count == 0) {
+            UILabel *lblNoTickets = [[UILabel alloc] initWithFrame:CGRectMake(30, 100, 260, 60)];
+            lblNoTickets.text = @"You currently have no tickets for sale";
+            lblNoTickets.textAlignment = NSTextAlignmentCenter;
+            lblNoTickets.textColor = [UIColor darkGrayColor];
+            lblNoTickets.font = [DingoUISettings fontWithSize:20];
+            lblNoTickets.numberOfLines = 0;
+            
+            [self.view addSubview:lblNoTickets];
+        }
+        
         [self.tableView reloadData];
         [loadingView hide];
     }];
@@ -62,6 +78,16 @@
 #pragma mark - UITableViewDataSource
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if (section ) {
+        if ([[DataManager shared] ticketsAfterDate:[NSDate date]].count == 0) {
+            return 0;
+        }
+    } else {
+        if ([[DataManager shared] ticketsBeforeDate:[NSDate date]].count == 0) {
+            return 0;
+        }
+    }
+    
     return sectionHeaderHeight;
 }
 
