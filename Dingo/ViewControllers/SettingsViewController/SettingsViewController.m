@@ -76,7 +76,7 @@
         self.emailField.text =[[AppManager sharedManager].userInfo valueForKey:@"email"];
     }
     
-    if ([[AppManager sharedManager].userInfo valueForKey:@"fb_id"]) {
+    if ([[[AppManager sharedManager].userInfo valueForKey:@"fb_id"] length]) {
         if ([[[AppManager sharedManager].userInfo valueForKey:@"fb_id"] isKindOfClass:[NSNull class]]) {
             self.facebookLoginSwitch.on = NO;
         } else {
@@ -171,7 +171,7 @@
 - (IBAction)facebookLoginSwitchValueChanged {
     
     if (self.facebookLoginSwitch.on) {
-        if (![[AppManager sharedManager].userInfo valueForKey:@"fb_id"]) {
+        if (![[[AppManager sharedManager].userInfo valueForKey:@"fb_id"] length]) {
             
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Log in via Facebook?" message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Login", nil];
             [alert show];

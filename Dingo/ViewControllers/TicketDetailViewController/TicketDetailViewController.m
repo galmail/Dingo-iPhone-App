@@ -300,7 +300,7 @@ static const NSUInteger commentCellIndex = 4;
 - (IBAction)contactSeller:(id)sender {
     
     
-    if (![[AppManager sharedManager].userInfo valueForKey:@"fb_id"]) {
+    if (![[[AppManager sharedManager].userInfo valueForKey:@"fb_id"] length]) {
         
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Log in via Facebook?" message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Login", nil];
         alert.tag = 11;
@@ -318,7 +318,7 @@ static const NSUInteger commentCellIndex = 4;
 
 - (IBAction)requestToBuy:(id)sender {
     
-    if (![[AppManager sharedManager].userInfo valueForKey:@"fb_id"]) {
+    if (![[[AppManager sharedManager].userInfo valueForKey:@"fb_id"] length]) {
         
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Log in via Facebook?" message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Login", nil];
         alert.tag = 12;
@@ -336,7 +336,7 @@ static const NSUInteger commentCellIndex = 4;
 
 - (IBAction)offerNewPrice:(id)sender {
     
-    if (![[AppManager sharedManager].userInfo valueForKey:@"fb_id"]) {
+    if (![[[AppManager sharedManager].userInfo valueForKey:@"fb_id"] length]) {
         
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Log in via Facebook?" message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Login", nil];
         alert.tag = 13;
