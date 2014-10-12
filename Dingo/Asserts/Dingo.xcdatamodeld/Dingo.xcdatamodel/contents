@@ -35,6 +35,7 @@
         <attribute name="message_id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="offer_id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="offer_new" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="read" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="receiver_avatar" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="receiver_avatar_url" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="receiver_id" optional="YES" attributeType="String" syncable="YES"/>
@@ -69,7 +70,7 @@
         <element name="Alerts" positionX="-27" positionY="153" width="128" height="105"/>
         <element name="Event" positionX="-54" positionY="18" width="128" height="253"/>
         <element name="EventCategory" positionX="-63" positionY="-18" width="128" height="103"/>
-        <element name="Messages" positionX="-45" positionY="135" width="128" height="270"/>
+        <element name="Messages" positionX="-45" positionY="135" width="128" height="285"/>
         <element name="Ticket" positionX="-36" positionY="117" width="128" height="315"/>
     </elements>
 </model>

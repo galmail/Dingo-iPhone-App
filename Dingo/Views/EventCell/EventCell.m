@@ -88,13 +88,17 @@ const CGFloat eventCellHeight = 78;
     if (data.thumb) {
          self.iconImageView.image = [UIImage imageWithData:data.thumb];
     } else {
-        
-        [WebServiceManager imageFromUrl:data.thumbUrl completion:^(id response, NSError *error) {
-            data.thumb = response;
-            self.iconImageView.image = [UIImage imageWithData:data.thumb];
+        if (data.thumbUrl.length > 0) {
+            [WebServiceManager imageFromUrl:data.thumbUrl completion:^(id response, NSError *error) {
+                data.thumb = response;
+                self.iconImageView.image = [UIImage imageWithData:data.thumb];
+                
+                [[AppManager sharedManager] saveContext];
+            }];
             
-            [[AppManager sharedManager] saveContext];
-        }];
+        } else {
+            self.iconImageView.image = [UIImage imageWithData:category.thumb];
+        }
         
     }
    

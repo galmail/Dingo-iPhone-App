@@ -254,7 +254,7 @@ static const NSUInteger comfirmCellIndex = 17;
     self.nameField.enabled = self.locationField.enabled = NO;
     self.startDateField.enabled = self.endDateField.enabled = NO;
 
-    self.descriptionTextView.text = event.event_desc;
+    self.descriptionTextView.text = ticket.ticket_desc;
     self.priceField.text = [ticket.price stringValue];
     self.faceValueField.text= [ticket.face_value_per_ticket stringValue];
     self.ticketsCountField.text = [ticket.number_of_tickets stringValue];

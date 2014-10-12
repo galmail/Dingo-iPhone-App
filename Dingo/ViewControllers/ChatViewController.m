@@ -247,7 +247,7 @@
             if (response[@"id"]) {
                 [[DataManager shared] addOrUpdateMessage:response];
                 
-                NSBubbleData *bubble = [NSBubbleData dataWithText:response[@"content"] date:[NSDate dateWithTimeIntervalSinceNow:-300] type:BubbleTypeMine];
+                NSBubbleData *bubble = [NSBubbleData dataWithText:response[@"content"] date:[NSDate date] type:BubbleTypeMine];
                 
                 NSString *user_photo_url = [AppManager sharedManager].userInfo[@"photo_url"];
                 NSData  *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:user_photo_url]];

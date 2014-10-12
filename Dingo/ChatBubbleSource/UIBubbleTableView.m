@@ -97,14 +97,16 @@
             assert([object isKindOfClass:[NSBubbleData class]]);
             [bubbleData addObject:object];
         }
+
+        [bubbleData sortUsingDescriptors:@[ [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES]]];
         
-        [bubbleData sortUsingComparator:^NSComparisonResult(id obj1, id obj2)
-         {
-             NSBubbleData *bubbleData1 = (NSBubbleData *)obj1;
-             NSBubbleData *bubbleData2 = (NSBubbleData *)obj2;
-             
-             return [bubbleData1.date compare:bubbleData2.date];            
-         }];
+//        [bubbleData sortUsingComparator:^NSComparisonResult(id obj1, id obj2)
+//         {
+//             NSBubbleData *bubbleData1 = (NSBubbleData *)obj1;
+//             NSBubbleData *bubbleData2 = (NSBubbleData *)obj2;
+//             
+//             return [bubbleData1.date compare:bubbleData2.date];            
+//         }];
         
         NSDate *last = [NSDate dateWithTimeIntervalSince1970:0];
         NSMutableArray *currentSection = nil;

@@ -26,5 +26,6 @@
 @dynamic receiver_name;
 @dynamic receiver_avatar_url;
 @dynamic receiver_avatar;
+@dynamic read;
 
 @end

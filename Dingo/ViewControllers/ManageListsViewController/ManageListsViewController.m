@@ -14,6 +14,8 @@
 #import "ECSlidingViewController.h"
 #import "TicketDetailViewController.h"
 #import "ZSLoadingView.h"
+#import "WebServiceManager.h"
+
 @interface ManageListsViewController ()
 
 @property (nonatomic) NSUInteger firstSectionCellsCount;
@@ -71,7 +73,31 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-//        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        
+        NSUInteger index = indexPath.row;
+        if (indexPath.section) {
+            index += self.firstSectionCellsCount;
+        }
+        
+        Ticket *data = [[DataManager shared] userTickets][index];
+        
+        NSDictionary *params = @{@"ticket_id":data.ticket_id,
+                                 @"price":[data.price stringValue],
+                                 @"available":@"0"
+                                 };
+        ZSLoadingView *loadingView =[[ZSLoadingView alloc] initWithLabel:@"Please wait..."];
+        [loadingView show];
+        [WebServiceManager updateTicket:params photos:nil completion:^(id response, NSError *error) {
+            NSLog(@"response %@", response);
+            [loadingView hide];
+            if (!error && [response[@"available"] intValue] == 0) {
+                [[AppManager sharedManager].managedObjectContext deleteObject:data];
+                [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            }
+            
+        }];
+        
+        
     }
 }
 
