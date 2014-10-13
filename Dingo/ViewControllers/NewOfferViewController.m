@@ -84,7 +84,7 @@
     NSDictionary *params = @{@"ticket_id":self.ticket.ticket_id,
                              @"receiver_id": self.ticket.user_id,
                              @"num_tickets" :@(numberOfTickets),
-                             @"price":@(price)
+                             @"price":@(price * numberOfTickets)
                              };
     
     ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please wait..."];
