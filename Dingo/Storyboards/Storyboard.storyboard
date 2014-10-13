@@ -3000,12 +3000,6 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
                                 <action selector="back" destination="luz-yd-ISX" id="jb5-Kf-spM"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Save" id="PQF-YN-Zcn">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <action selector="save:" destination="luz-yd-ISX" id="e9p-YL-XPS"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>

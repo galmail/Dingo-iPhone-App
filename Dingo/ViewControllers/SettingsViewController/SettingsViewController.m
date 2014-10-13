@@ -116,7 +116,56 @@
 #pragma mark - Navigation
 
 - (IBAction)back {
-    [self.navigationController popViewControllerAnimated:YES];
+    
+    NSMutableDictionary *params = [NSMutableDictionary new];
+    if (self.firstNameField.text.length>0) {
+        [params setValue:self.firstNameField.text forKey:@"name"];
+    }
+    if (self.cityField.text.length>0) {
+        [params setValue:self.cityField.text forKey:@"city"];
+    }
+    if (self.surnameField.text.length>0) {
+        [params setValue:self.surnameField.text forKey:@"surname"];
+    }
+    
+    [params setObject:[NSNumber numberWithBool:self.pushNotificationSwitch.on] forKey:@"allow_push_notifications"];
+    [params setObject:[NSNumber numberWithBool:self.dingoEmailsSwitch.on] forKey:@"allow_dingo_emails"];
+    if (!self.facebookLoginSwitch.on) {
+        [params setObject:@"" forKey:@"fb_id"];
+    }
+    
+    ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Saving..."];
+    [loadingView show];
+    [WebServiceManager updateProfile:params completion:^(id response, NSError *error) {
+        NSLog(@"response %@", response);
+        [loadingView hide];
+        if (error ) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
+        } else {
+            
+            if (response) {
+                
+            }
+            [[AppManager sharedManager].userInfo setValue:self.firstNameField.text forKey:@"name"];
+            [[AppManager sharedManager].userInfo setValue:self.cityField.text forKey:@"city"];
+            [[AppManager sharedManager].userInfo setValue:self.surnameField.text forKey:@"surname"];
+            if (!self.facebookLoginSwitch.on) {
+                [[AppManager sharedManager].userInfo setObject:@"" forKey:@"fb_id"];
+            }
+            
+            [[AppManager sharedManager].userInfo setObject:[NSNumber numberWithBool:self.pushNotificationSwitch.on] forKey:@"allow_push_notifications"];
+            [[AppManager sharedManager].userInfo setObject:[NSNumber numberWithBool:self.dingoEmailsSwitch.on] forKey:@"allow_dingo_emails"];
+            
+            if (!self.facebookLoginSwitch.on) {
+                
+            }
+        }
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
+
+    
+    
 }
 
 - (IBAction)save:(id)sender {
@@ -161,7 +210,7 @@
             [[AppManager sharedManager].userInfo setObject:[NSNumber numberWithBool:self.dingoEmailsSwitch.on] forKey:@"allow_dingo_emails"];
             
             if (!self.facebookLoginSwitch.on) {
-                // [FBSession ]
+                
             }
         }
     }];
