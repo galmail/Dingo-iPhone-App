@@ -13,6 +13,8 @@ extern const CGFloat featureCellHeight;
 
 @interface TicketCell : EventCell
 
+@property (nonatomic) uint tickets;
+
 + (id)buildWithData:(Event *)data;
 - (void)buildWithTicketData:(Ticket *)data;
 - (void)loadUIFromXib;

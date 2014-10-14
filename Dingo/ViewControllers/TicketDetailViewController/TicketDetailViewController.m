@@ -132,6 +132,10 @@ static const NSUInteger commentCellIndex = 4;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    
+    self.ticket = [[DataManager shared] ticketByID:self.ticket.ticket_id];
+    [self.tableView reloadData];
 
     if ([self.ticket.user_id isEqual:[AppManager sharedManager].userInfo[@"id"]]) {
         

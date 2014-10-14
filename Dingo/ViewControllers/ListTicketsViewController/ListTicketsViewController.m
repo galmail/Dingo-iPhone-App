@@ -377,6 +377,60 @@ static const NSUInteger comfirmCellIndex = 17;
 
 - (IBAction)confirm:(id)sender {
     
+    NSString *paymentOption = @"";
+    if (cashSwitch.on) {
+        paymentOption = @"Cash in person";
+    }
+    
+    if (paypalSwitch.on) {
+        if (paymentOption.length > 0) {
+            paymentOption = [paymentOption stringByAppendingFormat:@", %@", @"PayPal"];
+        } else {
+            paymentOption = @"PayPal";
+        }
+    }
+    
+    self.ticket.payment_options = paymentOption;
+    
+    NSString *deliveryOptions = @"";
+    if (inPersonSwitch.on) {
+        deliveryOptions = @"In Person";
+    }
+    
+    if (electronicSwitch.on) {
+        if (deliveryOptions.length > 0) {
+            deliveryOptions = [deliveryOptions stringByAppendingFormat:@", %@", @"Electronic"];
+        } else {
+            deliveryOptions = @"Electronic";
+        }
+    }
+    
+    if (postSwitch.on) {
+        if (deliveryOptions.length > 0) {
+            deliveryOptions = [deliveryOptions stringByAppendingFormat:@", %@", @"Post"];
+        } else {
+            deliveryOptions = @"Post";
+        }
+    }
+    
+    self.ticket.delivery_options = deliveryOptions;
+    
+    NSString *ticketTypes = @"";
+    if (eticketSwitch.on) {
+        ticketTypes = @"e-Ticket";
+    }
+    
+    if (paperSwitch.on) {
+        if (ticketTypes.length > 0) {
+            ticketTypes = [ticketTypes stringByAppendingFormat:@", %@", @"Paper"];
+        } else {
+            ticketTypes = @"Paper";
+        }
+    }
+    
+    self.ticket.ticket_type = ticketTypes;
+    
+    
     NSDictionary *params = @{@"ticket_id":self.ticket.ticket_id,
                              @"price":[self.ticket.price stringValue],
                              @"ticket_type":self.ticket.ticket_type,
@@ -386,9 +440,21 @@ static const NSUInteger comfirmCellIndex = 17;
                              @"number_of_tickets":[self.ticket.number_of_tickets stringValue],
                              @"face_value_per_ticket":[self.ticket.face_value_per_ticket stringValue]
                              };
-    
+    ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please wait..."];
+    [loadingView show];
     [WebServiceManager updateTicket:params photos:photos completion:^(id response, NSError *error) {
         NSLog(@"response %@", response);
+        [loadingView hide];
+        
+        if (response[@"id"]) {
+            [[DataManager shared] addOrUpdateTicket:response];
+            [[AppManager sharedManager] saveContext];
+            [self.navigationController popViewControllerAnimated:YES];
+        } else {
+            [AppManager showAlert:@"Unable to save changes, Please try later"];
+        }
+        
+
     }];
 }
 
@@ -586,7 +652,7 @@ static const NSUInteger comfirmCellIndex = 17;
 
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
     
-    if ([[AppManager sharedManager].userInfo[@"name"] isEqualToString:@"Guest"] && [identifier isEqualToString:@"PreviewSegue"]) {
+    if (![[AppManager sharedManager].userInfo[@"fb_id"] length] && [identifier isEqualToString:@"PreviewSegue"]) {
         
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Facebook login is required when selling tickets to promote a safe community. Don’t worry, we won’t share anything on your wall." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Login", nil];
         [alert show];
@@ -984,140 +1050,17 @@ static const NSUInteger comfirmCellIndex = 17;
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 1) {
-        [self fbLogin];
+        ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please wait..."];
+        [loadingView show];
+        [WebServiceManager signInWithFBCompletion:^(id response, NSError *error) {
+            [loadingView hide];
+            if (response) {
+                if ([self shouldPerformSegueWithIdentifier:@"PreviewSegue" sender:self]) {
+                    [self performSegueWithIdentifier:@"PreviewSegue" sender:self];
+                }
+            }
+        }];
     }
 }
-
-#pragma mark Fb login
-
-- (void)fbLogin {
-    
-    ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please wait..."];
-    [loadingView show];
-    [FBSession openActiveSessionWithReadPermissions:@[@"email", @"user_birthday", @"user_location"]
-                                       allowLoginUI:YES
-                                  completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
-                                      
-                                      if (error) {
-                                          UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                                          [alert show];
-                                          
-                                          [loadingView hide];
-                                      } else {
-                                          if (state == FBSessionStateOpen) {
-                                              
-                                              FBRequest *request = [FBRequest requestForMe];
-                                              [request.parameters setValue:@"id,name,first_name,last_name,email,picture,birthday,location" forKey:@"fields"];
-                                              
-                                              [request startWithCompletionHandler:^(FBRequestConnection *connection, id<FBGraphUser> user, NSError *error) {
-                                                  if (user) {
-                                                      
-                                                      NSString *birtday = nil;
-                                                      if(user.birthday.length > 0) {
-                                                          // change date format from MM/DD/YYYY to DD/MM/YYYY
-                                                          NSArray *dateArray = [user.birthday componentsSeparatedByString:@"/"];
-                                                          dateArray = @[ dateArray[1], dateArray[0], dateArray[2]];
-                                                          birtday = [dateArray componentsJoinedByString:@"/"];
-                                                      }
-                                                      
-                                                      NSDictionary *params = @{ @"name" : user.first_name,
-                                                                                @"surname": user.last_name,
-                                                                                @"email" : user[@"email"],
-                                                                                @"password" : [NSString stringWithFormat:@"fb%@", user.objectID],
-                                                                                @"fb_id" : user.objectID,
-                                                                                @"date_of_birth": birtday.length > 0 ? birtday : @"",
-                                                                                @"city": user.location ? [[user.location.name componentsSeparatedByString:@","] firstObject] : @"London",
-                                                                                @"photo_url": [NSString stringWithFormat:@"http://graph.facebook.com/v2.0/%@/picture?redirect=1&height=200&type=normal&width=200",user.objectID],//user[@"picture"][@"data"][@"url"],
-                                                                                @"device_uid":[AppManager sharedManager].deviceToken.length > 0 ? [AppManager sharedManager].deviceToken : @"",
-                                                                                @"device_brand":@"Apple",
-                                                                                @"device_model": [[UIDevice currentDevice] platformString],
-                                                                                @"device_os":[[UIDevice currentDevice] systemVersion],
-                                                                                @"device_location" : [NSString stringWithFormat:@"%f,%f", [AppManager sharedManager].currentLocation.coordinate.latitude, [AppManager sharedManager].currentLocation.coordinate.longitude ]
-                                                                                };
-                                                      
-                                                      
-                                                      [WebServiceManager signUp:params completion:^(id response, NSError *error) {
-                                                          NSLog(@"response %@", response);
-                                                          if (error) {
-                                                              UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                                                              [alert show];
-                                                              
-                                                              [loadingView hide];
-                                                          } else {
-                                                              if (response) {
-                                                                  
-                                                                  if (response[@"authentication_token"]) {
-                                                                      [AppManager sharedManager].token = response[@"authentication_token"];
-                                                                      
-                                                                      [AppManager sharedManager].userInfo = [@{ @"id":response[@"id"], @"fb_id" : user.objectID, @"email":user[@"email"], @"name": user.first_name, @"photo_url":[NSString stringWithFormat:@"http://graph.facebook.com/v2.0/%@/picture?redirect=1&height=200&type=normal&width=200",user.objectID], @"city":user.location ? [[user.location.name componentsSeparatedByString:@","] firstObject] : @"London"} mutableCopy];
-                                                                      
-                                                                      if ([self shouldPerformSegueWithIdentifier:@"PreviewSegue" sender:self]) {
-                                                                          [self performSegueWithIdentifier:@"PreviewSegue" sender:self];
-                                                                      }
-                                                                  } else {
-                                                                      
-                                                                      // login
-                                                                      NSDictionary *params = @{ @"email" : user[@"email"],
-                                                                                                @"password" : [NSString stringWithFormat:@"fb%@", user.objectID]
-                                                                                                };
-                                                                      
-                                                                      [WebServiceManager signIn:params completion:^(id response, NSError *error) {
-                                                                          NSLog(@"response %@", response);
-                                                                          if (error ) {
-                                                                              UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                                                                              [alert show];
-                                                                          } else {
-                                                                              
-                                                                              if (response) {
-                                                                                  
-                                                                                  if ([response[@"success"] boolValue]) {
-                                                                                      [AppManager sharedManager].token = response[@"auth_token"];
-                                                                                      
-                                                                                      [AppManager sharedManager].userInfo = [@{@"id":response[@"id"], @"email":user[@"email"], @"name": user.first_name, @"surname": response[@"surname"], @"allow_dingo_emails": response[@"allow_dingo_emails"], @"allow_push_notifications":  response[@"allow_push_notifications"], @"fb_id":user.objectID, @"photo_url":[NSString stringWithFormat:@"http://graph.facebook.com/v2.0/%@/picture?redirect=1&height=200&type=normal&width=200",user.objectID], @"city" : user.location ? [[user.location.name componentsSeparatedByString:@","] firstObject] : @"London"} mutableCopy];
-                                                                                      
-                                                                                      if ([self shouldPerformSegueWithIdentifier:@"PreviewSegue" sender:self]) {
-                                                                                          [self performSegueWithIdentifier:@"PreviewSegue" sender:self];
-                                                                                      }
-                                                                                      
-                                                                                  } else {
-                                                                                      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Unable to sign in, please try later" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                                                                                      [alert show];
-                                                                                  }
-                                                                                  
-                                                                              } else {
-                                                                                  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Unable to sign in, please try later" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                                                                                  [alert show];
-                                                                              }
-                                                                          }
-                                                                      }];
-                                                                      
-                                                                  }
-                                                                  
-                                                              } else {
-                                                                  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Unable to sign up, please try later" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                                                                  [alert show];
-                                                              }
-                                                              
-                                                              [loadingView hide];
-                                                          }
-                                                          
-                                                          
-                                                      }];
-                                                  } else {
-                                                      [loadingView hide];
-                                                  }
-                                                  
-                                                  
-                                              }];
-                                          } else {
-                                              [loadingView hide];
-                                          }
-                                      }
-                                      
-                                  }];
-}
-
-
-
 
 @end

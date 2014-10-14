@@ -46,6 +46,7 @@
 - (void)allTiketsForEvents:(NSMutableArray *)events withCompletion:( void (^) (BOOL finished))handler;
 - (NSArray *)allTicketsByEventID:(NSString *)eventID;
 - (void)allTicketsByEventID:(NSString *)eventID completion:( void (^) (BOOL finished))handler;
+- (void)addOrUpdateTicket:(NSDictionary *)info;
 - (NSArray *)userTickets;
 - (void)userTicketsWithCompletion:( void (^) (BOOL finished))handler;
 - (NSArray *)ticketsBeforeDate:(NSDate *)date;

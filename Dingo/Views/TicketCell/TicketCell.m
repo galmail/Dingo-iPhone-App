@@ -23,7 +23,7 @@ const CGFloat featureCellHeight = 140;
 @property (nonatomic, weak) IBOutlet DiscountView *discountView;
 
 @property (nonatomic) float price;
-@property (nonatomic) uint tickets;
+
 
 @end
 

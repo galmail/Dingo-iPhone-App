@@ -80,6 +80,8 @@
     
     [self buildWithData:event];
     
+    [self setTickets:[data.number_of_tickets intValue]];
+    
 //    self.offers = [data[@"offers"] floatValue];
 }
 
