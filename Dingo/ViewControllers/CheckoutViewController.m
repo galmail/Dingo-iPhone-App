@@ -11,16 +11,10 @@
 #import "RoundedImageView.h"
 #import "DingoUISettings.h"
 #import "WebServiceManager.h"
-//#import "PayPalMobile.h"
+#import "PayPalMobile.h"
 
-#import "PayPal.h"
-#import "PayPalPayment.h"
-#import "PayPalAdvancedPayment.h"
-#import "PayPalInvoiceItem.h"
 #import "ChatViewController.h"
 #import "ZSLoadingView.h"
-
-static NSString *kPayPalAppID = @"APP-80W284485P519543T";
 
 @interface CheckoutViewController () <PayPalPaymentDelegate, UIPopoverControllerDelegate>{
     
@@ -45,7 +39,7 @@ static NSString *kPayPalAppID = @"APP-80W284485P519543T";
     
     UIWebView *webView;
     
-//    PayPalConfiguration *payPalConfig;
+    PayPalConfiguration *payPalConfig;
     
     NSString *payPalKey;
 }
@@ -66,8 +60,6 @@ static NSString *kPayPalAppID = @"APP-80W284485P519543T";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    [PayPal initializeWithAppID:kPayPalAppID forEnvironment:ENV_SANDBOX];
     
     currencyFormatter = [[NSNumberFormatter alloc] init];
     currencyFormatter.numberStyle = NSNumberFormatterCurrencyStyle;
@@ -96,16 +88,16 @@ static NSString *kPayPalAppID = @"APP-80W284485P519543T";
     
     [self calculateTotal];
     
-//    payPalConfig = [[PayPalConfiguration alloc] init];
-//    payPalConfig.acceptCreditCards = YES;
-//    payPalConfig.languageOrLocale = @"en";
-//    payPalConfig.merchantName = @"Dingo, Inc.";
-//
+    payPalConfig = [[PayPalConfiguration alloc] init];
+    payPalConfig.acceptCreditCards = YES;
+    payPalConfig.languageOrLocale = @"en";
+    payPalConfig.merchantName = @"Dingo, Inc.";
+
     
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-//    [PayPalMobile preconnectWithEnvironment:PayPalEnvironmentSandbox];
+    [PayPalMobile preconnectWithEnvironment:PayPalEnvironmentSandbox];
 }
 
 - (void)didReceiveMemoryWarning
@@ -131,33 +123,17 @@ static NSString *kPayPalAppID = @"APP-80W284485P519543T";
     
     payPalKey = nil;
     
-    NSNumber *total = [currencyFormatter numberFromString:txtTotal.text];
-    NSNumber *sellerTotal = @([total floatValue]*0.9f);
     
-    PayPalAdvancedPayment *advancedPayment = [[PayPalAdvancedPayment alloc] init];
+    PayPalPayment *payment = [[PayPalPayment alloc] init];
+    payment.amount = (NSDecimalNumber*)[currencyFormatter numberFromString:txtTotal.text];
+    payment.currencyCode = @"GBP";
+    payment.shortDescription = @"Dingo Test Payment ";
     
-    advancedPayment.paymentCurrency = @"GBP";
-    advancedPayment.merchantName = @"Dingo, Inc.";
+    PayPalPaymentViewController *paymentViewController = [[PayPalPaymentViewController alloc] initWithPayment:payment
+                                                                                                configuration:payPalConfig                                                                                                                     delegate:self];
     
-    PayPalReceiverPaymentDetails *receiver = [[PayPalReceiverPaymentDetails alloc] init];
-    receiver.isPrimary = YES;
-    receiver.recipient = @"dingo@dingoapp.co.uk";
-    receiver.paymentType = TYPE_SERVICE;
-    receiver.subTotal = (NSDecimalNumber*)total;
-    
-    PayPalReceiverPaymentDetails *receiver1 = [[PayPalReceiverPaymentDetails alloc] init];
-    receiver1.isPrimary = NO;
-    receiver1.recipient = self.ticket.user_email;
-    receiver1.subTotal = (NSDecimalNumber*)sellerTotal;
-    
-    advancedPayment.receiverPaymentDetails = [NSMutableArray array];
-    [advancedPayment.receiverPaymentDetails addObjectsFromArray:@[receiver, receiver1]];
-    
-    [PayPal getPayPalInst].feePayer = FEEPAYER_PRIMARYRECEIVER;
-    [PayPal getPayPalInst].delegate = self;
-    [PayPal getPayPalInst].shippingEnabled = NO;
-    [[PayPal getPayPalInst] advancedCheckoutWithPayment:advancedPayment];
-    
+    [self presentViewController:paymentViewController animated:YES completion:nil];
+
 }
 
 - (void)textFieldDidEndEditing:(UITextField*)textField {
@@ -203,60 +179,61 @@ static NSString *kPayPalAppID = @"APP-80W284485P519543T";
 
 #pragma mark PayPalPaymentDelegate methods
 
-- (void)paymentSuccessWithKey:(NSString *)payKey andStatus:(PayPalPaymentStatus)paymentStatus {
-    payPalKey = payKey;
-}
-
-- (void)paymentFailedWithCorrelationID:(NSString *)correlationID {
+- (void)payPalPaymentViewController:(PayPalPaymentViewController *)paymentViewController didCompletePayment:(PayPalPayment *)completedPayment {
+    NSLog(@"PayPal Payment Success! \n%@",  [completedPayment confirmation]);
     
-}
-
-- (void)paymentCanceled {
+    payPalKey = [completedPayment confirmation][@"response"][@"id"];
     
-}
-
-- (void)paymentLibraryExit {
-
-    if (payPalKey.length > 0) {
-        NSDictionary *params = @{ @"ticket_id" : self.ticket.ticket_id,
-                                  @"num_tickets": txtNumber.text,
-                                  @"amount" : [currencyFormatter numberFromString:txtTotal.text],
-                                  @"delivery_options" : self.ticket.delivery_options,
-                                  @"order_paid":@"1",
-                                  @"paypal_key":payPalKey
-                                  };
-        
-        ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please wait..."];
-        [loadingView show];
-        
-        [WebServiceManager makeOrder:params completion:^(id response, NSError *error) {
-            [loadingView hide];
-            if (!error) {
-                
-                NSLog(@"make order - %@", response);
-                if (response) {
+    [self dismissViewControllerAnimated:YES completion:^{
+       
+        if (payPalKey.length > 0) {
+            NSDictionary *params = @{ @"ticket_id" : self.ticket.ticket_id,
+                                      @"num_tickets": txtNumber.text,
+                                      @"amount" : [currencyFormatter numberFromString:txtTotal.text],
+                                      @"delivery_options" : self.ticket.delivery_options,
+                                      @"order_paid":@"1",
+                                      @"paypal_key":payPalKey
+                                      };
+            
+            ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please wait..."];
+            [loadingView show];
+            
+            [WebServiceManager makeOrder:params completion:^(id response, NSError *error) {
+                [loadingView hide];
+                if (!error) {
                     
-                    if ([response[@"id"] boolValue]) {
+                    NSLog(@"make order - %@", response);
+                    if (response) {
                         
-                        
-                        ChatViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"ChatViewController"];
-                        vc.ticket = self.ticket;
-                        
-                        [self.navigationController pushViewController:vc animated:YES];
-                        
-                        [WebServiceManager payPalSuccess:@{@"order_id":response[@"id"]} completion:^(id response, NSError *error) {
+                        if ([response[@"id"] boolValue]) {
                             
-                        }];
-
+                            
+                            ChatViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"ChatViewController"];
+                            vc.ticket = self.ticket;
+                            
+                            [self.navigationController pushViewController:vc animated:YES];
+                            
+                            [WebServiceManager payPalSuccess:@{@"order_id":response[@"id"]} completion:^(id response, NSError *error) {
+                                
+                            }];
+                            
+                            
+                        } else {
+                            [AppManager showAlert:@"Unable to buy!"];
+                        }
                         
-                    } else {
-                        [AppManager showAlert:@"Unable to buy!"];
                     }
-                    
                 }
-            }
-        }];
-    }
+            }];
+        }
+        
+    }];
+}
+
+- (void)payPalPaymentDidCancel:(PayPalPaymentViewController *)paymentViewController {
+    NSLog(@"PayPal Payment Canceled");
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

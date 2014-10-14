@@ -15,7 +15,7 @@
 #import "SlidingViewController.h"
 #import "UIDevice+Additions.h"
 #import "WebServiceManager.h"
-//#import "PayPalMobile.h"
+#import "PayPalMobile.h"
 
 #import "Appirater.h"
 #import "Harpy.h"
@@ -60,8 +60,8 @@
     
     
     
-//    [PayPalMobile initializeWithClientIdsForEnvironments:@{/*PayPalEnvironmentProduction : @"YOUR_CLIENT_ID_FOR_PRODUCTION",*/
-//                                                           PayPalEnvironmentSandbox : @"AWdYAhAitDP7Y1AFRQ6h68YlNcBiMcBgg1Grc-rfMrAqAIG_gHWSupG6E9A_"}];
+    [PayPalMobile initializeWithClientIdsForEnvironments:@{/*PayPalEnvironmentProduction : @"YOUR_CLIENT_ID_FOR_PRODUCTION",*/
+                                                           PayPalEnvironmentSandbox : @"AWdYAhAitDP7Y1AFRQ6h68YlNcBiMcBgg1Grc-rfMrAqAIG_gHWSupG6E9A_"}];
 
     
     if ([AppManager sharedManager].token) {
