@@ -12,5 +12,5 @@
 @interface ChatViewController : UIViewController
 
 @property (nonatomic) Ticket *ticket;
-
+@property (nonatomic) NSString *receiverName;
 @end

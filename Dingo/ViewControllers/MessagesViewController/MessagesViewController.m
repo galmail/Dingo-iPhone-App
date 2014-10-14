@@ -115,10 +115,22 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     NSIndexPath *selectedCellPath = [self.tableView indexPathForSelectedRow];
-    Message* msg = groupedMessages[selectedCellPath.row];
+    Message* data = groupedMessages[selectedCellPath.row];
     
     ChatViewController *vc = (ChatViewController *)segue.destinationViewController;
-    Ticket *ticket = [[DataManager shared] ticketByID:msg.ticket_id];
+    
+    Ticket *ticket = [[DataManager shared] ticketByID:data.ticket_id];
+
+    NSString *userID = [[AppManager sharedManager].userInfo[@"id"] stringValue];
+    if ([[ticket.user_id stringValue] isEqualToString:userID]) {
+        if ([data.receiver_id isEqualToString:[ticket.user_id stringValue]]) {
+            vc.receiverName = data.sender_name;
+        } else {
+           vc.receiverName = data.receiver_name;
+        }
+    } else {
+        vc.receiverName = ticket.user_name;
+    }
     
     vc.ticket = ticket;
     
