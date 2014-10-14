@@ -1001,6 +1001,14 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     }];
 }
 
+- (NSInteger)unreadMessagesCount {
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Messages"];
+    request.predicate = [NSPredicate predicateWithFormat:@"read == 0 && receiver_id == %@", [AppManager sharedManager].userInfo[@"id"]];
+    
+    NSArray *messages = [[AppManager sharedManager].managedObjectContext executeFetchRequest:request error:nil];
+    
+    return [messages count];
+}
 
 - (void)addOrUpdateMessage:(NSDictionary *)info {
     NSManagedObjectContext *context = [AppManager sharedManager].managedObjectContext;

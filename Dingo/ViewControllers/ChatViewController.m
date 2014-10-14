@@ -135,6 +135,14 @@
             }
             
             [bubbleData addObject:bubble];
+            if (![msg.sender_id isEqual:[userID stringValue]]) {
+                [WebServiceManager markAsRead:@{@"messageID":msg.message_id} completion:^(id response, NSError *error) {
+                    if (response) {
+                        [[DataManager shared] addOrUpdateMessage:response];
+                    }
+                }];
+            }
+            
         }
         
         [bubbleTable reloadData];

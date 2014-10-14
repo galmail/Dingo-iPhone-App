@@ -76,9 +76,9 @@
 - (NSDate *)eventFromSearchGroupDateByIndex:(NSUInteger)groupIndex Events:(NSArray*)searchedEvents;
 
 - (void)fetchMessagesWithCompletion:( void (^) (BOOL finished))handler;
+- (NSInteger)unreadMessagesCount;
 - (NSArray *)allMessages;
 - (NSArray *)allMessagesFor:(NSNumber*)userID ticketID:(NSString*)ticketID;
-
 - (void)addOrUpdateMessage:(NSDictionary *)info;
 
 @end

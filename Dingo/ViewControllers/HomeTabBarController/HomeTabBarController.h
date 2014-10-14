@@ -8,4 +8,6 @@
 
 @interface HomeTabBarController : UITabBarController
 
+- (void)updateMessageCount;
+
 @end

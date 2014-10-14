@@ -41,6 +41,7 @@
 
 + (void)receiveMessages:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler;
 + (void)sendMessage:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler;
++ (void)markAsRead:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler;
 
 + (void)updateProfile:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler;
 

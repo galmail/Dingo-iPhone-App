@@ -17,6 +17,7 @@
 #import "DingoUISettings.h"
 #import "AppManager.h"
 #import "ZSLoadingView.h"
+#import "HomeTabBarController.h"
 
 static const CGSize iconSize = {28, 32};
 static const CGFloat categoriesHeight = 110;
@@ -68,19 +69,33 @@ static const CGFloat categoriesHeight = 110;
                 firstLoad = NO;
                 NSArray *eventIDs = [[[DataManager shared] allEvents] valueForKey:@"event_id"];
                 
+                
                 [[DataManager shared] allTiketsForEvents:[eventIDs mutableCopy] withCompletion:^(BOOL finished) {
+                    
+                    [[DataManager shared] fetchMessagesWithCompletion:^(BOOL finished) {
+                        
+                       
+                        [(HomeTabBarController*)self.tabBarController updateMessageCount];
+                        
+                        [self.tableView reloadData];
+                        [loadingView hide];
+                        if ([[AppManager sharedManager] justInstalled]) {
+                            [self setupTips];
+                        }
+                    }];
+                }];
+            } else {
+                
+                [[DataManager shared] fetchMessagesWithCompletion:^(BOOL finished) {
+                    
+                    [(HomeTabBarController*)self.tabBarController updateMessageCount];
+                    
                     [self.tableView reloadData];
                     [loadingView hide];
                     if ([[AppManager sharedManager] justInstalled]) {
                         [self setupTips];
                     }
                 }];
-            } else {
-                [self.tableView reloadData];
-                [loadingView hide];
-                if ([[AppManager sharedManager] justInstalled]) {
-                    [self setupTips];
-                }
             }
             
            

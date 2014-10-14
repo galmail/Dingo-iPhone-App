@@ -15,6 +15,7 @@
 #import "WebServiceManager.h"
 #import "ChatViewController.h"
 #import "ZSLoadingView.h"
+#import "HomeTabBarController.h"
 
 @interface MessagesViewController () <UITableViewDelegate, UITableViewDataSource> {
     NSMutableArray *groupedMessages;
@@ -45,6 +46,7 @@
     [[DataManager shared] fetchMessagesWithCompletion:^(BOOL finished) {
         [self groupMessagesByUser];
         [loadingView hide];
+        [(HomeTabBarController*)self.tabBarController updateMessageCount];
         
     }];
 }

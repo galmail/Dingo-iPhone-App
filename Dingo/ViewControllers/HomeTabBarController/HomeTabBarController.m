@@ -15,6 +15,7 @@
 #import "DingoUtilites.h"
 #import "ListTicketsViewController.h"
 #import "AppManager.h"
+#import "DataManager.h"
 
 static const NSUInteger listTicketsVCIndex = 2;
 
@@ -36,8 +37,18 @@ static const NSUInteger listTicketsVCIndex = 2;
     self.navigationItem.hidesBackButton = YES;
     self.nextTabBarIndex = -1;
     self.delegate = self;
-//    [self messagesTabBarItem].badgeValue = @"Ya!";
 }
+
+- (void)updateMessageCount {
+    NSInteger unreadMessages = [[DataManager shared] unreadMessagesCount];
+    
+    if (unreadMessages) {
+        [self messagesTabBarItem].badgeValue = [NSString stringWithFormat:@"%ld",(long)unreadMessages];
+    } else {
+        [self messagesTabBarItem].badgeValue = nil;
+    }
+}
+
 
 #pragma mark - UITabBarControllerDelegate
 
@@ -109,6 +120,8 @@ static const NSUInteger listTicketsVCIndex = 2;
         self.nextTabBarIndex = -1;
     }
 }
+
+
 
 #pragma mark - Private
 
