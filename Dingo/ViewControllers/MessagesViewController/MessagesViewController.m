@@ -31,6 +31,9 @@
     [super viewDidLoad];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(refreshInvoked:forState:) forControlEvents:UIControlEventValueChanged];
+    
     [self groupMessagesByUser];
     
 }
@@ -46,6 +49,19 @@
     [[DataManager shared] fetchMessagesWithCompletion:^(BOOL finished) {
         [self groupMessagesByUser];
         [loadingView hide];
+        [(HomeTabBarController*)self.tabBarController updateMessageCount];
+        
+    }];
+}
+
+-(void) refreshInvoked:(id)sender forState:(UIControlState)state {
+    
+    [self.refreshControl beginRefreshing];
+    
+    [[DataManager shared] fetchMessagesWithCompletion:^(BOOL finished) {
+        [self groupMessagesByUser];
+        [self.tableView reloadData];
+        [self.refreshControl endRefreshing];
         [(HomeTabBarController*)self.tabBarController updateMessageCount];
         
     }];
