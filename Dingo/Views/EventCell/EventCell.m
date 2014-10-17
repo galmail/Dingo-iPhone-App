@@ -97,7 +97,16 @@ const CGFloat eventCellHeight = 78;
             }];
             
         } else {
-            self.iconImageView.image = [UIImage imageWithData:category.thumb];
+            if (category.thumb) {
+                self.iconImageView.image = [UIImage imageWithData:category.thumb];
+            } else {
+                [WebServiceManager imageFromUrl:category.thumbUrl completion:^(id response, NSError *error) {
+                    category.thumb = response;
+                    self.iconImageView.image = [UIImage imageWithData:category.thumb];
+                    
+                    [[AppManager sharedManager] saveContext];
+                }];
+            }
         }
         
     }

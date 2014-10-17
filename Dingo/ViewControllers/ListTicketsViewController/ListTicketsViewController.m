@@ -36,6 +36,9 @@ static const NSUInteger payPalCellIndex = 13;
 static const NSUInteger previewCellIndex = 16;
 static const NSUInteger comfirmCellIndex = 17;
 
+static const NSInteger fbLoginAlert = 1;
+static const NSInteger paypalAlert = 2;
+
 @interface ListTicketsViewController () <UITextFieldDelegate, UITableViewDataSource, UploadPhotosVCDelegate, ZSTextFieldDelegate, ZSDatePickerDelegate , ZSPickerDelegate ,CategorySelectionDelegate> {
     
     __weak IBOutlet UILabel *lblName;
@@ -656,6 +659,7 @@ static const NSUInteger comfirmCellIndex = 17;
         
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Facebook login is required when selling tickets to promote a safe community. Don’t worry, we won’t share anything on your wall." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Login", nil];
         [alert show];
+        alert.tag = fbLoginAlert;
         return NO;
     }
     
@@ -1006,6 +1010,12 @@ static const NSUInteger comfirmCellIndex = 17;
     cashSwitch.on = !paypalSwitch.on;
     if(paypalSwitch.on) {
         lblPayment.textColor = [UIColor darkGrayColor];
+        if (![AppManager sharedManager].userInfo[@"paypal_account"]) {
+            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Enter your PayPal account" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
+            alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+            alert.tag = paypalAlert;
+            [alert show];
+        }
     }
     
     [self.tableView beginUpdates];
@@ -1049,18 +1059,58 @@ static const NSUInteger comfirmCellIndex = 17;
 #pragma mark UIAlertView delegates
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (buttonIndex == 1) {
-        ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please wait..."];
-        [loadingView show];
-        [WebServiceManager signInWithFBCompletion:^(id response, NSError *error) {
-            [loadingView hide];
-            if (response) {
-                if ([self shouldPerformSegueWithIdentifier:@"PreviewSegue" sender:self]) {
-                    [self performSegueWithIdentifier:@"PreviewSegue" sender:self];
-                }
+    
+    switch (alertView.tag) {
+        case fbLoginAlert:
+            if (buttonIndex == 1) {
+                ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please wait..."];
+                [loadingView show];
+                [WebServiceManager signInWithFBCompletion:^(id response, NSError *error) {
+                    [loadingView hide];
+                    if (response) {
+                        if ([self shouldPerformSegueWithIdentifier:@"PreviewSegue" sender:self]) {
+                            [self performSegueWithIdentifier:@"PreviewSegue" sender:self];
+                        }
+                    }
+                }];
             }
-        }];
+            break;
+        case paypalAlert: {
+            
+            if (buttonIndex == 1) {
+                
+                if ([[alertView textFieldAtIndex:0].text length]>0) {
+                    ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please wait..."];
+                    [loadingView show];
+                    NSDictionary *params = @{@"paypal_account":[alertView textFieldAtIndex:0].text };
+                    [WebServiceManager updateProfile:params completion:^(id response, NSError *error) {
+                        NSLog(@"response %@", response);
+                        [loadingView hide];
+                        if ([response[@"paypal_account"] length]) {
+                            [[AppManager sharedManager].userInfo setObject:response[@"paypal_account"] forKey:@"paypal_account"];
+                        }
+                        
+                    }];
+
+                    
+                } else {
+                     paypalSwitch.on = NO;
+                }
+                
+            } else {
+                paypalSwitch.on = NO;
+            }
+            
+            break;
+        }
+            
+            
+            
+        default:
+            break;
     }
+    
+    
 }
 
 @end
