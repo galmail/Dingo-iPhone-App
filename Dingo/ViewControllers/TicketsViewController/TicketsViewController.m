@@ -28,15 +28,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    ZSLoadingView *loadingView =[[ZSLoadingView alloc] initWithLabel:@"Loading tickets ..."];
-    [loadingView show];
+
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(refreshInvoked:forState:) forControlEvents:UIControlEventValueChanged];
+
+    
     [[DataManager shared] allTicketsByEventID:self.eventData.event_id completion:^(BOOL finished) {
         
         [self.tableView reloadData];
         
         [[DataManager shared] allAlertsWithCompletion:^(BOOL finished) {
-            
-            [loadingView hide];
             NSArray *alertArray = [[DataManager shared] allAlerts];
             NSPredicate *predicate = [NSPredicate predicateWithFormat:@"event_id == %@", self.eventData.event_id];
             NSArray *filteredArray = [alertArray filteredArrayUsingPredicate:predicate];
@@ -45,12 +46,32 @@
     }];
 }
 
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
     [self.tableView reloadData];
 }
 
+
+-(void) refreshInvoked:(id)sender forState:(UIControlState)state {
+    
+    [self.refreshControl beginRefreshing];
+    
+    [[DataManager shared] allTicketsByEventID:self.eventData.event_id completion:^(BOOL finished) {
+        
+        [self.tableView reloadData];
+        [self.refreshControl endRefreshing];
+        
+        [[DataManager shared] allAlertsWithCompletion:^(BOOL finished) {
+            NSArray *alertArray = [[DataManager shared] allAlerts];
+            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"event_id == %@", self.eventData.event_id];
+            NSArray *filteredArray = [alertArray filteredArrayUsingPredicate:predicate];
+            eventCell.on = (filteredArray.count > 0);
+        }];
+    }];
+
+}
 
 #pragma mark - UITableViewDelegate
 

@@ -56,8 +56,14 @@ static const CGFloat categoriesHeight = 110;
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    ZSLoadingView *loadingView =[[ZSLoadingView alloc] initWithLabel:@"Loading events ..."];
-    [loadingView show];
+    NSArray *events = [[DataManager shared] allEvents];
+    
+    ZSLoadingView *loadingView = nil;
+    if (![events count]) {
+        loadingView =[[ZSLoadingView alloc] initWithLabel:@"Loading events ..."];
+        [loadingView show];
+    }
+    
     [[DataManager shared] allCategoriesWithCompletion:^(BOOL finished) {
         if (!selectedCategories.count) {
             selectedCategories = [[[DataManager shared] allCategories] valueForKey:@"category_id"];
