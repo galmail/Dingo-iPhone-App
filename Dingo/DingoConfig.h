@@ -9,13 +9,13 @@
 //#define kProductionMode 
 
 // production
-#define kProductionAPI @"http://dingoapp.herokuapp.com/api/v1"
+#define kProductionAPI @"http://dingoapp.herokuapp.com/api/v1/"
 #define kProductionSignUpUrl @"http://dingoapp.herokuapp.com/users/sign_up"
 #define kProductionSignInUrl @"http://dingoapp.herokuapp.com/users/sign_in";
 
 // development
 
-#define kDevelopmentAPI @"http://dingoapp.herokuapp.com/api/v1"
+#define kDevelopmentAPI @"http://dingoapp.herokuapp.com/api/v1/"
 #define kDevelopmentSignUpUrl @"http://dingoapp.herokuapp.com/users/sign_up"
 #define kDevelopmentSignInUrl @"http://dingoapp.herokuapp.com/users/sign_in";
 

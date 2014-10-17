@@ -20,6 +20,8 @@
 #import "Appirater.h"
 #import "Harpy.h"
 
+#import "GAI.h"
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -62,6 +64,11 @@
     
     [PayPalMobile initializeWithClientIdsForEnvironments:@{PayPalEnvironmentProduction :kPaypalProductionID,
                                                            PayPalEnvironmentSandbox : kPaypalSendboxID }];
+    
+    [GAI sharedInstance].trackUncaughtExceptions = YES;
+    [GAI sharedInstance].dispatchInterval = 20;
+    [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelVerbose];
+    [[GAI sharedInstance] trackerWithTrackingId:@"UA-54649568-2"];
 
     
     if ([AppManager sharedManager].token) {
