@@ -13,9 +13,16 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import "UIDevice+Additions.h"
 
-static NSString* apiUrl = @"http://dingoapp.herokuapp.com/api/v1/";
-static NSString* signUpUrl = @"http://dingoapp.herokuapp.com/users/sign_up";
-static NSString* signInUrl = @"http://dingoapp.herokuapp.com/users/sign_in";
+#ifdef kProductionMode
+static NSString* apiUrl = kProductionAPI;
+static NSString* signUpUrl = kProductionSignUpUrl;
+static NSString* signInUrl = kProductionSignInUrl;
+#else
+static NSString* apiUrl = kDevelopmentAPI;
+static NSString* signUpUrl = kDevelopmentSignUpUrl;
+static NSString* signInUrl = kDevelopmentSignInUrl;
+#endif
+
 static NSString* geocodeUrl = @"https://maps.googleapis.com/maps/api/geocode/json";
 static NSString* placesUrl = @"https://maps.googleapis.com/maps/api/place/autocomplete/json";
 static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/details/json";

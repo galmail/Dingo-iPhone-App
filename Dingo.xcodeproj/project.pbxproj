@@ -394,6 +394,7 @@
 		3AA332FB1990DDA900C8DAA8 /* ZSTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSTextView.m; sourceTree = "<group>"; };
 		3AA332FE1990F50600C8DAA8 /* SourceSansPro-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Regular.otf"; sourceTree = "<group>"; };
 		3AA3330019910D4E00C8DAA8 /* SourceSansPro-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Bold.otf"; sourceTree = "<group>"; };
+		3AA42FF919F15A890053D6F8 /* DingoConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DingoConfig.h; sourceTree = "<group>"; };
 		3AA4359519911D2900D626D1 /* SourceSansPro-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Semibold.otf"; sourceTree = "<group>"; };
 		3AA49000199E1C6700C7E8ED /* TicketDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketDetailViewController.h; sourceTree = "<group>"; };
 		3AA49001199E1C6700C7E8ED /* TicketDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketDetailViewController.m; sourceTree = "<group>"; };
@@ -1478,6 +1479,7 @@
 				3F98FD011945D5C200E6B3C4 /* DingoUtilites */,
 				3F98FC9D193F003D00E6B3C4 /* DataManager */,
 				3F10DE6C193C54C4002D3B43 /* DingoUISettings */,
+				3AA42FF919F15A890053D6F8 /* DingoConfig.h */,
 			);
 			name = Classes;
 			sourceTree = "<group>";

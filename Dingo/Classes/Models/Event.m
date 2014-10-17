@@ -20,6 +20,7 @@
 @dynamic thumbUrl;
 @dynamic featured;
 @dynamic fromPrice;
+@dynamic test;
 @dynamic tickets;
 @dynamic address;
 @dynamic city;

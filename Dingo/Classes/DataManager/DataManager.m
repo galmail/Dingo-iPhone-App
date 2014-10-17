@@ -117,7 +117,7 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     event.featured = [NSNumber numberWithInt:[info[@"featured"] intValue]];
     event.fromPrice = [NSNumber numberWithFloat:[info[@"min_price"] floatValue]];
     event.tickets = [NSNumber numberWithInt:[info[@"available_tickets"] intValue]];
-    
+    event.test = [NSNumber numberWithBool:[info[@"test"] boolValue]];
     event.address = info[@"address"];
     event.city = info[@"city"];
     event.postalCode = info[@"postcode"];

@@ -21,6 +21,7 @@
 @property (nonatomic, retain) NSString * thumbUrl;
 @property (nonatomic, retain) NSNumber * featured;
 @property (nonatomic, retain) NSNumber * fromPrice;
+@property (nonatomic, retain) NSNumber * test;
 @property (nonatomic, retain) NSNumber * tickets;
 @property (nonatomic, retain) NSString * address;
 @property (nonatomic, retain) NSString * city;

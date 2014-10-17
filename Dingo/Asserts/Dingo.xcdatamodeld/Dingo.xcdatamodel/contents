@@ -18,6 +18,7 @@
         <attribute name="fromPrice" optional="YES" attributeType="Float" defaultValueString="0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="postalCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="test" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="thumb" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="thumbUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="tickets" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -68,7 +69,7 @@
     </entity>
     <elements>
         <element name="Alerts" positionX="-27" positionY="153" width="128" height="105"/>
-        <element name="Event" positionX="-54" positionY="18" width="128" height="253"/>
+        <element name="Event" positionX="-54" positionY="18" width="128" height="270"/>
         <element name="EventCategory" positionX="-63" positionY="-18" width="128" height="103"/>
         <element name="Messages" positionX="-45" positionY="135" width="128" height="285"/>
         <element name="Ticket" positionX="-36" positionY="117" width="128" height="315"/>

@@ -97,7 +97,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [PayPalMobile preconnectWithEnvironment:PayPalEnvironmentSandbox];
+//    [PayPalMobile preconnectWithEnvironment:PayPalEnvironmentSandbox];
 }
 
 - (void)didReceiveMemoryWarning
@@ -123,6 +123,15 @@
     
     payPalKey = nil;
     
+    if ([self.event.test boolValue]) {
+         [PayPalMobile preconnectWithEnvironment:PayPalEnvironmentSandbox];
+    } else {
+#ifdef kProductionMode
+        [PayPalMobile preconnectWithEnvironment:PayPalEnvironmentProduction];
+#else 
+        [PayPalMobile preconnectWithEnvironment:PayPalEnvironmentSandbox];
+#endif
+    }
     
     PayPalPayment *payment = [[PayPalPayment alloc] init];
     payment.amount = (NSDecimalNumber*)[currencyFormatter numberFromString:txtTotal.text];

@@ -60,8 +60,8 @@
     
     
     
-    [PayPalMobile initializeWithClientIdsForEnvironments:@{/*PayPalEnvironmentProduction : @"YOUR_CLIENT_ID_FOR_PRODUCTION",*/
-                                                           PayPalEnvironmentSandbox : @"AWdYAhAitDP7Y1AFRQ6h68YlNcBiMcBgg1Grc-rfMrAqAIG_gHWSupG6E9A_"}];
+    [PayPalMobile initializeWithClientIdsForEnvironments:@{PayPalEnvironmentProduction :kPaypalProductionID,
+                                                           PayPalEnvironmentSandbox : kPaypalSendboxID }];
 
     
     if ([AppManager sharedManager].token) {
