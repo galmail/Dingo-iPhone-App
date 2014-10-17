@@ -111,7 +111,7 @@
         Alert *alert = alertsArray[indexPath.row];
         
         NSDictionary *params = @{@"event_id":alert.event_id,
-                                 @"price":@0,
+                                 @"price":@99999,
                                  @"on":@NO};
         [WebServiceManager createAlert:params completion:^(id response, NSError *error) {
             if (response) {

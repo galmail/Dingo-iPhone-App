@@ -172,7 +172,7 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
                                                       
                                                       
                                                       [WebServiceManager signUp:params completion:^(id response, NSError *error) {
-                                                          NSLog(@"response %@", response);
+                                                          NSLog(@"signUp response %@", response);
                                                           if (error) {
                                                               UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
                                                               [alert show];
@@ -195,7 +195,7 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
                                                                                                 };
                                                                       
                                                                       [WebServiceManager signIn:params completion:^(id response, NSError *error) {
-                                                                          NSLog(@"response %@", response);
+                                                                          NSLog(@"login response %@", response);
                                                                           if (error ) {
                                                                               UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
                                                                               [alert show];

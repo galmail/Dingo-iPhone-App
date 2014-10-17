@@ -91,7 +91,7 @@
     NSDictionary *params = @{@"on":@YES,
                              @"description": txtDescription.text,
                              @"event_id":self.alert.event_id,
-                             @"price":@0
+                             @"price":@99999
                              };
     
     ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please wait ..."];

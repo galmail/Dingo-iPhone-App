@@ -94,7 +94,7 @@
     // Update Alert
     NSDictionary *params = @{@"event_id":self.eventData.event_id,
                              @"on":@(sender.selected),
-                             @"price": self.eventData.fromPrice,
+                             @"price": @99999,
                              @"description": self.eventData.name
                              };
     
