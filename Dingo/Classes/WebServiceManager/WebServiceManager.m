@@ -192,7 +192,7 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
                                                                       [AppManager sharedManager].token = response[@"authentication_token"];
                                                                       
                                                                       [AppManager sharedManager].userInfo = [@{ @"id":response[@"id"], @"fb_id" : user.objectID, @"email":user[@"email"], @"name": user.first_name, @"photo_url":[NSString stringWithFormat:@"http://graph.facebook.com/v2.0/%@/picture?redirect=1&height=200&type=normal&width=200",user.objectID], @"city":user.location ? [[user.location.name componentsSeparatedByString:@","] firstObject] : @"London",
-                                                                          @"paypal_account":[response[@"paypal_account"] length] ? response[@"paypal_account"] : @""} mutableCopy];
+                                                                                                                @"paypal_account": (![response[@"paypal_account"] isKindOfClass:[NSNull class]] && [response[@"paypal_account"] length]) ? response[@"paypal_account"] : @""} mutableCopy];
                                                                       
                                                                       handler(response, nil);
                                                                   } else {
@@ -214,8 +214,17 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
                                                                                   if ([response[@"success"] boolValue]) {
                                                                                       [AppManager sharedManager].token = response[@"auth_token"];
                                                                                       
-                                                                                      [AppManager sharedManager].userInfo = [@{@"id":response[@"id"], @"email":user[@"email"], @"name": user.first_name, @"surname": response[@"surname"], @"allow_dingo_emails": response[@"allow_dingo_emails"], @"allow_push_notifications":  response[@"allow_push_notifications"], @"fb_id":user.objectID, @"photo_url":[NSString stringWithFormat:@"http://graph.facebook.com/v2.0/%@/picture?redirect=1&height=200&type=normal&width=200",user.objectID], @"city" : user.location ? [[user.location.name componentsSeparatedByString:@","] firstObject] : @"London",
-                                                                                          @"paypal_account":[response[@"paypal_account"] length] ? response[@"paypal_account"] : @""} mutableCopy];
+                                                                                      [AppManager sharedManager].userInfo = [
+                                                                                                                             @{@"id":response[@"id"],
+                                                                                                                               @"email":user[@"email"],
+                                                                                                                               @"name": user.first_name,
+                                                                                                                                @"surname": response[@"surname"],
+                                                                                                                               @"allow_dingo_emails": response[@"allow_dingo_emails"],
+                                                                                                                               @"allow_push_notifications":  response[@"allow_push_notifications"],
+                                                                                                                               @"fb_id":user.objectID,
+                                                                                                                               @"photo_url":[NSString stringWithFormat:@"http://graph.facebook.com/v2.0/%@/picture?redirect=1&height=200&type=normal&width=200",user.objectID],
+                                                                                                                               @"city" : user.location ? [[user.location.name componentsSeparatedByString:@","] firstObject] : @"London",
+                                                                                          @"paypal_account":(![response[@"paypal_account"] isKindOfClass:[NSNull class]] && [response[@"paypal_account"] length]) ? response[@"paypal_account"] : @""} mutableCopy];
                                                                                       
                                                                                       handler(response, nil);
                                                                                       
