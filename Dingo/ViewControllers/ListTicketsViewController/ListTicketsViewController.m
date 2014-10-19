@@ -1010,7 +1010,7 @@ static const NSInteger paypalAlert = 2;
     cashSwitch.on = !paypalSwitch.on;
     if(paypalSwitch.on) {
         lblPayment.textColor = [UIColor darkGrayColor];
-        if (![AppManager sharedManager].userInfo[@"paypal_account"]) {
+        if (![[AppManager sharedManager].userInfo[@"paypal_account"] length]) {
             UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Enter your PayPal account" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
             alert.alertViewStyle = UIAlertViewStylePlainTextInput;
             alert.tag = paypalAlert;
@@ -1100,6 +1100,9 @@ static const NSInteger paypalAlert = 2;
             } else {
                 paypalSwitch.on = NO;
             }
+            
+            [self.tableView beginUpdates];
+            [self.tableView endUpdates];
             
             break;
         }
