@@ -53,11 +53,16 @@
     [self.locationManager startUpdatingLocation];
     
     
-    
-    if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
-        [[UIApplication sharedApplication] registerForRemoteNotifications];
+    //-- Set Notification
+    if ([application respondsToSelector:@selector(isRegisteredForRemoteNotifications)]) {
+        // iOS 8 Notifications
+        [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
+        
+        [application registerForRemoteNotifications];
     } else {
-        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeBadge)];
+        // iOS < 8 Notifications
+        [application registerForRemoteNotificationTypes:
+         (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound)];
     }
     
     
