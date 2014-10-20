@@ -131,8 +131,10 @@
     [params setObject:[NSNumber numberWithBool:self.pushNotificationSwitch.on] forKey:@"allow_push_notifications"];
     [params setObject:[NSNumber numberWithBool:self.dingoEmailsSwitch.on] forKey:@"allow_dingo_emails"];
     if (!self.facebookLoginSwitch.on) {
-        [params setObject:@"" forKey:@"fb_id"];
+        [params setObject:@YES forKey:@"disconnect_fb_account"];
     }
+    
+    NSLog(@"token %@", [AppManager sharedManager].token );
     
     ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Saving..."];
     [loadingView show];
@@ -266,7 +268,7 @@
     ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please Wait..."];
     [loadingView show];
     
-    [WebServiceManager signInWithFBCompletion:^(id response, NSError *error) {
+    [WebServiceManager signInWithFBAndUpdate:YES completion:^(id response, NSError *error) {
         [loadingView hide];
         if (response) {
              [self reloadData];

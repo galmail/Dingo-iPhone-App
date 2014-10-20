@@ -14,7 +14,7 @@
 
 + (void)signUp:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler;
 + (void)signIn:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler;
-+ (void)signInWithFBCompletion:( void (^) (id response, NSError *error))handler;
++ (void)signInWithFBAndUpdate:(BOOL)update completion:( void (^) (id response, NSError *error))handler;
 
 + (void)categories:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler;
 + (void)events:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler;

@@ -78,7 +78,7 @@
         
         ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please wait..."];
         [loadingView show];
-        [WebServiceManager signInWithFBCompletion:^(id response, NSError *error) {
+        [WebServiceManager signInWithFBAndUpdate:NO completion:^(id response, NSError *error) {
             [loadingView hide];
             if (response) {
                 

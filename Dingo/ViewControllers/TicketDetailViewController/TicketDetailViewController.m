@@ -250,7 +250,7 @@ static const NSUInteger commentCellIndex = 4;
             
             ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please wait..."];
             [loadingView show];
-            [WebServiceManager signInWithFBCompletion:^(id response, NSError *error) {
+            [WebServiceManager signInWithFBAndUpdate:YES completion:^(id response, NSError *error) {
                 if (response) {
                     ChatViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ChatViewController"];
                     viewController.ticket = self.ticket;
@@ -266,7 +266,7 @@ static const NSUInteger commentCellIndex = 4;
         if (buttonIndex == 1) {
             ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please wait..."];
             [loadingView show];
-            [WebServiceManager signInWithFBCompletion:^(id response, NSError *error) {
+            [WebServiceManager signInWithFBAndUpdate:YES completion:^(id response, NSError *error) {
                 if (response) {
                     CheckoutViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CheckoutViewController"];
                     viewController.ticket = self.ticket;
@@ -284,7 +284,7 @@ static const NSUInteger commentCellIndex = 4;
             
             ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please wait..."];
             [loadingView show];
-            [WebServiceManager signInWithFBCompletion:^(id response, NSError *error) {
+            [WebServiceManager signInWithFBAndUpdate:YES completion:^(id response, NSError *error) {
                 if (response) {
                     NewOfferViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"NewOfferViewController"];
                     viewController.ticket = self.ticket;

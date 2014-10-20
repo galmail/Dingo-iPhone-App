@@ -1065,7 +1065,7 @@ static const NSInteger paypalAlert = 2;
             if (buttonIndex == 1) {
                 ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please wait..."];
                 [loadingView show];
-                [WebServiceManager signInWithFBCompletion:^(id response, NSError *error) {
+                [WebServiceManager signInWithFBAndUpdate:YES completion:^(id response, NSError *error) {
                     [loadingView hide];
                     if (response) {
                         if ([self shouldPerformSegueWithIdentifier:@"PreviewSegue" sender:self]) {

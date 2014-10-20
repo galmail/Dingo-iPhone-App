@@ -133,7 +133,7 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
     });
 }
 
-+ (void)signInWithFBCompletion:( void (^) (id response, NSError *error))handler {
++ (void)signInWithFBAndUpdate:(BOOL)update completion:( void (^) (id response, NSError *error))handler {
     
     [FBSession openActiveSessionWithReadPermissions:@[@"email", @"user_birthday", @"user_location"]
                                        allowLoginUI:YES
@@ -177,56 +177,84 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
                                                                                 @"device_location" : [NSString stringWithFormat:@"%f,%f", [AppManager sharedManager].currentLocation.coordinate.latitude, [AppManager sharedManager].currentLocation.coordinate.longitude ]
                                                                                 };
                                                       
-                                                      
-                                                      [WebServiceManager signUp:params completion:^(id response, NSError *error) {
-                                                          NSLog(@"signUp response %@", response);
-                                                          if (error) {
-                                                              UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                                                              [alert show];
-                                                              
-                                                              handler(nil, error);
-                                                          } else {
+                                                      if (update) {
+                                                          
+                                                          [WebServiceManager updateProfile:params completion:^(id response, NSError *error) {
                                                               if (response) {
+                                                                  [AppManager sharedManager].token = response[@"authentication_token"];
                                                                   
-                                                                  if (response[@"authentication_token"]) {
-                                                                      [AppManager sharedManager].token = response[@"authentication_token"];
+                                                                  [AppManager sharedManager].userInfo = [
+                                                                                                         @{@"id":response[@"id"],
+                                                                                                           @"email":user[@"email"],
+                                                                                                           @"name": user.first_name,
+                                                                                                           @"surname": response[@"surname"],
+                                                                                                           @"allow_dingo_emails": response[@"allow_dingo_emails"],
+                                                                                                           @"allow_push_notifications":  response[@"allow_push_notifications"],
+                                                                                                           @"fb_id":user.objectID,
+                                                                                                           @"photo_url":[NSString stringWithFormat:@"http://graph.facebook.com/v2.0/%@/picture?redirect=1&height=200&type=normal&width=200",user.objectID],
+                                                                                                           @"city" : user.location ? [[user.location.name componentsSeparatedByString:@","] firstObject] : @"London",
+                                                                                                           @"paypal_account":(![response[@"paypal_account"] isKindOfClass:[NSNull class]] && [response[@"paypal_account"] length]) ? response[@"paypal_account"] : @""} mutableCopy];
+                                                              }
+                                                              handler(response, error);
+                                                          }];
+                                                          
+                                                      } else {
+                                                          [WebServiceManager signUp:params completion:^(id response, NSError *error) {
+                                                              NSLog(@"signUp response %@", response);
+                                                              if (error) {
+                                                                  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                                                                  [alert show];
+                                                                  
+                                                                  handler(nil, error);
+                                                              } else {
+                                                                  if (response) {
                                                                       
-                                                                      [AppManager sharedManager].userInfo = [@{ @"id":response[@"id"], @"fb_id" : user.objectID, @"email":user[@"email"], @"name": user.first_name, @"photo_url":[NSString stringWithFormat:@"http://graph.facebook.com/v2.0/%@/picture?redirect=1&height=200&type=normal&width=200",user.objectID], @"city":user.location ? [[user.location.name componentsSeparatedByString:@","] firstObject] : @"London",
-                                                                                                                @"paypal_account": (![response[@"paypal_account"] isKindOfClass:[NSNull class]] && [response[@"paypal_account"] length]) ? response[@"paypal_account"] : @""} mutableCopy];
-                                                                      
-                                                                      handler(response, nil);
-                                                                  } else {
-                                                                      
-                                                                      // login
-                                                                      NSDictionary *params = @{ @"email" : user[@"email"],
-                                                                                                @"password" : [NSString stringWithFormat:@"fb%@", user.objectID]
-                                                                                                };
-                                                                      
-                                                                      [WebServiceManager signIn:params completion:^(id response, NSError *error) {
-                                                                          NSLog(@"login response %@", response);
-                                                                          if (error ) {
-                                                                              UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                                                                              [alert show];
-                                                                          } else {
-                                                                              
-                                                                              if (response) {
+                                                                      if (response[@"authentication_token"]) {
+                                                                          [AppManager sharedManager].token = response[@"authentication_token"];
+                                                                          
+                                                                          [AppManager sharedManager].userInfo = [@{ @"id":response[@"id"], @"fb_id" : user.objectID, @"email":user[@"email"], @"name": user.first_name, @"photo_url":[NSString stringWithFormat:@"http://graph.facebook.com/v2.0/%@/picture?redirect=1&height=200&type=normal&width=200",user.objectID], @"city":user.location ? [[user.location.name componentsSeparatedByString:@","] firstObject] : @"London",
+                                                                                                                    @"paypal_account": (![response[@"paypal_account"] isKindOfClass:[NSNull class]] && [response[@"paypal_account"] length]) ? response[@"paypal_account"] : @""} mutableCopy];
+                                                                          
+                                                                          handler(response, nil);
+                                                                      } else {
+                                                                          
+                                                                          // login
+                                                                          NSDictionary *params = @{ @"email" : user[@"email"],
+                                                                                                    @"password" : [NSString stringWithFormat:@"fb%@", user.objectID]
+                                                                                                    };
+                                                                          
+                                                                          [WebServiceManager signIn:params completion:^(id response, NSError *error) {
+                                                                              NSLog(@"login response %@", response);
+                                                                              if (error ) {
+                                                                                  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                                                                                  [alert show];
+                                                                              } else {
                                                                                   
-                                                                                  if ([response[@"success"] boolValue]) {
-                                                                                      [AppManager sharedManager].token = response[@"auth_token"];
+                                                                                  if (response) {
                                                                                       
-                                                                                      [AppManager sharedManager].userInfo = [
-                                                                                                                             @{@"id":response[@"id"],
-                                                                                                                               @"email":user[@"email"],
-                                                                                                                               @"name": user.first_name,
-                                                                                                                                @"surname": response[@"surname"],
-                                                                                                                               @"allow_dingo_emails": response[@"allow_dingo_emails"],
-                                                                                                                               @"allow_push_notifications":  response[@"allow_push_notifications"],
-                                                                                                                               @"fb_id":user.objectID,
-                                                                                                                               @"photo_url":[NSString stringWithFormat:@"http://graph.facebook.com/v2.0/%@/picture?redirect=1&height=200&type=normal&width=200",user.objectID],
-                                                                                                                               @"city" : user.location ? [[user.location.name componentsSeparatedByString:@","] firstObject] : @"London",
-                                                                                          @"paypal_account":(![response[@"paypal_account"] isKindOfClass:[NSNull class]] && [response[@"paypal_account"] length]) ? response[@"paypal_account"] : @""} mutableCopy];
-                                                                                      
-                                                                                      handler(response, nil);
+                                                                                      if ([response[@"success"] boolValue]) {
+                                                                                          [AppManager sharedManager].token = response[@"auth_token"];
+                                                                                          
+                                                                                          [AppManager sharedManager].userInfo = [
+                                                                                                                                 @{@"id":response[@"id"],
+                                                                                                                                   @"email":user[@"email"],
+                                                                                                                                   @"name": user.first_name,
+                                                                                                                                   @"surname": response[@"surname"],
+                                                                                                                                   @"allow_dingo_emails": response[@"allow_dingo_emails"],
+                                                                                                                                   @"allow_push_notifications":  response[@"allow_push_notifications"],
+                                                                                                                                   @"fb_id":user.objectID,
+                                                                                                                                   @"photo_url":[NSString stringWithFormat:@"http://graph.facebook.com/v2.0/%@/picture?redirect=1&height=200&type=normal&width=200",user.objectID],
+                                                                                                                                   @"city" : user.location ? [[user.location.name componentsSeparatedByString:@","] firstObject] : @"London",
+                                                                                                                                   @"paypal_account":(![response[@"paypal_account"] isKindOfClass:[NSNull class]] && [response[@"paypal_account"] length]) ? response[@"paypal_account"] : @""} mutableCopy];
+                                                                                          
+                                                                                          handler(response, nil);
+                                                                                          
+                                                                                      } else {
+                                                                                          UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Unable to sign in, please try later" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                                                                                          [alert show];
+                                                                                          
+                                                                                          handler(nil, nil);
+                                                                                      }
                                                                                       
                                                                                   } else {
                                                                                       UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Unable to sign in, please try later" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -234,34 +262,27 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
                                                                                       
                                                                                       handler(nil, nil);
                                                                                   }
-                                                                                  
-                                                                              } else {
-                                                                                  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Unable to sign in, please try later" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                                                                                  [alert show];
-                                                                                  
-                                                                                  handler(nil, nil);
                                                                               }
-                                                                          }
-                                                                      }];
+                                                                          }];
+                                                                          
+                                                                      }
                                                                       
+                                                                  } else {
+                                                                      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Unable to sign up, please try later" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                                                                      [alert show];
+                                                                      
+                                                                      handler(nil, nil);
                                                                   }
                                                                   
-                                                              } else {
-                                                                  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Unable to sign up, please try later" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                                                                  [alert show];
                                                                   
-                                                                  handler(nil, nil);
                                                               }
                                                               
                                                               
-                                                          }
-                                                          
-                                                          
-                                                      }];
+                                                          }];
+                                                      }
                                                   } else {
                                                       handler(nil, nil);
                                                   }
-                                                  
                                                   
                                               }];
                                           } else {
