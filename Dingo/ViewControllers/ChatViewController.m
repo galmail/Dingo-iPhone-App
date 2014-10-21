@@ -25,6 +25,8 @@
     IBOutlet DingoField *textField;
     
     NSMutableArray *bubbleData;
+    
+    UIRefreshControl *refreshControl;
 }
 
 @end
@@ -46,7 +48,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    
+    refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(refreshInvoked:forState:) forControlEvents:UIControlEventValueChanged];
+    [bubbleTable addSubview:refreshControl];
 
     
     textField.layer.borderColor = [[UIColor lightGrayColor] CGColor];
@@ -73,16 +77,24 @@
     [super viewWillAppear:animated];
     self.title = self.receiverName;
     
-    [self reloadMessages];
+    [self reloadMessagesWithCompletion:nil];
 
 }
 
-- (void)reloadMessages {
-    ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Loading..."];
-    [loadingView show];
+-(void) refreshInvoked:(id)sender forState:(UIControlState)state {
+    
+    [refreshControl beginRefreshing];
+    
+    [self reloadMessagesWithCompletion:^(BOOL finished) {
+        [refreshControl endRefreshing];
+    }];
+    
+}
+
+
+- (void)reloadMessagesWithCompletion:( void (^) (BOOL finished)) handler {
+    
     [[DataManager shared] fetchMessagesWithCompletion:^(BOOL finished) {
-        
-        [loadingView hide];
         NSNumber *userID = [AppManager sharedManager].userInfo[@"id"] ;
         
         NSArray * messages = [[DataManager shared] allMessagesFor:userID ticketID:self.ticket.ticket_id];
@@ -149,8 +161,12 @@
         
         [bubbleTable reloadData];
         [bubbleTable scrollBubbleViewToBottomAnimated:YES];
+        if (handler) {
+            handler(YES);
+        }
         
     }];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -292,7 +308,7 @@
             [WebServiceManager replyOffer:@{@"accept_offer": @"1", @"offerID":offerID} completion:^(id response, NSError *error) {
                 [loadingView hide];
                 if (response) {
-                    [self reloadMessages];
+                    [self reloadMessagesWithCompletion:nil];
                 }
                 
             }];
@@ -304,7 +320,7 @@
             [WebServiceManager replyOffer:@{@"accept_offer": @"0", @"offerID":offerID} completion:^(id response, NSError *error) {
                 [loadingView hide];
                 if (response) {
-                    [self reloadMessages];
+                    [self reloadMessagesWithCompletion:nil];
                 }
                 
             }];

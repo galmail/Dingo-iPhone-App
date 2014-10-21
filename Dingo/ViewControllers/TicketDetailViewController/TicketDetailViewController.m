@@ -313,7 +313,7 @@ static const NSUInteger commentCellIndex = 4;
     } else {
         ChatViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ChatViewController"];
         viewController.ticket = self.ticket;
-        
+        viewController.receiverName = self.ticket.user_name;        
         [self.navigationController pushViewController:viewController animated:YES];
 
     }
