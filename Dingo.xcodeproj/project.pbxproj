@@ -2236,7 +2236,7 @@
 				ORGANIZATIONNAME = Dingo;
 				TargetAttributes = {
 					3F10DDD419388E6F002D3B43 = {
-						DevelopmentTeam = H7W3N7L3PK;
+						DevelopmentTeam = N95LET47V3;
 					};
 				};
 			};
@@ -2995,7 +2995,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				ENABLE_NS_ASSERTIONS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3016,7 +3016,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = Dingo;
-				PROVISIONING_PROFILE = "A184E267-0386-41B9-BBD3-C91C84791C95";
+				PROVISIONING_PROFILE = "185f7e54-440e-43fe-91e7-c47b7edbbeba";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

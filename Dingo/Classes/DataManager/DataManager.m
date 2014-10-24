@@ -566,7 +566,7 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     
     NSString *ticketID = info[@"id"];
     NSString *eventID = info[@"event_id"];
-    NSString *description = info[@"description"];
+    NSString *description = ![info[@"description"] isKindOfClass:[NSNull class]] ? info[@"description"] : @"";
     
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Ticket"];
     request.predicate = [NSPredicate predicateWithFormat:@"ticket_id == %@", ticketID];
@@ -589,7 +589,7 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     ticket.ticket_type = info[@"ticket_type"];
     ticket.face_value_per_ticket =  @([info[@"face_value_per_ticket"] floatValue]);
     ticket.price = @([info[@"price"] floatValue]);
-    ticket.seat_type = info[@"seat_type"];
+    ticket.seat_type = ![info[@"seat_type"] isKindOfClass:[NSNull class]] ? info[@"seat_type"] : @"";
     if (info[@"photo1_thumb"]) {
         ticket.photo1 = [NSData dataWithContentsOfURL:[NSURL URLWithString:info[@"photo1_thumb"]]];
     }
