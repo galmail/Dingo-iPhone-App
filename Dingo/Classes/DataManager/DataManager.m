@@ -1072,7 +1072,7 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     
     NSManagedObjectContext *context = [AppManager sharedManager].managedObjectContext;
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Messages"];
-    request.predicate = [NSPredicate predicateWithFormat:@"(receiver_id == %@ || sender_id == %@) && ticket_id == %@", [userID stringValue], [userID stringValue], ticketID];
+    request.predicate = [NSPredicate predicateWithFormat:@"(receiver_id == %@ || (sender_id == %@ && from_dingo != 1))  && ticket_id == %@ ", [userID stringValue], [userID stringValue], ticketID];
     request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"datetime" ascending:YES]];
     NSError *error = nil;
     NSArray *events = [context executeFetchRequest:request error:&error];

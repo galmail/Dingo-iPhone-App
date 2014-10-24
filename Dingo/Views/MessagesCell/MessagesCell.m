@@ -57,7 +57,7 @@ const CGFloat messagesCellHeight = 82;
 
     }
     
-        self.lastMessage = data.content;
+    self.lastMessage = data.content;
     self.date = nil;//data[@"date"];
 }
 

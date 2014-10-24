@@ -77,9 +77,11 @@
     ticketIDs = [ticketsSet allObjects];
 
     for (NSString *ticketID in ticketIDs) {
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"ticket_id == %@ && ticket_id.length > 0" ,ticketID];
+//        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"ticket_id == %@ && ticket_id.length > 0" ,ticketID];
         NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"datetime" ascending:NO];
-        NSArray* msgArray = [allMessages filteredArrayUsingPredicate:predicate];
+//        NSArray* msgArray = [allMessages filteredArrayUsingPredicate:predicate];
+        NSArray* msgArray = [[DataManager shared] allMessagesFor:[AppManager sharedManager].userInfo[@"id"] ticketID:ticketID];
+
         
         if (msgArray.count > 0) {
              NSArray *sorted = [msgArray sortedArrayUsingDescriptors:@[sortDescriptor]];
@@ -141,11 +143,14 @@
     if ([[ticket.user_id stringValue] isEqualToString:userID]) {
         if ([data.receiver_id isEqualToString:[ticket.user_id stringValue]]) {
             vc.receiverName = data.sender_name;
+            vc.receiverID = data.sender_id;
         } else {
            vc.receiverName = data.receiver_name;
+           vc.receiverID = data.receiver_id;
         }
     } else {
         vc.receiverName = ticket.user_name;
+        vc.receiverID = [ticket.user_id stringValue];
     }
     
     vc.ticket = ticket;

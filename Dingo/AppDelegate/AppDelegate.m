@@ -92,18 +92,35 @@
     
     [AppManager sharedManager].deviceToken = newToken;
     
+    NSLog(@"deviceToken - %@",newToken);
     
-    NSDictionary *params = @{ @"uid":[AppManager sharedManager].deviceToken.length > 0 ? [AppManager sharedManager].deviceToken : @"",
-                              @"brand":@"Apple",
-                              @"model": [[UIDevice currentDevice] platformString],
-                              @"os":[[UIDevice currentDevice] systemVersion],
-                              @"app_version": [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"],
-                              @"location" : [NSString stringWithFormat:@"%f,%f", [AppManager sharedManager].currentLocation.coordinate.latitude, [AppManager sharedManager].currentLocation.coordinate.longitude ]
-                              };
-    [WebServiceManager registerDevice:params completion:^(id response, NSError *error) {
+    if ([[AppManager sharedManager].token length]) {
+        NSDictionary *params = @{ @"uid":[AppManager sharedManager].deviceToken.length > 0 ? [AppManager sharedManager].deviceToken : @"",
+                                  @"brand":@"Apple",
+                                  @"model": [[UIDevice currentDevice] platformString],
+                                  @"os":[[UIDevice currentDevice] systemVersion],
+                                  @"app_version": [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"],
+                                  @"location" : [NSString stringWithFormat:@"%f,%f", [AppManager sharedManager].currentLocation.coordinate.latitude, [AppManager sharedManager].currentLocation.coordinate.longitude ]
+                                  };
+        [WebServiceManager registerDevice:params completion:^(id response, NSError *error) {
+            NSLog(@"registerDevice response - %@", response);
+            NSLog(@"registerDevice error - %@", error);
+        }];
+    }
+    
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    
+    if ( application.applicationState == UIApplicationStateActive ) {
+        //
+        NSString *message = [[userInfo valueForKey:@"aps"] valueForKey:@"alert"];
         
-    }];
-    
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        
+        [alert show];
+    }
+
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

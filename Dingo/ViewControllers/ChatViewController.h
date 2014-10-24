@@ -13,4 +13,6 @@
 
 @property (nonatomic) Ticket *ticket;
 @property (nonatomic) NSString *receiverName;
+@property (nonatomic) NSString *receiverID;
+
 @end

@@ -107,7 +107,7 @@
             if ([msg.from_dingo boolValue] ) {
                 
                 if ([msg.offer_new boolValue] && [msg.receiver_id isEqualToString:[[AppManager sharedManager].userInfo[@"id"] stringValue]]) {
-                    NSString * offerText = [NSString stringWithFormat:@"<font face='SourceSansPro-Regular' size=14 color='#ffffff'>%@. <a href='accept_%@'>Accept</a> or <a href='reject_%@'>Reject</a> </font>", msg.content, msg.offer_id, msg.offer_id];
+                    NSString * offerText = [NSString stringWithFormat:@"<font face='SourceSansPro-Regular' size=14 color='#ffffff'>%@ <a href='accept_%@'>Accept</a> or <a href='reject_%@'>Reject</a> </font>", msg.content, msg.offer_id, msg.offer_id];
                     bubble = [NSBubbleData dataWithText:offerText date:msg.datetime type:BubbleTypeDingo delegate:self];
                 } else {
                     bubble = [NSBubbleData dataWithText:msg.content date:msg.datetime type:BubbleTypeDingo];
@@ -266,7 +266,7 @@
         return;
     }
     
-    NSDictionary *params = @{ @"ticket_id": self.ticket.ticket_id, @"receiver_id" : self.ticket.user_id, @"content" : textField.text };
+    NSDictionary *params = @{ @"ticket_id": self.ticket.ticket_id, @"receiver_id" : self.receiverID, @"content" : textField.text };
     
     [WebServiceManager sendMessage:params completion:^(id response, NSError *error) {
         if (!error) {

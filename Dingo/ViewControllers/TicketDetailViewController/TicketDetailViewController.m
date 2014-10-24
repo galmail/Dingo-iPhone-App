@@ -254,7 +254,8 @@ static const NSUInteger commentCellIndex = 4;
                 if (response) {
                     ChatViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ChatViewController"];
                     viewController.ticket = self.ticket;
-                    
+                    viewController.receiverName = self.ticket.user_name;
+                    viewController.receiverID = [self.ticket.user_id stringValue];
                     [self.navigationController pushViewController:viewController animated:YES];
                 }
                 [loadingView hide];
@@ -313,7 +314,8 @@ static const NSUInteger commentCellIndex = 4;
     } else {
         ChatViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ChatViewController"];
         viewController.ticket = self.ticket;
-        viewController.receiverName = self.ticket.user_name;        
+        viewController.receiverName = self.ticket.user_name;
+        viewController.receiverID = [self.ticket.user_id stringValue];
         [self.navigationController pushViewController:viewController animated:YES];
 
     }
