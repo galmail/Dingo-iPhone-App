@@ -35,7 +35,7 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     self.token = [defaults valueForKey:@"token"];
-    self.userInfo = [defaults valueForKey:@"userInfo"];
+    self.userInfo = [[defaults valueForKey:@"userInfo"] mutableCopy];
 }
 
 - (BOOL)justInstalled {

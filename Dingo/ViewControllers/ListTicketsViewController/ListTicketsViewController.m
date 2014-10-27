@@ -1084,9 +1084,10 @@ static const NSInteger paypalAlert = 2;
                     [loadingView show];
                     NSDictionary *params = @{@"paypal_account":[alertView textFieldAtIndex:0].text };
                     [WebServiceManager updateProfile:params completion:^(id response, NSError *error) {
-                        NSLog(@"response %@", response);
+                        NSLog(@"updateProfile response %@", response);
                         [loadingView hide];
                         if ([response[@"paypal_account"] length]) {
+                            
                             [[AppManager sharedManager].userInfo setObject:response[@"paypal_account"] forKey:@"paypal_account"];
                         }
                         
