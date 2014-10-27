@@ -247,7 +247,22 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
                                                                                                                                    @"city" : user.location ? [[user.location.name componentsSeparatedByString:@","] firstObject] : @"London",
                                                                                                                                    @"paypal_account":(![response[@"paypal_account"] isKindOfClass:[NSNull class]] && [response[@"paypal_account"] length]) ? response[@"paypal_account"] : @""} mutableCopy];
                                                                                           
-                                                                                          handler(response, nil);
+                                                                                          if ([AppManager sharedManager].deviceToken.length > 0) {
+                                                                                              // register device
+                                                                                              NSDictionary *deviceParams = @{ @"uid":[AppManager sharedManager].deviceToken.length > 0 ? [AppManager sharedManager].deviceToken : @"",
+                                                                                                                              @"brand":@"Apple",
+                                                                                                                              @"model": [[UIDevice currentDevice] platformString],
+                                                                                                                              @"os":[[UIDevice currentDevice] systemVersion],
+                                                                                                                              @"app_version": [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"],
+                                                                                                                              @"location" : [NSString stringWithFormat:@"%f,%f", [AppManager sharedManager].currentLocation.coordinate.latitude, [AppManager sharedManager].currentLocation.coordinate.longitude ]
+                                                                                                                              };
+                                                                                              
+                                                                                              [WebServiceManager registerDevice:deviceParams completion:^(id response, NSError *error) {
+                                                                                                  handler(response, nil);
+                                                                                              }];
+                                                                                          } else {
+                                                                                              handler(response, nil);
+                                                                                          }
                                                                                           
                                                                                       } else {
                                                                                           UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Unable to sign in, please try later" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
