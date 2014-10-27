@@ -600,13 +600,19 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
         ticket.photo1 = [NSData dataWithContentsOfURL:[NSURL URLWithString:info[@"photo3_thumb"]]];
     }
     ticket.user_id = @([info[@"user_id"] intValue]);
-    ticket.user_name = info[@"user_name"];
-    ticket.user_email = info[@"user_email"];
+    if (info[@"user_name"]) {
+        ticket.user_name = info[@"user_name"];
+    }
+    if (info[@"user_email"]) {
+        ticket.user_email = info[@"user_email"];
+    }
     
-    NSString *user_photo_url = info[@"user_photo"];
-    user_photo_url = [user_photo_url stringByReplacingOccurrencesOfString:@"%26" withString:@"&"];
-    NSData  *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:user_photo_url]];
-    ticket.user_photo = data;
+    if (info[@"user_photo"]) {
+        NSString *user_photo_url = info[@"user_photo"];
+        user_photo_url = [user_photo_url stringByReplacingOccurrencesOfString:@"%26" withString:@"&"];
+        NSData  *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:user_photo_url]];
+        ticket.user_photo = data;
+    }
     
     ticket.offers_count =@([info[@"number_of_offers"] intValue]);
     

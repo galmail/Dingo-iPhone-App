@@ -432,7 +432,7 @@ static const NSInteger paypalAlert = 2;
     }
     
     self.ticket.ticket_type = ticketTypes;
-    
+    self.ticket.ticket_desc = self.descriptionTextView.text;
     
     NSDictionary *params = @{@"ticket_id":self.ticket.ticket_id,
                              @"price":[self.ticket.price stringValue],

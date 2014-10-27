@@ -78,12 +78,19 @@ static const NSUInteger commentCellIndex = 4;
     self.contactCellerButton.titleLabel.font = self.requestToBuyButton.titleLabel.font = self.offerPriceButton.titleLabel.font = [DingoUISettings lightFontWithSize:16];
     
     self.sellerNameLabel.font = [DingoUISettings fontWithSize:19];
+ 
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     
+    
+    self.ticket = [[DataManager shared] ticketByID:self.ticket.ticket_id];
     NSMutableArray *photos = [NSMutableArray new];
     if (self.ticket.photo1) {
         [photos addObject:[UIImage imageWithData:self.ticket.photo1]];
     }
-
+    
     if (self.ticket.photo2) {
         [photos addObject:[UIImage imageWithData:self.ticket.photo2]];
     }
@@ -113,7 +120,7 @@ static const NSUInteger commentCellIndex = 4;
             NSArray *results = response[@"results"];
             if (results.count > 0) {
                 NSDictionary *result = results[0];
-               
+                
                 CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([result[@"geometry"][@"location"][@"lat"] doubleValue], [result[@"geometry"][@"location"][@"lng"] doubleValue]);
                 MKCoordinateSpan span = MKCoordinateSpanMake(0.01, 0.01);
                 MKCoordinateRegion region = {coord, span};
@@ -126,16 +133,6 @@ static const NSUInteger commentCellIndex = 4;
             
         }
     }];
-   
-
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-    
-    self.ticket = [[DataManager shared] ticketByID:self.ticket.ticket_id];
-    [self.tableView reloadData];
 
     if ([self.ticket.user_id isEqual:[AppManager sharedManager].userInfo[@"id"]]) {
         
