@@ -77,6 +77,7 @@
 
 - (void)fetchMessagesWithCompletion:( void (^) (BOOL finished))handler;
 - (NSInteger)unreadMessagesCount;
+- (NSInteger)unreadMessagesCountForTicket:(NSString *)ticketID;
 - (NSArray *)allMessages;
 - (NSArray *)allMessagesFor:(NSNumber*)userID ticketID:(NSString*)ticketID;
 - (void)addOrUpdateMessage:(NSDictionary *)info;
