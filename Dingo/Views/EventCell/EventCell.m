@@ -73,6 +73,10 @@ const CGFloat eventCellHeight = 78;
     self.btnBell.selected = on;
 }
 
+- (void) prepareForReuse {
+    self.iconImageView.image = nil;
+}
+
 #pragma mark - Custom
 
 - (void)buildWithData:(Event *)data {
