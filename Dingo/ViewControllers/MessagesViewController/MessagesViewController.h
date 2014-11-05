@@ -8,4 +8,6 @@
 
 @interface MessagesViewController : UITableViewController
 
+- (void)groupMessagesByUser;
+
 @end

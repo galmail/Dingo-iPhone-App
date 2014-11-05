@@ -15,18 +15,22 @@
 #import "SlidingViewController.h"
 #import "HomeTabBarController.h"
 #import "DingoNavigationController.h"
+#import "ChatViewController.h"
 #import "UIDevice+Additions.h"
 #import "WebServiceManager.h"
 #import "PayPalMobile.h"
 #import "DataManager.h"
 #import "Appirater.h"
 #import "Harpy.h"
-
+#import "MPNotificationView.h"
 #import "GAI.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    NSLog(@"launchOptions %@", launchOptions);
+    
     
     
     [Appirater setAppId:@"893538091"];
@@ -81,7 +85,24 @@
     if ([AppManager sharedManager].token) {
         SlidingViewController *viewController = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"SlidingViewController"];
         self.window.rootViewController = viewController;
+        
+        if ([launchOptions valueForKey:UIApplicationLaunchOptionsRemoteNotificationKey]) {
+            NSDictionary *userInfo = [launchOptions valueForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+            NSLog(@"userInfo %@", userInfo);
+            
+            DingoNavigationController *nc = (DingoNavigationController *)viewController.topViewController;
+            
+            UIViewController *topViewController = viewController.tabBarController;
+            NSLog(@"topViewController %@", nc);
+            if ([topViewController isKindOfClass:[HomeTabBarController class]]) {
+                [(HomeTabBarController*)topViewController setSelectedIndex:3];
+            }
+            
+            
+        }
     }
+    
+   
     
     return YES;
 }
@@ -121,10 +142,17 @@
             
             DingoNavigationController *nc = (DingoNavigationController *)vc.topViewController;
             
-            HomeTabBarController *tabBarConroller = (HomeTabBarController *)nc.topViewController;
-            [[DataManager shared] fetchMessagesWithCompletion:^(BOOL finished) {
-                [tabBarConroller updateMessageCount];
-            }];
+            UIViewController *viewController = nc.topViewController;
+            if ([viewController isKindOfClass:[ChatViewController class]]) {
+                [(ChatViewController*)viewController reloadMessages];
+            } else if([viewController isKindOfClass:[HomeTabBarController class]]) {
+                NSString *message = [[userInfo valueForKey:@"aps"] valueForKey:@"alert"];
+                [MPNotificationView notifyWithText:nil andDetail:message];
+                
+                [[DataManager shared] fetchMessagesWithCompletion:^(BOOL finished) {
+                    [(HomeTabBarController*)viewController updateMessageCount];
+                }];
+            }
         }
   
     }

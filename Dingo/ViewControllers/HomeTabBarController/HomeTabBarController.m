@@ -14,6 +14,8 @@
 #import "DingoUISettings.h"
 #import "DingoUtilites.h"
 #import "ListTicketsViewController.h"
+#import "MessagesViewController.h"
+#import "ChatViewController.h"
 #import "AppManager.h"
 #import "DataManager.h"
 
@@ -41,9 +43,19 @@ static const NSUInteger listTicketsVCIndex = 2;
 
 - (void)updateMessageCount {
     NSInteger unreadMessages = [[DataManager shared] unreadMessagesCount];
-    
+
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:unreadMessages];
     if (unreadMessages) {
         [self messagesTabBarItem].badgeValue = [NSString stringWithFormat:@"%ld",(long)unreadMessages];
+        
+        UIViewController *messagesVC = self.viewControllers[3];
+        NSLog(@"messagesVC %@", messagesVC);
+        if ([messagesVC isKindOfClass:[MessagesViewController class]]) {
+            [(MessagesViewController*)messagesVC groupMessagesByUser];
+        }
+        if ([messagesVC isKindOfClass:[ChatViewController class]]) {
+            [(ChatViewController*)messagesVC reloadMessages];
+        }
     } else {
         [self messagesTabBarItem].badgeValue = nil;
     }

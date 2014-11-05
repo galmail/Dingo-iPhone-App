@@ -84,6 +84,13 @@
 
 }
 
+- (void)reloadMessages {
+    [self reloadMessagesWithCompletion:^(BOOL finished) {
+        [bubbleTable reloadData];
+        [bubbleTable scrollBubbleViewToBottomAnimated:YES];
+    }];
+}
+
 -(void) refreshInvoked:(id)sender forState:(UIControlState)state {
     
     [refreshControl beginRefreshing];

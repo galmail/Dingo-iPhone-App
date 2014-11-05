@@ -15,4 +15,6 @@
 @property (nonatomic) NSString *receiverName;
 @property (nonatomic) NSString *receiverID;
 
+- (void)reloadMessages;
+
 @end

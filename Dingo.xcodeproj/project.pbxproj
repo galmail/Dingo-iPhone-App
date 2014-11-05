@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		3A02687C19A5F9C000C8CD8E /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A02687B19A5F9C000C8CD8E /* Social.framework */; };
 		3A29C24C19EDC2DC00578F0D /* libPayPalMobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A29C24419EDC2DC00578F0D /* libPayPalMobile.a */; };
+		3A86E2FE1A0ABA93007BBEC8 /* MPNotificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A86E2FB1A0ABA93007BBEC8 /* MPNotificationView.m */; };
+		3A86E2FF1A0ABA93007BBEC8 /* OBGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A86E2FD1A0ABA93007BBEC8 /* OBGradientView.m */; };
 		3A9441D319CB62920003DA85 /* newOffer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A9441D219CB62920003DA85 /* newOffer@2x.png */; };
 		3A97DDB619D3630500B4C33E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A97DDB519D3630500B4C33E /* AudioToolbox.framework */; };
 		3A97DDB819D3631800B4C33E /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A97DDB719D3631800B4C33E /* AVFoundation.framework */; };
@@ -315,6 +317,10 @@
 		3A29C24919EDC2DC00578F0D /* PayPalPayment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalPayment.h; sourceTree = "<group>"; };
 		3A29C24A19EDC2DC00578F0D /* PayPalPaymentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalPaymentViewController.h; sourceTree = "<group>"; };
 		3A29C24B19EDC2DC00578F0D /* PayPalProfileSharingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalProfileSharingViewController.h; sourceTree = "<group>"; };
+		3A86E2FA1A0ABA93007BBEC8 /* MPNotificationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPNotificationView.h; sourceTree = "<group>"; };
+		3A86E2FB1A0ABA93007BBEC8 /* MPNotificationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPNotificationView.m; sourceTree = "<group>"; };
+		3A86E2FC1A0ABA93007BBEC8 /* OBGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBGradientView.h; sourceTree = "<group>"; };
+		3A86E2FD1A0ABA93007BBEC8 /* OBGradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBGradientView.m; sourceTree = "<group>"; };
 		3A9441D219CB62920003DA85 /* newOffer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "newOffer@2x.png"; sourceTree = "<group>"; };
 		3A97DDB519D3630500B4C33E /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		3A97DDB719D3631800B4C33E /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -760,6 +766,17 @@
 				3A29C24B19EDC2DC00578F0D /* PayPalProfileSharingViewController.h */,
 			);
 			path = PayPalMobile;
+			sourceTree = "<group>";
+		};
+		3A86E2F91A0ABA93007BBEC8 /* MPNotificationView */ = {
+			isa = PBXGroup;
+			children = (
+				3A86E2FA1A0ABA93007BBEC8 /* MPNotificationView.h */,
+				3A86E2FB1A0ABA93007BBEC8 /* MPNotificationView.m */,
+				3A86E2FC1A0ABA93007BBEC8 /* OBGradientView.h */,
+				3A86E2FD1A0ABA93007BBEC8 /* OBGradientView.m */,
+			);
+			path = MPNotificationView;
 			sourceTree = "<group>";
 		};
 		3A9C271019C8AF930007BA34 /* ChatViewController */ = {
@@ -1501,6 +1518,7 @@
 		3F10DE67193C5476002D3B43 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				3A86E2F91A0ABA93007BBEC8 /* MPNotificationView */,
 				3AA1610919E5CBE200895508 /* Harpy */,
 				3AA1608019E5C8CC00895508 /* Appirater */,
 				840CD22C19B8449700699E26 /* ChatBubbleSource */,
@@ -2560,11 +2578,13 @@
 				3F3D564E1951704C00FB2774 /* ManageListsViewController.m in Sources */,
 				840CD23B19B8449700699E26 /* UIBubbleTableViewCell.m in Sources */,
 				3F62C6CE1948A2BE00D7D6B1 /* TicketCell.m in Sources */,
+				3A86E2FE1A0ABA93007BBEC8 /* MPNotificationView.m in Sources */,
 				3AF360C01976AB49009A14FD /* NSString+MD5Additions.m in Sources */,
 				3AA160E619E5C8EF00895508 /* Appirater.m in Sources */,
 				3AA332FC1990DDA900C8DAA8 /* ZSTextView.m in Sources */,
 				3AA49002199E1C6700C7E8ED /* TicketDetailViewController.m in Sources */,
 				3F98FCA0193F003D00E6B3C4 /* DataManager.m in Sources */,
+				3A86E2FF1A0ABA93007BBEC8 /* OBGradientView.m in Sources */,
 				84E2CBF319B5D8CF003102F3 /* PrivacyPolicyViewController.m in Sources */,
 				3AF360B91976A629009A14FD /* NSDictionary+UrlEncoding.m in Sources */,
 				3F2864F4194B29F3002A3576 /* AnswerViewController.m in Sources */,
