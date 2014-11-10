@@ -57,9 +57,12 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
         
         dispatch_async(dispatch_get_main_queue(), ^(void){
-            handler([data objectFromJSONData], error);
+            if (error != nil) {
+                [self genericError];
+            } else {
+                handler([data objectFromJSONData], error);
+            }
         });
-        
     });
 }
 
@@ -73,9 +76,12 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
         
         dispatch_async(dispatch_get_main_queue(), ^(void){
-            handler([data objectFromJSONData], error);
+            if (error != nil) {
+                [self genericError];
+            } else {
+                handler([data objectFromJSONData], error);
+            }
         });
-        
     });
 }
 
@@ -90,7 +96,11 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
         
         dispatch_async(dispatch_get_main_queue(), ^(void){
-            handler([data objectFromJSONData], error);
+            if (error != nil) {
+                [self genericError];
+            } else {
+                handler([data objectFromJSONData], error);
+            }
         });
         
     });
@@ -106,7 +116,11 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
         
         dispatch_async(dispatch_get_main_queue(), ^(void){
-            handler([data objectFromJSONData], error);
+            if (error != nil) {
+                [self genericError];
+            } else {
+                handler([data objectFromJSONData], error);
+            }
         });
         
     });
@@ -122,9 +136,12 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
         
         dispatch_async(dispatch_get_main_queue(), ^(void){
-            handler([data objectFromJSONData], error);
+            if (error != nil) {
+                [self genericError];
+            } else {
+                handler([data objectFromJSONData], error);
+            }
         });
-        
     });
 }
 
@@ -313,7 +330,11 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
         
         dispatch_async(dispatch_get_main_queue(), ^(void){
-            handler([data objectFromJSONData], error);
+            if (error != nil) {
+                [self genericError];
+            } else {
+                handler([data objectFromJSONData], error);
+            }
         });
         
     });
@@ -329,7 +350,11 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
         
         dispatch_async(dispatch_get_main_queue(), ^(void){
-            handler([data objectFromJSONData], error);
+            if (error != nil) {
+                [self genericError];
+            } else {
+                handler([data objectFromJSONData], error);
+            }
         });
         
     });
@@ -344,7 +369,11 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
         
         dispatch_async(dispatch_get_main_queue(), ^(void){
-            handler([data objectFromJSONData], error);
+            if (error != nil) {
+                [self genericError];
+            } else {
+                handler([data objectFromJSONData], error);
+            }
         });
         
     });
@@ -359,7 +388,11 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
         
         dispatch_async(dispatch_get_main_queue(), ^(void){
-            handler([data objectFromJSONData], error);
+            if (error != nil) {
+                [self genericError];
+            } else {
+                handler([data objectFromJSONData], error);
+            }
         });
         
     });
@@ -382,9 +415,12 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
         NSLog(@"createEvent %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] );
         dispatch_async(dispatch_get_main_queue(), ^(void){
-            handler([data objectFromJSONData], error);
+            if (error != nil) {
+                [self genericErrorWithMessage:error];
+            } else {
+                handler([data objectFromJSONData], error);
+            }
         });
-        
     });
 }
 
@@ -409,11 +445,14 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         NSURLResponse* response = nil;
         NSError *error = nil;
         NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-        NSLog(@"createEvent %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] );
+        NSLog(@"createTicket %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] );
         dispatch_async(dispatch_get_main_queue(), ^(void){
-            handler([data objectFromJSONData], error);
+            if (error != nil) {
+                [self genericErrorWithMessage:error];
+            } else {
+                handler([data objectFromJSONData], error);
+            }
         });
-        
     });
 }
 
@@ -435,7 +474,11 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
         NSLog(@"ddd %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
         dispatch_async(dispatch_get_main_queue(), ^(void){
-            handler([data objectFromJSONData], error);
+            if (error != nil) {
+                [self genericError];
+            } else {
+                handler([data objectFromJSONData], error);
+            }
         });
         
     });
@@ -452,7 +495,11 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
         
         dispatch_async(dispatch_get_main_queue(), ^(void){
-            handler([data objectFromJSONData], error);
+            if (error != nil) {
+                [self genericError];
+            } else {
+                handler([data objectFromJSONData], error);
+            }
         });
         
     });
@@ -469,7 +516,11 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
         
         dispatch_async(dispatch_get_main_queue(), ^(void){
-            handler([data objectFromJSONData], error);
+            if (error != nil) {
+                [self genericError];
+            } else {
+                handler([data objectFromJSONData], error);
+            }
         });
         
     });
@@ -488,7 +539,11 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
         
         dispatch_async(dispatch_get_main_queue(), ^(void){
-            handler([data objectFromJSONData], error);
+            if (error != nil) {
+                [self genericError];
+            } else {
+                handler([data objectFromJSONData], error);
+            }
         });
         
     });
@@ -504,7 +559,11 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
         
         dispatch_async(dispatch_get_main_queue(), ^(void){
-            handler([data objectFromJSONData], error);
+            if (error != nil) {
+                [self genericError];
+            } else {
+                handler([data objectFromJSONData], error);
+            }
         });
         
     });
@@ -521,7 +580,11 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
         
         dispatch_async(dispatch_get_main_queue(), ^(void){
-            handler([data objectFromJSONData], error);
+            if (error != nil) {
+                [self genericError];
+            } else {
+                handler([data objectFromJSONData], error);
+            }
         });
         
     });
@@ -537,7 +600,11 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
         
         dispatch_async(dispatch_get_main_queue(), ^(void){
-            handler([data objectFromJSONData], error);
+            if (error != nil) {
+                [self genericError];
+            } else {
+                handler([data objectFromJSONData], error);
+            }
         });
         
     });
@@ -553,9 +620,12 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
         
         dispatch_async(dispatch_get_main_queue(), ^(void){
-            handler([data objectFromJSONData], error);
+            if (error != nil) {
+                [self genericError];
+            } else {
+                handler([data objectFromJSONData], error);
+            }
         });
-        
     });
 }
 
@@ -573,7 +643,11 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
         
         dispatch_async(dispatch_get_main_queue(), ^(void){
-            handler([data objectFromJSONData], error);
+            if (error != nil) {
+                [self genericError];
+            } else {
+                handler([data objectFromJSONData], error);
+            }
         });
         
     });
@@ -589,7 +663,11 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
         
         dispatch_async(dispatch_get_main_queue(), ^(void){
-            handler([data objectFromJSONData], error);
+            if (error != nil) {
+                [self genericError];
+            } else {
+                handler([data objectFromJSONData], error);
+            }
         });
         
     });
@@ -605,7 +683,11 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
         
         dispatch_async(dispatch_get_main_queue(), ^(void){
-            handler([data objectFromJSONData], error);
+            if (error != nil) {
+                [self genericError];
+            } else {
+                handler([data objectFromJSONData], error);
+            }
         });
         
     });
@@ -624,7 +706,11 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
         
         dispatch_async(dispatch_get_main_queue(), ^(void){
-            handler([data objectFromJSONData], error);
+            if (error != nil) {
+                [self genericErrorWithMessage:error];
+            } else {
+                handler([data objectFromJSONData], error);
+            }
         });
         
     });
@@ -640,7 +726,11 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
         
         dispatch_async(dispatch_get_main_queue(), ^(void){
-            handler([data objectFromJSONData], error);
+            if (error != nil) {
+                [self genericError];
+            } else {
+                handler([data objectFromJSONData], error);
+            }
         });
         
     });
@@ -808,10 +898,24 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
         
         dispatch_async(dispatch_get_main_queue(), ^(void){
-            handler([data objectFromJSONData], error);
+            if (error != nil) {
+                [self genericError];
+            } else {
+                handler([data objectFromJSONData], error);
+            }
         });
         
     });
+}
+
++ (void)genericError{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"The server is busy, please try again later" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alert show];
+}
+
++ (void)genericErrorWithMessage:(NSError *)error{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alert show];
 }
 
 @end

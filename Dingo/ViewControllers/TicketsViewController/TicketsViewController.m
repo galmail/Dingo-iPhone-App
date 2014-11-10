@@ -191,9 +191,11 @@
 }
 
 - (IBAction)addTicketsPressed:(UIButton *)sender {
-        
+    
+    
     ListTicketsViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ListTicketsViewController"];
     viewController.event = self.eventData;
+    viewController.ticket = [[Ticket alloc] initWithEntity:[NSEntityDescription entityForName:@"Ticket" inManagedObjectContext:[AppManager sharedManager].managedObjectContext] insertIntoManagedObjectContext:nil];
     
     [self.navigationController pushViewController:viewController animated:YES];
 }

@@ -216,6 +216,8 @@ static const NSInteger paypalAlert = 2;
             NSDateFormatter *formatter =[[NSDateFormatter alloc] init];
             formatter.dateFormat = @"HH:mm dd/MM/yyyy";
             
+            NSLog(@"Self ticket %@", self.ticket);
+            
             self.nameField.text = self.event.name;
             self.locationField.text = self.event.address;
             self.startDateField.text = [formatter stringFromDate:self.event.date];
@@ -361,21 +363,20 @@ static const NSInteger paypalAlert = 2;
     
     self.ticket.delivery_options = deliveryOptions;
     
-    NSString *ticketTypes = @"";
-    if (eticketSwitch.on) {
-        ticketTypes = @"e-Ticket";
-    }
-    
-    if (paperSwitch.on) {
-        if (ticketTypes.length > 0) {
-            ticketTypes = [ticketTypes stringByAppendingFormat:@", %@", @"Paper"];
-        } else {
-            ticketTypes = @"Paper";
-        }
-    }
-    
-    self.ticket.ticket_type = ticketTypes;
-    
+//    NSString *ticketTypes = self.typeTicketField.text;
+//    if (eticketSwitch.on) {
+//        ticketTypes = @"e-Ticket";
+//    }
+//    
+//    if (paperSwitch.on) {
+//        if (ticketTypes.length > 0) {
+//            ticketTypes = [ticketTypes stringByAppendingFormat:@", %@", @"Paper"];
+//        } else {
+//            ticketTypes = @"Paper";
+//        }
+//    }
+
+
     
     [[AppManager sharedManager].draftTicket setValue:self.nameField.text forKey:@"name"];
     [[AppManager sharedManager].draftTicket setValue:self.locationField.text forKey:@"location"];
@@ -387,7 +388,7 @@ static const NSInteger paypalAlert = 2;
     [[AppManager sharedManager].draftTicket setValue:self.descriptionTextView.text forKey:@"description"];
     [[AppManager sharedManager].draftTicket setValue:self.categoriesCell.selectedCategory forKey:@"categoryID"];
     [[AppManager sharedManager].draftTicket setValue:self.ticket.payment_options forKey:@"paymentOptions"];
-    [[AppManager sharedManager].draftTicket setValue:self.ticket.ticket_type forKey:@"ticketType"];
+    [[AppManager sharedManager].draftTicket setValue:self.typeTicketField.text forKey:@"ticketType"];
     [[AppManager sharedManager].draftTicket setValue:self.ticket.delivery_options forKey:@"deliveryOptions"];
     if (photos.count) {
         [[AppManager sharedManager].draftTicket setObject:photos forKey:@"photos"];
@@ -726,19 +727,24 @@ static const NSInteger paypalAlert = 2;
             lbldelivery.textColor = [UIColor redColor];
         }
         
-        if (self.categoriesCell.selectedCategory.length == 0) {
-            requiredInfoFilled = NO;
-            lblCategory.textColor = [UIColor redColor];
-        }
+//        if (self.categoriesCell.selectedCategory.length == 0) {
+//            requiredInfoFilled = NO;
+//            lblCategory.textColor = [UIColor redColor];
+//        }
         
         if (!paypalSwitch.on && !cashSwitch.on) {
             requiredInfoFilled = NO;
             lblPayment.textColor = [UIColor redColor];
         }
         
-        if (!eticketSwitch.on && !paperSwitch.on) {
+        if (self.typeTicketField.text.length == 0) {
             requiredInfoFilled = NO;
             lblTicketType.textColor = [UIColor redColor];
+        }
+        
+        if (self.selectCategory.text.length == 0) {
+            requiredInfoFilled = NO;
+            lblCategory.textColor = [UIColor redColor];
         }
         
         if (!requiredInfoFilled) {
@@ -808,27 +814,28 @@ static const NSInteger paypalAlert = 2;
         
         self.ticket.delivery_options = deliveryOptions;
         
-        NSString *ticketTypes = @"";
-        if (eticketSwitch.on) {
-            ticketTypes = @"e-Ticket";
-        }
+//        NSString *ticketTypes = @"";
+//        if (eticketSwitch.on) {
+//            ticketTypes = @"e-Ticket";
+//        }
+//        
+//        if (paperSwitch.on) {
+//            if (ticketTypes.length > 0) {
+//                ticketTypes = [ticketTypes stringByAppendingFormat:@", %@", @"Paper"];
+//            } else {
+//                ticketTypes = @"Paper";
+//            }
+//        }
         
-        if (paperSwitch.on) {
-            if (ticketTypes.length > 0) {
-                ticketTypes = [ticketTypes stringByAppendingFormat:@", %@", @"Paper"];
-            } else {
-                ticketTypes = @"Paper";
-            }
-        }
-        
-        self.ticket.ticket_type = ticketTypes;
-        
+        self.ticket.ticket_type = self.typeTicketField.text;
         self.ticket.ticket_desc = self.descriptionTextView.text;
         
         // selected category
         if (self.categoriesCell.selectedCategory) {
            self.event.category_id = self.categoriesCell.selectedCategory;
         }
+        
+        NSLog(@"self ticket %@", self.ticket);
         
         PreviewViewController *vc = (PreviewViewController *)segue.destinationViewController;
         vc.event = self.event;

@@ -3336,7 +3336,7 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
             <objects>
                 <tableViewController id="GJ0-mg-fJM" customClass="PreviewViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="static" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="VXX-t2-keE">
-                        <rect key="frame" x="0.0" y="64" width="319" height="736"/>
+                        <rect key="frame" x="0.0" y="64" width="319" height="936"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="separatorColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
@@ -3628,7 +3628,7 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </view>
                                                 <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Mli-hJ-o8P" userLabel="contact_button" customClass="TwoModeButton">
-                                                    <rect key="frame" x="180" y="17" width="133" height="33"/>
+                                                    <rect key="frame" x="180" y="58" width="133" height="33"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="16"/>
@@ -3643,7 +3643,7 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
                                                     </state>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="gBg-A7-PU7" userLabel="buy_request_button" customClass="TwoModeButton">
-                                                    <rect key="frame" x="180" y="58" width="133" height="33"/>
+                                                    <rect key="frame" x="180" y="17" width="133" height="33"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="16"/>
@@ -3718,7 +3718,7 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
                     </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="319" height="800"/>
+                    <size key="freeformSize" width="319" height="1000"/>
                     <connections>
                         <outlet property="contactCellerButton" destination="Mli-hJ-o8P" id="zjV-Kf-gTV"/>
                         <outlet property="deliveryLabel" destination="5x1-Fy-Kbp" id="Xuy-MO-XZY"/>
@@ -4572,7 +4572,7 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
     <inferredMetricsTieBreakers>
         <segue reference="lKe-yJ-oEi"/>
         <segue reference="BWJ-EH-Aes"/>
-        <segue reference="cy6-wl-Zel"/>
         <segue reference="MsU-EW-bYV"/>
+        <segue reference="Gpq-ke-4M3"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -68,6 +68,9 @@ static const NSUInteger commentCellIndex = 4;
     [super viewDidLoad];
     self.photosPreviewCell.photos = [self.photos mutableCopy];
     
+    NSLog(@"ticket %@", self.ticket);
+
+    
     lblTicketCount.font = lblFaceValue.font = lblComment.font = lblTicketType.font = lblPayment.font = lblDelivery.font = [DingoUISettings lightFontWithSize:14];
     
     self.ticketsCountlabel.font = self.faceValueLabel.font = self.descriptionTextView.font =  self.paymentLabel.font =  self.ticketTypeLabel.font =  self.deliveryLabel.font = [DingoUISettings lightFontWithSize:14];
@@ -84,6 +87,9 @@ static const NSUInteger commentCellIndex = 4;
     self.deliveryLabel.text = self.ticket.delivery_options;
     
     [self.proposalCell buildWithData:self.event];
+    
+    [[self.requestToBuyButton layer] setBorderWidth:4];
+    [[self.requestToBuyButton titleLabel] setFont:[UIFont boldSystemFontOfSize:16]];
     
     [WebServiceManager addressToLocation:[DataManager eventLocation:self.event] completion:^(id response, NSError *error) {
         
@@ -181,6 +187,8 @@ static const NSUInteger commentCellIndex = 4;
                 }
             }
             
+            NSLog(@"Confirm create event");
+            
             // Create event
             NSDictionary *params = @{ @"category_id" : self.event.category_id,
                                       @"name" : self.event.name,
@@ -221,6 +229,7 @@ static const NSUInteger commentCellIndex = 4;
                                 [self.navigationController.viewControllers[0] setSelectedIndex:0];
                                 [self.navigationController popToRootViewControllerAnimated:YES];
                             } else {
+
                                 NSLog(@"error create ticket %@", error);
                             }
                             
@@ -230,6 +239,9 @@ static const NSUInteger commentCellIndex = 4;
                 } else {
                     [loadingView hide];
                 }
+                
+                NSLog(@"error createEvent %@", error);
+                
             }];
         }];
     } else {
