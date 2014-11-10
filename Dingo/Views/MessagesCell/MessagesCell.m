@@ -119,6 +119,7 @@ const CGFloat messagesCellHeight = 82;
         self.dateLabel.frame = frame;
         self.dateLabel.center = center;
         self.dateLabel.text= unreadMessages;
+        self.dateLabel.hidden = NO;
     } else {
         self.dateLabel.hidden = YES;
     }

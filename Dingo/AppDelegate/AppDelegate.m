@@ -25,6 +25,12 @@
 #import "MPNotificationView.h"
 #import "GAI.h"
 
+@interface AppDelegate() {
+    NSDictionary *pushInfo;
+}
+
+@end
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -85,21 +91,22 @@
     if ([AppManager sharedManager].token) {
         SlidingViewController *viewController = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"SlidingViewController"];
         self.window.rootViewController = viewController;
-        
+       
         if ([launchOptions valueForKey:UIApplicationLaunchOptionsRemoteNotificationKey]) {
-            NSDictionary *userInfo = [launchOptions valueForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
-            NSLog(@"userInfo %@", userInfo);
-            
-            DingoNavigationController *nc = (DingoNavigationController *)viewController.topViewController;
-            
-            UIViewController *topViewController = viewController.tabBarController;
-            NSLog(@"topViewController %@", nc);
-            if ([topViewController isKindOfClass:[HomeTabBarController class]]) {
-                [(HomeTabBarController*)topViewController setSelectedIndex:3];
-            }
-            
-            
+            pushInfo = [launchOptions valueForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
         }
+//            NSLog(@"userInfo %@", userInfo);
+//            
+//            DingoNavigationController *nc = (DingoNavigationController *)viewController.topViewController;
+//            
+//            UIViewController *topViewController = viewController.tabBarController;
+//            NSLog(@"topViewController %@", nc);
+//            if ([topViewController isKindOfClass:[HomeTabBarController class]]) {
+//                [(HomeTabBarController*)topViewController setSelectedIndex:3];
+//            }
+//            
+//            
+//        }
     }
     
    
@@ -155,6 +162,8 @@
             }
         }
   
+    } else {
+        pushInfo = userInfo;
     }
 
 }
@@ -179,6 +188,21 @@
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     
     [[Harpy sharedInstance] checkVersionDaily];
+    
+    // NSLog(@"pushInfo %@", pushInfo);
+    
+    SlidingViewController *viewController = (SlidingViewController *)self.window.rootViewController;
+    
+    DingoNavigationController *nc = (DingoNavigationController *)viewController.topViewController;
+    UIViewController *topViewController = nc.topViewController;
+    if ([topViewController isKindOfClass:[HomeTabBarController class]]) {
+        if (pushInfo) {
+            [(HomeTabBarController*)topViewController setSelectedIndex:3];
+            pushInfo = nil;
+        }
+        [(HomeTabBarController*)topViewController updateMessageCount];
+    }
+    
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
