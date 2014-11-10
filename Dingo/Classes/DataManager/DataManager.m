@@ -563,7 +563,7 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
 
 - (void)addOrUpdateTicket:(NSDictionary *)info {
     NSManagedObjectContext *context = [AppManager sharedManager].managedObjectContext;
-    
+        
     NSString *ticketID = info[@"id"];
     NSString *eventID = info[@"event_id"];
     NSString *description = ![info[@"description"] isKindOfClass:[NSNull class]] ? info[@"description"] : @"";

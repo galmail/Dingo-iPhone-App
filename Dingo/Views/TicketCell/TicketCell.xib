@@ -9,8 +9,8 @@
             <connections>
                 <outlet property="discountView" destination="jcY-HR-djn" id="sRW-Bc-AKy"/>
                 <outlet property="iconImageView" destination="UIy-IM-emQ" id="b3A-bg-NTn"/>
-                <outlet property="locationLabel" destination="QSz-Xl-XFI" id="RN3-z7-etg"/>
-                <outlet property="nameLabel" destination="hRO-tR-SBL" id="rZX-me-uQP"/>
+                <outlet property="locationLabel" destination="QSz-Xl-XFI" id="zin-dh-DiN"/>
+                <outlet property="nameLabel" destination="hRO-tR-SBL" id="7ux-rg-gkw"/>
                 <outlet property="startPriceLabel" destination="AW8-CS-Meh" id="mN0-BV-ONp"/>
                 <outlet property="ticketsCountLabel" destination="ckL-2d-o2A" id="bIv-ZP-d3e"/>
                 <outlet property="timeLabel" destination="Qeh-Wh-viu" id="hfB-6L-hxK"/>

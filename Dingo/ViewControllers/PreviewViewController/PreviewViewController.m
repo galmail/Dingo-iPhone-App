@@ -179,7 +179,6 @@ static const NSUInteger commentCellIndex = 4;
                     
                     location = [NSString stringWithFormat:@"%@,%@", result[@"geometry"][@"location"][@"lat"], result[@"geometry"][@"location"][@"lng"]];
                 }
-                
             }
             
             // Create event
@@ -221,23 +220,18 @@ static const NSUInteger commentCellIndex = 4;
                                 [AppManager sharedManager].draftTicket = nil;
                                 [self.navigationController.viewControllers[0] setSelectedIndex:0];
                                 [self.navigationController popToRootViewControllerAnimated:YES];
-
+                            } else {
+                                NSLog(@"error create ticket %@", error);
                             }
                             
                             [loadingView hide];
-                            
                         }];
-                        
                     }
                 } else {
                     [loadingView hide];
                 }
-                
             }];
-            
         }];
-        
-
     } else {
         // create ticket
         NSDictionary *params = @{ @"event_id" : self.event.event_id,
@@ -264,18 +258,13 @@ static const NSUInteger commentCellIndex = 4;
                 } else {
                     [AppManager showAlert:@"Unable to create ticket."];
                 }
-                
             } else {
                 [AppManager showAlert:[error localizedDescription]];
             }
             
             [loadingView hide];
-            
         }];
     }
-
-    
-    
 }
 
 #pragma mark - Navigation

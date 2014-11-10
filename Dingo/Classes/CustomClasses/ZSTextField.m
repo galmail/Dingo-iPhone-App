@@ -210,6 +210,13 @@ UITableViewController *tableViewController;
     cell.selectionStyle = UITableViewCellSelectionStyleDefault;
     cell.userInteractionEnabled = YES;
     
+    if (indexPath.row == 0) {
+        [[tableView layer] setBorderWidth:4];
+        [[tableView layer] setBorderColor:[UIColor colorWithRed:(17.0/255.0) green:(162.0/255.0) blue:(189.0/255.0) alpha:1].CGColor];
+        [tableView setBackgroundColor:[UIColor lightGrayColor]];
+    }
+    
+    
     NSDictionary *dataForRowAtIndexPath = [[self applyFilterWithSearchQuery:self.text] objectAtIndex:indexPath.row];
     [cell setBackgroundColor:[UIColor clearColor]];
     [[cell textLabel] setText:[dataForRowAtIndexPath objectForKey:@"DisplayText"]];

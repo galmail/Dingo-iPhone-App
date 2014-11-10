@@ -48,11 +48,14 @@
 
     termsAlertView.tag = 1;
     
-    ZSLabel *label = [[ZSLabel alloc] initWithFrame:CGRectMake(0, 0, 220, 90)];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(10, 0, 220, 90)];
+    
+    ZSLabel *label = [[ZSLabel alloc] initWithFrame:CGRectMake(10, 0, 240, 90)];
     label.delegate = self;
     [label setText:[NSString stringWithFormat:@"<font face='SourceSansPro-Regular' size=14 color='#000000'>By pressing \"Agree\", you agree to Dingo's terms and conditions and privacy policy.<br>They can be found <a href='showTerms'>Here</a></font>"]];
-
-    [termsAlertView setValue:label forKey:@"accessoryView"];
+    [view addSubview:label];
+    
+    [termsAlertView setValue:view forKey:@"accessoryView"];
     [termsAlertView show];
 
 }
@@ -63,11 +66,16 @@
     
     termsAlertView.tag = 2;
     
-    ZSLabel *label = [[ZSLabel alloc] initWithFrame:CGRectMake(0, 0, 220, 90)];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(10, 0, 220, 90)];
+    
+    ZSLabel *label = [[ZSLabel alloc] initWithFrame:CGRectMake(15, 0, 240, 90)];
     label.delegate = self;
     [label setText:[NSString stringWithFormat:@"<font face='SourceSansPro-Regular' size=14 color='#000000'>By pressing \"Agree\", you agree to Dingo's terms and conditions and privacy policy.<br>They can be found <a href='showTerms'>Here</a></font>"]];
+    [view addSubview:label];
     
-    [termsAlertView setValue:label forKey:@"accessoryView"];
+    [termsAlertView setValue:view forKey:@"accessoryView"];
+
+//    [termsAlertView setValue:label forKey:@"accessoryView"];
     [termsAlertView show];
     
 }
@@ -80,8 +88,8 @@
         [loadingView show];
         [WebServiceManager signInWithFBAndUpdate:NO completion:^(id response, NSError *error) {
             [loadingView hide];
+
             if (response) {
-                
                 SelectCityViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SelectCityViewController"];
                 [self.navigationController pushViewController:viewController animated:YES];
             }

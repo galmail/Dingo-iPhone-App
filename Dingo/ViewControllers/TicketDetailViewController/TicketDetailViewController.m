@@ -77,6 +77,9 @@ static const NSUInteger commentCellIndex = 4;
     
     self.contactCellerButton.titleLabel.font = self.requestToBuyButton.titleLabel.font = self.offerPriceButton.titleLabel.font = [DingoUISettings lightFontWithSize:16];
     
+    [[self.requestToBuyButton layer] setBorderWidth:4];
+    [[self.requestToBuyButton titleLabel] setFont:[UIFont boldSystemFontOfSize:16]];
+    
     self.sellerNameLabel.font = [DingoUISettings fontWithSize:19];
  
 }
@@ -113,7 +116,7 @@ static const NSUInteger commentCellIndex = 4;
     
     self.sellerNameLabel.text = self.ticket.user_name;
     self.sellerImageView.image = [UIImage imageWithData:self.ticket.user_photo];
-    
+        
     [WebServiceManager addressToLocation:[DataManager eventLocation:self.event] completion:^(id response, NSError *error) {
         
         if ([response[@"status"] isEqualToString:@"OK"]) {

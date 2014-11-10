@@ -11,7 +11,7 @@
 #import "DiscountView.h"
 #import "DataManager.h"
 
-const CGFloat featureCellHeight = 140;
+const CGFloat featureCellHeight = 170;
 
 @interface TicketCell () {
     Event* event;
@@ -41,8 +41,6 @@ const CGFloat featureCellHeight = 140;
     if ([NSStringFromClass([self class]) isEqual:@"ManageListsCell"]) {
         self.startPriceLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:18];
     }
-    
-    
 }
 
 - (void)setPrice:(float)price {

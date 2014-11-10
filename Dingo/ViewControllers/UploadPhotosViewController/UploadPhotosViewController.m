@@ -65,12 +65,22 @@ static const NSUInteger mainPhotoDownloadedCellIndex = 3;
             if (self.mainPhotoImageView.image) {
                 return 0;
             }
+            
+            //temp remove when want add main photo
+            return 0;
             break;
             
         case mainPhotoDownloadedCellIndex:
             if (!self.mainPhotoImageView.image) {
                 return 0;
             }
+            
+            //temp remove when want add main photo
+            return 0;
+            
+            break;
+        default:
+            NSLog(@"Default");
             break;
     }
     

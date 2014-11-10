@@ -43,7 +43,6 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         });
         
     });
-    
 }
 
 + (void)addressToLocation:(NSString *)address completion:( void (^) (id response, NSError *error))handler {
@@ -62,7 +61,6 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         });
         
     });
-
 }
 
 + (void)fetchLocations:(NSString *)location completion:(void (^) (id response, NSError *error))handler {
@@ -79,7 +77,6 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         });
         
     });
-    
 }
 
 
@@ -97,7 +94,6 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         });
         
     });
-    
 }
 
 + (void)signUp:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler {
@@ -114,7 +110,6 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         });
         
     });
-    
 }
 
 + (void)signIn:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler {
@@ -461,7 +456,6 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         });
         
     });
-
 }
 
 + (void)updateProfile:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler {
@@ -479,7 +473,6 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         });
         
     });
-    
 }
 
 #pragma mark Offers
@@ -499,7 +492,6 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         });
         
     });
-    
 }
 
 + (void)replyOffer:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler {
@@ -533,7 +525,6 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         });
         
     });
-    
 }
 
 + (void)makeOrder:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler {
@@ -586,7 +577,6 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         });
         
     });
-    
 }
 
 + (void)sendMessage:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler {
@@ -619,7 +609,6 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         });
         
     });
-
 }
 
 #pragma mark Alerts
@@ -639,7 +628,6 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         });
         
     });
-    
 }
 
 + (void)userAlerts:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler {
@@ -667,7 +655,7 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         url = [NSString stringWithFormat:@"%@?%@", url, params];
     }
 //    url =[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:60.0f];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:20.0f];
     [request setHTTPMethod:@"GET"];
     
     return request;
@@ -680,7 +668,7 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         url = [NSString stringWithFormat:@"%@%@", apiUrl, method];
     }
 //    url =[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:60.0f];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:20.0f];
     [request setHTTPMethod:@"GET"];
     
     [request setValue:[AppManager sharedManager].token forHTTPHeaderField:@"X-User-Token"];
@@ -693,7 +681,7 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
     
     NSString* url = [NSString stringWithFormat:@"%@%@", apiUrl, method];
     url =[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:120.0f];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:50.0f];
     
     if (params.length > 0) {
         NSData *postData = [params dataUsingEncoding:NSUTF8StringEncoding];
@@ -712,7 +700,7 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
     
     NSString* url = [NSString stringWithFormat:@"%@%@", apiUrl, method];
     url =[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:120.0f];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:50.0f];
  
     [request setHTTPMethod:@"POST"];
     
@@ -762,7 +750,7 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
     
     NSString* url = [NSString stringWithFormat:@"%@%@", apiUrl, method];
     url =[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:60.0f];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:20.0f];
     
     [request setHTTPMethod:@"PUT"];
     

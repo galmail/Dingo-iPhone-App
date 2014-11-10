@@ -8,16 +8,21 @@
 
 #import "TicketsViewController.h"
 #import "TicketDetailViewController.h"
+#import "ListTicketsViewController.h"
+#import "MapViewController.h"
 
 #import "ProposalCell.h"
 #import "DataManager.h"
 #import "DingoUISettings.h"
 #import "ZSLoadingView.h"
 #import "WebServiceManager.h"
+#import <MapKit/MapKit.h>
 
 @interface TicketsViewController () <UITableViewDelegate, UITableViewDataSource> {
     EventCell *eventCell;
+    MKMapView *locationMapView;
 }
+
 
 @end
 
@@ -50,6 +55,29 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    locationMapView = [[MKMapView alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 80)];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapOnMap:)];
+    [locationMapView addGestureRecognizer:tap];
+    
+    [WebServiceManager addressToLocation:[DataManager eventLocation:self.eventData] completion:^(id response, NSError *error) {
+
+        if ([response[@"status"] isEqualToString:@"OK"]) {
+            NSArray *results = response[@"results"];
+            if (results.count > 0) {
+                NSDictionary *result = results[0];
+                
+                CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([result[@"geometry"][@"location"][@"lat"] doubleValue], [result[@"geometry"][@"location"][@"lng"] doubleValue]);
+                MKCoordinateSpan span = MKCoordinateSpanMake(0.01, 0.01);
+                MKCoordinateRegion region = {coord, span};
+                [locationMapView setRegion:region];
+                
+                MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
+                annotation.coordinate = coord;
+                [locationMapView addAnnotation:annotation];
+            }
+        }
+    }];
+    
     [self.tableView reloadData];
 }
 
@@ -74,21 +102,46 @@
 }
 
 #pragma mark - UITableViewDelegate
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return indexPath.row ? eventCellHeight : featureCellHeight;
+    
+//    NSLog(@"indexPath row %d", indexPath.row);
+//    return indexPath.row ? eventCellHeight : featureCellHeight;
+    if (indexPath.row == 0) {
+        return featureCellHeight;
+    } else if (indexPath.row == 1) {
+        return 80;
+//        return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+    } else {
+        return eventCellHeight;
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [[DataManager shared] allTicketsByEventID:self.eventData.event_id].count + 1;
+    return [[DataManager shared] allTicketsByEventID:self.eventData.event_id].count + 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSUInteger index = indexPath.row;
-    if (index) {
-        return [self buildEventCellForIndex:indexPath.row - 1];
-    } else {
+//    NSUInteger index = indexPath.row;
+//    if (index) {
+//        NSLog(@"IndexPath 1 %d", indexPath.row);
+//        return [self buildEventCellForIndex:indexPath.row - 1];
+//    } else {
+//        NSLog(@"IndexPath 2 %d", indexPath.row);
+//        return [self buildEventCell];
+//    }
+
+    if (indexPath.row == 0) {
         return [self buildEventCell];
+    } else if (indexPath.row == 1) {
+        static NSString *CellIdentifier = @"cell";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        [cell addSubview:locationMapView];
+        return cell;
+        
+    } else {
+        return [self buildEventCellForIndex:indexPath.row - 2];
     }
     
 }
@@ -96,7 +149,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSUInteger index = indexPath.row;
     if (index) {
-        Ticket *data = [[DataManager shared] allTicketsByEventID:self.eventData.event_id][index-1];
+        Ticket *data = [[DataManager shared] allTicketsByEventID:self.eventData.event_id][index-2];
         
         TicketDetailViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"TicketDetailViewController"];
         viewController.event = self.eventData;
@@ -137,9 +190,31 @@
     }];
 }
 
+- (IBAction)addTicketsPressed:(UIButton *)sender {
+        
+    ListTicketsViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ListTicketsViewController"];
+    viewController.event = self.eventData;
+    
+    [self.navigationController pushViewController:viewController animated:YES];
+}
 
 - (IBAction)back {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)tapOnMap:(UIGestureRecognizer *)gesture{
+    [self performSegueWithIdentifier:@"MapSegue" sender:self];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if ([segue.identifier isEqual:@"MapSegue"]) {
+        
+        UINavigationController *navController = segue.destinationViewController;
+        MapViewController *vc = navController.viewControllers[0];
+        vc.event = self.eventData;
+        
+    }
 }
 
 #pragma mark - Private

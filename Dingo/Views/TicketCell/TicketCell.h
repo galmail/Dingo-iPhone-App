@@ -15,6 +15,9 @@ extern const CGFloat featureCellHeight;
 
 @property (nonatomic) uint tickets;
 
+@property (strong, nonatomic) IBOutlet UILabel *nameLabel;
+@property (strong, nonatomic) IBOutlet UILabel *locationLabel;
+
 + (id)buildWithData:(Event *)data;
 - (void)buildWithTicketData:(Ticket *)data;
 - (void)loadUIFromXib;

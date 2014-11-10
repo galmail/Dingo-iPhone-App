@@ -225,6 +225,10 @@ static const CGFloat categoriesHeight = 110;
     
     Event *data = [[DataManager shared] eventDescriptionByIndexPath:path categories:selectedCategories];
     [cell buildWithData:data];
+    
+    [cell.nameLabel setAdjustsFontSizeToFitWidth:YES];
+    [cell.locationLabel setAdjustsFontSizeToFitWidth:YES];
+    
     return cell;
 }
 

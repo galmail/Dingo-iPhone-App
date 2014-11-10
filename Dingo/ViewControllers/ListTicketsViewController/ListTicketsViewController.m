@@ -29,12 +29,12 @@
 static const CGFloat paypalCellShrinkedHeight = 120;
 static const CGFloat paypalCellExpandedHeight = 240;
 
-static const NSUInteger previewPhotosCellIndex = 10;
-static const NSUInteger editPhotosCellIndex = 11;
-static const NSUInteger uploadPhotosCellIndex = 12;
-static const NSUInteger payPalCellIndex = 13;
-static const NSUInteger previewCellIndex = 16;
-static const NSUInteger comfirmCellIndex = 17;
+static const NSUInteger previewPhotosCellIndex = 11;
+static const NSUInteger editPhotosCellIndex = 12;
+static const NSUInteger uploadPhotosCellIndex = 13;
+static const NSUInteger payPalCellIndex = 14;
+static const NSUInteger previewCellIndex = 17;
+static const NSUInteger comfirmCellIndex = 18;
 
 static const NSInteger fbLoginAlert = 1;
 static const NSInteger paypalAlert = 2;
@@ -68,6 +68,7 @@ static const NSInteger paypalAlert = 2;
     
     ZSPickerView *paymentPicker;
     ZSPickerView *ticketTypePicker;
+    ZSPickerView *selectCategoryPicker;
     ZSPickerView *deliveryPicker;
 
     __weak IBOutlet UISwitch *cashSwitch;
@@ -90,10 +91,12 @@ static const NSInteger paypalAlert = 2;
 @property (nonatomic, weak) IBOutlet ZSTextField *priceField;
 @property (nonatomic, weak) IBOutlet ZSTextField *faceValueField;
 @property (nonatomic, weak) IBOutlet ZSTextField *ticketsCountField;
-@property (weak, nonatomic) IBOutlet UITextField *ticketTypeField;
+//@property (weak, nonatomic) IBOutlet UITextField *ticketTypeField;
 @property (nonatomic, weak) IBOutlet ZSTextView *descriptionTextView;
 @property (nonatomic, weak) IBOutlet CategorySelectionCell *categoriesCell;
 @property (weak, nonatomic) IBOutlet PhotosPreviewCell *photosPreviewCell;
+@property (weak, nonatomic) IBOutlet UITextField *typeTicketField;
+@property (weak, nonatomic) IBOutlet UITextField *selectCategory;
 
 @end
 
@@ -140,11 +143,15 @@ static const NSInteger paypalAlert = 2;
     
     NSDictionary *ticketInfo = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"TicketInfo.plist" ofType:nil]];
     
- 
     ticketTypePicker = [[ZSPickerView alloc] initWithItems:ticketInfo[@"ticketTypes"] allowMultiSelection:NO];
     ticketTypePicker.delegate = self;
-    self.ticketTypeField.inputView = ticketTypePicker;
+    [ticketTypePicker setBackgroundColor:[UIColor whiteColor]];
+    self.typeTicketField.inputView = ticketTypePicker;
 
+    selectCategoryPicker = [[ZSPickerView alloc] initWithItems:[NSArray arrayWithObjects:@"Concerts",@"Nightlife",@"Sport",@"Theatre & Comedy", nil] allowMultiSelection:NO];
+    selectCategoryPicker.delegate = self;
+    [selectCategoryPicker setBackgroundColor:[UIColor whiteColor]];
+    self.selectCategory.inputView = selectCategoryPicker;
     
     self.descriptionTextView.placeholder = @"Add comments about event or ticket and delivery method e.g. pick up from my house or meet in central London";
     [self.descriptionTextView showToolbarWithDone];
@@ -161,11 +168,9 @@ static const NSInteger paypalAlert = 2;
         self.changed = NO;
         
         self.ticket = [[Ticket alloc] initWithEntity:[NSEntityDescription entityForName:@"Ticket" inManagedObjectContext:[AppManager sharedManager].managedObjectContext] insertIntoManagedObjectContext:nil];
-        
         self.event = [[Event alloc] initWithEntity:[NSEntityDescription entityForName:@"Event" inManagedObjectContext:[AppManager sharedManager].managedObjectContext] insertIntoManagedObjectContext:nil];
         
         isEditing = NO;
-        
     }
     
     if ([AppManager sharedManager].draftTicket) {
@@ -205,41 +210,52 @@ static const NSInteger paypalAlert = 2;
         self.categoriesCell.selectedCategory = [AppManager sharedManager].draftTicket[@"categoryID"];
         [self.categoriesCell refresh];
     } else if (!isEditing) {
-        self.changed = NO;
         
-        self.nameField.text = nil;
-        self.locationField.text = nil;
-        self.startDateField.text = nil;
-        self.endDateField.text = nil;
-        self.priceField.text = nil;
-        self.faceValueField.text = nil;
-        self.ticketsCountField.text = nil;
-        self.descriptionTextView.text = nil;
-        self.ticketTypeField.text = nil;
+        if (self.event != nil) {
+            
+            NSDateFormatter *formatter =[[NSDateFormatter alloc] init];
+            formatter.dateFormat = @"HH:mm dd/MM/yyyy";
+            
+            self.nameField.text = self.event.name;
+            self.locationField.text = self.event.address;
+            self.startDateField.text = [formatter stringFromDate:self.event.date];
+            self.endDateField.text = [formatter stringFromDate:self.event.endDate];
+        } else {
         
-        paypalSwitch.on = NO;
-        cashSwitch.on = NO;
-        
-        eticketSwitch.on = NO;
-        paperSwitch.on = NO;
-        
-        inPersonSwitch.on = NO;
-        electronicSwitch.on = NO;
-        postSwitch.on = NO;
-        
-        self.event.thumb = nil;
-        self.photosPreviewCell.photos = nil;
-        
-        photos = nil;
-        
-        self.categoriesCell.selectedCategory = nil;
-        [self.categoriesCell refresh];
-        
-        [self.tableView reloadData];
-        
+            self.changed = NO;
+            
+            self.nameField.text = nil;
+            self.locationField.text = nil;
+            self.startDateField.text = nil;
+            self.endDateField.text = nil;
+            self.priceField.text = nil;
+            self.faceValueField.text = nil;
+            self.ticketsCountField.text = nil;
+            self.descriptionTextView.text = nil;
+            self.typeTicketField.text = nil;
+            self.selectCategory.text = nil;
+            
+            paypalSwitch.on = NO;
+            cashSwitch.on = NO;
+            
+            eticketSwitch.on = NO;
+            paperSwitch.on = NO;
+            
+            inPersonSwitch.on = NO;
+            electronicSwitch.on = NO;
+            postSwitch.on = NO;
+            
+            self.event.thumb = nil;
+            self.photosPreviewCell.photos = nil;
+            
+            photos = nil;
+            
+            self.categoriesCell.selectedCategory = nil;
+            [self.categoriesCell refresh];
+            
+            [self.tableView reloadData];
+        }
     }
-    
-    
 }
 
 - (void)setTicket:(Ticket*)ticket event:(Event*)event {
@@ -456,8 +472,6 @@ static const NSInteger paypalAlert = 2;
         } else {
             [AppManager showAlert:@"Unable to save changes, Please try later"];
         }
-        
-
     }];
 }
 
@@ -526,8 +540,6 @@ static const NSInteger paypalAlert = 2;
                 return 0;
             }
             break;
-            
-            
     }
     
     return [super tableView:tableView heightForRowAtIndexPath:indexPath];
@@ -638,13 +650,19 @@ static const NSInteger paypalAlert = 2;
         }
     }
     
-    if (textField == self.ticketTypeField) {
-        if (self.ticketTypeField.text.length > 0) {
+    if (textField == self.typeTicketField) {
+        if (self.typeTicketField.text.length > 0) {
             lblTicketType.textColor = [UIColor blackColor];
             self.changed = YES;
         }
     }
-  
+    
+    if (textField == self.selectCategory) {
+        if (self.selectCategory.text.length > 0) {
+            lblTicketType.textColor = [UIColor blackColor];
+            self.changed = YES;
+        }
+    }
 }
 
 #pragma mark - Navigation
@@ -727,6 +745,15 @@ static const NSInteger paypalAlert = 2;
             [AppManager showAlert:@"Please complete compulsory fields."];
             [self.tableView setContentOffset:CGPointZero];
         }
+        
+        if ([self.priceField.text floatValue] > [self.faceValueField.text floatValue]) {
+            requiredInfoFilled = NO;
+            lblPrice.textColor = [UIColor redColor];
+
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Tickets on Dingo can only be sold at face value of below. The Dingo team monitor all listings. Tickets being sold above face value will be removed." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+            [alert show];
+        }
+        
     }
 
     return requiredInfoFilled;
@@ -919,7 +946,11 @@ static const NSInteger paypalAlert = 2;
     }
     
     if (textField == self.ticketsCountField) {
-        [self.ticketTypeField becomeFirstResponder];
+        [self.typeTicketField becomeFirstResponder];
+    }
+    
+    if (textField == self.typeTicketField) {
+        [self.selectCategory becomeFirstResponder];
     }
 }
 
@@ -935,6 +966,10 @@ static const NSInteger paypalAlert = 2;
     
     if (textField == self.ticketsCountField) {
         [self.faceValueField becomeFirstResponder];
+    }
+    
+    if (textField == self.selectCategory) {
+        [self.typeTicketField becomeFirstResponder];
     }
 }
 
@@ -974,19 +1009,22 @@ static const NSInteger paypalAlert = 2;
 
     self.changed = YES;
 
-    
     if (picker == ticketTypePicker) {
-        
-        self.ticketTypeField.text = selectionInfo;
-        [self.ticketTypeField resignFirstResponder];
+        self.typeTicketField.text = selectionInfo;
+        [self.typeTicketField resignFirstResponder];
+    } else if (picker == selectCategoryPicker) {
+        self.selectCategory.text = selectionInfo;
+        [self.selectCategory resignFirstResponder];
     }
 }
 
 - (void)pickerViewDidPressCancel:(ZSPickerView *)picker {
-    if (picker == ticketTypePicker) {
-        [self.ticketTypeField resignFirstResponder];
-    }
 
+    if (picker == ticketTypePicker) {
+        [self.typeTicketField resignFirstResponder];
+    } else if (picker == selectCategoryPicker) {
+        [self.selectCategory resignFirstResponder];
+    }
 }
 
 - (void)didSelectedCategories:(NSArray*)categories {
@@ -1053,7 +1091,6 @@ static const NSInteger paypalAlert = 2;
         lblTicketType.textColor = [UIColor darkGrayColor];
         eticketSwitch.on = !paperSwitch.on;
     }
-
 }
 
 #pragma mark UIAlertView delegates
@@ -1107,14 +1144,9 @@ static const NSInteger paypalAlert = 2;
             
             break;
         }
-            
-            
-            
         default:
             break;
     }
-    
-    
 }
 
 @end
