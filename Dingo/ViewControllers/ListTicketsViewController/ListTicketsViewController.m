@@ -29,17 +29,17 @@
 static const CGFloat paypalCellShrinkedHeight = 120;
 static const CGFloat paypalCellExpandedHeight = 240;
 
-static const NSUInteger previewPhotosCellIndex = 11;
-static const NSUInteger editPhotosCellIndex = 12;
-static const NSUInteger uploadPhotosCellIndex = 13;
-static const NSUInteger payPalCellIndex = 14;
-static const NSUInteger previewCellIndex = 17;
-static const NSUInteger comfirmCellIndex = 18;
+static const NSUInteger previewPhotosCellIndex = 10;
+static const NSUInteger editPhotosCellIndex = 11;
+static const NSUInteger uploadPhotosCellIndex = 12;
+static const NSUInteger payPalCellIndex = 13;
+static const NSUInteger previewCellIndex = 16;
+static const NSUInteger comfirmCellIndex = 17;
 
 static const NSInteger fbLoginAlert = 1;
 static const NSInteger paypalAlert = 2;
 
-@interface ListTicketsViewController () <UITextFieldDelegate, UITableViewDataSource, UploadPhotosVCDelegate, ZSTextFieldDelegate, ZSDatePickerDelegate , ZSPickerDelegate ,CategorySelectionDelegate> {
+@interface ListTicketsViewController () <UITextFieldDelegate, UITableViewDataSource, UploadPhotosVCDelegate, ZSTextFieldDelegate, ZSDatePickerDelegate , ZSPickerDelegate ,CategorySelectionDelegate, UITextViewDelegate> {
     
     __weak IBOutlet UILabel *lblName;
     __weak IBOutlet UILabel *lblLocation;
@@ -52,7 +52,6 @@ static const NSInteger paypalAlert = 2;
     __weak IBOutlet UILabel *lblPayment;
     __weak IBOutlet UILabel *lbldelivery;
     __weak IBOutlet UILabel *lblDescription;
-    __weak IBOutlet UILabel *lblCategory;
     __weak IBOutlet UILabel *lbleTicket;
     __weak IBOutlet UILabel *lblPaper;
     __weak IBOutlet UILabel *lblCash;
@@ -91,12 +90,9 @@ static const NSInteger paypalAlert = 2;
 @property (nonatomic, weak) IBOutlet ZSTextField *priceField;
 @property (nonatomic, weak) IBOutlet ZSTextField *faceValueField;
 @property (nonatomic, weak) IBOutlet ZSTextField *ticketsCountField;
-//@property (weak, nonatomic) IBOutlet UITextField *ticketTypeField;
 @property (nonatomic, weak) IBOutlet ZSTextView *descriptionTextView;
-@property (nonatomic, weak) IBOutlet CategorySelectionCell *categoriesCell;
 @property (weak, nonatomic) IBOutlet PhotosPreviewCell *photosPreviewCell;
 @property (weak, nonatomic) IBOutlet UITextField *typeTicketField;
-@property (weak, nonatomic) IBOutlet UITextField *selectCategory;
 
 @end
 
@@ -108,13 +104,9 @@ static const NSInteger paypalAlert = 2;
     
     [super viewDidLoad];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    self.categoriesCell.multipleSelection = NO;
-    [self.categoriesCell useAllCategories];
     
     lblName.font = lblLocation.font = lblFromDate.font = lblToDate.font = lblPrice.font = lblFaceValue.font = lblTicketCount.font = lblTicketType.font = [DingoUISettings fontWithSize:14];
-    lblPayment.font = lbldelivery.font = lbleTicket.font = lblPaper.font = lblCash.font = lblPaypal.font = lblInPerson.font = lblElectrical.font = lblPost.font = [DingoUISettings fontWithSize:14];
-    lblCategory.font = [DingoUISettings fontWithSize:16];
-    
+    lblPayment.font = lbldelivery.font = lbleTicket.font = lblPaper.font = lblCash.font = lblPaypal.font = lblInPerson.font = lblElectrical.font = lblPost.font = lblDescription.font = [DingoUISettings fontWithSize:14];
     
     self.nameField.font = self.locationField.font = self.startDateField.font = self.endDateField.font = self.priceField.font = self.faceValueField.font = self.ticketsCountField.font = [DingoUISettings fontWithSize:14];
     
@@ -151,12 +143,9 @@ static const NSInteger paypalAlert = 2;
     selectCategoryPicker = [[ZSPickerView alloc] initWithItems:[NSArray arrayWithObjects:@"Concerts",@"Nightlife",@"Sport",@"Theatre & Comedy", nil] allowMultiSelection:NO];
     selectCategoryPicker.delegate = self;
     [selectCategoryPicker setBackgroundColor:[UIColor whiteColor]];
-    self.selectCategory.inputView = selectCategoryPicker;
     
-    self.descriptionTextView.placeholder = @"Add comments about event or ticket and delivery method e.g. pick up from my house or meet in central London";
+    self.descriptionTextView.placeholder = @"Add any additional comments about the tickets or collection.";
     [self.descriptionTextView showToolbarWithDone];
-    
-    self.categoriesCell.delegate = self;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -206,18 +195,13 @@ static const NSInteger paypalAlert = 2;
         if (self.event.thumb) {
             [self.photosPreviewCell.photos insertObject:[UIImage imageWithData:self.event.thumb] atIndex:0];
         }
-        
-        self.categoriesCell.selectedCategory = [AppManager sharedManager].draftTicket[@"categoryID"];
-        [self.categoriesCell refresh];
     } else if (!isEditing) {
         
         if (self.event != nil) {
             
             NSDateFormatter *formatter =[[NSDateFormatter alloc] init];
             formatter.dateFormat = @"HH:mm dd/MM/yyyy";
-            
-            NSLog(@"Self ticket %@", self.ticket);
-            
+                        
             self.nameField.text = self.event.name;
             self.locationField.text = self.event.address;
             self.startDateField.text = [formatter stringFromDate:self.event.date];
@@ -235,7 +219,6 @@ static const NSInteger paypalAlert = 2;
             self.ticketsCountField.text = nil;
             self.descriptionTextView.text = nil;
             self.typeTicketField.text = nil;
-            self.selectCategory.text = nil;
             
             paypalSwitch.on = NO;
             cashSwitch.on = NO;
@@ -251,9 +234,6 @@ static const NSInteger paypalAlert = 2;
             self.photosPreviewCell.photos = nil;
             
             photos = nil;
-            
-            self.categoriesCell.selectedCategory = nil;
-            [self.categoriesCell refresh];
             
             [self.tableView reloadData];
         }
@@ -294,10 +274,6 @@ static const NSInteger paypalAlert = 2;
     electronicSwitch.on = [deliveryOptions rangeOfString:@"Electronic"].location != NSNotFound;
     postSwitch.on =  [deliveryOptions rangeOfString:@"Post"].location != NSNotFound;
     
-    self.categoriesCell.selectedCategory = event.category_id;
-    self.categoriesCell.readOnly = YES;
-    [self.categoriesCell refresh];
-    
     photos = [NSMutableArray new];
     if (ticket.photo1) {
         [photos addObject:[UIImage imageWithData:ticket.photo1]];
@@ -314,7 +290,6 @@ static const NSInteger paypalAlert = 2;
     if (self.event.thumb) {
         [self.photosPreviewCell.photos insertObject:[UIImage imageWithData:self.event.thumb] atIndex:0];
     }
-    
 }
 
 - (void)saveDraft {
@@ -362,20 +337,6 @@ static const NSInteger paypalAlert = 2;
     }
     
     self.ticket.delivery_options = deliveryOptions;
-    
-//    NSString *ticketTypes = self.typeTicketField.text;
-//    if (eticketSwitch.on) {
-//        ticketTypes = @"e-Ticket";
-//    }
-//    
-//    if (paperSwitch.on) {
-//        if (ticketTypes.length > 0) {
-//            ticketTypes = [ticketTypes stringByAppendingFormat:@", %@", @"Paper"];
-//        } else {
-//            ticketTypes = @"Paper";
-//        }
-//    }
-
 
     
     [[AppManager sharedManager].draftTicket setValue:self.nameField.text forKey:@"name"];
@@ -386,7 +347,6 @@ static const NSInteger paypalAlert = 2;
     [[AppManager sharedManager].draftTicket setValue:self.faceValueField.text forKey:@"faceValue"];
     [[AppManager sharedManager].draftTicket setValue:self.ticketsCountField.text forKey:@"ticketCount"];
     [[AppManager sharedManager].draftTicket setValue:self.descriptionTextView.text forKey:@"description"];
-    [[AppManager sharedManager].draftTicket setValue:self.categoriesCell.selectedCategory forKey:@"categoryID"];
     [[AppManager sharedManager].draftTicket setValue:self.ticket.payment_options forKey:@"paymentOptions"];
     [[AppManager sharedManager].draftTicket setValue:self.typeTicketField.text forKey:@"ticketType"];
     [[AppManager sharedManager].draftTicket setValue:self.ticket.delivery_options forKey:@"deliveryOptions"];
@@ -584,9 +544,6 @@ static const NSInteger paypalAlert = 2;
                 self.locationField.enabled = YES;
                 self.startDateField.enabled = YES;
                 self.endDateField.enabled = YES;
-
-                self.categoriesCell.readOnly = NO;
-                [self.categoriesCell refresh];
             }
             
             self.event.name = self.nameField.text;
@@ -628,18 +585,28 @@ static const NSInteger paypalAlert = 2;
     
     if (textField == self.priceField) {
         if (self.priceField.text.length > 0) {
-            self.ticket.price = @([self.priceField.text floatValue]);
-            self.event.fromPrice = @([self.priceField.text floatValue]);
-            lblPrice.textColor = [UIColor blackColor];
-            self.changed = YES;
+            
+            if (([self.priceField.text floatValue] > [self.faceValueField.text floatValue]) && self.faceValueField.text.length > 0) {
+                [self showFaceValueAlertMessage];
+            } else{
+                self.ticket.face_value_per_ticket = @([self.faceValueField.text floatValue]);
+                self.ticket.price = @([self.priceField.text floatValue]);
+                self.event.fromPrice = @([self.priceField.text floatValue]);
+                lblPrice.textColor = [UIColor blackColor];
+                self.changed = YES;
+            }
         }
-        
     }
 
     if (textField == self.faceValueField) {
         if (self.faceValueField.text.length > 0) {
-            self.ticket.face_value_per_ticket = @([self.faceValueField.text floatValue]);
-            lblFaceValue.textColor = [UIColor blackColor];
+            
+            if ([self.priceField.text floatValue] > [self.faceValueField.text floatValue]) {
+                [self showFaceValueAlertMessage];
+            } else{
+                self.ticket.face_value_per_ticket = @([self.faceValueField.text floatValue]);
+                lblFaceValue.textColor = [UIColor blackColor];
+            }
         }
     }
 
@@ -657,13 +624,13 @@ static const NSInteger paypalAlert = 2;
             self.changed = YES;
         }
     }
-    
-    if (textField == self.selectCategory) {
-        if (self.selectCategory.text.length > 0) {
-            lblTicketType.textColor = [UIColor blackColor];
-            self.changed = YES;
-        }
-    }
+}
+
+- (void)showFaceValueAlertMessage{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Tickets on Dingo can only be sold at face value or below. The Dingo team monitor all listings. Tickets being sold above face value will be removed." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+    [alert show];
+    [self.priceField setText:@""];
+    [self.faceValueField setText:@""];
 }
 
 #pragma mark - Navigation
@@ -726,12 +693,7 @@ static const NSInteger paypalAlert = 2;
             requiredInfoFilled = NO;
             lbldelivery.textColor = [UIColor redColor];
         }
-        
-//        if (self.categoriesCell.selectedCategory.length == 0) {
-//            requiredInfoFilled = NO;
-//            lblCategory.textColor = [UIColor redColor];
-//        }
-        
+
         if (!paypalSwitch.on && !cashSwitch.on) {
             requiredInfoFilled = NO;
             lblPayment.textColor = [UIColor redColor];
@@ -741,12 +703,7 @@ static const NSInteger paypalAlert = 2;
             requiredInfoFilled = NO;
             lblTicketType.textColor = [UIColor redColor];
         }
-        
-        if (self.selectCategory.text.length == 0) {
-            requiredInfoFilled = NO;
-            lblCategory.textColor = [UIColor redColor];
-        }
-        
+
         if (!requiredInfoFilled) {
             [AppManager showAlert:@"Please complete compulsory fields."];
             [self.tableView setContentOffset:CGPointZero];
@@ -755,9 +712,7 @@ static const NSInteger paypalAlert = 2;
         if ([self.priceField.text floatValue] > [self.faceValueField.text floatValue]) {
             requiredInfoFilled = NO;
             lblPrice.textColor = [UIColor redColor];
-
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Tickets on Dingo can only be sold at face value of below. The Dingo team monitor all listings. Tickets being sold above face value will be removed." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
-            [alert show];
+            [self showFaceValueAlertMessage];
         }
         
     }
@@ -813,29 +768,8 @@ static const NSInteger paypalAlert = 2;
         }
         
         self.ticket.delivery_options = deliveryOptions;
-        
-//        NSString *ticketTypes = @"";
-//        if (eticketSwitch.on) {
-//            ticketTypes = @"e-Ticket";
-//        }
-//        
-//        if (paperSwitch.on) {
-//            if (ticketTypes.length > 0) {
-//                ticketTypes = [ticketTypes stringByAppendingFormat:@", %@", @"Paper"];
-//            } else {
-//                ticketTypes = @"Paper";
-//            }
-//        }
-        
         self.ticket.ticket_type = self.typeTicketField.text;
         self.ticket.ticket_desc = self.descriptionTextView.text;
-        
-        // selected category
-        if (self.categoriesCell.selectedCategory) {
-           self.event.category_id = self.categoriesCell.selectedCategory;
-        }
-        
-        NSLog(@"self ticket %@", self.ticket);
         
         PreviewViewController *vc = (PreviewViewController *)segue.destinationViewController;
         vc.event = self.event;
@@ -898,15 +832,8 @@ static const NSInteger paypalAlert = 2;
             
             self.startDateField.text =  [formatter stringFromDate:self.event.date];
             self.endDateField.text = [formatter stringFromDate:self.event.endDate];
-            
             self.startDateField.enabled = self.endDateField.enabled = NO;
-            
-            self.categoriesCell.selectedCategory = self.event.category_id;
-            self.categoriesCell.readOnly = YES;
-            [self.categoriesCell refresh];
-            
         }
-       
     }
     
     if (textField == self.locationField) {
@@ -955,10 +882,6 @@ static const NSInteger paypalAlert = 2;
     if (textField == self.ticketsCountField) {
         [self.typeTicketField becomeFirstResponder];
     }
-    
-    if (textField == self.typeTicketField) {
-        [self.selectCategory becomeFirstResponder];
-    }
 }
 
 - (void)previousDidPressed:(ZSTextField*)textField {
@@ -973,10 +896,6 @@ static const NSInteger paypalAlert = 2;
     
     if (textField == self.ticketsCountField) {
         [self.faceValueField becomeFirstResponder];
-    }
-    
-    if (textField == self.selectCategory) {
-        [self.typeTicketField becomeFirstResponder];
     }
 }
 
@@ -1019,9 +938,6 @@ static const NSInteger paypalAlert = 2;
     if (picker == ticketTypePicker) {
         self.typeTicketField.text = selectionInfo;
         [self.typeTicketField resignFirstResponder];
-    } else if (picker == selectCategoryPicker) {
-        self.selectCategory.text = selectionInfo;
-        [self.selectCategory resignFirstResponder];
     }
 }
 
@@ -1029,15 +945,6 @@ static const NSInteger paypalAlert = 2;
 
     if (picker == ticketTypePicker) {
         [self.typeTicketField resignFirstResponder];
-    } else if (picker == selectCategoryPicker) {
-        [self.selectCategory resignFirstResponder];
-    }
-}
-
-- (void)didSelectedCategories:(NSArray*)categories {
-    if (categories.count) {
-        lblCategory.textColor = [UIColor darkGrayColor];
-        self.changed = YES;
     }
 }
 

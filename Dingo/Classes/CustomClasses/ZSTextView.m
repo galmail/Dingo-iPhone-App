@@ -19,7 +19,7 @@
 {
     [super awakeFromNib];
     [self setPlaceholder:@""];
-    [self setPlaceholderColor:[UIColor lightGrayColor]];
+    [self setPlaceholderColor:[UIColor colorWithRed:(200.0/255.0) green:(200.0/255.0) blue:(200.0/255.0) alpha:1]];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textChanged:) name:UITextViewTextDidChangeNotification object:nil];
 }
@@ -29,7 +29,7 @@
     if( (self = [super initWithFrame:frame]) )
     {
         [self setPlaceholder:@""];
-        [self setPlaceholderColor:[UIColor lightGrayColor]];
+        [self setPlaceholderColor:[UIColor colorWithRed:(200.0/255.0) green:(200.0/255.0) blue:(200.0/255.0) alpha:1]];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textChanged:) name:UITextViewTextDidChangeNotification object:nil];
     }
     return self;

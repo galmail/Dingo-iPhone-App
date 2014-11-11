@@ -194,8 +194,17 @@
     
     
     ListTicketsViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ListTicketsViewController"];
-    viewController.event = self.eventData;
-    viewController.ticket = [[Ticket alloc] initWithEntity:[NSEntityDescription entityForName:@"Ticket" inManagedObjectContext:[AppManager sharedManager].managedObjectContext] insertIntoManagedObjectContext:nil];
+    
+    Ticket *ticket = [[Ticket alloc] initWithEntity:[NSEntityDescription entityForName:@"Ticket" inManagedObjectContext:[AppManager sharedManager].managedObjectContext] insertIntoManagedObjectContext:nil];
+    [ticket setPrice:nil];
+    [ticket setFace_value_per_ticket:nil];
+    [ticket setNumber_of_tickets:nil];
+    
+    Event *tempEvent = self.eventData;
+    tempEvent.thumb = nil;
+    
+    viewController.event = tempEvent;
+    viewController.ticket = ticket;
     
     [self.navigationController pushViewController:viewController animated:YES];
 }
