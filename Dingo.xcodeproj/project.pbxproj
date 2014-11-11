@@ -235,6 +235,7 @@
 		3F98FCFA1942130100E6B3C4 /* SectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F98FCF91942130100E6B3C4 /* SectionHeaderView.xib */; };
 		3F98FD041945D5C200E6B3C4 /* DingoUtilites.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F98FD031945D5C200E6B3C4 /* DingoUtilites.m */; };
 		3F98FD081945EECE00E6B3C4 /* DiscountView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F98FD071945EECE00E6B3C4 /* DiscountView.m */; };
+		5FF2323C1A125F990059667B /* ticket-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FF2323B1A125F990059667B /* ticket-icon.png */; };
 		5FF24EBF1A0BB6090070BD31 /* location_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FF24EBD1A0BB6090070BD31 /* location_icon.png */; };
 		5FF24EC01A0BB6090070BD31 /* time_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FF24EBE1A0BB6090070BD31 /* time_icon.png */; };
 		5FF24EC21A0BBF6E0070BD31 /* add_tickets.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FF24EC11A0BBF6E0070BD31 /* add_tickets.png */; };
@@ -633,6 +634,7 @@
 		3F98FD031945D5C200E6B3C4 /* DingoUtilites.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DingoUtilites.m; sourceTree = "<group>"; };
 		3F98FD061945EECE00E6B3C4 /* DiscountView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DiscountView.h; path = DiscountView/DiscountView.h; sourceTree = "<group>"; };
 		3F98FD071945EECE00E6B3C4 /* DiscountView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DiscountView.m; path = DiscountView/DiscountView.m; sourceTree = "<group>"; };
+		5FF2323B1A125F990059667B /* ticket-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ticket-icon.png"; sourceTree = "<group>"; };
 		5FF24EBD1A0BB6090070BD31 /* location_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = location_icon.png; sourceTree = "<group>"; };
 		5FF24EBE1A0BB6090070BD31 /* time_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = time_icon.png; sourceTree = "<group>"; };
 		5FF24EC11A0BBF6E0070BD31 /* add_tickets.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add_tickets.png; sourceTree = "<group>"; };
@@ -794,6 +796,7 @@
 				3AB68BE719C70FFC00057736 /* btnDelete@2x.png */,
 				3A9D206A19B20A1900FE163E /* bottomBar@2x.png */,
 				3A9D206219B1993900FE163E /* btnEditTicket@2x.png */,
+				5FF2323B1A125F990059667B /* ticket-icon.png */,
 			);
 			path = Tickets;
 			sourceTree = "<group>";
@@ -2335,6 +2338,7 @@
 				3F62C6D919499D9400D7D6B1 /* categories.plist in Resources */,
 				3AA1610419E5C8EF00895508 /* AppiraterLocalizable.strings in Resources */,
 				3F2864EC194B2851002A3576 /* faq_cell@2x.png in Resources */,
+				5FF2323C1A125F990059667B /* ticket-icon.png in Resources */,
 				841C50AD19A626BB00BD4141 /* btnConfirmAlert.png in Resources */,
 				3F79701E19547D1300739EE8 /* PhotosPreviewCell.xib in Resources */,
 				841C508D19A6082400BD4141 /* btnNavBarAdd@2x.png in Resources */,

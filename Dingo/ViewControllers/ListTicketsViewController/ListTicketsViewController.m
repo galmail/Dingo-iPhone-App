@@ -29,12 +29,12 @@
 static const CGFloat paypalCellShrinkedHeight = 120;
 static const CGFloat paypalCellExpandedHeight = 240;
 
-static const NSUInteger previewPhotosCellIndex = 10;
-static const NSUInteger editPhotosCellIndex = 11;
-static const NSUInteger uploadPhotosCellIndex = 12;
-static const NSUInteger payPalCellIndex = 13;
-static const NSUInteger previewCellIndex = 16;
-static const NSUInteger comfirmCellIndex = 17;
+static const NSUInteger previewPhotosCellIndex = 11;
+static const NSUInteger editPhotosCellIndex = 12;
+static const NSUInteger uploadPhotosCellIndex = 13;
+static const NSUInteger payPalCellIndex = 14;
+static const NSUInteger previewCellIndex = 17;
+static const NSUInteger comfirmCellIndex = 18;
 
 static const NSInteger fbLoginAlert = 1;
 static const NSInteger paypalAlert = 2;
@@ -238,6 +238,8 @@ static const NSInteger paypalAlert = 2;
             [self.tableView reloadData];
         }
     }
+    
+    [self.tableView setSeparatorInset:UIEdgeInsetsZero];
 }
 
 - (void)setTicket:(Ticket*)ticket event:(Event*)event {
@@ -600,7 +602,7 @@ static const NSInteger paypalAlert = 2;
 
     if (textField == self.faceValueField) {
         if (self.faceValueField.text.length > 0) {
-            
+            self.changed = YES;
             if ([self.priceField.text floatValue] > [self.faceValueField.text floatValue]) {
                 [self showFaceValueAlertMessage];
             } else{

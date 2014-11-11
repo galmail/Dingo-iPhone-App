@@ -23,7 +23,7 @@
 #import "NewOfferViewController.h"
 #import "CheckoutViewController.h"
 
-static const NSUInteger photosCellIndex = 1;
+//static const NSUInteger photosCellIndex = 1;
 static const NSUInteger commentCellIndex = 4;
 
 
@@ -38,8 +38,8 @@ static const NSUInteger commentCellIndex = 4;
     __weak IBOutlet UILabel *lblDelivery;
 }
 
-@property (nonatomic, weak) IBOutlet ProposalCell *proposalCell;
-@property (nonatomic, weak) IBOutlet PhotosPreviewCell *photosPreviewCell;
+//@property (nonatomic, weak) IBOutlet ProposalCell *proposalCell;
+//@property (nonatomic, weak) IBOutlet PhotosPreviewCell *photosPreviewCell;
 @property (nonatomic, weak) IBOutlet UILabel *ticketsCountlabel;
 @property (nonatomic, weak) IBOutlet UILabel *faceValueLabel;
 @property (nonatomic, weak) IBOutlet UITextView *descriptionTextView;
@@ -51,7 +51,9 @@ static const NSUInteger commentCellIndex = 4;
 @property (nonatomic, weak) IBOutlet UIButton *offerPriceButton;
 @property (nonatomic, weak) IBOutlet UIImageView *sellerImageView;
 @property (nonatomic, weak) IBOutlet UILabel *sellerNameLabel;
-@property (weak, nonatomic) IBOutlet MKMapView *locationMap;
+//@property (weak, nonatomic) IBOutlet MKMapView *locationMap;
+@property (strong, nonatomic) IBOutlet UILabel *priceTicketLabel;
+@property (strong, nonatomic) IBOutlet UILabel *priceTicketLbl;
 
 @end
 
@@ -73,7 +75,7 @@ static const NSUInteger commentCellIndex = 4;
     [super viewDidLoad];
 
     lblTicketCount.font = lblFaceValue.font = lblComment.font = lblTicketType.font = lblPayment.font = lblDelivery.font = [DingoUISettings lightFontWithSize:14];
-    self.ticketsCountlabel.font = self.faceValueLabel.font = self.descriptionTextView.font =  self.paymentLabel.font =  self.ticketTypeLabel.font =  self.deliveryLabel.font = [DingoUISettings lightFontWithSize:14];
+    self.ticketsCountlabel.font = self.faceValueLabel.font = self.descriptionTextView.font =  self.paymentLabel.font =  self.ticketTypeLabel.font =  self.deliveryLabel.font = self.priceTicketLabel.font = self.priceTicketLbl.font = [DingoUISettings lightFontWithSize:14];
     
     self.contactCellerButton.titleLabel.font = self.requestToBuyButton.titleLabel.font = self.offerPriceButton.titleLabel.font = [DingoUISettings lightFontWithSize:16];
     
@@ -101,9 +103,9 @@ static const NSUInteger commentCellIndex = 4;
     if (self.ticket.photo3) {
         [photos addObject:[UIImage imageWithData:self.ticket.photo3]];
     }
-    
-    self.photosPreviewCell.photos = photos;
-    self.photosPreviewCell.parentViewController = self;
+
+//    self.photosPreviewCell.photos = photos;
+//    self.photosPreviewCell.parentViewController = self;
     
     self.ticketsCountlabel.text = [self.ticket.number_of_tickets stringValue];
     self.faceValueLabel.text = [self.ticket.face_value_per_ticket stringValue];
@@ -111,31 +113,32 @@ static const NSUInteger commentCellIndex = 4;
     self.paymentLabel.text = self.ticket.payment_options;
     self.ticketTypeLabel.text = self.ticket.ticket_type;
     self.deliveryLabel.text = self.ticket.delivery_options;
+    self.priceTicketLabel.text = [self.ticket.price stringValue];
     
-    [self.proposalCell buildWithTicketData:self.ticket];
+//    [self.proposalCell buildWithTicketData:self.ticket];
     
     self.sellerNameLabel.text = self.ticket.user_name;
     self.sellerImageView.image = [UIImage imageWithData:self.ticket.user_photo];
         
-    [WebServiceManager addressToLocation:[DataManager eventLocation:self.event] completion:^(id response, NSError *error) {
-        
-        if ([response[@"status"] isEqualToString:@"OK"]) {
-            NSArray *results = response[@"results"];
-            if (results.count > 0) {
-                NSDictionary *result = results[0];
-                
-                CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([result[@"geometry"][@"location"][@"lat"] doubleValue], [result[@"geometry"][@"location"][@"lng"] doubleValue]);
-                MKCoordinateSpan span = MKCoordinateSpanMake(0.01, 0.01);
-                MKCoordinateRegion region = {coord, span};
-                [self.locationMap setRegion:region];
-                
-                MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
-                annotation.coordinate = coord;
-                [self.locationMap addAnnotation:annotation];
-            }
-            
-        }
-    }];
+//    [WebServiceManager addressToLocation:[DataManager eventLocation:self.event] completion:^(id response, NSError *error) {
+//        
+//        if ([response[@"status"] isEqualToString:@"OK"]) {
+//            NSArray *results = response[@"results"];
+//            if (results.count > 0) {
+//                NSDictionary *result = results[0];
+//                
+//                CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([result[@"geometry"][@"location"][@"lat"] doubleValue], [result[@"geometry"][@"location"][@"lng"] doubleValue]);
+//                MKCoordinateSpan span = MKCoordinateSpanMake(0.01, 0.01);
+//                MKCoordinateRegion region = {coord, span};
+//                [self.locationMap setRegion:region];
+//                
+//                MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
+//                annotation.coordinate = coord;
+//                [self.locationMap addAnnotation:annotation];
+//            }
+//            
+//        }
+//    }];
 
     if ([self.ticket.user_id isEqual:[AppManager sharedManager].userInfo[@"id"]]) {
         
@@ -182,11 +185,11 @@ static const NSUInteger commentCellIndex = 4;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.row) {
-        case photosCellIndex:
-            if (self.photosPreviewCell.photos.count == 0) {
-                return 0;
-            }
-            break;
+//        case photosCellIndex:
+//            if (self.photosPreviewCell.photos.count == 0) {
+//                return 0;
+//            }
+//            break;
         case commentCellIndex: {
             CGSize size = [self.descriptionTextView sizeThatFits:CGSizeMake(self.descriptionTextView.frame.size.width, FLT_MAX)];
             if (self.descriptionTextView.text.length == 0) {
@@ -195,7 +198,8 @@ static const NSUInteger commentCellIndex = 4;
                 CGRect frame = self.descriptionTextView.frame;
                 frame.size.height = size.height;
                 self.descriptionTextView.frame = frame;
-                return size.height + 20;
+//                return size.height + 20;
+                return size.height;
             }
             
             break;
@@ -376,9 +380,9 @@ static const NSUInteger commentCellIndex = 4;
     
     if ([segue.identifier isEqual:@"ImagesSegue"]) {
         
-        UINavigationController *navController = segue.destinationViewController;
-        ImagesViewController *vc = navController.viewControllers[0];
-        vc.photos = self.photosPreviewCell.photos;
+//        UINavigationController *navController = segue.destinationViewController;
+//        ImagesViewController *vc = navController.viewControllers[0];
+//        vc.photos = self.photosPreviewCell.photos;
         
     }
 }

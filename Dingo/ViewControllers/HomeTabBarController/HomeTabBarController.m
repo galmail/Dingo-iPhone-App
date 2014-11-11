@@ -17,7 +17,7 @@
 #import "AppManager.h"
 #import "DataManager.h"
 
-static const NSUInteger listTicketsVCIndex = 2;
+static const NSUInteger listTicketsVCIndex = 1;
 
 @interface HomeTabBarController () <UIActionSheetDelegate, UITabBarControllerDelegate>
 
@@ -76,6 +76,7 @@ static const NSUInteger listTicketsVCIndex = 2;
 #pragma mark - UIActions
 
 - (IBAction)menuTapped:(id)sender {
+    
     self.menuTapped = YES;
     
     if (self.selectedViewController != [self listTicketsVC]) {
