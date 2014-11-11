@@ -77,7 +77,10 @@
     [super viewWillAppear:animated];
     self.title = self.receiverName;
     
-    [self reloadMessagesWithCompletion:nil];
+    [self reloadMessagesWithCompletion:^(BOOL finished) {
+        [bubbleTable reloadData];
+        [bubbleTable scrollBubbleViewToBottomAnimated:YES];
+    }];
 
 }
 
@@ -102,7 +105,6 @@
         
         for (Message * msg in messages) {
             NSBubbleData *bubble = nil;
-            NSLog(@"%@",msg);
             
             if ([msg.from_dingo boolValue] ) {
                 

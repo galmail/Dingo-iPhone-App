@@ -27,6 +27,11 @@ const CGFloat messagesCellHeight = 82;
 
 #pragma mark - Custom
 
+- (void)awakeFromNib {
+    
+    self.dateLabel.layer.cornerRadius = self.dateLabel.frame.size.height/2;
+}
+
 - (void)buildWithData:(Message *)data {
 
     NSString *userID = [[AppManager sharedManager].userInfo[@"id"] stringValue];
@@ -36,29 +41,87 @@ const CGFloat messagesCellHeight = 82;
     if ([[ticket.user_id stringValue] isEqualToString:userID]) {
         self.icon = nil;
         if ([data.receiver_id isEqualToString:[ticket.user_id stringValue]]) {
-            [WebServiceManager imageFromUrl:data.sender_avatar_url completion:^(id response, NSError *error) {
-                self.icon = [UIImage imageWithData:response];
-            }];
-            self.name = data.sender_name;
+            if (data.sender_avatar) {
+                self.icon = [UIImage imageWithData:data.sender_avatar];
+            } else {
+                [WebServiceManager imageFromUrl:data.sender_avatar_url completion:^(id response, NSError *error) {
+                    self.icon = [UIImage imageWithData:response];
+                    data.sender_avatar = response;
+                }];
+            }
+            if ([data.from_dingo boolValue]) {
+                self.name = @"Dingo";
+            } else {
+                self.name = data.sender_name;
+            }
         } else {
-            [WebServiceManager imageFromUrl:data.receiver_avatar_url completion:^(id response, NSError *error) {
-                self.icon = [UIImage imageWithData:response];
-            }];
-            self.name = data.receiver_name;
+            if ([data.from_dingo boolValue]) {
+                if (data.sender_avatar) {
+                    self.icon = [UIImage imageWithData:data.sender_avatar];
+                } else {
+                    [WebServiceManager imageFromUrl:data.sender_avatar_url completion:^(id response, NSError *error) {
+                        self.icon = [UIImage imageWithData:response];
+                        data.sender_avatar = response;
+                    }];
+                }
+                self.name = @"Dingo";
+            } else {
+                if (data.receiver_avatar) {
+                    self.icon = [UIImage imageWithData:data.receiver_avatar];
+                } else {
+                    [WebServiceManager imageFromUrl:data.receiver_avatar_url completion:^(id response, NSError *error) {
+                        self.icon = [UIImage imageWithData:response];
+                        data.receiver_avatar = response;
+                    }];
+                }
+                self.name = data.receiver_name;
+            }
         }
+        [[AppManager sharedManager] saveContext];
         
     } else {
-        self.icon = nil;
-        if (ticket.user_photo) {
-            self.icon = [UIImage imageWithData:ticket.user_photo];
-        }
+        if ([data.from_dingo boolValue]) {
+            if (data.sender_avatar) {
+                self.icon = [UIImage imageWithData:data.sender_avatar];
+            } else {
+                [WebServiceManager imageFromUrl:data.sender_avatar_url completion:^(id response, NSError *error) {
+                    self.icon = [UIImage imageWithData:response];
+                    data.sender_avatar = response;
+                }];
+            }
+            self.name = @"Dingo";
+        } else {
         
-        self.name = ticket.user_name;
+            self.icon = nil;
+            if (ticket.user_photo) {
+                self.icon = [UIImage imageWithData:ticket.user_photo];
+            }
+            self.name = ticket.user_name;
+        }
 
     }
     
     self.lastMessage = data.content;
-    self.date = nil;//data[@"date"];
+    
+    NSInteger unreadMessageCount = [[DataManager shared] unreadMessagesCountForTicket:ticket.ticket_id];
+    if (unreadMessageCount) {
+        
+        NSString *unreadMessages = [NSString stringWithFormat:@"%ld", (long)unreadMessageCount];
+        CGPoint center = self.dateLabel.center;
+        
+        CGRect boundingRect = [unreadMessages boundingRectWithSize:CGSizeMake(self.dateLabel.frame.size.width, 9999)
+                                                         options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
+                                                      attributes:@{NSFontAttributeName:self.dateLabel.font}
+                                                         context:nil];
+
+        CGRect frame = self.dateLabel.frame;
+        frame.size.width = boundingRect.size.width > frame.size.height ?  boundingRect.size.width : frame.size.height ;
+        self.dateLabel.frame = frame;
+        self.dateLabel.center = center;
+        self.dateLabel.text= unreadMessages;
+    } else {
+        self.dateLabel.hidden = YES;
+    }
 }
 
 #pragma mark - Setters
@@ -76,6 +139,7 @@ const CGFloat messagesCellHeight = 82;
 }
 
 - (void)setDate:(NSDate *)date {
+    
     NSDateFormatter *dateFormatter = [DingoUtilites dateFormatter];
     [dateFormatter setDateFormat:@"H:mm a"];
     self.dateLabel.text = [dateFormatter stringFromDate:date];

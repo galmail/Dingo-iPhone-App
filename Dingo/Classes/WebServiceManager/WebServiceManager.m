@@ -472,7 +472,7 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         NSURLResponse* response = nil;
         NSError *error = nil;
         NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-        NSLog(@"ddd %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+        NSLog(@"updateTicket %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
         dispatch_async(dispatch_get_main_queue(), ^(void){
             if (error != nil) {
                 [self genericError];
@@ -641,7 +641,7 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         NSURLResponse* response = nil;
         NSError *error = nil;
         NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-        
+        NSLog(@"receiveMessages %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
         dispatch_async(dispatch_get_main_queue(), ^(void){
             if (error != nil) {
                 [self genericError];

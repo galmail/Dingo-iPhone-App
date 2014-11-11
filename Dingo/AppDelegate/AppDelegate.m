@@ -13,10 +13,12 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import "AppManager.h"
 #import "SlidingViewController.h"
+#import "HomeTabBarController.h"
+#import "DingoNavigationController.h"
 #import "UIDevice+Additions.h"
 #import "WebServiceManager.h"
 #import "PayPalMobile.h"
-
+#import "DataManager.h"
 #import "Appirater.h"
 #import "Harpy.h"
 
@@ -113,12 +115,18 @@
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     
     if ( application.applicationState == UIApplicationStateActive ) {
-        //
-        NSString *message = [[userInfo valueForKey:@"aps"] valueForKey:@"alert"];
-        
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-        
-        [alert show];
+    
+        if ([self.window.rootViewController isKindOfClass:[SlidingViewController class]]){
+            SlidingViewController *vc = (SlidingViewController *)self.window.rootViewController;
+            
+            DingoNavigationController *nc = (DingoNavigationController *)vc.topViewController;
+            
+            HomeTabBarController *tabBarConroller = (HomeTabBarController *)nc.topViewController;
+            [[DataManager shared] fetchMessagesWithCompletion:^(BOOL finished) {
+                [tabBarConroller updateMessageCount];
+            }];
+        }
+  
     }
 
 }
