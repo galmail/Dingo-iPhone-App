@@ -563,7 +563,7 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
 
 - (void)addOrUpdateTicket:(NSDictionary *)info {
     NSManagedObjectContext *context = [AppManager sharedManager].managedObjectContext;
-        
+    
     NSString *ticketID = info[@"id"];
     NSString *eventID = info[@"event_id"];
     NSString *description = ![info[@"description"] isKindOfClass:[NSNull class]] ? info[@"description"] : @"";
@@ -580,7 +580,8 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
         ticket = [NSEntityDescription insertNewObjectForEntityForName:@"Ticket" inManagedObjectContext:context];
         ticket.ticket_id = ticketID;
     }
-    
+        
+    ticket.facebook_id = info[@"user_facebook_id"];
     ticket.ticket_desc = description;
     ticket.event_id = eventID;
     ticket.delivery_options = info[@"delivery_options"];
@@ -615,7 +616,6 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     }
     
     ticket.offers_count =@([info[@"number_of_offers"] intValue]);
-    
 }
 
 - (NSArray *)userTickets {

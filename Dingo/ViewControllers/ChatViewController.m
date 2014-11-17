@@ -179,7 +179,7 @@
 #pragma mark - Navigation
 
 - (IBAction)back {
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)actions:(id)sender {

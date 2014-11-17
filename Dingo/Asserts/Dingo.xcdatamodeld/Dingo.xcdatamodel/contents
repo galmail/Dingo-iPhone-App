@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6244" systemVersion="13F34" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6252" systemVersion="14A389" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Alerts" representedClassName="Alert" syncable="YES">
         <attribute name="alert_description" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="alert_id" optional="YES" attributeType="String" syncable="YES"/>
@@ -51,6 +51,7 @@
         <attribute name="delivery_options" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="event_id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="face_value_per_ticket" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="facebook_id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="number_of_tickets" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="offers_count" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="payment_options" optional="YES" attributeType="String" syncable="YES"/>
@@ -72,6 +73,6 @@
         <element name="Event" positionX="-54" positionY="18" width="128" height="270"/>
         <element name="EventCategory" positionX="-63" positionY="-18" width="128" height="103"/>
         <element name="Messages" positionX="-45" positionY="135" width="128" height="285"/>
-        <element name="Ticket" positionX="-36" positionY="117" width="128" height="315"/>
+        <element name="Ticket" positionX="-36" positionY="117" width="128" height="330"/>
     </elements>
 </model>

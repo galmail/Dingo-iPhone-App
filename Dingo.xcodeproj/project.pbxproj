@@ -235,6 +235,9 @@
 		3F98FCFA1942130100E6B3C4 /* SectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F98FCF91942130100E6B3C4 /* SectionHeaderView.xib */; };
 		3F98FD041945D5C200E6B3C4 /* DingoUtilites.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F98FD031945D5C200E6B3C4 /* DingoUtilites.m */; };
 		3F98FD081945EECE00E6B3C4 /* DiscountView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F98FD071945EECE00E6B3C4 /* DiscountView.m */; };
+		5F0D03631A15189400A89042 /* mutual-friend.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F0D03621A15189400A89042 /* mutual-friend.png */; };
+		5F0D03701A163C6E00A89042 /* MutualFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F0D036F1A163C6E00A89042 /* MutualFriendCell.m */; };
+		5F0D03741A1644E300A89042 /* MutualFriendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F0D03731A1644E300A89042 /* MutualFriendCell.xib */; };
 		5FF2323C1A125F990059667B /* ticket-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FF2323B1A125F990059667B /* ticket-icon.png */; };
 		5FF24EBF1A0BB6090070BD31 /* location_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FF24EBD1A0BB6090070BD31 /* location_icon.png */; };
 		5FF24EC01A0BB6090070BD31 /* time_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FF24EBE1A0BB6090070BD31 /* time_icon.png */; };
@@ -634,6 +637,10 @@
 		3F98FD031945D5C200E6B3C4 /* DingoUtilites.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DingoUtilites.m; sourceTree = "<group>"; };
 		3F98FD061945EECE00E6B3C4 /* DiscountView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DiscountView.h; path = DiscountView/DiscountView.h; sourceTree = "<group>"; };
 		3F98FD071945EECE00E6B3C4 /* DiscountView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DiscountView.m; path = DiscountView/DiscountView.m; sourceTree = "<group>"; };
+		5F0D03621A15189400A89042 /* mutual-friend.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mutual-friend.png"; sourceTree = "<group>"; };
+		5F0D036E1A163C6E00A89042 /* MutualFriendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MutualFriendCell.h; path = Dingo/Views/MutualFriendCell/MutualFriendCell.h; sourceTree = SOURCE_ROOT; };
+		5F0D036F1A163C6E00A89042 /* MutualFriendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MutualFriendCell.m; path = Dingo/Views/MutualFriendCell/MutualFriendCell.m; sourceTree = SOURCE_ROOT; };
+		5F0D03731A1644E300A89042 /* MutualFriendCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MutualFriendCell.xib; sourceTree = "<group>"; };
 		5FF2323B1A125F990059667B /* ticket-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ticket-icon.png"; sourceTree = "<group>"; };
 		5FF24EBD1A0BB6090070BD31 /* location_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = location_icon.png; sourceTree = "<group>"; };
 		5FF24EBE1A0BB6090070BD31 /* time_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = time_icon.png; sourceTree = "<group>"; };
@@ -797,6 +804,7 @@
 				3A9D206A19B20A1900FE163E /* bottomBar@2x.png */,
 				3A9D206219B1993900FE163E /* btnEditTicket@2x.png */,
 				5FF2323B1A125F990059667B /* ticket-icon.png */,
+				5F0D03621A15189400A89042 /* mutual-friend.png */,
 			);
 			path = Tickets;
 			sourceTree = "<group>";
@@ -1467,6 +1475,7 @@
 				3F62C6CA1948A2BE00D7D6B1 /* TicketCell */,
 				841C509419A611EE00BD4141 /* TicketAlertCell */,
 				3F08EC1419473AAF00CDFBD8 /* TwoModeButton */,
+				5F0D036D1A163C0500A89042 /* MutualFriend */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2083,6 +2092,17 @@
 			name = DiscountView;
 			sourceTree = "<group>";
 		};
+		5F0D036D1A163C0500A89042 /* MutualFriend */ = {
+			isa = PBXGroup;
+			children = (
+				5F0D036E1A163C6E00A89042 /* MutualFriendCell.h */,
+				5F0D036F1A163C6E00A89042 /* MutualFriendCell.m */,
+				5F0D03731A1644E300A89042 /* MutualFriendCell.xib */,
+			);
+			name = MutualFriend;
+			path = TwoModeButton;
+			sourceTree = "<group>";
+		};
 		840CD22C19B8449700699E26 /* ChatBubbleSource */ = {
 			isa = PBXGroup;
 			children = (
@@ -2357,6 +2377,7 @@
 				3F7C4E1E1951CC03003302A0 /* settings_icon_gray@2x.png in Resources */,
 				3AA160E719E5C8EF00895508 /* AppiraterLocalizable.strings in Resources */,
 				84A457011970182C000ABA73 /* welcome3BG@2x.png in Resources */,
+				5F0D03741A1644E300A89042 /* MutualFriendCell.xib in Resources */,
 				3AA160F319E5C8EF00895508 /* AppiraterLocalizable.strings in Resources */,
 				3F7C4E2A1952D009003302A0 /* upload_photos_icon@2x.png in Resources */,
 				3F62C68E1948318F00D7D6B1 /* book@2x.png in Resources */,
@@ -2434,6 +2455,7 @@
 				3F62C6861948318F00D7D6B1 /* featured_icon@2x.png in Resources */,
 				3AB28AE2197BC572009C1DDC /* welcome2BG-568h@2x.png in Resources */,
 				3AA1610D19E5CBE300895508 /* Harpy.bundle in Resources */,
+				5F0D03631A15189400A89042 /* mutual-friend.png in Resources */,
 				3F7C4E291952D009003302A0 /* add_photo_icon@2x.png in Resources */,
 				3F62C6971948318F00D7D6B1 /* feature_bg.jpeg in Resources */,
 				3AA160EF19E5C8EF00895508 /* AppiraterLocalizable.strings in Resources */,
@@ -2540,6 +2562,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				841C509819A611EE00BD4141 /* TicketAlertCell.m in Sources */,
+				5F0D03701A163C6E00A89042 /* MutualFriendCell.m in Sources */,
 				3AF360AE197687F5009A14FD /* WebServiceManager.m in Sources */,
 				3F62C6F11949C06E00D7D6B1 /* ProposalCell.m in Sources */,
 				3F08EBFD194715D500CDFBD8 /* RoundedImageView.m in Sources */,

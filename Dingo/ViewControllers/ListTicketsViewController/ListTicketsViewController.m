@@ -162,6 +162,12 @@ static const NSInteger paypalAlert = 2;
         isEditing = NO;
     }
     
+    [cashSwitch setOn:NO animated:NO];
+    [paypalSwitch setOn:NO animated:NO];
+    [inPersonSwitch setOn:NO animated:NO];
+    [electronicSwitch setOn:NO animated:NO];
+    [postSwitch setOn:NO animated:NO];
+    
     if ([AppManager sharedManager].draftTicket) {
         
         self.nameField.text = [AppManager sharedManager].draftTicket[@"name"];
@@ -193,21 +199,10 @@ static const NSInteger paypalAlert = 2;
             
         self.photosPreviewCell.photos = [photos mutableCopy];
         if (self.event.thumb) {
-            [self.photosPreviewCell.photos insertObject:[UIImage imageWithData:self.event.thumb] atIndex:0];
+//            [self.photosPreviewCell.photos insertObject:[UIImage imageWithData:self.event.thumb] atIndex:0];
         }
     } else if (!isEditing) {
-        
-        if (self.event != nil) {
-            
-            NSDateFormatter *formatter =[[NSDateFormatter alloc] init];
-            formatter.dateFormat = @"HH:mm dd/MM/yyyy";
-                        
-            self.nameField.text = self.event.name;
-            self.locationField.text = self.event.address;
-            self.startDateField.text = [formatter stringFromDate:self.event.date];
-            self.endDateField.text = [formatter stringFromDate:self.event.endDate];
-        } else {
-        
+
             self.changed = NO;
             
             self.nameField.text = nil;
@@ -237,9 +232,6 @@ static const NSInteger paypalAlert = 2;
             
             [self.tableView reloadData];
         }
-    }
-    
-    [self.tableView setSeparatorInset:UIEdgeInsetsZero];
 }
 
 - (void)setTicket:(Ticket*)ticket event:(Event*)event {
@@ -355,6 +347,8 @@ static const NSInteger paypalAlert = 2;
     if (photos.count) {
         [[AppManager sharedManager].draftTicket setObject:photos forKey:@"photos"];
     }
+    
+    NSLog(@"Test %@",[AppManager sharedManager].draftTicket);
 }
 
 - (IBAction)confirm:(id)sender {
@@ -513,7 +507,9 @@ static const NSInteger paypalAlert = 2;
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     if (textField == self.endDateField) {
         if ( self.startDateField.text.length > 0) {
-            [endDatePicker setDate:self.event.date];
+            if (self.event.date != nil) {
+                [endDatePicker setDate:self.event.date];
+            }
         }
     }
 }
@@ -785,6 +781,9 @@ static const NSInteger paypalAlert = 2;
 - (NSArray *)dataForPopoverInTextField:(ZSTextField *)textField {
     
     if (textField == self.nameField) {
+        
+        self.event = nil;
+        
         NSArray* events = [[DataManager shared] allEvents];
         NSMutableArray *dataForPopover = [NSMutableArray new];
         for (Event *tmpEvent in events) {
@@ -819,10 +818,11 @@ static const NSInteger paypalAlert = 2;
         if ([result[@"CustomObject"] isKindOfClass:[Event class]]) {
             self.event = result[@"CustomObject"];
             if (self.event.thumb) {
-                if (!self.photosPreviewCell.photos) {
-                    self.photosPreviewCell.photos = [NSMutableArray new];
-                }
-                [self.photosPreviewCell.photos insertObject:[UIImage imageWithData:self.event.thumb] atIndex:0];
+                self.event.thumb = nil;
+//                if (!self.photosPreviewCell.photos) {
+//                    self.photosPreviewCell.photos = [NSMutableArray new];
+//                }
+//                [self.photosPreviewCell.photos insertObject:[UIImage imageWithData:self.event.thumb] atIndex:0];
                 [self.tableView reloadData];
             }
             
@@ -904,6 +904,7 @@ static const NSInteger paypalAlert = 2;
 #pragma mark ZSDatePickerDelegate 
 
 - (void)pickerDidPressDone:(ZSDatePicker*)picker withDate:(NSDate *)date {
+    self.changed = YES;
 
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"HH:mm dd/MM/yyyy";
@@ -958,6 +959,7 @@ static const NSInteger paypalAlert = 2;
     
     [self.tableView beginUpdates];
     [self.tableView endUpdates];
+    self.changed = YES;
 }
 
 - (IBAction)paypalChanged:(id)sender {
@@ -974,24 +976,28 @@ static const NSInteger paypalAlert = 2;
     
     [self.tableView beginUpdates];
     [self.tableView endUpdates];
+    self.changed = YES;
 }
 
 - (IBAction)inPersonChanged:(id)sender {
     if(inPersonSwitch.on) {
         lbldelivery.textColor = [UIColor darkGrayColor];
     }
+    self.changed = YES;
 }
 
 - (IBAction)electronicChanged:(id)sender {
     if(electronicSwitch.on) {
         lbldelivery.textColor = [UIColor darkGrayColor];
     }
+    self.changed = YES;
 }
 
 - (IBAction)postChanged:(id)sender {
     if(postSwitch.on) {
         lbldelivery.textColor = [UIColor darkGrayColor];
     }
+    self.changed = YES;
 }
 
 - (IBAction)eticketChanged:(id)sender {
@@ -999,6 +1005,7 @@ static const NSInteger paypalAlert = 2;
     if(eticketSwitch.on) {
         lblTicketType.textColor = [UIColor darkGrayColor];
     }
+    self.changed = YES;
 }
 
 - (IBAction)paperChanged:(id)sender {
@@ -1007,6 +1014,7 @@ static const NSInteger paypalAlert = 2;
         lblTicketType.textColor = [UIColor darkGrayColor];
         eticketSwitch.on = !paperSwitch.on;
     }
+    self.changed = YES;
 }
 
 #pragma mark UIAlertView delegates
@@ -1063,6 +1071,11 @@ static const NSInteger paypalAlert = 2;
         default:
             break;
     }
+}
+
+-(void)viewDidDisappear:(BOOL)animated{
+    self.ticket = nil;
+    self.event = nil;
 }
 
 @end

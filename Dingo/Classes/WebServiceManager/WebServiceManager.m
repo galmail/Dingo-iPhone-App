@@ -147,7 +147,7 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
 
 + (void)signInWithFBAndUpdate:(BOOL)update completion:( void (^) (id response, NSError *error))handler {
     
-    [FBSession openActiveSessionWithReadPermissions:@[@"email", @"user_birthday", @"user_location"]
+    [FBSession openActiveSessionWithReadPermissions:@[@"email", @"user_birthday", @"user_location", @"user_friends"]
                                        allowLoginUI:YES
                                   completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
                                       

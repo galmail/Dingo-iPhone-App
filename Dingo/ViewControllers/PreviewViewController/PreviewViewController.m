@@ -68,9 +68,6 @@ static const NSUInteger commentCellIndex = 4;
     [super viewDidLoad];
     self.photosPreviewCell.photos = [self.photos mutableCopy];
     
-    NSLog(@"ticket %@", self.ticket);
-
-    
     lblTicketCount.font = lblFaceValue.font = lblComment.font = lblTicketType.font = lblPayment.font = lblDelivery.font = [DingoUISettings lightFontWithSize:14];
     
     self.ticketsCountlabel.font = self.faceValueLabel.font = self.descriptionTextView.font =  self.paymentLabel.font =  self.ticketTypeLabel.font =  self.deliveryLabel.font = [DingoUISettings lightFontWithSize:14];

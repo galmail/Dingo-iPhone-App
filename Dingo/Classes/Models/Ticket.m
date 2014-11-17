@@ -29,5 +29,6 @@
 @dynamic user_email;
 @dynamic user_photo;
 @dynamic offers_count;
+@dynamic facebook_id;
 
 @end

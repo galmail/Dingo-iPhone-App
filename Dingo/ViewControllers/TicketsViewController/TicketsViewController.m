@@ -77,7 +77,7 @@
             }
         }
     }];
-    
+        
     [self.tableView reloadData];
 }
 
@@ -200,9 +200,24 @@
     [ticket setFace_value_per_ticket:nil];
     [ticket setNumber_of_tickets:nil];
     
-    Event *tempEvent = self.eventData;
-    tempEvent.thumb = nil;
+    Event *tempEvent = [[Event alloc] initWithEntity:[NSEntityDescription entityForName:@"Event" inManagedObjectContext:[AppManager sharedManager].managedObjectContext] insertIntoManagedObjectContext:nil];
     
+    tempEvent.address = self.eventData.address;
+    tempEvent.category_id = self.eventData.category_id;
+    tempEvent.city = self.eventData.city;
+    tempEvent.date = self.eventData.date;
+    tempEvent.endDate = self.eventData.endDate;
+    tempEvent.event_desc = self.eventData.event_desc;
+    tempEvent.event_id = self.eventData.event_id;
+    tempEvent.featured = self.eventData.featured;
+    tempEvent.fromPrice = self.eventData.fromPrice;
+    tempEvent.name = self.eventData.name;
+    tempEvent.postalCode = self.eventData.postalCode;
+    tempEvent.test = self.eventData.test;
+    tempEvent.tickets = self.eventData.tickets;
+    tempEvent.thumb = nil;
+    tempEvent.thumbUrl = nil;
+
     viewController.event = tempEvent;
     viewController.ticket = ticket;
     

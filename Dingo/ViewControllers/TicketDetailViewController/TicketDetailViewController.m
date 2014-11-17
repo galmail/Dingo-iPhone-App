@@ -23,11 +23,14 @@
 #import "NewOfferViewController.h"
 #import "CheckoutViewController.h"
 
+#import <FacebookSDK/FacebookSDK.h>
+#import "MutualFriendCell.h"
+
 //static const NSUInteger photosCellIndex = 1;
 static const NSUInteger commentCellIndex = 4;
 
 
-@interface TicketDetailViewController () <BottomBarDelegate> {
+@interface TicketDetailViewController () <BottomBarDelegate, UICollectionViewDataSource, UICollectionViewDelegate> {
     BottomEditBar *bottomBar;
     
     __weak IBOutlet UILabel *lblTicketCount;
@@ -54,10 +57,17 @@ static const NSUInteger commentCellIndex = 4;
 //@property (weak, nonatomic) IBOutlet MKMapView *locationMap;
 @property (strong, nonatomic) IBOutlet UILabel *priceTicketLabel;
 @property (strong, nonatomic) IBOutlet UILabel *priceTicketLbl;
+@property (strong, nonatomic) IBOutlet UICollectionView *mutualFriendCollection;
+@property (strong, nonatomic) IBOutlet UILabel *mutualFriendsLabel;
 
 @end
 
-@implementation TicketDetailViewController
+@implementation TicketDetailViewController{
+    NSMutableArray *profileImageURL;
+    NSMutableArray *names;
+    NSMutableArray *currentUserFriends;
+    NSMutableArray *ticketOwnerFriends;
+}
 
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
@@ -103,43 +113,96 @@ static const NSUInteger commentCellIndex = 4;
     if (self.ticket.photo3) {
         [photos addObject:[UIImage imageWithData:self.ticket.photo3]];
     }
-
-//    self.photosPreviewCell.photos = photos;
-//    self.photosPreviewCell.parentViewController = self;
     
     self.ticketsCountlabel.text = [self.ticket.number_of_tickets stringValue];
-    self.faceValueLabel.text = [self.ticket.face_value_per_ticket stringValue];
+    self.faceValueLabel.text = [NSString stringWithFormat:@"£%@",[self.ticket.face_value_per_ticket stringValue]];
     self.descriptionTextView.text = self.ticket.ticket_desc;
     self.paymentLabel.text = self.ticket.payment_options;
     self.ticketTypeLabel.text = self.ticket.ticket_type;
     self.deliveryLabel.text = self.ticket.delivery_options;
-    self.priceTicketLabel.text = [self.ticket.price stringValue];
-    
-//    [self.proposalCell buildWithTicketData:self.ticket];
-    
+    self.priceTicketLabel.text = [NSString stringWithFormat:@"£%@",[self.ticket.price stringValue]];
     self.sellerNameLabel.text = self.ticket.user_name;
     self.sellerImageView.image = [UIImage imageWithData:self.ticket.user_photo];
         
-//    [WebServiceManager addressToLocation:[DataManager eventLocation:self.event] completion:^(id response, NSError *error) {
-//        
-//        if ([response[@"status"] isEqualToString:@"OK"]) {
-//            NSArray *results = response[@"results"];
-//            if (results.count > 0) {
-//                NSDictionary *result = results[0];
-//                
-//                CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([result[@"geometry"][@"location"][@"lat"] doubleValue], [result[@"geometry"][@"location"][@"lng"] doubleValue]);
-//                MKCoordinateSpan span = MKCoordinateSpanMake(0.01, 0.01);
-//                MKCoordinateRegion region = {coord, span};
-//                [self.locationMap setRegion:region];
-//                
-//                MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
-//                annotation.coordinate = coord;
-//                [self.locationMap addAnnotation:annotation];
-//            }
-//            
-//        }
-//    }];
 
+    profileImageURL = [[NSMutableArray alloc] init];
+    names = [[NSMutableArray alloc] init];
+    currentUserFriends = [[NSMutableArray alloc] init];
+    ticketOwnerFriends = [[NSMutableArray alloc] init];
+
+    [profileImageURL addObject:@"mutual-friend.png"];
+    [names addObject:@""];
+
+    if ([[AppManager sharedManager].userInfo[@"fb_id"] length] > 0){
+
+//        NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+//                                @"context.fields(mutual_friends)", @"id,name",
+//                                nil
+//                                ];
+//        /* make the API call */
+//        
+//
+//        [FBRequestConnection startWithGraphPath:[NSString stringWithFormat:@"/%@", self.ticket.facebook_id]
+//                                     parameters:params
+//                                     HTTPMethod:@"GET"
+//                              completionHandler:^(
+//                                                  FBRequestConnection *connection,
+//                                                  id result,
+//                                                  NSError *error
+//                                                  ) {
+//                                  /* handle the result */
+//                                  
+//                                  if (result != nil) {
+//                                      NSLog(@"result %@", result);
+//                                      
+//                                      if ([result isKindOfClass:[NSDictionary class]]) {
+//                                          NSLog(@"IS A DICT");
+//                                          NSDictionary *dict = result;
+//                                          [profileImageURL addObject:[NSString stringWithFormat:@"http://graph.facebook.com/v2.0/%@/picture?redirect=1&height=200&type=normal&width=200", [dict objectForKey:@"id"]]];
+//                                          
+//                                          [names addObject:[dict objectForKey:@"name"]];
+//                                          [self.mutualFriendCollection reloadData];
+//                                      }
+//                                      
+//                                      if ([result isKindOfClass:[NSArray class]]) {
+//                                          NSLog(@"IS A ARRAY");
+//
+//                                      }
+//                                  }
+//                                  NSLog(@"error %@", error);
+//                              }];
+//
+
+    
+        
+        
+        
+
+        
+        [FBSession openActiveSessionWithReadPermissions:@[@"user_friends",@"public_profile",@"email"]
+                                           allowLoginUI:YES
+                                      completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
+                                          
+                                          if (error) {
+                                              
+                                              [AppManager showAlert:[error localizedDescription]];
+                                              
+//                                              handler(nil, error);
+                                              
+                                          } else {
+                                              if (state == FBSessionStateOpen) {
+                                                  
+                                                  [self getCurrentUserFriends];
+
+                                              }
+                                          }
+                                      }];
+
+    
+        NSLog(@"test %@", [AppManager sharedManager].userInfo[@"fb_id"]);
+        NSLog(@"test 2 %@", self.ticket.facebook_id);
+    }
+    
     if ([self.ticket.user_id isEqual:[AppManager sharedManager].userInfo[@"id"]]) {
         
         bottomBar = [[BottomEditBar alloc] initWithFrame:CGRectMake(0, 0, 360, 65)];
@@ -164,6 +227,96 @@ static const NSUInteger commentCellIndex = 4;
     } else {
         self.contactCellerButton.enabled = self.requestToBuyButton.enabled = self.offerPriceButton.enabled = YES;
     }
+}
+
+- (void)getCurrentUserFriends{
+    
+    [FBRequestConnection startWithGraphPath:@"/me/friends"
+                                 parameters:nil
+                                 HTTPMethod:@"GET"
+                          completionHandler:^(
+                                              FBRequestConnection *connection,
+                                              id result,
+                                              NSError *error
+                                              ) {
+                              /* handle the result */
+                              
+                              if (result != nil) {
+                                  NSLog(@"result %@", result);
+                                  
+                                  if ([result isKindOfClass:[NSDictionary class]]) {
+                                      NSDictionary *dict = result;
+                                      
+                                      NSArray *friends = [dict objectForKey:@"data"];
+                                      
+                                      for (NSDictionary *dict in friends) {
+                                          [currentUserFriends addObject:dict];
+                                      }
+                                      
+                                      [self getTicketOwnerFriends];
+                                  }
+                              }
+                          }];
+    
+}
+
+- (void)getTicketOwnerFriends{
+    [FBRequestConnection startWithGraphPath:[NSString stringWithFormat:@"/%@/friends", self.ticket.facebook_id]
+                                 parameters:nil
+                                 HTTPMethod:@"GET"
+                          completionHandler:^(
+                                              FBRequestConnection *connection,
+                                              id result,
+                                              NSError *error
+                                              ) {
+                              
+                              if (result != nil) {
+                                  NSLog(@"result %@", result);
+                                  
+                                  if ([result isKindOfClass:[NSDictionary class]]) {
+                                      NSDictionary *dict = result;
+                                      
+                                      NSArray *friends = [dict objectForKey:@"data"];
+                                      
+                                      for (NSDictionary *dict in friends) {
+                                          [ticketOwnerFriends addObject:dict];
+                                      }
+                                      
+                                      [self getMutualFriend];
+                                  }
+                              }
+                          }];
+}
+
+- (void)getMutualFriend {
+    
+    for (NSDictionary *currentFriends in currentUserFriends) {
+        for (NSDictionary *ownerFriends in ticketOwnerFriends) {
+            if ([[currentFriends objectForKey:@"id"] isEqualToString:[ownerFriends objectForKey:@"id"]]) {
+                [names addObject:[currentFriends objectForKey:@"name"]];
+                [profileImageURL addObject:[NSString stringWithFormat:@"http://graph.facebook.com/v2.0/%@/picture?redirect=1&height=200&type=normal&width=200", [currentFriends objectForKey:@"id"]]];
+            }
+        }
+    }
+    
+    NSLog(@"test %@ %@", names, profileImageURL);
+    [self.mutualFriendCollection reloadData];
+    [self.mutualFriendsLabel setText:[NSString stringWithFormat:@"Mutual friends (%u)", [profileImageURL count] -1]];
+}
+
+- (void) makeRequestForUserData
+{
+    NSLog(@"what have I here");
+    [FBRequestConnection startForMeWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+        if (!error) {
+            // Success! Include your code to handle the results here
+            NSLog(@"user info: %@", result);
+        } else {
+            // An error occurred, we need to handle the error
+            // Check out our error handling guide: https://developers.facebook.com/docs/ios/errors/
+            NSLog(@"error %@", error.description);
+        }
+    }];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -401,5 +554,33 @@ static const NSUInteger commentCellIndex = 4;
     
     [self presentViewController:activityController animated:YES completion:nil];
 }
+
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    return [profileImageURL count];
+}
+
+-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    return CGSizeMake(72, 90);
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    [collectionView registerNib:[UINib nibWithNibName:@"MutualFriendCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:@"MutualFriendCell"];
+    MutualFriendCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MutualFriendCell" forIndexPath:indexPath];
+    
+    if (indexPath.row == 0) {
+        [cell.profileImage setImage:[UIImage imageNamed:[profileImageURL objectAtIndex:indexPath.row]]];
+    } else {
+        NSURL *imageURL = [NSURL URLWithString:[profileImageURL objectAtIndex:indexPath.row]];
+        NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
+        [cell.profileImage setImage:[UIImage imageWithData:imageData]];
+    }
+    
+    [cell.nameLabel setText:[names objectAtIndex:indexPath.row]];
+    
+    return cell;
+}
+
 
 @end
