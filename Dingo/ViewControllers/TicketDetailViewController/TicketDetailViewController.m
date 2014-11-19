@@ -59,6 +59,7 @@ static const NSUInteger commentCellIndex = 4;
 @property (strong, nonatomic) IBOutlet UILabel *priceTicketLbl;
 @property (strong, nonatomic) IBOutlet UICollectionView *mutualFriendCollection;
 @property (strong, nonatomic) IBOutlet UILabel *mutualFriendsLabel;
+@property (strong, nonatomic) IBOutlet UITableViewCell *mutualFriendCell;
 
 @end
 
@@ -94,6 +95,7 @@ static const NSUInteger commentCellIndex = 4;
     
     self.sellerNameLabel.font = [DingoUISettings fontWithSize:19];
  
+    [self.mutualFriendCell setHidden:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -132,62 +134,16 @@ static const NSUInteger commentCellIndex = 4;
 
     [profileImageURL addObject:@"mutual-friend.png"];
     [names addObject:@""];
+    
 
     if ([[AppManager sharedManager].userInfo[@"fb_id"] length] > 0){
 
-//        NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
-//                                @"context.fields(mutual_friends)", @"id,name",
-//                                nil
-//                                ];
-//        /* make the API call */
-//        
-//
-//        [FBRequestConnection startWithGraphPath:[NSString stringWithFormat:@"/%@", self.ticket.facebook_id]
-//                                     parameters:params
-//                                     HTTPMethod:@"GET"
-//                              completionHandler:^(
-//                                                  FBRequestConnection *connection,
-//                                                  id result,
-//                                                  NSError *error
-//                                                  ) {
-//                                  /* handle the result */
-//                                  
-//                                  if (result != nil) {
-//                                      NSLog(@"result %@", result);
-//                                      
-//                                      if ([result isKindOfClass:[NSDictionary class]]) {
-//                                          NSLog(@"IS A DICT");
-//                                          NSDictionary *dict = result;
-//                                          [profileImageURL addObject:[NSString stringWithFormat:@"http://graph.facebook.com/v2.0/%@/picture?redirect=1&height=200&type=normal&width=200", [dict objectForKey:@"id"]]];
-//                                          
-//                                          [names addObject:[dict objectForKey:@"name"]];
-//                                          [self.mutualFriendCollection reloadData];
-//                                      }
-//                                      
-//                                      if ([result isKindOfClass:[NSArray class]]) {
-//                                          NSLog(@"IS A ARRAY");
-//
-//                                      }
-//                                  }
-//                                  NSLog(@"error %@", error);
-//                              }];
-//
-
-    
-        
-        
-        
-
-        
         [FBSession openActiveSessionWithReadPermissions:@[@"user_friends",@"public_profile",@"email"]
                                            allowLoginUI:YES
                                       completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
                                           
                                           if (error) {
-                                              
                                               [AppManager showAlert:[error localizedDescription]];
-                                              
-//                                              handler(nil, error);
                                               
                                           } else {
                                               if (state == FBSessionStateOpen) {
@@ -197,10 +153,6 @@ static const NSUInteger commentCellIndex = 4;
                                               }
                                           }
                                       }];
-
-    
-        NSLog(@"test %@", [AppManager sharedManager].userInfo[@"fb_id"]);
-        NSLog(@"test 2 %@", self.ticket.facebook_id);
     }
     
     if ([self.ticket.user_id isEqual:[AppManager sharedManager].userInfo[@"id"]]) {
@@ -242,7 +194,7 @@ static const NSUInteger commentCellIndex = 4;
                               /* handle the result */
                               
                               if (result != nil) {
-                                  NSLog(@"result %@", result);
+//                                  NSLog(@"result %@", result);
                                   
                                   if ([result isKindOfClass:[NSDictionary class]]) {
                                       NSDictionary *dict = result;
@@ -271,7 +223,7 @@ static const NSUInteger commentCellIndex = 4;
                                               ) {
                               
                               if (result != nil) {
-                                  NSLog(@"result %@", result);
+//                                  NSLog(@"result %@", result);
                                   
                                   if ([result isKindOfClass:[NSDictionary class]]) {
                                       NSDictionary *dict = result;
@@ -299,14 +251,16 @@ static const NSUInteger commentCellIndex = 4;
         }
     }
     
-    NSLog(@"test %@ %@", names, profileImageURL);
+//    NSLog(@"test %@ %@", names, profileImageURL);
+    [self.mutualFriendCell setHidden:NO];
+    CGRect frameCell = self.mutualFriendCell.frame;
+    [self.mutualFriendCell setFrame:CGRectMake(frameCell.origin.x, frameCell.origin.y, frameCell.size.width, 140)];
     [self.mutualFriendCollection reloadData];
-    [self.mutualFriendsLabel setText:[NSString stringWithFormat:@"Mutual friends (%u)", [profileImageURL count] -1]];
+    [self.mutualFriendsLabel setText:[NSString stringWithFormat:@"Mutual friends (%lu)", [profileImageURL count] -1]];
 }
 
 - (void) makeRequestForUserData
 {
-    NSLog(@"what have I here");
     [FBRequestConnection startForMeWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
         if (!error) {
             // Success! Include your code to handle the results here
@@ -338,11 +292,6 @@ static const NSUInteger commentCellIndex = 4;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.row) {
-//        case photosCellIndex:
-//            if (self.photosPreviewCell.photos.count == 0) {
-//                return 0;
-//            }
-//            break;
         case commentCellIndex: {
             CGSize size = [self.descriptionTextView sizeThatFits:CGSizeMake(self.descriptionTextView.frame.size.width, FLT_MAX)];
             if (self.descriptionTextView.text.length == 0) {
@@ -351,13 +300,21 @@ static const NSUInteger commentCellIndex = 4;
                 CGRect frame = self.descriptionTextView.frame;
                 frame.size.height = size.height;
                 self.descriptionTextView.frame = frame;
-//                return size.height + 20;
                 return size.height;
             }
             
             break;
         }
+        case 9:{
+            if (self.mutualFriendCell.isHidden) {
+                return 0;
+            } else {
+                return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+            }
+            break;
+        }
     }
+    
     
     return [super tableView:tableView heightForRowAtIndexPath:indexPath];
 }
@@ -365,12 +322,6 @@ static const NSUInteger commentCellIndex = 4;
 #pragma mark - BottomBarDelegate
 
 - (void)editListing {
-//    ListTicketsViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ListTicketsViewController"];
-//    [self.navigationController pushViewController:viewController animated:YES];
-//    
-//    [viewController setTicket:self.ticket event:self.event];
-    
-    
     [self performSegueWithIdentifier:@"EditTicket" sender:self];
 }
 

@@ -1538,7 +1538,7 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="concerts.png" id="YGu-T0-LiQ" userLabel="back">
-                                            <rect key="frame" x="0.0" y="-75" width="320" height="290"/>
+                                            <rect key="frame" x="0.0" y="-75" width="320" height="350"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </imageView>
@@ -4242,6 +4242,7 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
                         <outlet property="lblPayment" destination="5DY-lN-m10" id="WaX-Ox-PAQ"/>
                         <outlet property="lblTicketCount" destination="6pg-j0-xyU" id="vtG-1m-NV7"/>
                         <outlet property="lblTicketType" destination="0ab-zF-Sei" id="HIo-Ul-xgZ"/>
+                        <outlet property="mutualFriendCell" destination="G7z-lu-d6n" id="9EG-we-p6U"/>
                         <outlet property="mutualFriendCollection" destination="mld-We-O82" id="JbH-e7-dcf"/>
                         <outlet property="mutualFriendsLabel" destination="aBs-na-bp5" id="UXj-AR-Yfy"/>
                         <outlet property="offerPriceButton" destination="nXa-rr-5im" id="rOF-Cb-gY6"/>

@@ -771,7 +771,7 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
     
     NSString* url = [NSString stringWithFormat:@"%@%@", apiUrl, method];
     url =[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:50.0f];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:20.0f];
     
     if (params.length > 0) {
         NSData *postData = [params dataUsingEncoding:NSUTF8StringEncoding];
@@ -790,7 +790,7 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
     
     NSString* url = [NSString stringWithFormat:@"%@%@", apiUrl, method];
     url =[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:50.0f];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:20.0f];
  
     [request setHTTPMethod:@"POST"];
     
