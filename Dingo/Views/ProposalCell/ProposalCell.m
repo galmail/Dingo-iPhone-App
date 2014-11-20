@@ -36,7 +36,7 @@
 
     self.name = data.user_name;
     self.location = data.ticket_desc;
-    
+        
     if (data.user_photo) {
         self.imgIcon.image = [UIImage imageWithData:data.user_photo];
     }

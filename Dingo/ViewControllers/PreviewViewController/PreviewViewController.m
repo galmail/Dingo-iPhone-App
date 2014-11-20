@@ -78,8 +78,6 @@ static const NSUInteger commentCellIndex = 5;
     
     self.sellerNameLabel.font = [DingoUISettings fontWithSize:19];
     
-    NSLog(@"VALUES %@ %@", self.event, self.ticket);
-    
     self.ticketsCountlabel.text = [self.ticket.number_of_tickets stringValue];
     self.faceValueLabel.text = [NSString stringWithFormat:@"£%@", self.ticket.face_value_per_ticket];
     self.descriptionTextView.text = self.ticket.ticket_desc;
@@ -113,6 +111,8 @@ static const NSUInteger commentCellIndex = 5;
         }
     }];
 
+    NSLog(@"EVENT %@", self.event);
+    NSLog(@"TICKET %@", self.ticket);
     
     self.sellerNameLabel.text = [AppManager sharedManager].userInfo[@"name"];
     

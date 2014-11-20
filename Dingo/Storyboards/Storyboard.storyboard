@@ -1538,7 +1538,7 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="concerts.png" id="YGu-T0-LiQ" userLabel="back">
-                                            <rect key="frame" x="0.0" y="-75" width="320" height="380"/>
+                                            <rect key="frame" x="0.0" y="-75" width="320" height="410"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </imageView>
@@ -3985,6 +3985,15 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="PhotoPreview" rowHeight="120" id="YBV-Pz-8Aj" userLabel="photos_preview" customClass="PhotosPreviewCell">
+                                        <rect key="frame" x="0.0" y="200" width="319" height="120"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YBV-Pz-8Aj" id="mdl-oH-sI4">
+                                            <rect key="frame" x="0.0" y="0.0" width="319" height="119"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="150" id="A36-9o-7GI" userLabel="seller_cell">
                                         <rect key="frame" x="0.0" y="720" width="319" height="150"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -4184,6 +4193,7 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
                         <outlet property="mutualFriendsLabel" destination="aBs-na-bp5" id="UXj-AR-Yfy"/>
                         <outlet property="offerPriceButton" destination="nXa-rr-5im" id="rOF-Cb-gY6"/>
                         <outlet property="paymentLabel" destination="dQd-bf-Tau" id="VXu-cP-92X"/>
+                        <outlet property="photosPreviewCell" destination="YBV-Pz-8Aj" id="BYZ-f4-6rE"/>
                         <outlet property="priceTicketLabel" destination="vjh-Hu-fCQ" id="tYv-bQ-nP4"/>
                         <outlet property="priceTicketLbl" destination="UFf-u4-BrW" id="qfq-e9-UG4"/>
                         <outlet property="requestToBuyButton" destination="GOJ-sf-B5E" id="ljW-WU-nJ5"/>

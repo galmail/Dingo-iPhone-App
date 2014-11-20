@@ -42,7 +42,7 @@ static const NSUInteger commentCellIndex = 4;
 }
 
 //@property (nonatomic, weak) IBOutlet ProposalCell *proposalCell;
-//@property (nonatomic, weak) IBOutlet PhotosPreviewCell *photosPreviewCell;
+@property (nonatomic, weak) IBOutlet PhotosPreviewCell *photosPreviewCell;
 @property (nonatomic, weak) IBOutlet UILabel *ticketsCountlabel;
 @property (nonatomic, weak) IBOutlet UILabel *faceValueLabel;
 @property (nonatomic, weak) IBOutlet UITextView *descriptionTextView;
@@ -116,6 +116,9 @@ static const NSUInteger commentCellIndex = 4;
         [photos addObject:[UIImage imageWithData:self.ticket.photo3]];
     }
     
+    self.photosPreviewCell.photos = photos;
+    self.photosPreviewCell.parentViewController = self;
+    
     self.ticketsCountlabel.text = [self.ticket.number_of_tickets stringValue];
     self.faceValueLabel.text = [NSString stringWithFormat:@"£%@",[self.ticket.face_value_per_ticket stringValue]];
     self.descriptionTextView.text = self.ticket.ticket_desc;
@@ -126,7 +129,7 @@ static const NSUInteger commentCellIndex = 4;
     self.sellerNameLabel.text = self.ticket.user_name;
     self.sellerImageView.image = [UIImage imageWithData:self.ticket.user_photo];
         
-
+    
     profileImageURL = [[NSMutableArray alloc] init];
     names = [[NSMutableArray alloc] init];
     currentUserFriends = [[NSMutableArray alloc] init];
@@ -307,7 +310,7 @@ static const NSUInteger commentCellIndex = 4;
             
             break;
         }
-        case 9:{
+        case 10:{
             if (self.mutualFriendCell.isHidden) {
                 return 0;
             } else {
@@ -486,9 +489,9 @@ static const NSUInteger commentCellIndex = 4;
     
     if ([segue.identifier isEqual:@"ImagesSegue"]) {
         
-//        UINavigationController *navController = segue.destinationViewController;
-//        ImagesViewController *vc = navController.viewControllers[0];
-//        vc.photos = self.photosPreviewCell.photos;
+        UINavigationController *navController = segue.destinationViewController;
+        ImagesViewController *vc = navController.viewControllers[0];
+        vc.photos = self.photosPreviewCell.photos;
         
     }
 }

@@ -78,6 +78,10 @@
     datePicker.datePickerMode = mode;
 }
 
+- (void)setMinimumDate:(NSDate *)date {
+    [datePicker setMinimumDate:date];
+}
+
 - (void)done {
     
     if ([self.delegate respondsToSelector: @selector(pickerDidPressDone:withDate:)]) {

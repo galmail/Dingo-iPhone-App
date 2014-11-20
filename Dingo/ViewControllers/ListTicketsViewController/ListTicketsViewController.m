@@ -81,6 +81,7 @@ static const NSInteger paypalAlert = 2;
     BOOL isEditing;
     BOOL isUploadingImage;
     BOOL haveTapButton;
+    BOOL isPreviewing;
     NSMutableArray *photos;
 }
 
@@ -105,8 +106,6 @@ static const NSInteger paypalAlert = 2;
     
     [super viewDidLoad];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    
-    NSLog(@"view did load");
     
     lblName.font = lblLocation.font = lblFromDate.font = lblToDate.font = lblPrice.font = lblFaceValue.font = lblTicketCount.font = lblTicketType.font = [DingoUISettings fontWithSize:14];
     lblPayment.font = lbldelivery.font = lbleTicket.font = lblPaper.font = lblCash.font = lblPaypal.font = lblInPerson.font = lblElectrical.font = lblPost.font = lblDescription.font = [DingoUISettings fontWithSize:14];
@@ -154,9 +153,6 @@ static const NSInteger paypalAlert = 2;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.parentViewController.navigationItem.title = self.navigationItem.title;
-
-    NSLog(@"view will appear");
-
     
     if (!self.ticket && !self.event) {
         self.changed = NO;
@@ -173,10 +169,10 @@ static const NSInteger paypalAlert = 2;
     [electronicSwitch setOn:NO animated:NO];
     [postSwitch setOn:NO animated:NO];
     
-    NSLog(@"view will appear %@", self.event);
     
     if ([AppManager sharedManager].draftTicket) {
-        NSLog(@"1 draftTicket %@",[AppManager sharedManager].draftTicket);
+        
+        self.changed = YES;
         
         self.nameField.text = [AppManager sharedManager].draftTicket[@"name"];
         self.locationField.text= [AppManager sharedManager].draftTicket[@"location"];
@@ -187,18 +183,20 @@ static const NSInteger paypalAlert = 2;
         self.faceValueField.text= [AppManager sharedManager].draftTicket[@"faceValue"];
         self.ticketsCountField.text = [AppManager sharedManager].draftTicket[@"ticketCount"];
         
-        NSString *ticketType = [AppManager sharedManager].draftTicket[@"ticketType"];
-        eticketSwitch.on = [ticketType rangeOfString:@"e-Ticket"].location != NSNotFound;
-        paperSwitch.on = [ticketType rangeOfString:@"Paper"].location != NSNotFound;
+//        NSString *ticketType = [AppManager sharedManager].draftTicket[@"ticketType"];
+//        eticketSwitch.on = [ticketType rangeOfString:@"e-Ticket"].location != NSNotFound;
+//        paperSwitch.on = [ticketType rangeOfString:@"Paper"].location != NSNotFound;
         
-        NSString *paymentOptions = [AppManager sharedManager].draftTicket[@"paymentOptions"];
-        paypalSwitch.on = [paymentOptions rangeOfString:@"PayPal"].location == NSNotFound;
-        cashSwitch.on = [paymentOptions rangeOfString:@"Cash in person"].location == NSNotFound;
+//        NSString *paymentOptions = [AppManager sharedManager].draftTicket[@"paymentOptions"];
+        NSString *paymentOptions = [[NSUserDefaults standardUserDefaults] stringForKey:@"kDingo_event_paymentOptions"];
+        paypalSwitch.on = [paymentOptions rangeOfString:@"PayPal"].location != NSNotFound;
+        cashSwitch.on = [paymentOptions rangeOfString:@"Cash in person"].location != NSNotFound;
 
-        NSString *deliveryOptions = [AppManager sharedManager].draftTicket[@"deliveryOptions"];
-        inPersonSwitch.on = [deliveryOptions rangeOfString:@"In Person"].location == NSNotFound;
-        electronicSwitch.on = [deliveryOptions rangeOfString:@"Electronic"].location == NSNotFound;
-        postSwitch.on =  [deliveryOptions rangeOfString:@"Post"].location == NSNotFound;
+//        NSString *deliveryOptions = [AppManager sharedManager].draftTicket[@"deliveryOptions"];
+        NSString *deliveryOptions = [[NSUserDefaults standardUserDefaults] stringForKey:@"kDingo_event_deliveryOptions"];
+        inPersonSwitch.on = [deliveryOptions rangeOfString:@"In Person"].location != NSNotFound;
+        electronicSwitch.on = [deliveryOptions rangeOfString:@"Electronic"].location != NSNotFound;
+        postSwitch.on =  [deliveryOptions rangeOfString:@"Post"].location != NSNotFound;
         
         photos = [AppManager sharedManager].draftTicket[@"photos"];
         if (!photos) {
@@ -328,9 +326,12 @@ static const NSInteger paypalAlert = 2;
 
 - (void)saveDraft {
 
+    NSLog(@"saveDraft");
     if (isEditing) {
         if (!isUploadingImage ) {
-            return;
+            if (!isPreviewing) {
+                return;
+            }
         } else {
             isUploadingImage = NO;
         }
@@ -385,22 +386,20 @@ static const NSInteger paypalAlert = 2;
     [[AppManager sharedManager].draftTicket setValue:self.faceValueField.text forKey:@"faceValue"];
     [[AppManager sharedManager].draftTicket setValue:self.ticketsCountField.text forKey:@"ticketCount"];
     [[AppManager sharedManager].draftTicket setValue:self.descriptionTextView.text forKey:@"description"];
-    [[AppManager sharedManager].draftTicket setValue:self.ticket.payment_options forKey:@"paymentOptions"];
     [[AppManager sharedManager].draftTicket setValue:self.typeTicketField.text forKey:@"ticketType"];
-    [[AppManager sharedManager].draftTicket setValue:self.ticket.delivery_options forKey:@"deliveryOptions"];
-    
+    NSLog(@"saveDraft 1");
+
     if (!haveTapButton) {
-        NSString *event_id = self.event.event_id;
-        NSString *city = self.event.city;
-        NSString *postalCode = self.event.postalCode;
-        NSString *thumbUrl = self.event.thumbUrl;
-        NSString *category_id = self.event.category_id;
-        
-        [[NSUserDefaults standardUserDefaults] setObject:event_id forKey:@"kDingo_event_event_id"];
-        [[NSUserDefaults standardUserDefaults] setObject:city forKey:@"kDingo_event_city"];
-        [[NSUserDefaults standardUserDefaults] setObject:postalCode forKey:@"kDingo_event_postcode"];
-        [[NSUserDefaults standardUserDefaults] setObject:thumbUrl forKey:@"kDingo_event_thumbURL"];
-        [[NSUserDefaults standardUserDefaults] setObject:category_id forKey:@"kDingo_event_categoryID"];
+        NSLog(@"saveDraft 2");
+
+        [[NSUserDefaults standardUserDefaults] setObject:self.event.event_id forKey:@"kDingo_event_event_id"];
+        [[NSUserDefaults standardUserDefaults] setObject:self.event.city forKey:@"kDingo_event_city"];
+        [[NSUserDefaults standardUserDefaults] setObject:self.event.postalCode forKey:@"kDingo_event_postcode"];
+        [[NSUserDefaults standardUserDefaults] setObject:self.event.thumbUrl forKey:@"kDingo_event_thumbURL"];
+        [[NSUserDefaults standardUserDefaults] setObject:self.event.category_id forKey:@"kDingo_event_categoryID"];
+        [[NSUserDefaults standardUserDefaults] setObject:self.ticket.payment_options forKey:@"kDingo_event_paymentOptions"];
+        [[NSUserDefaults standardUserDefaults] setObject:self.ticket.delivery_options forKey:@"kDingo_event_deliveryOptions"];
+
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
 
@@ -565,10 +564,21 @@ static const NSInteger paypalAlert = 2;
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     if (textField == self.endDateField) {
-        if ( self.startDateField.text.length > 0) {
-            if (self.event.date != nil) {
-                [endDatePicker setDate:self.event.date];
-            }
+        
+        NSDateFormatter *formatter =[[NSDateFormatter alloc] init];
+        formatter.dateFormat = @"HH:mm dd/MM/yyyy";
+        
+        if (self.endDateField.text.length > 0) {
+//            NSLog(@"DATE 1 %@",[formatter dateFromString:self.endDateField.text]);
+            [endDatePicker setDate:[formatter dateFromString:self.endDateField.text]];
+        } else if ( self.startDateField.text.length > 0) {
+//            NSLog(@"DATE 2 %@ %@",[formatter dateFromString:self.startDateField.text], self.startDateField.text);
+            [endDatePicker setDate:[formatter dateFromString:self.startDateField.text]];
+//            [endDatePicker setDate:self.startDateField.text];
+        }
+        
+        if (self.startDateField.text.length > 0) {
+            [endDatePicker setMinimumDate:[formatter dateFromString:self.startDateField.text]];
         }
     }
 }
@@ -783,9 +793,9 @@ static const NSInteger paypalAlert = 2;
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
-    [self saveDraft];
-    
     if ([segue.identifier isEqualToString:@"EditPhotosSegue"] || [segue.identifier isEqualToString:@"UploadPhotosSegue"]) {
+        [self saveDraft];
+
         UploadPhotosViewController *vc = (UploadPhotosViewController *)segue.destinationViewController;
         vc.delegate = self;
         vc.mainPhoto = [UIImage imageWithData:self.event.thumb];
@@ -793,6 +803,8 @@ static const NSInteger paypalAlert = 2;
         isUploadingImage = YES;
         haveTapButton = YES;
     } else if ([segue.identifier isEqualToString:@"PreviewSegue"]) {
+        
+        isPreviewing = YES;
         
         NSString *paymentOption = @"";
         if (cashSwitch.on) {
@@ -833,20 +845,16 @@ static const NSInteger paypalAlert = 2;
         self.ticket.delivery_options = deliveryOptions;
         self.ticket.ticket_type = self.typeTicketField.text;
         self.ticket.ticket_desc = self.descriptionTextView.text;
-        
-        if (self.event == nil) {
-            NSLog(@"ICI");
-
-        }
-        
-        NSLog(@"EVENT %@", self.event);
-        NSLog(@"TICKET %@", self.ticket);
 
         PreviewViewController *vc = (PreviewViewController *)segue.destinationViewController;
         vc.event = self.event;
         vc.ticket = self.ticket;
         vc.photos = photos;
+        
+        [self saveDraft];
+
     }
+    
 }
 
 #pragma mark ZSTextFieldDelegate
@@ -900,14 +908,14 @@ static const NSInteger paypalAlert = 2;
             }
             
             self.locationField.text = [DataManager eventLocation:self.event];
-            self.locationField.enabled = NO;
+//            self.locationField.enabled = NO;
             
             NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
             formatter.dateFormat = @"hh:mm dd/MM/yyyy";
             
             self.startDateField.text =  [formatter stringFromDate:self.event.date];
             self.endDateField.text = [formatter stringFromDate:self.event.endDate];
-            self.startDateField.enabled = self.endDateField.enabled = NO;
+//            self.startDateField.enabled = self.endDateField.enabled = NO;
         }
     }
     
