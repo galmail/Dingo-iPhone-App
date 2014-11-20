@@ -245,7 +245,9 @@ static const NSUInteger commentCellIndex = 4;
     for (NSDictionary *currentFriends in currentUserFriends) {
         for (NSDictionary *ownerFriends in ticketOwnerFriends) {
             if ([[currentFriends objectForKey:@"id"] isEqualToString:[ownerFriends objectForKey:@"id"]]) {
-                [names addObject:[currentFriends objectForKey:@"name"]];
+                NSString *name = [currentFriends objectForKey:@"name"];
+                NSArray *temp = [name componentsSeparatedByString:@" "];
+                [names addObject:[temp objectAtIndex:0]];
                 [profileImageURL addObject:[NSString stringWithFormat:@"http://graph.facebook.com/v2.0/%@/picture?redirect=1&height=200&type=normal&width=200", [currentFriends objectForKey:@"id"]]];
             }
         }

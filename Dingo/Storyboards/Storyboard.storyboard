@@ -1538,7 +1538,7 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="concerts.png" id="YGu-T0-LiQ" userLabel="back">
-                                            <rect key="frame" x="0.0" y="-75" width="320" height="350"/>
+                                            <rect key="frame" x="0.0" y="-75" width="320" height="380"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </imageView>
@@ -1823,7 +1823,7 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="offers_cells.png" id="Tby-GB-y8R" userLabel="mockup">
-                                            <rect key="frame" x="0.0" y="0.0" width="330" height="85"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="331" height="85"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </imageView>
                                         <view contentMode="scaleToFill" id="kO6-fe-H3F" userLabel="user info">
@@ -1845,7 +1845,7 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <view contentMode="scaleToFill" id="hgE-cT-Q6m" userLabel="actions">
-                                            <rect key="frame" x="151" y="0.0" width="189" height="100"/>
+                                            <rect key="frame" x="152" y="0.0" width="189" height="100"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="1FI-C7-4Hh" userLabel="accept button" customClass="TwoModeButton">
@@ -3339,93 +3339,23 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
                         <sections>
                             <tableViewSection id="yga-h7-m4A" userLabel="section">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="EventCell" rowHeight="200" id="anG-hn-Ces" userLabel="proposal_cell" customClass="ProposalCell">
-                                        <rect key="frame" x="0.0" y="0.0" width="319" height="200"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="anG-hn-Ces" id="OOW-Uc-gUN">
-                                            <rect key="frame" x="0.0" y="0.0" width="319" height="199"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="70" id="2Nc-j1-Ga1" userLabel="image">
+                                        <rect key="frame" x="0.0" y="320" width="319" height="36"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2Nc-j1-Ga1" id="bU1-XB-YIG">
+                                            <rect key="frame" x="0.0" y="0.0" width="319" height="35"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="concerts.png" id="rJD-E7-WrE" userLabel="back">
-                                                    <rect key="frame" x="0.0" y="0.0" width="319" height="199"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="qIK-an-4vD">
+                                                    <rect key="frame" x="0.0" y="0.0" width="319" height="69"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" red="0.86274509799999999" green="0.86274509799999999" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="jz_live.png" id="W4m-Zs-qDH" userLabel="icon_view" customClass="RoundedImageView">
-                                                    <rect key="frame" x="11" y="80" width="100" height="100"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ticket-icon.png" id="nga-G2-mcd">
+                                                    <rect key="frame" x="127" y="10" width="64" height="50"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
-                                                <view contentMode="scaleToFill" id="oem-Id-5lt" userLabel="ticket_info">
-                                                    <rect key="frame" x="100" y="65" width="219" height="135"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES"/>
-                                                    <subviews>
-                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jay-Z Live 02" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3gm-7T-gYM" userLabel="name">
-                                                            <rect key="frame" x="25" y="11" width="173" height="28"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="22"/>
-                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="02 Arena, Greenwich" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HYC-8P-LFj" userLabel="location">
-                                                            <rect key="frame" x="25" y="35" width="175" height="36"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
-                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qaE-z0-DYr" userLabel="begin">
-                                                            <rect key="frame" x="24" y="70" width="71" height="21"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="11"/>
-                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <imageView hidden="YES" userInteractionEnabled="NO" alpha="0.55000001192092896" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="concerts.png" id="Vz3-98-4E1" userLabel="mockup">
-                                                            <rect key="frame" x="-100" y="-5" width="319" height="140"/>
-                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                        </imageView>
-                                                        <view contentMode="scaleToFill" id="b4o-ke-9k4" userLabel="ticket_price">
-                                                            <rect key="frame" x="78" y="35" width="152" height="92"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES"/>
-                                                            <subviews>
-                                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Nug-Ge-b7R" userLabel="price">
-                                                                    <rect key="frame" x="35" y="24" width="95" height="38"/>
-                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="36"/>
-                                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="per ticket" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ffP-yO-t2n" userLabel="label">
-                                                                    <rect key="frame" x="57" y="59" width="71" height="21"/>
-                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="11"/>
-                                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                            </subviews>
-                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                        </view>
-                                                    </subviews>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                </view>
                                             </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="backImageView" destination="rJD-E7-WrE" id="FKz-Ti-fwl"/>
-                                            <outlet property="iconImageView" destination="W4m-Zs-qDH" id="Ig6-UZ-Wrf"/>
-                                            <outlet property="locationLabel" destination="HYC-8P-LFj" id="npI-J3-Kyd"/>
-                                            <outlet property="nameLabel" destination="3gm-7T-gYM" id="Yd5-rh-gIm"/>
-                                            <outlet property="startPriceLabel" destination="Nug-Ge-b7R" id="SFd-jv-NnG"/>
-                                            <outlet property="timeLabel" destination="qaE-z0-DYr" id="T5h-69-egR"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="PhotoPreview" rowHeight="120" id="lZ7-ou-GCU" userLabel="photos_preview" customClass="PhotosPreviewCell">
-                                        <rect key="frame" x="0.0" y="200" width="319" height="120"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lZ7-ou-GCU" id="pAI-LB-JfQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="319" height="119"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="36" id="QoL-ck-Gna" userLabel="tickets_count">
@@ -3435,11 +3365,10 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
                                             <rect key="frame" x="0.0" y="0.0" width="319" height="35"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number of Tickets:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="CYH-g5-opj" userLabel="label">
-                                                    <rect key="frame" x="9" y="7" width="129" height="21"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number of tickets:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="CYH-g5-opj" userLabel="label">
+                                                    <rect key="frame" x="12" y="7" width="129" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
-                                                    <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="tickets ..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DYU-wS-u5g" userLabel="tickets_count">
@@ -3447,6 +3376,29 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
                                                     <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="0.5" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="36" id="1BH-rY-Gcc" userLabel="price_per_ticket">
+                                        <rect key="frame" x="0.0" y="320" width="319" height="36"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1BH-rY-Gcc" id="HBo-VP-iFC">
+                                            <rect key="frame" x="0.0" y="0.0" width="319" height="35"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price per ticktet:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ixv-gY-3Kc" userLabel="label">
+                                                    <rect key="frame" x="12" y="7" width="129" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="tickets ..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="eby-pb-T3N" userLabel="tickets_count">
+                                                    <rect key="frame" x="146" y="7" width="120" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
+                                                    <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="0.5" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -3463,11 +3415,33 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
                                                     <rect key="frame" x="12" y="7" width="121" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
-                                                    <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="face value ..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="44a-Pn-Dc1" userLabel="face_value">
                                                     <rect key="frame" x="146" y="7" width="121" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
+                                                    <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="0.5" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="36" id="Rqz-Qu-dyx" userLabel="ticket_type">
+                                        <rect key="frame" x="0.0" y="544" width="319" height="36"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Rqz-Qu-dyx" id="c9k-rW-HFX">
+                                            <rect key="frame" x="0.0" y="0.0" width="319" height="35"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ticket Type:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Uny-2s-pgm" userLabel="label">
+                                                    <rect key="frame" x="12" y="7" width="129" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ticket Type" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Zkt-bo-Vkw" userLabel="face_value">
+                                                    <rect key="frame" x="146" y="7" width="129" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
                                                     <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="0.5" colorSpace="calibratedRGB"/>
@@ -3484,10 +3458,9 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comments:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="WyL-FZ-Jdf" userLabel="label">
-                                                    <rect key="frame" x="13" y="6" width="129" height="21"/>
+                                                    <rect key="frame" x="12" y="6" width="129" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
-                                                    <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" id="7EF-eQ-FNJ" userLabel="description_view" customClass="DingoTextView">
@@ -3518,7 +3491,6 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
                                                     <rect key="frame" x="12" y="7" width="129" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
-                                                    <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Paypal or in person" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FTB-PO-qsW" userLabel="face_value">
@@ -3539,10 +3511,9 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delivery:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="O4c-jI-GTZ" userLabel="label">
-                                                    <rect key="frame" x="13" y="6" width="129" height="21"/>
+                                                    <rect key="frame" x="12" y="6" width="129" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
-                                                    <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delivery" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5x1-Fy-Kbp" userLabel="face_value">
@@ -3555,48 +3526,14 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="36" id="Rqz-Qu-dyx" userLabel="ticket_type">
-                                        <rect key="frame" x="0.0" y="544" width="319" height="36"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="PhotoPreview" rowHeight="120" id="lZ7-ou-GCU" userLabel="photos_preview" customClass="PhotosPreviewCell">
+                                        <rect key="frame" x="0.0" y="200" width="319" height="120"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Rqz-Qu-dyx" id="c9k-rW-HFX">
-                                            <rect key="frame" x="0.0" y="0.0" width="319" height="35"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lZ7-ou-GCU" id="pAI-LB-JfQ">
+                                            <rect key="frame" x="0.0" y="0.0" width="319" height="119"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ticket Type:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Uny-2s-pgm" userLabel="label">
-                                                    <rect key="frame" x="12" y="7" width="129" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
-                                                    <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ticket Type" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Zkt-bo-Vkw" userLabel="face_value">
-                                                    <rect key="frame" x="146" y="7" width="129" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
-                                                    <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="0.5" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
+                                            <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
                                         </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CategoriesCell" rowHeight="140" id="2J2-pf-Tux" userLabel="location_map">
-                                        <rect key="frame" x="0.0" y="580" width="319" height="140"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2J2-pf-Tux" id="k6s-J7-ruh">
-                                            <rect key="frame" x="0.0" y="0.0" width="319" height="139"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" scrollEnabled="NO" rotateEnabled="NO" pitchEnabled="NO" id="hWC-Z6-tmp">
-                                                    <rect key="frame" x="0.0" y="0.0" width="319" height="139"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                </mapView>
-                                            </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.89411764709999997" green="0.89411764709999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
-                                        <connections>
-                                            <segue destination="Jfy-WO-b2d" kind="modal" identifier="PreviewMapSegue" id="Gpq-ke-4M3"/>
-                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="150" id="a69-ME-gfS" userLabel="seller_cell">
                                         <rect key="frame" x="0.0" y="720" width="319" height="150"/>
@@ -3726,11 +3663,11 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
                         <outlet property="lblPayment" destination="Yt2-y0-ldz" id="eCp-5h-SFv"/>
                         <outlet property="lblTicketCount" destination="CYH-g5-opj" id="118-Vh-3xO"/>
                         <outlet property="lblTicketType" destination="Uny-2s-pgm" id="N8s-a4-bo8"/>
-                        <outlet property="locationMap" destination="hWC-Z6-tmp" id="0qn-8c-hsa"/>
                         <outlet property="offerNewButton" destination="I0J-5M-tpX" id="qUo-Dv-fbz"/>
                         <outlet property="paymentLabel" destination="FTB-PO-qsW" id="s3r-Zu-dHe"/>
                         <outlet property="photosPreviewCell" destination="lZ7-ou-GCU" id="K2B-qy-rRj"/>
-                        <outlet property="proposalCell" destination="anG-hn-Ces" id="zPc-h0-MtK"/>
+                        <outlet property="pricePerTicket" destination="eby-pb-T3N" id="Uq1-l7-dtb"/>
+                        <outlet property="pricePerTicketLabel" destination="Ixv-gY-3Kc" id="M8z-U5-1c6"/>
                         <outlet property="requestToBuyButton" destination="gBg-A7-PU7" id="eUS-Ub-wLe"/>
                         <outlet property="sellerImageView" destination="fmI-oO-hf0" id="HVz-1e-8CU"/>
                         <outlet property="sellerNameLabel" destination="DBZ-hW-Zbo" id="49q-X8-JVn"/>
@@ -3741,7 +3678,7 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7HD-D7-uiR" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="5ly-av-blC"/>
             </objects>
-            <point key="canvasLocation" x="2134" y="28"/>
+            <point key="canvasLocation" x="2133.5" y="177"/>
         </scene>
         <!--Map View Controller-->
         <scene sceneID="O12-n4-EgS">
@@ -4570,8 +4507,7 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="BWJ-EH-Aes"/>
-        <segue reference="MsU-EW-bYV"/>
-        <segue reference="Gpq-ke-4M3"/>
+        <segue reference="Xk9-Zd-nfA"/>
         <segue reference="anJ-Pm-qVd"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -16,8 +16,8 @@
 #import <MapKit/MapKit.h>
 #import "MapViewController.h"
 
-static const NSUInteger photosCellIndex = 1;
-static const NSUInteger commentCellIndex = 4;
+static const NSUInteger photosCellIndex = 8;
+static const NSUInteger commentCellIndex = 5;
 
 @interface PreviewViewController () {
     
@@ -43,6 +43,8 @@ static const NSUInteger commentCellIndex = 4;
 @property (nonatomic, weak) IBOutlet UIImageView *sellerImageView;
 @property (nonatomic, weak) IBOutlet UILabel *sellerNameLabel;
 @property (weak, nonatomic) IBOutlet MKMapView *locationMap;
+@property (strong, nonatomic) IBOutlet UILabel *pricePerTicket;
+@property (strong, nonatomic) IBOutlet UILabel *pricePerTicketLabel;
 
 @end
 
@@ -68,20 +70,23 @@ static const NSUInteger commentCellIndex = 4;
     [super viewDidLoad];
     self.photosPreviewCell.photos = [self.photos mutableCopy];
     
-    lblTicketCount.font = lblFaceValue.font = lblComment.font = lblTicketType.font = lblPayment.font = lblDelivery.font = [DingoUISettings lightFontWithSize:14];
+    self.pricePerTicketLabel.font = lblTicketCount.font = lblFaceValue.font = lblComment.font = lblTicketType.font = lblPayment.font = lblDelivery.font = [DingoUISettings lightFontWithSize:14];
     
-    self.ticketsCountlabel.font = self.faceValueLabel.font = self.descriptionTextView.font =  self.paymentLabel.font =  self.ticketTypeLabel.font =  self.deliveryLabel.font = [DingoUISettings lightFontWithSize:14];
+    self.pricePerTicket.font = self.ticketsCountlabel.font = self.faceValueLabel.font = self.descriptionTextView.font =  self.paymentLabel.font =  self.ticketTypeLabel.font =  self.deliveryLabel.font = [DingoUISettings lightFontWithSize:14];
     
     self.contactCellerButton.titleLabel.font = self.requestToBuyButton.titleLabel.font = self.offerNewButton.titleLabel.font = [DingoUISettings lightFontWithSize:16];
     
     self.sellerNameLabel.font = [DingoUISettings fontWithSize:19];
     
+    NSLog(@"VALUES %@ %@", self.event, self.ticket);
+    
     self.ticketsCountlabel.text = [self.ticket.number_of_tickets stringValue];
-    self.faceValueLabel.text = [self.ticket.face_value_per_ticket stringValue];
+    self.faceValueLabel.text = [NSString stringWithFormat:@"£%@", self.ticket.face_value_per_ticket];
     self.descriptionTextView.text = self.ticket.ticket_desc;
     self.paymentLabel.text = self.ticket.payment_options;
     self.ticketTypeLabel.text = self.ticket.ticket_type;
     self.deliveryLabel.text = self.ticket.delivery_options;
+    self.pricePerTicket.text = [NSString stringWithFormat:@"£%@", self.ticket.price];
     
     [self.proposalCell buildWithData:self.event];
     
