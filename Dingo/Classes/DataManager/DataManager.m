@@ -138,6 +138,7 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     BOOL after = NO;
     
     for (Event *dict in events) {
+
         NSDate *date = dict.date;
         if ([DingoUtilites daysBetween:date and:[NSDate date]] > 0) {
             before = YES;

@@ -1538,7 +1538,7 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="concerts.png" id="YGu-T0-LiQ" userLabel="back">
-                                            <rect key="frame" x="0.0" y="-75" width="320" height="410"/>
+                                            <rect key="frame" x="0.0" y="-75" width="320" height="440"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </imageView>
@@ -1823,7 +1823,7 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="offers_cells.png" id="Tby-GB-y8R" userLabel="mockup">
-                                            <rect key="frame" x="0.0" y="0.0" width="331" height="85"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="332" height="85"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </imageView>
                                         <view contentMode="scaleToFill" id="kO6-fe-H3F" userLabel="user info">
@@ -1845,7 +1845,7 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <view contentMode="scaleToFill" id="hgE-cT-Q6m" userLabel="actions">
-                                            <rect key="frame" x="152" y="0.0" width="189" height="100"/>
+                                            <rect key="frame" x="153" y="0.0" width="189" height="100"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="1FI-C7-4Hh" userLabel="accept button" customClass="TwoModeButton">
@@ -4202,6 +4202,7 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
                         <outlet property="ticketTypeLabel" destination="zKt-1m-bOa" id="d2Z-iv-5D3"/>
                         <outlet property="ticketsCountlabel" destination="Zwk-Eh-L4q" id="eHD-A0-htf"/>
                         <segue destination="0ch-Q5-uzn" kind="push" identifier="EditTicket" id="BWJ-EH-Aes"/>
+                        <segue destination="hJR-ot-rfl" kind="modal" identifier="ImagesSegue" id="cCU-zw-9DV"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="den-dz-ZAh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -4235,6 +4236,7 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hJR-ot-rfl" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="UY9-Xu-4IK"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="VcZ-YK-bZY">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

@@ -201,7 +201,7 @@
     [ticket setNumber_of_tickets:nil];
     
     Event *tempEvent = [[Event alloc] initWithEntity:[NSEntityDescription entityForName:@"Event" inManagedObjectContext:[AppManager sharedManager].managedObjectContext] insertIntoManagedObjectContext:nil];
-    
+        
     tempEvent.address = self.eventData.address;
     tempEvent.category_id = self.eventData.category_id;
     tempEvent.city = self.eventData.city;
@@ -217,6 +217,10 @@
     tempEvent.tickets = self.eventData.tickets;
     tempEvent.thumb = nil;
     tempEvent.thumbUrl = nil;
+
+    [[NSUserDefaults standardUserDefaults] setObject:self.eventData.event_id forKey:@"kDingo_event_event_id"];
+    [[NSUserDefaults standardUserDefaults] setObject:self.eventData.category_id forKey:@"kDingo_event_categoryID"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 
     viewController.event = tempEvent;
     viewController.ticket = ticket;

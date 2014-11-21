@@ -148,6 +148,8 @@ static const NSInteger paypalAlert = 2;
     
     self.descriptionTextView.placeholder = @"Add any additional comments about the tickets or collection.";
     [self.descriptionTextView showToolbarWithDone];
+    
+    NSLog(@"big test %@", self.event);
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -232,7 +234,7 @@ static const NSInteger paypalAlert = 2;
         self.event.postalCode = [[NSUserDefaults standardUserDefaults] stringForKey:@"kDingo_event_postcode"];
         self.event.thumbUrl = [[NSUserDefaults standardUserDefaults] stringForKey:@"kDingo_event_thumbURL"];
         self.event.category_id = [[NSUserDefaults standardUserDefaults] stringForKey:@"kDingo_event_categoryID"];
-        
+
     } else if (!isEditing) {
         
         self.changed = NO;
@@ -400,7 +402,7 @@ static const NSInteger paypalAlert = 2;
         [[NSUserDefaults standardUserDefaults] setObject:self.ticket.payment_options forKey:@"kDingo_event_paymentOptions"];
         [[NSUserDefaults standardUserDefaults] setObject:self.ticket.delivery_options forKey:@"kDingo_event_deliveryOptions"];
 
-        [[NSUserDefaults standardUserDefaults] synchronize];
+        NSLog(@"category id 2 %@",self.event.category_id);
     }
 
     if (photos.count) {
@@ -698,7 +700,7 @@ static const NSInteger paypalAlert = 2;
 }
 
 - (void)showFaceValueAlertMessage{
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Tickets on Dingo can only be sold at face value or below. The Dingo team monitor all listings. Tickets being sold above face value will be removed." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Tickets on Dingo can only be sold at face value or below. The Dingo team monitor all listings. Tickets being sold aboeventve face value will be removed." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
     [alert show];
     [self.priceField setText:@""];
     [self.faceValueField setText:@""];
@@ -845,7 +847,13 @@ static const NSInteger paypalAlert = 2;
         self.ticket.delivery_options = deliveryOptions;
         self.ticket.ticket_type = self.typeTicketField.text;
         self.ticket.ticket_desc = self.descriptionTextView.text;
-
+        self.ticket.user_id = [NSNumber numberWithDouble:[[AppManager sharedManager].userInfo[@"id"] doubleValue]];
+        self.ticket.user_name = [AppManager sharedManager].userInfo[@"name"];
+//        self.ticket.user_photo = [AppManager sharedManager].userInfo[@"photo_url"];
+        self.ticket.user_email = [AppManager sharedManager].userInfo[@"email"];
+        self.ticket.facebook_id = [AppManager sharedManager].userInfo[@"fb_id"];
+        self.ticket.event_id = self.event.event_id;
+        
         PreviewViewController *vc = (PreviewViewController *)segue.destinationViewController;
         vc.event = self.event;
         vc.ticket = self.ticket;

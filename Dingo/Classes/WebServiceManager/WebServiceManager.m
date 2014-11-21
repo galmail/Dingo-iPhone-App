@@ -416,6 +416,7 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         NSLog(@"createEvent %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] );
         dispatch_async(dispatch_get_main_queue(), ^(void){
             if (error != nil) {
+                
                 [self genericErrorWithMessage:error];
             } else {
                 handler([data objectFromJSONData], error);

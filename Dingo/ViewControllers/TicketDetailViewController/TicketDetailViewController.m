@@ -310,6 +310,13 @@ static const NSUInteger commentCellIndex = 4;
             
             break;
         }
+        case 8:{
+            if ([self.photosPreviewCell.photos count] == 0) {
+                return 0;
+            } else {
+                return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+            }
+        }
         case 10:{
             if (self.mutualFriendCell.isHidden) {
                 return 0;

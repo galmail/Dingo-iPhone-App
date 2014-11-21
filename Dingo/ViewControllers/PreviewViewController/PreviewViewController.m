@@ -246,6 +246,7 @@ static const NSUInteger commentCellIndex = 5;
                 
             }];
         }];
+        [loadingView hide];
     } else {
         // create ticket
         NSDictionary *params = @{ @"event_id" : self.event.event_id,

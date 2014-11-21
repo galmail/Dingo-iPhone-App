@@ -39,6 +39,7 @@
     
     [[DataManager shared] userTicketsWithCompletion:^(BOOL finished) {
         NSArray* tickets = [[DataManager shared] userTickets];
+
         if (tickets.count == 0) {
             UILabel *lblNoTickets = [[UILabel alloc] initWithFrame:CGRectMake(30, 100, 260, 60)];
             lblNoTickets.text = @"You currently have no tickets for sale";
@@ -94,10 +95,7 @@
                 [[AppManager sharedManager].managedObjectContext deleteObject:data];
                 [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
             }
-            
         }];
-        
-        
     }
 }
 
