@@ -12,6 +12,7 @@
 
 @property (nonatomic, strong) NSArray *photos;
 
+@property (nonatomic) BOOL editTicket;
 @property (nonatomic, strong) Event *event;
 @property (nonatomic, strong) Ticket *ticket;
 

@@ -159,6 +159,7 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
 
                                       } else {
                                           if (state == FBSessionStateOpen) {
+                                              NSLog(@"start");
                                               
                                               FBRequest *request = [FBRequest requestForMe];
                                               [request.parameters setValue:@"id,name,first_name,last_name,email,picture,birthday,location" forKey:@"fields"];
@@ -190,7 +191,8 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
                                                                                 };
                                                       
                                                       if (update) {
-                                                          
+                                                          NSLog(@"update");
+
                                                           [WebServiceManager updateProfile:params completion:^(id response, NSError *error) {
                                                               if (response) {
                                                                   [AppManager sharedManager].token = response[@"authentication_token"];
@@ -211,6 +213,7 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
                                                           }];
                                                           
                                                       } else {
+                                                          NSLog(@"not update");
                                                           [WebServiceManager signUp:params completion:^(id response, NSError *error) {
                                                               NSLog(@"signUp response %@", response);
                                                               if (error) {
@@ -436,7 +439,7 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
             
             [attachments addObject:@{@"data": imageData, @"name": [NSString stringWithFormat:@"photo%d", i+1], @"fileName" : [NSString stringWithFormat:@"ticketPhoto_%@", [NSDate date]]}];
         }
-        
+
         request = [self requestForPostMethod:@"tickets" withParams:params withAttachements:attachments];
     } else {
         request = [self requestForPostMethod:@"tickets" withParams:[params urlEncodedString]];
@@ -781,6 +784,9 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
     
     [request setHTTPMethod:@"POST"];
     
+    NSLog(@"token %@", [AppManager sharedManager].token);
+    NSLog(@"userInfo email %@", [AppManager sharedManager].userInfo[@"email"]);
+
     [request setValue:[AppManager sharedManager].token forHTTPHeaderField:@"X-User-Token"];
     [request setValue:[AppManager sharedManager].userInfo[@"email"] forHTTPHeaderField:@"X-User-Email"];
     

@@ -104,6 +104,12 @@ static const NSUInteger listTicketsVCIndex = 1;
         case 1:
             NSLog(@"Don't Save");
             [AppManager sharedManager].draftTicket = nil;
+            [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"kDingo_event_paymentOptions"];
+            [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"kDingo_event_deliveryOptions"];
+            [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"kDingo_ticket_ticket_id"];
+            [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"kDingo_ticket_editTicket"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+
             break;
     }
     

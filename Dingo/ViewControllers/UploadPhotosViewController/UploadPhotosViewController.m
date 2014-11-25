@@ -42,15 +42,20 @@ static const NSUInteger mainPhotoDownloadedCellIndex = 3;
     return self.photos.count + 1;
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
-                  cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+
     if (!indexPath.row) {
-        return [collectionView dequeueReusableCellWithReuseIdentifier:@"AddPhotoCell"
-                                                         forIndexPath:indexPath];
+        
+        UICollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"AddPhotoCell" forIndexPath:indexPath];
+        if (self.photos.count > 2) {
+            cell.hidden = YES;
+        } else {
+            cell.hidden = NO;
+        }
+        return cell;
     }
     
-    TicketPhotoCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LoadedPhotoCell"
-                                                                      forIndexPath:indexPath];
+    TicketPhotoCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LoadedPhotoCell" forIndexPath:indexPath];
     
     cell.ticketPhoto = self.photos[indexPath.row - 1];
     cell.delegate = self;
@@ -167,9 +172,9 @@ static const NSUInteger mainPhotoDownloadedCellIndex = 3;
     [self.otherPhotosCollectionView performBatchUpdates:^{
         [self.photos removeObjectAtIndex:cellIndex - 1];
         [self.otherPhotosCollectionView deleteItemsAtIndexPaths:[NSArray arrayWithObject:path]];
-        
-    }
-                                             completion:nil];
+    } completion:^(BOOL finished){
+        [self.otherPhotosCollectionView reloadData];
+    }];
 }
 
 #pragma mark - Private

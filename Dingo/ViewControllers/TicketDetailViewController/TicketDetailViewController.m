@@ -484,6 +484,11 @@ static const NSUInteger commentCellIndex = 4;
         ListTicketsViewController *viewController = (ListTicketsViewController *)segue.destinationViewController;
         viewController.ticket = self.ticket;
         viewController.event = self.event;
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"kDingo_ticket_editTicket"];
+        [[NSUserDefaults standardUserDefaults] setObject:self.ticket.ticket_id forKey:@"kDingo_ticket_ticket_id"];
+        [[NSUserDefaults standardUserDefaults] setObject:self.event.event_id forKey:@"kDingo_event_event_id"];
+        [[NSUserDefaults standardUserDefaults] setObject:self.event.category_id forKey:@"kDingo_event_categoryID"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
     }
     
     if ([segue.identifier isEqual:@"MapSegue"]) {

@@ -110,10 +110,7 @@ static const NSUInteger commentCellIndex = 5;
             
         }
     }];
-
-    NSLog(@"EVENT %@", self.event);
-    NSLog(@"TICKET %@", self.ticket);
-    
+        
     self.sellerNameLabel.text = [AppManager sharedManager].userInfo[@"name"];
     
     self.sellerImageView.image = nil;
@@ -171,9 +168,10 @@ static const NSUInteger commentCellIndex = 5;
 
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"hh:mm dd/MM/yyyy";
-    
+    NSLog(@"Number of photo %lu", (unsigned long)[self.photos count]);
     ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please wait..."];
     [loadingView show];
+        
     if (self.event.event_id.length == 0) {
         
         // get event location form address and then create event
@@ -247,38 +245,82 @@ static const NSUInteger commentCellIndex = 5;
             }];
         }];
         [loadingView hide];
-    } else {
-        // create ticket
-        NSDictionary *params = @{ @"event_id" : self.event.event_id,
-                                  @"price" : [self.ticket.price stringValue],
-                                  @"seat_type" : self.ticket.seat_type.length> 0 ? self.ticket.seat_type : @"",
-                                  @"description" : self.ticket.ticket_desc.length > 0 ? self.ticket.ticket_desc : @"",
-                                  @"delivery_options" : self.ticket.delivery_options.length > 0 ? self.ticket.delivery_options : @"",
-                                  @"payment_options" : self.ticket.payment_options.length > 0 ? self.ticket.payment_options : @"",
-                                  @"number_of_tickets" : [self.ticket.number_of_tickets stringValue],
-                                  @"face_value_per_ticket" : [self.ticket.face_value_per_ticket stringValue],
-                                  @"ticket_type" : self.ticket.ticket_type
-                                  };
-        
-        [WebServiceManager createTicket:params photos:self.photos completion:^(id response, NSError *error) {
-            if (!error ) {
+    } else {        // create ticket
+
+        if (self.editTicket) {
+            //Update ticket
+            NSLog(@"Update");
+            
+            
+            NSDictionary *params = @{@"ticket_id":self.ticket.ticket_id,
+                                     @"price":[self.ticket.price stringValue],
+                                     @"ticket_type":self.ticket.ticket_type,
+                                     @"description":self.ticket.ticket_desc.length > 0 ? self.ticket.ticket_desc : @"",
+                                     @"delivery_options":self.ticket.delivery_options.length > 0 ? self.ticket.delivery_options : @"",
+                                     @"payment_options":self.ticket.payment_options.length > 0 ? self.ticket.payment_options : @"",
+                                     @"number_of_tickets":[self.ticket.number_of_tickets stringValue],
+                                     @"face_value_per_ticket":[self.ticket.face_value_per_ticket stringValue],
+                                     @"ticket_type" : self.ticket.ticket_type
+                                     };
+            
+            NSLog(@"params %lu", (unsigned long)[self.photos count]);
+            
+            [WebServiceManager updateTicket:params photos:self.photos completion:^(id response, NSError *error) {
+                NSLog(@"response %@", response);
+                
                 if (response[@"id"]) {
-                    // ticket created
-                    
+                    [[DataManager shared] addOrUpdateTicket:response];
+                    [[AppManager sharedManager] saveContext];
                     [AppManager sharedManager].draftTicket = nil;
                     
+                    [loadingView hide];
+
                     [self.navigationController.viewControllers[0] setSelectedIndex:0];
                     [self.navigationController popToRootViewControllerAnimated:YES];
-                    
+
                 } else {
-                    [AppManager showAlert:@"Unable to create ticket."];
+                    [loadingView hide];
+                    [AppManager showAlert:@"Unable to save changes, Please try later"];
                 }
-            } else {
-                [AppManager showAlert:[error localizedDescription]];
-            }
+            }];
+
+        } else {
+            //Add new ticket
+            NSLog(@"Create");
             
-            [loadingView hide];
-        }];
+            NSDictionary *params = @{ @"event_id" : self.event.event_id,
+                                      @"price" : [self.ticket.price stringValue],
+                                      @"seat_type" : self.ticket.seat_type.length> 0 ? self.ticket.seat_type : @"",
+                                      @"description" : self.ticket.ticket_desc.length > 0 ? self.ticket.ticket_desc : @"",
+                                      @"delivery_options" : self.ticket.delivery_options.length > 0 ? self.ticket.delivery_options : @"",
+                                      @"payment_options" : self.ticket.payment_options.length > 0 ? self.ticket.payment_options : @"",
+                                      @"number_of_tickets" : [self.ticket.number_of_tickets stringValue],
+                                      @"face_value_per_ticket" : [self.ticket.face_value_per_ticket stringValue],
+                                      @"ticket_type" : self.ticket.ticket_type
+                                      };
+            
+            NSLog(@"param %@", params);
+            
+            [WebServiceManager createTicket:params photos:self.photos completion:^(id response, NSError *error) {
+                if (!error ) {
+                    if (response[@"id"]) {
+                        // ticket created
+                        
+                        [AppManager sharedManager].draftTicket = nil;
+                        
+                        [self.navigationController.viewControllers[0] setSelectedIndex:0];
+                        [self.navigationController popToRootViewControllerAnimated:YES];
+                        
+                    } else {
+                        [AppManager showAlert:@"Unable to create ticket."];
+                    }
+                } else {
+                    [AppManager showAlert:[error localizedDescription]];
+                }
+                
+                [loadingView hide];
+            }];
+        }
     }
 }
 

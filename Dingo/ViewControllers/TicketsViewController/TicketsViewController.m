@@ -77,7 +77,7 @@
             }
         }
     }];
-        
+            
     [self.tableView reloadData];
 }
 
@@ -218,6 +218,8 @@
     tempEvent.thumb = nil;
     tempEvent.thumbUrl = nil;
 
+    [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"kDingo_event_paymentOptions"];
+    [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"kDingo_event_deliveryOptions"];
     [[NSUserDefaults standardUserDefaults] setObject:self.eventData.event_id forKey:@"kDingo_event_event_id"];
     [[NSUserDefaults standardUserDefaults] setObject:self.eventData.category_id forKey:@"kDingo_event_categoryID"];
     [[NSUserDefaults standardUserDefaults] synchronize];
