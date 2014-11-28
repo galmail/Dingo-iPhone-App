@@ -716,7 +716,7 @@ static const NSInteger paypalAlert = 2;
 }
 
 - (void)showFaceValueAlertMessage{
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Tickets on Dingo can only be sold at face value or below. The Dingo team monitor all listings. Tickets being sold aboeventve face value will be removed." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Tickets on Dingo can only be sold at face value or below. The Dingo team monitor all listings. Tickets being sold above face value will be removed." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
     [alert show];
     [self.priceField setText:@""];
     [self.faceValueField setText:@""];
