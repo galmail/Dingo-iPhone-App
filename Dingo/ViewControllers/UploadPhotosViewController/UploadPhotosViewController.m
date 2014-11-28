@@ -47,7 +47,7 @@ static const NSUInteger mainPhotoDownloadedCellIndex = 3;
     if (!indexPath.row) {
         
         UICollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"AddPhotoCell" forIndexPath:indexPath];
-        if (self.photos.count > 2) {
+        if (self.photos.count > 1) {
             cell.hidden = YES;
         } else {
             cell.hidden = NO;
@@ -57,7 +57,7 @@ static const NSUInteger mainPhotoDownloadedCellIndex = 3;
     
     TicketPhotoCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LoadedPhotoCell" forIndexPath:indexPath];
     
-    cell.ticketPhoto = self.photos[indexPath.row - 1];
+    cell.ticketPhoto = self.photos[indexPath.row -1];
     cell.delegate = self;
     return cell;
 }

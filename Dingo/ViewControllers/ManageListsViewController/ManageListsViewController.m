@@ -44,7 +44,7 @@
             UILabel *lblNoTickets = [[UILabel alloc] initWithFrame:CGRectMake(30, 100, 260, 60)];
             lblNoTickets.text = @"You currently have no tickets for sale";
             lblNoTickets.textAlignment = NSTextAlignmentCenter;
-            lblNoTickets.textColor = [UIColor darkGrayColor];
+            lblNoTickets.textColor = [UIColor colorWithRed:(170/255.0) green:(170/255.0) blue:(170/255.0) alpha:1];
             lblNoTickets.font = [DingoUISettings fontWithSize:20];
             lblNoTickets.numberOfLines = 0;
             
