@@ -171,7 +171,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="ListTicketsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="0ch-Q5-uzn" customClass="ListTicketsViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="static" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="BA9-uN-inm">
-                        <rect key="frame" x="0.0" y="64" width="320" height="1116"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="1067"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="separatorColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
@@ -1538,7 +1538,7 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="concerts.png" id="YGu-T0-LiQ" userLabel="back">
-                                            <rect key="frame" x="-3" y="-57" width="320" height="296"/>
+                                            <rect key="frame" x="0.0" y="-37" width="320" height="203"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </imageView>
@@ -1580,20 +1580,20 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="QzJ-hB-k2X">
-                                                    <rect key="frame" x="151" y="118" width="61" height="20"/>
+                                                    <rect key="frame" x="145" y="122" width="75" height="22"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" image="bellOff.png">
+                                                    <state key="normal" image="bellOffz.png">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
-                                                    <state key="selected" image="bellOn.png"/>
+                                                    <state key="selected" image="bellOnz.png"/>
                                                     <connections>
                                                         <action selector="bellOnOff:" destination="UTV-Tz-0Ch" eventType="touchUpInside" id="xqe-kf-amA"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="dPd-1P-5er">
-                                                    <rect key="frame" x="71" y="118" width="72" height="20"/>
+                                                    <rect key="frame" x="54" y="122" width="85" height="22"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" image="add_tickets.png">
+                                                    <state key="normal" image="AddTickets.png">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
@@ -1621,7 +1621,7 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Arrow.png" id="02G-cO-D4r" userLabel="arrow">
-                                            <rect key="frame" x="290" y="27" width="18" height="26"/>
+                                            <rect key="frame" x="610" y="-55" width="18" height="26"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                     </subviews>
@@ -3877,7 +3877,7 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
                                                 <view contentMode="scaleToFill" id="Ri4-LC-2FA" userLabel="selection_protector">
-                                                    <rect key="frame" x="0.0" y="0.0" width="321" height="79"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="322" height="79"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </view>
@@ -4374,6 +4374,7 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
         </scene>
     </scenes>
     <resources>
+        <image name="AddTickets.png" width="153" height="41"/>
         <image name="Arrow.png" width="37" height="47"/>
         <image name="EventCell.png" width="320" height="79"/>
         <image name="EventIcon.png" width="60" height="59"/>
@@ -4382,11 +4383,10 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
         <image name="about_icon.png" width="27" height="27"/>
         <image name="about_logo.png" width="179" height="121"/>
         <image name="add_photo_icon.png" width="76" height="75"/>
-        <image name="add_tickets.png" width="290" height="72"/>
         <image name="arrow.png" width="6" height="10"/>
         <image name="arrow_white.png" width="5" height="9"/>
-        <image name="bellOff.png" width="124" height="36"/>
-        <image name="bellOn.png" width="124" height="36"/>
+        <image name="bellOffz.png" width="131" height="41"/>
+        <image name="bellOnz.png" width="131" height="41"/>
         <image name="blueBG.png" width="320" height="568"/>
         <image name="btnConfirmAlert.png" width="248" height="40"/>
         <image name="btnDeleteAlert.png" width="248" height="40"/>
@@ -4439,8 +4439,8 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="BWJ-EH-Aes"/>
-        <segue reference="Xk9-Zd-nfA"/>
         <segue reference="lKe-yJ-oEi"/>
+        <segue reference="AMH-9g-fjh"/>
+        <segue reference="Xk9-Zd-nfA"/>
     </inferredMetricsTieBreakers>
 </document>
