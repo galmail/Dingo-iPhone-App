@@ -53,7 +53,7 @@ static const NSUInteger listTicketsVCIndex = 1;
 #pragma mark - UITabBarControllerDelegate
 
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
-    
+    self.menuTapped=NO;
     if (self.selectedViewController != [self listTicketsVC]) {
         return YES;
     }

@@ -46,6 +46,7 @@ static const CGFloat categoriesHeight = 110;
     
     selectedCategories = [[[DataManager shared] allCategories] valueForKey:@"category_id"];
     
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {

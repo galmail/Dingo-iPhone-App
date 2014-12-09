@@ -59,6 +59,12 @@
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapOnMap:)];
     [locationMapView addGestureRecognizer:tap];
     
+    //**********Adding Arrow on the map for navigat full screen
+    UIImageView *imgViewArrow=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arrow_map.png"]];
+    [imgViewArrow setFrame:CGRectMake(screenSize.width-30, CGRectGetMidY(locationMapView.frame)-13.5, 20, 27)];
+    [locationMapView addSubview:imgViewArrow];
+    
+    
     [WebServiceManager addressToLocation:[DataManager eventLocation:self.eventData] completion:^(id response, NSError *error) {
 
         if ([response[@"status"] isEqualToString:@"OK"]) {

@@ -204,8 +204,8 @@ static const NSInteger paypalAlert = 2;
         
         self.event.date = [formatter dateFromString:self.startDateField.text];
         self.event.endDate = [formatter dateFromString:self.endDateField.text];
-        self.ticket.price = [NSNumber numberWithFloat:[self.priceField.text floatValue]];
-        self.ticket.face_value_per_ticket = [NSNumber numberWithFloat:[self.faceValueField.text floatValue]];
+        self.ticket.price = [NSNumber numberWithFloat:[[self.priceField.text stringByReplacingOccurrencesOfString:@"£" withString:@""] floatValue]];
+        self.ticket.face_value_per_ticket = [NSNumber numberWithFloat:[[self.faceValueField.text stringByReplacingOccurrencesOfString:@"£" withString:@""] floatValue]];
         self.ticket.number_of_tickets = [NSNumber numberWithInt:[self.ticketsCountField.text intValue]];
         self.ticket.ticket_desc = self.descriptionTextView.text ;
         self.ticket.ticket_type = self.typeTicketField.text;
@@ -394,8 +394,8 @@ static const NSInteger paypalAlert = 2;
     [[AppManager sharedManager].draftTicket setValue:self.locationField.text forKey:@"location"];
     [[AppManager sharedManager].draftTicket setValue:self.startDateField.text forKey:@"startDate"];
     [[AppManager sharedManager].draftTicket setValue:self.endDateField.text forKey:@"endDate"];
-    [[AppManager sharedManager].draftTicket setValue:self.priceField.text forKey:@"price"];
-    [[AppManager sharedManager].draftTicket setValue:self.faceValueField.text forKey:@"faceValue"];
+    [[AppManager sharedManager].draftTicket setValue:[self.priceField.text stringByReplacingOccurrencesOfString:@"£" withString:@""] forKey:@"price"];
+    [[AppManager sharedManager].draftTicket setValue:[self.faceValueField.text stringByReplacingOccurrencesOfString:@"£" withString:@""] forKey:@"faceValue"];
     [[AppManager sharedManager].draftTicket setValue:self.ticketsCountField.text forKey:@"ticketCount"];
     [[AppManager sharedManager].draftTicket setValue:self.descriptionTextView.text forKey:@"description"];
     [[AppManager sharedManager].draftTicket setValue:self.typeTicketField.text forKey:@"ticketType"];
@@ -581,11 +581,18 @@ static const NSInteger paypalAlert = 2;
         } else if ( self.startDateField.text.length > 0) {
             [endDatePicker setDate:[formatter dateFromString:self.startDateField.text]];
         }
-        
         if (self.startDateField.text.length > 0) {
             [endDatePicker setMinimumDate:[formatter dateFromString:self.startDateField.text]];
         }
+    }else if ([textField isEqual:self.priceField]){
+        if ([textField.text hasPrefix:@"£"])
+            [textField setText:[textField.text stringByReplacingOccurrencesOfString:@"£" withString:@""]];
+        
+    }else if ([textField isEqual:self.faceValueField]){
+        if ([textField.text hasPrefix:@"£"])
+            [textField setText:[textField.text stringByReplacingOccurrencesOfString:@"£" withString:@""]];
     }
+    
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -615,6 +622,18 @@ static const NSInteger paypalAlert = 2;
         self.locationField.enabled = YES;
         self.startDateField.enabled = YES;
         self.endDateField.enabled = YES;
+    }else if([textField isEqual:self.priceField] || [textField isEqual:self.faceValueField]){
+         NSString *priceText = [textField.text stringByReplacingCharactersInRange:range withString:string];
+        NSString *expression = @"^([0-9]*)(\\.([0-9]{0,2})?)?$";
+        
+        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:expression options:NSRegularExpressionCaseInsensitive  error:nil];
+        NSUInteger noOfMatches = [regex numberOfMatchesInString:priceText
+                                                        options:0
+                                                          range:NSMakeRange(0, [priceText length])];
+        if (noOfMatches==0){
+            return NO;
+        }
+        return YES;
     }
     
     return YES;
@@ -675,7 +694,10 @@ static const NSInteger paypalAlert = 2;
     if (textField == self.priceField) {
         if (self.priceField.text.length > 0) {
             
-            if (([self.priceField.text floatValue] > [self.faceValueField.text floatValue]) && self.faceValueField.text.length > 0) {
+               float priceFieldValue= [[self.priceField.text stringByReplacingOccurrencesOfString:@"£" withString:@""] floatValue];
+            float facePriceValue=[[self.faceValueField.text stringByReplacingOccurrencesOfString:@"£" withString:@""] floatValue];
+            
+            if ((priceFieldValue > facePriceValue) &&  self.faceValueField.text.length > 0) {
                 [self showFaceValueAlertMessage];
             } else{
                 self.ticket.face_value_per_ticket = @([self.faceValueField.text floatValue]);
@@ -683,18 +705,28 @@ static const NSInteger paypalAlert = 2;
                 self.event.fromPrice = @([self.priceField.text floatValue]);
                 lblPrice.textColor = [UIColor blackColor];
                 self.changed = YES;
-            }
-        }
-    }
+                if (![self.priceField.text hasPrefix:@"£"])
+                    [self.priceField setText:[NSString stringWithFormat:@"£%@",self.priceField.text]];
+                
+                    }
+        }    }
 
     if (textField == self.faceValueField) {
         if (self.faceValueField.text.length > 0) {
             self.changed = YES;
-            if ([self.priceField.text floatValue] > [self.faceValueField.text floatValue]) {
+            
+            
+            float priceFieldValue= [[self.priceField.text stringByReplacingOccurrencesOfString:@"£" withString:@""] floatValue];
+            float facePriceValue=[[self.faceValueField.text stringByReplacingOccurrencesOfString:@"£" withString:@""] floatValue];
+            
+            if ((priceFieldValue > facePriceValue) ) {
                 [self showFaceValueAlertMessage];
             } else{
                 self.ticket.face_value_per_ticket = @([self.faceValueField.text floatValue]);
                 lblFaceValue.textColor = [UIColor blackColor];
+                if (![self.faceValueField.text hasPrefix:@"£"] )
+                [self.faceValueField setText:[NSString stringWithFormat:@"£%@",self.faceValueField.text]];
+                
             }
         }
     }
@@ -798,7 +830,10 @@ static const NSInteger paypalAlert = 2;
             [self.tableView setContentOffset:CGPointZero];
         }
         
-        if ([self.priceField.text floatValue] > [self.faceValueField.text floatValue]) {
+        float priceFieldval=[[self.priceField.text stringByReplacingOccurrencesOfString:@"£" withString:@""] floatValue];
+        float facePriceVal=[[self.faceValueField.text stringByReplacingOccurrencesOfString:@"£" withString:@""] floatValue];
+        
+        if ( priceFieldval> facePriceVal) {
             requiredInfoFilled = NO;
             lblPrice.textColor = [UIColor redColor];
             [self showFaceValueAlertMessage];

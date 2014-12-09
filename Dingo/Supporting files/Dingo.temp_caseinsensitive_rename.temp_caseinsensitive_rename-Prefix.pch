@@ -16,5 +16,8 @@
     #import <Foundation/Foundation.h>
 
     #import "DingoConfig.h"
+
+#define screenSize    CGSizeMake([[UIScreen mainScreen] bounds].size.width , [[UIScreen mainScreen] bounds].size.height)
+
 #endif
 

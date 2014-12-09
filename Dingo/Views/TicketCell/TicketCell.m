@@ -82,7 +82,7 @@ const CGFloat featureCellHeight = 170;
     
     event = data;
     
-    self.price = [data.fromPrice floatValue];
+    self.price = lroundf([data.fromPrice floatValue]);
     self.discountView.discount = 0;//[data[@"discount"] intValue];
     self.tickets = [data.tickets intValue];
 }

@@ -19,6 +19,9 @@
 
 @interface MessagesViewController () <UITableViewDelegate, UITableViewDataSource> {
     NSMutableArray *groupedMessages;
+    BOOL isNotFirstTime;
+    
+    
 }
 
 @end
@@ -47,6 +50,7 @@
     [loadingView show];
     
     [[DataManager shared] fetchMessagesWithCompletion:^(BOOL finished) {
+        isNotFirstTime=true;
         [self groupMessagesByUser];
         [loadingView hide];
         [(HomeTabBarController*)self.tabBarController updateMessageCount];
@@ -55,10 +59,11 @@
 }
 
 -(void) refreshInvoked:(id)sender forState:(UIControlState)state {
-    
+   
     [self.refreshControl beginRefreshing];
     
     [[DataManager shared] fetchMessagesWithCompletion:^(BOOL finished) {
+        isNotFirstTime=true;
         [self groupMessagesByUser];
         [self.tableView reloadData];
         [self.refreshControl endRefreshing];
@@ -70,8 +75,22 @@
 - (void)groupMessagesByUser {
     
     NSArray *allMessages = [[DataManager shared] allMessages];
+    if (!allMessages.count) {
+        if (allMessages.count == 0 && isNotFirstTime) {
+            UILabel *lblNoMessages = [[UILabel alloc] initWithFrame:CGRectMake(30, 100, 260, 60)];
+            lblNoMessages.text = @"You have no messages :(";
+            lblNoMessages.textAlignment = NSTextAlignmentCenter;
+            lblNoMessages.textColor = [UIColor colorWithRed:(170/255.0) green:(170/255.0) blue:(170/255.0) alpha:1];
+            lblNoMessages.font = [DingoUISettings fontWithSize:20];
+            lblNoMessages.tag=6787;
+            lblNoMessages.numberOfLines = 0;
+            
+            [self.view addSubview:lblNoMessages];
+        }
+
+    }else{
     groupedMessages = [NSMutableArray new];
-    
+        
     NSArray * ticketIDs = [allMessages valueForKeyPath:@"ticket_id"];
     NSSet *ticketsSet = [NSSet setWithArray:ticketIDs];
     ticketIDs = [ticketsSet allObjects];
@@ -92,9 +111,13 @@
     groupedMessages = [[groupedMessages sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"datetime" ascending:NO]]] mutableCopy];
     
     [self.tableView reloadData];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+    
+    [self removeNoMessage];
+
     self.parentViewController.navigationItem.rightBarButtonItem = nil;
 }
 
@@ -113,11 +136,21 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString * const cellId = @"MessagesCell";
-    MessagesCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+   
     
+    MessagesCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
     Message *msg = groupedMessages[indexPath.row];
     [cell buildWithData:msg];
     return cell;
+    
+    }
+
+#pragma mark - custom methods
+-(void)removeNoMessage{
+    id lblNoMessage=[self.view viewWithTag:6787];
+    if (lblNoMessage)
+        [lblNoMessage removeFromSuperview];
+    isNotFirstTime=false;
 }
 
 #pragma mark - UIAction

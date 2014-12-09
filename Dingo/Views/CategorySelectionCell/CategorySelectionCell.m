@@ -85,9 +85,7 @@
     }
     
     if (cell.selected) {
-        [collectionView selectItemAtIndexPath:indexPath
-                                     animated:YES
-                               scrollPosition:UICollectionViewScrollPositionCenteredVertically];
+        [collectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionNone];
     }
     
     return cell;
@@ -100,6 +98,7 @@
 }
 
 #pragma mark - UICollectionViewDelegate
+
 
 //- (BOOL)collectionView:(UICollectionView *)collectionView shouldDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
 //    return self.favoriteCategories.count > 1;

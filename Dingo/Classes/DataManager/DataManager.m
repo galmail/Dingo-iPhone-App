@@ -35,7 +35,9 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     
     NSManagedObjectContext *context = [AppManager sharedManager].managedObjectContext;
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Event"];
+    [request setPredicate:[NSPredicate predicateWithFormat:@"(tickets != %d)",0]];
     request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES]];
+    
     NSError *error = nil;
     NSArray *events = [context executeFetchRequest:request error:&error];
     
@@ -54,8 +56,8 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
 }
 
 - (void)allEventsWithCompletion:( void (^) (BOOL finished))handler {
-    
     NSDictionary* params = @{@"city":[AppManager sharedManager].userInfo[@"city"]};
+   
     if ([AppManager sharedManager].currentLocation != nil) {
         params = @{@"location": [NSString stringWithFormat:@"%f,%f", [AppManager sharedManager].currentLocation.coordinate.latitude, [AppManager sharedManager].currentLocation.coordinate.longitude], @"city":[AppManager sharedManager].userInfo[@"city"]};
     }
@@ -523,6 +525,7 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Ticket"];
     request.predicate = [NSPredicate predicateWithFormat:@"event_id == %@", eventID];
+    request.sortDescriptors=[NSArray arrayWithObjects:[[NSSortDescriptor alloc] initWithKey:@"price" ascending:YES], nil];
     NSArray *tickets = [[AppManager sharedManager].managedObjectContext executeFetchRequest:request error:nil];
     
     if (tickets.count) {
