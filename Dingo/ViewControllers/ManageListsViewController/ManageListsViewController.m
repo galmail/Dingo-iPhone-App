@@ -16,8 +16,10 @@
 #import "ZSLoadingView.h"
 #import "WebServiceManager.h"
 
-@interface ManageListsViewController ()
-
+@interface ManageListsViewController (){
+    NSMutableArray *arraPastEventTickets;
+    NSMutableArray *arraFutureEventTickets;
+}
 @property (nonatomic) NSUInteger firstSectionCellsCount;
 
 @end
@@ -28,6 +30,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    arraPastEventTickets= [NSMutableArray arrayWithArray:[[DataManager shared] ticketsBeforeDate:[NSDate date]]];
+    arraFutureEventTickets=[NSMutableArray arrayWithArray:[[DataManager shared] ticketsAfterDate:[NSDate date]]];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
@@ -50,6 +54,9 @@
             
             [self.view addSubview:lblNoTickets];
         }
+        
+        arraPastEventTickets= [NSMutableArray arrayWithArray:[[DataManager shared] ticketsBeforeDate:[NSDate date]]];
+        arraFutureEventTickets=[NSMutableArray arrayWithArray:[[DataManager shared] ticketsAfterDate:[NSDate date]]];
         
         [self.tableView reloadData];
         [loadingView hide];
@@ -75,12 +82,16 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         
-        NSUInteger index = indexPath.row;
-        if (indexPath.section) {
-            index += self.firstSectionCellsCount;
+       // NSUInteger index = indexPath.row;
+        Ticket *data=nil;
+        if (indexPath.section && [arraFutureEventTickets count]>0) {
+            //index += self.firstSectionCellsCount;
+            data=[arraFutureEventTickets objectAtIndex:indexPath.row];
+        }else{
+            data=[arraPastEventTickets objectAtIndex:indexPath.row];
         }
         
-        Ticket *data = [[DataManager shared] userTickets][index];
+        //Ticket *data = [[DataManager shared] userTickets][index];
         
         NSDictionary *params = @{@"ticket_id":data.ticket_id,
                                  @"price":[data.price stringValue],
@@ -93,21 +104,30 @@
             [loadingView hide];
             if (!error && [response[@"available"] intValue] == 0) {
                 [[AppManager sharedManager].managedObjectContext deleteObject:data];
-                [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+                //[self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+                arraPastEventTickets= [NSMutableArray arrayWithArray:[[DataManager shared] ticketsBeforeDate:[NSDate date]]];
+                arraFutureEventTickets=[NSMutableArray arrayWithArray:[[DataManager shared] ticketsAfterDate:[NSDate date]]];
+                [self.tableView reloadData];
+
+                
+               
             }
         }];
     }
 }
 
+-(void)tableView:(UITableView *)tableView didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath{
+   }
+
 #pragma mark - UITableViewDataSource
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     if (section ) {
-        if ([[DataManager shared] ticketsAfterDate:[NSDate date]].count == 0) {
+        if (arraFutureEventTickets.count == 0) {
             return 0;
         }
     } else {
-        if ([[DataManager shared] ticketsBeforeDate:[NSDate date]].count == 0) {
+        if (arraPastEventTickets.count == 0) {
             return 0;
         }
     }
@@ -116,16 +136,16 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (section) {
-        return [[DataManager shared] ticketsAfterDate:[NSDate date]].count;
+    if (section ) {
+        return arraFutureEventTickets.count;
     } else {
-        self.firstSectionCellsCount = [[DataManager shared] ticketsBeforeDate:[NSDate date]].count;
-        return self.firstSectionCellsCount;
+        return arraPastEventTickets.count;
+        //return self.firstSectionCellsCount;
     }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return [[DataManager shared] eventsDateRange];
+    return /*[[DataManager shared] eventsDateRange]*/2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -147,7 +167,11 @@
 
         TicketDetailViewController *vc = (TicketDetailViewController *)segue.destinationViewController;
         vc.ticket = data;
-        vc.event = [[DataManager shared] eventByID:data.event_id];
+        if (selectedCellPath.section)
+            vc.iseditable=true;
+        else
+            vc.iseditable=false;
+            vc.event = [[DataManager shared] eventByID:data.event_id];
     }
     
 }
@@ -170,13 +194,16 @@
     static NSString * const cellId = @"ManageListsCell";
     ManageListsCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellId];
     
-    NSUInteger index = path.row;
+   // NSUInteger index = path.row;
     if (path.section) {
-        index += self.firstSectionCellsCount;
+         [cell buildWithTicketData:[arraFutureEventTickets objectAtIndex:path.row]];
+       // index += self.firstSectionCellsCount;
+    }else{
+        [cell buildWithTicketData:[arraPastEventTickets objectAtIndex:path.row]];
     }
     
-    Ticket *data = [[DataManager shared] userTickets][index];
-    [cell buildWithTicketData:data];
+    //Ticket *data = [[DataManager shared] userTickets][index];
+   
     return cell;
 }
 

@@ -14,5 +14,6 @@
 
 @property (nonatomic, strong) Event *event;
 @property (nonatomic, strong) Ticket *ticket;
+@property(nonatomic,assign) BOOL iseditable;
 
 @end

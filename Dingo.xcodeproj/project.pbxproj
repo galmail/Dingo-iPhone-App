@@ -3054,7 +3054,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = Dingo;
-				PROVISIONING_PROFILE = "3285eec2-b22d-4d64-b72e-75a7931a1dbe";
+				PROVISIONING_PROFILE = "36ebdcdb-69c9-4806-b361-6b4164707a5a";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3087,7 +3087,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = Dingo;
-				PROVISIONING_PROFILE = "3285eec2-b22d-4d64-b72e-75a7931a1dbe";
+				PROVISIONING_PROFILE = "36ebdcdb-69c9-4806-b361-6b4164707a5a";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

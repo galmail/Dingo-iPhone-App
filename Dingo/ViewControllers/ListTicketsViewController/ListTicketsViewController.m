@@ -171,8 +171,13 @@ static const NSInteger paypalAlert = 2;
         self.startDateField.text = [AppManager sharedManager].draftTicket[@"startDate"];
         self.endDateField.text = [AppManager sharedManager].draftTicket[@"endDate"];
         self.descriptionTextView.text = [AppManager sharedManager].draftTicket[@"description"];
+        if ([[AppManager sharedManager].draftTicket[@"price"] floatValue]>0) {
+            self.priceField.text = [NSString stringWithFormat:@"£%@",[AppManager sharedManager].draftTicket[@"price"]];
+            self.faceValueField.text= [NSString stringWithFormat:@"£%@",[AppManager sharedManager].draftTicket[@"faceValue"]];
+        }else{
         self.priceField.text = [AppManager sharedManager].draftTicket[@"price"];
         self.faceValueField.text= [AppManager sharedManager].draftTicket[@"faceValue"];
+        }
         self.ticketsCountField.text = [AppManager sharedManager].draftTicket[@"ticketCount"];
         self.typeTicketField.text = [AppManager sharedManager].draftTicket[@"ticketType"];
 

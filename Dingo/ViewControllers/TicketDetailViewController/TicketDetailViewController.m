@@ -63,13 +63,14 @@ static const NSUInteger commentCellIndex = 4;
 
 @end
 
+
 @implementation TicketDetailViewController{
     NSMutableArray *profileImageURL;
     NSMutableArray *names;
     NSMutableArray *currentUserFriends;
     NSMutableArray *ticketOwnerFriends;
 }
-
+@synthesize iseditable;
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
@@ -171,7 +172,11 @@ static const NSUInteger commentCellIndex = 4;
         
         bottomBar.delegate = self;
        
-        [self.navigationController.view  addSubview:bottomBar];
+        
+        if (iseditable)
+            [self.navigationController.view  addSubview:bottomBar];
+       
+            
         
         self.contactCellerButton.enabled = self.requestToBuyButton.enabled = self.offerPriceButton.enabled = NO;
         

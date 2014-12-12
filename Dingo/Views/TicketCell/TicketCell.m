@@ -48,6 +48,7 @@ const CGFloat featureCellHeight = 170;
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
     [formatter setAllowsFloats:YES];
     [formatter setMaximumFractionDigits:2];
+    
     NSString *strPrice = [formatter stringFromNumber:[NSNumber numberWithFloat:price]];
     
     if ([NSStringFromClass([self class]) isEqual:@"TicketCell"]) {
@@ -58,8 +59,12 @@ const CGFloat featureCellHeight = 170;
             self.startPriceLabel.text = [NSString stringWithFormat:@"£%@", strPrice];
         }
     } else {    
-    
-        self.startPriceLabel.text = [NSString stringWithFormat:@"£%@", strPrice];
+        
+        if (fmodf(price, 1) !=0)
+            self.startPriceLabel.text = [NSString stringWithFormat:@"£%.2f", price];
+        else
+            self.startPriceLabel.text = [NSString stringWithFormat:@"£%@", strPrice];
+        
     }
 }
 

@@ -56,6 +56,7 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
 }
 
 - (void)allEventsWithCompletion:( void (^) (BOOL finished))handler {
+    NSLog(@"userInfo=%@",[AppManager sharedManager].userInfo);
     NSDictionary* params = @{@"city":[AppManager sharedManager].userInfo[@"city"]};
    
     if ([AppManager sharedManager].currentLocation != nil) {
@@ -192,7 +193,7 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
         Event *event = [self eventByID:ticket.event_id];
         NSDate *curDate = event.date;
         if ([DingoUtilites daysBetween:curDate and:date] > 0) {
-            [result addObject:tickets];
+            [result addObject:ticket];
         }
     }
     
@@ -207,7 +208,7 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
         Event *event = [self eventByID:ticket.event_id];
         NSDate *curDate = event.date;
         if ([DingoUtilites daysBetween:date and:curDate] >= 0) {
-            [result addObject:tickets];
+            [result addObject:ticket];
         }
     }
     

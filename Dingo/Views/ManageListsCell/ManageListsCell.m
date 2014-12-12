@@ -74,12 +74,12 @@
 
 
 - (void)buildWithTicketData:(Ticket *)data {
-    [super buildWithTicketData:data];
+    
     
     Event *event = [[DataManager shared] eventByID:data.event_id];
     
     [self buildWithData:event];
-    
+    [super buildWithTicketData:data];
     [self setTickets:[data.number_of_tickets intValue]];
     
 //    self.offers = [data[@"offers"] floatValue];

@@ -12,5 +12,5 @@
 
 - (void)buildWithData:(Event *)data;
 - (void)buildWithTicketData:(Ticket*)data;
-
+@property (nonatomic, strong) IBOutlet UILabel *startPriceLabel;
 @end

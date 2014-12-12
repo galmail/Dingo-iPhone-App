@@ -96,7 +96,7 @@
     
     NSLog(@"deviceToken - %@",newToken);
     
-    if ([[AppManager sharedManager].token length]) {
+    if ([[AppManager sharedManager].deviceToken length]) {
         NSDictionary *params = @{ @"uid":[AppManager sharedManager].deviceToken.length > 0 ? [AppManager sharedManager].deviceToken : @"",
                                   @"brand":@"Apple",
                                   @"model": [[UIDevice currentDevice] platformString],
@@ -109,6 +109,10 @@
             NSLog(@"registerDevice error - %@", error);
         }];
     }
+    
+}
+
+-(void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error{
     
 }
 

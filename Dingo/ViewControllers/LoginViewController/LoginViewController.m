@@ -89,10 +89,10 @@
         [WebServiceManager signInWithFBAndUpdate:NO completion:^(id response, NSError *error) {
             [loadingView hide];
 
-            if (response) {
+            //if (response) {
                 SelectCityViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SelectCityViewController"];
                 [self.navigationController pushViewController:viewController animated:YES];
-            }
+            //}
         }];
     }
     

@@ -12,14 +12,14 @@
 
 @interface ProposalCell ()
 
-@property (nonatomic, weak) IBOutlet UILabel *startPriceLabel;
+
 @property (nonatomic, weak) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *imgIcon;
 
 @end
 
 @implementation ProposalCell
-
+@synthesize startPriceLabel;
 - (void)awakeFromNib {
     [super awakeFromNib];
     
@@ -58,6 +58,7 @@
 - (void)setLocation:(NSString *)location {
     [super setLocation:location];
 }
+
 
 
 
