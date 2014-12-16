@@ -21,13 +21,18 @@
     __weak IBOutlet UILabel *lblEvent;
     __weak IBOutlet UILabel *lblNumber;
     __weak IBOutlet UILabel *lblPrice;
+    __weak IBOutlet UILabel *lblDingoFee;
     __weak IBOutlet UILabel *lblTotal;
     __weak IBOutlet UILabel *lblSeller;
     __weak IBOutlet UILabel *lblPaymentOption;
+    __weak IBOutlet UILabel *lblWhyCharged;
+    __weak IBOutlet UILabel *lblWhyChargedSub;
+    
     
     __weak IBOutlet ZSTextField *txtName;
     __weak IBOutlet ZSTextField *txtNumber;
     __weak IBOutlet ZSTextField *txtPrice;
+    __weak IBOutlet ZSTextField *txtFieldfee;
     __weak IBOutlet ZSTextField *txtTotal;
     __weak IBOutlet ZSTextField *txtSellerName;
     __weak IBOutlet ZSTextField *txtPayment;
@@ -65,8 +70,11 @@
     currencyFormatter.numberStyle = NSNumberFormatterCurrencyStyle;
     currencyFormatter.currencySymbol = @"£";
 
-    lblEvent.font = lblNumber.font = lblPrice.font = lblTotal.font = lblSeller.font = lblPaymentOption.font = txtPayment.font = txtTotal.font = txtName.font = txtPrice.font = txtNumber.font = txtSellerName.font = [DingoUISettings lightFontWithSize:14];
+    lblEvent.font = lblNumber.font = lblPrice.font = lblDingoFee.font=txtFieldfee.font =lblWhyCharged.font=lblWhyChargedSub.font = lblSeller.font = lblPaymentOption.font = txtPayment.font  = txtName.font = txtPrice.font = txtNumber.font = txtSellerName.font = [DingoUISettings lightFontWithSize:14];
     
+    lblTotal.font= txtTotal.font=[DingoUISettings boldFontWithSize:14];
+    [lblWhyChargedSub setFont:[DingoUISettings lightFontWithSize:12]];
+    [lblWhyChargedSub setText:@"Dingo charges a small commission to cover all PayPal fees and \n  our secure payment and dispute service."];
     txtNumber.keyboardType = UIKeyboardTypeNumberPad;
     txtNumber.enabled = NO;
     [txtNumber showToolbarWithDone];
@@ -80,7 +88,7 @@
     }
     
     if ([self.ticket.payment_options rangeOfString:@"PayPal"].location != NSNotFound) {
-        txtPayment.text= @"PayPal, Credit Card";
+        txtPayment.text= @"PayPal or Credit Card";
     }
     
     txtSellerName.text = self.ticket.user_name;
@@ -179,7 +187,10 @@
     }
     
     double total = price * numberOfTickets;
-    
+    if (total>0)
+        txtFieldfee.text=[currencyFormatter stringFromNumber:@( (total*10)/100)];
+        total=total+(total*10)/100;
+        
     txtTotal.text = [currencyFormatter stringFromNumber:@( total)];
 }
 

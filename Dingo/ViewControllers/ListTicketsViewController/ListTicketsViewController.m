@@ -38,6 +38,7 @@ static const NSUInteger comfirmCellIndex = 18;
 
 static const NSInteger fbLoginAlert = 1;
 static const NSInteger paypalAlert = 2;
+static const NSInteger paypalEditAlert = 3;
 
 @interface ListTicketsViewController () <UITextFieldDelegate, UITableViewDataSource, UploadPhotosVCDelegate, ZSTextFieldDelegate, ZSDatePickerDelegate , ZSPickerDelegate ,CategorySelectionDelegate, UITextViewDelegate> {
     
@@ -82,6 +83,7 @@ static const NSInteger paypalAlert = 2;
     BOOL isUploadingImage;
     BOOL haveTapButton;
     BOOL isPreviewing;
+    
     NSMutableArray *photos;
 }
 
@@ -430,7 +432,7 @@ static const NSInteger paypalAlert = 2;
         paymentOption = @"Cash in person";
     }
     
-    if (paypalSwitch.on) {
+    if (NSSTRING_HAS_DATA([[NSUserDefaults standardUserDefaults] objectForKey:@"paypal_account"])) {
         if (paymentOption.length > 0) {
             paymentOption = [paymentOption stringByAppendingFormat:@", %@", @"PayPal"];
         } else {
@@ -543,7 +545,8 @@ static const NSInteger paypalAlert = 2;
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.row) {
         case payPalCellIndex:
-            return paypalSwitch.on ? paypalCellExpandedHeight : paypalCellShrinkedHeight;
+            //return paypalSwitch.on ? paypalCellExpandedHeight : paypalCellShrinkedHeight;
+            return paypalCellExpandedHeight;
             break;
         case editPhotosCellIndex: case previewPhotosCellIndex:
             if (!self.photosPreviewCell.photos.count) {
@@ -820,7 +823,7 @@ static const NSInteger paypalAlert = 2;
             lbldelivery.textColor = [UIColor redColor];
         }
 
-        if (!paypalSwitch.on && !cashSwitch.on) {
+        if (!NSSTRING_HAS_DATA([[NSUserDefaults standardUserDefaults] objectForKey:@"paypal_account"])) {
             requiredInfoFilled = NO;
             lblPayment.textColor = [UIColor redColor];
         }
@@ -864,20 +867,22 @@ static const NSInteger paypalAlert = 2;
         
         isPreviewing = YES;
         
-        NSString *paymentOption = @"";
-        if (cashSwitch.on) {
-            paymentOption = @"Cash in person";
-        }
+//        NSString *paymentOption = @"";
+//        if (cashSwitch.on) {
+//            paymentOption = @"Cash in person";
+//        }
         
-        if (paypalSwitch.on) {
-            if (paymentOption.length > 0) {
-                paymentOption = [paymentOption stringByAppendingFormat:@", %@", @"PayPal"];
-            } else {
-                paymentOption = @"PayPal";
-            }
+        if (NSSTRING_HAS_DATA([[NSUserDefaults standardUserDefaults] objectForKey:@"paypal_account"])) {
+           // if (paymentOption.length > 0) {
+            //    paymentOption = [paymentOption stringByAppendingFormat:@", %@", @"PayPal"];
+            //} else {
+               self.ticket.payment_options= @"PayPal";
+           // }
+        }else{
+            
         }
        
-        self.ticket.payment_options = paymentOption;
+        
         
         NSString *deliveryOptions = @"";
         if (inPersonSwitch.on) {
@@ -930,7 +935,7 @@ static const NSInteger paypalAlert = 2;
         
         self.event = nil;
         
-        NSArray* events = [[DataManager shared] allEvents];
+        NSArray* events = [[DataManager shared] allEventsWithAndWithoutTickets];
         NSMutableArray *dataForPopover = [NSMutableArray new];
         for (Event *tmpEvent in events) {
             [dataForPopover addObject:@{@"DisplayText": tmpEvent.name, @"CustomObject":tmpEvent}];
@@ -1110,15 +1115,24 @@ static const NSInteger paypalAlert = 2;
 
 - (IBAction)paypalChanged:(id)sender {
     cashSwitch.on = !paypalSwitch.on;
-    if(paypalSwitch.on) {
-        lblPayment.textColor = [UIColor darkGrayColor];
+   // if(paypalSwitch.on) {
+       // lblPayment.textColor = [UIColor darkGrayColor];
         if (![[AppManager sharedManager].userInfo[@"paypal_account"] length]) {
             UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Enter your PayPal account" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
             alert.alertViewStyle = UIAlertViewStylePlainTextInput;
             alert.tag = paypalAlert;
             [alert show];
+            cashSwitch.on=NO;
+            
+        }else{
+            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Your PayPal account" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
+            alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+            [alert textFieldAtIndex:0].text=[AppManager sharedManager].userInfo[@"paypal_account"];
+            alert.tag = paypalAlert;
+            [alert show];
+            cashSwitch.on= YES;
         }
-    }
+   // }
     
 //    [self.tableView beginUpdates];
 //    [self.tableView endUpdates];
@@ -1196,6 +1210,9 @@ static const NSInteger paypalAlert = 2;
                         if ([response[@"paypal_account"] length]) {
                             
                             [[AppManager sharedManager].userInfo setObject:response[@"paypal_account"] forKey:@"paypal_account"];
+                            [[NSUserDefaults standardUserDefaults] setObject:response[@"paypal_account"] forKey:@"paypal_account"];
+                            [[NSUserDefaults standardUserDefaults] synchronize];
+                           // paypalSwitch.on= YES;
                         }
                         
                     }];

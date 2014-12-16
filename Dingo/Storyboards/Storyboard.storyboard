@@ -521,44 +521,16 @@
                                                     <rect key="frame" x="0.0" y="36" width="320" height="203"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
-                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sgB-tD-bzw" userLabel="label">
-                                                            <rect key="frame" x="5" y="70" width="310" height="133"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <string key="text">Dingo charges a 10% commission for transactions made through the app. This covers all Paypal fees and our dispute resolution service. 
-
-Dingo will release your funds once the buyer confirms authenticity of the tickets or 2 days after the event. See the FAQ’s for more info.</string>
-                                                            <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
-                                                            <color key="textColor" red="0.51372549020000002" green="0.51372549020000002" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cash in Person" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Cho-gI-VJv">
-                                                            <rect key="frame" x="33" y="10" width="144" height="25"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                            <color key="textColor" red="0.51372549020000002" green="0.51372549020000002" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PayPal" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ja8-wb-icT">
-                                                            <rect key="frame" x="33" y="48" width="144" height="25"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                            <color key="textColor" red="0.51372549020000002" green="0.51372549020000002" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="nNR-Va-ebl">
-                                                            <rect key="frame" x="241" y="7" width="51" height="31"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="GSi-ub-46A">
+                                                            <rect key="frame" x="8" y="34" width="305" height="136"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <state key="normal" backgroundImage="paypal_logo_with_text.png">
+                                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                            </state>
                                                             <connections>
-                                                                <action selector="cashChanged:" destination="0ch-Q5-uzn" eventType="valueChanged" id="aoJ-qI-hpX"/>
+                                                                <action selector="paypalChanged:" destination="0ch-Q5-uzn" eventType="touchUpInside" id="8D5-y9-4aH"/>
                                                             </connections>
-                                                        </switch>
-                                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="DCz-gd-JXi">
-                                                            <rect key="frame" x="241" y="45" width="51" height="31"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <connections>
-                                                                <action selector="paypalChanged:" destination="0ch-Q5-uzn" eventType="valueChanged" id="Ts4-FQ-eCb"/>
-                                                            </connections>
-                                                        </switch>
+                                                        </button>
                                                     </subviews>
                                                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                 </view>
@@ -676,13 +648,11 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
                     <size key="freeformSize" width="320" height="1180"/>
                     <connections>
                         <outlet property="btnPreview" destination="C2t-go-aGL" id="rq8-Bf-eJp"/>
-                        <outlet property="cashSwitch" destination="nNR-Va-ebl" id="Tw7-gh-9lS"/>
                         <outlet property="descriptionTextView" destination="2gK-n0-UrV" id="sXd-U9-e7I"/>
                         <outlet property="electronicSwitch" destination="gV3-Rk-P38" id="LLA-FM-cWR"/>
                         <outlet property="endDateField" destination="uhK-tf-iQe" id="UrF-Kj-e6H"/>
                         <outlet property="faceValueField" destination="cnc-Ig-W8J" id="iuz-Yb-ZnR"/>
                         <outlet property="inPersonSwitch" destination="fu5-PS-z1s" id="8GU-cI-0bJ"/>
-                        <outlet property="lblCash" destination="Cho-gI-VJv" id="VSh-fG-Xmd"/>
                         <outlet property="lblDescription" destination="vGO-jg-007" id="eu8-a9-nAF"/>
                         <outlet property="lblElectrical" destination="AsE-SO-WVM" id="oKT-Vp-zpe"/>
                         <outlet property="lblFaceValue" destination="Kym-UH-5ai" id="3TH-P9-xd5"/>
@@ -691,7 +661,6 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
                         <outlet property="lblLocation" destination="wky-zQ-ryw" id="sK3-Oe-Ef6"/>
                         <outlet property="lblName" destination="9WU-dT-zfE" id="V8o-Od-fu4"/>
                         <outlet property="lblPayment" destination="gBd-SU-3UR" id="GEu-92-0fD"/>
-                        <outlet property="lblPaypal" destination="ja8-wb-icT" id="Ofd-Bg-9BO"/>
                         <outlet property="lblPost" destination="Qa0-dD-ZKF" id="Mfb-wb-Yrd"/>
                         <outlet property="lblPrice" destination="Y0J-NZ-d2g" id="etf-K5-Dz2"/>
                         <outlet property="lblTicketCount" destination="KSj-F0-c1r" id="KSO-gv-ZXI"/>
@@ -700,7 +669,6 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
                         <outlet property="lbldelivery" destination="ORv-E1-qj8" id="ZhM-RJ-l7H"/>
                         <outlet property="locationField" destination="2AT-Jc-vjr" id="zu2-lJ-fPT"/>
                         <outlet property="nameField" destination="Zvo-Jf-zwM" id="Es0-WH-Xs7"/>
-                        <outlet property="paypalSwitch" destination="DCz-gd-JXi" id="gbU-E4-HTP"/>
                         <outlet property="photosPreviewCell" destination="NIR-m4-Mbl" id="WKx-KX-MVp"/>
                         <outlet property="postSwitch" destination="HcK-bm-y7f" id="i41-U5-zSA"/>
                         <outlet property="priceField" destination="JJp-Kk-sDB" id="q7g-AD-XNP"/>
@@ -1353,6 +1321,40 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="10" id="0ju-eE-GqO">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0ju-eE-GqO" id="01u-bd-M0L">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="35" id="73Y-vo-5Yd">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="73Y-vo-5Yd" id="Udc-Ee-vDk">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dingo fee (10%):" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="JoS-WQ-f8f">
+                                                    <rect key="frame" x="14" y="6" width="117" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
+                                                </label>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="£0.00" minimumFontSize="17" id="EJq-9T-T1C" customClass="ZSTextField">
+                                                    <rect key="frame" x="150" y="2" width="100" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="0.5" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="M7a-TM-oGr" id="aql-XC-hUB"/>
+                                                    </connections>
+                                                </textField>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="10" id="a8b-9E-mHm">
                                         <rect key="frame" x="0.0" y="217" width="320" height="10"/>
                                         <autoresizingMask key="autoresizingMask"/>
@@ -1379,19 +1381,34 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="total" minimumFontSize="17" id="a7D-Wa-N0h" customClass="ZSTextField">
                                                     <rect key="frame" x="150" y="2" width="120" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="0.5" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="10" id="GvG-Lb-Gt7">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="65" id="GvG-Lb-Gt7">
                                         <rect key="frame" x="0.0" y="262" width="320" height="10"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GvG-Lb-Gt7" id="qG5-Ns-j75">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="9"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Why am I being charged 10%? " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OpG-Bb-3gv">
+                                                    <rect key="frame" x="8" y="6" width="207" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OvI-3j-8k5">
+                                                    <rect key="frame" x="8" y="24" width="304" height="32"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="0.5" colorSpace="calibratedRGB"/>
+                                                    <color key="highlightedColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
+                                                </label>
+                                            </subviews>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
@@ -1464,7 +1481,7 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="cb8-mQ-CJ2" userLabel="buy" customClass="DingoButton">
-                                                    <rect key="frame" x="37" y="22" width="246" height="38"/>
+                                                    <rect key="frame" x="37" y="16" width="246" height="38"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" red="0.066666666669999999" green="0.63921568630000003" blue="0.74117647060000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="19"/>
@@ -1502,12 +1519,16 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
                     <connections>
                         <outlet property="btnBuy" destination="cb8-mQ-CJ2" id="d0C-sW-x9C"/>
                         <outlet property="imgSeller" destination="Q9a-32-N4R" id="4BM-KL-v0F"/>
+                        <outlet property="lblDingoFee" destination="JoS-WQ-f8f" id="TNL-VI-kT1"/>
                         <outlet property="lblEvent" destination="a8D-36-hkU" id="skw-Ax-zYy"/>
                         <outlet property="lblNumber" destination="0hL-Pw-DXy" id="KOC-Sf-qZ5"/>
                         <outlet property="lblPaymentOption" destination="oNH-wU-5Zs" id="Hye-bS-Wqy"/>
                         <outlet property="lblPrice" destination="k7S-7X-cB4" id="g8T-hz-2DO"/>
                         <outlet property="lblSeller" destination="RYk-me-9bA" id="cx9-L8-hCY"/>
                         <outlet property="lblTotal" destination="XE7-eI-4re" id="ppk-Ff-kEF"/>
+                        <outlet property="lblWhyCharged" destination="OpG-Bb-3gv" id="V9Z-Ag-8dS"/>
+                        <outlet property="lblWhyChargedSub" destination="OvI-3j-8k5" id="azl-Uu-BSa"/>
+                        <outlet property="txtFieldfee" destination="EJq-9T-T1C" id="GL2-Wq-JV2"/>
                         <outlet property="txtName" destination="2fn-45-2Ao" id="iev-CL-Svh"/>
                         <outlet property="txtNumber" destination="Kgp-nv-xTx" id="JgM-4A-5fw"/>
                         <outlet property="txtPayment" destination="LRM-Ux-Njd" id="i2Y-ce-0Eg"/>
@@ -1518,7 +1539,7 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xd5-Hv-T0O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1529" y="-3041"/>
+            <point key="canvasLocation" x="1236" y="-3107"/>
         </scene>
         <!--Tickets View Controller-->
         <scene sceneID="YAy-jS-LVU">
@@ -1538,7 +1559,7 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="concerts.png" id="YGu-T0-LiQ" userLabel="back">
-                                            <rect key="frame" x="0.0" y="-37" width="320" height="323"/>
+                                            <rect key="frame" x="0.0" y="-37" width="320" height="353"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </imageView>
@@ -1621,7 +1642,7 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Arrow.png" id="02G-cO-D4r" userLabel="arrow">
-                                            <rect key="frame" x="1890" y="0.0" width="18" height="26"/>
+                                            <rect key="frame" x="2210" y="0.0" width="18" height="26"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                     </subviews>
@@ -3877,7 +3898,7 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
                                                 <view contentMode="scaleToFill" id="Ri4-LC-2FA" userLabel="selection_protector">
-                                                    <rect key="frame" x="0.0" y="0.0" width="325" height="79"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="326" height="79"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </view>
@@ -4418,6 +4439,7 @@ Dingo will release your funds once the buyer confirms authenticity of the ticket
         <image name="newOffer.png" width="48" height="52"/>
         <image name="offers_cells.png" width="320" height="85"/>
         <image name="or_icon.png" width="43" height="43"/>
+        <image name="paypal_logo_with_text.png" width="305" height="136"/>
         <image name="search_icon.png" width="26" height="26"/>
         <image name="settings_icon.png" width="27" height="27"/>
         <image name="settings_icon_gray.png" width="50" height="50"/>

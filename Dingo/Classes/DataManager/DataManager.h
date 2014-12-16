@@ -18,6 +18,7 @@
 + (DataManager *)shared;
 
 - (NSArray *)allEvents;
+-(NSArray *)allEventsWithAndWithoutTickets;
 - (NSArray *)featuredEvents;
 - (void)allEventsWithCompletion:( void (^) (BOOL finished))handler;
 - (NSUInteger)eventsDateRange;

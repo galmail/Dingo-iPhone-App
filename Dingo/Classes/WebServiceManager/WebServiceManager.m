@@ -247,6 +247,7 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
                                                                               if (error ) {
                                                                                   UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
                                                                                   [alert show];
+                                                                                  handler(nil,error);
                                                                               } else {
                                                                                   
                                                                                   if (response) {

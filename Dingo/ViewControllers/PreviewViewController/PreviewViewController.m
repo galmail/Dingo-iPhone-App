@@ -120,6 +120,15 @@ static const NSUInteger commentCellIndex = 5;
         }
     }];
     
+    
+    NSArray *arrEvent=[[DataManager shared] allEventsWithAndWithoutTickets];
+    NSArray *arrEventFilter=[arrEvent filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"(event_id == %@)",self.event.event_id ]];
+    if (![arrEventFilter count]) {
+        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Your tickets will be listed once validated by Dingo" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        
+    }
+    
    self.tableView.separatorInset = UIEdgeInsetsZero;
 }
 
@@ -199,6 +208,7 @@ static const NSUInteger commentCellIndex = 5;
                                       @"postcode" : self.event.postalCode.length > 0 ? self.event.postalCode : @"",
                                       @"location" : location,
                                       @"image" : self.event.thumb != nil ? self.event.thumb : @""
+                                     
                                       
                                       };
             
@@ -260,7 +270,8 @@ static const NSUInteger commentCellIndex = 5;
                                      @"payment_options":self.ticket.payment_options.length > 0 ? self.ticket.payment_options : @"",
                                      @"number_of_tickets":[self.ticket.number_of_tickets stringValue],
                                      @"face_value_per_ticket":[self.ticket.face_value_per_ticket stringValue],
-                                     @"ticket_type" : self.ticket.ticket_type
+                                     @"ticket_type" : self.ticket.ticket_type,
+                                     @"event_id": self.event.event_id
                                      };
             
             NSLog(@"params %lu", (unsigned long)[self.photos count]);

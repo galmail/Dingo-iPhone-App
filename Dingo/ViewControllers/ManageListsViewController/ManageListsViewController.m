@@ -156,14 +156,18 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
+    Ticket *data=nil;
     if([segue.identifier isEqual:@"TicketDetailSegue"]) {
         NSIndexPath *selectedCellPath = [self.tableView indexPathForSelectedRow];
-        NSUInteger index = selectedCellPath.row;
-        if (selectedCellPath.section) {
-            index += self.firstSectionCellsCount;
+       // NSUInteger index = selectedCellPath.row;
+        if (selectedCellPath.section && [arraFutureEventTickets count] ) {
+            //index += self.firstSectionCellsCount;
+            data=[arraFutureEventTickets objectAtIndex:selectedCellPath.row];
+        }else{
+            data=[arraPastEventTickets objectAtIndex:selectedCellPath.row];
         }
         
-        Ticket *data = [[DataManager shared] userTickets][index];
+        //Ticket *data = [[DataManager shared] userTickets][index];
 
         TicketDetailViewController *vc = (TicketDetailViewController *)segue.destinationViewController;
         vc.ticket = data;

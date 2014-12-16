@@ -9,7 +9,7 @@
 #import "Ticket.h"
 #import "Event.h"
 
-@interface ListTicketsViewController : UITableViewController
+@interface ListTicketsViewController : UITableViewController<UITextFieldDelegate>
 
 @property (nonatomic) BOOL changed;
 @property (nonatomic, strong) Ticket *ticket;
