@@ -186,6 +186,7 @@
         vc.receiverID = [ticket.user_id stringValue];
     }
     
+    vc.fromDingo=[data.from_dingo boolValue];
     vc.ticket = ticket;
     
 }

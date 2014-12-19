@@ -181,6 +181,7 @@
     ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please wait ..."];
     [loadingView show];
     [WebServiceManager createAlert:params completion:^(id response, NSError *error) {
+        [loadingView hide];
         if (response) {
             
             if (sender.selected) {
@@ -191,8 +192,10 @@
             }
             
             [[DataManager shared] addOrUpdateAlert:response];
+        }else if (error){
+            [WebServiceManager genericError];
         }
-        [loadingView hide];
+        
     }];
 }
 

@@ -89,10 +89,12 @@
         [WebServiceManager signInWithFBAndUpdate:NO completion:^(id response, NSError *error) {
             [loadingView hide];
 
-            //if (response) {
+            if (response) {
                 SelectCityViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SelectCityViewController"];
                 [self.navigationController pushViewController:viewController animated:YES];
-            //}
+            }else{
+                [WebServiceManager genericError];
+            }
         }];
     }
     
@@ -120,12 +122,12 @@
             NSLog(@"response %@", response);
             
             if (error) {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                [alert show];
                 
                 [loadingView hide];
+                [WebServiceManager genericError];
             } else {
                 if (response) {
+                     [loadingView hide];
                     if (response[@"authentication_token"]) {
                         [AppManager sharedManager].token = response[@"authentication_token"];
                         
@@ -145,10 +147,11 @@
                         [WebServiceManager signIn:params completion:^(id response, NSError *error) {
                             NSLog(@"response %@", response);
                             if (error ) {
+                                [loadingView hide];
                                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
                                 [alert show];
                             } else {
-                                
+                                [loadingView hide];
                                 if (response) {
                                     
                                     if ([response[@"success"] boolValue]) {
@@ -175,6 +178,7 @@
                     }
                     
                 } else {
+                    [loadingView hide];
                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Unable to sign up, please try later" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
                     [alert show];
                 }

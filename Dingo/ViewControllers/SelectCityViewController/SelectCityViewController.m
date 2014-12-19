@@ -35,8 +35,8 @@
     cityPicker = [[ZSPickerView alloc] initWithItems:[[DataManager shared] allCities] allowMultiSelection:NO];
     cityPicker.delegate = self;
     txtCity.inputView = cityPicker;
-   // [AppManager sharedManager].token = @"supJZyns--KZp3sDaqAg";
-   // [AppManager sharedManager].userInfo[@"email"] = @"pierrot.lechot@gmail.com";
+    //[AppManager sharedManager].token = @"supJZyns--KZp3sDaqAg";
+   //[AppManager sharedManager].userInfo[@"email"] = @"pierrot.lechot@gmail.com";
     
 }
 
@@ -44,7 +44,8 @@
     if (txtCity.text.length > 0) {
         
         [[AppManager sharedManager].userInfo setObject:txtCity.text forKey:@"city"];
-        
+        [[NSUserDefaults standardUserDefaults] setObject:txtCity.text forKey:@"city"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
         SlidingViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SlidingViewController"];
         viewController.modalTransitionStyle =  UIModalTransitionStyleFlipHorizontal;
         [self presentViewController:viewController animated:YES completion:nil];

@@ -48,4 +48,6 @@
 + (void)createAlert:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler;
 + (void)userAlerts:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler;
 
++ (void)genericErrorWithMessage:(NSError *)error;
++ (void)genericError;
 @end

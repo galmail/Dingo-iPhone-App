@@ -82,7 +82,7 @@
         SlidingViewController *viewController = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"SlidingViewController"];
         self.window.rootViewController = viewController;
     }
-    
+    application.applicationIconBadgeNumber = 0;
     return YES;
 }
 
@@ -117,6 +117,9 @@
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    
+    UIAlertView *alertView=[[UIAlertView alloc] initWithTitle:@"Dingo" message:@"You received a new message." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [alertView show];
     
     if ( application.applicationState == UIApplicationStateActive ) {
     
@@ -153,6 +156,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    application.applicationIconBadgeNumber = 0;
     
     [[Harpy sharedInstance] checkVersionDaily];
 }
@@ -166,6 +170,8 @@
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
     return [FBAppCall handleOpenURL:url sourceApplication:sourceApplication];
 }
+
+
 
 #pragma mark CoreLocation methods
 

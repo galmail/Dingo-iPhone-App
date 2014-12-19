@@ -8,7 +8,7 @@
 
 #import "DataManager.h"
 
-@interface PreviewViewController : UITableViewController
+@interface PreviewViewController : UITableViewController<UIAlertViewDelegate>
 
 @property (nonatomic, strong) NSArray *photos;
 

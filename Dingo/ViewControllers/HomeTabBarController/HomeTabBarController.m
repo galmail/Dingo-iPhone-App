@@ -145,7 +145,7 @@ static const NSUInteger listTicketsVCIndex = 1;
 }
 
 - (UITabBarItem *)messagesTabBarItem {
-    return [self.viewControllers[3] tabBarItem];
+    return [self.viewControllers[2] tabBarItem];
 }
 
 - (ListTicketsViewController *)listTicketsVC {

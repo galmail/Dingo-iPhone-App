@@ -32,6 +32,7 @@
 @end
 
 @implementation ChatViewController
+@synthesize fromDingo;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -68,20 +69,29 @@
    
     // Keyboard events
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardWillShowNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
 
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.title = self.receiverName;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
+    if (fromDingo)
+        [self.navigationItem setRightBarButtonItem:nil];
+        self.title = self.receiverName;
     
     [self reloadMessagesWithCompletion:^(BOOL finished) {
         [bubbleTable reloadData];
-        [bubbleTable scrollBubbleViewToBottomAnimated:YES];
+        [bubbleTable scrollBubbleViewToBottomAnimated:NO];
     }];
 
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 -(void) refreshInvoked:(id)sender forState:(UIControlState)state {
@@ -239,6 +249,7 @@
         frame = bubbleTable.frame;
         frame.size.height -= kbSize.height;
         bubbleTable.frame = frame;
+        [bubbleTable scrollBubbleViewToBottomAnimated:YES];
     }];
 }
 
@@ -259,16 +270,22 @@
     }];
 }
 
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return NO;
+}
+
 #pragma mark - Actions
 
 - (IBAction)btnSendTap:(id)sender
 {
     
-    if (textField.text.length == 0) {
+    if ([[textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet] ] length]  == 0) {
         return;
     }
     
-    NSDictionary *params = @{ @"ticket_id": self.ticket.ticket_id, @"receiver_id" : self.receiverID, @"content" : textField.text };
+    NSDictionary *params = @{ @"ticket_id": self.ticket.ticket_id, @"receiver_id" : self.receiverID, @"content" : textField.text };
     
     [WebServiceManager sendMessage:params completion:^(id response, NSError *error) {
         if (!error) {
@@ -291,7 +308,7 @@
     }];
     
     textField.text = @"";
-    [textField resignFirstResponder];
+    //[textField resignFirstResponder];
 }
 
 #pragma mark ZSLabelDelegate methods
@@ -309,8 +326,11 @@
             [loadingView show];
             [WebServiceManager replyOffer:@{@"accept_offer": @"1", @"offerID":offerID} completion:^(id response, NSError *error) {
                 [loadingView hide];
+                
                 if (response) {
                     [self reloadMessagesWithCompletion:nil];
+                }else{
+                    [WebServiceManager genericError];
                 }
                 
             }];
@@ -323,6 +343,8 @@
                 [loadingView hide];
                 if (response) {
                     [self reloadMessagesWithCompletion:nil];
+                }else{
+                    [WebServiceManager genericError];
                 }
                 
             }];

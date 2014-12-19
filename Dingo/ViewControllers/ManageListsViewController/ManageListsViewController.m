@@ -57,6 +57,21 @@
         
         arraPastEventTickets= [NSMutableArray arrayWithArray:[[DataManager shared] ticketsBeforeDate:[NSDate date]]];
         arraFutureEventTickets=[NSMutableArray arrayWithArray:[[DataManager shared] ticketsAfterDate:[NSDate date]]];
+        NSArray *sortedArr1 = [NSArray array];
+        sortedArr1=[arraFutureEventTickets sortedArrayUsingComparator:^NSComparisonResult(Ticket *obj1, Ticket *obj2){
+              Event *event1=[[DataManager shared] eventByID:obj1.event_id];
+             Event *event2=[[DataManager shared] eventByID:obj2.event_id];
+            
+            if ([event1.date compare:event2.date]==NSOrderedAscending) {
+                return NSOrderedAscending;
+            } else if ([event1.date compare:event2.date]==NSOrderedDescending) {
+                return NSOrderedDescending;
+            } else {
+                return NSOrderedSame;
+            }
+
+            
+        }];
         
         [self.tableView reloadData];
         [loadingView hide];
@@ -111,6 +126,8 @@
 
                 
                
+            }else{
+                [WebServiceManager genericError];
             }
         }];
     }

@@ -86,6 +86,7 @@ static const CGFloat categoriesHeight = 110;
                         
                         [self.tableView reloadData];
                         [loadingView hide];
+                        
                         if ([[AppManager sharedManager] justInstalled]) {
                             [self setupTips];
                         }

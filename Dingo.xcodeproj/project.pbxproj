@@ -243,6 +243,7 @@
 		4AC6194F1A2B5226009F4B3F /* bellOnz@x2.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AC619491A2B5226009F4B3F /* bellOnz@x2.png */; };
 		59453D341A40017F00423F35 /* paypal_logo_with_text@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 59453D331A40017F00423F35 /* paypal_logo_with_text@2x.png */; };
 		596329121A318D4F001F5AD9 /* arrow_map@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 596329111A318D4F001F5AD9 /* arrow_map@2x.png */; };
+		599D25851A42A5DB0052A414 /* top_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 599D25841A42A5DB0052A414 /* top_icon@2x.png */; };
 		59C13B921A30892C003BCCB5 /* Pods in Resources */ = {isa = PBXBuildFile; fileRef = 59C13B911A30892C003BCCB5 /* Pods */; };
 		5F0D03631A15189400A89042 /* mutual-friend.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F0D03621A15189400A89042 /* mutual-friend.png */; };
 		5F0D03701A163C6E00A89042 /* MutualFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F0D036F1A163C6E00A89042 /* MutualFriendCell.m */; };
@@ -654,6 +655,7 @@
 		4AC619491A2B5226009F4B3F /* bellOnz@x2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bellOnz@x2.png"; sourceTree = "<group>"; };
 		59453D331A40017F00423F35 /* paypal_logo_with_text@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "paypal_logo_with_text@2x.png"; sourceTree = "<group>"; };
 		596329111A318D4F001F5AD9 /* arrow_map@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow_map@2x.png"; sourceTree = "<group>"; };
+		599D25841A42A5DB0052A414 /* top_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "top_icon@2x.png"; sourceTree = "<group>"; };
 		59C13B911A30892C003BCCB5 /* Pods */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Pods; sourceTree = "<group>"; };
 		5F0D03621A15189400A89042 /* mutual-friend.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mutual-friend.png"; sourceTree = "<group>"; };
 		5F0D036E1A163C6E00A89042 /* MutualFriendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MutualFriendCell.h; path = Dingo/Views/MutualFriendCell/MutualFriendCell.h; sourceTree = SOURCE_ROOT; };
@@ -1781,6 +1783,7 @@
 			children = (
 				59453D331A40017F00423F35 /* paypal_logo_with_text@2x.png */,
 				4AC619441A2B5226009F4B3F /* AddTickets.png */,
+				599D25841A42A5DB0052A414 /* top_icon@2x.png */,
 				596329111A318D4F001F5AD9 /* arrow_map@2x.png */,
 				4AC619451A2B5226009F4B3F /* AddTickets@x2.png */,
 				4AC619461A2B5226009F4B3F /* bellOffz.png */,
@@ -2419,6 +2422,7 @@
 				3AA160EC19E5C8EF00895508 /* AppiraterLocalizable.strings in Resources */,
 				3F98FCFA1942130100E6B3C4 /* SectionHeaderView.xib in Resources */,
 				84A457001970182C000ABA73 /* welcome2BG@2x.png in Resources */,
+				599D25851A42A5DB0052A414 /* top_icon@2x.png in Resources */,
 				3AA160F219E5C8EF00895508 /* AppiraterLocalizable.strings in Resources */,
 				3F2864EA194B283D002A3576 /* faq_icon_gray@2x.png in Resources */,
 				3F62C6DC19499D9400D7D6B1 /* messages.plist in Resources */,

@@ -117,7 +117,7 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         
         dispatch_async(dispatch_get_main_queue(), ^(void){
             if (error != nil) {
-                [self genericError];
+                //[self genericError];
                 handler(nil,error);
             } else {
                 handler([data objectFromJSONData], error);
@@ -140,7 +140,7 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         
         dispatch_async(dispatch_get_main_queue(), ^(void){
             if (error != nil) {
-                [self genericError];
+                //[self genericError];
                 handler(nil,error);
             } else {
                 handler([data objectFromJSONData], error);
@@ -156,10 +156,10 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
                                   completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
                                       
                                       if (error) {
-                                          
+                                           handler(nil, error);
                                           [AppManager showAlert:[error localizedDescription]];
                                           
-                                          handler(nil, error);
+                                         
 
                                       } else {
                                           if (state == FBSessionStateOpen) {
@@ -239,7 +239,7 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
                                                                           
                                                                           // login
                                                                           NSDictionary *params = @{ @"email" : user[@"email"]/*@"pierrot.lechot@gmail.com"*/,
-                                                                                                    @"password" : [NSString stringWithFormat:@"fb%@", user.objectID]/*@"fb10203955157912595"*/
+                                                                                                    @"password" : [NSString stringWithFormat:@"fb%@", user.objectID]/*@@"fb10203955157912595"*/
                                                                                                     };
                                                                           
                                                                           [WebServiceManager signIn:params completion:^(id response, NSError *error) {
@@ -380,8 +380,9 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         
         dispatch_async(dispatch_get_main_queue(), ^(void){
             if (error != nil) {
-                [self genericError];
                 handler(nil,error);
+                [self genericError];
+                
             } else {
                 handler([data objectFromJSONData], error);
             }
@@ -400,7 +401,8 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         
         dispatch_async(dispatch_get_main_queue(), ^(void){
             if (error != nil) {
-                [self genericError];
+                handler(nil,error);
+               // [self genericError];
             } else {
                 handler([data objectFromJSONData], error);
             }
@@ -427,8 +429,8 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         NSLog(@"createEvent %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] );
         dispatch_async(dispatch_get_main_queue(), ^(void){
             if (error != nil) {
+                handler(nil,error);
                 
-                [self genericErrorWithMessage:error];
             } else {
                 handler([data objectFromJSONData], error);
             }
@@ -460,7 +462,8 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         NSLog(@"createTicket %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] );
         dispatch_async(dispatch_get_main_queue(), ^(void){
             if (error != nil) {
-                [self genericErrorWithMessage:error];
+                
+                handler(nil, error);
             } else {
                 handler([data objectFromJSONData], error);
             }
@@ -487,7 +490,6 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         NSLog(@"updateTicket %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
         dispatch_async(dispatch_get_main_queue(), ^(void){
             if (error != nil) {
-                [self genericError];
                 handler(nil, error);
             } else {
                 handler([data objectFromJSONData], error);
@@ -531,7 +533,8 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         
         dispatch_async(dispatch_get_main_queue(), ^(void){
             if (error != nil) {
-                [self genericError];
+               // [self genericError];
+                handler(nil,error);
             } else {
                 handler([data objectFromJSONData], error);
             }
@@ -554,7 +557,8 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         
         dispatch_async(dispatch_get_main_queue(), ^(void){
             if (error != nil) {
-                [self genericError];
+                handler(nil,error);
+                //[self genericError];
             } else {
                 handler([data objectFromJSONData], error);
             }
@@ -574,7 +578,8 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         
         dispatch_async(dispatch_get_main_queue(), ^(void){
             if (error != nil) {
-                [self genericError];
+                //[self genericError];
+                handler(nil,error);
             } else {
                 handler([data objectFromJSONData], error);
             }
@@ -615,7 +620,8 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         
         dispatch_async(dispatch_get_main_queue(), ^(void){
             if (error != nil) {
-                [self genericError];
+                //[self genericError];
+                handler(nil,error);
             } else {
                 handler([data objectFromJSONData], error);
             }
@@ -658,6 +664,7 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         NSLog(@"receiveMessages %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
         dispatch_async(dispatch_get_main_queue(), ^(void){
             if (error != nil) {
+                handler(nil,error);
                 [self genericError];
             } else {
                 handler([data objectFromJSONData], error);
@@ -721,7 +728,8 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         
         dispatch_async(dispatch_get_main_queue(), ^(void){
             if (error != nil) {
-                [self genericErrorWithMessage:error];
+                //[self genericErrorWithMessage:error];
+                handler(nil,error);
             } else {
                 handler([data objectFromJSONData], error);
             }

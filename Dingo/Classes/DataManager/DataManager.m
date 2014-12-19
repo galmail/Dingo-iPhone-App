@@ -35,7 +35,8 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     
     NSManagedObjectContext *context = [AppManager sharedManager].managedObjectContext;
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Event"];
-    [request setPredicate:[NSPredicate predicateWithFormat:@"(tickets != %d)",0]];
+    [request setPredicate:[NSPredicate predicateWithFormat:@"(tickets != %d && (city == %@))",0,@"London"]];
+
     request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES]];
     
     NSError *error = nil;
@@ -69,10 +70,10 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
 
 - (void)allEventsWithCompletion:( void (^) (BOOL finished))handler {
     NSLog(@"userInfo=%@",[AppManager sharedManager].userInfo);
-    NSDictionary* params = @{@"city":[AppManager sharedManager].userInfo[@"city"]};
+    NSDictionary* params = @{@"city":[AppManager sharedManager].userInfo[@"city"],@"any":@"true"};
    
     if ([AppManager sharedManager].currentLocation != nil) {
-        params = @{@"location": [NSString stringWithFormat:@"%f,%f", [AppManager sharedManager].currentLocation.coordinate.latitude, [AppManager sharedManager].currentLocation.coordinate.longitude], @"city":[AppManager sharedManager].userInfo[@"city"]};
+        params = @{@"location": [NSString stringWithFormat:@"%f,%f", [AppManager sharedManager].currentLocation.coordinate.latitude, [AppManager sharedManager].currentLocation.coordinate.longitude], @"city":[AppManager sharedManager].userInfo[@"city"] };
     }
     
     [WebServiceManager events:params completion:^(id response, NSError *error) {

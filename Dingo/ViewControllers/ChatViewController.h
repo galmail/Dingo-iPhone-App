@@ -9,10 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "Ticket.h"
 
-@interface ChatViewController : UIViewController
+@interface ChatViewController : UIViewController<UITextFieldDelegate>
 
 @property (nonatomic) Ticket *ticket;
 @property (nonatomic) NSString *receiverName;
 @property (nonatomic) NSString *receiverID;
+@property(assign,nonatomic) BOOL fromDingo;
+
 
 @end

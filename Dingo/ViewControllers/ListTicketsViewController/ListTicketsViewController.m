@@ -823,10 +823,10 @@ static const NSInteger paypalEditAlert = 3;
             lbldelivery.textColor = [UIColor redColor];
         }
 
-        if (!NSSTRING_HAS_DATA([[NSUserDefaults standardUserDefaults] objectForKey:@"paypal_account"])) {
-            requiredInfoFilled = NO;
-            lblPayment.textColor = [UIColor redColor];
-        }
+//        if (!NSSTRING_HAS_DATA([[NSUserDefaults standardUserDefaults] objectForKey:@"paypal_account"])) {
+//            requiredInfoFilled = NO;
+//            lblPayment.textColor = [UIColor redColor];
+//        }
         
         if (self.typeTicketField.text.length == 0) {
             requiredInfoFilled = NO;
@@ -879,7 +879,7 @@ static const NSInteger paypalEditAlert = 3;
                self.ticket.payment_options= @"PayPal";
            // }
         }else{
-            
+            self.ticket.payment_options= @"  ";
         }
        
         
@@ -915,10 +915,28 @@ static const NSInteger paypalEditAlert = 3;
         self.ticket.facebook_id = [AppManager sharedManager].userInfo[@"fb_id"];
         self.ticket.event_id = self.event.event_id;
         
+        if (!self.event) {
+            self.event = [[Event alloc] initWithEntity:[NSEntityDescription entityForName:@"Event" inManagedObjectContext:[AppManager sharedManager].managedObjectContext] insertIntoManagedObjectContext:nil];
+            NSDateFormatter *formatter =[[NSDateFormatter alloc] init];
+            formatter.dateFormat = @"HH:mm dd/MM/yyyy";
+            self.event.name = self.nameField.text;
+            self.event.address = self.locationField.text;
+            self.event.date = [formatter dateFromString:self.startDateField.text];
+            self.event.endDate = [formatter dateFromString:self.endDateField.text];
+            
+            
+            
+        }
+        
         PreviewViewController *vc = (PreviewViewController *)segue.destinationViewController;
         vc.event = self.event;
         vc.ticket = self.ticket;
         vc.photos = photos;
+        if (NSSTRING_HAS_DATA(self.ticket.ticket_id)) {
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"kDingo_ticket_editTicket"];
+        }else{
+            [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"kDingo_ticket_editTicket"];
+        }
         vc.editTicket = [[NSUserDefaults standardUserDefaults] boolForKey:@"kDingo_ticket_editTicket"];
         
         [self saveDraft];
@@ -1192,6 +1210,8 @@ static const NSInteger paypalEditAlert = 3;
                         if ([self shouldPerformSegueWithIdentifier:@"PreviewSegue" sender:self]) {
                             [self performSegueWithIdentifier:@"PreviewSegue" sender:self];
                         }
+                    }else{
+                        [WebServiceManager genericError];
                     }
                 }];
             }
@@ -1200,27 +1220,30 @@ static const NSInteger paypalEditAlert = 3;
             
             if (buttonIndex == 1) {
                 
-                if ([[alertView textFieldAtIndex:0].text length]>0) {
+//                if ([[alertView textFieldAtIndex:0].text length]>0) {
                     ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please wait..."];
                     [loadingView show];
                     NSDictionary *params = @{@"paypal_account":[alertView textFieldAtIndex:0].text };
                     [WebServiceManager updateProfile:params completion:^(id response, NSError *error) {
                         NSLog(@"updateProfile response %@", response);
                         [loadingView hide];
-                        if ([response[@"paypal_account"] length]) {
-                            
+                        if (!error) {
+                        
                             [[AppManager sharedManager].userInfo setObject:response[@"paypal_account"] forKey:@"paypal_account"];
                             [[NSUserDefaults standardUserDefaults] setObject:response[@"paypal_account"] forKey:@"paypal_account"];
                             [[NSUserDefaults standardUserDefaults] synchronize];
                            // paypalSwitch.on= YES;
+                        }else{
+                            [WebServiceManager genericError];
                         }
                         
                     }];
 
                     
-                } else {
-                     paypalSwitch.on = NO;
-                }
+//                } else {
+//                    [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"paypal_account"];
+//                     paypalSwitch.on = NO;
+//                }
                 
             } else {
                 paypalSwitch.on = NO;

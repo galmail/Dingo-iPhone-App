@@ -83,13 +83,13 @@
     txtNumber.text = [self.ticket.number_of_tickets stringValue];
     txtPrice.text = [currencyFormatter stringFromNumber:self.ticket.price];
     
-    if ([self.ticket.payment_options rangeOfString:@"Cash"].location != NSNotFound) {
-        txtPayment.text= @"Cash in person";
-    }
+//    if ([self.ticket.payment_options rangeOfString:@"Cash"].location != NSNotFound) {
+//        txtPayment.text= @"Cash in person";
+//    }
     
-    if ([self.ticket.payment_options rangeOfString:@"PayPal"].location != NSNotFound) {
+   // if ([self.ticket.payment_options rangeOfString:@"PayPal"].location != NSNotFound) {
         txtPayment.text= @"PayPal or Credit Card";
-    }
+   // }
     
     txtSellerName.text = self.ticket.user_name;
     imgSeller.image = [UIImage imageWithData:self.ticket.user_photo];
@@ -225,10 +225,11 @@
                     NSLog(@"make order - %@", response);
                     if (response) {
                         
-                        if ([response[@"id"] boolValue]) {
+                        if (response[@"id"]) {
                             
                             
                             ChatViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"ChatViewController"];
+                            vc.receiverID=response[@"receiver_id"];
                             vc.ticket = self.ticket;
                             
                             [self.navigationController pushViewController:vc animated:YES];
@@ -243,6 +244,8 @@
                         }
                         
                     }
+                }else{
+                     [WebServiceManager genericError];
                 }
             }];
         }
