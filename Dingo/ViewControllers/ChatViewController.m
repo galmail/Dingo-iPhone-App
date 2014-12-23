@@ -21,10 +21,12 @@
 @interface ChatViewController ()<UIBubbleTableViewDataSource, ZSLabelDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate>{
     IBOutlet UIBubbleTableView *bubbleTable;
     IBOutlet UIView *textInputView;
+    NSTimer *repeatingTimer;
     
     IBOutlet DingoField *textField;
     
     NSMutableArray *bubbleData;
+    BOOL fromDingo;
     
     UIRefreshControl *refreshControl;
 }
@@ -32,7 +34,7 @@
 @end
 
 @implementation ChatViewController
-@synthesize fromDingo;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -78,8 +80,7 @@
     [super viewWillAppear:animated];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
-    if (fromDingo)
-        [self.navigationItem setRightBarButtonItem:nil];
+   
         self.title = self.receiverName;
     
     [self reloadMessagesWithCompletion:^(BOOL finished) {
@@ -89,9 +90,27 @@
 
 }
 
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    repeatingTimer = [NSTimer timerWithTimeInterval:15 target:self selector:@selector(autometicRefresh) userInfo:nil repeats:YES] ;
+    
+    [[NSRunLoop currentRunLoop] addTimer:repeatingTimer forMode:NSDefaultRunLoopMode];
+}
+
+
+
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [repeatingTimer invalidate];
+}
+
+
+-(void)autometicRefresh{
+    [self reloadMessagesWithCompletion:^(BOOL finished) {
+       
+    }];
+
 }
 
 -(void) refreshInvoked:(id)sender forState:(UIControlState)state {
@@ -113,8 +132,36 @@
         NSArray * messages = [[DataManager shared] allMessagesFor:userID ticketID:self.ticket.ticket_id];
         [bubbleData removeAllObjects];
         
+        if (!fromDingo) {
+            NSString *str=@"";
+            if (([self.receiverID isEqualToString:[[AppManager sharedManager].userInfo[@"id"] stringValue]])) {
+               str=@"receiver_id == %@";
+            }else{
+               str=@"sender_id == %@";
+            }
+            
+            
+            NSArray *arrayMessages_receiver=[messages filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:str,self.receiverID]];
+            NSArray *arrayMessage_fromDingo=[messages filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"from_dingo == %@",[NSNumber numberWithBool:true]]];
+            
+            if ([arrayMessage_fromDingo count] == [arrayMessages_receiver count] ){
+                if ([arrayMessages_receiver count] !=0 && [arrayMessage_fromDingo count] !=0 ) {
+                    [self.navigationItem setRightBarButtonItem:nil];
+                }else if ([arrayMessages_receiver count] ==0 && [arrayMessage_fromDingo count] !=0){
+                    [self.navigationItem setRightBarButtonItem:nil];
+                }
+                
+            }
+            
+            fromDingo=true;
+            
+        }
+        
+
+        
         for (Message * msg in messages) {
             NSBubbleData *bubble = nil;
+            
             
             if ([msg.from_dingo boolValue] ) {
                 

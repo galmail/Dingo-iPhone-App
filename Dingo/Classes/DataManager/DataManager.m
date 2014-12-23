@@ -49,7 +49,7 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     NSManagedObjectContext *context = [AppManager sharedManager].managedObjectContext;
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Event"];
     //[request setPredicate:[NSPredicate predicateWithFormat:@"(tickets != %d)",0]];
-    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES]];
+    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]];
     
     NSError *error = nil;
     NSArray *events = [context executeFetchRequest:request error:&error];
@@ -213,6 +213,24 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     return [result copy];
 }
 
+
+//this sorted events strictly even they have same date
+- (NSArray *)tickets_BeforeDate:(NSDate *)date {
+    NSArray *tickets = [self userTickets];
+    NSMutableArray *result = [NSMutableArray array];
+    
+    for (Ticket *ticket in tickets) {
+        Event *event = [self eventByID:ticket.event_id];
+       // NSDate *curDate = event.date;
+        if ([event.date compare:date]==NSOrderedAscending) {
+            [result addObject:ticket];
+        }
+    }
+    
+    return [result copy];
+}
+
+
 - (NSArray *)ticketsAfterDate:(NSDate *)date {
     NSArray *tickets = [self userTickets];
     NSMutableArray *result = [NSMutableArray array];
@@ -221,6 +239,23 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
         Event *event = [self eventByID:ticket.event_id];
         NSDate *curDate = event.date;
         if ([DingoUtilites daysBetween:date and:curDate] >= 0) {
+            [result addObject:ticket];
+        }
+    }
+    
+    return [result copy];
+}
+
+
+//this sorted events strictly even they have same date
+- (NSArray *)tickets_AfterDate:(NSDate *)date {
+    NSArray *tickets = [self userTickets];
+    NSMutableArray *result = [NSMutableArray array];
+    
+    for (Ticket *ticket in tickets) {
+        Event *event = [self eventByID:ticket.event_id];
+       // NSDate *curDate = event.date;
+        if ([event.date compare:date]==NSOrderedDescending || [event.date compare:date]==NSOrderedSame) {
             [result addObject:ticket];
         }
     }

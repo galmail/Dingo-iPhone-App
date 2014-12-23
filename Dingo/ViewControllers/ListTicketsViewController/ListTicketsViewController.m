@@ -264,6 +264,21 @@ static const NSInteger paypalEditAlert = 3;
             self.changed = YES;
         }
     }
+    
+    
+    if ([[[NSUserDefaults standardUserDefaults] valueForKey:@"kDingo_ticket_editTicket"] boolValue]) {
+        [self.nameField setUserInteractionEnabled:false];
+        [self.locationField setUserInteractionEnabled:false];
+        [self.startDateField setUserInteractionEnabled:false];
+        [self.endDateField setUserInteractionEnabled:false];
+    }else{
+        [self.nameField setUserInteractionEnabled:true];
+        [self.locationField setUserInteractionEnabled:true];
+        [self.startDateField setUserInteractionEnabled:true];
+        [self.endDateField setUserInteractionEnabled:true];
+    }
+    
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated{

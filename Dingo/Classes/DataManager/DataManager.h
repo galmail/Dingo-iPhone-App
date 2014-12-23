@@ -51,7 +51,9 @@
 - (NSArray *)userTickets;
 - (void)userTicketsWithCompletion:( void (^) (BOOL finished))handler;
 - (NSArray *)ticketsBeforeDate:(NSDate *)date;
+- (NSArray *)tickets_BeforeDate:(NSDate *)date;
 - (NSArray *)ticketsAfterDate:(NSDate *)date;
+- (NSArray *)tickets_AfterDate:(NSDate *)date;
 
 - (NSArray *)allFriends;
 - (NSArray *)allCities;

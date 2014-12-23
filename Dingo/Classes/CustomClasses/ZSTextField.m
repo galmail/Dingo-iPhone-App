@@ -247,9 +247,12 @@ UITableViewController *tableViewController;
 
 - (NSArray *)applyFilterWithSearchQuery:(NSString *)filter
 {
+    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
     if (self.applyFilter) {
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"DisplayText contains[cd] %@", filter];
-        NSArray *filteredGoods = [NSArray arrayWithArray:[data filteredArrayUsingPredicate:predicate]];
+        NSMutableArray *filteredGoods = [NSMutableArray arrayWithArray:[data filteredArrayUsingPredicate:predicate]];
+        [filteredGoods sortUsingDescriptors:[NSArray arrayWithObject:sort]];
+      
         return filteredGoods;
 
     }

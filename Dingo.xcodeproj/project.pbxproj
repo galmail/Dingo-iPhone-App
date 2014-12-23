@@ -2298,7 +2298,7 @@
 				ORGANIZATIONNAME = Dingo;
 				TargetAttributes = {
 					3F10DDD419388E6F002D3B43 = {
-						DevelopmentTeam = 29CC92V523;
+						DevelopmentTeam = H7W3N7L3PK;
 					};
 				};
 			};
@@ -3041,8 +3041,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iOS Development: Spencer Pratt (2S2LQM52A4)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iOS Development: Spencer Pratt (2S2LQM52A4)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Tocarta International SL (H7W3N7L3PK)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Tocarta International SL (H7W3N7L3PK)";
 				ENABLE_NS_ASSERTIONS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3062,7 +3062,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = Dingo;
-				PROVISIONING_PROFILE = "e880193c-c9e2-42e6-a284-21a7323e7959";
+				PROVISIONING_PROFILE = "d1d0ddd3-1632-4e4c-8e59-9d322824fff3";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3074,8 +3074,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iOS Development: Spencer Pratt (2S2LQM52A4)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iOS Development: Spencer Pratt (2S2LQM52A4)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Tocarta International SL (H7W3N7L3PK)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Tocarta International SL (H7W3N7L3PK)";
 				ENABLE_NS_ASSERTIONS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3095,7 +3095,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = Dingo;
-				PROVISIONING_PROFILE = "e880193c-c9e2-42e6-a284-21a7323e7959";
+				PROVISIONING_PROFILE = "d1d0ddd3-1632-4e4c-8e59-9d322824fff3";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

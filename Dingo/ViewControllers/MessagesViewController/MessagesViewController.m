@@ -182,11 +182,24 @@
            vc.receiverID = data.receiver_id;
         }
     } else {
+        if (!ticket) {
+            
+            if ([data.from_dingo integerValue]==1) {
+                vc.receiverName = data.sender_name;
+                vc.receiverID = data.sender_id;
+            }else{
+            vc.receiverName = data.receiver_name;
+            vc.receiverID = data.receiver_id;
+            }
+        }else{
+
         vc.receiverName = ticket.user_name;
         vc.receiverID = [ticket.user_id stringValue];
+        }
     }
     
-    vc.fromDingo=[data.from_dingo boolValue];
+    
+   
     vc.ticket = ticket;
     
 }

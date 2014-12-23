@@ -96,8 +96,20 @@ const CGFloat messagesCellHeight = 82;
             self.icon = nil;
             if (ticket.user_photo) {
                 self.icon = [UIImage imageWithData:ticket.user_photo];
+                 self.name = ticket.user_name;
+            }else{
+               
+                
+                self.name= ([data.receiver_id isEqualToString:[[AppManager sharedManager].userInfo[@"id"] stringValue]]?data.sender_name:data.receiver_name);
+                [WebServiceManager imageFromUrl:([data.receiver_id isEqualToString:[[AppManager sharedManager].userInfo[@"id"] stringValue]]?data.sender_avatar_url:data.receiver_avatar_url) completion:^(id response, NSError *error) {
+                    self.icon = [UIImage imageWithData:response];
+                    data.receiver_avatar = response;
+                }];
+               
+                
+                
             }
-            self.name = ticket.user_name;
+           
         }
 
     }

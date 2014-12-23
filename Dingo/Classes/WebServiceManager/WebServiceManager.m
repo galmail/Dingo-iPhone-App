@@ -58,7 +58,8 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         
         dispatch_async(dispatch_get_main_queue(), ^(void){
             if (error != nil) {
-                [self genericError];
+                handler(nil,error);
+                
             } else {
                 handler([data objectFromJSONData], error);
             }

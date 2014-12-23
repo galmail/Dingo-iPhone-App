@@ -242,6 +242,7 @@ static const NSUInteger commentCellIndex = 5;
                 if (!error ) {
                     if (response[@"id"]) {
                         // ticket created
+                        [loadingView hide];
                         
                         [AppManager sharedManager].draftTicket = nil;
                         
@@ -324,7 +325,7 @@ static const NSUInteger commentCellIndex = 5;
                     [WebServiceManager createTicket:params photos:self.photos completion:^(id response, NSError *error) {
                         if (response[@"id"]) {
                             // ticket created
-                            
+                            [loadingView hide];
                             [AppManager sharedManager].draftTicket = nil;
                             [self.navigationController.viewControllers[0] setSelectedIndex:0];
                             [self.navigationController popToRootViewControllerAnimated:YES];

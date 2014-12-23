@@ -120,25 +120,25 @@
 
 - (IBAction)buy:(id)sender {
     
-    if ([self.ticket.payment_options rangeOfString:@"Cash"].location != NSNotFound) {
-        ChatViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"ChatViewController"];
-        vc.ticket = self.ticket;
-        
-        [self.navigationController pushViewController:vc animated:YES];
-        
-        return;
-    }
+//    if ([self.ticket.payment_options rangeOfString:@"Cash"].location != NSNotFound) {
+//        ChatViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"ChatViewController"];
+//        vc.ticket = self.ticket;
+//        
+//        [self.navigationController pushViewController:vc animated:YES];
+//        
+//        return;
+//    }
     
     payPalKey = nil;
     
     if ([self.event.test boolValue]) {
          [PayPalMobile preconnectWithEnvironment:PayPalEnvironmentSandbox];
     } else {
-#ifdef kProductionMode
+//#ifdef kProductionMode
         [PayPalMobile preconnectWithEnvironment:PayPalEnvironmentProduction];
-#else 
-        [PayPalMobile preconnectWithEnvironment:PayPalEnvironmentSandbox];
-#endif
+//#else 
+//        [PayPalMobile preconnectWithEnvironment:PayPalEnvironmentSandbox];
+//#endif
     }
     
     PayPalPayment *payment = [[PayPalPayment alloc] init];

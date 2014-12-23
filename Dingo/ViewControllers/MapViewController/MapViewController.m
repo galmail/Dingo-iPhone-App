@@ -36,6 +36,10 @@
     
     [WebServiceManager addressToLocation:[DataManager eventLocation:self.event] completion:^(id response, NSError *error) {
         
+        if (error) {
+            [WebServiceManager genericError];
+        }
+        
         if ([response[@"status"] isEqualToString:@"OK"]) {
             NSArray *results = response[@"results"];
             if (results.count > 0) {

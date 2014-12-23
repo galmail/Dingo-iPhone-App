@@ -129,7 +129,7 @@
 - (NSArray *)dataForPopoverInTextField:(ZSTextField *)textField {
     
     if (textField == txtDescription) {
-        NSArray* events = [[DataManager shared] allEvents];
+        NSArray* events = [[DataManager shared] allEventsWithAndWithoutTickets];
         NSMutableArray *dataForPopover = [NSMutableArray new];
         for (Event *tmpEvent in events) {
             [dataForPopover addObject:@{@"DisplayText": tmpEvent.name, @"CustomObject":tmpEvent}];

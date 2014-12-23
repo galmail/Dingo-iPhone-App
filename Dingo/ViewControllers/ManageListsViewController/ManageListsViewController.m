@@ -30,8 +30,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    arraPastEventTickets= [NSMutableArray arrayWithArray:[[DataManager shared] ticketsBeforeDate:[NSDate date]]];
-    arraFutureEventTickets=[NSMutableArray arrayWithArray:[[DataManager shared] ticketsAfterDate:[NSDate date]]];
+  NSMutableArray  *arraPastEventTicket= [NSMutableArray arrayWithArray:[[DataManager shared] tickets_BeforeDate:[NSDate date]]];
+    NSMutableArray *arraFutureEventTicket=[NSMutableArray arrayWithArray:[[DataManager shared] tickets_AfterDate:[NSDate date]]];
+    arraPastEventTickets=[NSMutableArray arrayWithArray:[self sortEvents:arraPastEventTicket]];
+     arraFutureEventTickets=[NSMutableArray arrayWithArray:[self sortEvents:arraFutureEventTicket]];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
@@ -55,23 +57,10 @@
             [self.view addSubview:lblNoTickets];
         }
         
-        arraPastEventTickets= [NSMutableArray arrayWithArray:[[DataManager shared] ticketsBeforeDate:[NSDate date]]];
-        arraFutureEventTickets=[NSMutableArray arrayWithArray:[[DataManager shared] ticketsAfterDate:[NSDate date]]];
-        NSArray *sortedArr1 = [NSArray array];
-        sortedArr1=[arraFutureEventTickets sortedArrayUsingComparator:^NSComparisonResult(Ticket *obj1, Ticket *obj2){
-              Event *event1=[[DataManager shared] eventByID:obj1.event_id];
-             Event *event2=[[DataManager shared] eventByID:obj2.event_id];
-            
-            if ([event1.date compare:event2.date]==NSOrderedAscending) {
-                return NSOrderedAscending;
-            } else if ([event1.date compare:event2.date]==NSOrderedDescending) {
-                return NSOrderedDescending;
-            } else {
-                return NSOrderedSame;
-            }
-
-            
-        }];
+       NSMutableArray *arraPastEventTicket= [NSMutableArray arrayWithArray:[[DataManager shared] tickets_BeforeDate:[NSDate date]]];
+       NSMutableArray *arraFutureEventTicket=[NSMutableArray arrayWithArray:[[DataManager shared] tickets_AfterDate:[NSDate date]]];
+        arraPastEventTickets=[NSMutableArray arrayWithArray:[self sortEvents:arraPastEventTicket]];
+               arraFutureEventTickets=[NSMutableArray arrayWithArray:[self sortEvents:arraFutureEventTicket]];
         
         [self.tableView reloadData];
         [loadingView hide];
@@ -120,8 +109,10 @@
             if (!error && [response[@"available"] intValue] == 0) {
                 [[AppManager sharedManager].managedObjectContext deleteObject:data];
                 //[self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-                arraPastEventTickets= [NSMutableArray arrayWithArray:[[DataManager shared] ticketsBeforeDate:[NSDate date]]];
-                arraFutureEventTickets=[NSMutableArray arrayWithArray:[[DataManager shared] ticketsAfterDate:[NSDate date]]];
+             NSMutableArray  * arraPastEventTicket= [NSMutableArray arrayWithArray:[[DataManager shared] tickets_BeforeDate:[NSDate date]]];
+                NSMutableArray *arraFutureEventTicket=[NSMutableArray arrayWithArray:[[DataManager shared] tickets_AfterDate:[NSDate date]]];
+                arraPastEventTickets=[NSMutableArray arrayWithArray:[self sortEvents:arraPastEventTicket]];
+                    arraFutureEventTickets=[NSMutableArray arrayWithArray:[self sortEvents:arraFutureEventTicket]];
                 [self.tableView reloadData];
 
                 
@@ -207,6 +198,29 @@
     BOOL isEditMode = self.tableView.editing;
     [sender setTitle:isEditMode ? @"Edit" : @"Done"];
     [self.tableView setEditing:!isEditMode animated:YES];
+}
+
+#pragma mark - custom methods
+
+-(NSArray *)sortEvents:(NSMutableArray *)unsortedArr{
+    NSArray *sortedArr1 = [NSArray array];
+    sortedArr1=[unsortedArr sortedArrayUsingComparator:^NSComparisonResult(Ticket *obj1, Ticket *obj2){
+        Event *event1=[[DataManager shared] eventByID:obj1.event_id];
+        Event *event2=[[DataManager shared] eventByID:obj2.event_id];
+        
+        if ([event1.date compare:event2.date]==NSOrderedAscending) {
+            return NSOrderedAscending;
+        } else if ([event1.date compare:event2.date]==NSOrderedDescending) {
+            return NSOrderedDescending;
+        } else {
+            return NSOrderedSame;
+        }
+        
+        
+    }];
+    return sortedArr1;
+    
+
 }
 
 #pragma mark - Private

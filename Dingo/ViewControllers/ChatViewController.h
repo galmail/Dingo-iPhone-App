@@ -14,7 +14,7 @@
 @property (nonatomic) Ticket *ticket;
 @property (nonatomic) NSString *receiverName;
 @property (nonatomic) NSString *receiverID;
-@property(assign,nonatomic) BOOL fromDingo;
+
 
 
 @end
