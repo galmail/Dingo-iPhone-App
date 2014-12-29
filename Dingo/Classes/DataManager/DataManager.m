@@ -31,11 +31,25 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
 
 #pragma mark - Events Requests
 
+- (NSArray *)allEventsOfSelectedLocation {
+    
+    NSManagedObjectContext *context = [AppManager sharedManager].managedObjectContext;
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Event"];
+    [request setPredicate:[NSPredicate predicateWithFormat:@"(tickets != %d && (city == %@))",0,[[NSUserDefaults standardUserDefaults] objectForKey:@"city"]]];
+    
+    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES]];
+    
+    NSError *error = nil;
+    NSArray *events = [context executeFetchRequest:request error:&error];
+    
+    return events;
+}
+
 - (NSArray *)allEvents {
     
     NSManagedObjectContext *context = [AppManager sharedManager].managedObjectContext;
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Event"];
-    [request setPredicate:[NSPredicate predicateWithFormat:@"(tickets != %d && (city == %@))",0,@"London"]];
+    [request setPredicate:[NSPredicate predicateWithFormat:@"(tickets != %d)",0]];
 
     request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES]];
     

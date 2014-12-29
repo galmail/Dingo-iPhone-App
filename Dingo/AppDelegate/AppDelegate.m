@@ -25,10 +25,11 @@
 #import "GAI.h"
 
 @implementation AppDelegate
+@synthesize viewNotification;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    
+   
     [Appirater setAppId:@"893538091"];
     [Appirater setDaysUntilPrompt:1];
     [Appirater setUsesUntilPrompt:10];
@@ -83,6 +84,7 @@
         self.window.rootViewController = viewController;
     }
     application.applicationIconBadgeNumber = 0;
+    
     return YES;
 }
 
@@ -118,8 +120,14 @@
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     
-    UIAlertView *alertView=[[UIAlertView alloc] initWithTitle:@"Dingo" message:@"You received a new message." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-    [alertView show];
+
+    if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive) {
+        [self showNotiFicationView];
+    }else{
+            UIAlertView *alertView=[[UIAlertView alloc] initWithTitle:@"Dingo" message:@"You received a new message." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alertView show];
+    }
+    
     
     if ( application.applicationState == UIApplicationStateActive ) {
     
@@ -171,11 +179,64 @@
     return [FBAppCall handleOpenURL:url sourceApplication:sourceApplication];
 }
 
+#pragma mark - custom methods
+-(void)showNotiFicationView{
+    viewNotification=[[UIView alloc] initWithFrame:CGRectMake(0, -64, screenSize.width, 64)];
+    [viewNotification setBackgroundColor:[UIColor whiteColor]];
+    
+    UIButton *btnCross=[UIButton buttonWithType:UIButtonTypeCustom];
+    [btnCross setFrame:CGRectMake(screenSize.width-45, 17, 30, 30)];
+    [btnCross setImage:[UIImage imageNamed:@"cross.png"]  forState:UIControlStateNormal];
+    [btnCross addTarget:self action:@selector(removeNotificationView) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIImageView *imageViewIcon=[[UIImageView alloc] initWithFrame:CGRectMake(10, 7, 50, 50)];
+    [imageViewIcon setImage:[UIImage imageNamed:@"john_smith.png"]];
+    [viewNotification addSubview:imageViewIcon];
+    
+    UILabel *lblName=[[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(imageViewIcon.frame)+8, 8, 200, 25)];
+    [lblName setText:@"Tom"];
+    [lblName setFont:[DingoUISettings boldFontWithSize:15]];
+    [viewNotification addSubview:lblName];
+    
+    UILabel *lblMessageText=[[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(imageViewIcon.frame)+8, CGRectGetMaxY(lblName.frame)-5, 200, 25)];
+    [lblMessageText setText:@"Last line of conversation goes here"];
+    [lblMessageText setFont:[DingoUISettings fontWithSize:13]];
+    [viewNotification addSubview:lblMessageText];
+    
+    
+    [viewNotification addSubview:btnCross];
+    
+    
+    
+    [self.window.rootViewController.view addSubview:viewNotification];
+    
+    
+    [UIView animateWithDuration:0.6 animations:^{
+        [viewNotification setFrame:CGRectMake(0, 0, screenSize.width, 64)];
+    }];
+    
+    
+}
+
+-(void)removeNotificationView{
+    if (viewNotification) {
+        [UIView animateWithDuration:0.6 animations:^{
+        [viewNotification setFrame:CGRectMake(0, -64, screenSize.width, 64)];
+        } completion:^(BOOL finish){
+            if (finish) {
+                [viewNotification removeFromSuperview];
+            }
+        }];
+
+    }
+}
+
 
 
 #pragma mark CoreLocation methods
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
+    
     if (!oldLocation || (oldLocation.coordinate.latitude != newLocation.coordinate.latitude && oldLocation.coordinate.longitude != newLocation.coordinate.longitude)) {
         [AppManager sharedManager].currentLocation = newLocation;
         

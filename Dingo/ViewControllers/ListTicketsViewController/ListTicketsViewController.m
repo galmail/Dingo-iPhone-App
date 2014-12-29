@@ -25,6 +25,7 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import "ZSLoadingView.h"
 #import "UIDevice+Additions.h"
+#import "AppDelegate.h"
 
 static const CGFloat paypalCellShrinkedHeight = 120;
 static const CGFloat paypalCellExpandedHeight = 240;

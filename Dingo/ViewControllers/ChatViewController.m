@@ -134,7 +134,7 @@
         
         if (!fromDingo) {
             NSString *str=@"";
-            if (([self.receiverID isEqualToString:[[AppManager sharedManager].userInfo[@"id"] stringValue]])) {
+            if (([self.receiverID integerValue]==[[AppManager sharedManager].userInfo[@"id"] integerValue])) {
                str=@"receiver_id == %@";
             }else{
                str=@"sender_id == %@";

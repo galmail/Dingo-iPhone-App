@@ -57,7 +57,7 @@ static const CGFloat categoriesHeight = 110;
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    NSArray *events = [[DataManager shared] allEvents];
+    NSArray *events = [[DataManager shared] allEventsOfSelectedLocation];
     
     ZSLoadingView *loadingView = nil;
     if (![events count]) {
@@ -74,7 +74,7 @@ static const CGFloat categoriesHeight = 110;
             if (firstLoad) {
                 // load tickets too
                 firstLoad = NO;
-                NSArray *eventIDs = [[[DataManager shared] allEvents] valueForKey:@"event_id"];
+                NSArray *eventIDs = [[[DataManager shared] allEventsOfSelectedLocation] valueForKey:@"event_id"];
                 
                 
                 [[DataManager shared] allTiketsForEvents:[eventIDs mutableCopy] withCompletion:^(BOOL finished) {

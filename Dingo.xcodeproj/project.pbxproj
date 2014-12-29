@@ -244,6 +244,8 @@
 		59453D341A40017F00423F35 /* paypal_logo_with_text@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 59453D331A40017F00423F35 /* paypal_logo_with_text@2x.png */; };
 		596329121A318D4F001F5AD9 /* arrow_map@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 596329111A318D4F001F5AD9 /* arrow_map@2x.png */; };
 		599D25851A42A5DB0052A414 /* top_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 599D25841A42A5DB0052A414 /* top_icon@2x.png */; };
+		59A9AE9B1A4AD93C009B4882 /* cross.png in Resources */ = {isa = PBXBuildFile; fileRef = 59A9AE991A4AD93C009B4882 /* cross.png */; };
+		59A9AE9C1A4AD93C009B4882 /* cross@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 59A9AE9A1A4AD93C009B4882 /* cross@2x.png */; };
 		59C13B921A30892C003BCCB5 /* Pods in Resources */ = {isa = PBXBuildFile; fileRef = 59C13B911A30892C003BCCB5 /* Pods */; };
 		5F0D03631A15189400A89042 /* mutual-friend.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F0D03621A15189400A89042 /* mutual-friend.png */; };
 		5F0D03701A163C6E00A89042 /* MutualFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F0D036F1A163C6E00A89042 /* MutualFriendCell.m */; };
@@ -656,6 +658,8 @@
 		59453D331A40017F00423F35 /* paypal_logo_with_text@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "paypal_logo_with_text@2x.png"; sourceTree = "<group>"; };
 		596329111A318D4F001F5AD9 /* arrow_map@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow_map@2x.png"; sourceTree = "<group>"; };
 		599D25841A42A5DB0052A414 /* top_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "top_icon@2x.png"; sourceTree = "<group>"; };
+		59A9AE991A4AD93C009B4882 /* cross.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cross.png; sourceTree = "<group>"; };
+		59A9AE9A1A4AD93C009B4882 /* cross@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cross@2x.png"; sourceTree = "<group>"; };
 		59C13B911A30892C003BCCB5 /* Pods */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Pods; sourceTree = "<group>"; };
 		5F0D03621A15189400A89042 /* mutual-friend.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mutual-friend.png"; sourceTree = "<group>"; };
 		5F0D036E1A163C6E00A89042 /* MutualFriendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MutualFriendCell.h; path = Dingo/Views/MutualFriendCell/MutualFriendCell.h; sourceTree = SOURCE_ROOT; };
@@ -1540,6 +1544,7 @@
 		3F10DE67193C5476002D3B43 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				591041701A4D9904002381A2 /* ImageResize */,
 				3AA1610919E5CBE200895508 /* Harpy */,
 				3AA1608019E5C8CC00895508 /* Appirater */,
 				840CD22C19B8449700699E26 /* ChatBubbleSource */,
@@ -1781,6 +1786,8 @@
 		3F62C66E1948318F00D7D6B1 /* other_icons */ = {
 			isa = PBXGroup;
 			children = (
+				59A9AE991A4AD93C009B4882 /* cross.png */,
+				59A9AE9A1A4AD93C009B4882 /* cross@2x.png */,
 				59453D331A40017F00423F35 /* paypal_logo_with_text@2x.png */,
 				4AC619441A2B5226009F4B3F /* AddTickets.png */,
 				599D25841A42A5DB0052A414 /* top_icon@2x.png */,
@@ -2122,6 +2129,13 @@
 			name = DiscountView;
 			sourceTree = "<group>";
 		};
+		591041701A4D9904002381A2 /* ImageResize */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = ImageResize;
+			sourceTree = "<group>";
+		};
 		5F0D036D1A163C0500A89042 /* MutualFriend */ = {
 			isa = PBXGroup;
 			children = (
@@ -2397,6 +2411,7 @@
 				3AA332FF1990F50600C8DAA8 /* SourceSansPro-Regular.otf in Resources */,
 				3AA1610819E5C8EF00895508 /* AppiraterLocalizable.strings in Resources */,
 				840CD24A19B84B6100699E26 /* bubbleSomeone.png in Resources */,
+				59A9AE9B1A4AD93C009B4882 /* cross.png in Resources */,
 				3F62C6A91948318F00D7D6B1 /* tom_davids@2x.png in Resources */,
 				840BA3CA19A23F7B00198277 /* listing_icon.png in Resources */,
 				3AA1610219E5C8EF00895508 /* AppiraterLocalizable.strings in Resources */,
@@ -2554,6 +2569,7 @@
 				840BA3C619A23ED700198277 /* settings_icon.png in Resources */,
 				3F62C6991948318F00D7D6B1 /* list_tickets_cell2@2x.png in Resources */,
 				84513F0819A4F2AC00C4A254 /* btnPrivacyPolicy@2x.png in Resources */,
+				59A9AE9C1A4AD93C009B4882 /* cross@2x.png in Resources */,
 				3AA160ED19E5C8EF00895508 /* AppiraterLocalizable.strings in Resources */,
 				3AA160FD19E5C8EF00895508 /* AppiraterLocalizable.strings in Resources */,
 				84A457021970182C000ABA73 /* welcome4BG@2x.png in Resources */,
@@ -3062,7 +3078,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = Dingo;
-				PROVISIONING_PROFILE = "d1d0ddd3-1632-4e4c-8e59-9d322824fff3";
+				PROVISIONING_PROFILE = "37a42c3f-8575-46e4-99d2-8d71cc4da7da";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3095,7 +3111,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = Dingo;
-				PROVISIONING_PROFILE = "d1d0ddd3-1632-4e4c-8e59-9d322824fff3";
+				PROVISIONING_PROFILE = "37a42c3f-8575-46e4-99d2-8d71cc4da7da";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

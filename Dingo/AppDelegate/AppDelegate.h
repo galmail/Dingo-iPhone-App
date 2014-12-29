@@ -12,5 +12,7 @@
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) CLLocationManager *locationManager;
+@property  (strong,nonatomic) UIView *viewNotification;
 
+-(void)showNotiFicationView;
 @end

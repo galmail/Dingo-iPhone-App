@@ -17,6 +17,7 @@
 
 + (DataManager *)shared;
 
+- (NSArray *)allEventsOfSelectedLocation ;
 - (NSArray *)allEvents;
 -(NSArray *)allEventsWithAndWithoutTickets;
 - (NSArray *)featuredEvents;

@@ -127,7 +127,7 @@ static const NSUInteger commentCellIndex = 5;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.row) {
-        case photosCellIndex:
+        case photosCellIndex-1:
             if (self.photosPreviewCell.photos.count == 0) {
                 return 0;
             }
@@ -145,7 +145,12 @@ static const NSUInteger commentCellIndex = 5;
             
             break;
         }
+            case 9:
+            [super tableView:tableView heightForRowAtIndexPath:indexPath];
+            break;
     }
+    
+    
     
     return [super tableView:tableView heightForRowAtIndexPath:indexPath];
 }
