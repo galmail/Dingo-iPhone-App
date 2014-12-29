@@ -12,6 +12,8 @@
 #import "AppManager.h"
 #import <FacebookSDK/FacebookSDK.h>
 #import "UIDevice+Additions.h"
+#import "DataManager.h"
+
 
 #ifdef kProductionMode
 static NSString* apiUrl = kProductionAPI;
@@ -267,7 +269,12 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
                                                                                                                                    @"photo_url":[NSString stringWithFormat:@"http://graph.facebook.com/v2.0/%@/picture?redirect=1&height=200&type=normal&width=200",user.objectID],
                                                                                                                                    @"city" : user.location ? [[user.location.name componentsSeparatedByString:@","] firstObject] : @"London",
                                                                                                                                    @"paypal_account":(![response[@"paypal_account"] isKindOfClass:[NSNull class]] && [response[@"paypal_account"] length]) ? response[@"paypal_account"] : @""} mutableCopy];
+                                                                  
                                                                                           
+                                                                                          [[DataManager shared] allCategoriesWithCompletion:^(BOOL finished) {
+                                                                                          }];
+                                                                                              [[DataManager shared] allEventsWithCompletion:^(BOOL finished) {
+                                                                                              }];
                                                                                           if ([AppManager sharedManager].deviceToken.length > 0) {
                                                                                               // register device
                                                                                               NSDictionary *deviceParams = @{ @"uid":[AppManager sharedManager].deviceToken.length > 0 ? [AppManager sharedManager].deviceToken : @"",

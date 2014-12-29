@@ -20,5 +20,5 @@
 #define kDevelopmentSignInUrl @"http://dingoapp.herokuapp.com/users/sign_in";
 
 // paypal
-#define kPaypalProductionID @"AWdYAhAitDP7Y1AFRQ6h68YlNcBiMcBgg1Grc-rfMrAqAIG_gHWSupG6E9A_"
+#define kPaypalProductionID @"AYMqghD3IhKeJXOLh3siE-ImJftpSQLRRWebOHlDUCN7x_i5nWDB7V3zHnC5"
 #define kPaypalSendboxID @"AWdYAhAitDP7Y1AFRQ6h68YlNcBiMcBgg1Grc-rfMrAqAIG_gHWSupG6E9A_"
