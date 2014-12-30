@@ -100,6 +100,7 @@
     payPalConfig.acceptCreditCards = YES;
     payPalConfig.languageOrLocale = @"en";
     payPalConfig.merchantName = @"Dingo, Inc.";
+    
 
     
 }

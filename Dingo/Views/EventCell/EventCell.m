@@ -42,8 +42,8 @@ const CGFloat eventCellHeight = 78;
     }
     
     if ([NSStringFromClass([self class]) isEqual:@"ManageListsCell"]) {
-        self.nameLabel.font = [DingoUISettings fontWithSize:18];
-        self.locationLabel.font = [DingoUISettings fontWithSize:14];
+        self.nameLabel.font = [DingoUISettings fontWithSize:17];
+        self.locationLabel.font = [DingoUISettings fontWithSize:13];
         self.timeLabel.font = [DingoUISettings fontWithSize:12];
     }
     
@@ -61,7 +61,12 @@ const CGFloat eventCellHeight = 78;
 - (void)setName:(NSString *)name {
     _name = name;
     self.nameLabel.text = name;
-    
+    if ([name isEqualToString:@"Event Pending Validation"]) {
+        [self.nameLabel setTextColor:[UIColor colorWithRed:155.0/255.0 green:155.0/255.0 blue:155.0/255.0 alpha:1.0]];
+        [self.nameLabel setNumberOfLines:2];
+        
+      
+    }
 }
 
 - (void)setLocation:(NSString *)location {
@@ -89,29 +94,40 @@ const CGFloat eventCellHeight = 78;
          self.iconImageView.image = [UIImage imageWithData:data.thumb];
     } else {
         if (data.thumbUrl.length > 0) {
+            if (data) {
             [WebServiceManager imageFromUrl:data.thumbUrl completion:^(id response, NSError *error) {
+                
                 data.thumb = response;
                 self.iconImageView.image = [UIImage imageWithData:data.thumb];
                 
                 [[AppManager sharedManager] saveContext];
             }];
+            }
             
         } else {
             if (category.thumb) {
                 self.iconImageView.image = [UIImage imageWithData:category.thumb];
             } else {
+                if (category) {
+                    
+                
                 [WebServiceManager imageFromUrl:category.thumbUrl completion:^(id response, NSError *error) {
                     category.thumb = response;
                     self.iconImageView.image = [UIImage imageWithData:category.thumb];
                     
                     [[AppManager sharedManager] saveContext];
                 }];
+                }
             }
         }
         
     }
    
     self.name = data.name;
+    if (!NSSTRING_HAS_DATA(data.name)) {
+        self.name=@"Event Pending Validation";
+        self.iconImageView.image=[UIImage imageNamed:@"PlaceHolderManageListing.jpg"];
+    }
     self.location = [self eventLocation:data];
     self.begin = data.date;
     self.blurView.blurRadius = 5;

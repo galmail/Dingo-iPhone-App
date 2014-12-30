@@ -339,7 +339,10 @@ static const NSUInteger commentCellIndex = 4;
 #pragma mark - BottomBarDelegate
 
 - (void)editListing {
-    [self performSegueWithIdentifier:@"EditTicket" sender:self];
+    if (self.event) {
+        [self performSegueWithIdentifier:@"EditTicket" sender:self];
+    }
+    
 }
 
 - (void)deleteListing {

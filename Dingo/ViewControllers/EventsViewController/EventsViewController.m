@@ -45,8 +45,9 @@ static const CGFloat categoriesHeight = 110;
     firstLoad = YES;
     
     selectedCategories = [[[DataManager shared] allCategories] valueForKey:@"category_id"];
-    
-    
+//    [AppManager sharedManager].token = @"SJAj9Su6yAswspK2s2JY";
+//    [AppManager sharedManager].userInfo[@"email"] = @"paulroiter@hotmail.com";
+//    [AppManager sharedManager].userInfo[@"id"] =[NSNumber numberWithInt:130];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

@@ -272,6 +272,10 @@ static const NSUInteger commentCellIndex = 5;
 #pragma mark - alert view delegate
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    if (alertView.tag == 8989) {
+        
+    
     ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please wait..."];
     [loadingView show];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -308,7 +312,29 @@ static const NSUInteger commentCellIndex = 5;
                                   
                                   };
         
-        [WebServiceManager createEvent:params completion:^(id response, NSError *error) {
+        NSMutableDictionary *dictParam=[[NSMutableDictionary alloc] initWithDictionary:params];
+        
+        if (!HAS_DATA(dictParam, @"category_id")) {
+            [dictParam removeObjectForKey:@"category_id"];
+            
+            if (!HAS_DATA(dictParam, @"address")) {
+                [dictParam removeObjectForKey:@"address"];
+            }
+            if (!HAS_DATA(dictParam, @"city")) {
+                [dictParam removeObjectForKey:@"city"];
+            }
+            if (!HAS_DATA(dictParam, @"postcode")) {
+                [dictParam removeObjectForKey:@"postcode"];
+            }
+            if (!HAS_DATA(dictParam, @"location")) {
+                [dictParam removeObjectForKey:@"location"];
+            }
+            if (!HAS_DATA(dictParam, @"image")) {
+                [dictParam removeObjectForKey:@"image"];
+            }
+        }
+        
+        [WebServiceManager createEvent:dictParam completion:^(id response, NSError *error) {
             NSLog(@"response %@", response);
             
             if (response) {
@@ -329,8 +355,13 @@ static const NSUInteger commentCellIndex = 5;
                     
                     [WebServiceManager createTicket:params photos:self.photos completion:^(id response, NSError *error) {
                         if (response[@"id"]) {
+                            
                             // ticket created
                             [loadingView hide];
+                            UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Your tickets will be listed once validated by Dingo" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                           
+                            [alert show];
+
                             [AppManager sharedManager].draftTicket = nil;
                             [self.navigationController.viewControllers[0] setSelectedIndex:0];
                             [self.navigationController popToRootViewControllerAnimated:YES];
@@ -358,7 +389,7 @@ static const NSUInteger commentCellIndex = 5;
             
         }];
     }];
-    
+    }
 
 }
 
