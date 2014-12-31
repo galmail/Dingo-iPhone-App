@@ -63,7 +63,9 @@ const CGFloat eventCellHeight = 78;
     self.nameLabel.text = name;
     if ([name isEqualToString:@"Event Pending Validation"]) {
         [self.nameLabel setTextColor:[UIColor colorWithRed:155.0/255.0 green:155.0/255.0 blue:155.0/255.0 alpha:1.0]];
-        [self.nameLabel setNumberOfLines:2];
+     
+        [self.nameLabel setFrame:CGRectMake(self.nameLabel.frame.origin.x, 22, 150, 45)];
+        [self.nameLabel setNumberOfLines:0];
         
       
     }

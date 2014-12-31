@@ -16,6 +16,7 @@
 @end
 
 @implementation BottomEditBar
+@synthesize editButton;
 
 - (id)initWithFrame:(CGRect)frame
 {

@@ -171,8 +171,8 @@ static const NSUInteger commentCellIndex = 4;
         bottomBar.frame = frame;
         
         bottomBar.delegate = self;
-       
-        
+        if (!self.event)
+            [bottomBar.editButton setHidden:YES];
         if (iseditable)
             [self.navigationController.view  addSubview:bottomBar];
        

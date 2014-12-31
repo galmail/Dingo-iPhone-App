@@ -35,9 +35,9 @@
     cityPicker = [[ZSPickerView alloc] initWithItems:[[DataManager shared] allCities] allowMultiSelection:NO];
     cityPicker.delegate = self;
     txtCity.inputView = cityPicker;
-    //[AppManager sharedManager].token = @"supJZyns--KZp3sDaqAg";
-   //[AppManager sharedManager].userInfo[@"email"] = @"pierrot.lechot@gmail.com";
-    
+//    [AppManager sharedManager].token = @"supJZyns--KZp3sDaqAg";
+//   [AppManager sharedManager].userInfo[@"email"] = @"pierrot.lechot@gmail.com";
+//    [AppManager sharedManager].userInfo[@"id"]=[NSNumber numberWithInt:130];
 }
 
 - (IBAction)done:(id)sender {

@@ -18,7 +18,7 @@
 @end
 
 @interface BottomEditBar : UIView
-
+@property(weak,nonatomic) IBOutlet UIButton *editButton;
 @property (nonatomic, assign) id<BottomBarDelegate> delegate;
 
 @end

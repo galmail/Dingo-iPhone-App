@@ -75,7 +75,7 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     static NSString * const sectionHeader = @"SectionHeaderView";
-    NSString *title = section ? @"Up and coming events..." : @"Past events...";
+    NSString *title = section ? @"Up and coming events..." : @"Old listings...";
     return [SectionHeaderView buildWithTitle:title fromXibNamed:sectionHeader];
 }
 

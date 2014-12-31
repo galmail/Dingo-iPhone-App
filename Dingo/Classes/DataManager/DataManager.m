@@ -1132,7 +1132,8 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     message.from_dingo = @( [info[@"from_dingo"] boolValue]);
     message.read = @( [info[@"read"] boolValue]);
     message.offer_new = @( [info[@"new_offer"] boolValue]);
-    message.ticket_id = info[@"ticket_id"];
+    message.ticket_id = ![info[@"ticket_id"] isKindOfClass:[NSNull class]] ? info[@"ticket_id"] : @"";
+    
     if (![info[@"offer_id"] isKindOfClass:[NSNull class]]) {
         message.offer_id = info[@"offer_id"];
     }
