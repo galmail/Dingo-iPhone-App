@@ -62,11 +62,11 @@
    
     [self.refreshControl beginRefreshing];
     
+
     [[DataManager shared] fetchMessagesWithCompletion:^(BOOL finished) {
         isNotFirstTime=true;
         [self groupMessagesByUser];
-        [self.tableView reloadData];
-        [self.refreshControl endRefreshing];
+        [self.tableView reloadData];        [self.refreshControl endRefreshing];
         [(HomeTabBarController*)self.tabBarController updateMessageCount];
         
     }];

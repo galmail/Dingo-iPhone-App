@@ -206,11 +206,11 @@
     payPalKey = [completedPayment confirmation][@"response"][@"id"];
     
     [self dismissViewControllerAnimated:YES completion:^{
-       
+        
         if (payPalKey.length > 0) {
             NSDictionary *params = @{ @"ticket_id" : self.ticket.ticket_id,
                                       @"num_tickets": txtNumber.text,
-                                      @"amount" : [currencyFormatter numberFromString:txtTotal.text],
+                                      @"amount" : [currencyFormatter numberFromString:[NSString stringWithFormat:@"%.f",[txtNumber.text intValue]*[self.ticket.price doubleValue]]],
                                       @"delivery_options" : self.ticket.delivery_options,
                                       @"order_paid":@"1",
                                       @"paypal_key":payPalKey

@@ -92,7 +92,7 @@
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    repeatingTimer = [NSTimer timerWithTimeInterval:15 target:self selector:@selector(autometicRefresh) userInfo:nil repeats:YES] ;
+    repeatingTimer = [NSTimer timerWithTimeInterval:5 target:self selector:@selector(autometicRefresh) userInfo:nil repeats:YES] ;
     
     [[NSRunLoop currentRunLoop] addTimer:repeatingTimer forMode:NSDefaultRunLoopMode];
 }
@@ -132,30 +132,36 @@
         NSArray * messages = [[DataManager shared] allMessagesFor:userID ticketID:self.ticket.ticket_id];
         [bubbleData removeAllObjects];
         
-        if (!fromDingo) {
-            NSString *str=@"";
-            if (([self.receiverID integerValue]==[[AppManager sharedManager].userInfo[@"id"] integerValue])) {
-               str=@"receiver_id == %@";
-            }else{
-               str=@"sender_id == %@";
-            }
+//        if (!fromDingo) {
+//            NSString *str=@"";
+//            if (([self.receiverID integerValue]==[[AppManager sharedManager].userInfo[@"id"] integerValue])) {
+//               str=@"receiver_id == %@";
+//            }else{
+//               str=@"sender_id == %@";
+//            }
+//            
+        
+           // NSArray *arrayMessages_receiver=[messages filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:str,self.receiverID]];
             
-            
-            NSArray *arrayMessages_receiver=[messages filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:str,self.receiverID]];
             NSArray *arrayMessage_fromDingo=[messages filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"from_dingo == %@",[NSNumber numberWithBool:true]]];
             
-            if ([arrayMessage_fromDingo count] == [arrayMessages_receiver count] ){
-                if ([arrayMessages_receiver count] !=0 && [arrayMessage_fromDingo count] !=0 ) {
+            if ([arrayMessage_fromDingo count] == [messages count] ){
+               // if ([arrayMessages_receiver count] !=0 && [arrayMessage_fromDingo count] !=0 ) {
                     [self.navigationItem setRightBarButtonItem:nil];
-                }else if ([arrayMessages_receiver count] ==0 && [arrayMessage_fromDingo count] !=0){
-                    [self.navigationItem setRightBarButtonItem:nil];
-                }
+               // }else if ([arrayMessages_receiver count] ==0 && [arrayMessage_fromDingo count] !=0){
+                   // [self.navigationItem setRightBarButtonItem:nil];
+            }else if (self.navigationItem.rightBarButtonItem == nil && [messages count]>0){
+                UIBarButtonItem *rightBarButton=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btnDots.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(actions:)];
+                [self.navigationItem setRightBarButtonItem:rightBarButton];
+            }else{
                 
             }
+                
+            //}
             
-            fromDingo=true;
-            
-        }
+//            fromDingo=true;
+//            
+//        }
         
 
         

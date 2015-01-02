@@ -15,6 +15,7 @@
 #import "DingoUISettings.h"
 #import "UIImage+Overlay.h"
 #import "WebServiceManager.h"
+#import "ManageListsCell.h"
 
 const CGFloat eventCellHeight = 78;
 
@@ -61,7 +62,7 @@ const CGFloat eventCellHeight = 78;
 - (void)setName:(NSString *)name {
     _name = name;
     self.nameLabel.text = name;
-    if ([name isEqualToString:@"Event Pending Validation"]) {
+    if ([name isEqualToString:@"Event Pending Validation"] && [self isKindOfClass:[ManageListsCell class]]) {
         [self.nameLabel setTextColor:[UIColor colorWithRed:155.0/255.0 green:155.0/255.0 blue:155.0/255.0 alpha:1.0]];
      
         [self.nameLabel setFrame:CGRectMake(self.nameLabel.frame.origin.x, 22, 150, 45)];
