@@ -85,5 +85,7 @@
 - (NSArray *)allMessages;
 - (NSArray *)allMessagesFor:(NSNumber*)userID ticketID:(NSString*)ticketID;
 - (void)addOrUpdateMessage:(NSDictionary *)info;
+-(BOOL)willShowDingoAvatar:(NSString *)ticketID;
+-(NSString *)returnAvatarUrl:(NSString *)tickI :(NSString *)usrID;
 
 @end

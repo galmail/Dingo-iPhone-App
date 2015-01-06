@@ -12,7 +12,7 @@
 
 @interface CheckoutViewController : UITableViewController
 
-@property (nonatomic) Ticket *ticket;
-@property (nonatomic) Event *event;
+@property (nonatomic,strong) Ticket *ticket;
+@property (nonatomic,strong) Event *event;
 
 @end

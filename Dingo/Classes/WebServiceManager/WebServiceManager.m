@@ -32,7 +32,7 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
 @implementation WebServiceManager
 
 + (void)imageFromUrl:(NSString *)imageURL completion:( void (^) (id response, NSError *error))handler {
-
+    
     NSMutableURLRequest *request = [self requestForGetURL:imageURL withParams:nil];
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
@@ -110,7 +110,7 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
 }
 
 + (void)signUp:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler {
-
+    
     NSMutableURLRequest *request = [self requestForGetURL:signUpUrl withParams:[params urlEncodedString]];
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
@@ -132,7 +132,7 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
 
 + (void)signIn:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler {
     
-  
+    
     
     NSMutableURLRequest *request = [self requestForGetURL:signInUrl withParams:[params urlEncodedString]];
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -159,11 +159,11 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
                                   completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
                                       
                                       if (error) {
-                                           handler(nil, error);
+                                          handler(nil, error);
                                           [AppManager showAlert:[error localizedDescription]];
                                           
-                                         
-
+                                          
+                                          
                                       } else {
                                           if (state == FBSessionStateOpen) {
                                               NSLog(@"start");
@@ -199,9 +199,17 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
                                                       
                                                       if (update) {
                                                           NSLog(@"update");
-
+                                                          
                                                           [WebServiceManager updateProfile:params completion:^(id response, NSError *error) {
                                                               if (response) {
+                                                                  
+                                                                  if (response[@"authentication_token"] ) {
+                                                                      
+                                                                  
+                                                                  [[NSUserDefaults standardUserDefaults] setObject:response[@"authentication_token"] forKey:@"auth_token"];
+                                                                  [[NSUserDefaults standardUserDefaults] setObject:user[@"email"] forKey:@"users_email"];
+                                                                  [[NSUserDefaults standardUserDefaults] synchronize];
+                                                                  }
                                                                   [AppManager sharedManager].token = response[@"authentication_token"];
                                                                   
                                                                   [AppManager sharedManager].userInfo = [
@@ -237,6 +245,10 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
                                                                           [AppManager sharedManager].userInfo = [@{ @"id":response[@"id"], @"fb_id" : user.objectID, @"email":user[@"email"], @"name": user.first_name, @"photo_url":[NSString stringWithFormat:@"http://graph.facebook.com/v2.0/%@/picture?redirect=1&height=200&type=normal&width=200",user.objectID], @"city":user.location ? [[user.location.name componentsSeparatedByString:@","] firstObject] : @"London",
                                                                                                                     @"paypal_account": (![response[@"paypal_account"] isKindOfClass:[NSNull class]] && [response[@"paypal_account"] length]) ? response[@"paypal_account"] : @""} mutableCopy];
                                                                           
+                                                                          [[NSUserDefaults standardUserDefaults] setObject:response[@"authentication_token"] forKey:@"auth_token"];
+                                                                          [[NSUserDefaults standardUserDefaults] setObject:user[@"email"] forKey:@"users_email"];
+                                                                          [[NSUserDefaults standardUserDefaults] synchronize];
+                                                                          
                                                                           handler(response, nil);
                                                                       } else {
                                                                           
@@ -269,12 +281,18 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
                                                                                                                                    @"photo_url":[NSString stringWithFormat:@"http://graph.facebook.com/v2.0/%@/picture?redirect=1&height=200&type=normal&width=200",user.objectID],
                                                                                                                                    @"city" : user.location ? [[user.location.name componentsSeparatedByString:@","] firstObject] : @"London",
                                                                                                                                    @"paypal_account":(![response[@"paypal_account"] isKindOfClass:[NSNull class]] && [response[@"paypal_account"] length]) ? response[@"paypal_account"] : @""} mutableCopy];
-                                                                  
+                                                                                          if (response[@"auth_token"] ) {
+                                                                                              
+                                                                                              
+                                                                                              [[NSUserDefaults standardUserDefaults] setObject:response[@"auth_token"] forKey:@"auth_token"];
+                                                                                              [[NSUserDefaults standardUserDefaults] setObject:user[@"email"] forKey:@"users_email"];
+                                                                                              [[NSUserDefaults standardUserDefaults] synchronize];
+                                                                                          }
                                                                                           
                                                                                           [[DataManager shared] allCategoriesWithCompletion:^(BOOL finished) {
                                                                                           }];
-                                                                                              [[DataManager shared] allEventsWithCompletion:^(BOOL finished) {
-                                                                                              }];
+                                                                                          [[DataManager shared] allEventsWithCompletion:^(BOOL finished) {
+                                                                                          }];
                                                                                           if ([AppManager sharedManager].deviceToken.length > 0) {
                                                                                               // register device
                                                                                               NSDictionary *deviceParams = @{ @"uid":[AppManager sharedManager].deviceToken.length > 0 ? [AppManager sharedManager].deviceToken : @"",
@@ -410,7 +428,7 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         dispatch_async(dispatch_get_main_queue(), ^(void){
             if (error != nil) {
                 handler(nil,error);
-               // [self genericError];
+                // [self genericError];
             } else {
                 handler([data objectFromJSONData], error);
             }
@@ -457,7 +475,7 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
             
             [attachments addObject:@{@"data": imageData, @"name": [NSString stringWithFormat:@"photo%d", i+1], @"fileName" : [NSString stringWithFormat:@"ticketPhoto_%@", [NSDate date]]}];
         }
-
+        
         request = [self requestForPostMethod:@"tickets" withParams:params withAttachements:attachments];
     } else {
         request = [self requestForPostMethod:@"tickets" withParams:[params urlEncodedString]];
@@ -508,9 +526,9 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
 }
 
 + (void)registerDevice:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler {
-   
+    
     NSMutableURLRequest *request = [self requestForPostMethod:@"devices" withParams:[params urlEncodedString]];
-
+    
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
         NSURLResponse* response = nil;
@@ -532,7 +550,7 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
 + (void)updateProfile:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler {
     
     NSMutableURLRequest *request = [self requestForPostMethod:@"users" withParams:[params urlEncodedString]];
-   
+    
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
         NSURLResponse* response = nil;
@@ -541,7 +559,7 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         
         dispatch_async(dispatch_get_main_queue(), ^(void){
             if (error != nil) {
-               // [self genericError];
+                // [self genericError];
                 handler(nil,error);
             } else {
                 handler([data objectFromJSONData], error);
@@ -554,7 +572,7 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
 #pragma mark Offers
 
 + (void)sendOffer:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler {
-            
+    
     NSMutableURLRequest *request = [self requestForPostMethod:@"offers" withParams:[params urlEncodedString]];
     
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -770,11 +788,11 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
 #pragma mark - requests
 
 + (NSMutableURLRequest *) requestForGetURL:(NSString *)url withParams:(NSString *)params {
-
+    
     if (params.length > 0) {
         url = [NSString stringWithFormat:@"%@?%@", url, params];
     }
-//    url =[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    //    url =[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:20.0f];
     [request setHTTPMethod:@"GET"];
     
@@ -787,7 +805,7 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
     if (params.length == 0) {
         url = [NSString stringWithFormat:@"%@%@", apiUrl, method];
     }
-//    url =[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    //    url =[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:20.0f];
     [request setHTTPMethod:@"GET"];
     NSLog(@"token %@", [AppManager sharedManager].token);
@@ -811,11 +829,11 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
     
     [request setHTTPMethod:@"POST"];
     
-    NSLog(@"token %@", [AppManager sharedManager].token);
-    NSLog(@"userInfo email %@", [AppManager sharedManager].userInfo[@"email"]);
-
-    [request setValue:[AppManager sharedManager].token forHTTPHeaderField:@"X-User-Token"];
-    [request setValue:[AppManager sharedManager].userInfo[@"email"] forHTTPHeaderField:@"X-User-Email"];
+    NSLog(@"token %@_ %@", [AppManager sharedManager].token,[[NSUserDefaults standardUserDefaults] objectForKey:@"auth_token"]);
+    NSLog(@"userInfo email%@_ %@", [AppManager sharedManager].userInfo[@"email"],[[NSUserDefaults standardUserDefaults] objectForKey:@"users_email"]);
+    
+    [request setValue:([AppManager sharedManager].token != nil?[AppManager sharedManager].token:[[NSUserDefaults standardUserDefaults] objectForKey:@"auth_token"]) forHTTPHeaderField:@"X-User-Token"];
+    [request setValue:([AppManager sharedManager].userInfo[@"email"]!= nil?[AppManager sharedManager].userInfo[@"email"]:[[NSUserDefaults standardUserDefaults] objectForKey:@"users_email"]) forHTTPHeaderField:@"X-User-Email"];
     
     return request;
 }
@@ -825,7 +843,7 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
     NSString* url = [NSString stringWithFormat:@"%@%@", apiUrl, method];
     url =[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:20.0f];
- 
+    
     [request setHTTPMethod:@"POST"];
     
     NSMutableData *body = [NSMutableData data];

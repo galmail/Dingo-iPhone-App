@@ -152,8 +152,10 @@ static const NSInteger paypalEditAlert = 3;
     [self.descriptionTextView showToolbarWithDone];
 }
 
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+   
     self.parentViewController.navigationItem.title = self.navigationItem.title;
     
     if (!self.ticket && !self.event) {

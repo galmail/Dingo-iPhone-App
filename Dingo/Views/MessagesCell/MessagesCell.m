@@ -42,6 +42,27 @@ const CGFloat messagesCellHeight = 82;
     if ([[ticket.user_id stringValue] isEqualToString:userID]) {
         self.icon = nil;
         if ([data.receiver_id isEqualToString:[ticket.user_id stringValue]]) {
+            if ([data.from_dingo boolValue]) {
+               
+                 if ([[DataManager shared] willShowDingoAvatar:ticket.ticket_id]) {
+                     if (data.sender_avatar) {
+                         self.icon = [UIImage imageWithData:data.sender_avatar];
+                     } else {
+                         [WebServiceManager imageFromUrl:data.sender_avatar_url completion:^(id response, NSError *error) {
+                             self.icon = [UIImage imageWithData:response];
+                             //data.sender_avatar = response;
+                         }];
+                     }
+                     self.name = @"Dingo";
+                 }else{
+                     [WebServiceManager imageFromUrl:[[DataManager shared] returnAvatarUrl:ticket.ticket_id :data.sender_id ] completion:^(id response, NSError *error) {
+                         self.icon = [UIImage imageWithData:response];
+                         //data.sender_avatar = response;
+                     }];
+                     self.name = data.sender_name;
+                 }
+                
+            }else{
             if (data.sender_avatar) {
                 self.icon = [UIImage imageWithData:data.sender_avatar];
             } else {
@@ -50,20 +71,34 @@ const CGFloat messagesCellHeight = 82;
                     data.sender_avatar = response;
                 }];
             }
-            if ([data.from_dingo boolValue]) {
-                self.name = @"Dingo";
-            } else {
                 self.name = data.sender_name;
             }
+          
+            
+            
         } else {
             if ([data.from_dingo boolValue]) {
                 if (data.sender_avatar) {
-                    self.icon = [UIImage imageWithData:data.sender_avatar];
+                    
+                    if ([[DataManager shared] willShowDingoAvatar:ticket.ticket_id]) {
+                        self.icon = [UIImage imageWithData:data.sender_avatar];
+                    }else{
+                        self.icon=[UIImage imageWithData:ticket.user_photo];
+                    }
+                    
                 } else {
-                    [WebServiceManager imageFromUrl:data.sender_avatar_url completion:^(id response, NSError *error) {
-                        self.icon = [UIImage imageWithData:response];
-                        data.sender_avatar = response;
-                    }];
+                    if ([[DataManager shared] willShowDingoAvatar:ticket.ticket_id]){
+                        [WebServiceManager imageFromUrl:data.sender_avatar_url completion:^(id response, NSError *error) {
+                            self.icon = [UIImage imageWithData:response];
+                            //data.sender_avatar = response;
+                        }];
+                    }else{
+                        [WebServiceManager imageFromUrl:[NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?type=normal",ticket.facebook_id] completion:^(id response, NSError *error) {
+                            self.icon = [UIImage imageWithData:response];
+                            //data.sender_avatar = response;
+                        }];
+                        
+                    }
                 }
                 self.name = @"Dingo";
             } else {
@@ -78,19 +113,39 @@ const CGFloat messagesCellHeight = 82;
                 self.name = data.receiver_name;
             }
         }
-        [[AppManager sharedManager] saveContext];
+        //[[AppManager sharedManager] saveContext];
         
     } else {
+         //NSArray* msgArray = [[DataManager shared] allMessagesFor:[AppManager sharedManager].userInfo[@"id"] ticketID:ticketID];
         if ([data.from_dingo boolValue]) {
             if (data.sender_avatar) {
-                self.icon = [UIImage imageWithData:data.sender_avatar];
+                if ([[DataManager shared] willShowDingoAvatar:ticket.ticket_id]) {
+                    self.icon = [UIImage imageWithData:data.sender_avatar];
+                    self.name = @"Dingo";
+                }else{
+                    self.icon=[UIImage imageWithData:(ticket.user_photo==nil?data.sender_avatar:ticket.user_photo)];
+                    self.name=([data.receiver_id isEqualToString:[[AppManager sharedManager].userInfo[@"id"] stringValue]]?data.sender_name:data.receiver_name);
+                }
+                
+                
             } else {
+                
+                if ([[DataManager shared] willShowDingoAvatar:ticket.ticket_id]){
                 [WebServiceManager imageFromUrl:data.sender_avatar_url completion:^(id response, NSError *error) {
                     self.icon = [UIImage imageWithData:response];
-                    data.sender_avatar = response;
+                    
+                   // data.sender_avatar = response;
                 }];
+                  self.name = @"Dingo";
+                }else{
+                    [WebServiceManager imageFromUrl:[NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?type=normal",ticket.facebook_id] completion:^(id response, NSError *error) {
+                        self.icon = [UIImage imageWithData:response];
+                        data.sender_avatar = response;
+                    }];
+                   self.name=([data.receiver_id isEqualToString:[[AppManager sharedManager].userInfo[@"id"] stringValue]]?data.sender_name:data.receiver_name);
+                }
             }
-            self.name = @"Dingo";
+            
         } else {
         
             self.icon = nil;

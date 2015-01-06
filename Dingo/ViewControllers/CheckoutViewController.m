@@ -207,10 +207,13 @@
     
     [self dismissViewControllerAnimated:YES completion:^{
         
+        float originalPrice=[txtNumber.text intValue]*[self.ticket.price doubleValue];
+        NSString *ori=[NSString stringWithFormat:@"£%.2f",originalPrice];
+        
         if (payPalKey.length > 0) {
             NSDictionary *params = @{ @"ticket_id" : self.ticket.ticket_id,
                                       @"num_tickets": txtNumber.text,
-                                      @"amount" : [currencyFormatter numberFromString:[NSString stringWithFormat:@"%.f",[txtNumber.text intValue]*[self.ticket.price doubleValue]]],
+                                      @"amount" : [currencyFormatter numberFromString:ori],
                                       @"delivery_options" : self.ticket.delivery_options,
                                       @"order_paid":@"1",
                                       @"paypal_key":payPalKey

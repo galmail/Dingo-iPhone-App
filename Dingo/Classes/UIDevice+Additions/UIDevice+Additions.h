@@ -57,6 +57,7 @@ typedef enum {
     UIDevice4SiPhone,
     UIDevice5iPhone,
     
+    
     UIDevice1GiPod,
     UIDevice2GiPod,
     UIDevice3GiPod,

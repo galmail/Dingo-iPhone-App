@@ -92,7 +92,7 @@
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    repeatingTimer = [NSTimer timerWithTimeInterval:5 target:self selector:@selector(autometicRefresh) userInfo:nil repeats:YES] ;
+    repeatingTimer = [NSTimer timerWithTimeInterval:20 target:self selector:@selector(autometicRefresh) userInfo:nil repeats:YES] ;
     
     [[NSRunLoop currentRunLoop] addTimer:repeatingTimer forMode:NSDefaultRunLoopMode];
 }
@@ -145,15 +145,26 @@
             
             NSArray *arrayMessage_fromDingo=[messages filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"from_dingo == %@",[NSNumber numberWithBool:true]]];
             
-            if ([arrayMessage_fromDingo count] == [messages count] ){
+            if ([arrayMessage_fromDingo count] == [messages count] || self.ticket==nil){
                // if ([arrayMessages_receiver count] !=0 && [arrayMessage_fromDingo count] !=0 ) {
                     [self.navigationItem setRightBarButtonItem:nil];
+                
+               
                // }else if ([arrayMessages_receiver count] ==0 && [arrayMessage_fromDingo count] !=0){
                    // [self.navigationItem setRightBarButtonItem:nil];
             }else if (self.navigationItem.rightBarButtonItem == nil && [messages count]>0){
-                UIBarButtonItem *rightBarButton=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btnDots.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(actions:)];
-                [self.navigationItem setRightBarButtonItem:rightBarButton];
-            }else{
+                UIImage* image3 = [UIImage imageNamed:@"btnDots.png"];
+                CGRect frameimg = CGRectMake(0, 0, image3.size.width, image3.size.height);
+                UIButton *someButton = [[UIButton alloc] initWithFrame:frameimg];
+                [someButton setBackgroundImage:image3 forState:UIControlStateNormal];
+                [someButton addTarget:self action:@selector(actions:)
+                     forControlEvents:UIControlEventTouchUpInside];
+                [someButton setShowsTouchWhenHighlighted:YES];
+                
+                UIBarButtonItem *mailbutton =[[UIBarButtonItem alloc] initWithCustomView:someButton];
+                self.navigationItem.rightBarButtonItem=mailbutton;
+                
+                           }else{
                 
             }
                 
@@ -338,7 +349,7 @@
         return;
     }
     
-    NSDictionary *params = @{ @"ticket_id": self.ticket.ticket_id, @"receiver_id" : self.receiverID, @"content" : textField.text };
+    NSDictionary *params = @{ @"ticket_id": self.ticket.ticket_id==nil?@"":self.ticket.ticket_id, @"receiver_id" : self.receiverID, @"content" : textField.text };
     
     [WebServiceManager sendMessage:params completion:^(id response, NSError *error) {
         if (!error) {

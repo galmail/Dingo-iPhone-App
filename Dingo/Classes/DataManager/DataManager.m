@@ -1163,6 +1163,29 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     return events;
 }
 
+-(BOOL)willShowDingoAvatar:(NSString *)ticketID{
+    BOOL willShowDingoAvatar=false;
+     NSArray* msgArray = [[DataManager shared] allMessagesFor:[AppManager sharedManager].userInfo[@"id"] ticketID:ticketID];
+        NSArray *arrayMessage_fromDingo=[msgArray filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"from_dingo == %@",[NSNumber numberWithBool:true]]];
+    if (msgArray.count == arrayMessage_fromDingo.count)
+        willShowDingoAvatar=true;
+    else
+        willShowDingoAvatar=false;
+    return willShowDingoAvatar;
+}
+
+-(NSString *)returnAvatarUrl:(NSString *)tickId :(NSString *)usrID{
+    NSString *avatar_url=@"";
+    NSArray* msgArray = [[DataManager shared] allMessagesFor:[AppManager sharedManager].userInfo[@"id"] ticketID:tickId];
+    NSArray *arrayMessage_fromDingo=[msgArray filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"sender_id == %@ && from_dingo == %@",usrID,[NSNumber numberWithBool:false]]];
+    
+    if ([arrayMessage_fromDingo count]) {
+        Message *msgObject=[arrayMessage_fromDingo objectAtIndex:0];
+        avatar_url=msgObject.sender_avatar_url;
+    }
+    return avatar_url;
+}
+
 #pragma mark Alerts 
 
 - (NSArray *)allAlerts {

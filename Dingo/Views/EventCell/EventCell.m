@@ -69,6 +69,10 @@ const CGFloat eventCellHeight = 78;
         [self.nameLabel setNumberOfLines:0];
         
       
+    }else if([self isKindOfClass:[ManageListsCell class]]){
+        [self.nameLabel setFrame:CGRectMake(self.nameLabel.frame.origin.x, 20, 186, 21)];
+         [self.nameLabel setTextColor:[UIColor colorWithRed:88.0/255.0 green:88.0/255.0 blue:88.0/255.0 alpha:1.0]];
+        [self.nameLabel setNumberOfLines:1];
     }
 }
 

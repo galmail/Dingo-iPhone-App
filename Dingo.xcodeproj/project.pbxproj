@@ -3065,8 +3065,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Allington Ventures Ltd (KF7AL49U88)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Allington Ventures Ltd (KF7AL49U88)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Phillip Watts (Q5Z9DB6255)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Phillip Watts (Q5Z9DB6255)";
 				ENABLE_NS_ASSERTIONS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3086,7 +3086,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = Dingo;
-				PROVISIONING_PROFILE = "f2c518b0-d10a-4980-97d8-03813e08d102";
+				PROVISIONING_PROFILE = "a95a2d09-61b9-494e-b874-0babda997d2a";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3098,8 +3098,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Allington Ventures Ltd (KF7AL49U88)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Allington Ventures Ltd (KF7AL49U88)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Phillip Watts (Q5Z9DB6255)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Phillip Watts (Q5Z9DB6255)";
 				ENABLE_NS_ASSERTIONS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3119,7 +3119,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = Dingo;
-				PROVISIONING_PROFILE = "f2c518b0-d10a-4980-97d8-03813e08d102";
+				PROVISIONING_PROFILE = "a95a2d09-61b9-494e-b874-0babda997d2a";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

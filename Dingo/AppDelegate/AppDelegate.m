@@ -97,19 +97,22 @@
     [AppManager sharedManager].deviceToken = newToken;
     
     NSLog(@"deviceToken - %@",newToken);
+    if (NSSTRING_HAS_DATA([AppManager sharedManager].userInfo[@"email"]) || [[NSUserDefaults standardUserDefaults] objectForKey:@"users_email"]) {
+        
     
     if ([[AppManager sharedManager].deviceToken length]) {
         NSDictionary *params = @{ @"uid":[AppManager sharedManager].deviceToken.length > 0 ? [AppManager sharedManager].deviceToken : @"",
                                   @"brand":@"Apple",
                                   @"model": [[UIDevice currentDevice] platformString],
                                   @"os":[[UIDevice currentDevice] systemVersion],
-                                  @"app_version": [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"],
-                                  @"location" : [NSString stringWithFormat:@"%f,%f", [AppManager sharedManager].currentLocation.coordinate.latitude, [AppManager sharedManager].currentLocation.coordinate.longitude ]
+                                  @"app_version": [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]
+                                  //@"location" : [NSString stringWithFormat:@"%f,%f", [AppManager sharedManager].currentLocation.coordinate.latitude, [AppManager sharedManager].currentLocation.coordinate.longitude ]
                                   };
         [WebServiceManager registerDevice:params completion:^(id response, NSError *error) {
             NSLog(@"registerDevice response - %@", response);
             NSLog(@"registerDevice error - %@", error);
         }];
+    }
     }
     
 }
@@ -181,11 +184,11 @@
 
 #pragma mark - custom methods
 -(void)showNotiFicationView{
-    viewNotification=[[UIView alloc] initWithFrame:CGRectMake(0, -64, screenSize.width, 64)];
-    [viewNotification setBackgroundColor:[UIColor whiteColor]];
+    viewNotification=[[UIView alloc] initWithFrame:CGRectMake(0,-64, screenSize.width, 64)];
+    [viewNotification setBackgroundColor:[UIColor colorWithRed:48.f/255.0f green:73.0f/255.0f blue:80.0f/255.0f alpha:1.0f]];
     
     UIButton *btnCross=[UIButton buttonWithType:UIButtonTypeCustom];
-    [btnCross setFrame:CGRectMake(screenSize.width-45, 17, 30, 30)];
+    [btnCross setFrame:CGRectMake(screenSize.width-45, 22, 20, 20)];
     [btnCross setImage:[UIImage imageNamed:@"cross.png"]  forState:UIControlStateNormal];
     [btnCross addTarget:self action:@selector(removeNotificationView) forControlEvents:UIControlEventTouchUpInside];
     
@@ -195,12 +198,14 @@
     
     UILabel *lblName=[[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(imageViewIcon.frame)+8, 8, 200, 25)];
     [lblName setText:@"Tom"];
+    [lblName setTextColor:[UIColor whiteColor]];
     [lblName setFont:[DingoUISettings boldFontWithSize:15]];
     [viewNotification addSubview:lblName];
     
     UILabel *lblMessageText=[[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(imageViewIcon.frame)+8, CGRectGetMaxY(lblName.frame)-5, 200, 25)];
     [lblMessageText setText:@"Last line of conversation goes here"];
     [lblMessageText setFont:[DingoUISettings fontWithSize:13]];
+    [lblMessageText setTextColor:[UIColor whiteColor]];
     [viewNotification addSubview:lblMessageText];
     
     
@@ -208,8 +213,8 @@
     
     
     
-    [self.window.rootViewController.view addSubview:viewNotification];
-    
+    //[self.window.rootViewController.view addSubview:viewNotification];
+    [[[UIApplication sharedApplication] keyWindow] addSubview:viewNotification];
     
     [UIView animateWithDuration:0.6 animations:^{
         [viewNotification setFrame:CGRectMake(0, 0, screenSize.width, 64)];

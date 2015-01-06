@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Dingo/Classes/WebServiceManager/WebServiceManager.m"
-            timestampString = "441537445.082328"
+            timestampString = "442159189.30596"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "225"
-            endingLineNumber = "225"
+            startingLineNumber = "233"
+            endingLineNumber = "233"
             landmarkName = "+signInWithFBAndUpdate:completion:"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Dingo/Classes/WebServiceManager/WebServiceManager.m"
-            timestampString = "441537445.082328"
+            timestampString = "442159189.30596"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "232"
-            endingLineNumber = "232"
+            startingLineNumber = "240"
+            endingLineNumber = "240"
             landmarkName = "+signInWithFBAndUpdate:completion:"
             landmarkType = "5">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Dingo/Classes/WebServiceManager/WebServiceManager.m"
-            timestampString = "441537445.082328"
+            timestampString = "442159189.30596"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "207"
-            endingLineNumber = "207"
+            startingLineNumber = "215"
+            endingLineNumber = "215"
             landmarkName = "+signInWithFBAndUpdate:completion:"
             landmarkType = "5">
          </BreakpointContent>
@@ -89,7 +89,7 @@
                   symbolName = "__54+[WebServiceManager signInWithFBAndUpdate:completion:]_block_invoke_2"
                   moduleName = "Dingo"
                   urlString = "file:///Users/user01/Documents/Projects/dingo-iphone-app/Dingo/Classes/WebServiceManager/WebServiceManager.m"
-                  timestampString = "441890732.516456"
+                  timestampString = "442246405.043813"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "203"
@@ -103,12 +103,12 @@
                   symbolName = "__54+[WebServiceManager signInWithFBAndUpdate:completion:]_block_invoke_3"
                   moduleName = "Dingo"
                   urlString = "file:///Users/user01/Documents/Projects/dingo-iphone-app/Dingo/Classes/WebServiceManager/WebServiceManager.m"
-                  timestampString = "441890732.516685"
+                  timestampString = "442246405.04406"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "203"
                   endingLineNumber = "203"
-                  offsetFromSymbolStart = "76">
+                  offsetFromSymbolStart = "78">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -136,11 +136,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Dingo/Classes/WebServiceManager/WebServiceManager.m"
-            timestampString = "441537445.082328"
+            timestampString = "442159189.30596"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "224"
-            endingLineNumber = "224"
+            startingLineNumber = "232"
+            endingLineNumber = "232"
             landmarkName = "+signInWithFBAndUpdate:completion:"
             landmarkType = "5">
             <Locations>
@@ -151,25 +151,25 @@
                   symbolName = "__54+[WebServiceManager signInWithFBAndUpdate:completion:]_block_invoke_2"
                   moduleName = "Dingo"
                   urlString = "file:///Users/user01/Documents/Projects/dingo-iphone-app/Dingo/Classes/WebServiceManager/WebServiceManager.m"
-                  timestampString = "441890732.518239"
+                  timestampString = "442246405.046385"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "224"
-                  endingLineNumber = "224"
+                  startingLineNumber = "232"
+                  endingLineNumber = "232"
                   offsetFromSymbolStart = "3332">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__54+[WebServiceManager signInWithFBAndUpdate:completion:]_block_invoke213"
+                  symbolName = "__54+[WebServiceManager signInWithFBAndUpdate:completion:]_block_invoke224"
                   moduleName = "Dingo"
                   urlString = "file:///Users/user01/Documents/Projects/dingo-iphone-app/Dingo/Classes/WebServiceManager/WebServiceManager.m"
-                  timestampString = "441890732.51846"
+                  timestampString = "442246405.046575"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "224"
-                  endingLineNumber = "224"
+                  startingLineNumber = "232"
+                  endingLineNumber = "232"
                   offsetFromSymbolStart = "86">
                </Location>
             </Locations>
@@ -182,11 +182,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Dingo/Classes/WebServiceManager/WebServiceManager.m"
-            timestampString = "441537445.082328"
+            timestampString = "442159189.30596"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "222"
-            endingLineNumber = "222"
+            startingLineNumber = "230"
+            endingLineNumber = "230"
             landmarkName = "+signInWithFBAndUpdate:completion:"
             landmarkType = "5">
          </BreakpointContent>
@@ -198,11 +198,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Dingo/Classes/WebServiceManager/WebServiceManager.m"
-            timestampString = "441537445.082328"
+            timestampString = "442159189.30596"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "218"
-            endingLineNumber = "218"
+            startingLineNumber = "226"
+            endingLineNumber = "226"
             landmarkName = "+signInWithFBAndUpdate:completion:"
             landmarkType = "5">
          </BreakpointContent>
@@ -214,11 +214,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Dingo/Classes/WebServiceManager/WebServiceManager.m"
-            timestampString = "441537445.082328"
+            timestampString = "442159189.30596"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "220"
-            endingLineNumber = "220"
+            startingLineNumber = "228"
+            endingLineNumber = "228"
             landmarkName = "+signInWithFBAndUpdate:completion:"
             landmarkType = "5">
          </BreakpointContent>
@@ -230,11 +230,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Dingo/Classes/WebServiceManager/WebServiceManager.m"
-            timestampString = "441537445.082328"
+            timestampString = "442159189.30596"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "229"
-            endingLineNumber = "229"
+            startingLineNumber = "237"
+            endingLineNumber = "237"
             landmarkName = "+signInWithFBAndUpdate:completion:"
             landmarkType = "5">
          </BreakpointContent>
@@ -246,11 +246,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Dingo/Classes/WebServiceManager/WebServiceManager.m"
-            timestampString = "441537445.082328"
+            timestampString = "442159189.30596"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "461"
-            endingLineNumber = "461"
+            startingLineNumber = "479"
+            endingLineNumber = "479"
             landmarkName = "+createTicket:photos:completion:"
             landmarkType = "5">
          </BreakpointContent>
@@ -262,11 +262,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Dingo/Classes/WebServiceManager/WebServiceManager.m"
-            timestampString = "441537445.082328"
+            timestampString = "442159189.30596"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "558"
-            endingLineNumber = "558"
+            startingLineNumber = "576"
+            endingLineNumber = "576"
             landmarkName = "+sendOffer:completion:"
             landmarkType = "5">
          </BreakpointContent>
@@ -278,11 +278,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Dingo/Classes/WebServiceManager/WebServiceManager.m"
-            timestampString = "441537445.082328"
+            timestampString = "442159189.30596"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "729"
-            endingLineNumber = "729"
+            startingLineNumber = "747"
+            endingLineNumber = "747"
             landmarkName = "+createAlert:completion:"
             landmarkType = "5">
          </BreakpointContent>
@@ -309,7 +309,7 @@
                   symbolName = "__54+[WebServiceManager signInWithFBAndUpdate:completion:]_block_invoke_2"
                   moduleName = "Dingo"
                   urlString = "file:///Users/user01/Documents/Projects/dingo-iphone-app/Dingo/Classes/WebServiceManager/WebServiceManager.m"
-                  timestampString = "441890732.523072"
+                  timestampString = "442246405.051037"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "203"
@@ -323,12 +323,12 @@
                   symbolName = "__54+[WebServiceManager signInWithFBAndUpdate:completion:]_block_invoke_3"
                   moduleName = "Dingo"
                   urlString = "file:///Users/user01/Documents/Projects/dingo-iphone-app/Dingo/Classes/WebServiceManager/WebServiceManager.m"
-                  timestampString = "441890732.523256"
+                  timestampString = "442246405.051218"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "203"
                   endingLineNumber = "203"
-                  offsetFromSymbolStart = "76">
+                  offsetFromSymbolStart = "78">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -340,11 +340,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Dingo/Classes/WebServiceManager/WebServiceManager.m"
-            timestampString = "441537445.082328"
+            timestampString = "442159189.30596"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "317"
-            endingLineNumber = "317"
+            startingLineNumber = "335"
+            endingLineNumber = "335"
             landmarkName = "+signInWithFBAndUpdate:completion:"
             landmarkType = "5">
          </BreakpointContent>
@@ -467,7 +467,7 @@
                   symbolName = "__54-[LoginViewController alertView:clickedButtonAtIndex:]_block_invoke128"
                   moduleName = "Dingo"
                   urlString = "file:///Users/user01/Documents/Projects/dingo-iphone-app/Dingo/ViewControllers/LoginViewController/LoginViewController.m"
-                  timestampString = "441890732.528487"
+                  timestampString = "442246405.055994"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "147"
@@ -481,7 +481,7 @@
                   symbolName = "__54-[LoginViewController alertView:clickedButtonAtIndex:]_block_invoke_2"
                   moduleName = "Dingo"
                   urlString = "file:///Users/user01/Documents/Projects/dingo-iphone-app/Dingo/ViewControllers/LoginViewController/LoginViewController.m"
-                  timestampString = "441890732.528648"
+                  timestampString = "442246405.056174"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "147"
@@ -513,7 +513,7 @@
                   symbolName = "-[LoginViewController alertView:clickedButtonAtIndex:]"
                   moduleName = "Dingo"
                   urlString = "file:///Users/user01/Documents/Projects/dingo-iphone-app/Dingo/ViewControllers/LoginViewController/LoginViewController.m"
-                  timestampString = "441890732.529546"
+                  timestampString = "442246405.057"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "121"
@@ -527,7 +527,7 @@
                   symbolName = "__54-[LoginViewController alertView:clickedButtonAtIndex:]_block_invoke128"
                   moduleName = "Dingo"
                   urlString = "file:///Users/user01/Documents/Projects/dingo-iphone-app/Dingo/ViewControllers/LoginViewController/LoginViewController.m"
-                  timestampString = "441890732.529701"
+                  timestampString = "442246405.057164"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "121"
@@ -623,7 +623,7 @@
                   symbolName = "-[PreviewViewController confirm]"
                   moduleName = "Dingo"
                   urlString = "file:///Users/user01/Documents/Projects/dingo-iphone-app/Dingo/ViewControllers/PreviewViewController/PreviewViewController.m"
-                  timestampString = "441890732.532997"
+                  timestampString = "442246405.08468"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "210"
@@ -637,7 +637,7 @@
                   symbolName = "__32-[PreviewViewController confirm]_block_invoke"
                   moduleName = "Dingo"
                   urlString = "file:///Users/user01/Documents/Projects/dingo-iphone-app/Dingo/ViewControllers/PreviewViewController/PreviewViewController.m"
-                  timestampString = "441890732.533166"
+                  timestampString = "442246405.084885"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "210"
@@ -702,27 +702,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Dingo/ViewControllers/CheckoutViewController.m"
-            timestampString = "441626347.191664"
+            timestampString = "442136202.361457"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "204"
-            endingLineNumber = "204"
-            landmarkName = "-payPalPaymentViewController:didCompletePayment:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Dingo/ViewControllers/CheckoutViewController.m"
-            timestampString = "441626347.191664"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "210"
-            endingLineNumber = "210"
+            startingLineNumber = "213"
+            endingLineNumber = "213"
             landmarkName = "-payPalPaymentViewController:didCompletePayment:"
             landmarkType = "5">
          </BreakpointContent>
@@ -750,11 +734,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Dingo/ViewControllers/ListTicketsViewController/ListTicketsViewController.m"
-            timestampString = "441271914.007767"
+            timestampString = "442133527.829331"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1243"
-            endingLineNumber = "1243"
+            startingLineNumber = "1245"
+            endingLineNumber = "1245"
             landmarkName = "-alertView:clickedButtonAtIndex:"
             landmarkType = "5">
             <Locations>
@@ -765,11 +749,11 @@
                   symbolName = "-[ListTicketsViewController alertView:clickedButtonAtIndex:]"
                   moduleName = "Dingo"
                   urlString = "file:///Users/user01/Documents/Projects/dingo-iphone-app/Dingo/ViewControllers/ListTicketsViewController/ListTicketsViewController.m"
-                  timestampString = "441890732.537451"
+                  timestampString = "442246405.096406"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "1243"
-                  endingLineNumber = "1243"
+                  startingLineNumber = "1245"
+                  endingLineNumber = "1245"
                   offsetFromSymbolStart = "858">
                </Location>
                <Location
@@ -779,11 +763,11 @@
                   symbolName = "__60-[ListTicketsViewController alertView:clickedButtonAtIndex:]_block_invoke581"
                   moduleName = "Dingo"
                   urlString = "file:///Users/user01/Documents/Projects/dingo-iphone-app/Dingo/ViewControllers/ListTicketsViewController/ListTicketsViewController.m"
-                  timestampString = "441890732.537613"
+                  timestampString = "442246405.096578"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "1243"
-                  endingLineNumber = "1243"
+                  startingLineNumber = "1245"
+                  endingLineNumber = "1245"
                   offsetFromSymbolStart = "58">
                </Location>
             </Locations>
@@ -796,11 +780,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Dingo/ViewControllers/ChatViewController.m"
-            timestampString = "441889490.267937"
+            timestampString = "442154260.870812"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "329"
-            endingLineNumber = "329"
+            startingLineNumber = "340"
+            endingLineNumber = "340"
             landmarkName = "-textFieldShouldReturn:"
             landmarkType = "5">
          </BreakpointContent>
@@ -890,57 +874,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Dingo/ViewControllers/ChatViewController.m"
-            timestampString = "441009245.219673"
+            timestampString = "442154260.870812"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
-            landmarkName = "-autometicRefresh"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[ChatViewController autometicRefresh]"
-                  moduleName = "Dingo"
-                  urlString = "file:///Users/user01/Documents/Projects/dingo-iphone-app/Dingo/ViewControllers/ChatViewController.m"
-                  timestampString = "441890732.538404"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "110"
-                  endingLineNumber = "110"
-                  offsetFromSymbolStart = "42">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__38-[ChatViewController autometicRefresh]_block_invoke"
-                  moduleName = "Dingo"
-                  urlString = "file:///Users/user01/Documents/Projects/dingo-iphone-app/Dingo/ViewControllers/ChatViewController.m"
-                  timestampString = "441890732.538561"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "112"
-                  endingLineNumber = "112"
-                  offsetFromSymbolStart = "10">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Dingo/ViewControllers/ChatViewController.m"
-            timestampString = "441889490.267937"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "337"
-            endingLineNumber = "337"
+            startingLineNumber = "348"
+            endingLineNumber = "348"
             landmarkName = "-btnSendTap:"
             landmarkType = "5">
          </BreakpointContent>
@@ -967,7 +905,7 @@
                   symbolName = "__56-[PreviewViewController alertView:clickedButtonAtIndex:]_block_invoke_2"
                   moduleName = "Dingo"
                   urlString = "file:///Users/user01/Documents/Projects/dingo-iphone-app/Dingo/ViewControllers/PreviewViewController/PreviewViewController.m"
-                  timestampString = "441890732.540134"
+                  timestampString = "442246405.098164"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "356"
@@ -981,7 +919,7 @@
                   symbolName = "__56-[PreviewViewController alertView:clickedButtonAtIndex:]_block_invoke_3"
                   moduleName = "Dingo"
                   urlString = "file:///Users/user01/Documents/Projects/dingo-iphone-app/Dingo/ViewControllers/PreviewViewController/PreviewViewController.m"
-                  timestampString = "441890732.540285"
+                  timestampString = "442246405.098447"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "356"
@@ -1029,60 +967,12 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Dingo/ViewControllers/MessagesViewController/MessagesViewController.m"
-            timestampString = "441536467.470109"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "168"
-            endingLineNumber = "168"
-            landmarkName = "-prepareForSegue:sender:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Dingo/AppDelegate/AppDelegate.m"
-            timestampString = "441546224.059293"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
-            landmarkName = "-application:didRegisterForRemoteNotificationsWithDeviceToken:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Dingo/Views/MessagesCell/MessagesCell.m"
-            timestampString = "441549219.214119"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
-            landmarkName = "-buildWithData:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Dingo/ViewControllers/CheckoutViewController.m"
-            timestampString = "441626347.191664"
+            timestampString = "442136202.361457"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "258"
-            endingLineNumber = "258"
+            startingLineNumber = "261"
+            endingLineNumber = "261"
             landmarkName = "-payPalPaymentDidCancel:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1109,7 +999,7 @@
                   symbolName = "__56-[PreviewViewController alertView:clickedButtonAtIndex:]_block_invoke"
                   moduleName = "Dingo"
                   urlString = "file:///Users/user01/Documents/Projects/dingo-iphone-app/Dingo/ViewControllers/PreviewViewController/PreviewViewController.m"
-                  timestampString = "441890732.544295"
+                  timestampString = "442246405.101304"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "337"
@@ -1123,7 +1013,7 @@
                   symbolName = "__56-[PreviewViewController alertView:clickedButtonAtIndex:]_block_invoke_2"
                   moduleName = "Dingo"
                   urlString = "file:///Users/user01/Documents/Projects/dingo-iphone-app/Dingo/ViewControllers/PreviewViewController/PreviewViewController.m"
-                  timestampString = "441890732.54445"
+                  timestampString = "442246405.101562"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "337"
@@ -1146,22 +1036,6 @@
             startingLineNumber = "340"
             endingLineNumber = "340"
             landmarkName = "-alertView:clickedButtonAtIndex:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Dingo/ViewControllers/ManageListsViewController/ManageListsViewController.m"
-            timestampString = "441638771.000107"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "168"
-            endingLineNumber = "168"
-            landmarkName = "-prepareForSegue:sender:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1220,11 +1094,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Dingo/ViewControllers/CheckoutViewController.m"
-            timestampString = "441877064.785848"
+            timestampString = "442136202.361457"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "222"
-            endingLineNumber = "222"
+            startingLineNumber = "225"
+            endingLineNumber = "225"
             landmarkName = "-payPalPaymentViewController:didCompletePayment:"
             landmarkType = "5">
             <Locations>
@@ -1235,12 +1109,12 @@
                   symbolName = "__73-[CheckoutViewController payPalPaymentViewController:didCompletePayment:]_block_invoke"
                   moduleName = "Dingo"
                   urlString = "file:///Users/user01/Documents/Projects/dingo-iphone-app/Dingo/ViewControllers/CheckoutViewController.m"
-                  timestampString = "441890732.547365"
+                  timestampString = "442246405.104429"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "222"
-                  endingLineNumber = "222"
-                  offsetFromSymbolStart = "1252">
+                  startingLineNumber = "225"
+                  endingLineNumber = "225"
+                  offsetFromSymbolStart = "1264">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -1249,11 +1123,11 @@
                   symbolName = "__73-[CheckoutViewController payPalPaymentViewController:didCompletePayment:]_block_invoke_2"
                   moduleName = "Dingo"
                   urlString = "file:///Users/user01/Documents/Projects/dingo-iphone-app/Dingo/ViewControllers/CheckoutViewController.m"
-                  timestampString = "441890732.547526"
+                  timestampString = "442246405.104623"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "222"
-                  endingLineNumber = "222"
+                  startingLineNumber = "225"
+                  endingLineNumber = "225"
                   offsetFromSymbolStart = "76">
                </Location>
             </Locations>
@@ -1266,11 +1140,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Dingo/ViewControllers/CheckoutViewController.m"
-            timestampString = "441877106.473141"
+            timestampString = "442136202.361457"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "238"
-            endingLineNumber = "238"
+            startingLineNumber = "241"
+            endingLineNumber = "241"
             landmarkName = "-payPalPaymentViewController:didCompletePayment:"
             landmarkType = "5">
             <Locations>
@@ -1281,11 +1155,11 @@
                   symbolName = "__73-[CheckoutViewController payPalPaymentViewController:didCompletePayment:]_block_invoke_2"
                   moduleName = "Dingo"
                   urlString = "file:///Users/user01/Documents/Projects/dingo-iphone-app/Dingo/ViewControllers/CheckoutViewController.m"
-                  timestampString = "441890732.548338"
+                  timestampString = "442246405.105602"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "238"
-                  endingLineNumber = "238"
+                  startingLineNumber = "241"
+                  endingLineNumber = "241"
                   offsetFromSymbolStart = "700">
                </Location>
                <Location
@@ -1295,11 +1169,11 @@
                   symbolName = "__73-[CheckoutViewController payPalPaymentViewController:didCompletePayment:]_block_invoke_3"
                   moduleName = "Dingo"
                   urlString = "file:///Users/user01/Documents/Projects/dingo-iphone-app/Dingo/ViewControllers/CheckoutViewController.m"
-                  timestampString = "441890732.548494"
+                  timestampString = "442246405.105898"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "238"
-                  endingLineNumber = "238"
+                  startingLineNumber = "241"
+                  endingLineNumber = "241"
                   offsetFromSymbolStart = "56">
                </Location>
             </Locations>
@@ -1318,6 +1192,336 @@
             startingLineNumber = "104"
             endingLineNumber = "104"
             landmarkName = "-viewWillAppear:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Dingo/ViewControllers/ListTicketsViewController/ListTicketsViewController.m"
+            timestampString = "442133527.829331"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
+            landmarkName = "-viewWillAppear:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Dingo/ViewControllers/SearchResultsViewontroller/SearchResultsViewController.m"
+            timestampString = "442133436.554568"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "-viewDidLoad"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Dingo/ViewControllers/SearchResultsViewontroller/SearchResultsViewController.m"
+            timestampString = "442133439.255431"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "-tableView:heightForRowAtIndexPath:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Dingo/Classes/DataManager/DataManager.m"
+            timestampString = "442142872.412077"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1161"
+            endingLineNumber = "1161"
+            landmarkName = "-allMessagesFor:ticketID:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Dingo/Views/MessagesCell/MessagesCell.m"
+            timestampString = "442241893.625215"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "133"
+            endingLineNumber = "133"
+            landmarkName = "-buildWithData:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Dingo/ViewControllers/MessagesViewController/MessagesViewController.m"
+            timestampString = "442150732.537436"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "169"
+            endingLineNumber = "169"
+            landmarkName = "-prepareForSegue:sender:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Dingo/Classes/WebServiceManager/WebServiceManager.m"
+            timestampString = "442159358.24318"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "259"
+            endingLineNumber = "259"
+            landmarkName = "+signInWithFBAndUpdate:completion:"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__54+[WebServiceManager signInWithFBAndUpdate:completion:]_block_invoke224"
+                  moduleName = "Dingo"
+                  urlString = "file:///Users/user01/Documents/Projects/dingo-iphone-app/Dingo/Classes/WebServiceManager/WebServiceManager.m"
+                  timestampString = "442246405.116374"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "260"
+                  endingLineNumber = "260"
+                  offsetFromSymbolStart = "3102">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__54+[WebServiceManager signInWithFBAndUpdate:completion:]_block_invoke_2238"
+                  moduleName = "Dingo"
+                  urlString = "file:///Users/user01/Documents/Projects/dingo-iphone-app/Dingo/Classes/WebServiceManager/WebServiceManager.m"
+                  timestampString = "442246405.116565"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "260"
+                  endingLineNumber = "260"
+                  offsetFromSymbolStart = "94">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Dingo/ViewControllers/ManageListsViewController/ManageListsViewController.m"
+            timestampString = "442160495.646575"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
+            landmarkName = "-tableView:commitEditingStyle:forRowAtIndexPath:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Dingo/AppDelegate/AppDelegate.m"
+            timestampString = "442242638.15114"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "127"
+            endingLineNumber = "127"
+            landmarkName = "-application:didReceiveRemoteNotification:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Dingo/ViewControllers/ChatViewController.m"
+            timestampString = "442240340.035762"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "192"
+            endingLineNumber = "192"
+            landmarkName = "-reloadMessagesWithCompletion:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Dingo/Views/MessagesCell/MessagesCell.m"
+            timestampString = "442244284.834977"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "-buildWithData:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Dingo/Classes/WebServiceManager/WebServiceManager.m"
+            timestampString = "442244712.526821"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "306"
+            endingLineNumber = "306"
+            landmarkName = "+signInWithFBAndUpdate:completion:"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__54+[WebServiceManager signInWithFBAndUpdate:completion:]_block_invoke_2238"
+                  moduleName = "Dingo"
+                  urlString = "file:///Users/user01/Documents/Projects/dingo-iphone-app/Dingo/Classes/WebServiceManager/WebServiceManager.m"
+                  timestampString = "442246405.142708"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "306"
+                  endingLineNumber = "306"
+                  offsetFromSymbolStart = "4904">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__54+[WebServiceManager signInWithFBAndUpdate:completion:]_block_invoke_5"
+                  moduleName = "Dingo"
+                  urlString = "file:///Users/user01/Documents/Projects/dingo-iphone-app/Dingo/Classes/WebServiceManager/WebServiceManager.m"
+                  timestampString = "442246405.142903"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "306"
+                  endingLineNumber = "306"
+                  offsetFromSymbolStart = "56">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Dingo/ViewControllers/ChatViewController.m"
+            timestampString = "442245531.564392"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "146"
+            endingLineNumber = "146"
+            landmarkName = "-reloadMessagesWithCompletion:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Dingo/ViewControllers/ChatViewController.m"
+            timestampString = "442245585.452511"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
+            landmarkName = "-viewWillAppear:"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[ChatViewController viewWillAppear:]"
+                  moduleName = "Dingo"
+                  urlString = "file:///Users/user01/Documents/Projects/dingo-iphone-app/Dingo/ViewControllers/ChatViewController.m"
+                  timestampString = "442246405.144478"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "86"
+                  endingLineNumber = "86"
+                  offsetFromSymbolStart = "550">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__37-[ChatViewController viewWillAppear:]_block_invoke"
+                  moduleName = "Dingo"
+                  urlString = "file:///Users/user01/Documents/Projects/dingo-iphone-app/Dingo/ViewControllers/ChatViewController.m"
+                  timestampString = "442246405.144773"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "86"
+                  endingLineNumber = "86"
+                  offsetFromSymbolStart = "62">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Dingo/ViewControllers/ChatViewController.m"
+            timestampString = "442246241.461381"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "133"
+            endingLineNumber = "133"
+            landmarkName = "-reloadMessagesWithCompletion:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

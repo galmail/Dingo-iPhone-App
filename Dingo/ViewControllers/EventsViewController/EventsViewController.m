@@ -45,12 +45,15 @@ static const CGFloat categoriesHeight = 110;
     firstLoad = YES;
     
     selectedCategories = [[[DataManager shared] allCategories] valueForKey:@"category_id"];
-//    [AppManager sharedManager].token = @"SJAj9Su6yAswspK2s2JY";
-//    [AppManager sharedManager].userInfo[@"email"] = @"paulroiter@hotmail.com";
-//    [AppManager sharedManager].userInfo[@"id"] =[NSNumber numberWithInt:130];
+//    [AppManager sharedManager].token = @"k6x2DPuz4zrHEHYU5WMn";
+//    [AppManager sharedManager].userInfo[@"email"] = @"phill_666@hotmail.com";
+//   [AppManager sharedManager].userInfo[@"id"] =[NSNumber numberWithInt:135];
 }
 
+
 - (void)viewWillAppear:(BOOL)animated {
+    
+    
     [super viewWillAppear:animated];
     [self setupNavigationBar];
 }
