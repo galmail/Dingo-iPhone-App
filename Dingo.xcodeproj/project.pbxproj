@@ -245,6 +245,8 @@
 		593593FB1A52DB320004311E /* PlaceHolderManageListing@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 593593F91A52DB320004311E /* PlaceHolderManageListing@2x.jpg */; };
 		59453D341A40017F00423F35 /* paypal_logo_with_text@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 59453D331A40017F00423F35 /* paypal_logo_with_text@2x.png */; };
 		596329121A318D4F001F5AD9 /* arrow_map@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 596329111A318D4F001F5AD9 /* arrow_map@2x.png */; };
+		5978C4B01A5D1BB5009F0723 /* placeholder_avatar.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5978C4AE1A5D1BB5009F0723 /* placeholder_avatar.jpg */; };
+		5978C4B11A5D1BB5009F0723 /* placeholder_avatar@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5978C4AF1A5D1BB5009F0723 /* placeholder_avatar@2x.jpg */; };
 		599D25851A42A5DB0052A414 /* top_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 599D25841A42A5DB0052A414 /* top_icon@2x.png */; };
 		59A9AE9B1A4AD93C009B4882 /* cross.png in Resources */ = {isa = PBXBuildFile; fileRef = 59A9AE991A4AD93C009B4882 /* cross.png */; };
 		59A9AE9C1A4AD93C009B4882 /* cross@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 59A9AE9A1A4AD93C009B4882 /* cross@2x.png */; };
@@ -661,6 +663,8 @@
 		593593F91A52DB320004311E /* PlaceHolderManageListing@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "PlaceHolderManageListing@2x.jpg"; sourceTree = "<group>"; };
 		59453D331A40017F00423F35 /* paypal_logo_with_text@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "paypal_logo_with_text@2x.png"; sourceTree = "<group>"; };
 		596329111A318D4F001F5AD9 /* arrow_map@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow_map@2x.png"; sourceTree = "<group>"; };
+		5978C4AE1A5D1BB5009F0723 /* placeholder_avatar.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = placeholder_avatar.jpg; sourceTree = "<group>"; };
+		5978C4AF1A5D1BB5009F0723 /* placeholder_avatar@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "placeholder_avatar@2x.jpg"; sourceTree = "<group>"; };
 		599D25841A42A5DB0052A414 /* top_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "top_icon@2x.png"; sourceTree = "<group>"; };
 		59A9AE991A4AD93C009B4882 /* cross.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cross.png; sourceTree = "<group>"; };
 		59A9AE9A1A4AD93C009B4882 /* cross@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cross@2x.png"; sourceTree = "<group>"; };
@@ -1790,6 +1794,8 @@
 		3F62C66E1948318F00D7D6B1 /* other_icons */ = {
 			isa = PBXGroup;
 			children = (
+				5978C4AE1A5D1BB5009F0723 /* placeholder_avatar.jpg */,
+				5978C4AF1A5D1BB5009F0723 /* placeholder_avatar@2x.jpg */,
 				59A9AE991A4AD93C009B4882 /* cross.png */,
 				593593F81A52DB320004311E /* PlaceHolderManageListing.jpg */,
 				593593F91A52DB320004311E /* PlaceHolderManageListing@2x.jpg */,
@@ -2411,6 +2417,7 @@
 				3F2864EC194B2851002A3576 /* faq_cell@2x.png in Resources */,
 				5FF2323C1A125F990059667B /* ticket-icon.png in Resources */,
 				841C50AD19A626BB00BD4141 /* btnConfirmAlert.png in Resources */,
+				5978C4B11A5D1BB5009F0723 /* placeholder_avatar@2x.jpg in Resources */,
 				3F79701E19547D1300739EE8 /* PhotosPreviewCell.xib in Resources */,
 				841C508D19A6082400BD4141 /* btnNavBarAdd@2x.png in Resources */,
 				3AA160FB19E5C8EF00895508 /* AppiraterLocalizable.strings in Resources */,
@@ -2573,6 +2580,7 @@
 				3F62C6881948318F00D7D6B1 /* list_tickets_icon@2x.png in Resources */,
 				3AA160F019E5C8EF00895508 /* AppiraterLocalizable.strings in Resources */,
 				3AA160FC19E5C8EF00895508 /* AppiraterLocalizable.strings in Resources */,
+				5978C4B01A5D1BB5009F0723 /* placeholder_avatar.jpg in Resources */,
 				3F62C6A41948318F00D7D6B1 /* side_menu_cell@2x.png in Resources */,
 				840BA3C619A23ED700198277 /* settings_icon.png in Resources */,
 				3F62C6991948318F00D7D6B1 /* list_tickets_cell2@2x.png in Resources */,
@@ -3065,8 +3073,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Phillip Watts (Q5Z9DB6255)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Phillip Watts (Q5Z9DB6255)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Allington Ventures Ltd (KF7AL49U88)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Allington Ventures Ltd (KF7AL49U88)";
 				ENABLE_NS_ASSERTIONS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3086,7 +3094,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = Dingo;
-				PROVISIONING_PROFILE = "a95a2d09-61b9-494e-b874-0babda997d2a";
+				PROVISIONING_PROFILE = "f2c518b0-d10a-4980-97d8-03813e08d102";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3098,8 +3106,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Phillip Watts (Q5Z9DB6255)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Phillip Watts (Q5Z9DB6255)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Allington Ventures Ltd (KF7AL49U88)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Allington Ventures Ltd (KF7AL49U88)";
 				ENABLE_NS_ASSERTIONS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3119,7 +3127,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = Dingo;
-				PROVISIONING_PROFILE = "a95a2d09-61b9-494e-b874-0babda997d2a";
+				PROVISIONING_PROFILE = "f2c518b0-d10a-4980-97d8-03813e08d102";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

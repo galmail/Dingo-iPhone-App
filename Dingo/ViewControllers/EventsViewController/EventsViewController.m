@@ -78,10 +78,10 @@ static const CGFloat categoriesHeight = 110;
             if (firstLoad) {
                 // load tickets too
                 firstLoad = NO;
-                NSArray *eventIDs = [[[DataManager shared] allEventsOfSelectedLocation] valueForKey:@"event_id"];
+                //NSArray *eventIDs = [[[DataManager shared] allEventsOfSelectedLocation] valueForKey:@"event_id"];
                 
                 
-                [[DataManager shared] allTiketsForEvents:[eventIDs mutableCopy] withCompletion:^(BOOL finished) {
+                //[[DataManager shared] allTiketsForEvents:[eventIDs mutableCopy] withCompletion:^(BOOL finished) {
                     
                     [[DataManager shared] fetchMessagesWithCompletion:^(BOOL finished) {
                         
@@ -94,7 +94,7 @@ static const CGFloat categoriesHeight = 110;
                         if ([[AppManager sharedManager] justInstalled]) {
                             [self setupTips];
                         }
-                    }];
+                   // }];
                 }];
             } else {
                 

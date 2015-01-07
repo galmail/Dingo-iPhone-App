@@ -1186,6 +1186,23 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     return avatar_url;
 }
 
+-(BOOL)directMessageFromDingo{
+    BOOL isDingomessage=false;
+    NSManagedObjectContext *context = [AppManager sharedManager].managedObjectContext;
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Messages"];
+    request.predicate = [NSPredicate predicateWithFormat:@"((sender_id == %@ AND ticket_id = nil) ||(receiver_id == %@ AND ticket_id = nil))  ", [[AppManager sharedManager].userInfo[@"id"] stringValue], [[AppManager sharedManager].userInfo[@"id"] stringValue]];
+   
+    NSError *error = nil;
+    
+     NSArray* msgArray = [[DataManager shared] allMessagesFor:[AppManager sharedManager].userInfo[@"id"] ticketID:nil];
+    NSArray *events = [context executeFetchRequest:request error:&error];
+    if ([msgArray count] == [events count] && [msgArray count]) {
+        isDingomessage=true;
+    }
+
+    return isDingomessage;
+}
+
 #pragma mark Alerts 
 
 - (NSArray *)allAlerts {

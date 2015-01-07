@@ -192,9 +192,11 @@
     [btnCross setImage:[UIImage imageNamed:@"cross.png"]  forState:UIControlStateNormal];
     [btnCross addTarget:self action:@selector(removeNotificationView) forControlEvents:UIControlEventTouchUpInside];
     
-    UIImageView *imageViewIcon=[[UIImageView alloc] initWithFrame:CGRectMake(10, 7, 50, 50)];
-    [imageViewIcon setImage:[UIImage imageNamed:@"john_smith.png"]];
+    UIImageView *imageViewIcon=[[UIImageView alloc] initWithFrame:CGRectMake(10, 9.5, 45, 45)];
+    [imageViewIcon setImage:[UIImage imageNamed:@"placeholder_avatar.jpg"]];
     [viewNotification addSubview:imageViewIcon];
+    [imageViewIcon.layer setCornerRadius:22.5];
+    [imageViewIcon.layer setMasksToBounds:YES];
     
     UILabel *lblName=[[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(imageViewIcon.frame)+8, 8, 200, 25)];
     [lblName setText:@"Tom"];
@@ -218,6 +220,7 @@
     
     [UIView animateWithDuration:0.6 animations:^{
         [viewNotification setFrame:CGRectMake(0, 0, screenSize.width, 64)];
+        [self performSelector:@selector(removeNotificationView) withObject:nil afterDelay:3];
     }];
     
     

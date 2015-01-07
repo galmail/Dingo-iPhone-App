@@ -166,6 +166,8 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     NSIndexPath *selectedCellPath = [self.tableView indexPathForSelectedRow];
+    
+    
     Message* data = groupedMessages[selectedCellPath.row];
     
     ChatViewController *vc = (ChatViewController *)segue.destinationViewController;
@@ -188,8 +190,16 @@
                 vc.receiverName = data.sender_name;
                 vc.receiverID = data.sender_id;
             }else{
-            vc.receiverName = data.receiver_name;
-            vc.receiverID = data.receiver_id;
+                
+                if ([[DataManager shared] directMessageFromDingo]) {
+                    vc.receiverName = data.sender_name;
+                    vc.receiverID = data.sender_id;
+                }else{
+                    vc.receiverName = data.receiver_name;
+                    vc.receiverID = data.receiver_id;
+                }
+                
+                
             }
         }else{
 

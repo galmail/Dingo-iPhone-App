@@ -87,5 +87,6 @@
 - (void)addOrUpdateMessage:(NSDictionary *)info;
 -(BOOL)willShowDingoAvatar:(NSString *)ticketID;
 -(NSString *)returnAvatarUrl:(NSString *)tickI :(NSString *)usrID;
+-(BOOL)directMessageFromDingo;
 
 @end
