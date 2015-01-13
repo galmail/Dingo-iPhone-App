@@ -8,12 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "Ticket.h"
+#import "Message.h"
 
 @interface ChatViewController : UIViewController<UITextFieldDelegate>
 
 @property (nonatomic) Ticket *ticket;
 @property (nonatomic) NSString *receiverName;
 @property (nonatomic) NSString *receiverID;
+@property(strong,nonatomic) Message *messageData;
 
 
 

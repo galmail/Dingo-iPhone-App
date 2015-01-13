@@ -84,6 +84,7 @@
 - (NSInteger)unreadMessagesCountForTicket:(NSString *)ticketID;
 - (NSArray *)allMessages;
 - (NSArray *)allMessagesFor:(NSNumber*)userID ticketID:(NSString*)ticketID;
+-(NSArray *)allMessagesForConversatinID:(NSNumber*)userID conersationId:(NSString *)conversId;
 - (void)addOrUpdateMessage:(NSDictionary *)info;
 -(BOOL)willShowDingoAvatar:(NSString *)ticketID;
 -(NSString *)returnAvatarUrl:(NSString *)tickI :(NSString *)usrID;

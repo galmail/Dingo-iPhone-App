@@ -27,5 +27,6 @@
 @dynamic receiver_avatar_url;
 @dynamic receiver_avatar;
 @dynamic read;
+@dynamic conversation_id;
 
 @end

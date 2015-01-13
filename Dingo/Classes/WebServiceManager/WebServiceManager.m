@@ -260,7 +260,7 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
                                                                           [WebServiceManager signIn:params completion:^(id response, NSError *error) {
                                                                               NSLog(@"login response %@", response);
                                                                               if (error ) {
-                                                                                  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                                                                                  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"The server is busy, please try again later" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
                                                                                   [alert show];
                                                                                   handler(nil,error);
                                                                               } else {

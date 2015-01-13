@@ -34,6 +34,7 @@
 @end
 
 @implementation ChatViewController
+@synthesize messageData;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -92,9 +93,9 @@
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    repeatingTimer = [NSTimer timerWithTimeInterval:20 target:self selector:@selector(autometicRefresh) userInfo:nil repeats:YES] ;
+    //repeatingTimer = [NSTimer timerWithTimeInterval:30 target:self selector:@selector(autometicRefresh) userInfo:nil repeats:YES] ;
     
-    [[NSRunLoop currentRunLoop] addTimer:repeatingTimer forMode:NSDefaultRunLoopMode];
+    //[[NSRunLoop currentRunLoop] addTimer:repeatingTimer forMode:NSDefaultRunLoopMode];
 }
 
 
@@ -102,7 +103,7 @@
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [repeatingTimer invalidate];
+    //[repeatingTimer invalidate];
 }
 
 
@@ -128,8 +129,29 @@
     
     [[DataManager shared] fetchMessagesWithCompletion:^(BOOL finished) {
         NSNumber *userID = [AppManager sharedManager].userInfo[@"id"] ;
+        NSArray * messages=nil;
+        NSString *coversationId=@"";
+        if(!messageData){
+            if (!self.ticket) {
+                int user=[userID intValue];
+                int otheruser=[self.receiverID intValue];
+                coversationId=[NSString stringWithFormat:@"-%d-%d",MIN(user, otheruser),MAX(user, otheruser)];
+            }else{
+                int user=[userID intValue];
+                int otheruser=[self.receiverID intValue];
+                if (otheruser<=0)
+                    otheruser=[self.ticket.user_id intValue];
+                    
+                    coversationId=[NSString stringWithFormat:@"%@-%d-%d",self.ticket.ticket_id, MIN(user, otheruser),MAX(user, otheruser)];
+            }
+        }
         
-        NSArray * messages = [[DataManager shared] allMessagesFor:userID ticketID:self.ticket.ticket_id];
+       // if ( messageData != nil) {
+        messages  = [[DataManager shared] allMessagesForConversatinID:[AppManager sharedManager].userInfo[@"id"] conersationId:(messageData.conversation_id != nil?messageData.conversation_id:coversationId)];
+//        }else{
+//           messages = [[DataManager shared] allMessagesFor:userID ticketID:self.ticket.ticket_id];
+//        }
+        
         [bubbleData removeAllObjects];
         
 //        if (!fromDingo) {
@@ -143,9 +165,9 @@
         
            // NSArray *arrayMessages_receiver=[messages filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:str,self.receiverID]];
             
-            NSArray *arrayMessage_fromDingo=[messages filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"from_dingo == %@",[NSNumber numberWithBool:true]]];
+           // NSArray *arrayMessage_fromDingo=[messages filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"from_dingo == %@",[NSNumber numberWithBool:true]]];
             
-            if ([arrayMessage_fromDingo count] == [messages count] || self.ticket==nil){
+            if (self.ticket==nil){
                // if ([arrayMessages_receiver count] !=0 && [arrayMessage_fromDingo count] !=0 ) {
                     [self.navigationItem setRightBarButtonItem:nil];
                 
@@ -348,8 +370,12 @@
     if ([[textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet] ] length]  == 0) {
         return;
     }
-    
-    NSDictionary *params = @{ @"ticket_id": self.ticket.ticket_id==nil?@"":self.ticket.ticket_id, @"receiver_id" : self.receiverID, @"content" : textField.text };
+     NSString *ticketID=@"";
+    if (messageData.ticket_id !=nil) {
+        ticketID=messageData.ticket_id;
+    }
+   
+    NSDictionary *params = @{ @"ticket_id": self.ticket.ticket_id==nil?ticketID:self.ticket.ticket_id, @"receiver_id" : self.receiverID, @"content" : textField.text };
     
     [WebServiceManager sendMessage:params completion:^(id response, NSError *error) {
         if (!error) {

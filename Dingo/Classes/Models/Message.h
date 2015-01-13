@@ -28,5 +28,6 @@
 @property (nonatomic, retain) NSString * receiver_avatar_url;
 @property (nonatomic, retain) NSData * receiver_avatar;
 @property (nonatomic, retain) NSNumber * read;
+@property (nonatomic, strong) NSString *conversation_id;
 
 @end

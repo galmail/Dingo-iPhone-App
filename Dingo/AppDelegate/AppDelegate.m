@@ -105,8 +105,8 @@
                                   @"brand":@"Apple",
                                   @"model": [[UIDevice currentDevice] platformString],
                                   @"os":[[UIDevice currentDevice] systemVersion],
-                                  @"app_version": [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]
-                                  //@"location" : [NSString stringWithFormat:@"%f,%f", [AppManager sharedManager].currentLocation.coordinate.latitude, [AppManager sharedManager].currentLocation.coordinate.longitude ]
+                                  @"app_version": [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"],
+                                  @"location" : [NSString stringWithFormat:@"%f,%f", [AppManager sharedManager].currentLocation.coordinate.latitude, [AppManager sharedManager].currentLocation.coordinate.longitude ]
                                   };
         [WebServiceManager registerDevice:params completion:^(id response, NSError *error) {
             NSLog(@"registerDevice response - %@", response);
@@ -124,13 +124,13 @@
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     
 
-    if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive) {
+   // if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive) {
         [self showNotiFicationView];
-    }else{
-            UIAlertView *alertView=[[UIAlertView alloc] initWithTitle:@"Dingo" message:@"You received a new message." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [alertView show];
-    }
-    
+//    }else{
+//            UIAlertView *alertView=[[UIAlertView alloc] initWithTitle:@"Dingo" message:@"You received a new message." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//            [alertView show];
+//    }
+//    
     
     if ( application.applicationState == UIApplicationStateActive ) {
     

@@ -11,6 +11,7 @@
 #import "DingoUtilites.h"
 #import "WebServiceManager.h"
 #import "AppManager.h"
+#import "CommonDocUnAuth.h"
 
 
 typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
@@ -1047,30 +1048,59 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
 #pragma mark Messages
 
 - (void)fetchMessagesWithCompletion:( void (^) (BOOL finished))handler {
+//    
+//    [WebServiceManager receiveMessages:@{@"conversations": @"true"} completion:^(id response, NSError *error) {
+//        if (response[@"messages"]) {
+//            NSArray *messages = response[@"messages"];
+//            
+//            // remove deleted tickets from local database
+//            NSArray *messagesIDs = [messages valueForKey:@"id"];
+//            NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Messages"];
+//            request.predicate = [NSPredicate predicateWithFormat:@"NOT (message_id IN %@)", messagesIDs];
+//            
+//            NSArray *messagesToRemove = [[AppManager sharedManager].managedObjectContext executeFetchRequest:request error:nil];
+//            if (messagesToRemove.count) {
+//                for (Message *toRemove in messagesToRemove) {
+//                    [[AppManager sharedManager].managedObjectContext deleteObject:toRemove];
+//                }
+//            }
+//            
+//            for (NSDictionary *message in messages) {
+//                [self addOrUpdateMessage:message];
+//            }
+//            
+//            [[AppManager sharedManager] saveContext];
+//        }
+//        handler(YES);
+//    }];
     
-    [WebServiceManager receiveMessages:@{@"conversations": @"true"} completion:^(id response, NSError *error) {
+    [[CommonDocUnAuth sharedDocument] getPath:@"messages" parameters:@{@"conversations": @"true"} success:^(AFHTTPRequestOperation *operation, id response) {
         if (response[@"messages"]) {
-            NSArray *messages = response[@"messages"];
+                        NSArray *messages = response[@"messages"];
             
-            // remove deleted tickets from local database
-            NSArray *messagesIDs = [messages valueForKey:@"id"];
-            NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Messages"];
-            request.predicate = [NSPredicate predicateWithFormat:@"NOT (message_id IN %@)", messagesIDs];
+                        // remove deleted tickets from local database
+                        NSArray *messagesIDs = [messages valueForKey:@"id"];
+                        NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Messages"];
+                        request.predicate = [NSPredicate predicateWithFormat:@"NOT (message_id IN %@)", messagesIDs];
             
-            NSArray *messagesToRemove = [[AppManager sharedManager].managedObjectContext executeFetchRequest:request error:nil];
-            if (messagesToRemove.count) {
-                for (Message *toRemove in messagesToRemove) {
-                    [[AppManager sharedManager].managedObjectContext deleteObject:toRemove];
-                }
-            }
+                        NSArray *messagesToRemove = [[AppManager sharedManager].managedObjectContext executeFetchRequest:request error:nil];
+                        if (messagesToRemove.count) {
+                            for (Message *toRemove in messagesToRemove) {
+                                [[AppManager sharedManager].managedObjectContext deleteObject:toRemove];
+                            }
+                        }
             
-            for (NSDictionary *message in messages) {
-                [self addOrUpdateMessage:message];
-            }
-            
-            [[AppManager sharedManager] saveContext];
-        }
-        handler(YES);
+                        for (NSDictionary *message in messages) {
+                            [self addOrUpdateMessage:message];
+                        }
+                        
+                        [[AppManager sharedManager] saveContext];
+                    }
+                    handler(YES);
+    
+    }failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+       handler(YES);
     }];
 }
 
@@ -1085,7 +1115,7 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
 
 - (NSInteger)unreadMessagesCountForTicket:(NSString *)ticketID {
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Messages"];
-    request.predicate = [NSPredicate predicateWithFormat:@"read == 0 && receiver_id == %@ && ticket_id == %@", [AppManager sharedManager].userInfo[@"id"], ticketID];
+    request.predicate = [NSPredicate predicateWithFormat:@"read == 0 && receiver_id == %@ && conversation_id == %@", [AppManager sharedManager].userInfo[@"id"], ticketID];
     
     NSArray *messages = [[AppManager sharedManager].managedObjectContext executeFetchRequest:request error:nil];
     
@@ -1133,6 +1163,7 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     message.read = @( [info[@"read"] boolValue]);
     message.offer_new = @( [info[@"new_offer"] boolValue]);
     message.ticket_id = ![info[@"ticket_id"] isKindOfClass:[NSNull class]] ? info[@"ticket_id"] : @"";
+    message.conversation_id=[info objectForKey:@"conversation_id"];
     
     if (![info[@"offer_id"] isKindOfClass:[NSNull class]]) {
         message.offer_id = info[@"offer_id"];
@@ -1161,6 +1192,20 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     NSArray *events = [context executeFetchRequest:request error:&error];
     
     return events;
+}
+
+-(NSArray *)allMessagesForConversatinID:(NSNumber*)userID conersationId:(NSString *)conversId;{
+    NSManagedObjectContext *context=[AppManager sharedManager].managedObjectContext;
+//    NSFetchRequest *request=[[NSFetchRequest alloc] initWithEntityName:@"Messages"];
+//    request.predicate=[NSPredicate predicateWithFormat:@"(conversation_id == %@)",conversId];
+//    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"datetime" ascending:YES]];
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Messages"];
+    request.predicate = [NSPredicate predicateWithFormat:@"(receiver_id == %@ || (sender_id == %@ && from_dingo != 1))  && conversation_id == %@ ", [userID stringValue], [userID stringValue], conversId];
+    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"datetime" ascending:YES]];
+
+    NSError *eror=nil;
+    NSArray *messages=[context executeFetchRequest:request error:&eror];
+    return messages;
 }
 
 -(BOOL)willShowDingoAvatar:(NSString *)ticketID{

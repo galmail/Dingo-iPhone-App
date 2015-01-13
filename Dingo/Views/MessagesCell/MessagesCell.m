@@ -12,6 +12,10 @@
 #import "DingoUtilites.h"
 #import "DataManager.h"
 #import "WebServiceManager.h"
+#import "UIImageView+AFNetworking.h"
+
+
+
 
 const CGFloat messagesCellHeight = 82;
 
@@ -46,30 +50,26 @@ const CGFloat messagesCellHeight = 82;
                
                  if ([[DataManager shared] willShowDingoAvatar:ticket.ticket_id]) {
                      if (data.sender_avatar) {
-                         self.icon = [UIImage imageWithData:data.sender_avatar];
+                         [self.iconImageView setImage:[UIImage imageWithData:data.sender_avatar]];
+                         
                      } else {
-                         [WebServiceManager imageFromUrl:data.sender_avatar_url completion:^(id response, NSError *error) {
-                             self.icon = [UIImage imageWithData:response];
-                             //data.sender_avatar = response;
-                         }];
+                         [self.iconImageView setImageWithURL:[NSURL URLWithString:data.sender_avatar_url] placeholderImage:[UIImage imageNamed:@"placeholder_avatar.jpg"]];
                      }
                      self.name = @"Dingo";
                  }else{
-                     [WebServiceManager imageFromUrl:[[DataManager shared] returnAvatarUrl:ticket.ticket_id :data.sender_id ] completion:^(id response, NSError *error) {
-                         self.icon = [UIImage imageWithData:response];
-                         //data.sender_avatar = response;
-                     }];
+
+                     [self.iconImageView setImageWithURL:[NSURL URLWithString:[[DataManager shared] returnAvatarUrl:ticket.ticket_id :data.sender_id ]] placeholderImage:[UIImage imageNamed:@"placeholder_avatar.jpg"]];
                      self.name = data.sender_name;
                  }
                 
             }else{
             if (data.sender_avatar) {
-                self.icon = [UIImage imageWithData:data.sender_avatar];
+              
+                [self.iconImageView setImage:[UIImage imageWithData:data.sender_avatar]];
             } else {
-                [WebServiceManager imageFromUrl:data.sender_avatar_url completion:^(id response, NSError *error) {
-                    self.icon = [UIImage imageWithData:response];
-                    data.sender_avatar = response;
-                }];
+
+                [self.iconImageView setImageWithURL:[NSURL URLWithString:data.sender_avatar_url] placeholderImage:[UIImage imageNamed:@"placeholder_avatar.jpg"]];
+                
             }
                 self.name = data.sender_name;
             }
@@ -81,49 +81,46 @@ const CGFloat messagesCellHeight = 82;
                 if (data.sender_avatar) {
                     
                     if ([[DataManager shared] willShowDingoAvatar:ticket.ticket_id]) {
-                        self.icon = [UIImage imageWithData:data.sender_avatar];
+                        [self.iconImageView setImage:[UIImage imageWithData:data.sender_avatar]];
                     }else{
-                        self.icon=[UIImage imageWithData:ticket.user_photo];
+                        
+                        [self.iconImageView setImage:[UIImage imageWithData:ticket.user_photo]];
                     }
                     
                 } else {
                     if ([[DataManager shared] willShowDingoAvatar:ticket.ticket_id]){
-                        [WebServiceManager imageFromUrl:data.sender_avatar_url completion:^(id response, NSError *error) {
-                            self.icon = [UIImage imageWithData:response];
-                            //data.sender_avatar = response;
-                        }];
+                        [self.iconImageView setImageWithURL:[NSURL URLWithString:data.sender_avatar_url] placeholderImage:[UIImage imageNamed:@"placeholder_avatar.jpg"]];
                     }else{
-                        [WebServiceManager imageFromUrl:[NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?type=normal",ticket.facebook_id] completion:^(id response, NSError *error) {
-                            self.icon = [UIImage imageWithData:response];
-                            //data.sender_avatar = response;
-                        }];
+
+                        [self.iconImageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?type=normal",ticket.facebook_id]] placeholderImage:[UIImage imageNamed:@"placeholder_avatar.jpg"]];
                         
                     }
                 }
                 self.name = @"Dingo";
             } else {
                 if (data.receiver_avatar) {
-                    self.icon = [UIImage imageWithData:data.receiver_avatar];
+                    
+                    [self.iconImageView setImage:[UIImage imageWithData:data.receiver_avatar]];
                 } else {
-                    [WebServiceManager imageFromUrl:data.receiver_avatar_url completion:^(id response, NSError *error) {
-                        self.icon = [UIImage imageWithData:response];
-                        data.receiver_avatar = response;
-                    }];
+
+                    
+                 [self.iconImageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",data.receiver_avatar_url]] placeholderImage:[UIImage imageNamed:@"placeholder_avatar.jpg"]];
                 }
                 self.name = data.receiver_name;
             }
         }
-        //[[AppManager sharedManager] saveContext];
+       
         
     } else {
-         //NSArray* msgArray = [[DataManager shared] allMessagesFor:[AppManager sharedManager].userInfo[@"id"] ticketID:ticketID];
+        
         if ([data.from_dingo boolValue]) {
             if (data.sender_avatar) {
                 if ([[DataManager shared] willShowDingoAvatar:ticket.ticket_id]) {
-                    self.icon = [UIImage imageWithData:data.sender_avatar];
+                        [self.iconImageView setImage:[UIImage imageWithData:data.sender_avatar]];
                     self.name = @"Dingo";
                 }else{
-                    self.icon=[UIImage imageWithData:(ticket.user_photo==nil?data.sender_avatar:ticket.user_photo)];
+                   
+                    [self.iconImageView setImage:[UIImage imageWithData:(ticket.user_photo==nil?data.sender_avatar:ticket.user_photo)]];
                     self.name=([data.receiver_id isEqualToString:[[AppManager sharedManager].userInfo[@"id"] stringValue]]?data.sender_name:data.receiver_name);
                 }
                 
@@ -131,17 +128,12 @@ const CGFloat messagesCellHeight = 82;
             } else {
                 
                 if ([[DataManager shared] willShowDingoAvatar:ticket.ticket_id]){
-                [WebServiceManager imageFromUrl:data.sender_avatar_url completion:^(id response, NSError *error) {
-                    self.icon = [UIImage imageWithData:response];
-                    
-                   // data.sender_avatar = response;
-                }];
+
+                    [self.iconImageView setImageWithURL:[NSURL URLWithString:data.sender_avatar_url] placeholderImage:[UIImage imageNamed:@"placeholder_avatar.jpg"]];
                   self.name = @"Dingo";
                 }else{
-                    [WebServiceManager imageFromUrl:[NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?type=normal",ticket.facebook_id] completion:^(id response, NSError *error) {
-                        self.icon = [UIImage imageWithData:response];
-                        data.sender_avatar = response;
-                    }];
+
+                    [self.iconImageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?type=normal",ticket.facebook_id]] placeholderImage:[UIImage imageNamed:@"placeholder_avatar.jpg"]];
                    self.name=([data.receiver_id isEqualToString:[[AppManager sharedManager].userInfo[@"id"] stringValue]]?data.sender_name:data.receiver_name);
                 }
             }
@@ -150,17 +142,14 @@ const CGFloat messagesCellHeight = 82;
         
             self.icon = nil;
             if (ticket.user_photo) {
-                self.icon = [UIImage imageWithData:ticket.user_photo];
+                
+                [self.iconImageView setImage:[UIImage imageWithData:ticket.user_photo]];
                  self.name = ticket.user_name;
             }else{
                
                 
                 self.name= ([data.receiver_id isEqualToString:[[AppManager sharedManager].userInfo[@"id"] stringValue]]?data.sender_name:data.receiver_name);
-                [WebServiceManager imageFromUrl:([data.receiver_id isEqualToString:[[AppManager sharedManager].userInfo[@"id"] stringValue]]?data.sender_avatar_url:data.receiver_avatar_url) completion:^(id response, NSError *error) {
-                    self.icon = [UIImage imageWithData:response];
-                    data.receiver_avatar = response;
-                }];
-               
+                [self.iconImageView setImageWithURL:[NSURL URLWithString:([data.receiver_id isEqualToString:[[AppManager sharedManager].userInfo[@"id"] stringValue]]?data.sender_avatar_url:data.receiver_avatar_url)] placeholderImage:[UIImage imageNamed:@"placeholder_avatar.jpg"]];
                 
                 
             }
@@ -171,7 +160,8 @@ const CGFloat messagesCellHeight = 82;
     
     self.lastMessage = data.content;
     
-    NSInteger unreadMessageCount = [[DataManager shared] unreadMessagesCountForTicket:ticket.ticket_id];
+    
+    NSInteger unreadMessageCount = [[DataManager shared] unreadMessagesCountForTicket:data.conversation_id];
     if (unreadMessageCount) {
         
         NSString *unreadMessages = [NSString stringWithFormat:@"%ld", (long)unreadMessageCount];
@@ -187,7 +177,9 @@ const CGFloat messagesCellHeight = 82;
         self.dateLabel.frame = frame;
         self.dateLabel.center = center;
         self.dateLabel.text= unreadMessages;
+        self.dateLabel.hidden = false;
     } else {
+        
         self.dateLabel.hidden = YES;
     }
 }
@@ -195,7 +187,7 @@ const CGFloat messagesCellHeight = 82;
 #pragma mark - Setters
 
 - (void)setIcon:(UIImage *)icon {
-    self.iconImageView.image = icon;
+//    self.iconImageView.image = icon;
 }
 
 - (void)setName:(NSString *)name {

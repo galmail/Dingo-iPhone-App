@@ -16,7 +16,7 @@
 #import "ChatViewController.h"
 #import "ZSLoadingView.h"
 
-@interface CheckoutViewController () <PayPalPaymentDelegate, UIPopoverControllerDelegate>{
+@interface CheckoutViewController () <PayPalPaymentDelegate,PayPalProfileSharingDelegate,PayPalFuturePaymentDelegate, UIPopoverControllerDelegate>{
     
     __weak IBOutlet UILabel *lblEvent;
     __weak IBOutlet UILabel *lblNumber;
@@ -100,6 +100,9 @@
     payPalConfig.acceptCreditCards = YES;
     payPalConfig.languageOrLocale = @"en";
     payPalConfig.merchantName = @"Dingo, Inc.";
+    payPalConfig.merchantPrivacyPolicyURL = [NSURL URLWithString:@"https://www.omega.supreme.example/privacy"];
+    payPalConfig.merchantUserAgreementURL = [NSURL URLWithString:@"https://www.omega.supreme.example/user_agreement"];
+
     
 
     
@@ -151,6 +154,8 @@
                                                                                                 configuration:payPalConfig                                                                                                                     delegate:self];
     
     [self presentViewController:paymentViewController animated:YES completion:nil];
+    
+   
 
 }
 
