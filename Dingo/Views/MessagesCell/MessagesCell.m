@@ -132,9 +132,15 @@ const CGFloat messagesCellHeight = 82;
                     [self.iconImageView setImageWithURL:[NSURL URLWithString:data.sender_avatar_url] placeholderImage:[UIImage imageNamed:@"placeholder_avatar.jpg"]];
                   self.name = @"Dingo";
                 }else{
+                    
+                    if (!ticket) {
+                        [self.iconImageView setImageWithURL:[NSURL URLWithString:data.sender_avatar_url] placeholderImage:[UIImage imageNamed:@"placeholder_avatar.jpg"]];
+                        self.name=([data.receiver_id isEqualToString:[[AppManager sharedManager].userInfo[@"id"] stringValue]]?data.sender_name:data.receiver_name);
+                    }else{
 
                     [self.iconImageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?type=normal",ticket.facebook_id]] placeholderImage:[UIImage imageNamed:@"placeholder_avatar.jpg"]];
                    self.name=([data.receiver_id isEqualToString:[[AppManager sharedManager].userInfo[@"id"] stringValue]]?data.sender_name:data.receiver_name);
+                    }
                 }
             }
             

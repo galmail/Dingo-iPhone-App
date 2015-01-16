@@ -21,7 +21,7 @@
 @interface ChatViewController ()<UIBubbleTableViewDataSource, ZSLabelDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate>{
     IBOutlet UIBubbleTableView *bubbleTable;
     IBOutlet UIView *textInputView;
-    NSTimer *repeatingTimer;
+   
     
     IBOutlet DingoField *textField;
     
@@ -81,6 +81,12 @@
     [super viewWillAppear:animated];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
+    
+    //************adding observer for messages********************
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(messageReceived) name:@"messageReceived" object:nil];
+    
+    //============================================================
    
         self.title = self.receiverName;
     
@@ -93,9 +99,7 @@
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    //repeatingTimer = [NSTimer timerWithTimeInterval:30 target:self selector:@selector(autometicRefresh) userInfo:nil repeats:YES] ;
-    
-    //[[NSRunLoop currentRunLoop] addTimer:repeatingTimer forMode:NSDefaultRunLoopMode];
+   
 }
 
 
@@ -103,14 +107,11 @@
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    //[repeatingTimer invalidate];
-}
+    }
 
 
--(void)autometicRefresh{
-    [self reloadMessagesWithCompletion:^(BOOL finished) {
-       
-    }];
+-(void)messageReceived{
+    [self reloadMessages];
 
 }
 
@@ -128,89 +129,98 @@
 - (void)reloadMessagesWithCompletion:( void (^) (BOOL finished)) handler {
     
     [[DataManager shared] fetchMessagesWithCompletion:^(BOOL finished) {
-        NSNumber *userID = [AppManager sharedManager].userInfo[@"id"] ;
-        NSArray * messages=nil;
-        NSString *coversationId=@"";
-        if(!messageData){
-            if (!self.ticket) {
-                int user=[userID intValue];
-                int otheruser=[self.receiverID intValue];
-                coversationId=[NSString stringWithFormat:@"-%d-%d",MIN(user, otheruser),MAX(user, otheruser)];
-            }else{
-                int user=[userID intValue];
-                int otheruser=[self.receiverID intValue];
-                if (otheruser<=0)
-                    otheruser=[self.ticket.user_id intValue];
-                    
-                    coversationId=[NSString stringWithFormat:@"%@-%d-%d",self.ticket.ticket_id, MIN(user, otheruser),MAX(user, otheruser)];
-            }
+        [self reloadMessages];
+               if (handler) {
+            handler(YES);
         }
         
-       // if ( messageData != nil) {
-        messages  = [[DataManager shared] allMessagesForConversatinID:[AppManager sharedManager].userInfo[@"id"] conersationId:(messageData.conversation_id != nil?messageData.conversation_id:coversationId)];
-//        }else{
-//           messages = [[DataManager shared] allMessagesFor:userID ticketID:self.ticket.ticket_id];
-//        }
-        
-        [bubbleData removeAllObjects];
-        
-//        if (!fromDingo) {
-//            NSString *str=@"";
-//            if (([self.receiverID integerValue]==[[AppManager sharedManager].userInfo[@"id"] integerValue])) {
-//               str=@"receiver_id == %@";
-//            }else{
-//               str=@"sender_id == %@";
-//            }
-//            
-        
-           // NSArray *arrayMessages_receiver=[messages filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:str,self.receiverID]];
-            
-           // NSArray *arrayMessage_fromDingo=[messages filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"from_dingo == %@",[NSNumber numberWithBool:true]]];
-            
-            if (self.ticket==nil){
-               // if ([arrayMessages_receiver count] !=0 && [arrayMessage_fromDingo count] !=0 ) {
-                    [self.navigationItem setRightBarButtonItem:nil];
-                
-               
-               // }else if ([arrayMessages_receiver count] ==0 && [arrayMessage_fromDingo count] !=0){
-                   // [self.navigationItem setRightBarButtonItem:nil];
-            }else if (self.navigationItem.rightBarButtonItem == nil && [messages count]>0){
-                UIImage* image3 = [UIImage imageNamed:@"btnDots.png"];
-                CGRect frameimg = CGRectMake(0, 0, image3.size.width, image3.size.height);
-                UIButton *someButton = [[UIButton alloc] initWithFrame:frameimg];
-                [someButton setBackgroundImage:image3 forState:UIControlStateNormal];
-                [someButton addTarget:self action:@selector(actions:)
-                     forControlEvents:UIControlEventTouchUpInside];
-                [someButton setShowsTouchWhenHighlighted:YES];
-                
-                UIBarButtonItem *mailbutton =[[UIBarButtonItem alloc] initWithCustomView:someButton];
-                self.navigationItem.rightBarButtonItem=mailbutton;
-                
-                           }else{
-                
-            }
-                
-            //}
-            
-//            fromDingo=true;
-//            
-//        }
-        
+    }];
+    
+}
 
+-(void)reloadMessages{
+    NSNumber *userID = [AppManager sharedManager].userInfo[@"id"] ;
+    NSArray * messages=nil;
+    NSString *coversationId=@"";
+    if(!messageData){
+        if (!self.ticket) {
+            int user=[userID intValue];
+            int otheruser=[self.receiverID intValue];
+            coversationId=[NSString stringWithFormat:@"-%d-%d",MIN(user, otheruser),MAX(user, otheruser)];
+        }else{
+            int user=[userID intValue];
+            int otheruser=[self.receiverID intValue];
+            if (otheruser<=0)
+                otheruser=[self.ticket.user_id intValue];
+            
+            coversationId=[NSString stringWithFormat:@"%@-%d-%d",self.ticket.ticket_id, MIN(user, otheruser),MAX(user, otheruser)];
+        }
+    }
+    
+    
+    messages  = [[DataManager shared] allMessagesForConversatinID:[AppManager sharedManager].userInfo[@"id"] conersationId:(messageData.conversation_id != nil?messageData.conversation_id:coversationId)];
+    
+    [bubbleData removeAllObjects];
+    
+    
+    
+    if (self.ticket==nil){
         
-        for (Message * msg in messages) {
-            NSBubbleData *bubble = nil;
+        [self.navigationItem setRightBarButtonItem:nil];
+        
+        
+        
+    }else if (self.navigationItem.rightBarButtonItem == nil && [messages count]>0){
+        UIImage* image3 = [UIImage imageNamed:@"btnDots.png"];
+        CGRect frameimg = CGRectMake(0, 0, image3.size.width, image3.size.height);
+        UIButton *someButton = [[UIButton alloc] initWithFrame:frameimg];
+        [someButton setBackgroundImage:image3 forState:UIControlStateNormal];
+        [someButton addTarget:self action:@selector(actions:)
+             forControlEvents:UIControlEventTouchUpInside];
+        [someButton setShowsTouchWhenHighlighted:YES];
+        
+        UIBarButtonItem *mailbutton =[[UIBarButtonItem alloc] initWithCustomView:someButton];
+        self.navigationItem.rightBarButtonItem=mailbutton;
+        
+    }else{
+        
+    }
+    
+    
+    for (Message * msg in messages) {
+        NSBubbleData *bubble = nil;
+        
+        
+        if ([msg.from_dingo boolValue] ) {
             
+            if ([msg.offer_new boolValue] && [msg.receiver_id isEqualToString:[[AppManager sharedManager].userInfo[@"id"] stringValue]]) {
+                NSString * offerText = [NSString stringWithFormat:@"<font face='SourceSansPro-Regular' size=14 color='#ffffff'>%@ <a href='accept_%@'>Accept</a> or <a href='reject_%@'>Reject</a> </font>", msg.content, msg.offer_id, msg.offer_id];
+                bubble = [NSBubbleData dataWithText:offerText date:msg.datetime type:BubbleTypeDingo delegate:self];
+            } else {
+                bubble = [NSBubbleData dataWithText:msg.content date:msg.datetime type:BubbleTypeDingo];
+            }
             
-            if ([msg.from_dingo boolValue] ) {
-                
-                if ([msg.offer_new boolValue] && [msg.receiver_id isEqualToString:[[AppManager sharedManager].userInfo[@"id"] stringValue]]) {
-                    NSString * offerText = [NSString stringWithFormat:@"<font face='SourceSansPro-Regular' size=14 color='#ffffff'>%@ <a href='accept_%@'>Accept</a> or <a href='reject_%@'>Reject</a> </font>", msg.content, msg.offer_id, msg.offer_id];
-                    bubble = [NSBubbleData dataWithText:offerText date:msg.datetime type:BubbleTypeDingo delegate:self];
-                } else {
-                    bubble = [NSBubbleData dataWithText:msg.content date:msg.datetime type:BubbleTypeDingo];
+            if (msg.sender_avatar_url.length>0) {
+                if (msg.sender_avatar) {
+                    bubble.avatar = [UIImage imageWithData:msg.sender_avatar];
+                }else{
+                    NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:msg.sender_avatar_url]];
+                    msg.sender_avatar = imageData;
+                    [msg.managedObjectContext save:nil];
+                    bubble.avatar = [UIImage imageWithData:msg.sender_avatar];
                 }
+            }
+        } else {
+            
+            if ([msg.sender_id isEqualToString:[[[AppManager sharedManager].userInfo valueForKey:@"id"] stringValue]]) {
+                bubble = [NSBubbleData dataWithText:msg.content date:msg.datetime type:BubbleTypeMine];
                 
+                NSString *user_photo_url = [AppManager sharedManager].userInfo[@"photo_url"];
+                NSData  *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:user_photo_url]];
+                
+                bubble.avatar = [UIImage imageWithData:data];
+            }else {
+                bubble = [NSBubbleData dataWithText:msg.content date:msg.datetime type:BubbleTypeSomeoneElse];
                 if (msg.sender_avatar_url.length>0) {
                     if (msg.sender_avatar) {
                         bubble.avatar = [UIImage imageWithData:msg.sender_avatar];
@@ -221,50 +231,24 @@
                         bubble.avatar = [UIImage imageWithData:msg.sender_avatar];
                     }
                 }
-            } else {
-                
-                if ([msg.sender_id isEqualToString:[[[AppManager sharedManager].userInfo valueForKey:@"id"] stringValue]]) {
-                    bubble = [NSBubbleData dataWithText:msg.content date:msg.datetime type:BubbleTypeMine];
-                    
-                    NSString *user_photo_url = [AppManager sharedManager].userInfo[@"photo_url"];
-                    NSData  *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:user_photo_url]];
-                    
-                    bubble.avatar = [UIImage imageWithData:data];
-                }else {
-                    bubble = [NSBubbleData dataWithText:msg.content date:msg.datetime type:BubbleTypeSomeoneElse];
-                    if (msg.sender_avatar_url.length>0) {
-                        if (msg.sender_avatar) {
-                            bubble.avatar = [UIImage imageWithData:msg.sender_avatar];
-                        }else{
-                            NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:msg.sender_avatar_url]];
-                            msg.sender_avatar = imageData;
-                            [msg.managedObjectContext save:nil];
-                            bubble.avatar = [UIImage imageWithData:msg.sender_avatar];
-                        }
-                    }
+            }
+            
+        }
+        
+        [bubbleData addObject:bubble];
+        if (![msg.sender_id isEqual:[userID stringValue]]) {
+            [WebServiceManager markAsRead:@{@"messageID":msg.message_id} completion:^(id response, NSError *error) {
+                if (response) {
+                    [[DataManager shared] addOrUpdateMessage:response];
                 }
-                
-            }
-            
-            [bubbleData addObject:bubble];
-            if (![msg.sender_id isEqual:[userID stringValue]]) {
-                [WebServiceManager markAsRead:@{@"messageID":msg.message_id} completion:^(id response, NSError *error) {
-                    if (response) {
-                        [[DataManager shared] addOrUpdateMessage:response];
-                    }
-                }];
-            }
-            
+            }];
         }
         
-        [bubbleTable reloadData];
-        [bubbleTable scrollBubbleViewToBottomAnimated:YES];
-        if (handler) {
-            handler(YES);
-        }
-        
-    }];
+    }
     
+    [bubbleTable reloadData];
+    [bubbleTable scrollBubbleViewToBottomAnimated:YES];
+
 }
 
 - (void)didReceiveMemoryWarning

@@ -600,32 +600,73 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
 }
 
 - (void)allTicketsByEventID:(NSString *)eventID completion:( void (^) (BOOL finished))handler {
-    
-    NSDictionary *params = @{@"event_id":eventID};
-    [WebServiceManager tickets:params completion:^(id response, NSError *error) {
-        if (response[@"tickets"]) {
-            NSArray *tickets = response[@"tickets"];
-            
-            // remove deleted tickets from local database
-            NSArray *ticketIDs = [tickets valueForKey:@"id"];
-            NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Ticket"];
-            request.predicate = [NSPredicate predicateWithFormat:@"NOT(ticket_id IN %@) && event_id == %@", ticketIDs, eventID];
-            
-            NSArray *ticketsToRemove = [[AppManager sharedManager].managedObjectContext executeFetchRequest:request error:nil];
-            if (ticketsToRemove.count) {
-                for (Ticket *toRemove in ticketsToRemove) {
-                    [[AppManager sharedManager].managedObjectContext deleteObject:toRemove];
+//    
+//    NSDictionary *params = @{@"event_id":eventID};
+//    [WebServiceManager tickets:params completion:^(id response, NSError *error) {
+//        if (response[@"tickets"]) {
+//            NSArray *tickets = response[@"tickets"];
+//            
+//            // remove deleted tickets from local database
+//            NSArray *ticketIDs = [tickets valueForKey:@"id"];
+//            NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Ticket"];
+//            request.predicate = [NSPredicate predicateWithFormat:@"NOT(ticket_id IN %@) && event_id == %@", ticketIDs, eventID];
+//            
+//            NSArray *ticketsToRemove = [[AppManager sharedManager].managedObjectContext executeFetchRequest:request error:nil];
+//            if (ticketsToRemove.count) {
+//                for (Ticket *toRemove in ticketsToRemove) {
+//                    [[AppManager sharedManager].managedObjectContext deleteObject:toRemove];
+//                }
+//            }
+//            
+//            for (NSDictionary *ticket in tickets) {
+//                [self addOrUpdateTicket:ticket];
+//            }
+//            
+//            [[AppManager sharedManager] saveContext];
+//        }
+//        handler(YES);
+//    }];
+    NSDictionary *params = @{@"event_id":eventID};;
+    [[CommonDocUnAuth sharedDocument] getPath:@"tickets" parameters:params success:^(AFHTTPRequestOperation *operation, id response) {
+                if (response[@"tickets"]) {
+
+                    
+                    dispatch_queue_t main_queue = dispatch_get_main_queue();
+                    dispatch_queue_t request_queue = dispatch_queue_create("com.app.request", NULL);
+                    
+                  
+                    dispatch_async(request_queue, ^{
+                                            NSArray *tickets = response[@"tickets"];
+                        
+                                            // remove deleted tickets from local database
+                                            NSArray *ticketIDs = [tickets valueForKey:@"id"];
+                                            NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Ticket"];
+                                            request.predicate = [NSPredicate predicateWithFormat:@"NOT(ticket_id IN %@) && event_id == %@", ticketIDs, eventID];
+                        
+                                            NSArray *ticketsToRemove = [[AppManager sharedManager].managedObjectContext executeFetchRequest:request error:nil];
+                                            if (ticketsToRemove.count) {
+                                                for (Ticket *toRemove in ticketsToRemove) {
+                                                    [[AppManager sharedManager].managedObjectContext deleteObject:toRemove];
+                                                }
+                                            }
+                                
+                                            for (NSDictionary *ticket in tickets) {
+                                                [self addOrUpdateTicket:ticket];
+                                            }
+                                            
+                        dispatch_sync(main_queue, ^{
+                            [[AppManager sharedManager] saveContext];
+                            handler(YES);
+                        });
+                    });
+
                 }
-            }
-            
-            for (NSDictionary *ticket in tickets) {
-                [self addOrUpdateTicket:ticket];
-            }
-            
-            [[AppManager sharedManager] saveContext];
-        }
-        handler(YES);
+        
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+         handler(YES);
     }];
+    
 }
 
 
@@ -1263,31 +1304,74 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
 }
 
 - (void)allAlertsWithCompletion:( void (^) (BOOL finished))handler {
-    [WebServiceManager userAlerts:nil completion:^(id response, NSError *error) {
-        if (!error) {
-            if (response) {
-                NSArray *alerts = response[@"alerts"];
-                
-                // remove deleted alerts from local database
-                NSArray *alertIDs = [alerts valueForKey:@"id"];
-                NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Alerts"];
-                request.predicate = [NSPredicate predicateWithFormat:@"NOT (alert_id IN %@)", alertIDs];
-                
-                NSArray *alertsToRemove = [[AppManager sharedManager].managedObjectContext executeFetchRequest:request error:nil];
-                if (alertsToRemove.count) {
-                    for (Alert *toRemove in alertsToRemove) {
-                        [[AppManager sharedManager].managedObjectContext deleteObject:toRemove];
-                    }
-                }
+//    [WebServiceManager userAlerts:nil completion:^(id response, NSError *error) {
+//        if (!error) {
+//            if (response) {
+//                NSArray *alerts = response[@"alerts"];
+//                
+//                // remove deleted alerts from local database
+//                NSArray *alertIDs = [alerts valueForKey:@"id"];
+//                NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Alerts"];
+//                request.predicate = [NSPredicate predicateWithFormat:@"NOT (alert_id IN %@)", alertIDs];
+//                
+//                NSArray *alertsToRemove = [[AppManager sharedManager].managedObjectContext executeFetchRequest:request error:nil];
+//                if (alertsToRemove.count) {
+//                    for (Alert *toRemove in alertsToRemove) {
+//                        [[AppManager sharedManager].managedObjectContext deleteObject:toRemove];
+//                    }
+//                }
+//
+//                for (NSDictionary *info in alerts) {
+//                    [self addOrUpdateAlert:info];
+//                }
+//                
+//                [[AppManager sharedManager] saveContext];
+//                handler(true);
+//            }
+//        }
+//    }];
+    
+    [[CommonDocUnAuth sharedDocument] getPath:@"alerts" parameters:nil success:^(AFHTTPRequestOperation *operation, id response) {
+               
+                    if (response) {
 
-                for (NSDictionary *info in alerts) {
-                    [self addOrUpdateAlert:info];
-                }
-                
-                [[AppManager sharedManager] saveContext];
-                handler(true);
-            }
-        }
+                        dispatch_queue_t main_queue = dispatch_get_main_queue();
+                        dispatch_queue_t request_queue = dispatch_queue_create("com.app.request", NULL);
+                        
+                        
+                                                dispatch_async(request_queue, ^{
+                                                    NSArray *alerts = response[@"alerts"];
+                                                    
+                                                    // remove deleted alerts from local database
+                                                    NSArray *alertIDs = [alerts valueForKey:@"id"];
+                                                    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Alerts"];
+                                                    request.predicate = [NSPredicate predicateWithFormat:@"NOT (alert_id IN %@)", alertIDs];
+                                                    
+                                                    NSArray *alertsToRemove = [[AppManager sharedManager].managedObjectContext executeFetchRequest:request error:nil];
+                                                    if (alertsToRemove.count) {
+                                                        for (Alert *toRemove in alertsToRemove) {
+                                                            [[AppManager sharedManager].managedObjectContext deleteObject:toRemove];
+                                                        }
+                                                    }
+                                                    
+                                                    for (NSDictionary *info in alerts) {
+                                                        [self addOrUpdateAlert:info];
+                                                    }
+                                                    
+
+                            
+                            dispatch_sync(main_queue, ^{
+                                [[AppManager sharedManager] saveContext];
+                                 handler(true);
+                            });
+                        });
+                        
+                       
+                    }
+        
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+         handler(true);
     }];
 }
 

@@ -47,6 +47,13 @@
     self.parentViewController.navigationItem.title = self.navigationItem.title;
 //    self.parentViewController.navigationItem.rightBarButtonItem = self.navigationItem.rightBarButtonItem;
     
+    
+    //************adding observer for messages********************
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(messageReceived) name:@"messageReceived" object:nil];
+    
+    //============================================================
+    
     ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please wait..."];
     [loadingView show];
     
@@ -156,6 +163,7 @@
     [self removeNoMessage];
 
     self.parentViewController.navigationItem.rightBarButtonItem = nil;
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark - UITableViewDelegate
@@ -188,6 +196,10 @@
     if (lblNoMessage)
         [lblNoMessage removeFromSuperview];
     isNotFirstTime=false;
+}
+
+-(void)messageReceived{
+    [self groupMessagesByUser];
 }
 
 #pragma mark - UIAction

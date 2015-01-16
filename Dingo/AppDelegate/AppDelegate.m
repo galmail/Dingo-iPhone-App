@@ -21,6 +21,10 @@
 #import "DataManager.h"
 #import "Appirater.h"
 #import "Harpy.h"
+#import "EventsViewController.h"
+#import "SearchTicketsViewController.h"
+#import "MessagesViewController.h"
+#import "ListTicketsViewController.h"
 
 #import "GAI.h"
 
@@ -57,15 +61,11 @@
     
     
     //-- Set Notification
-    if ([application respondsToSelector:@selector(isRegisteredForRemoteNotifications)]) {
-        // iOS 8 Notifications
-        [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
-        
-        [application registerForRemoteNotifications];
-    } else {
-        // iOS < 8 Notifications
-        [application registerForRemoteNotificationTypes:
-         (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound)];
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8")){
+        [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+    }else{
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeBadge)];
     }
     
     
@@ -118,6 +118,7 @@
 }
 
 -(void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error{
+    NSLog(@"rgistration fail on APS ");
     
 }
 
@@ -125,7 +126,7 @@
     
 
    // if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive) {
-        [self showNotiFicationView];
+    [self showNotiFicationView:userInfo];
 //    }else{
 //            UIAlertView *alertView=[[UIAlertView alloc] initWithTitle:@"Dingo" message:@"You received a new message." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
 //            [alertView show];
@@ -141,7 +142,11 @@
             
             HomeTabBarController *tabBarConroller = (HomeTabBarController *)nc.topViewController;
             [[DataManager shared] fetchMessagesWithCompletion:^(BOOL finished) {
-                [tabBarConroller updateMessageCount];
+                if ([tabBarConroller isKindOfClass:[EventsViewController class]]|| [tabBarConroller isKindOfClass:[ListTicketsViewController class]] || [tabBarConroller isKindOfClass:[MessagesViewController class]] || [tabBarConroller isKindOfClass:[SearchTicketsViewController class]] || [tabBarConroller isKindOfClass:[HomeTabBarController class]])
+                    [tabBarConroller updateMessageCount];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"messageReceived" object:nil];
+                
+                
             }];
         }
   
@@ -170,6 +175,7 @@
     application.applicationIconBadgeNumber = 0;
     
     [[Harpy sharedInstance] checkVersionDaily];
+    
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
@@ -183,7 +189,7 @@
 }
 
 #pragma mark - custom methods
--(void)showNotiFicationView{
+-(void)showNotiFicationView:(NSDictionary *)payLoad{
     viewNotification=[[UIView alloc] initWithFrame:CGRectMake(0,-64, screenSize.width, 64)];
     [viewNotification setBackgroundColor:[UIColor colorWithRed:48.f/255.0f green:73.0f/255.0f blue:80.0f/255.0f alpha:1.0f]];
     
@@ -198,14 +204,19 @@
     [imageViewIcon.layer setCornerRadius:22.5];
     [imageViewIcon.layer setMasksToBounds:YES];
     
+     NSArray *arrayApsMessages=[[[payLoad objectForKey:@"aps"] objectForKey:@"alert"] componentsSeparatedByString:@":"];
+    
     UILabel *lblName=[[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(imageViewIcon.frame)+8, 8, 200, 25)];
-    [lblName setText:@"Tom"];
+    [lblName setText:([arrayApsMessages count]>0?[arrayApsMessages objectAtIndex:0]:@"Dingo")];
     [lblName setTextColor:[UIColor whiteColor]];
     [lblName setFont:[DingoUISettings boldFontWithSize:15]];
     [viewNotification addSubview:lblName];
     
+   
+    
+    
     UILabel *lblMessageText=[[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(imageViewIcon.frame)+8, CGRectGetMaxY(lblName.frame)-5, 200, 25)];
-    [lblMessageText setText:@"Last line of conversation goes here"];
+    [lblMessageText setText:([arrayApsMessages count]>1?[arrayApsMessages objectAtIndex:1]:@"Last line of conversation goes here")];
     [lblMessageText setFont:[DingoUISettings fontWithSize:13]];
     [lblMessageText setTextColor:[UIColor whiteColor]];
     [viewNotification addSubview:lblMessageText];

@@ -304,6 +304,9 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
                                                                                                                               };
                                                                                               
                                                                                               [WebServiceManager registerDevice:deviceParams completion:^(id response, NSError *error) {
+                                                                                                  NSLog(@"registerDevice response - %@", response);
+                                                                                                  NSLog(@"registerDevice error - %@", error);
+
                                                                                                   handler(response, nil);
                                                                                               }];
                                                                                           } else {
