@@ -6,7 +6,7 @@
 		<key>question</key>
 		<string>What is Dingo all about?</string>
 		<key>answer</key>
-		<string>Dingo is a Fan2Fan marketplace for buying and selling tickets to live events. 
+		<string>Dingo is a marketplace for buying and selling tickets to live events.
 
 Whether you need to sell your ticket at the last minute or are looking to buy a ticket to a sold out show, we’ve got you covered!
 
@@ -17,35 +17,35 @@ Dingo allows you to meet, chat and transact with other fans in just a few taps.
 		<key>question</key>
 		<string>How do I sell my ticket?</string>
 		<key>answer</key>
-		<string>Selling your tickets with Dingo is easy. Simply click on the Sell Tickets icon at the bottom of the homescreen and follow the instructions. We try to add as many event details as possible onto our database to save you time. If we have not pre-loaded your event you can create it from scratch in just a few taps.
+		<string>Selling your tickets with Dingo is easy. Either click on the Sell Tickets button at the bottom of the homescreen and search for your event or click the +Add Tickets button on the event page itself. From there, fill out the required information, add a photo of your ticket(s) and confirm your listing. All your tickets can be viewed and edited in the Manage Listings section.
 
-We have designed Dingo to be effortlessly simple. If you think we could improve our user experience we would love to hear from you at info@dingoapp.co.uk
-</string>
+If you cannot find your event, fill in all the required information and we will add your tickets once verified.
+
+We have designed Dingo to be effortlessly simple. If you think we could improve our user experience, we would love to hear from you at info@dingoapp.co.uk.</string>
 	</dict>
 	<dict>
 		<key>question</key>
 		<string>Why should I sell my ticket with Dingo?</string>
 		<key>answer</key>
-		<string>Convenience: We are mobile only, designed for on-the-go simplicity and convenience. Listing a ticket has never been easier. 
-Control: With Dingo you are in charged. Set your price, chat with potential buyers within the app and arrange delivery or collection on your terms. 
-Support: Our dispute resolution centre supports all transactions made through Dingo. We are real people, based in the UK, ready to help settle any problems that may arise.
-</string>
+		<string>Easy: Dingo is a mobile app designed for on-the-go simplicity and convenience. Listing a ticket has never been easier. Dingo is perfect for those last-minute situations.
+
+Cheap: Pay no fees or commission to sell your ticket.
+
+Flexible: With Dingo you are in charge. Chat with potential buyers within the app and arrange delivery or collection in person, whatever works for you.</string>
 	</dict>
 	<dict>
 		<key>question</key>
 		<string>Why can’t I sell my ticket above face value?</string>
 		<key>answer</key>
-		<string>Dingo is a service for fans by fans. We think the secondary ticket market in the UK is a murky world rife with touts, fraud and inflated prices. Dingo aims to change the secondary market for good, starting with face value tickets and secured transactions. </string>
+		<string>Dingo is a service for fans by fans. We think the secondary ticket market in the UK is a murky world rife with touts, fraud and inflated prices. Dingo aims to change the secondary market for good, starting with face value tickets and secured transactions.</string>
 	</dict>
 	<dict>
 		<key>question</key>
 		<string>How do the payments work?</string>
 		<key>answer</key>
-		<string>We are committed to making the secondary ticket market more transparent. Unfortunately there are people who make a lot of money selling fake tickets to unknowing fans. The delayed payment ensures that the buyer has a chance to verify the ticket before the seller receives their money. 
+		<string>We are committed to making the secondary ticket market more transparent. Unfortunately there are people who make a lot of money selling fake tickets to unknowing fans. The delayed payment ensures that the buyer has a chance to verify the ticket before the seller receives their money.
 
-The buyer can release the funds to the seller at any point if they are happy with the ticket. Likewise the buyer can challenge the transaction within the app to freeze the payment and start a dispute resolution process. 
-If no challenge is made, the funds will automatically release to the seller two days after the event takes place.
-</string>
+If no challenge is made up to 48 hours after the event, the funds will be released to the seller.</string>
 	</dict>
 	<dict>
 		<key>question</key>
@@ -53,36 +53,33 @@ If no challenge is made, the funds will automatically release to the seller two 
 		<key>answer</key>
 		<string>Safety and security is our key priority. We have taken the following steps to ensure that Dingo is a safe place to buy and sell tickets:
 
-•	Delayed Payments: Buyers pay Dingo directly, and we hold the money until the buyer has confirmed they have received authentic tickets. There is a 2-day challenge period after the event after which we will release the funds to the seller.  
-•	Paypal: All transactions made through Dingo are powered by PayPal, the largest payment provider in the world. Your sensitive card details are protected and secured by Paypal, they will not be stored on your device or on our servers. For more information about Paypal visit www.paypal.co.uk
-•	Facebook Verified Sellers: To buy or sell on Dingo all users must login through Facebook. Profile pictures, first names and friends in common are displayed to other users in order to create a trusted community.  Dingo will flag any accounts with a suspiciously low number of Facebook friends.
-•	Community Management: The Dingo team will block the accounts and devices of known fraudulent users. We encourage you to report users acting suspiciously or fraudulently on the app.
-•	User Ratings: We will be integrating user ratings soon.
-</string>
+•	Delayed Payments: Buyers pay Dingo directly, and we hold the money for 48 hours after the event. If no challenge is made within this 48 hour period the funds are released to the seller.
+
+•	Paypal: All transactions through Dingo are powered by PayPal, the largest payment provider in the world. Your sensitive card details are protected and secured by PayPal, they will not be stored on your device or on our servers. For more information about Paypal visit www.paypal.co.uk.
+
+•	Facebook Verification: To buy or sell on Dingo all users must login through Facebook. Profile pictures, first names and friends in common are displayed to other users in order to create a trusted community.
+
+•	Community Management: The Dingo team will block the accounts and devices of known fraudulent users. We encourage you to report users acting suspiciously or fraudulently on the app via report@dingoapp.co.uk.
+
+•	User Ratings: We will be integrating user ratings soon.</string>
 	</dict>
 	<dict>
 		<key>question</key>
 		<string>How do the fees work?</string>
 		<key>answer</key>
-		<string>Dingo is transparent. There are no hidden fees. Ever.
+		<string>Dingo is a transparent marketplace. 
 
-If you decide to meet up in-person there is no fee.
-There is also no fee for listing tickets for sale.
+- There is no fee for listing tickets for sale.
 
-For any transactions made through the app, we charge the seller a 10% commission. 
-This commission includes all Paypal fees and our dispute resolution service. 
-
-Even if buyers and sellers decide to meet in person we still advise to pay through the app to benefit from our many security features.
-</string>
+- For any transactions made through the app, we charge the buyer a 10% commission. This commission covers all PayPal and transaction fees and our dispute resolution service.</string>
 	</dict>
 	<dict>
 		<key>question</key>
 		<string>Is selling my ticket legal?</string>
 		<key>answer</key>
-		<string>Under UK law, two types of ticket are illegal for resale by an unauthorised individual. These are 1) UK train tickets and 2) Professional football tickets (including premier league and FA Cup competition tickets). 
+		<string>Under UK law, two types of ticket are illegal for resale by an unauthorised individual. These are 1) UK train tickets and 2) Professional football tickets (including premier league and FA Cup competition tickets).
 
-Although not illegal, some venues or concert promoters also ban the resale of their tickets. Where unsure we advise you to check with the event organisers.
-</string>
+Although not illegal, some venues or concert promoters also ban the resale of their tickets. Where unsure we advise you to check with the event organisers.</string>
 	</dict>
 </array>
 </plist>

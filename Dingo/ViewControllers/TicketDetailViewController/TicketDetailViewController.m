@@ -27,7 +27,7 @@
 #import "MutualFriendCell.h"
 
 //static const NSUInteger photosCellIndex = 1;
-static const NSUInteger commentCellIndex = 4;
+static const NSUInteger commentCellIndex = 5;
 
 
 @interface TicketDetailViewController () <BottomBarDelegate, UICollectionViewDataSource, UICollectionViewDelegate> {
@@ -310,7 +310,7 @@ static const NSUInteger commentCellIndex = 4;
                 CGRect frame = self.descriptionTextView.frame;
                 frame.size.height = size.height;
                 self.descriptionTextView.frame = frame;
-                return size.height;
+                return size.height + 36;
             }
             
             break;
@@ -522,7 +522,7 @@ static const NSUInteger commentCellIndex = 4;
 
 - (IBAction)share:(id)sender {
     
-    NSString *text = [NSString stringWithFormat:@"I am selling tickets to %@, check out Dingo app if you're interested in buying %@" , self.event.name, @"http://dingoapp.co.uk" ];
+    NSString *text = [NSString stringWithFormat:@"Check out these tickets to %@. You can find them on Dingo, download the app here %@" , self.event.name, @"http://dingoapp.co.uk" ];
    
     
     UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:@[text] applicationActivities:nil];

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="q5d-Tc-nYt">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="q5d-Tc-nYt">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
@@ -133,7 +133,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                         <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="messages_cell.png" id="ieE-s0-R1l" userLabel="mockup">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="81.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="82"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </imageView>
                                     </subviews>
@@ -171,7 +171,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="ListTicketsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="0ch-Q5-uzn" customClass="ListTicketsViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="static" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="BA9-uN-inm">
-                        <rect key="frame" x="0.0" y="64" width="320" height="1067"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="1116"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="separatorColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
@@ -469,7 +469,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="sa5-8X-iWz" userLabel="edit_photos_button" customClass="DingoButton">
-                                                    <rect key="frame" x="37" y="2.5" width="246" height="38"/>
+                                                    <rect key="frame" x="37" y="2" width="246" height="38"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <color key="backgroundColor" red="0.23921568630000001" green="0.56470588239999997" blue="0.67450980390000004" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="19"/>
@@ -937,7 +937,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <collectionView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="RZy-l4-Emr">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="84.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="85"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="0.0" id="EUO-9l-MBx">
@@ -1565,7 +1565,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="concerts.png" id="YGu-T0-LiQ" userLabel="back">
-                                            <rect key="frame" x="0.0" y="-37" width="320" height="443"/>
+                                            <rect key="frame" x="0.0" y="-43" width="320" height="238"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </imageView>
@@ -1648,7 +1648,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Arrow.png" id="02G-cO-D4r" userLabel="arrow">
-                                            <rect key="frame" x="2850" y="53" width="18" height="26"/>
+                                            <rect key="frame" x="3490" y="220" width="18" height="26"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                     </subviews>
@@ -1856,11 +1856,11 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="offers_cells.png" id="Tby-GB-y8R" userLabel="mockup">
-                                            <rect key="frame" x="-4" y="-1" width="335" height="79"/>
+                                            <rect key="frame" x="-4" y="-1" width="337" height="79"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </imageView>
                                         <view contentMode="scaleToFill" id="kO6-fe-H3F" userLabel="user info">
-                                            <rect key="frame" x="-10" y="-1" width="187" height="86"/>
+                                            <rect key="frame" x="-10" y="0.0" width="187" height="86"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="joe_bloggs.png" id="gs8-WR-pRM" userLabel="icon" customClass="RoundedImageView">
@@ -1878,7 +1878,7 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <view contentMode="scaleToFill" id="hgE-cT-Q6m" userLabel="actions">
-                                            <rect key="frame" x="154" y="-1" width="187" height="97"/>
+                                            <rect key="frame" x="156" y="0.0" width="187" height="97"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="1FI-C7-4Hh" userLabel="accept button" customClass="TwoModeButton">
@@ -3904,7 +3904,7 @@
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
                                                 <view contentMode="scaleToFill" id="Ri4-LC-2FA" userLabel="selection_protector">
-                                                    <rect key="frame" x="0.0" y="0.0" width="327" height="79"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="329" height="79"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </view>
@@ -4468,8 +4468,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="lKe-yJ-oEi"/>
-        <segue reference="AMH-9g-fjh"/>
+        <segue reference="BWJ-EH-Aes"/>
         <segue reference="Xk9-Zd-nfA"/>
+        <segue reference="lKe-yJ-oEi"/>
     </inferredMetricsTieBreakers>
 </document>

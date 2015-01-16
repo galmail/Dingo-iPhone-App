@@ -46,11 +46,11 @@
     }
     
     switch ([DingoUtilites daysBetween:[NSDate date] and:date]) {
-        case -2:
-            return @"Day before yesterday";
+       // case -2:
+       //     return @"Day before yesterday";
             
-        case -1:
-            return @"Yesterday";
+       // case -1:
+       //     return @"Yesterday";
             
         case 0:
             return @"Today";
@@ -58,8 +58,8 @@
         case 1:
             return @"Tomorrow";
             
-        case 2:
-            return @"Day after tomorrow";
+        //case 2:
+        //    return @"Day after tomorrow";
             
         default: {
             NSDateFormatter *formatter = [DingoUtilites dateFormatter];
