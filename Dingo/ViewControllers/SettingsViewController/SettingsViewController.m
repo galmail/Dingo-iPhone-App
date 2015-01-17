@@ -38,6 +38,9 @@
 
 @implementation SettingsViewController
 
+
+
+
 #pragma mark - UITableViewController
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -95,6 +98,11 @@
         self.pushNotificationSwitch.on =[[[AppManager sharedManager].userInfo valueForKey:@"allow_push_notifications"] boolValue];
     }
 
+    
+    //phil turning fields to not edit
+    _surnameField.enabled = NO;
+    _firstNameField.enabled = NO;
+    
 }
 
 #pragma mark - UITextFieldDelegate
