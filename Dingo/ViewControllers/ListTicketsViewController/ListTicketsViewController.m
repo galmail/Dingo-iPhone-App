@@ -30,12 +30,12 @@
 static const CGFloat paypalCellShrinkedHeight = 120;
 static const CGFloat paypalCellExpandedHeight = 240;
 
-static const NSUInteger previewPhotosCellIndex = 11;
-static const NSUInteger editPhotosCellIndex = 12;
-static const NSUInteger uploadPhotosCellIndex = 13;
-static const NSUInteger payPalCellIndex = 14;
-static const NSUInteger previewCellIndex = 17;
-static const NSUInteger comfirmCellIndex = 18;
+static const NSUInteger previewPhotosCellIndex = 9;
+static const NSUInteger editPhotosCellIndex = 10;
+static const NSUInteger uploadPhotosCellIndex = 11;
+static const NSUInteger payPalCellIndex = 12;
+static const NSUInteger previewCellIndex = 15;
+static const NSUInteger comfirmCellIndex = 16;
 
 static const NSInteger fbLoginAlert = 1;
 static const NSInteger paypalAlert = 2;
@@ -210,10 +210,10 @@ static const NSInteger paypalEditAlert = 3;
         
 
         self.event.name = self.nameField.text;
-        self.event.address = self.locationField.text;
+        self.event.address = @"NEW EVENT";
         
         self.event.date = [formatter dateFromString:self.startDateField.text];
-        self.event.endDate = [formatter dateFromString:self.endDateField.text];
+        self.event.endDate = [formatter dateFromString:self.startDateField.text];
         self.ticket.price = [NSNumber numberWithFloat:[[self.priceField.text stringByReplacingOccurrencesOfString:@"£" withString:@""] floatValue]];
         self.ticket.face_value_per_ticket = [NSNumber numberWithFloat:[[self.faceValueField.text stringByReplacingOccurrencesOfString:@"£" withString:@""] floatValue]];
         self.ticket.number_of_tickets = [NSNumber numberWithInt:[self.ticketsCountField.text intValue]];
@@ -806,20 +806,20 @@ static const NSInteger paypalEditAlert = 3;
             lblName.textColor = [UIColor redColor];
         }
         
-        if (self.locationField.text.length == 0) {
-            requiredInfoFilled = NO;
-            lblLocation.textColor = [UIColor redColor];
-        }
+        //if (self.locationField.text.length == 0) {
+        //    requiredInfoFilled = NO;
+        //    lblLocation.textColor = [UIColor redColor];
+        //}
         
         if (self.startDateField.text.length == 0) {
             requiredInfoFilled = NO;
             lblFromDate.textColor = [UIColor redColor];
         }
         
-        if (self.endDateField.text.length == 0) {
-            requiredInfoFilled = NO;
-            lblToDate.textColor = [UIColor redColor];
-        }
+        //if (self.endDateField.text.length == 0) {
+        //    requiredInfoFilled = NO;
+        //    lblToDate.textColor = [UIColor redColor];
+        //}
         
         if (self.priceField.text.length == 0) {
             requiredInfoFilled = NO;

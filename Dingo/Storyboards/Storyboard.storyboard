@@ -186,8 +186,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="19"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Good news - no fees .png" id="RR6-BV-7Ed">
-                                                    <rect key="frame" x="34" y="26" width="253" height="13"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="No fees. No comm.png" id="RR6-BV-7Ed">
+                                                    <rect key="frame" x="73" y="26" width="174" height="13"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                                                 </imageView>
                                             </subviews>
@@ -221,33 +221,6 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="36" id="zNw-WT-IFY" userLabel="location">
-                                        <rect key="frame" x="0.0" y="56" width="320" height="36"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <tableViewCellContentView key="contentView" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zNw-WT-IFY" id="aQa-QS-vLh">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="35"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location*:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wky-zQ-ryw" userLabel="label">
-                                                    <rect key="frame" x="10" y="7" width="129" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
-                                                    <color key="textColor" red="0.27450980390000002" green="0.27450980390000002" blue="0.27450980390000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Location" minimumFontSize="17" id="2AT-Jc-vjr" userLabel="location_field" customClass="ZSTextField">
-                                                    <rect key="frame" x="146" y="4" width="174" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="textColor" red="0.51372549020000002" green="0.51372549020000002" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                    <connections>
-                                                        <outlet property="delegate" destination="0ch-Q5-uzn" id="laW-pz-p9P"/>
-                                                    </connections>
-                                                </textField>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="36" id="Tim-ht-Kl4" userLabel="from">
                                         <rect key="frame" x="0.0" y="92" width="320" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -255,7 +228,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="35"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="From*:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="W37-ab-aQb" userLabel="label">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start date*:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="W37-ab-aQb" userLabel="label">
                                                     <rect key="frame" x="10" y="7" width="129" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
@@ -270,33 +243,6 @@
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
                                                         <outlet property="delegate" destination="0ch-Q5-uzn" id="rQM-iK-QPz"/>
-                                                    </connections>
-                                                </textField>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="36" id="yvx-5g-Qee" userLabel="to">
-                                        <rect key="frame" x="0.0" y="128" width="320" height="36"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yvx-5g-Qee" id="R4F-nh-Gut">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="35"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To*:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="XpQ-MG-k2c" userLabel="label">
-                                                    <rect key="frame" x="12" y="7" width="129" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
-                                                    <color key="textColor" red="0.27450980390000002" green="0.27450980390000002" blue="0.27450980390000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="hh:mm - dd/mm/yy..." minimumFontSize="17" id="uhK-tf-iQe" userLabel="to_field">
-                                                    <rect key="frame" x="146" y="4" width="174" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="textColor" red="0.51372549020000002" green="0.51372549020000002" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                    <connections>
-                                                        <outlet property="delegate" destination="0ch-Q5-uzn" id="d1E-bP-Tdc"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -656,7 +602,6 @@
                         <outlet property="btnPreview" destination="C2t-go-aGL" id="rq8-Bf-eJp"/>
                         <outlet property="descriptionTextView" destination="2gK-n0-UrV" id="sXd-U9-e7I"/>
                         <outlet property="electronicSwitch" destination="gV3-Rk-P38" id="LLA-FM-cWR"/>
-                        <outlet property="endDateField" destination="uhK-tf-iQe" id="UrF-Kj-e6H"/>
                         <outlet property="faceValueField" destination="cnc-Ig-W8J" id="iuz-Yb-ZnR"/>
                         <outlet property="inPersonSwitch" destination="fu5-PS-z1s" id="8GU-cI-0bJ"/>
                         <outlet property="lblDescription" destination="vGO-jg-007" id="eu8-a9-nAF"/>
@@ -664,16 +609,13 @@
                         <outlet property="lblFaceValue" destination="Kym-UH-5ai" id="3TH-P9-xd5"/>
                         <outlet property="lblFromDate" destination="W37-ab-aQb" id="k0G-d4-hYd"/>
                         <outlet property="lblInPerson" destination="Mf6-Ub-ggw" id="Z63-JY-8nI"/>
-                        <outlet property="lblLocation" destination="wky-zQ-ryw" id="sK3-Oe-Ef6"/>
                         <outlet property="lblName" destination="9WU-dT-zfE" id="V8o-Od-fu4"/>
                         <outlet property="lblPayment" destination="gBd-SU-3UR" id="GEu-92-0fD"/>
                         <outlet property="lblPost" destination="Qa0-dD-ZKF" id="Mfb-wb-Yrd"/>
                         <outlet property="lblPrice" destination="Y0J-NZ-d2g" id="etf-K5-Dz2"/>
                         <outlet property="lblTicketCount" destination="KSj-F0-c1r" id="KSO-gv-ZXI"/>
                         <outlet property="lblTicketType" destination="Ysr-cA-cSj" id="TC5-xC-kiT"/>
-                        <outlet property="lblToDate" destination="XpQ-MG-k2c" id="4ve-XE-7d7"/>
                         <outlet property="lbldelivery" destination="ORv-E1-qj8" id="ZhM-RJ-l7H"/>
-                        <outlet property="locationField" destination="2AT-Jc-vjr" id="zu2-lJ-fPT"/>
                         <outlet property="nameField" destination="Zvo-Jf-zwM" id="Es0-WH-Xs7"/>
                         <outlet property="photosPreviewCell" destination="NIR-m4-Mbl" id="WKx-KX-MVp"/>
                         <outlet property="postSwitch" destination="HcK-bm-y7f" id="i41-U5-zSA"/>
@@ -1565,7 +1507,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="concerts.png" id="YGu-T0-LiQ" userLabel="back">
-                                            <rect key="frame" x="0.0" y="-43" width="320" height="268"/>
+                                            <rect key="frame" x="0.0" y="-43" width="320" height="261"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </imageView>
@@ -1648,7 +1590,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Arrow.png" id="02G-cO-D4r" userLabel="arrow">
-                                            <rect key="frame" x="3810" y="-448" width="18" height="26"/>
+                                            <rect key="frame" x="4130" y="913" width="18" height="26"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                     </subviews>
@@ -1856,7 +1798,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="offers_cells.png" id="Tby-GB-y8R" userLabel="mockup">
-                                            <rect key="frame" x="-4" y="-1" width="338" height="78"/>
+                                            <rect key="frame" x="-5" y="-1" width="340" height="78"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </imageView>
                                         <view contentMode="scaleToFill" id="kO6-fe-H3F" userLabel="user info">
@@ -1878,7 +1820,7 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <view contentMode="scaleToFill" id="hgE-cT-Q6m" userLabel="actions">
-                                            <rect key="frame" x="156" y="-1" width="188" height="98"/>
+                                            <rect key="frame" x="157" y="-1" width="188" height="98"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="1FI-C7-4Hh" userLabel="accept button" customClass="TwoModeButton">
@@ -3908,7 +3850,7 @@
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
                                                 <view contentMode="scaleToFill" id="Ri4-LC-2FA" userLabel="selection_protector">
-                                                    <rect key="frame" x="0.0" y="0.0" width="330" height="79"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="331" height="79"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </view>
@@ -4409,9 +4351,9 @@
         <image name="Arrow.png" width="37" height="47"/>
         <image name="EventCell.png" width="320" height="79"/>
         <image name="EventIcon.png" width="60" height="59"/>
-        <image name="Good news - no fees .png" width="505" height="26"/>
         <image name="HomeIcon.png" width="28" height="26"/>
         <image name="ListTicketsIcon.png" width="46" height="33"/>
+        <image name="No fees. No comm.png" width="347" height="26"/>
         <image name="about_icon.png" width="27" height="27"/>
         <image name="about_logo.png" width="179" height="121"/>
         <image name="add_photo_icon.png" width="76" height="75"/>

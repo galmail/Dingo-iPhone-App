@@ -72,14 +72,24 @@
 
 - (IBAction)confirm:(id)sender {
     
+    
+    
     int numberOfTickets = [txtNumber.text intValue];
     double price = 0;
+    
     if ([txtPrice.text hasPrefix:@"£"]) {
         price = [[txtPrice.text substringFromIndex:1] doubleValue];
     } else {
         price = [txtPrice.text intValue];
     }
     
+    
+    if (numberOfTickets == 0 || price == 0) {
+        
+        [AppManager showAlert:@"Please enter number of tickets and price!"];
+        
+    } else {
+        
     
     NSDictionary *params = @{@"ticket_id":self.ticket.ticket_id,
                              @"receiver_id": self.ticket.user_id,
@@ -107,7 +117,7 @@
         }
         
     }];
-
+    }
 }
 
 #pragma mark UITextField delegate methods
