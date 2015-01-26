@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B90B3F21A75534300F6ABC7 /* NSString+DingoFormatting.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B90B3F11A75534300F6ABC7 /* NSString+DingoFormatting.m */; };
 		3A02687C19A5F9C000C8CD8E /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A02687B19A5F9C000C8CD8E /* Social.framework */; };
 		3A29C24C19EDC2DC00578F0D /* libPayPalMobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A29C24419EDC2DC00578F0D /* libPayPalMobile.a */; };
 		3A9441D319CB62920003DA85 /* newOffer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A9441D219CB62920003DA85 /* newOffer@2x.png */; };
@@ -345,6 +346,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1B90B3F01A75534300F6ABC7 /* NSString+DingoFormatting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+DingoFormatting.h"; sourceTree = "<group>"; };
+		1B90B3F11A75534300F6ABC7 /* NSString+DingoFormatting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+DingoFormatting.m"; sourceTree = "<group>"; };
 		3A02687B19A5F9C000C8CD8E /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		3A29C24419EDC2DC00578F0D /* libPayPalMobile.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libPayPalMobile.a; sourceTree = "<group>"; };
 		3A29C24519EDC2DC00578F0D /* PayPalConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalConfiguration.h; sourceTree = "<group>"; };
@@ -839,6 +842,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1B90B3EF1A75534300F6ABC7 /* NSString+DingoFormatting */ = {
+			isa = PBXGroup;
+			children = (
+				1B90B3F01A75534300F6ABC7 /* NSString+DingoFormatting.h */,
+				1B90B3F11A75534300F6ABC7 /* NSString+DingoFormatting.m */,
+			);
+			path = "NSString+DingoFormatting";
+			sourceTree = "<group>";
+		};
 		3A29C24319EDC2DC00578F0D /* PayPalMobile */ = {
 			isa = PBXGroup;
 			children = (
@@ -1514,6 +1526,7 @@
 				3F98FCC0193F4E7A00E6B3C4 /* SlidingViewController */,
 				3F2864E5194B177E002A3576 /* About */,
 				3A9C271019C8AF930007BA34 /* ChatViewController */,
+				1B90B3EF1A75534300F6ABC7 /* NSString+DingoFormatting */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -2783,6 +2796,7 @@
 				3F3D565C195182F900FB2774 /* SearchTicketsViewController.m in Sources */,
 				3F08EC1719473AAF00CDFBD8 /* TwoModeButton.m in Sources */,
 				3AB28B02197EE8CE009C1DDC /* ZSTextField.m in Sources */,
+				1B90B3F21A75534300F6ABC7 /* NSString+DingoFormatting.m in Sources */,
 				3F98FCEE1941AB7700E6B3C4 /* SelectCityViewController.m in Sources */,
 				3F98FCC7193F66C500E6B3C4 /* SideMenuViewController.m in Sources */,
 				59A6CC2F1A64FF010036589D /* AFImageRequestOperation.m in Sources */,

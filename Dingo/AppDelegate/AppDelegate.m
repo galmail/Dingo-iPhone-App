@@ -29,11 +29,13 @@
 #import "GAI.h"
 
 @implementation AppDelegate
+
 @synthesize viewNotification;
 
+#pragma mark - app delegate
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
-   
+	
     [Appirater setAppId:@"893538091"];
     [Appirater setDaysUntilPrompt:1];
     [Appirater setUsesUntilPrompt:10];
@@ -61,8 +63,12 @@
     
     
     //-- Set Notification
+	//keep in mind this would be a "better" (more standard) way to check for api availability
+	//if ([[UIApplication sharedApplication] respondsToSelector:@selector(registerUserNotificationSettings:)])
+	
     if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8")){
-        [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
+		
+		[[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
         [[UIApplication sharedApplication] registerForRemoteNotifications];
     }else{
         [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeBadge)];
@@ -86,72 +92,6 @@
     application.applicationIconBadgeNumber = 0;
     
     return YES;
-}
-
-- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-    // Show the device token obtained from apple to the log
-    NSString *newToken = [deviceToken description];
-	newToken = [newToken stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
-	newToken = [newToken stringByReplacingOccurrencesOfString:@" " withString:@""];
-    
-    [AppManager sharedManager].deviceToken = newToken;
-    
-    NSLog(@"deviceToken - %@",newToken);
-    if (NSSTRING_HAS_DATA([AppManager sharedManager].userInfo[@"email"]) || [[NSUserDefaults standardUserDefaults] objectForKey:@"users_email"]) {
-        
-    
-    if ([[AppManager sharedManager].deviceToken length]) {
-        NSDictionary *params = @{ @"uid":[AppManager sharedManager].deviceToken.length > 0 ? [AppManager sharedManager].deviceToken : @"",
-                                  @"brand":@"Apple",
-                                  @"model": [[UIDevice currentDevice] platformString],
-                                  @"os":[[UIDevice currentDevice] systemVersion],
-                                  @"app_version": [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"],
-                                  @"location" : [NSString stringWithFormat:@"%f,%f", [AppManager sharedManager].currentLocation.coordinate.latitude, [AppManager sharedManager].currentLocation.coordinate.longitude ]
-                                  };
-        [WebServiceManager registerDevice:params completion:^(id response, NSError *error) {
-            NSLog(@"registerDevice response - %@", response);
-            NSLog(@"registerDevice error - %@", error);
-        }];
-    }
-    }
-    
-}
-
--(void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error{
-    NSLog(@"rgistration fail on APS ");
-    
-}
-
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    
-
-   // if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive) {
-    [self showNotiFicationView:userInfo];
-//    }else{
-//            UIAlertView *alertView=[[UIAlertView alloc] initWithTitle:@"Dingo" message:@"You received a new message." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-//            [alertView show];
-//    }
-//    
-    
-    if ( application.applicationState == UIApplicationStateActive ) {
-    
-        if ([self.window.rootViewController isKindOfClass:[SlidingViewController class]]){
-            SlidingViewController *vc = (SlidingViewController *)self.window.rootViewController;
-            
-            DingoNavigationController *nc = (DingoNavigationController *)vc.topViewController;
-            
-            HomeTabBarController *tabBarConroller = (HomeTabBarController *)nc.topViewController;
-            [[DataManager shared] fetchMessagesWithCompletion:^(BOOL finished) {
-                if ([tabBarConroller isKindOfClass:[EventsViewController class]]|| [tabBarConroller isKindOfClass:[ListTicketsViewController class]] || [tabBarConroller isKindOfClass:[MessagesViewController class]] || [tabBarConroller isKindOfClass:[SearchTicketsViewController class]] || [tabBarConroller isKindOfClass:[HomeTabBarController class]])
-                    [tabBarConroller updateMessageCount];
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"messageReceived" object:nil];
-                
-                
-            }];
-        }
-  
-    }
-
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -188,11 +128,89 @@
     return [FBAppCall handleOpenURL:url sourceApplication:sourceApplication];
 }
 
+
+#pragma mark - notifications
+
+- (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings {
+	NSLog(@"notificationSettings: %@", notificationSettings);
+}
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+	
+	NSLog(@"%s", __PRETTY_FUNCTION__);
+	
+	// Show the device token obtained from apple to the log
+	NSString *newToken = [deviceToken description];
+	newToken = [newToken stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
+	newToken = [newToken stringByReplacingOccurrencesOfString:@" " withString:@""];
+	
+	[AppManager sharedManager].deviceToken = newToken;
+	
+	NSLog(@"deviceToken - %@",newToken);
+	if (NSSTRING_HAS_DATA([AppManager sharedManager].userInfo[@"email"]) || [[NSUserDefaults standardUserDefaults] objectForKey:@"users_email"]) {
+		
+		
+		if ([[AppManager sharedManager].deviceToken length]) {
+			NSDictionary *params = @{ @"uid":[AppManager sharedManager].deviceToken.length > 0 ? [AppManager sharedManager].deviceToken : @"",
+									  @"brand":@"Apple",
+									  @"model": [[UIDevice currentDevice] platformString],
+									  @"os":[[UIDevice currentDevice] systemVersion],
+									  @"app_version": [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"],
+									  @"location" : [NSString stringWithFormat:@"%f,%f", [AppManager sharedManager].currentLocation.coordinate.latitude, [AppManager sharedManager].currentLocation.coordinate.longitude ]
+									  };
+			[WebServiceManager registerDevice:params completion:^(id response, NSError *error) {
+				NSLog(@"registerDevice response - %@", response);
+				NSLog(@"registerDevice error - %@", error);
+			}];
+		}
+	}
+	
+}
+
+-(void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error{
+	NSLog(@"rgistration fail on APS: %@", error.localizedDescription);
+	
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+	
+	// if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive) {
+	[self showNotiFicationView:userInfo];
+	//    }else{
+	//            UIAlertView *alertView=[[UIAlertView alloc] initWithTitle:@"Dingo" message:@"You received a new message." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+	//            [alertView show];
+	//    }
+	//
+	
+	if ( application.applicationState == UIApplicationStateActive ) {
+		
+		if ([self.window.rootViewController isKindOfClass:[SlidingViewController class]]){
+			SlidingViewController *vc = (SlidingViewController *)self.window.rootViewController;
+			
+			DingoNavigationController *nc = (DingoNavigationController *)vc.topViewController;
+			
+			HomeTabBarController *tabBarConroller = (HomeTabBarController *)nc.topViewController;
+			[[DataManager shared] fetchMessagesWithCompletion:^(BOOL finished) {
+				if ([tabBarConroller isKindOfClass:[EventsViewController class]]|| [tabBarConroller isKindOfClass:[ListTicketsViewController class]] || [tabBarConroller isKindOfClass:[MessagesViewController class]] || [tabBarConroller isKindOfClass:[SearchTicketsViewController class]] || [tabBarConroller isKindOfClass:[HomeTabBarController class]])
+					[tabBarConroller updateMessageCount];
+				[[NSNotificationCenter defaultCenter] postNotificationName:@"messageReceived" object:nil];
+				
+				
+			}];
+		}
+  
+	}
+	
+}
+
 #pragma mark - custom methods
--(void)showNotiFicationView:(NSDictionary *)payLoad{
+
+//sugestion: create a NotificationView class and remove most of the code from app delegate
+
+-(void)showNotiFicationView:(NSDictionary *)payLoad {
     viewNotification=[[UIView alloc] initWithFrame:CGRectMake(0,-64, screenSize.width, 64)];
     [viewNotification setBackgroundColor:[UIColor colorWithRed:48.f/255.0f green:73.0f/255.0f blue:80.0f/255.0f alpha:1.0f]];
-    
+	
     //UIButton *btnCross=[UIButton buttonWithType:UIButtonTypeCustom];
     //[btnCross setFrame:CGRectMake(screenSize.width-45, 22, 20, 20)];
     //[btnCross setImage:[UIImage imageNamed:@"cross.png"]  forState:UIControlStateNormal];
@@ -211,9 +229,6 @@
     [lblName setTextColor:[UIColor whiteColor]];
     [lblName setFont:[DingoUISettings boldFontWithSize:15]];
     [viewNotification addSubview:lblName];
-    
-   
-    
     
     UILabel *lblMessageText=[[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(imageViewIcon.frame)+8, CGRectGetMaxY(lblName.frame)-5, 200, 25)];
     [lblMessageText setText:([arrayApsMessages count]>1?[arrayApsMessages objectAtIndex:1]:@"Last line of conversation goes here")];
@@ -249,7 +264,6 @@
 
     }
 }
-
 
 
 #pragma mark CoreLocation methods

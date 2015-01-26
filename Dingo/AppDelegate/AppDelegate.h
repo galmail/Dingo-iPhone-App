@@ -14,5 +14,5 @@
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property  (strong,nonatomic) UIView *viewNotification;
 
--(void)showNotiFicationView;
+-(void)showNotiFicationView:(NSDictionary *)payLoad;
 @end

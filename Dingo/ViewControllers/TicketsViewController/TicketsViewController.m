@@ -67,7 +67,7 @@
     
     [WebServiceManager addressToLocation:[DataManager eventLocation:self.eventData] completion:^(id response, NSError *error) {
         if (error) {
-            [WebServiceManager genericError];
+            [WebServiceManager handleError:error];
         }
 
         if ([response[@"status"] isEqualToString:@"OK"]) {
@@ -196,7 +196,7 @@
             
             [[DataManager shared] addOrUpdateAlert:response];
         }else if (error){
-            [WebServiceManager genericError];
+            [WebServiceManager handleError:error];
         }
         
     }];

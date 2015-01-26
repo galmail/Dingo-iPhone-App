@@ -963,6 +963,23 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
     });
 }
 
+#pragma mark - Errors
+
++ (void)handleError:(NSError*)error{
+	
+	if ([error.domain isEqualToString:NSURLErrorDomain] && (error.code == -1009)) {
+		[WebServiceManager noInternetError];
+	} else {
+		//we can show the user some errir info
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+		[alert show];
+		
+		//or just a generic error
+		//[WebServiceManager genericError];
+	}
+}
+
+
 + (void)genericError{
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Oops massive fail, please try again later" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alert show];
@@ -971,6 +988,11 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
 + (void)genericErrorWithMessage:(NSError *)error{
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alert show];
+}
+
++ (void)noInternetError{
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Dingo needs internet - feed me!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+	[alert show];
 }
 
 @end

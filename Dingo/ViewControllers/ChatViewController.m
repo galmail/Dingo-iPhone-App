@@ -341,8 +341,8 @@
 }
 
 
--(BOOL)textFieldShouldReturn:(UITextField *)textField{
-    [textField resignFirstResponder];
+-(BOOL)textFieldShouldReturn:(UITextField *)txtField{
+    [txtField resignFirstResponder];
     return NO;
 }
 
@@ -404,7 +404,7 @@
                 if (response) {
                     [self reloadMessagesWithCompletion:nil];
                 }else{
-                    [WebServiceManager genericError];
+                    [WebServiceManager handleError:error];
                 }
                 
             }];
@@ -418,7 +418,7 @@
                 if (response) {
                     [self reloadMessagesWithCompletion:nil];
                 }else{
-                    [WebServiceManager genericError];
+                    [WebServiceManager handleError:error];
                 }
                 
             }];

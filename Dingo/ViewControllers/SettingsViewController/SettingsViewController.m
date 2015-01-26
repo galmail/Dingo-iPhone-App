@@ -64,6 +64,8 @@
 }
 
 - (void) reloadData {
+	NSLog(@"%s : %@", __PRETTY_FUNCTION__, [AppManager sharedManager].userInfo);
+	
     if ([[AppManager sharedManager].userInfo valueForKey:@"name"]) {
         self.firstNameField.text =[[AppManager sharedManager].userInfo valueForKey:@"name"];
     }
@@ -94,6 +96,19 @@
     if ([[AppManager sharedManager].userInfo valueForKey:@"allow_dingo_emails"]) {
         self.dingoEmailsSwitch.on =[[[AppManager sharedManager].userInfo valueForKey:@"allow_dingo_emails"] boolValue];
     }
+	
+	BOOL notificationsOn;
+	if ([[UIApplication sharedApplication] respondsToSelector:@selector(isRegisteredForRemoteNotifications)]) {
+		notificationsOn = [[UIApplication sharedApplication] isRegisteredForRemoteNotifications];
+	} else {
+		notificationsOn = ([[UIApplication sharedApplication] enabledRemoteNotificationTypes] == UIRemoteNotificationTypeNone);
+	}
+	NSLog(@"notifications ON: %i", notificationsOn);
+	
+	self.pushNotificationSwitch.on = [[[AppManager sharedManager].userInfo valueForKey:@"allow_push_notifications"] boolValue] && notificationsOn;
+	
+	
+	
     if ([[AppManager sharedManager].userInfo valueForKey:@"allow_push_notifications"]) {
         self.pushNotificationSwitch.on =[[[AppManager sharedManager].userInfo valueForKey:@"allow_push_notifications"] boolValue];
     }
@@ -147,7 +162,7 @@
     ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Saving..."];
     [loadingView show];
     [WebServiceManager updateProfile:params completion:^(id response, NSError *error) {
-        NSLog(@"response %@", response);
+        NSLog(@"SVC updateProfile(backButton) response %@", response);
         [loadingView hide];
         if (error ) {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -199,7 +214,7 @@
     ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Saving..."];
     [loadingView show];
     [WebServiceManager updateProfile:params completion:^(id response, NSError *error) {
-        NSLog(@"response %@", response);
+        NSLog(@"SVC updateProfile(saveButton) response %@", response);
         [loadingView hide];
         if (error ) {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -237,11 +252,30 @@
            
         }
         
-    }
+	} else {
+		//shouldnt we do something when user turns this off?
+	}
 }
 
 - (IBAction)pushNotificationSwitchValueChanged {
-    
+
+	if (self.pushNotificationSwitch.on) {
+		//keep in mind this would be a "better" (more standard) way to check for api availability
+		//if ([[UIApplication sharedApplication] respondsToSelector:@selector(registerUserNotificationSettings:)])
+		
+		if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8")){
+			
+			[[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
+			[[UIApplication sharedApplication] registerForRemoteNotifications];
+		}else{
+			[[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeBadge)];
+		}
+		
+		
+	} else {
+		[[UIApplication sharedApplication] unregisterForRemoteNotifications];
+	}
+	
 }
 
 - (IBAction)dingoEmailsSwitchValueChanged {

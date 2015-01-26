@@ -208,7 +208,7 @@ static const NSUInteger commentCellIndex = 5;
             NSLog(@"params %lu", (unsigned long)[self.photos count]);
             
             [WebServiceManager updateTicket:params photos:self.photos completion:^(id response, NSError *error) {
-                NSLog(@"response %@", response);
+                NSLog(@"PVC updateTicket response %@", response);
                 
                 if (response[@"id"]) {
                     [[DataManager shared] addOrUpdateTicket:response];
@@ -260,7 +260,7 @@ static const NSUInteger commentCellIndex = 5;
                     }
                 } else {
                     [loadingView hide];
-                    [WebServiceManager genericError];
+                    [WebServiceManager handleError:error];
                 }
                 
                 
@@ -335,7 +335,7 @@ static const NSUInteger commentCellIndex = 5;
         }
         
         [WebServiceManager createEvent:dictParam completion:^(id response, NSError *error) {
-            NSLog(@"response %@", response);
+            NSLog(@"PVC createEvent response %@", response);
             
             if (response) {
                 NSString *eventID = response[@"id"];
@@ -368,7 +368,7 @@ static const NSUInteger commentCellIndex = 5;
                         } else {
                             [loadingView hide];
                             if (error) {
-                                [WebServiceManager genericError];
+                                [WebServiceManager handleError:error];
                             }
                            
                         }
@@ -382,7 +382,7 @@ static const NSUInteger commentCellIndex = 5;
                 }
             } else {
                 [loadingView hide];
-                [WebServiceManager genericError];
+                [WebServiceManager handleError:error];
             }
             
            

@@ -254,8 +254,7 @@
                         
                     }
                 }else{
-                     [WebServiceManager genericError];
-                }
+                     [WebServiceManager handleError:error];                }
             }];
         }
         

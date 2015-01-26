@@ -10,6 +10,8 @@
 
 #import "DiscountView.h"
 #import "DataManager.h"
+#import "NSString+DingoFormatting.h"
+
 
 const CGFloat featureCellHeight = 170;
 
@@ -44,13 +46,16 @@ const CGFloat featureCellHeight = 170;
 }
 
 - (void)setPrice:(float)price {
-    
-    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-    [formatter setAllowsFloats:YES];
-    [formatter setMaximumFractionDigits:2];
-    
-    NSString *strPrice = [formatter stringFromNumber:[NSNumber numberWithFloat:price]];
-    
+	
+	//old
+	//NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+	//[formatter setAllowsFloats:YES];
+	//[formatter setMaximumFractionDigits:2];
+	//NSString *strPrice = [formatter stringFromNumber:[NSNumber numberWithFloat:price]];
+	
+	//new: with this sometimes the textfield is truncated, TODO fix
+	NSString *strPrice = [NSString stringWithCurrencyFormattingForPrice:[NSNumber numberWithFloat:price]];
+	
     if ([NSStringFromClass([self class]) isEqual:@"TicketCell"]) {
     
         if ([event.tickets intValue] > 1) {

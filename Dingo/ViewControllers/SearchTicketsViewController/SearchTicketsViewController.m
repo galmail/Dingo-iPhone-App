@@ -113,7 +113,7 @@
     ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Searching..."];
     [loadingView show];
     [WebServiceManager searchEvents:params completion:^(id response, NSError *error) {
-        NSLog(@"response %@", response);
+        NSLog(@"STVC response %@", response);
         [loadingView hide];
         if (error ) {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];

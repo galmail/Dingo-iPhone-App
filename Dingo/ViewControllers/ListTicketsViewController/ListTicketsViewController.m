@@ -27,6 +27,9 @@
 #import "UIDevice+Additions.h"
 #import "AppDelegate.h"
 
+#import "NSString+DingoFormatting.h"
+
+
 static const CGFloat paypalCellShrinkedHeight = 120;
 static const CGFloat paypalCellExpandedHeight = 240;
 
@@ -311,8 +314,15 @@ static const NSInteger paypalEditAlert = 3;
     self.endDateField.enabled = NO;
     
     self.descriptionTextView.text = ticket.ticket_desc;
-    self.priceField.text = [ticket.price stringValue];
-    self.faceValueField.text= [ticket.face_value_per_ticket stringValue];
+	
+	//old
+	//self.priceField.text = [ticket.price stringValue];
+	//self.faceValueField.text= [ticket.face_value_per_ticket stringValue];
+	
+	//new
+	self.priceField.text = [NSString stringWithCurrencyFormattingForPrice:ticket.price];
+	self.faceValueField.text = [NSString stringWithCurrencyFormattingForPrice:ticket.face_value_per_ticket];
+	
     self.ticketsCountField.text = [ticket.number_of_tickets stringValue];
     self.typeTicketField.text = ticket.ticket_type;
 
@@ -511,7 +521,7 @@ static const NSInteger paypalEditAlert = 3;
     ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please wait..."];
     [loadingView show];
     [WebServiceManager updateTicket:params photos:photos completion:^(id response, NSError *error) {
-        NSLog(@"response %@", response);
+        NSLog(@"LT response %@", response);
         [loadingView hide];
         
         if (response[@"id"]) {
@@ -720,18 +730,23 @@ static const NSInteger paypalEditAlert = 3;
     if (textField == self.priceField) {
         if (self.priceField.text.length > 0) {
             
-               float priceFieldValue= [[self.priceField.text stringByReplacingOccurrencesOfString:@"£" withString:@""] floatValue];
+			float priceFieldValue= [[self.priceField.text stringByReplacingOccurrencesOfString:@"£" withString:@""] floatValue];
             float facePriceValue=[[self.faceValueField.text stringByReplacingOccurrencesOfString:@"£" withString:@""] floatValue];
             
             if ((priceFieldValue > facePriceValue) &&  self.faceValueField.text.length > 0) {
                 [self showFaceValueAlertMessage];
             } else{
-                self.ticket.face_value_per_ticket = @([self.faceValueField.text floatValue]);
+				self.ticket.face_value_per_ticket = @([self.faceValueField.text floatValue]); //?
                 self.ticket.price = @([self.priceField.text floatValue]);
-                self.event.fromPrice = @([self.priceField.text floatValue]);
+				
+				//new
+				self.priceField.text = [NSString stringWithCurrencyFormattingForPrice:self.ticket.price];
+				
+				self.event.fromPrice = @([self.priceField.text floatValue]);
                 lblPrice.textColor = [UIColor blackColor];
                 self.changed = YES;
-                if (![self.priceField.text hasPrefix:@"£"])
+				
+				if (![self.priceField.text hasPrefix:@"£"])
                     [self.priceField setText:[NSString stringWithFormat:@"£%@",self.priceField.text]];
                 
                     }
@@ -749,9 +764,14 @@ static const NSInteger paypalEditAlert = 3;
                 [self showFaceValueAlertMessage];
             } else{
                 self.ticket.face_value_per_ticket = @([self.faceValueField.text floatValue]);
-                lblFaceValue.textColor = [UIColor blackColor];
-                if (![self.faceValueField.text hasPrefix:@"£"] )
-                [self.faceValueField setText:[NSString stringWithFormat:@"£%@",self.faceValueField.text]];
+				
+				//new
+				self.faceValueField.text = [NSString stringWithCurrencyFormattingForPrice:self.ticket.face_value_per_ticket];
+				
+				lblFaceValue.textColor = [UIColor blackColor];
+				
+                if (![self.faceValueField.text hasPrefix:@"£"])
+					[self.faceValueField setText:[NSString stringWithFormat:@"£%@",self.faceValueField.text]];
                 
             }
         }
@@ -1229,7 +1249,7 @@ static const NSInteger paypalEditAlert = 3;
                             [self performSegueWithIdentifier:@"PreviewSegue" sender:self];
                         }
                     }else{
-                        [WebServiceManager genericError];
+                        [WebServiceManager handleError:error];
                     }
                 }];
             }
@@ -1252,7 +1272,7 @@ static const NSInteger paypalEditAlert = 3;
                             [[NSUserDefaults standardUserDefaults] synchronize];
                            // paypalSwitch.on= YES;
                         }else{
-                            [WebServiceManager genericError];
+                            [WebServiceManager handleError:error];
                         }
                         
                     }];

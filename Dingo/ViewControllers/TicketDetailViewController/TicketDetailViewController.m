@@ -23,6 +23,8 @@
 #import "NewOfferViewController.h"
 #import "CheckoutViewController.h"
 
+#import "NSString+DingoFormatting.h"
+
 #import <FacebookSDK/FacebookSDK.h>
 #import "MutualFriendCell.h"
 
@@ -121,13 +123,23 @@ static const NSUInteger commentCellIndex = 5;
     self.photosPreviewCell.parentViewController = self;
     
     self.ticketsCountlabel.text = [self.ticket.number_of_tickets stringValue];
-    self.faceValueLabel.text = [NSString stringWithFormat:@"£%@",[self.ticket.face_value_per_ticket stringValue]];
+	
+	//old
+	//self.faceValueLabel.text = [NSString stringWithFormat:@"£%@",[self.ticket.face_value_per_ticket stringValue]];
+	//new
+	self.faceValueLabel.text = [NSString stringWithFormat:@"£%@",[NSString stringWithCurrencyFormattingForPrice:self.ticket.face_value_per_ticket]];
+	
     self.descriptionTextView.text = self.ticket.ticket_desc;
     self.paymentLabel.text = self.ticket.payment_options;
     self.ticketTypeLabel.text = self.ticket.ticket_type;
     self.deliveryLabel.text = self.ticket.delivery_options;
-    self.priceTicketLabel.text = [NSString stringWithFormat:@"£%@",[self.ticket.price stringValue]];
-    self.sellerNameLabel.text = self.ticket.user_name;
+	
+	//old
+	//self.priceTicketLabel.text = [NSString stringWithFormat:@"£%@",[self.ticket.price stringValue]];
+	//new
+	self.priceTicketLabel.text = [NSString stringWithFormat:@"£%@",[NSString stringWithCurrencyFormattingForPrice:self.ticket.price]];
+	
+	self.sellerNameLabel.text = self.ticket.user_name;
     self.sellerImageView.image = [UIImage imageWithData:self.ticket.user_photo];
         
     
@@ -361,7 +373,7 @@ static const NSUInteger commentCellIndex = 5;
                                      };
             
             [WebServiceManager updateTicket:params photos:nil completion:^(id response, NSError *error) {
-                NSLog(@"response %@", response);
+                NSLog(@"TDVC response %@", response);
                 
                 if (!error && [response[@"available"] intValue] == 0) {
                     [[AppManager sharedManager].managedObjectContext deleteObject:self.ticket];

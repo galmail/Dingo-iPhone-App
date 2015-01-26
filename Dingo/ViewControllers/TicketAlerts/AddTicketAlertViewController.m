@@ -102,7 +102,7 @@
             [[DataManager shared] addOrUpdateAlert:response];
         }else{
             
-            [WebServiceManager genericError];
+            [WebServiceManager handleError:error];
         }
         
        

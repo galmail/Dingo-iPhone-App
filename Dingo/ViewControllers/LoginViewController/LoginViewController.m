@@ -93,7 +93,7 @@
                 SelectCityViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SelectCityViewController"];
                 [self.navigationController pushViewController:viewController animated:YES];
             }else{
-                [WebServiceManager genericError];
+                [WebServiceManager handleError:error];
             }
         }];
     }
@@ -104,6 +104,7 @@
         [loadingView show];
         
         NSString *email = [NSString stringWithFormat:@"%@@guest.dingoapp.co.uk", [[UIDevice currentDevice] uniqueDeviceIdentifier]];
+		NSLog(@"email: %@", email);
         NSString *pass = [NSString stringWithFormat:@"uid%@", [[UIDevice currentDevice] uniqueDeviceIdentifier]];
         
         NSDictionary *params = @{ @"name" : @"Guest",
@@ -119,12 +120,13 @@
                                   };
         
         [WebServiceManager signUp:params completion:^(id response, NSError *error) {
-            NSLog(@"response %@", response);
+            NSLog(@"LVC signUp response %@", response);
             
             if (error) {
                 
                 [loadingView hide];
-                [WebServiceManager genericError];
+				
+				[WebServiceManager handleError:error];
             } else {
                 if (response) {
                      [loadingView hide];
@@ -145,11 +147,14 @@
                                                   };
                         
                         [WebServiceManager signIn:params completion:^(id response, NSError *error) {
-                            NSLog(@"response %@", response);
+                            NSLog(@"LVC signIn response %@", response);
                             if (error ) {
                                 [loadingView hide];
-                                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                                [alert show];
+//old
+//                                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//                                [alert show];
+								//ner
+								[WebServiceManager handleError:error];
                             } else {
                                 [loadingView hide];
                                 if (response) {

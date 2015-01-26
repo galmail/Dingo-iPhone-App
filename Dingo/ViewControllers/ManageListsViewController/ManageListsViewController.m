@@ -104,7 +104,7 @@
         ZSLoadingView *loadingView =[[ZSLoadingView alloc] initWithLabel:@"Please wait..."];
         [loadingView show];
         [WebServiceManager updateTicket:params photos:nil completion:^(id response, NSError *error) {
-            NSLog(@"response %@", response);
+            NSLog(@"MLVC response %@", response);
             [loadingView hide];
             if (!error && [response[@"available"] intValue] == 0) {
                 [[AppManager sharedManager].managedObjectContext deleteObject:data];
@@ -118,7 +118,7 @@
                 
                
             }else{
-                [WebServiceManager genericError];
+                [WebServiceManager handleError:error];
             }
         }];
     }
