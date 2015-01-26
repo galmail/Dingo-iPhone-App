@@ -974,8 +974,11 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
 #pragma mark - Errors
 
 + (void)handleError:(NSError*)error{
-	NSLog(@"error.domain: %@", error.domain);
+	NSLog(@"error.domain: %@", error.domain.class);
 	NSLog(@"error.code: %li", (long)error.code);
+	
+	//odd case CHECK
+	if (!error.domain && error.code == 0) return;
 	
 	if ([error.domain isEqualToString:NSURLErrorDomain] && (error.code == -1009)) {
 		[WebServiceManager noInternetError];

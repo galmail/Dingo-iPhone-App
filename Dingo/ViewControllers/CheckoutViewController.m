@@ -141,35 +141,43 @@
 		if (error) {
 			[loadingView hide];
 			[WebServiceManager handleError:error];
-		} else {
-			if (response) {
-				//AVAILABLE = TRUE
-				BOOL ticketAvailable = [response[@"available"] boolValue];
+		} else if (response) {
+			//AVAILABLE = TRUE
+			NSArray *responseArray = response[@"tickets"];
+			NSDictionary *responseDictionary = responseArray[0];
+			BOOL ticketAvailable = [responseDictionary[@"available"] boolValue];
+			
+			if (ticketAvailable) {
+				payPalKey = nil;
 				
-				if (ticketAvailable) {
-					payPalKey = nil;
-					
-					if ([self.event.test boolValue]) {
-						[PayPalMobile preconnectWithEnvironment:PayPalEnvironmentSandbox];
-					} else {
-						//#ifdef kProductionMode
-						[PayPalMobile preconnectWithEnvironment:PayPalEnvironmentProduction];
-						//#else
-						//        [PayPalMobile preconnectWithEnvironment:PayPalEnvironmentSandbox];
-						//#endif
-					}
-					
-					PayPalPayment *payment = [[PayPalPayment alloc] init];
-					payment.amount = (NSDecimalNumber*)[currencyFormatter numberFromString:txtTotal.text];
-					payment.currencyCode = @"GBP";
-					payment.shortDescription = @"Dingo Test Payment ";
-					
-					PayPalPaymentViewController *paymentViewController = [[PayPalPaymentViewController alloc] initWithPayment:payment
-																												configuration:payPalConfig                                                                                                                     delegate:self];
-					[loadingView hide];
-					[self presentViewController:paymentViewController animated:YES completion:nil];
+				if ([self.event.test boolValue]) {
+					[PayPalMobile preconnectWithEnvironment:PayPalEnvironmentSandbox];
+				} else {
+					//#ifdef kProductionMode
+					[PayPalMobile preconnectWithEnvironment:PayPalEnvironmentProduction];
+					//#else
+					//        [PayPalMobile preconnectWithEnvironment:PayPalEnvironmentSandbox];
+					//#endif
 				}
+				
+				PayPalPayment *payment = [[PayPalPayment alloc] init];
+				payment.amount = (NSDecimalNumber*)[currencyFormatter numberFromString:txtTotal.text];
+				payment.currencyCode = @"GBP";
+				payment.shortDescription = @"Dingo Test Payment ";
+				
+				PayPalPaymentViewController *paymentViewController = [[PayPalPaymentViewController alloc] initWithPayment:payment
+																											configuration:payPalConfig                                                                                                                     delegate:self];
+				[loadingView hide];
+				[self presentViewController:paymentViewController animated:YES completion:nil];
+			} else {
+				//no tickets available
+				[loadingView hide];
+				[AppManager showAlert:@"Too late - ticket has already been purchased! :("];
 			}
+		} else {
+			//odd error
+			[loadingView hide];
+			[WebServiceManager genericError];
 		}
 	}];
 }
