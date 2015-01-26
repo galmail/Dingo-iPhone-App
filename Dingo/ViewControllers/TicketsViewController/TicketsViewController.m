@@ -21,6 +21,7 @@
 @interface TicketsViewController () <UITableViewDelegate, UITableViewDataSource> {
     EventCell *eventCell;
     MKMapView *locationMapView;
+	UIView *noSellers;
 }
 
 
@@ -37,18 +38,7 @@
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(refreshInvoked:forState:) forControlEvents:UIControlEventValueChanged];
 
-    
-    [[DataManager shared] allTicketsByEventID:self.eventData.event_id completion:^(BOOL finished) {
-        
-        [self.tableView reloadData];
-        
-        [[DataManager shared] allAlertsWithCompletion:^(BOOL finished) {
-            NSArray *alertArray = [[DataManager shared] allAlerts];
-            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"event_id == %@", self.eventData.event_id];
-            NSArray *filteredArray = [alertArray filteredArrayUsingPredicate:predicate];
-            eventCell.on = (filteredArray.count > 0);
-        }];
-    }];
+	[self refreshInvoked:nil forState:0];
 }
 
 
@@ -90,16 +80,25 @@
     [self.tableView reloadData];
 }
 
+#pragma mark -
 
--(void) refreshInvoked:(id)sender forState:(UIControlState)state {
-    
-    [self.refreshControl beginRefreshing];
+-(void)refreshInvoked:(id)sender forState:(UIControlState)state {
+    // this if allows us to call [self refreshInvoked:nil forState:0] to refresh data without showing the refreshControl ;)
+    if (sender) [self.refreshControl beginRefreshing];
     
     [[DataManager shared] allTicketsByEventID:self.eventData.event_id completion:^(BOOL finished) {
-        
-        [self.tableView reloadData];
-        [self.refreshControl endRefreshing];
-        
+		
+		[self.tableView reloadData];
+		
+		//lets check if we have sellers
+		if ([[DataManager shared] allTicketsByEventID:self.eventData.event_id].count > 0) {
+			[self hideNoSellers];
+		} else {
+			[self showNoSellers];
+		}
+		
+		if (sender) [self.refreshControl endRefreshing];
+			
         [[DataManager shared] allAlertsWithCompletion:^(BOOL finished) {
             NSArray *alertArray = [[DataManager shared] allAlerts];
             NSPredicate *predicate = [NSPredicate predicateWithFormat:@"event_id == %@", self.eventData.event_id];
@@ -107,26 +106,76 @@
             eventCell.on = (filteredArray.count > 0);
         }];
     }];
+}
 
+- (void)showNoSellers {
+	CGFloat bottomOfTable = CGRectGetMaxY([[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]] frame]);
+	noSellers = [[UILabel alloc] initWithFrame:CGRectMake(30, bottomOfTable + 40, 260, 100)];
+	
+	UILabel *lblNoSellers = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 260, 30)];
+	lblNoSellers.text = @"No sellers on Dingo :(";
+	lblNoSellers.textAlignment = NSTextAlignmentCenter;
+	lblNoSellers.textColor = [UIColor colorWithRed:(170/255.0) green:(170/255.0) blue:(170/255.0) alpha:1];
+	lblNoSellers.font = [DingoUISettings fontWithSize:20];
+	lblNoSellers.numberOfLines = 0;
+	[noSellers addSubview:lblNoSellers];
+	
+	UIButton *btnNoSellers = [UIButton buttonWithType:UIButtonTypeCustom];
+	btnNoSellers.frame = CGRectMake(0, 60, 260, 30);
+	[btnNoSellers setTitle: @"But you can buy tickets here >" forState:UIControlStateNormal];
+	[btnNoSellers setTitleColor:[UIColor colorWithRed:(170/255.0) green:(170/255.0) blue:(170/255.0) alpha:1] forState:UIControlStateNormal];
+	btnNoSellers.titleLabel.textAlignment = NSTextAlignmentCenter;
+	btnNoSellers.titleLabel.font = [DingoUISettings fontWithSize:20];
+	[btnNoSellers addTarget:self action:@selector(buyTicket:) forControlEvents:UIControlEventTouchUpInside];
+	[noSellers addSubview:btnNoSellers];
+	
+	[self.view addSubview:noSellers];
+}
+
+- (void)hideNoSellers {
+	[noSellers removeFromSuperview];
+}
+
+- (void)buyTicket:(id)sender {
+	//setup action here
 }
 
 #pragma mark - UITableViewDelegate
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
 //    NSLog(@"indexPath row %d", indexPath.row);
 //    return indexPath.row ? eventCellHeight : featureCellHeight;
-    if (indexPath.row == 0) {
-        return featureCellHeight;
-    } else if (indexPath.row == 1) {
-        return 80;
-//        return [super tableView:tableView heightForRowAtIndexPath:indexPath];
-    } else {
-        return eventCellHeight;
-    }
+	
+//old
+//    if (indexPath.row == 0) {
+//        return featureCellHeight;
+//    } else if (indexPath.row == 1) {
+//        return 80;
+////        return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+//    } else {
+//        return eventCellHeight;
+//    }
+	
+	//new
+	switch (indexPath.row) {
+		case 0:
+			return featureCellHeight;
+			break;
+		case 1:
+			return 80;
+			break;
+		case 2:
+			return 40;
+			break;
+		default:
+			return eventCellHeight;
+			break;
+	}
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [[DataManager shared] allTicketsByEventID:self.eventData.event_id].count + 2;
+	return [[DataManager shared] allTicketsByEventID:self.eventData.event_id].count + 3;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -139,26 +188,50 @@
 //        return [self buildEventCell];
 //    }
 
-    if (indexPath.row == 0) {
-        return [self buildEventCell];
-    } else if (indexPath.row == 1) {
-        static NSString *CellIdentifier = @"cell";
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        [cell addSubview:locationMapView];
-        return cell;
-        
-    } else {
-        return [self buildEventCellForIndex:indexPath.row - 2];
-    }
+//old
+//    if (indexPath.row == 0) {
+//        return [self buildEventCell];
+//    } else if (indexPath.row == 1) {
+//        static NSString *CellIdentifier = @"cell";
+//        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//        
+//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+//        [cell addSubview:locationMapView];
+//        return cell;
+//        
+//    } else {
+//        return [self buildEventCellForIndex:indexPath.row - 2];
+//    }
+	
+//new
+	switch (indexPath.row) {
+		case 0:
+			return [self buildEventCell];
+			break;
+		case 1: {
+			static NSString *CellIdentifier = @"cell";
+			//UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+			
+			UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+			[cell addSubview:locationMapView];
+			return cell;
+			break;
+		}
+		case 2:
+			return [tableView dequeueReusableCellWithIdentifier:@"sellers_cell"];
+			break;
+		default:
+			return [self buildEventCellForIndex:indexPath.row - 3];
+			break;
+	}
     
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+
     NSUInteger index = indexPath.row;
-    if (index) {
-        Ticket *data = [[DataManager shared] allTicketsByEventID:self.eventData.event_id][index-2];
+    if (index > 2) {
+        Ticket *data = [[DataManager shared] allTicketsByEventID:self.eventData.event_id][index-3];
         
         TicketDetailViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"TicketDetailViewController"];
         viewController.event = self.eventData;
