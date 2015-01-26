@@ -59,9 +59,20 @@
     cityPicker = [[ZSPickerView alloc] initWithItems:[[DataManager shared] allCities] allowMultiSelection:NO];
     cityPicker.delegate = self;
     self.cityField.inputView = cityPicker;
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(remoteNotificationsErrorNotification:) name:@"RemoteNotificationsError" object:nil];
     
     [self reloadData];
 }
+
+- (void)viewWillDisappear:(BOOL)animated {
+	[super viewWillDisappear:animated];
+	
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+
+#pragma mark -
 
 - (void) reloadData {
 	NSLog(@"%s : %@", __PRETTY_FUNCTION__, [AppManager sharedManager].userInfo);
@@ -97,28 +108,32 @@
         self.dingoEmailsSwitch.on =[[[AppManager sharedManager].userInfo valueForKey:@"allow_dingo_emails"] boolValue];
     }
 	
+	//old
+    if ([[AppManager sharedManager].userInfo valueForKey:@"allow_push_notifications"]) {
+        self.pushNotificationSwitch.on =[[[AppManager sharedManager].userInfo valueForKey:@"allow_push_notifications"] boolValue];
+    }
+	//new
+	[self updateNotificationsSwitch];
+
+    //phil turning fields to not edit
+    _surnameField.enabled = NO;
+    _firstNameField.enabled = NO;
+}
+
+- (void)updateNotificationsSwitch {
 	BOOL notificationsOn;
 	if ([[UIApplication sharedApplication] respondsToSelector:@selector(isRegisteredForRemoteNotifications)]) {
 		notificationsOn = [[UIApplication sharedApplication] isRegisteredForRemoteNotifications];
 	} else {
 		notificationsOn = ([[UIApplication sharedApplication] enabledRemoteNotificationTypes] == UIRemoteNotificationTypeNone);
 	}
-	NSLog(@"notifications ON: %i", notificationsOn);
-	
 	self.pushNotificationSwitch.on = [[[AppManager sharedManager].userInfo valueForKey:@"allow_push_notifications"] boolValue] && notificationsOn;
-	
-	
-	
-    if ([[AppManager sharedManager].userInfo valueForKey:@"allow_push_notifications"]) {
-        self.pushNotificationSwitch.on =[[[AppManager sharedManager].userInfo valueForKey:@"allow_push_notifications"] boolValue];
-    }
-
-    
-    //phil turning fields to not edit
-    _surnameField.enabled = NO;
-    _firstNameField.enabled = NO;
-    
 }
+
+- (void)remoteNotificationsErrorNotification:(NSNotification*)notification {
+	[self updateNotificationsSwitch];
+}
+
 
 #pragma mark - UITextFieldDelegate
 
@@ -260,9 +275,9 @@
 - (IBAction)pushNotificationSwitchValueChanged {
 
 	if (self.pushNotificationSwitch.on) {
+		[[AppManager sharedManager].userInfo setValue:@YES forKey:@"allow_push_notifications"];
 		//keep in mind this would be a "better" (more standard) way to check for api availability
 		//if ([[UIApplication sharedApplication] respondsToSelector:@selector(registerUserNotificationSettings:)])
-		
 		if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8")){
 			
 			[[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
@@ -271,8 +286,8 @@
 			[[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeBadge)];
 		}
 		
-		
 	} else {
+		[[AppManager sharedManager].userInfo setValue:@NO forKey:@"allow_push_notifications"];
 		[[UIApplication sharedApplication] unregisterForRemoteNotifications];
 	}
 	

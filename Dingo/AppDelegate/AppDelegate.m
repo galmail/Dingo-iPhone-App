@@ -169,7 +169,8 @@
 
 -(void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error{
 	NSLog(@"rgistration fail on APS: %@", error.localizedDescription);
-	
+	// we post a notification to disable settings switch ;)
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"RemoteNotificationsError" object:error];
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {

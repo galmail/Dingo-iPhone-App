@@ -160,6 +160,14 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
                                       
                                       if (error) {
                                           handler(nil, error);
+										  //CHECK: why is this using the appmanager show alert instead of [webservicemanager handleError:] ?
+										  
+										  NSLog(@"error: %@", error);
+										  if ([error.domain isEqualToString:@"com.facebook.sdk"
+											   ] && error.code == 2) {
+											  //fb login failed
+											  [[NSNotificationCenter defaultCenter] postNotificationName:@"FacebookError" object:error];
+										  }
                                           [AppManager showAlert:[error localizedDescription]];
                                           
                                           
