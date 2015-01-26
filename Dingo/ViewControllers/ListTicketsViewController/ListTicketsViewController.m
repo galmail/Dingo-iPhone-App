@@ -320,8 +320,10 @@ static const NSInteger paypalEditAlert = 3;
 	//self.faceValueField.text= [ticket.face_value_per_ticket stringValue];
 	
 	//new
-	self.priceField.text = [NSString stringWithCurrencyFormattingForPrice:ticket.price];
-	self.faceValueField.text = [NSString stringWithCurrencyFormattingForPrice:ticket.face_value_per_ticket];
+	if (ticket.price != nil)
+		self.priceField.text = [NSString stringWithCurrencyFormattingForPrice:ticket.price];
+	if (ticket.face_value_per_ticket != nil)
+		self.faceValueField.text = [NSString stringWithCurrencyFormattingForPrice:ticket.face_value_per_ticket];
 	
     self.ticketsCountField.text = [ticket.number_of_tickets stringValue];
     self.typeTicketField.text = ticket.ticket_type;
