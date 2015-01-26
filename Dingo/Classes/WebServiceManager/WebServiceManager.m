@@ -80,7 +80,7 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         
         dispatch_async(dispatch_get_main_queue(), ^(void){
             if (error != nil) {
-                [self genericError];
+                [self handleError:error];
             } else {
                 handler([data objectFromJSONData], error);
             }
@@ -100,7 +100,7 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         
         dispatch_async(dispatch_get_main_queue(), ^(void){
             if (error != nil) {
-                [self genericError];
+                [self handleError:error];
             } else {
                 handler([data objectFromJSONData], error);
             }
@@ -368,7 +368,7 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         
         dispatch_async(dispatch_get_main_queue(), ^(void){
             if (error != nil) {
-                [self genericError];
+                [self handleError:error];
                 handler(nil,error);
             } else {
                 handler([data objectFromJSONData], error);
@@ -389,7 +389,7 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         
         dispatch_async(dispatch_get_main_queue(), ^(void){
             if (error != nil) {
-                [self genericError];
+                [self handleError:error];
                 handler(nil,error);
             } else {
                 handler([data objectFromJSONData], error);
@@ -410,7 +410,7 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         dispatch_async(dispatch_get_main_queue(), ^(void){
             if (error != nil) {
                 handler(nil,error);
-                [self genericError];
+                [self handleError:error];
                 
             } else {
                 handler([data objectFromJSONData], error);
@@ -540,7 +540,7 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         
         dispatch_async(dispatch_get_main_queue(), ^(void){
             if (error != nil) {
-                [self genericError];
+                [self handleError:error];
                 handler(nil,error);
             } else {
                 handler([data objectFromJSONData], error);
@@ -629,7 +629,7 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         
         dispatch_async(dispatch_get_main_queue(), ^(void){
             if (error != nil) {
-                [self genericError];
+                [self handleError:error];
             } else {
                 handler([data objectFromJSONData], error);
             }
@@ -670,7 +670,7 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         
         dispatch_async(dispatch_get_main_queue(), ^(void){
             if (error != nil) {
-                [self genericError];
+                [self handleError:error];
             } else {
                 handler([data objectFromJSONData], error);
             }
@@ -694,7 +694,7 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         dispatch_async(dispatch_get_main_queue(), ^(void){
             if (error != nil) {
                 handler(nil,error);
-                [self genericError];
+                [self handleError:error];
             } else {
                 handler([data objectFromJSONData], error);
             }
@@ -714,7 +714,7 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         
         dispatch_async(dispatch_get_main_queue(), ^(void){
             if (error != nil) {
-                [self genericError];
+                [self handleError:error];
             } else {
                 handler([data objectFromJSONData], error);
             }
@@ -734,7 +734,7 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         
         dispatch_async(dispatch_get_main_queue(), ^(void){
             if (error != nil) {
-                [self genericError];
+                [self handleError:error];
             } else {
                 handler([data objectFromJSONData], error);
             }
@@ -778,7 +778,7 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         
         dispatch_async(dispatch_get_main_queue(), ^(void){
             if (error != nil) {
-                [self genericError];
+                [self handleError:error];
             } else {
                 handler([data objectFromJSONData], error);
             }
@@ -954,7 +954,7 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
         
         dispatch_async(dispatch_get_main_queue(), ^(void){
             if (error != nil) {
-                [self genericError];
+                [self handleError:error];
             } else {
                 handler([data objectFromJSONData], error);
             }
@@ -966,11 +966,13 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
 #pragma mark - Errors
 
 + (void)handleError:(NSError*)error{
+	NSLog(@"error.domain: %@", error.domain);
+	NSLog(@"error.code: %li", (long)error.code);
 	
 	if ([error.domain isEqualToString:NSURLErrorDomain] && (error.code == -1009)) {
 		[WebServiceManager noInternetError];
 	} else {
-		//we can show the user some errir info
+		//we can show the user some error info
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
 		[alert show];
 		

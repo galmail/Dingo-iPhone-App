@@ -1494,7 +1494,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="TicketsViewController" id="UTV-Tz-0Ch" customClass="TicketsViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="teh-e7-WuW">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="separatorColor" red="0.57254901960000004" green="0.57254901960000004" blue="0.57254901960000004" alpha="1" colorSpace="calibratedRGB"/>
@@ -1551,10 +1551,10 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="QzJ-hB-k2X">
                                                     <rect key="frame" x="145" y="122" width="75" height="22"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" image="bellOffz.png">
+                                                    <state key="normal" image="AlertButton">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
-                                                    <state key="selected" image="bellOnz.png"/>
+                                                    <state key="selected" image="AlertButtonOn"/>
                                                     <connections>
                                                         <action selector="bellOnOff:" destination="UTV-Tz-0Ch" eventType="touchUpInside" id="xqe-kf-amA"/>
                                                     </connections>
@@ -1562,7 +1562,7 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="dPd-1P-5er">
                                                     <rect key="frame" x="54" y="122" width="85" height="22"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" image="AddTickets.png">
+                                                    <state key="normal" image="SellTicketButton">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
@@ -4329,20 +4329,20 @@
         </scene>
     </scenes>
     <resources>
-        <image name="AddTickets.png" width="153" height="41"/>
+        <image name="AlertButton" width="147" height="42"/>
+        <image name="AlertButtonOn" width="153" height="48"/>
         <image name="Arrow.png" width="37" height="47"/>
         <image name="EventCell.png" width="320" height="79"/>
         <image name="EventIcon.png" width="60" height="59"/>
         <image name="HomeIcon.png" width="28" height="26"/>
         <image name="ListTicketsIcon.png" width="46" height="33"/>
         <image name="No fees. No comm.png" width="347" height="26"/>
+        <image name="SellTicketButton" width="147" height="42"/>
         <image name="about_icon.png" width="27" height="27"/>
         <image name="about_logo.png" width="179" height="121"/>
         <image name="add_photo_icon.png" width="76" height="75"/>
         <image name="arrow.png" width="6" height="10"/>
         <image name="arrow_white.png" width="5" height="9"/>
-        <image name="bellOffz.png" width="131" height="41"/>
-        <image name="bellOnz.png" width="131" height="41"/>
         <image name="blueBG.png" width="320" height="568"/>
         <image name="btnConfirmAlert.png" width="248" height="40"/>
         <image name="btnDeleteAlert.png" width="248" height="40"/>
@@ -4396,7 +4396,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="lKe-yJ-oEi"/>
+        <segue reference="anJ-Pm-qVd"/>
         <segue reference="BWJ-EH-Aes"/>
         <segue reference="Xk9-Zd-nfA"/>
     </inferredMetricsTieBreakers>
