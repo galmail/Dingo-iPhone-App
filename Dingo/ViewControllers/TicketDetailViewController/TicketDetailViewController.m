@@ -130,6 +130,9 @@ static const NSUInteger commentCellIndex = 5;
 	self.faceValueLabel.text = [NSString stringWithFormat:@"£%@",[NSString stringWithCurrencyFormattingForPrice:self.ticket.face_value_per_ticket]];
 	
     self.descriptionTextView.text = self.ticket.ticket_desc;
+	NSLog(@"ticket_desc: %@", self.ticket.ticket_desc);
+	
+	
     self.paymentLabel.text = self.ticket.payment_options;
     self.ticketTypeLabel.text = self.ticket.ticket_type;
     self.deliveryLabel.text = self.ticket.delivery_options;

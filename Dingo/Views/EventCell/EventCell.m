@@ -55,8 +55,12 @@ const CGFloat eventCellHeight = 78;
 - (void)setBegin:(NSDate *)begin {
     _begin = begin;
     NSDateFormatter *dateFormatter = [DingoUtilites dateFormatter];
-    [dateFormatter setDateFormat:@"HH:mm"];
+	//old
+    //[dateFormatter setDateFormat:@"HH:mm"];
+	//new
+	[dateFormatter setDateFormat:@"HH:mm, dd MMM"];
     self.timeLabel.text = [dateFormatter stringFromDate:begin];
+	[self.timeLabel sizeToFit];
 }
 
 - (void)setName:(NSString *)name {
