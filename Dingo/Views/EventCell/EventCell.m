@@ -58,7 +58,13 @@ const CGFloat eventCellHeight = 78;
 	//old
     //[dateFormatter setDateFormat:@"HH:mm"];
 	//new
-	[dateFormatter setDateFormat:@"HH:mm, dd MMM"];
+	
+	//NSLog(@"class: %@", NSStringFromClass([self class]));
+	if ([NSStringFromClass([self class]) isEqual:@"TicketCell"]) {
+		[dateFormatter setDateFormat:@"HH:mm"];
+	} else {
+		[dateFormatter setDateFormat:@"HH:mm, dd MMM"];
+	}
     self.timeLabel.text = [dateFormatter stringFromDate:begin];
 	[self.timeLabel sizeToFit];
 }

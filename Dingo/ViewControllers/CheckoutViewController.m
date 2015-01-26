@@ -102,10 +102,6 @@
     payPalConfig.merchantName = @"Dingo, Inc.";
     payPalConfig.merchantPrivacyPolicyURL = [NSURL URLWithString:@"https://www.omega.supreme.example/privacy"];
     payPalConfig.merchantUserAgreementURL = [NSURL URLWithString:@"https://www.omega.supreme.example/user_agreement"];
-
-    
-
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -132,31 +128,50 @@
 //        
 //        return;
 //    }
-    
-    payPalKey = nil;
-    
-    if ([self.event.test boolValue]) {
-         [PayPalMobile preconnectWithEnvironment:PayPalEnvironmentSandbox];
-    } else {
-//#ifdef kProductionMode
-        [PayPalMobile preconnectWithEnvironment:PayPalEnvironmentProduction];
-//#else 
-//        [PayPalMobile preconnectWithEnvironment:PayPalEnvironmentSandbox];
-//#endif
-    }
-    
-    PayPalPayment *payment = [[PayPalPayment alloc] init];
-    payment.amount = (NSDecimalNumber*)[currencyFormatter numberFromString:txtTotal.text];
-    payment.currencyCode = @"GBP";
-    payment.shortDescription = @"Dingo Test Payment ";
-    
-    PayPalPaymentViewController *paymentViewController = [[PayPalPaymentViewController alloc] initWithPayment:payment
-                                                                                                configuration:payPalConfig                                                                                                                     delegate:self];
-    
-    [self presentViewController:paymentViewController animated:YES completion:nil];
-    
-   
-
+	
+	
+	ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please wait..."];
+	[loadingView show];
+	
+	NSDictionary *params = @{ @"id" : self.ticket.ticket_id};
+	
+	[WebServiceManager tickets:params completion:^(id response, NSError *error) {
+		NSLog(@"CVC tickets response %@", response);
+		
+		if (error) {
+			[loadingView hide];
+			[WebServiceManager handleError:error];
+		} else {
+			if (response) {
+				//AVAILABLE = TRUE
+				BOOL ticketAvailable = [response[@"available"] boolValue];
+				
+				if (ticketAvailable) {
+					payPalKey = nil;
+					
+					if ([self.event.test boolValue]) {
+						[PayPalMobile preconnectWithEnvironment:PayPalEnvironmentSandbox];
+					} else {
+						//#ifdef kProductionMode
+						[PayPalMobile preconnectWithEnvironment:PayPalEnvironmentProduction];
+						//#else
+						//        [PayPalMobile preconnectWithEnvironment:PayPalEnvironmentSandbox];
+						//#endif
+					}
+					
+					PayPalPayment *payment = [[PayPalPayment alloc] init];
+					payment.amount = (NSDecimalNumber*)[currencyFormatter numberFromString:txtTotal.text];
+					payment.currencyCode = @"GBP";
+					payment.shortDescription = @"Dingo Test Payment ";
+					
+					PayPalPaymentViewController *paymentViewController = [[PayPalPaymentViewController alloc] initWithPayment:payment
+																												configuration:payPalConfig                                                                                                                     delegate:self];
+					[loadingView hide];
+					[self presentViewController:paymentViewController animated:YES completion:nil];
+				}
+			}
+		}
+	}];
 }
 
 - (void)textFieldDidEndEditing:(UITextField*)textField {

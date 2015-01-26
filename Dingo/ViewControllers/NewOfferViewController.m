@@ -167,9 +167,6 @@
         }
     }
 
-    
-
-    
     [self calculateTotal];
 }
 

@@ -143,7 +143,7 @@
         messageIDs = [messagesSet allObjects];
         
         for (NSString *converId in messageIDs) {
-			id d = [AppManager sharedManager].userInfo[@"id"];
+			//id d = [AppManager sharedManager].userInfo[@"id"];
             NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"datetime" ascending:NO];
             NSArray* msgArray = [[DataManager shared] allMessagesForConversatinID:[AppManager sharedManager].userInfo[@"id"] conersationId:converId];
             if (msgArray.count > 0 ) {
