@@ -3235,7 +3235,7 @@
             <objects>
                 <viewController storyboardIdentifier="ChatViewController" id="LXS-WP-D7x" userLabel="ChatViewController" customClass="ChatViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eoh-tP-b6Z">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="5jf-pe-WqS">
@@ -3273,7 +3273,14 @@
                         </subviews>
                         <color key="backgroundColor" red="0.92549019607843142" green="0.92156862745098034" blue="0.90980392156862744" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <toolbarItems/>
+                    <toolbarItems>
+                        <barButtonItem image="btnDots.png" id="Kcb-TU-3zN">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="actions:" destination="LXS-WP-D7x" id="qde-vG-Gmd"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="Message" id="k8Z-A2-6Du">
                         <barButtonItem key="leftBarButtonItem" image="nav_back_icon.png" id="q7z-5g-KlM">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -3281,15 +3288,10 @@
                                 <action selector="back" destination="LXS-WP-D7x" id="gwR-vk-FQk"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="btnDots.png" id="Kcb-TU-3zN">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <action selector="actions:" destination="LXS-WP-D7x" id="qde-vG-Gmd"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
-                    <nil key="simulatedBottomBarMetrics"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="actionsButton" destination="Kcb-TU-3zN" id="P2H-rb-tR7"/>
                         <outlet property="bubbleTable" destination="DT3-8v-OaO" id="QXE-fM-Rcj"/>
                         <outlet property="textField" destination="sih-sa-w6B" id="83U-Jr-tYr"/>
                         <outlet property="textInputView" destination="5jf-pe-WqS" id="o5q-8f-vlG"/>

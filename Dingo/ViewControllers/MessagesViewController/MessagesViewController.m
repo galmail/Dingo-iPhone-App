@@ -152,7 +152,7 @@
             }
         }
 		
-		NSLog(@"groupedMessages: %@", groupedMessages);
+		//DLog(@"groupedMessages: %@", groupedMessages);
         
     groupedMessages = [[groupedMessages sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"datetime" ascending:NO]]] mutableCopy];
     
@@ -217,13 +217,11 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     NSIndexPath *selectedCellPath = [self.tableView indexPathForSelectedRow];
-    
-    
     Message* data = groupedMessages[selectedCellPath.row];
     
     ChatViewController *vc = (ChatViewController *)segue.destinationViewController;
     
-    __block Ticket *ticket = [[DataManager shared] ticketByID:data.ticket_id];
+    Ticket *ticket = [[DataManager shared] ticketByID:data.ticket_id];
 
     NSString *userID = [[AppManager sharedManager].userInfo[@"id"] stringValue];
     if ([[ticket.user_id stringValue] isEqualToString:userID]) {
@@ -250,9 +248,10 @@
 					} else if (response) {
 						NSArray *responseArray = response[@"tickets"];
 						NSDictionary *responseDictionary = responseArray[0];
-						NSString *ticket_id = [responseDictionary[@"id"] stringValue];
-						ticket = [[DataManager shared] ticketByID:ticket_id];
 
+						[[DataManager shared] addOrUpdateTicket:responseDictionary];
+						Ticket *t = [[DataManager shared] ticketByID:responseDictionary[@"id"]];
+						vc.ticket = t;
 					} else {
 						//odd error
 						[WebServiceManager genericError];

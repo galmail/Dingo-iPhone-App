@@ -21,10 +21,8 @@
 @interface ChatViewController ()<UIBubbleTableViewDataSource, ZSLabelDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate>{
     IBOutlet UIBubbleTableView *bubbleTable;
     IBOutlet UIView *textInputView;
-   
-    
     IBOutlet DingoField *textField;
-    
+	IBOutlet UIBarButtonItem *actionsButton;
     NSMutableArray *bubbleData;
     BOOL fromDingo;
     
@@ -96,7 +94,7 @@
 //        [bubbleTable scrollBubbleViewToBottomAnimated:NO];
 //    }];
 
-	DLog(@"bubbleData: %@", bubbleData);
+	//DLog(@"bubbleData: %@", bubbleData);
 	//we only do this when bubbleData is empty
 	if (bubbleData.count == 0) {
 		[self performSelector:@selector(reloadMessages) onThread:[NSThread mainThread] withObject:nil waitUntilDone:NO];
@@ -119,6 +117,14 @@
     [super viewWillDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
+
+- (void)didReceiveMemoryWarning
+{
+	[super didReceiveMemoryWarning];
+	// Dispose of any resources that can be recreated.
+}
+
+#pragma mark -
 
 
 -(void)messageReceived{
@@ -172,32 +178,7 @@
     messages  = [[DataManager shared] allMessagesForConversatinID:[AppManager sharedManager].userInfo[@"id"] conersationId:(messageData.conversation_id != nil?messageData.conversation_id:coversationId)];
     
     [bubbleData removeAllObjects];
-    
-    
-    
-    if (self.ticket==nil){
-		
-        [self.navigationItem setRightBarButtonItem:nil];
-        
-        
-        
-    }else if (self.navigationItem.rightBarButtonItem == nil && [messages count]>0){
-        UIImage* image3 = [UIImage imageNamed:@"btnDots.png"];
-        CGRect frameimg = CGRectMake(0, 0, image3.size.width, image3.size.height);
-        UIButton *someButton = [[UIButton alloc] initWithFrame:frameimg];
-        [someButton setBackgroundImage:image3 forState:UIControlStateNormal];
-        [someButton addTarget:self action:@selector(actions:)
-             forControlEvents:UIControlEventTouchUpInside];
-        [someButton setShowsTouchWhenHighlighted:YES];
-        
-        UIBarButtonItem *mailbutton =[[UIBarButtonItem alloc] initWithCustomView:someButton];
-        self.navigationItem.rightBarButtonItem=mailbutton;
-        
-    }else{
-        
-    }
-    
-    
+	
     for (Message * msg in messages) {
         NSBubbleData *bubble = nil;
         
@@ -248,8 +229,13 @@
         
         [bubbleData addObject:bubble];
 		
+		
+		DLog(@"msg.read: %i", msg.read.boolValue);
+		DLog(@"msg.sender_id: %@", msg.sender_id);
+		DLog(@"userID.stringValue: %@", userID.stringValue);
+		
 		//mark as read, we only want this to happen when image is not set as ready yet
-        if (![msg.sender_id isEqual:[userID stringValue]] && !msg.read) {
+        if (![msg.sender_id isEqual:[userID stringValue]] && !msg.read.boolValue) {
             [WebServiceManager markAsRead:@{@"messageID":msg.message_id} completion:^(id response, NSError *error) {
                 if (response) {
                     [[DataManager shared] addOrUpdateMessage:response];
@@ -258,17 +244,32 @@
         }
         
     }
+	
+	[self updateActionsButton];
     
     [bubbleTable reloadData];
     [bubbleTable scrollBubbleViewToBottomAnimated:YES];
-
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)updateActionsButton {
+	if (self.ticket && self.navigationItem.rightBarButtonItem == nil && [bubbleData count] > 0){
+		self.navigationItem.rightBarButtonItem = actionsButton;
+	} else {
+		self.navigationItem.rightBarButtonItem = nil;
+	}
 }
+
+#pragma mark -
+
+//convenience setter
+- (void)setTicket:(Ticket *)ticket {
+	DLog();
+	if (ticket != _ticket) {
+		_ticket = ticket;
+		[self updateActionsButton];
+	}
+}
+
 #pragma mark - Navigation
 
 - (IBAction)back {
