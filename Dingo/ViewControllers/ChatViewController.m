@@ -88,13 +88,20 @@
     
     //============================================================
    
-        self.title = self.receiverName;
-    
-    [self reloadMessagesWithCompletion:^(BOOL finished) {
-        [bubbleTable reloadData];
-        [bubbleTable scrollBubbleViewToBottomAnimated:NO];
-    }];
+	self.title = self.receiverName;
+	
+	//we dont need to fetch messages as they are already loaded ;)
+//    [self reloadMessagesWithCompletion:^(BOOL finished) {
+//        [bubbleTable reloadData];
+//        [bubbleTable scrollBubbleViewToBottomAnimated:NO];
+//    }];
 
+	[self performSelector:@selector(reloadMessages) onThread:[NSThread mainThread] withObject:nil waitUntilDone:NO];
+	
+	//another way
+//	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//		[self reloadMessages];
+//	});
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -293,7 +300,6 @@
 
 - (NSInteger)rowsForBubbleTable:(UIBubbleTableView *)tableView
 {
-    
     NSLog(@"count %lu", (unsigned long)[bubbleData count]);
     return [bubbleData count];
 }
@@ -308,34 +314,33 @@
 - (void)keyboardWasShown:(NSNotification*)aNotification
 {
     NSDictionary* info = [aNotification userInfo];
-    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    CGSize kbSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
     
     [UIView animateWithDuration:0.2f animations:^{
-        
+		
         CGRect frame = textInputView.frame;
-        frame.origin.y -= kbSize.height;
+        CGFloat topOfTheKeyboard = self.view.frame.size.height - kbSize.height - frame.size.height;
+		frame.origin.y = topOfTheKeyboard;
         textInputView.frame = frame;
         
         frame = bubbleTable.frame;
-        frame.size.height -= kbSize.height;
+        frame.size.height = topOfTheKeyboard;
         bubbleTable.frame = frame;
         [bubbleTable scrollBubbleViewToBottomAnimated:YES];
     }];
 }
 
 - (void)keyboardWillBeHidden:(NSNotification*)aNotification
-{
-    NSDictionary* info = [aNotification userInfo];
-    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-    
+{	
     [UIView animateWithDuration:0.2f animations:^{
         
         CGRect frame = textInputView.frame;
-        frame.origin.y += kbSize.height;
+		CGFloat bottomOfTheScreen = self.view.frame.size.height - frame.size.height;
+        frame.origin.y = bottomOfTheScreen;
         textInputView.frame = frame;
         
         frame = bubbleTable.frame;
-        frame.size.height += kbSize.height;
+        frame.size.height = bottomOfTheScreen;
         bubbleTable.frame = frame;
     }];
 }
@@ -350,7 +355,7 @@
 
 - (IBAction)btnSendTap:(id)sender
 {
-    
+	NSLog(@"TAP");
     if ([[textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet] ] length]  == 0) {
         return;
     }
@@ -363,6 +368,7 @@
     
     [WebServiceManager sendMessage:params completion:^(id response, NSError *error) {
         if (!error) {
+			NSLog(@"CHAT response: %@", response);
             if (response[@"id"]) {
                 [[DataManager shared] addOrUpdateMessage:response];
                 

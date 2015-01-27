@@ -210,7 +210,7 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
                                                           
                                                           [WebServiceManager updateProfile:params completion:^(id response, NSError *error) {
                                                               if (response) {
-                                                                  
+																  NSLog(@"update Profile response: %@", response);
                                                                   if (response[@"authentication_token"] ) {
                                                                       
                                                                   
@@ -246,7 +246,7 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
                                                                   handler(nil, error);
                                                               } else {
                                                                   if (response) {
-                                                                      
+                                                                      NSLog(@"WSM signUP response: %@", response);
                                                                       if (response[@"authentication_token"]) {
                                                                           [AppManager sharedManager].token = response[@"authentication_token"];
                                                                           
@@ -268,8 +268,7 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
                                                                           [WebServiceManager signIn:params completion:^(id response, NSError *error) {
                                                                               NSLog(@"login response %@", response);
                                                                               if (error ) {
-                                                                                  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Oops massive fail, please try again later" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                                                                                  [alert show];
+																				  [WebServiceManager handleError:error];
                                                                                   handler(nil,error);
                                                                               } else {
                                                                                   

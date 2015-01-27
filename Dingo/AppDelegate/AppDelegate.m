@@ -83,8 +83,10 @@
     [GAI sharedInstance].dispatchInterval = 20;
     [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelNone];
     [[GAI sharedInstance] trackerWithTrackingId:@"UA-54649568-2"];
-
-    
+	
+	NSLog(@"sharedManager.token: %@", [AppManager sharedManager].token);
+	NSLog(@"sharedManager.userInfo: %@", [AppManager sharedManager].userInfo);
+	
     if ([AppManager sharedManager].token) {
         SlidingViewController *viewController = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"SlidingViewController"];
         self.window.rootViewController = viewController;
