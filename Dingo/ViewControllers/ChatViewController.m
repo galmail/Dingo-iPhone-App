@@ -247,7 +247,9 @@
         }
         
         [bubbleData addObject:bubble];
-        if (![msg.sender_id isEqual:[userID stringValue]]) {
+		
+		//mark as read, we only want this to happen when image is not set as ready yet
+        if (![msg.sender_id isEqual:[userID stringValue]] && !msg.read) {
             [WebServiceManager markAsRead:@{@"messageID":msg.message_id} completion:^(id response, NSError *error) {
                 if (response) {
                     [[DataManager shared] addOrUpdateMessage:response];
