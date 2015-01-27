@@ -126,7 +126,7 @@
 
 }
 
--(void) refreshInvoked:(id)sender forState:(UIControlState)state {
+-(void)refreshInvoked:(id)sender forState:(UIControlState)state {
     
     [refreshControl beginRefreshing];
     

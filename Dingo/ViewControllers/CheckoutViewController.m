@@ -236,17 +236,21 @@
     [self dismissViewControllerAnimated:YES completion:^{
         
         float originalPrice=[txtNumber.text intValue]*[self.ticket.price doubleValue];
-        NSString *ori=[NSString stringWithFormat:@"£%.2f",originalPrice];
-        
+		//not being used now, commented to avoid the warning
+		//NSString *ori=[NSString stringWithFormat:@"£%.2f",originalPrice];
+		
         if (payPalKey.length > 0) {
             NSDictionary *params = @{ @"ticket_id" : self.ticket.ticket_id,
                                       @"num_tickets": txtNumber.text,
-                                      @"amount" : [currencyFormatter numberFromString:ori],
+									  //old, not sure what is going on here...
+									  //@"amount" : [currencyFormatter numberFromString:ori],
+									  //new
+									  @"amount" : [NSNumber numberWithFloat:originalPrice],
                                       @"delivery_options" : self.ticket.delivery_options,
                                       @"order_paid":@"1",
                                       @"paypal_key":payPalKey
                                       };
-            
+			
             ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please wait..."];
             [loadingView show];
             
@@ -256,20 +260,21 @@
                     
                     NSLog(@"make order - %@", response);
                     if (response) {
-                        
+		
                         if (response[@"id"]) {
-                            
-                            
+							
                             ChatViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"ChatViewController"];
                             vc.receiverID=response[@"receiver_id"];
                             vc.ticket = self.ticket;
                             
                             [self.navigationController pushViewController:vc animated:YES];
+							
+							//refresh chat after 1 second, is it really enough?
+							[vc performSelector:@selector(reloadMessagesWithCompletion:) withObject:nil afterDelay:1];
                             
                             [WebServiceManager payPalSuccess:@{@"order_id":response[@"id"]} completion:^(id response, NSError *error) {
                                 
                             }];
-                            
                             
                         } else {
                             [AppManager showAlert:@"Unable to buy!"];

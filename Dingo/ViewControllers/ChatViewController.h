@@ -17,6 +17,6 @@
 @property (nonatomic) NSString *receiverID;
 @property(strong,nonatomic) Message *messageData;
 
-
+- (void)reloadMessagesWithCompletion:( void (^) (BOOL finished)) handler;
 
 @end
