@@ -712,13 +712,14 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
 
 + (void)sendMessage:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler {
     NSMutableURLRequest *request = [self requestForPostMethod:@"messages" withParams:[params urlEncodedString]];
-    
+    NSLog(@"request: %@", request.allHTTPHeaderFields);
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
         NSURLResponse* response = nil;
         NSError *error = nil;
         NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-        
+		
+		NSLog(@"response: %@", response);
         dispatch_async(dispatch_get_main_queue(), ^(void){
             if (error != nil) {
                 [self handleError:error];

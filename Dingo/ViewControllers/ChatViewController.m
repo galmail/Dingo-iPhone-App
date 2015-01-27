@@ -96,7 +96,11 @@
 //        [bubbleTable scrollBubbleViewToBottomAnimated:NO];
 //    }];
 
-	[self performSelector:@selector(reloadMessages) onThread:[NSThread mainThread] withObject:nil waitUntilDone:NO];
+	DLog(@"bubbleData: %@", bubbleData);
+	//we only do this when bubbleData is empty
+	if (bubbleData.count == 0) {
+		[self performSelector:@selector(reloadMessages) onThread:[NSThread mainThread] withObject:nil waitUntilDone:NO];
+	}
 	
 	//another way
 //	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -114,7 +118,7 @@
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    }
+}
 
 
 -(void)messageReceived{
@@ -313,10 +317,11 @@
 
 - (void)keyboardWasShown:(NSNotification*)aNotification
 {
+	DLog();
     NSDictionary* info = [aNotification userInfo];
     CGSize kbSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
-    
-    [UIView animateWithDuration:0.2f animations:^{
+	
+    [UIView animateWithDuration:[[info objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue] animations:^{
 		
         CGRect frame = textInputView.frame;
         CGFloat topOfTheKeyboard = self.view.frame.size.height - kbSize.height - frame.size.height;
@@ -331,9 +336,11 @@
 }
 
 - (void)keyboardWillBeHidden:(NSNotification*)aNotification
-{	
-    [UIView animateWithDuration:0.2f animations:^{
-        
+{
+	DLog();
+	NSDictionary* info = [aNotification userInfo];
+    [UIView animateWithDuration:[[info objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue] animations:^{
+		
         CGRect frame = textInputView.frame;
 		CGFloat bottomOfTheScreen = self.view.frame.size.height - frame.size.height;
         frame.origin.y = bottomOfTheScreen;

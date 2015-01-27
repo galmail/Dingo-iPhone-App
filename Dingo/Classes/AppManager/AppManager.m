@@ -33,7 +33,7 @@
 - (void)load {
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    self.token = [defaults valueForKey:@"auth_token"]; //token
+    self.token = [defaults valueForKey:@"token"];
     self.userInfo = [[defaults valueForKey:@"userInfo"] mutableCopy];
 }
 

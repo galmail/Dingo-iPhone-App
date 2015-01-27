@@ -3201,6 +3201,14 @@
 					"$(PROJECT_DIR)/Dingo/Frameworks/PayPalMobile",
 					"$(PROJECT_DIR)/Dingo/Frameworks/GoogleAnalytics",
 				);
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/ECSlidingViewController\"",
+					"-DDEBUG",
+				);
 				OTHER_LDFLAGS = (
 					"-lc++",
 					"-ObjC",
@@ -3233,6 +3241,14 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Dingo/Frameworks/PayPalMobile",
 					"$(PROJECT_DIR)/Dingo/Frameworks/GoogleAnalytics",
+				);
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/ECSlidingViewController\"",
+					"-DDEBUG",
 				);
 				OTHER_LDFLAGS = (
 					"-lc++",
