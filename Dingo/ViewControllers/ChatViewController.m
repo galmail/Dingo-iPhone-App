@@ -176,7 +176,7 @@
     
     
     if (self.ticket==nil){
-        
+		
         [self.navigationItem setRightBarButtonItem:nil];
         
         

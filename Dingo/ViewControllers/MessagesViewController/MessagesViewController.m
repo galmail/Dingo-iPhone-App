@@ -223,7 +223,7 @@
     
     ChatViewController *vc = (ChatViewController *)segue.destinationViewController;
     
-    Ticket *ticket = [[DataManager shared] ticketByID:data.ticket_id];
+    __block Ticket *ticket = [[DataManager shared] ticketByID:data.ticket_id];
 
     NSString *userID = [[AppManager sharedManager].userInfo[@"id"] stringValue];
     if ([[ticket.user_id stringValue] isEqualToString:userID]) {
@@ -236,28 +236,46 @@
         }
     } else {
         if (!ticket) {
-            if (!data.ticket_id)
+			if (!data.ticket_id) {
                 vc.messageData=data;// ****this is used to get Direct dingo Conversation for particular conversationID*******
-                
-                if ([data.from_dingo integerValue]==1) {
-                vc.receiverName = data.sender_name;
-                vc.receiverID = data.sender_id;
-                }else if(!data.ticket_id && [data.sender_id isEqualToString:userID]){
-                    vc.receiverName = data.receiver_name;
-                    vc.receiverID = data.receiver_id;
-                }else{
-                
-                
-                    if([data.sender_id isEqualToString:userID]){
-                        vc.receiverName = data.receiver_name;
-                        vc.receiverID = data.receiver_id;
-                    }else{
-                        vc.receiverName = data.sender_name;
-                        vc.receiverID = data.sender_id;
-                    }
+			} else {
+				//we have a ticket id so we should try to get ticket from api
+				NSDictionary *params = @{ @"id" : data.ticket_id};
+				
+				[WebServiceManager tickets:params completion:^(id response, NSError *error) {
+					NSLog(@"MVC tickets response %@", response);
+					
+					if (error) {
+						[WebServiceManager handleError:error];
+					} else if (response) {
+						NSArray *responseArray = response[@"tickets"];
+						NSDictionary *responseDictionary = responseArray[0];
+						NSString *ticket_id = [responseDictionary[@"id"] stringValue];
+						ticket = [[DataManager shared] ticketByID:ticket_id];
 
-                }
-        }else{
+					} else {
+						//odd error
+						[WebServiceManager genericError];
+					}
+				}];
+			}
+			
+			if ([data.from_dingo integerValue]==1) {
+				vc.receiverName = data.sender_name;
+				vc.receiverID = data.sender_id;
+			} else if(!data.ticket_id && [data.sender_id isEqualToString:userID]){
+				vc.receiverName = data.receiver_name;
+				vc.receiverID = data.receiver_id;
+			} else {
+				if([data.sender_id isEqualToString:userID]) {
+					vc.receiverName = data.receiver_name;
+					vc.receiverID = data.receiver_id;
+				} else {
+					vc.receiverName = data.sender_name;
+					vc.receiverID = data.sender_id;
+				}
+			}
+		} else {
 
         vc.receiverName = ticket.user_name;
         vc.receiverID = [ticket.user_id stringValue];
