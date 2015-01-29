@@ -112,6 +112,7 @@
 - (void)showNoSellers {
 	CGFloat bottomOfTable = CGRectGetMaxY([[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]] frame]);
 	noSellers = [[UILabel alloc] initWithFrame:CGRectMake(30, bottomOfTable + 40, 260, 100)];
+	noSellers.userInteractionEnabled = YES;
 	
 	UILabel *lblNoSellers = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 260, 30)];
 	lblNoSellers.text = @"No sellers on Dingo :(";
@@ -128,8 +129,8 @@
 	btnNoSellers.titleLabel.textAlignment = NSTextAlignmentCenter;
 	btnNoSellers.titleLabel.font = [DingoUISettings fontWithSize:20];
 	[btnNoSellers addTarget:self action:@selector(buyTicket:) forControlEvents:UIControlEventTouchUpInside];
-	[noSellers addSubview:btnNoSellers];
 	
+	[noSellers addSubview:btnNoSellers];
 	[self.view addSubview:noSellers];
 }
 
@@ -138,10 +139,6 @@
 }
 
 - (void)buyTicket:(id)sender {
-	//setup action here
-	
-	NSLog(@"woriywriyu");
-	DLog(@"primary_ticket_seller_url: %@", self.eventData.primary_ticket_seller_url);
 	[self performSegueWithIdentifier:@"WebSegue" sender:self];
 }
 

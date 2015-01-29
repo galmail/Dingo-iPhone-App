@@ -19,8 +19,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.event.primary_ticket_seller_url]];
+
+	NSString *url = self.event.primary_ticket_seller_url;
+	if (![url hasPrefix:@"http://"]) url = [@"http://" stringByAppendingString:url];
+	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
 	[webView loadRequest:request];
 }
 
