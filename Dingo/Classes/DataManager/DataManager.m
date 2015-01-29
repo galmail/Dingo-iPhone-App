@@ -50,7 +50,7 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     
     NSManagedObjectContext *context = [AppManager sharedManager].managedObjectContext;
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Event"];
-    [request setPredicate:[NSPredicate predicateWithFormat:@"(tickets != %d)",0]];
+    //[request setPredicate:[NSPredicate predicateWithFormat:@"(tickets != %d)",0]];
 
     request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES]];
     
@@ -63,7 +63,7 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
 -(NSArray *)allEventsWithAndWithoutTickets{
     NSManagedObjectContext *context = [AppManager sharedManager].managedObjectContext;
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Event"];
-    //[request setPredicate:[NSPredicate predicateWithFormat:@"(tickets != %d)",0]];
+    [request setPredicate:[NSPredicate predicateWithFormat:@"(tickets != %d)",0]];
     request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]];
     
     NSError *error = nil;
@@ -90,7 +90,7 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     if ([AppManager sharedManager].currentLocation != nil) {
         params = @{@"location": [NSString stringWithFormat:@"%f,%f", [AppManager sharedManager].currentLocation.coordinate.latitude, [AppManager sharedManager].currentLocation.coordinate.longitude], @"city":[AppManager sharedManager].userInfo[@"city"] };
     }
-    
+	DLog(@"params: %@", params);
     [WebServiceManager events:params completion:^(id response, NSError *error) {
         
         if (response[@"events"]) {
@@ -125,6 +125,7 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     NSString *eventID = info[@"id"];
     NSString *name = info[@"name"];
     NSString *thumbUrl = info[@"thumb"];
+	NSString *primary_ticket_seller_url = info[@"primary_ticket_seller_url"];
     NSString *categoryID = info[@"category_id"];
     NSString *description = info[@"description"];
     
@@ -145,6 +146,7 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     event.event_desc = description;
     event.category_id = categoryID;
     event.thumbUrl = thumbUrl;
+	event.primary_ticket_seller_url = primary_ticket_seller_url;
     event.featured = [NSNumber numberWithInt:[info[@"featured"] intValue]];
     event.fromPrice = [NSNumber numberWithFloat:[info[@"min_price"] floatValue]];
     event.tickets = [NSNumber numberWithInt:[info[@"available_tickets"] intValue]];

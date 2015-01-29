@@ -27,5 +27,6 @@
 @property (nonatomic, retain) NSString * city;
 @property (nonatomic, retain) NSString * postalCode;
 @property (nonatomic, retain) NSDate * endDate;
+@property (nonatomic, retain) NSString * primary_ticket_seller_url;
 
 @end

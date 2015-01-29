@@ -129,6 +129,9 @@ static const CGFloat categoriesHeight = 110;
     [[DataManager shared] allCategoriesWithCompletion:^(BOOL finished) {
         [[DataManager shared] allEventsWithCompletion:^(BOOL finished) {
             [self.tableView reloadData];
+			
+			NSArray *events = [[DataManager shared] allEvents];
+			DLog(@"allEvents: %@", events);
 //            NSArray *eventIDs = [[[DataManager shared] allEvents] valueForKey:@"event_id"];
 //            for (NSString *eventID in eventIDs) {
 //                [[DataManager shared] allTicketsByEventID:eventID completion:^(BOOL finished) {

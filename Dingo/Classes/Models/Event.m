@@ -18,6 +18,7 @@
 @dynamic name;
 @dynamic thumb;
 @dynamic thumbUrl;
+@dynamic primary_ticket_seller_url;
 @dynamic featured;
 @dynamic fromPrice;
 @dynamic test;

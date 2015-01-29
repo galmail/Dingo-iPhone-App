@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B5A18181A7AD67B00C22AC7 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B5A18171A7AD67B00C22AC7 /* WebViewController.m */; };
 		1B90B3F21A75534300F6ABC7 /* NSString+DingoFormatting.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B90B3F11A75534300F6ABC7 /* NSString+DingoFormatting.m */; };
+		1BE505D21A78232800172D6F /* MyTicketsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BE505D11A78232800172D6F /* MyTicketsViewController.m */; };
 		3A02687C19A5F9C000C8CD8E /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A02687B19A5F9C000C8CD8E /* Social.framework */; };
 		3A29C24C19EDC2DC00578F0D /* libPayPalMobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A29C24419EDC2DC00578F0D /* libPayPalMobile.a */; };
 		3A9441D319CB62920003DA85 /* newOffer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A9441D219CB62920003DA85 /* newOffer@2x.png */; };
@@ -346,8 +348,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1B5A18161A7AD67B00C22AC7 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
+		1B5A18171A7AD67B00C22AC7 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		1B90B3F01A75534300F6ABC7 /* NSString+DingoFormatting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+DingoFormatting.h"; sourceTree = "<group>"; };
 		1B90B3F11A75534300F6ABC7 /* NSString+DingoFormatting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+DingoFormatting.m"; sourceTree = "<group>"; };
+		1BE505D01A78232800172D6F /* MyTicketsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTicketsViewController.h; sourceTree = "<group>"; };
+		1BE505D11A78232800172D6F /* MyTicketsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTicketsViewController.m; sourceTree = "<group>"; };
 		3A02687B19A5F9C000C8CD8E /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		3A29C24419EDC2DC00578F0D /* libPayPalMobile.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libPayPalMobile.a; sourceTree = "<group>"; };
 		3A29C24519EDC2DC00578F0D /* PayPalConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalConfiguration.h; sourceTree = "<group>"; };
@@ -842,6 +848,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1B5A18151A7AD67B00C22AC7 /* WebViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1B5A18161A7AD67B00C22AC7 /* WebViewController.h */,
+				1B5A18171A7AD67B00C22AC7 /* WebViewController.m */,
+			);
+			path = WebViewController;
+			sourceTree = "<group>";
+		};
 		1B90B3EF1A75534300F6ABC7 /* NSString+DingoFormatting */ = {
 			isa = PBXGroup;
 			children = (
@@ -849,6 +864,16 @@
 				1B90B3F11A75534300F6ABC7 /* NSString+DingoFormatting.m */,
 			);
 			path = "NSString+DingoFormatting";
+			sourceTree = "<group>";
+		};
+		1BE505CF1A78232800172D6F /* MyTicketsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1BE505D01A78232800172D6F /* MyTicketsViewController.h */,
+				1BE505D11A78232800172D6F /* MyTicketsViewController.m */,
+			);
+			name = MyTicketsViewController;
+			path = "NSString+DingoFormatting/MyTicketsViewController";
 			sourceTree = "<group>";
 		};
 		3A29C24319EDC2DC00578F0D /* PayPalMobile */ = {
@@ -1496,6 +1521,7 @@
 		3F10DE451938B24F002D3B43 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				1B5A18151A7AD67B00C22AC7 /* WebViewController */,
 				3AA89D3A19D0502700F8BA27 /* CheckoutViewController */,
 				3A9C271419C8AFCF0007BA34 /* NewOfferViewController */,
 				3AF5401D19C1924300FD5A93 /* ImagesViewController */,
@@ -1526,6 +1552,7 @@
 				3F98FCC0193F4E7A00E6B3C4 /* SlidingViewController */,
 				3F2864E5194B177E002A3576 /* About */,
 				3A9C271019C8AF930007BA34 /* ChatViewController */,
+				1BE505CF1A78232800172D6F /* MyTicketsViewController */,
 				1B90B3EF1A75534300F6ABC7 /* NSString+DingoFormatting */,
 			);
 			path = ViewControllers;
@@ -2738,6 +2765,7 @@
 				3F62C6F11949C06E00D7D6B1 /* ProposalCell.m in Sources */,
 				59A6CC2D1A64FF010036589D /* AFNetworkActivityIndicatorManager.m in Sources */,
 				3F08EBFD194715D500CDFBD8 /* RoundedImageView.m in Sources */,
+				1BE505D21A78232800172D6F /* MyTicketsViewController.m in Sources */,
 				3F2864F8194B430F002A3576 /* QuestionCell.m in Sources */,
 				840CD23C19B8449700699E26 /* UIBubbleTypingTableViewCell.m in Sources */,
 				3A97DDDE19D9940300B4C33E /* Alert.m in Sources */,
@@ -2750,6 +2778,7 @@
 				3F62C6C119489C3900D7D6B1 /* SideMenuCell.m in Sources */,
 				3F62C6F91949DA4F00D7D6B1 /* SideMenuSegue.m in Sources */,
 				3F79701019544CFC00739EE8 /* PreviewViewController.m in Sources */,
+				1B5A18181A7AD67B00C22AC7 /* WebViewController.m in Sources */,
 				3AB28AF8197D9F9D009C1DDC /* EventCategory.m in Sources */,
 				84E2CBEC19B5CDF7003102F3 /* TermsAndCondViewController.m in Sources */,
 				59A6CC311A64FF010036589D /* AFHTTPClient.m in Sources */,

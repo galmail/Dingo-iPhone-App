@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6252" systemVersion="14A389" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6254" systemVersion="13F34" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Alerts" representedClassName="Alert" syncable="YES">
         <attribute name="alert_description" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="alert_id" optional="YES" attributeType="String" syncable="YES"/>
@@ -18,6 +18,7 @@
         <attribute name="fromPrice" optional="YES" attributeType="Float" defaultValueString="0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="postalCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="primary_ticket_seller_url" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="test" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="thumb" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="thumbUrl" optional="YES" attributeType="String" syncable="YES"/>
@@ -71,7 +72,7 @@
     </entity>
     <elements>
         <element name="Alerts" positionX="-27" positionY="153" width="128" height="105"/>
-        <element name="Event" positionX="-54" positionY="18" width="128" height="270"/>
+        <element name="Event" positionX="-54" positionY="18" width="128" height="285"/>
         <element name="EventCategory" positionX="-63" positionY="-18" width="128" height="103"/>
         <element name="Messages" positionX="-45" positionY="135" width="128" height="300"/>
         <element name="Ticket" positionX="-36" positionY="117" width="128" height="330"/>

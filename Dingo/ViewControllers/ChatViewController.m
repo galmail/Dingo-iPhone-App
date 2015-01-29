@@ -263,7 +263,6 @@
 
 //convenience setter
 - (void)setTicket:(Ticket *)ticket {
-	DLog();
 	if (ticket != _ticket) {
 		_ticket = ticket;
 		[self updateActionsButton];
@@ -365,7 +364,6 @@
 
 - (IBAction)btnSendTap:(id)sender
 {
-	NSLog(@"TAP");
     if ([[textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet] ] length]  == 0) {
         return;
     }

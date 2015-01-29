@@ -281,7 +281,7 @@ static const NSUInteger commentCellIndex = 5;
     CGRect frameCell = self.mutualFriendCell.frame;
     [self.mutualFriendCell setFrame:CGRectMake(frameCell.origin.x, frameCell.origin.y, frameCell.size.width, 140)];
     [self.mutualFriendCollection reloadData];
-    [self.mutualFriendsLabel setText:[NSString stringWithFormat:@"Mutual friends (%u)", [profileImageURL count] -1]];
+    [self.mutualFriendsLabel setText:[NSString stringWithFormat:@"Mutual friends (%lu)", [profileImageURL count] -1]];
 }
 
 - (void) makeRequestForUserData

@@ -171,7 +171,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="ListTicketsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="0ch-Q5-uzn" customClass="ListTicketsViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="static" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="BA9-uN-inm">
-                        <rect key="frame" x="0.0" y="64" width="320" height="1116"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="1067"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="separatorColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
@@ -692,7 +692,7 @@
                                             <segue destination="Qo6-cz-KGE" kind="custom" customClass="SideMenuSegue" id="wvv-Mc-o8B"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="58" id="Ngs-GE-Gfw" userLabel="manage_listings" customClass="SideMenuCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="58" id="Ngs-GE-Gfw" userLabel="my_tickets" customClass="SideMenuCell">
                                         <rect key="frame" x="0.0" y="116" width="320" height="58"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ngs-GE-Gfw" id="beA-C1-fMv">
@@ -703,7 +703,7 @@
                                                     <rect key="frame" x="28" y="15" width="29" height="25"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                 </imageView>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Manage Listings" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Aa2-Tf-8Nc" userLabel="title">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Tickets" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Aa2-Tf-8Nc" userLabel="title">
                                                     <rect key="frame" x="76" y="17" width="138" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="14"/>
@@ -719,7 +719,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
-                                            <segue destination="NDK-Xp-Bqe" kind="custom" customClass="SideMenuSegue" id="EcW-Cw-qiT"/>
+                                            <segue destination="9ad-c0-O5K" kind="custom" customClass="SideMenuSegue" id="704-gv-ZSd"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="58" id="xuU-Jc-0XU" userLabel="settings" customClass="SideMenuCell">
@@ -859,7 +859,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wj2-Ob-mDF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3039" y="-645"/>
+            <point key="canvasLocation" x="2735" y="-677"/>
         </scene>
         <!--Home-->
         <scene sceneID="TYH-1Q-XM0">
@@ -1494,7 +1494,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="TicketsViewController" id="UTV-Tz-0Ch" customClass="TicketsViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="teh-e7-WuW">
-                        <rect key="frame" x="0.0" y="64" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="separatorColor" red="0.57254901960000004" green="0.57254901960000004" blue="0.57254901960000004" alpha="1" colorSpace="calibratedRGB"/>
@@ -1507,7 +1507,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="concerts.png" id="YGu-T0-LiQ" userLabel="back">
-                                            <rect key="frame" x="0.0" y="-56" width="319" height="411"/>
+                                            <rect key="frame" x="-8" y="-63" width="321" height="502"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </imageView>
@@ -1516,7 +1516,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                         <view contentMode="scaleToFill" id="qo3-lr-8ma" userLabel="ticket_info">
-                                            <rect key="frame" x="93" y="18" width="224" height="150"/>
+                                            <rect key="frame" x="85" y="18" width="228" height="150"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jay-Z Live 02" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.80000000000000027" id="JWp-4f-6Aj" userLabel="name">
@@ -1580,7 +1580,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Arrow.png" id="02G-cO-D4r" userLabel="arrow">
-                                            <rect key="frame" x="6049" y="2" width="18" height="26"/>
+                                            <rect key="frame" x="7003" y="0.0" width="14" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                     </subviews>
@@ -1717,6 +1717,7 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <segue destination="Jfy-WO-b2d" kind="modal" identifier="MapSegue" id="9eb-Rs-6vU"/>
+                        <segue destination="RHE-8t-8Yb" kind="modal" identifier="WebSegue" id="tbP-Zc-Wjf"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hVL-zz-ECF" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1811,11 +1812,11 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="offers_cells.png" id="Tby-GB-y8R" userLabel="mockup">
-                                            <rect key="frame" x="-5" y="-1" width="342" height="78"/>
+                                            <rect key="frame" x="-14" y="-13" width="350" height="86"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </imageView>
                                         <view contentMode="scaleToFill" id="kO6-fe-H3F" userLabel="user info">
-                                            <rect key="frame" x="-10" y="0.0" width="187" height="86"/>
+                                            <rect key="frame" x="-10" y="-6" width="187" height="93"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="joe_bloggs.png" id="gs8-WR-pRM" userLabel="icon" customClass="RoundedImageView">
@@ -1833,7 +1834,7 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <view contentMode="scaleToFill" id="hgE-cT-Q6m" userLabel="actions">
-                                            <rect key="frame" x="159" y="0.0" width="188" height="98"/>
+                                            <rect key="frame" x="157" y="-6" width="186" height="107"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="1FI-C7-4Hh" userLabel="accept button" customClass="TwoModeButton">
@@ -1895,12 +1896,96 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7nF-D4-soI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3167" y="-2115"/>
+            <point key="canvasLocation" x="3975" y="-2247"/>
         </scene>
-        <!--Manage Listings-->
+        <!--My Tickets-->
+        <scene sceneID="NiH-jl-K5f">
+            <objects>
+                <viewController title="My Tickets" id="9ad-c0-O5K" customClass="MyTicketsViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Uwd-Pp-iYS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" id="mom-Vo-HH6">
+                                <rect key="frame" x="0.0" y="35" width="320" height="48"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                                <state key="normal" image="MyTicketsCellBackground">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="NDK-Xp-Bqe" kind="push" identifier="Selling" id="Us5-Od-csd"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="left" text="Selling" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Wv2-xI-9PM">
+                                <rect key="frame" x="15" y="35" width="290" height="47"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" id="iZK-e4-kbu">
+                                <rect key="frame" x="0.0" y="96" width="320" height="48"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                                <state key="normal" image="MyTicketsCellBackground">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="NDK-Xp-Bqe" kind="push" identifier="Sold" id="Fkb-g5-IWy"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="left" text="Sold" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9Vc-iv-9ej">
+                                <rect key="frame" x="15" y="96" width="290" height="47"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" id="MAi-k6-uw5">
+                                <rect key="frame" x="0.0" y="157" width="320" height="48"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                                <state key="normal" image="MyTicketsCellBackground">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="NDK-Xp-Bqe" kind="push" identifier="Purchased" id="Jqe-I6-Zbm"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="left" text="Purchased" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="auW-H9-AZi">
+                                <rect key="frame" x="15" y="157" width="290" height="47"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.92549019610000005" green="0.92156862750000001" blue="0.90980392160000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="My Tickets" id="Y3s-hN-pWA">
+                        <barButtonItem key="leftBarButtonItem" image="nav_back_icon.png" id="yzo-x3-2H6" userLabel="back">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="back:" destination="9ad-c0-O5K" id="R8X-GR-Y8R"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
+                    <connections>
+                        <outlet property="lblPurchased" destination="auW-H9-AZi" id="WxY-WZ-7Rr"/>
+                        <outlet property="lblSelling" destination="Wv2-xI-9PM" id="cny-kn-QO3"/>
+                        <outlet property="lblSold" destination="9Vc-iv-9ej" id="jYu-0i-Vdf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Oy3-2k-23Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3765" y="-608"/>
+        </scene>
+        <!--Selling-->
         <scene sceneID="1JU-Mj-7Q4">
             <objects>
-                <tableViewController id="NDK-Xp-Bqe" customClass="ManageListsViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ManageListsViewController" id="NDK-Xp-Bqe" customClass="ManageListsViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="20" sectionFooterHeight="1" id="XDb-UR-Kak">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1999,7 +2084,7 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Home" image="HomeIcon.png" id="zed-Gj-lia"/>
-                    <navigationItem key="navigationItem" title="Manage Listings" id="Rbd-cc-6ls">
+                    <navigationItem key="navigationItem" title="Selling" id="Rbd-cc-6ls">
                         <barButtonItem key="backBarButtonItem" title="back" id="xRd-4P-mRq"/>
                         <barButtonItem key="leftBarButtonItem" image="nav_back_icon.png" id="M1W-Zw-xJU" userLabel="back">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2018,7 +2103,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QUk-TY-FIO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3747" y="-663"/>
+            <point key="canvasLocation" x="4235" y="-633"/>
         </scene>
         <!--About-->
         <scene sceneID="AkQ-0P-YXh">
@@ -2070,7 +2155,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AAk-3u-d5G" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3619" y="1326"/>
+            <point key="canvasLocation" x="4360" y="1654"/>
         </scene>
         <!--Privacy Policy-->
         <scene sceneID="ja5-3w-pYw">
@@ -2111,7 +2196,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jmk-XQ-FhB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4061" y="1231"/>
+            <point key="canvasLocation" x="4962" y="1335"/>
         </scene>
         <!--Terms and Conditions-->
         <scene sceneID="nAb-jt-lxt">
@@ -2152,7 +2237,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vyW-wX-zhg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4061" y="1890"/>
+            <point key="canvasLocation" x="4962" y="2050"/>
         </scene>
         <!--FAQ's-->
         <scene sceneID="joS-fd-sKr">
@@ -2221,7 +2306,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LOE-HR-fqt" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="BFe-l1-NiP"/>
             </objects>
-            <point key="canvasLocation" x="3987" y="649"/>
+            <point key="canvasLocation" x="4952" y="665"/>
         </scene>
         <!--Answer-->
         <scene sceneID="v8o-VJ-Yh4">
@@ -2280,7 +2365,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="21m-Gh-ecy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4463" y="649"/>
+            <point key="canvasLocation" x="5468" y="665"/>
         </scene>
         <!--Bookmarked Tickets-->
         <scene sceneID="cIx-8Z-3aJ">
@@ -2328,7 +2413,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0ZO-Wg-diS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3543" y="-1468"/>
+            <point key="canvasLocation" x="4360" y="-2247"/>
         </scene>
         <!--Ticket Alerts-->
         <scene sceneID="dBD-xR-87A">
@@ -2684,7 +2769,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jed-92-4z5" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="edv-4s-aiJ"/>
             </objects>
-            <point key="canvasLocation" x="1080" y="1346"/>
+            <point key="canvasLocation" x="484" y="1335"/>
         </scene>
         <!--Settings-->
         <scene sceneID="pg5-ii-7b5">
@@ -2934,7 +3019,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZCI-WS-Usk" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="M8C-OT-Nxl"/>
             </objects>
-            <point key="canvasLocation" x="4117" y="-151"/>
+            <point key="canvasLocation" x="3274" y="955"/>
         </scene>
         <!--Search Results-->
         <scene sceneID="Qby-84-gyM">
@@ -3300,7 +3385,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r05-P5-Mlo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1559" y="628"/>
+            <point key="canvasLocation" x="1559" y="465"/>
         </scene>
         <!--Preview-->
         <scene sceneID="iIw-Pw-7eU">
@@ -3617,7 +3702,7 @@
         <!--Map View Controller-->
         <scene sceneID="O12-n4-EgS">
             <objects>
-                <viewController id="E3T-cJ-WYz" customClass="MapViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MapViewController" id="E3T-cJ-WYz" customClass="MapViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0Lh-OX-cqO">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -3653,7 +3738,7 @@
         <!--Images View Controller-->
         <scene sceneID="nx9-n2-Onm">
             <objects>
-                <viewController id="V3L-Gb-WoL" customClass="ImagesViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ImagesViewController" id="V3L-Gb-WoL" customClass="ImagesViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oNp-lj-UA6">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -3718,7 +3803,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sxr-uj-FZw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4234" y="-3034"/>
+            <point key="canvasLocation" x="6218" y="-1212"/>
         </scene>
         <!--Ticket Detail View Controller-->
         <scene sceneID="KG0-fC-ztt">
@@ -3866,7 +3951,7 @@
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
                                                 <view contentMode="scaleToFill" id="Ri4-LC-2FA" userLabel="selection_protector">
-                                                    <rect key="frame" x="0.0" y="0.0" width="336" height="79"/>
+                                                    <rect key="frame" x="-6" y="-7" width="340" height="80"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </view>
@@ -4098,7 +4183,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="den-dz-ZAh" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="zlQ-aV-7Od"/>
             </objects>
-            <point key="canvasLocation" x="2479" y="-1916"/>
+            <point key="canvasLocation" x="4895" y="-644"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="erP-2Y-3e0">
@@ -4141,7 +4226,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lu1-e4-Dqh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3708" y="-3034"/>
+            <point key="canvasLocation" x="5756" y="-1212"/>
         </scene>
         <!--New Offer-->
         <scene sceneID="3jw-UO-E8t">
@@ -4342,6 +4427,65 @@
             </objects>
             <point key="canvasLocation" x="2033" y="-3115"/>
         </scene>
+        <!--Web View Controller-->
+        <scene sceneID="0Af-xY-Ox8">
+            <objects>
+                <viewController storyboardIdentifier="WebViewController" id="Y1z-xR-0t4" customClass="WebViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="o4K-XT-ZdP">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" id="Fft-e5-wEh">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="p0c-Ij-MiJ">
+                        <barButtonItem key="leftBarButtonItem" image="nav_back_icon.png" id="eJh-5X-JvX">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="back:" destination="Y1z-xR-0t4" id="qXo-Ye-pjz"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="webView" destination="Fft-e5-wEh" id="Bgv-aJ-9XY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BVJ-jJ-Mlv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3224" y="-2222"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="T4B-33-p67">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="RHE-8t-8Yb" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="kZO-fH-BhZ"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="RAh-jU-Rvq">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.066666666669999999" green="0.63921568630000003" blue="0.74117647060000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.066666666669999999" green="0.63921568630000003" blue="0.74117647060000003" alpha="1" colorSpace="calibratedRGB"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Y1z-xR-0t4" kind="relationship" relationship="rootViewController" id="QBw-s5-2Qr"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qtZ-6e-FJI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2699" y="-2222"/>
+        </scene>
     </scenes>
     <resources>
         <image name="AlertButton" width="147" height="42"/>
@@ -4351,6 +4495,7 @@
         <image name="EventIcon.png" width="60" height="59"/>
         <image name="HomeIcon.png" width="28" height="26"/>
         <image name="ListTicketsIcon.png" width="46" height="33"/>
+        <image name="MyTicketsCellBackground" width="320" height="48"/>
         <image name="No fees. No comm.png" width="347" height="26"/>
         <image name="SellBar" width="640" height="71"/>
         <image name="SellTicketButton" width="147" height="42"/>
@@ -4412,8 +4557,9 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="anJ-Pm-qVd"/>
-        <segue reference="BWJ-EH-Aes"/>
+        <segue reference="Jqe-I6-Zbm"/>
+        <segue reference="AMH-9g-fjh"/>
         <segue reference="Xk9-Zd-nfA"/>
+        <segue reference="lKe-yJ-oEi"/>
     </inferredMetricsTieBreakers>
 </document>

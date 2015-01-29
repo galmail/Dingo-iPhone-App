@@ -10,6 +10,7 @@
 #import "TicketDetailViewController.h"
 #import "ListTicketsViewController.h"
 #import "MapViewController.h"
+#import "WebViewController.h"
 
 #import "ProposalCell.h"
 #import "DataManager.h"
@@ -138,6 +139,10 @@
 
 - (void)buyTicket:(id)sender {
 	//setup action here
+	
+	NSLog(@"woriywriyu");
+	DLog(@"primary_ticket_seller_url: %@", self.eventData.primary_ticket_seller_url);
+	[self performSegueWithIdentifier:@"WebSegue" sender:self];
 }
 
 #pragma mark - UITableViewDelegate
@@ -330,8 +335,16 @@
         UINavigationController *navController = segue.destinationViewController;
         MapViewController *vc = navController.viewControllers[0];
         vc.event = self.eventData;
-        
+		return;
     }
+	
+	if ([segue.identifier isEqual:@"WebSegue"]) {
+		
+		UINavigationController *navController = segue.destinationViewController;
+		WebViewController *vc = navController.viewControllers[0];
+		vc.event = self.eventData;
+		return;
+	}
 }
 
 #pragma mark - Private
