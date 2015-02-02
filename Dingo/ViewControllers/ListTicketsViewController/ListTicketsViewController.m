@@ -30,7 +30,7 @@
 #import "NSString+DingoFormatting.h"
 
 
-static const CGFloat paypalCellShrinkedHeight = 120;
+//static const CGFloat paypalCellShrinkedHeight = 120;
 static const CGFloat paypalCellExpandedHeight = 240;
 
 static const NSUInteger previewPhotosCellIndex = 9;
@@ -42,7 +42,7 @@ static const NSUInteger comfirmCellIndex = 16;
 
 static const NSInteger fbLoginAlert = 1;
 static const NSInteger paypalAlert = 2;
-static const NSInteger paypalEditAlert = 3;
+//static const NSInteger paypalEditAlert = 3;
 
 @interface ListTicketsViewController () <UITextFieldDelegate, UITableViewDataSource, UploadPhotosVCDelegate, ZSTextFieldDelegate, ZSDatePickerDelegate , ZSPickerDelegate ,CategorySelectionDelegate, UITextViewDelegate> {
     

@@ -8,5 +8,6 @@
 
 @interface ManageListsViewController : UITableViewController
 
+@property (nonatomic, retain) NSArray *arraTickets;
 
 @end

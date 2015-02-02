@@ -31,5 +31,6 @@
 @property (nonatomic, retain) NSData * user_photo;
 @property (nonatomic, retain) NSNumber * offers_count;
 @property (nonatomic, retain) NSString * facebook_id;
+@property (nonatomic, retain) NSNumber * available;
 
 @end

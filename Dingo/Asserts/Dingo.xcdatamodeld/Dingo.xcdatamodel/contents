@@ -50,6 +50,7 @@
         <attribute name="ticket_id" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Ticket" representedClassName="Ticket" syncable="YES">
+        <attribute name="available" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="delivery_options" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="event_id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="face_value_per_ticket" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
@@ -75,6 +76,6 @@
         <element name="Event" positionX="-54" positionY="18" width="128" height="285"/>
         <element name="EventCategory" positionX="-63" positionY="-18" width="128" height="103"/>
         <element name="Messages" positionX="-45" positionY="135" width="128" height="300"/>
-        <element name="Ticket" positionX="-36" positionY="117" width="128" height="330"/>
+        <element name="Ticket" positionX="-36" positionY="117" width="128" height="345"/>
     </elements>
 </model>

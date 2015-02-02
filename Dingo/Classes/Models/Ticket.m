@@ -30,5 +30,6 @@
 @dynamic user_photo;
 @dynamic offers_count;
 @dynamic facebook_id;
+@dynamic available;
 
 @end

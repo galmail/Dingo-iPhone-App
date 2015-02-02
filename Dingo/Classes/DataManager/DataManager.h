@@ -56,6 +56,10 @@
 - (NSArray *)ticketsAfterDate:(NSDate *)date;
 - (NSArray *)tickets_AfterDate:(NSDate *)date;
 
+- (NSArray *)ticketsSelling;
+- (NSArray *)ticketsSold;
+- (NSArray *)ticketsPurchased;
+
 - (NSArray *)allFriends;
 - (NSArray *)allCities;
 

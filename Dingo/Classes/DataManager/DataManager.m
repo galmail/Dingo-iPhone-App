@@ -281,6 +281,51 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
 }
 
 
+
+//1) Selling - all tickets obtained in "Get My Tickets" API were available = TRUE.
+- (NSArray *)ticketsSelling {
+	NSArray *tickets = [self userTickets];
+	NSMutableArray *result = [NSMutableArray array];
+	
+	for (Ticket *ticket in tickets) {
+		if (ticket.available.boolValue) {
+			[result addObject:ticket];
+		}
+	}
+	
+	return [result copy];
+}
+
+//2) Sold - all tickets obtained in "Get My Tickets" API were available = FALSE && number of tickets = 0.
+- (NSArray *)ticketsSold {
+	NSArray *tickets = [self userTickets];
+	NSMutableArray *result = [NSMutableArray array];
+	
+	for (Ticket *ticket in tickets) {
+		if (!ticket.available.boolValue && ticket.number_of_tickets == 0) {
+			[result addObject:ticket];
+		}
+	}
+	
+	return [result copy];
+}
+
+//2) Purchased - The logic for purchased tickets is: user_id<>current_user
+- (NSArray *)ticketsPurchased {
+	NSArray *tickets = [self userTickets];
+	NSMutableArray *result = [NSMutableArray array];
+	
+	for (Ticket *ticket in tickets) {
+		if (!ticket.user_id.intValue != [[AppManager sharedManager].userInfo[@"id"] intValue]) {
+			[result addObject:ticket];
+		}
+	}
+	
+	return [result copy];
+}
+
+
+
 //T.A. from search result
 - (NSUInteger)eventsFromSearchGroupsCount:(NSArray*)searchedEvents {
     __block NSUInteger groupsCount = 0;
@@ -691,7 +736,8 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
         ticket = [NSEntityDescription insertNewObjectForEntityForName:@"Ticket" inManagedObjectContext:context];
         ticket.ticket_id = ticketID;
     }
-        
+	
+	ticket.available = @([info[@"available"] boolValue]);
     ticket.facebook_id = info[@"user_facebook_id"];
     ticket.ticket_desc = description;
     ticket.event_id = eventID;
@@ -731,7 +777,8 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
 
 - (NSArray *)userTickets {
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Ticket"];
-    request.predicate = [NSPredicate predicateWithFormat:@"user_id == %@", [AppManager sharedManager].userInfo[@"id"]];
+	//why is this here???? userTicketsWithCompletion has paramter mine = true already
+    //request.predicate = [NSPredicate predicateWithFormat:@"user_id == %@", [AppManager sharedManager].userInfo[@"id"]];
     NSArray *tickets = [[AppManager sharedManager].managedObjectContext executeFetchRequest:request error:nil];
     
     if (tickets.count) {
@@ -742,8 +789,9 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
 }
 
 - (void)userTicketsWithCompletion:( void (^) (BOOL finished))handler {
-    
-    NSDictionary *params = @{@"auth_token":[AppManager sharedManager].token};
+	
+	//this api call did not use to have the mine = true parameter, howeber mytickets api assumes this
+    NSDictionary *params = @{@"auth_token":[AppManager sharedManager].token, @"mine":@(YES)};
     [WebServiceManager tickets:params completion:^(id response, NSError *error) {
         if (response[@"tickets"]) {
             NSArray *tickets = response[@"tickets"];
