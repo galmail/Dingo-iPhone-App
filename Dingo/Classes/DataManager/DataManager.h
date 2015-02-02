@@ -22,11 +22,13 @@
 -(NSArray *)allEventsWithAndWithoutTickets;
 - (NSArray *)featuredEvents;
 - (void)allEventsWithCompletion:( void (^) (BOOL finished))handler;
+- (void)addOrUpdateEvent:(NSDictionary *)info;
 - (NSUInteger)eventsDateRange;
 - (NSArray *)eventsBeforeDate:(NSDate *)date;
 - (NSArray *)eventsAfterDate:(NSDate *)date;
 + (NSString *)eventLocation:(Event *)data;
 - (Event*)eventByID:(NSString*)eventID;
+
 
 - (NSUInteger)eventsGroupsCount;
 - (NSUInteger)featuredEventsGroupsCount;

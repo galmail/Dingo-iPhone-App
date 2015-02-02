@@ -77,17 +77,19 @@
     if (txtDescription.text.length == 0) {
         [AppManager showAlert:@"Please enter description."];
         return;
-    } else {
-        NSArray* events = [[DataManager shared] allEvents];
+    }
+	else {
+        NSArray* events = [[DataManager shared] allEventsWithAndWithoutTickets];
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name == %@", txtDescription.text];
         
         NSArray *filteredEvents = [events filteredArrayUsingPredicate:predicate];
         if (filteredEvents.count == 0) {
-            [AppManager showAlert:@"Sorry, no event matches your description"];
+			
+			[AppManager showAlert:@"Sorry, no event matches your description"];
             return;
         }
     }
-    
+	
     NSDictionary *params = @{@"on":@YES,
                              @"description": txtDescription.text,
                              @"event_id":self.alert.event_id,

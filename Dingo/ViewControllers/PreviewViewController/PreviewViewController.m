@@ -171,17 +171,14 @@ static const NSUInteger commentCellIndex = 5;
 
 - (IBAction)confirm {
 
-    
     if (self.event.event_id.length == 0) {
         
-        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Your tickets will be listed once validated by Dingo" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Your tickets will be listed once validated by Dingo." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert setTag:8989];
         [alert show];
+	
+	} else {        // create ticket
 
-        
-           } else {        // create ticket
-
-        
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         formatter.dateFormat = @"hh:mm dd/MM/yyyy";
         NSLog(@"Number of photo %lu", (unsigned long)[self.photos count]);
@@ -306,8 +303,8 @@ static const NSUInteger commentCellIndex = 5;
                                   @"address" : self.event.address.length > 0 ? self.event.address : @"",
                                   @"city" : self.event.city.length > 0 ? self.event.city : @"",
                                   @"postcode" : self.event.postalCode.length > 0 ? self.event.postalCode : @"",
-                                  @"location" : location,
-                                  @"image" : self.event.thumb != nil ? self.event.thumb : @""
+                                  //@"location" : location,
+                                  //@"image" : self.event.thumb != nil ? self.event.thumb : @""
                                   
                                   
                                   };
@@ -358,9 +355,11 @@ static const NSUInteger commentCellIndex = 5;
                             
                             // ticket created
                             [loadingView hide];
-                            UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Your tickets will be listed once validated by Dingo" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                           
-                            [alert show];
+							
+//Dont show the aler again
+//                            UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Your tickets will be listed once validated by Dingo" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//                           
+//                            [alert show];
 
                             [AppManager sharedManager].draftTicket = nil;
                             [self.navigationController.viewControllers[0] setSelectedIndex:0];

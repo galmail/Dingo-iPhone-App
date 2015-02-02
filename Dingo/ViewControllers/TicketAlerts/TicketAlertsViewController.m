@@ -38,6 +38,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     alertsArray = [NSMutableArray arrayWithArray:[[DataManager shared] allAlerts]];
+	
+	if (alertsArray.count > 0) {
+		NSLog(@"event_id: %@", [(Alert*)alertsArray[1] event_id]);
+		NSLog(@"alert_id: %@", [(Alert*)alertsArray[1] alert_id]);
+		NSLog(@"alert: %@", [(Alert*)alertsArray[1] alert_description]);
+	}
+	
     
     tblTicketAlerts.tableFooterView = [[UIView alloc] init];
     imgEmptyAlerts.hidden = YES;

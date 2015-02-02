@@ -50,7 +50,7 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     
     NSManagedObjectContext *context = [AppManager sharedManager].managedObjectContext;
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Event"];
-    //[request setPredicate:[NSPredicate predicateWithFormat:@"(tickets != %d)",0]];
+    [request setPredicate:[NSPredicate predicateWithFormat:@"(tickets != %d)",0]];
 
     request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES]];
     
@@ -63,7 +63,7 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
 -(NSArray *)allEventsWithAndWithoutTickets{
     NSManagedObjectContext *context = [AppManager sharedManager].managedObjectContext;
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Event"];
-    [request setPredicate:[NSPredicate predicateWithFormat:@"(tickets != %d)",0]];
+    //[request setPredicate:[NSPredicate predicateWithFormat:@"(tickets != %d)",0]];
     request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]];
     
     NSError *error = nil;
@@ -84,14 +84,14 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
 }
 
 - (void)allEventsWithCompletion:( void (^) (BOOL finished))handler {
-    NSLog(@"userInfo=%@",[AppManager sharedManager].userInfo);
+    //NSLog(@"userInfo=%@",[AppManager sharedManager].userInfo);
     NSDictionary* params = @{@"city":[AppManager sharedManager].userInfo[@"city"],@"any":@"true"};
    
     if ([AppManager sharedManager].currentLocation != nil) {
         params = @{@"location": [NSString stringWithFormat:@"%f,%f", [AppManager sharedManager].currentLocation.coordinate.latitude, [AppManager sharedManager].currentLocation.coordinate.longitude], @"city":[AppManager sharedManager].userInfo[@"city"] };
     }
-	DLog(@"params: %@", params);
-    [WebServiceManager events:params completion:^(id response, NSError *error) {
+
+	[WebServiceManager events:params completion:^(id response, NSError *error) {
         
         if (response[@"events"]) {
             NSArray *events = response[@"events"];
@@ -120,8 +120,8 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
 }
 
 - (void)addOrUpdateEvent:(NSDictionary *)info {
+
     NSManagedObjectContext *context = [AppManager sharedManager].managedObjectContext;
-    
     NSString *eventID = info[@"id"];
     NSString *name = info[@"name"];
     NSString *thumbUrl = info[@"thumb"];
@@ -563,9 +563,10 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
 }
 
 - (Event*)eventByID:(NSString*)eventID {
-    
-    NSArray *events = [self allEvents];
-    
+	
+	//NSArray *events = [self allEvents];
+    NSArray *events = [self allEventsWithAndWithoutTickets];
+	
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"event_id == %@", eventID];
     
     NSArray *filteredEvents = [events filteredArrayUsingPredicate:predicate];
@@ -673,7 +674,10 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
 //        }
 //        handler(YES);
 //    }];
-    NSDictionary *params = @{@"event_id":eventID};;
+	
+	NSLog(@"eventID: %@", eventID);
+	
+    NSDictionary *params = @{@"event_id":eventID};
     [[CommonDocUnAuth sharedDocument] getPath:@"tickets" parameters:params success:^(AFHTTPRequestOperation *operation, id response) {
                 if (response[@"tickets"]) {
 
