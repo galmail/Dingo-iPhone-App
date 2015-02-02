@@ -276,7 +276,7 @@ static const NSUInteger commentCellIndex = 5;
     ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please wait..."];
     [loadingView show];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = @"hh:mm dd/MM/yyyy";
+    formatter.dateFormat = @"HH:mm dd/MM/yyyy";
     NSLog(@"Number of photo %lu", (unsigned long)[self.photos count]);
   
     
@@ -292,19 +292,17 @@ static const NSUInteger commentCellIndex = 5;
                 location = [NSString stringWithFormat:@"%@,%@", result[@"geometry"][@"location"][@"lat"], result[@"geometry"][@"location"][@"lng"]];
             }
         }
-        
-        NSLog(@"Confirm create event");
-        
+		
         // Create event
         NSDictionary *params = @{ @"category_id" : @"",
                                   @"name" : self.event.name,
                                   @"date" : [formatter stringFromDate:self.event.date],
-                                  @"end_date" : [formatter stringFromDate:self.event.endDate],
-                                  @"address" : self.event.address.length > 0 ? self.event.address : @"",
-                                  @"city" : self.event.city.length > 0 ? self.event.city : @"",
-                                  @"postcode" : self.event.postalCode.length > 0 ? self.event.postalCode : @"",
+                                  //@"end_date" : [formatter stringFromDate:self.event.endDate],
+                                  //@"address" : self.event.address.length > 0 ? self.event.address : @"",
+                                  //@"city" : self.event.city.length > 0 ? self.event.city : @"",
+                                  //@"postcode" : self.event.postalCode.length > 0 ? self.event.postalCode : @"",
                                   //@"location" : location,
-                                  //@"image" : self.event.thumb != nil ? self.event.thumb : @""
+                                  @"image" : self.event.thumb != nil ? self.event.thumb : @""
                                   
                                   
                                   };
