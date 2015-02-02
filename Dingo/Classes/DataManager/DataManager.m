@@ -288,7 +288,9 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
 	NSMutableArray *result = [NSMutableArray array];
 	
 	for (Ticket *ticket in tickets) {
-		if (ticket.available.boolValue) {
+		if (ticket.available.boolValue &&
+			ticket.user_id.intValue == [[AppManager sharedManager].userInfo[@"id"] intValue]) {
+			
 			[result addObject:ticket];
 		}
 	}
@@ -302,7 +304,10 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
 	NSMutableArray *result = [NSMutableArray array];
 	
 	for (Ticket *ticket in tickets) {
-		if (!ticket.available.boolValue && ticket.number_of_tickets == 0) {
+		if (!ticket.available.boolValue &&
+			ticket.number_of_tickets.intValue == 0 &&
+			ticket.user_id.intValue == [[AppManager sharedManager].userInfo[@"id"] intValue]) {
+			
 			[result addObject:ticket];
 		}
 	}
