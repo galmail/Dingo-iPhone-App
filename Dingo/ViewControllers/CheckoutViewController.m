@@ -99,9 +99,9 @@
     payPalConfig = [[PayPalConfiguration alloc] init];
     payPalConfig.acceptCreditCards = YES;
     payPalConfig.languageOrLocale = @"en";
-    payPalConfig.merchantName = @"Dingo, Inc.";
-    payPalConfig.merchantPrivacyPolicyURL = [NSURL URLWithString:@"https://www.omega.supreme.example/privacy"];
-    payPalConfig.merchantUserAgreementURL = [NSURL URLWithString:@"https://www.omega.supreme.example/user_agreement"];
+	payPalConfig.merchantName = PAYPAL_MERCHANT_NAME;
+	payPalConfig.merchantPrivacyPolicyURL = PAYPAL_MERCHANT_PRIVACY_POLICY_URL;
+    payPalConfig.merchantUserAgreementURL = PAYPAL_MERCHANT_USER_AGREEMENT_URL;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -222,9 +222,6 @@
         
     txtTotal.text = [currencyFormatter stringFromNumber:@( total)];
 }
-
-#pragma mark UITableView methods
-
 
 #pragma mark PayPalPaymentDelegate methods
 

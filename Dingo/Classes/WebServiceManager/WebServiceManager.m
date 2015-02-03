@@ -666,6 +666,38 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
     });
 }
 
+#pragma mark - PAYPAL
+
++ (void)paypalUserInfo:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler {
+	
+	static NSString *url = @"https://api.paypal.com/v1/identity/openidconnect/userinfo/?schema=openid";
+	
+	NSString *p = [params urlEncodedString];
+	if (p.length > 0) {
+		url = [NSString stringWithFormat:@"%@?%@", url, p];
+	}
+
+	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:20.0f];
+	[request setHTTPMethod:@"GET"];
+	
+	dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+		
+		NSURLResponse* response = nil;
+		NSError *error = nil;
+		NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+		
+		dispatch_async(dispatch_get_main_queue(), ^(void){
+			if (error != nil) {
+				[self handleError:error];
+			} else {
+				handler([data objectFromJSONData], error);
+			}
+		});
+		
+	});
+}
+
+
 + (void)payPalSuccess:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler {
     NSMutableURLRequest *request = [self requestForPostMethod:@"paypal/success" withParams:[params urlEncodedString]];
     

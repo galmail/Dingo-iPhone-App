@@ -28,6 +28,7 @@
 #import "AppDelegate.h"
 
 #import "NSString+DingoFormatting.h"
+#import "PayPalMobile.h"
 
 
 //static const CGFloat paypalCellShrinkedHeight = 120;
@@ -40,11 +41,7 @@ static const NSUInteger payPalCellIndex = 12;
 static const NSUInteger previewCellIndex = 15;
 static const NSUInteger comfirmCellIndex = 16;
 
-static const NSInteger fbLoginAlert = 1;
-static const NSInteger paypalAlert = 2;
-//static const NSInteger paypalEditAlert = 3;
-
-@interface ListTicketsViewController () <UITextFieldDelegate, UITableViewDataSource, UploadPhotosVCDelegate, ZSTextFieldDelegate, ZSDatePickerDelegate , ZSPickerDelegate ,CategorySelectionDelegate, UITextViewDelegate> {
+@interface ListTicketsViewController () <UITextFieldDelegate, UITableViewDataSource, UploadPhotosVCDelegate, ZSTextFieldDelegate, ZSDatePickerDelegate , ZSPickerDelegate ,CategorySelectionDelegate, UITextViewDelegate, PayPalProfileSharingDelegate> {
     
     __weak IBOutlet UILabel *lblName;
     __weak IBOutlet UILabel *lblLocation;
@@ -89,6 +86,10 @@ static const NSInteger paypalAlert = 2;
     BOOL isPreviewing;
     
     NSMutableArray *photos;
+	
+	PayPalConfiguration *payPalConfig;
+	
+	NSString *payPalKey;
 }
 
 @property (nonatomic, weak) IBOutlet ZSTextField *nameField;
@@ -153,6 +154,12 @@ static const NSInteger paypalAlert = 2;
     
     self.descriptionTextView.placeholder = @"Add any additional comments about the tickets or collection.";
     [self.descriptionTextView showToolbarWithDone];
+	
+	payPalConfig = [[PayPalConfiguration alloc] init];
+	payPalConfig.languageOrLocale = @"en";
+	payPalConfig.merchantName = PAYPAL_MERCHANT_NAME;
+	payPalConfig.merchantPrivacyPolicyURL = PAYPAL_MERCHANT_PRIVACY_POLICY_URL;
+	payPalConfig.merchantUserAgreementURL = PAYPAL_MERCHANT_USER_AGREEMENT_URL;
 }
 
 
@@ -814,7 +821,6 @@ static const NSInteger paypalAlert = 2;
         
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Facebook login is required when selling tickets to promote a safe community. Don’t worry, we won’t share anything on your wall." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Login", nil];
         [alert show];
-        alert.tag = fbLoginAlert;
         return NO;
     }
     
@@ -1172,29 +1178,16 @@ static const NSInteger paypalAlert = 2;
 }
 
 - (IBAction)paypalChanged:(id)sender {
-    cashSwitch.on = !paypalSwitch.on;
-   // if(paypalSwitch.on) {
-       // lblPayment.textColor = [UIColor darkGrayColor];
-        if (![[AppManager sharedManager].userInfo[@"paypal_account"] length]) {
-            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Enter your PayPal account" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
-            alert.alertViewStyle = UIAlertViewStylePlainTextInput;
-            alert.tag = paypalAlert;
-            [alert show];
-            cashSwitch.on=NO;
-            
-        }else{
-            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Your PayPal account" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
-            alert.alertViewStyle = UIAlertViewStylePlainTextInput;
-            [alert textFieldAtIndex:0].text=[AppManager sharedManager].userInfo[@"paypal_account"];
-            alert.tag = paypalAlert;
-            [alert show];
-            cashSwitch.on= YES;
-        }
-   // }
-    
-//    [self.tableView beginUpdates];
-//    [self.tableView endUpdates];
-    self.changed = YES;
+	
+	// Choose whichever scope-values apply in your case. See `PayPalOAuthScopes.h` for a complete list of available scope-values.
+	NSSet *scopeValues = [NSSet setWithArray:@[kPayPalOAuth2ScopeEmail]];
+	
+	PayPalProfileSharingViewController *psViewController = [[PayPalProfileSharingViewController alloc] initWithScopeValues:scopeValues
+																		 configuration:payPalConfig
+																			  delegate:self];
+	
+	// Present the PayPalProfileSharingViewController
+	[self presentViewController:psViewController animated:YES completion:nil];
 }
 
 - (IBAction)inPersonChanged:(id)sender {
@@ -1238,70 +1231,75 @@ static const NSInteger paypalAlert = 2;
 #pragma mark UIAlertView delegates
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    
-    switch (alertView.tag) {
-        case fbLoginAlert:
-            if (buttonIndex == 1) {
-                ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please wait..."];
-                [loadingView show];
-                [WebServiceManager signInWithFBAndUpdate:NO completion:^(id response, NSError *error) {
-                    [loadingView hide];
-                    if (response) {
-                        if ([self shouldPerformSegueWithIdentifier:@"PreviewSegue" sender:self]) {
-                            [self performSegueWithIdentifier:@"PreviewSegue" sender:self];
-                        }
-                    }else{
-                        [WebServiceManager handleError:error];
-                    }
-                }];
-            }
-            break;
-        case paypalAlert: {
-            
-            if (buttonIndex == 1) {
-                
-//                if ([[alertView textFieldAtIndex:0].text length]>0) {
-                    ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please wait..."];
-                    [loadingView show];
-                    NSDictionary *params = @{@"paypal_account":[alertView textFieldAtIndex:0].text };
-                    [WebServiceManager updateProfile:params completion:^(id response, NSError *error) {
-                        NSLog(@"updateProfile response %@", response);
-                        [loadingView hide];
-                        if (!error) {
-                        
-                            [[AppManager sharedManager].userInfo setObject:response[@"paypal_account"] forKey:@"paypal_account"];
-                            [[NSUserDefaults standardUserDefaults] setObject:response[@"paypal_account"] forKey:@"paypal_account"];
-                            [[NSUserDefaults standardUserDefaults] synchronize];
-                           // paypalSwitch.on= YES;
-                        }else{
-                            [WebServiceManager handleError:error];
-                        }
-                        
-                    }];
-
-                    
-//                } else {
-//                    [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"paypal_account"];
-//                     paypalSwitch.on = NO;
-//                }
-                
-            } else {
-                paypalSwitch.on = NO;
-            }
-            
-            [self.tableView beginUpdates];
-            [self.tableView endUpdates];
-            
-            break;
-        }
-        default:
-            break;
-    }
+	
+	if (buttonIndex == 1) {
+		ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please wait..."];
+		[loadingView show];
+		[WebServiceManager signInWithFBAndUpdate:NO completion:^(id response, NSError *error) {
+			[loadingView hide];
+			if (response) {
+				if ([self shouldPerformSegueWithIdentifier:@"PreviewSegue" sender:self]) {
+					[self performSegueWithIdentifier:@"PreviewSegue" sender:self];
+				}
+			}else{
+				[WebServiceManager handleError:error];
+			}
+		}];
+	}
 }
 
 -(void)viewDidDisappear:(BOOL)animated{
     self.ticket = nil;
     self.event = nil;
 }
+
+
+#pragma mark PayPalProfileSharingDelegate methods
+
+
+/// User canceled without consenting.
+/// @param profileSharingViewController The PayPalProfileSharingViewController that the user canceled without consenting.
+- (void)userDidCancelPayPalProfileSharingViewController:(PayPalProfileSharingViewController *)profileSharingViewController {
+	ALog();
+	
+	//should we remove paypal info ?
+	[[AppManager sharedManager].userInfo removeObjectForKey:@"paypal_account"];
+	[[NSUserDefaults standardUserDefaults] removeObjectForKey:@"paypal_account"];
+	[[NSUserDefaults standardUserDefaults] synchronize];
+	
+	self.changed = YES;
+	[self dismissViewControllerAnimated:YES completion:nil];
+}
+
+/// User successfully logged in and consented.
+/// @param profileSharingViewController The PayPalProfileSharingViewController where the user successfully consented.
+/// @param authorization The authorization response, which you will return to your server.
+- (void)payPalProfileSharingViewController:(PayPalProfileSharingViewController *)profileSharingViewController
+			 userDidLogInWithAuthorization:(NSDictionary *)profileSharingAuthorization {
+	
+	DLog(@"profileSharingAuthorization: %@", profileSharingAuthorization);
+	
+	NSString *authorization_code = profileSharingAuthorization[@"response"][@"code"];
+	DLog(@"code?: %@", authorization_code);
+	//this code should now be sent to server and used to retrieve the user email
+	
+	ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please wait..."];
+	[loadingView show];
+	
+	NSDictionary *params = @{@"authorization_code": authorization_code};
+	[WebServiceManager updateProfile:params completion:^(id response, NSError *error) {
+		NSLog(@"updateProfile response %@", response);
+		[loadingView hide];
+		
+		if (error) {
+			[WebServiceManager handleError:error];
+		}
+		
+	}];
+	
+	self.changed = YES;
+	[self dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 @end

@@ -36,6 +36,7 @@
 + (void)replyOffer:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler;
 + (void)receiveOffers:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler;
 
++ (void)paypalUserInfo:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler;
 + (void)makeOrder:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler;
 + (void)payPalSuccess:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler;
 

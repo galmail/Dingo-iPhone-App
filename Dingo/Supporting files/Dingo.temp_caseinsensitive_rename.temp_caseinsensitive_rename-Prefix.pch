@@ -29,6 +29,8 @@
 #define BaseUrl                @"http://dingoapp.herokuapp.com/api/v1/"
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 
+#endif
+
 
 //Just added this here for convenience as i am very used to using dlog instead of nslog (nonnus)
 // DLog will output like NSLog only when the DEBUG variable is set
@@ -50,5 +52,8 @@
 #   define ULog(...)
 #endif
 
-#endif
+//i am setting some global properties here so we dont need to repeat them across the app
+#define PAYPAL_MERCHANT_NAME				@"Allington Ventures Ltd"
+#define PAYPAL_MERCHANT_PRIVACY_POLICY_URL	[NSURL URLWithString:@"http://www.dingoapp.co.uk/web/privacy-policy/"]
+#define PAYPAL_MERCHANT_USER_AGREEMENT_URL	[NSURL URLWithString:@"http://www.dingoapp.co.uk/web/terms-conditions/"]
 
