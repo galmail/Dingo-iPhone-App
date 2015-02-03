@@ -462,7 +462,7 @@ static void AFNetworkReachabilityReleaseCallback(const void *info) {
     [request setHTTPMethod:method];
 //    [request setTimeoutInterval:75];
     [request setAllHTTPHeaderFields:self.defaultHeaders];
-   NSLog(@"header=%@", self.defaultHeaders);
+   //NSLog(@"header=%@", self.defaultHeaders);
 
     if (parameters) {
         if ([method isEqualToString:@"GET"] || [method isEqualToString:@"HEAD"] || [method isEqualToString:@"DELETE"]) {

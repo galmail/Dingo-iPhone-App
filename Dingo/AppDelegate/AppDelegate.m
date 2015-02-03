@@ -83,9 +83,6 @@
     [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelNone];
     [[GAI sharedInstance] trackerWithTrackingId:@"UA-54649568-2"];
 	
-	NSLog(@"sharedManager.token: %@", [AppManager sharedManager].token);
-	NSLog(@"sharedManager.userInfo: %@", [AppManager sharedManager].userInfo);
-	
     if ([AppManager sharedManager].token) {
         SlidingViewController *viewController = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"SlidingViewController"];
         self.window.rootViewController = viewController;
@@ -147,7 +144,7 @@
 	
 	[AppManager sharedManager].deviceToken = newToken;
 	
-	NSLog(@"deviceToken - %@",newToken);
+	NSLog(@"AD deviceToken - %@",newToken);
 	if (NSSTRING_HAS_DATA([AppManager sharedManager].userInfo[@"email"]) || [[NSUserDefaults standardUserDefaults] objectForKey:@"users_email"]) {
 		
 		
@@ -160,8 +157,8 @@
 									  @"location" : [NSString stringWithFormat:@"%f,%f", [AppManager sharedManager].currentLocation.coordinate.latitude, [AppManager sharedManager].currentLocation.coordinate.longitude ]
 									  };
 			[WebServiceManager registerDevice:params completion:^(id response, NSError *error) {
-				NSLog(@"registerDevice response - %@", response);
-				NSLog(@"registerDevice error - %@", error);
+				NSLog(@"AD registerDevice response - %@", response);
+				NSLog(@"AD registerDevice error - %@", error);
 			}];
 		}
 	}
@@ -175,6 +172,8 @@
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+	
+	NSLog(@"didReceiveRemoteNotification: %@ ", userInfo);
 	
 	// if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive) {
 	[self showNotiFicationView:userInfo];
@@ -210,6 +209,7 @@
 //sugestion: create a NotificationView class and remove most of the code from app delegate
 
 -(void)showNotiFicationView:(NSDictionary *)payLoad {
+	DLog();
     viewNotification=[[UIView alloc] initWithFrame:CGRectMake(0,-64, screenSize.width, 64)];
     [viewNotification setBackgroundColor:[UIColor colorWithRed:48.f/255.0f green:73.0f/255.0f blue:80.0f/255.0f alpha:1.0f]];
 	
