@@ -113,6 +113,9 @@
     application.applicationIconBadgeNumber = 0;
     
     [[Harpy sharedInstance] checkVersionDaily];
+	
+	//if the user changed push notification settings and is on the settings screen this will update it ;)
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"RemoteNotificationsChanged" object:nil];
     
 }
 
@@ -130,12 +133,15 @@
 #pragma mark - notifications
 
 - (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings {
-	NSLog(@"notificationSettings: %@", notificationSettings);
+	DLog(@"notificationSettings: %@", notificationSettings);
 }
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 	
-	NSLog(@"%s", __PRETTY_FUNCTION__);
+	DLog();
+	
+	//should we set this to yes ? the app automatically tried to register for push and if it gets here, push is on...
+	[[AppManager sharedManager].userInfo setValue:@YES forKey:@"allow_push_notifications"];
 	
 	// Show the device token obtained from apple to the log
 	NSString *newToken = [deviceToken description];
@@ -159,6 +165,8 @@
 			[WebServiceManager registerDevice:params completion:^(id response, NSError *error) {
 				NSLog(@"AD registerDevice response - %@", response);
 				NSLog(@"AD registerDevice error - %@", error);
+				
+				[[NSNotificationCenter defaultCenter] postNotificationName:@"RemoteNotificationsChanged" object:error];
 			}];
 		}
 	}
@@ -166,14 +174,18 @@
 }
 
 -(void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error{
-	NSLog(@"rgistration fail on APS: %@", error.localizedDescription);
+	DLog(@"error: %@", error.localizedDescription);
+	
+	//should we set this to no ?
+	//[[AppManager sharedManager].userInfo setValue:@NO forKey:@"allow_push_notifications"];
+	
 	// we post a notification to disable settings switch ;)
-	[[NSNotificationCenter defaultCenter] postNotificationName:@"RemoteNotificationsError" object:error];
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"RemoteNotificationsChanged" object:error];
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
 	
-	NSLog(@"didReceiveRemoteNotification: %@ ", userInfo);
+	DLog(@"userInfo: %@ ", userInfo);
 	
 	// if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive) {
 	[self showNotiFicationView:userInfo];

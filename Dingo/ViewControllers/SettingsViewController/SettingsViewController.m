@@ -15,6 +15,10 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import "UIDevice+Additions.h"
 
+
+static const NSUInteger fbLoginAlert =	4847;
+static const NSUInteger pushAlert =		2243;
+
 @interface SettingsViewController ()<ZSPickerDelegate>{
     ZSPickerView *cityPicker;
     IBOutlet UILabel *lblCity;
@@ -60,7 +64,7 @@
     cityPicker.delegate = self;
     self.cityField.inputView = cityPicker;
 	
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(remoteNotificationsErrorNotification:) name:@"RemoteNotificationsError" object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(remoteNotificationsChangedNotification:) name:@"RemoteNotificationsChanged" object:nil];
     
     [self reloadData];
 }
@@ -119,21 +123,6 @@
     _surnameField.enabled = NO;
     _firstNameField.enabled = NO;
 }
-
-- (void)updateNotificationsSwitch {
-	BOOL notificationsOn;
-	if ([[UIApplication sharedApplication] respondsToSelector:@selector(isRegisteredForRemoteNotifications)]) {
-		notificationsOn = [[UIApplication sharedApplication] isRegisteredForRemoteNotifications];
-	} else {
-		notificationsOn = ([[UIApplication sharedApplication] enabledRemoteNotificationTypes] == UIRemoteNotificationTypeNone);
-	}
-	self.pushNotificationSwitch.on = [[[AppManager sharedManager].userInfo valueForKey:@"allow_push_notifications"] boolValue] && notificationsOn;
-}
-
-- (void)remoteNotificationsErrorNotification:(NSNotification*)notification {
-	[self updateNotificationsSwitch];
-}
-
 
 #pragma mark - UITextFieldDelegate
 
@@ -255,6 +244,7 @@
         }
     }];
 }
+
 #pragma mark - UIActions
 
 - (IBAction)facebookLoginSwitchValueChanged {
@@ -263,6 +253,7 @@
         if (![[[AppManager sharedManager].userInfo valueForKey:@"fb_id"] length]) {
             
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Log in via Facebook?" message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Login", nil];
+			alert.tag = fbLoginAlert;
             [alert show];
            
         }
@@ -275,17 +266,28 @@
 - (IBAction)pushNotificationSwitchValueChanged {
 
 	if (self.pushNotificationSwitch.on) {
-		[[AppManager sharedManager].userInfo setValue:@YES forKey:@"allow_push_notifications"];
-		//keep in mind this would be a "better" (more standard) way to check for api availability
-		//if ([[UIApplication sharedApplication] respondsToSelector:@selector(registerUserNotificationSettings:)])
-		if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8")){
+		if (![self pushNotificationEnabledInSettings]) {
+			self.pushNotificationSwitch.on = NO;
 			
-			[[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
-			[[UIApplication sharedApplication] registerForRemoteNotifications];
-		}else{
-			[[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeBadge)];
+			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notifications disabled" message:@"Push notification need to be enabled in Settings." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+			BOOL canOpenSettings = (&UIApplicationOpenSettingsURLString != NULL);
+			if (canOpenSettings) {
+				[alert addButtonWithTitle:@"Settings"];
+			}
+			alert.tag = pushAlert;
+			[alert show];
+		} else {
+			[[AppManager sharedManager].userInfo setValue:@YES forKey:@"allow_push_notifications"];
+			//keep in mind this would be a "better" (more standard) way to check for api availability
+			//if ([[UIApplication sharedApplication] respondsToSelector:@selector(registerUserNotificationSettings:)])
+			if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8")){
+				
+				[[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
+				[[UIApplication sharedApplication] registerForRemoteNotifications];
+			}else{
+				[[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeBadge)];
+			}
 		}
-		
 	} else {
 		[[AppManager sharedManager].userInfo setValue:@NO forKey:@"allow_push_notifications"];
 		[[UIApplication sharedApplication] unregisterForRemoteNotifications];
@@ -296,6 +298,29 @@
 - (IBAction)dingoEmailsSwitchValueChanged {
     
 }
+
+
+#pragma mark push notifications stuff
+
+- (BOOL)pushNotificationEnabledInSettings {
+	BOOL notificationsOn;
+	if ([[UIApplication sharedApplication] respondsToSelector:@selector(isRegisteredForRemoteNotifications)]) {
+		notificationsOn = [[UIApplication sharedApplication] isRegisteredForRemoteNotifications];
+	} else {
+		notificationsOn = ([[UIApplication sharedApplication] enabledRemoteNotificationTypes] != UIRemoteNotificationTypeNone);
+	}
+	return notificationsOn;
+}
+
+- (void)updateNotificationsSwitch {
+	BOOL notificationsOn = [self pushNotificationEnabledInSettings];
+	self.pushNotificationSwitch.on = [[[AppManager sharedManager].userInfo valueForKey:@"allow_push_notifications"] boolValue] && notificationsOn;
+}
+
+- (void)remoteNotificationsChangedNotification:(NSNotification*)notification {
+	[self updateNotificationsSwitch];
+}
+
 
 #pragma mark ZSPickerDelegate methods
 
@@ -312,12 +337,25 @@
 #pragma mark FB Login
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    
-    if (buttonIndex == 1) {
-         [self fbLogin];
-    } else {
-        self.facebookLoginSwitch.on = NO;
-    }
+	switch (alertView.tag) {
+		case fbLoginAlert:
+			if (buttonIndex != alertView.cancelButtonIndex) {
+				[self fbLogin];
+			} else {
+				self.facebookLoginSwitch.on = NO;
+			}
+			break;
+		case pushAlert:
+			if (buttonIndex != alertView.cancelButtonIndex) {
+				BOOL canOpenSettings = (&UIApplicationOpenSettingsURLString != NULL);
+				if (canOpenSettings) {
+					NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+					[[UIApplication sharedApplication] openURL:url];
+				}
+			}
+			break;
+	}
+	
 }
 
 - (void)fbLogin {

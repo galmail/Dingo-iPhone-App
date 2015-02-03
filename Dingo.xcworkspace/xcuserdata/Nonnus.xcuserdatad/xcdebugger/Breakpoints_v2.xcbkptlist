@@ -228,11 +228,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "Yes"
             filePath = "Dingo/AppDelegate/AppDelegate.m"
-            timestampString = "444593938.633589"
+            timestampString = "444683777.986032"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "179"
-            endingLineNumber = "179"
+            startingLineNumber = "191"
+            endingLineNumber = "191"
             landmarkName = "-application:didReceiveRemoteNotification:"
             landmarkType = "5">
             <Actions>
@@ -252,11 +252,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "Yes"
             filePath = "Dingo/AppDelegate/AppDelegate.m"
-            timestampString = "444593981.158622"
+            timestampString = "444683777.986032"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "211"
-            endingLineNumber = "211"
+            startingLineNumber = "223"
+            endingLineNumber = "223"
             landmarkName = "-showNotiFicationView:"
             landmarkType = "5">
             <Actions>
@@ -267,6 +267,22 @@
                   </ActionContent>
                </BreakpointActionProxy>
             </Actions>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Dingo/ViewControllers/SettingsViewController/SettingsViewController.m"
+            timestampString = "444683930.813758"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "320"
+            endingLineNumber = "320"
+            landmarkName = "-remoteNotificationsChangedNotification:"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
