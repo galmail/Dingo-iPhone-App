@@ -18,19 +18,28 @@
 
 @interface ManageListsViewController ()
 
-@property (nonatomic) NSUInteger firstSectionCellsCount;
+@property (nonatomic, retain) NSMutableArray *arraTickets;
 
 @end
 
 @implementation ManageListsViewController
 
+- (void)setTickets:(NSArray*)tickets {
+	self.arraTickets = [self sortEvents:tickets];
+}
+
 #pragma amrk - UIViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-	self.arraTickets = [self sortEvents:self.arraTickets];
-    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+		
+	//hide the edit button for sold and purchased and set it up as edit button for selling
+	if ([self.title isEqualToString:@"Selling"]) {
+		self.navigationItem.rightBarButtonItem = self.editButtonItem;
+		self.editButtonItem.tintColor = [UIColor whiteColor]; //this is silly, but needed nonetheless
+	} else	{
+		self.navigationItem.rightBarButtonItem = nil;
+	}
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -64,8 +73,36 @@
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    return NO;
+	if ([self.title isEqualToString:@"Selling"]) return YES;
+	else return NO;
 }
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+	if (editingStyle == UITableViewCellEditingStyleDelete) {
+		
+		Ticket *data = [self.arraTickets objectAtIndex:indexPath.row];
+		NSDictionary *params = @{@"ticket_id":data.ticket_id,
+								 @"price":[data.price stringValue],
+								 @"available":@"0"
+								 };
+		ZSLoadingView *loadingView =[[ZSLoadingView alloc] initWithLabel:@"Please wait..."];
+		[loadingView show];
+		[WebServiceManager updateTicket:params photos:nil completion:^(id response, NSError *error) {
+			NSLog(@"MLVC response %@", response);
+			[loadingView hide];
+			if (!error && [response[@"available"] intValue] == 0) {
+				[[AppManager sharedManager].managedObjectContext deleteObject:data];
+				
+				[self.arraTickets removeObjectAtIndex:indexPath.row];
+				[self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+				
+			}else{
+				[WebServiceManager handleError:error];
+			}
+		}];
+	}
+}
+
 
 #pragma mark - UITableViewDataSource
 
@@ -90,7 +127,7 @@
 
         TicketDetailViewController *vc = (TicketDetailViewController *)segue.destinationViewController;
         vc.ticket = data;
-        if (selectedCellPath.section)
+        if ([self.title isEqualToString:@"Selling"])
             vc.iseditable=true;
         else
             vc.iseditable=false;
@@ -101,12 +138,13 @@
 
 #pragma mark - UIActions
 - (IBAction)back {
+	[self.delegate updateMyTicketsViewControllerButtons];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - custom methods
 
--(NSArray *)sortEvents:(NSArray *)unsortedArr{
+-(NSMutableArray *)sortEvents:(NSArray *)unsortedArr{
     NSArray *sortedArr1 = [NSArray array];
     sortedArr1=[unsortedArr sortedArrayUsingComparator:^NSComparisonResult(Ticket *obj1, Ticket *obj2){
         Event *event1=[[DataManager shared] eventByID:obj1.event_id];
@@ -122,7 +160,7 @@
         
         
     }];
-    return sortedArr1;
+    return sortedArr1.mutableCopy;
 }
 
 #pragma mark - Private

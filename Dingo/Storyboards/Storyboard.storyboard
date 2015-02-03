@@ -2085,12 +2085,14 @@
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Home" image="HomeIcon.png" id="zed-Gj-lia"/>
                     <navigationItem key="navigationItem" title="Selling" id="Rbd-cc-6ls">
-                        <barButtonItem key="backBarButtonItem" title="back" id="xRd-4P-mRq"/>
                         <barButtonItem key="leftBarButtonItem" image="nav_back_icon.png" id="M1W-Zw-xJU" userLabel="back">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="back" destination="NDK-Xp-Bqe" id="jRp-5g-76v"/>
                             </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="2FH-UA-Iuk">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
@@ -3945,7 +3947,7 @@
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
                                                 <view contentMode="scaleToFill" id="Ri4-LC-2FA" userLabel="selection_protector">
-                                                    <rect key="frame" x="-11" y="-11" width="346" height="82"/>
+                                                    <rect key="frame" x="-11" y="-11" width="347" height="82"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </view>
