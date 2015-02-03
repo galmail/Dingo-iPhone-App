@@ -228,11 +228,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "Yes"
             filePath = "Dingo/AppDelegate/AppDelegate.m"
-            timestampString = "444683777.986032"
+            timestampString = "444692213.675663"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "191"
-            endingLineNumber = "191"
+            startingLineNumber = "199"
+            endingLineNumber = "199"
             landmarkName = "-application:didReceiveRemoteNotification:"
             landmarkType = "5">
             <Actions>
@@ -252,11 +252,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "Yes"
             filePath = "Dingo/AppDelegate/AppDelegate.m"
-            timestampString = "444683777.986032"
+            timestampString = "444692213.675663"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "223"
-            endingLineNumber = "223"
+            startingLineNumber = "231"
+            endingLineNumber = "231"
             landmarkName = "-showNotiFicationView:"
             landmarkType = "5">
             <Actions>
@@ -282,6 +282,22 @@
             startingLineNumber = "320"
             endingLineNumber = "320"
             landmarkName = "-remoteNotificationsChangedNotification:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Dingo/ViewControllers/ListTicketsViewController/ListTicketsViewController.m"
+            timestampString = "444692322.569259"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "166"
+            endingLineNumber = "166"
+            landmarkName = "-viewWillAppear:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -66,14 +66,23 @@
 	//keep in mind this would be a "better" (more standard) way to check for api availability
 	//if ([[UIApplication sharedApplication] respondsToSelector:@selector(registerUserNotificationSettings:)])
 	
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8")){
+	//this is just setup once
+	if (![[AppManager sharedManager].userInfo valueForKey:@"first_run_setup_done"]) {
+		[[AppManager sharedManager].userInfo setValue:@YES forKey:@"first_run_setup_done"];
+		[[AppManager sharedManager].userInfo setValue:@YES forKey:@"allow_push_notifications"];
+	}
+	
+	if ([[[AppManager sharedManager].userInfo valueForKey:@"allow_push_notifications"] boolValue]) {
+		DLog(@"REGISTERING FOR PUSH");
 		
-		[[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
-        [[UIApplication sharedApplication] registerForRemoteNotifications];
-    }else{
-        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeBadge)];
-    }
-    
+		if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8")){
+			
+			[[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
+			[[UIApplication sharedApplication] registerForRemoteNotifications];
+		}else{
+			[[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeBadge)];
+		}
+	} else DLog(@"NOT REGISTERING FOR PUSH");
 
     [PayPalMobile initializeWithClientIdsForEnvironments:@{PayPalEnvironmentProduction :kPaypalProductionID,
                                                            PayPalEnvironmentSandbox : kPaypalSendboxID }];
@@ -137,7 +146,6 @@
 }
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-	
 	DLog();
 	
 	//should we set this to yes ? the app automatically tried to register for push and if it gets here, push is on...
