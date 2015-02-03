@@ -165,6 +165,8 @@ static const NSUInteger comfirmCellIndex = 16;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+	
+	DLog(@"self.ticket: %@", self.ticket);
    
     self.parentViewController.navigationItem.title = self.navigationItem.title;
     
@@ -295,6 +297,9 @@ static const NSUInteger comfirmCellIndex = 16;
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
+	
+	DLog(@"self.ticket: %@", self.ticket);
+	
     if (!isUploadingImage) {
         if (!isPreviewing) {
             NSLog(@"change ticket");
@@ -304,6 +309,14 @@ static const NSUInteger comfirmCellIndex = 16;
         }
     }
 }
+
+-(void)viewDidDisappear:(BOOL)animated{
+	self.ticket = nil;
+	self.event = nil;
+}
+
+
+#pragma mark -
 
 - (void)setTicket:(Ticket*)ticket event:(Event*)event {
    
@@ -1178,6 +1191,7 @@ static const NSUInteger comfirmCellIndex = 16;
 }
 
 - (IBAction)paypalChanged:(id)sender {
+	[self saveDraft];
 	
 	// Choose whichever scope-values apply in your case. See `PayPalOAuthScopes.h` for a complete list of available scope-values.
 	NSSet *scopeValues = [NSSet setWithArray:@[kPayPalOAuth2ScopeEmail]];
@@ -1248,11 +1262,6 @@ static const NSUInteger comfirmCellIndex = 16;
 	}
 }
 
--(void)viewDidDisappear:(BOOL)animated{
-    self.ticket = nil;
-    self.event = nil;
-}
-
 
 #pragma mark PayPalProfileSharingDelegate methods
 
@@ -1286,7 +1295,7 @@ static const NSUInteger comfirmCellIndex = 16;
 	ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please wait..."];
 	[loadingView show];
 	
-	NSDictionary *params = @{@"authorization_code": authorization_code};
+	NSDictionary *params = @{@"paypal_account": authorization_code};
 	[WebServiceManager updateProfile:params completion:^(id response, NSError *error) {
 		NSLog(@"updateProfile response %@", response);
 		[loadingView hide];
