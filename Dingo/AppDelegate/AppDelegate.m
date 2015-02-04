@@ -161,8 +161,11 @@
 	DLog(@"deviceToken - %@",newToken);
 	if (NSSTRING_HAS_DATA([AppManager sharedManager].userInfo[@"email"]) || [[NSUserDefaults standardUserDefaults] objectForKey:@"users_email"]) {
 		
+		DLog(@">>>>PASSED CHECK (if (NSSTRING_HAS_DATA([AppManager sharedManager].userInf...)");
 		
 		if ([[AppManager sharedManager].deviceToken length]) {
+			DLog(@">>>>PASSED CHECK (if ([[AppManager sharedManager].deviceToken length])");
+			
 			NSDictionary *params = @{ @"uid":[AppManager sharedManager].deviceToken.length > 0 ? [AppManager sharedManager].deviceToken : @"",
 									  @"brand":@"Apple",
 									  @"model": [[UIDevice currentDevice] platformString],
@@ -170,14 +173,16 @@
 									  @"app_version": [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"],
 									  @"location" : [NSString stringWithFormat:@"%f,%f", [AppManager sharedManager].currentLocation.coordinate.latitude, [AppManager sharedManager].currentLocation.coordinate.longitude ]
 									  };
+			
+			DLog(@"params: %@", params);
 			[WebServiceManager registerDevice:params completion:^(id response, NSError *error) {
-				NSLog(@"AD registerDevice response - %@", response);
-				NSLog(@"AD registerDevice error - %@", error);
+				DLog(@"AD registerDevice response - %@", response);
+				DLog(@"AD registerDevice error - %@", error);
 				
 				[[NSNotificationCenter defaultCenter] postNotificationName:@"RemoteNotificationsChanged" object:error];
 			}];
-		}
-	}
+		} else DLog(@">>>>DID NOT PASS CHECK (if ([[AppManager sharedManager].deviceToken length])");
+	} else DLog(@">>>>DID NOT PASS CHECK (if (NSSTRING_HAS_DATA([AppManager sharedManager].userInf...)");
 	
 }
 
