@@ -79,8 +79,6 @@ static const NSUInteger pushAlert =		2243;
 #pragma mark -
 
 - (void) reloadData {
-	NSLog(@"%s : %@", __PRETTY_FUNCTION__, [AppManager sharedManager].userInfo);
-	
     if ([[AppManager sharedManager].userInfo valueForKey:@"name"]) {
         self.firstNameField.text =[[AppManager sharedManager].userInfo valueForKey:@"name"];
     }
@@ -113,9 +111,9 @@ static const NSUInteger pushAlert =		2243;
     }
 	
 	//old
-    if ([[AppManager sharedManager].userInfo valueForKey:@"allow_push_notifications"]) {
-        self.pushNotificationSwitch.on =[[[AppManager sharedManager].userInfo valueForKey:@"allow_push_notifications"] boolValue];
-    }
+//    if ([[AppManager sharedManager].userInfo valueForKey:@"allow_push_notifications"]) {
+//        self.pushNotificationSwitch.on =[[[AppManager sharedManager].userInfo valueForKey:@"allow_push_notifications"] boolValue];
+//    }
 	//new
 	[self updateNotificationsSwitch];
 
@@ -161,7 +159,7 @@ static const NSUInteger pushAlert =		2243;
         [params setObject:@YES forKey:@"disconnect_fb_account"];
     }
     
-    NSLog(@"token %@", [AppManager sharedManager].token );
+    //DLog(@"token %@", [AppManager sharedManager].token );
     
     ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Saving..."];
     [loadingView show];
@@ -264,11 +262,8 @@ static const NSUInteger pushAlert =		2243;
 }
 
 - (IBAction)pushNotificationSwitchValueChanged {
-	DLog();
 	if (self.pushNotificationSwitch.on) {
-		DLog(@"PUSH SWITCH ON");
 		if (![self pushNotificationEnabledInSettings]) {
-			DLog(@"PUSH DISABLED IN SETTINGS >>> SHOW ALERT");
 			self.pushNotificationSwitch.on = NO;
 			
 			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notifications disabled" message:@"Push notification need to be enabled in Settings." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
@@ -279,8 +274,6 @@ static const NSUInteger pushAlert =		2243;
 			alert.tag = pushAlert;
 			[alert show];
 		} else {
-			DLog(@"PUSH ENABLED IN SETTINGS >>> NO NEED TO SHOW ALERT");
-			
 			[[AppManager sharedManager].userInfo setValue:@YES forKey:@"allow_push_notifications"];
 			//keep in mind this would be a "better" (more standard) way to check for api availability
 			//if ([[UIApplication sharedApplication] respondsToSelector:@selector(registerUserNotificationSettings:)])
@@ -293,7 +286,6 @@ static const NSUInteger pushAlert =		2243;
 			}
 		}
 	} else {
-		DLog(@"PUSH SWITCH OFF");
 		[[AppManager sharedManager].userInfo setValue:@NO forKey:@"allow_push_notifications"];
 		[[UIApplication sharedApplication] unregisterForRemoteNotifications];
 	}
@@ -309,19 +301,14 @@ static const NSUInteger pushAlert =		2243;
 
 - (BOOL)pushNotificationEnabledInSettings {
 	
-//	DLog(@"isRegisteredForRemoteNotifications: %i", [[UIApplication sharedApplication] isRegisteredForRemoteNotifications]);
-//	DLog(@"currentUserNotificationSettings is ON: %i", ([[UIApplication sharedApplication] currentUserNotificationSettings] != UIUserNotificationTypeNone));
-//	DLog(@"enabledRemoteNotificationTypes is ON: %i", ([[UIApplication sharedApplication] enabledRemoteNotificationTypes] != UIRemoteNotificationTypeNone));
-	
 	BOOL notificationsOn;
 	if ([[UIApplication sharedApplication] respondsToSelector:@selector(currentUserNotificationSettings)]) {
 		//ios8 and up
-		notificationsOn = ([[UIApplication sharedApplication] currentUserNotificationSettings] != UIUserNotificationTypeNone) && [[UIApplication sharedApplication] isRegisteredForRemoteNotifications];
+		notificationsOn = ([[[UIApplication sharedApplication] currentUserNotificationSettings] types] != UIUserNotificationTypeNone);
 	} else {
 		//ios7 and down
 		notificationsOn = ([[UIApplication sharedApplication] enabledRemoteNotificationTypes] != UIRemoteNotificationTypeNone);
 	}
-	DLog(@"pushNotificationEnabledInSettings: %i", notificationsOn);
 	return notificationsOn;
 }
 

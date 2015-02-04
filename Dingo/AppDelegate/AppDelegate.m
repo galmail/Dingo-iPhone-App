@@ -66,13 +66,10 @@
 	//keep in mind this would be a "better" (more standard) way to check for api availability
 	//if ([[UIApplication sharedApplication] respondsToSelector:@selector(registerUserNotificationSettings:)])
 	
-	//this is just setup once
-	if (![[AppManager sharedManager].userInfo valueForKey:@"first_run_setup_done"]) {
-		[[AppManager sharedManager].userInfo setValue:@YES forKey:@"first_run_setup_done"];
-		[[AppManager sharedManager].userInfo setValue:@YES forKey:@"allow_push_notifications"];
-	}
+	DLog(@"userInfo: %@", [AppManager sharedManager].userInfo);
+	DLog(@"allow_push_notifications: %i", [[[AppManager sharedManager].userInfo valueForKey:@"allow_push_notifications"] boolValue]);
 	
-	if ([[[AppManager sharedManager].userInfo valueForKey:@"allow_push_notifications"] boolValue]) {
+	if (![AppManager sharedManager].userInfo || [[[AppManager sharedManager].userInfo valueForKey:@"allow_push_notifications"] boolValue]) {
 		DLog(@"REGISTERING FOR PUSH");
 		
 		if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8")){
