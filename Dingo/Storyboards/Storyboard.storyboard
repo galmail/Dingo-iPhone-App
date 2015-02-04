@@ -2747,9 +2747,7 @@
                             </tableViewSection>
                         </sections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Search" image="search_icon.png" id="cb0-5d-CRH">
-                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="Search" image="search_icon.png" id="cb0-5d-CRH"/>
                     <navigationItem key="navigationItem" title="Search tickets" id="5mc-Sc-V2v"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="690"/>

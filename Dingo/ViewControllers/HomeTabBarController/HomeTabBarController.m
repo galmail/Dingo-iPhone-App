@@ -133,16 +133,36 @@ static const NSUInteger listTicketsVCIndex = 1;
 #pragma mark - Private
 
 - (void)adjustTabBar {
-	self.tabBar.tintColor = [UIColor whiteColor];
+	//[[UITabBar appearance] setTintColor:[UIColor whiteColor]];
 	
-    NSArray *items = self.tabBar.items;
-    for (UITabBarItem *item in items) {
-        UIImage *image = item.image;
-        item.image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        //image = [image imageWithColor:[DingoUISettings titleBackgroundColor]];
-        //item.selectedImage = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        //item.titlePositionAdjustment = UIOffsetMake(0, -3);
-    }
+	UITabBarItem *tabBarItem1 = [self.tabBar.items objectAtIndex:0];
+	UITabBarItem *tabBarItem2 = [self.tabBar.items objectAtIndex:1];
+	UITabBarItem *tabBarItem3 = [self.tabBar.items objectAtIndex:2];
+	UITabBarItem *tabBarItem4 = [self.tabBar.items objectAtIndex:3];
+	
+	(void)[tabBarItem1 initWithTitle:@"Home"
+							   image:[[UIImage imageNamed:@"home_icon"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
+					   selectedImage:[[UIImage imageNamed:@"Home"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+	
+	(void)[tabBarItem2 initWithTitle:@"Sell Tickets"
+							   image:[[UIImage imageNamed:@"list_tickets_icon"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
+					   selectedImage:[[UIImage imageNamed:@"Sell"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+
+	(void)[tabBarItem3 initWithTitle:@"Messages"
+							   image:[[UIImage imageNamed:@"messages_icon"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
+					   selectedImage:[[UIImage imageNamed:@"Messages"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+
+	(void)[tabBarItem4 initWithTitle:@"Search"
+							   image:[[UIImage imageNamed:@"search_icon"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
+					   selectedImage:[[UIImage imageNamed:@"Search"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+	
+	[[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:0.0f],
+														NSForegroundColorAttributeName : [UIColor whiteColor]}
+											 forState:UIControlStateNormal];
+	[[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:0.0f],
+														NSForegroundColorAttributeName : [UIColor whiteColor]}
+											 forState:UIControlStateSelected];
+	[[UITabBarItem appearance] setTitlePositionAdjustment:UIOffsetMake(0, -3)];
 }
 
 - (UITabBarItem *)messagesTabBarItem {
