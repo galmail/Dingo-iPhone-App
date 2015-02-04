@@ -29,6 +29,12 @@ static NSString* geocodeUrl = @"https://maps.googleapis.com/maps/api/geocode/jso
 static NSString* placesUrl = @"https://maps.googleapis.com/maps/api/place/autocomplete/json";
 static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/details/json";
 
+//global ivar to make sure we only see one alert
+UIAlertView *alert = nil;
+
+static const NSUInteger genericAlert = 39453;
+static const NSUInteger internetAlert = 98690;
+
 @implementation WebServiceManager
 
 + (void)imageFromUrl:(NSString *)imageURL completion:( void (^) (id response, NSError *error))handler {
@@ -1015,9 +1021,11 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
 	if ([error.domain isEqualToString:NSURLErrorDomain] && (error.code == -1009)) {
 		[WebServiceManager noInternetError];
 	} else {
+		//lets dismiss the previous alert, if it was present
+		[alert dismissWithClickedButtonIndex:-1 animated:NO];
+		
 		//we can show the user some error info
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-		[alert show];
+		[WebServiceManager genericErrorWithMessage:error];
 		
 		//or just a generic error
 		//[WebServiceManager genericError];
@@ -1026,18 +1034,48 @@ static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/d
 
 
 + (void)genericError{
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Oops massive fail, please try again later" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [alert show];
+	//lets dismiss the previous alert, if it was present and not a generic error
+	if (alert.tag != genericAlert) {
+		[alert dismissWithClickedButtonIndex:-1 animated:NO];
+		
+		alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Oops massive fail, please try again later" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+		alert.tag = genericAlert;
+		[alert show];
+	}
 }
 
 + (void)genericErrorWithMessage:(NSError *)error{
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+	//lets dismiss the previous alert, if it was present
+	[alert dismissWithClickedButtonIndex:-1 animated:NO];
+	
+    alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:[error localizedDescription] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alert show];
 }
 
 + (void)noInternetError{
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Dingo needs internet - feed me!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-	[alert show];
+	//lets dismiss the previous alert, if it was present and not internet error
+	if (alert.tag != internetAlert) {
+		[alert dismissWithClickedButtonIndex:-1 animated:NO];
+		
+		alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Dingo needs internet - feed me!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+		alert.tag = internetAlert;
+		[alert show];
+	}
+}
+
+#pragma mark - alert delegate
+
+// Called when a button is clicked. The view will be automatically dismissed after this call returns
++ (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+	DLog();
+	alert = nil;
+}
+
+// Called when we cancel a view (eg. the user clicks the Home button). This is not called when the user clicks the cancel button.
+// If not defined in the delegate, we simulate a click in the cancel button
++ (void)alertViewCancel:(UIAlertView *)alertView {
+	DLog();
+	alert = nil;
 }
 
 @end

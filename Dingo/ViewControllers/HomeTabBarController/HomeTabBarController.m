@@ -135,6 +135,7 @@ static const NSUInteger listTicketsVCIndex = 1;
 - (void)adjustTabBar {
 	//[[UITabBar appearance] setTintColor:[UIColor whiteColor]];
 	
+	//this is such a silly way to build the tab bar, but for some unknown reason to me we cannot properly set the selectedImage on storyboard and setting it on each item also did not seem to work, besides this the normal images already required the imageRenderingMode tweak so i ended up setting all the tab bar item programatically, keep this is mind if you ever want to change it!
 	UITabBarItem *tabBarItem1 = [self.tabBar.items objectAtIndex:0];
 	UITabBarItem *tabBarItem2 = [self.tabBar.items objectAtIndex:1];
 	UITabBarItem *tabBarItem3 = [self.tabBar.items objectAtIndex:2];
