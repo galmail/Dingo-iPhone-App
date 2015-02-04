@@ -155,11 +155,11 @@ static const NSUInteger commentCellIndex = 5;
     [names addObject:@""];
     
 
-	DLog(@">>>>>> fb_id: %@", [AppManager sharedManager].userInfo[@"fb_id"]);
-	
-    if ([[AppManager sharedManager].userInfo[@"fb_id"] length] > 0){
-
-	DLog(@">>>>> will open active fb session");
+	// as requested by phil i am disabling the fb calls for now, hence this if (NO)
+	if (NO){	//([[AppManager sharedManager].userInfo[@"fb_id"] length] > 0){
+		
+		DLog(@">>>>>> fb_id: %@", [AppManager sharedManager].userInfo[@"fb_id"]);
+		DLog(@">>>>> will open active fb session");
 		
         [FBSession openActiveSessionWithReadPermissions:@[@"user_friends",@"public_profile",@"email"]
                                            allowLoginUI:YES
