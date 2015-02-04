@@ -1193,6 +1193,9 @@ static const NSUInteger comfirmCellIndex = 16;
 - (IBAction)paypalChanged:(id)sender {
 	[self saveDraft];
 	
+	DLog(@"self.event.test: %i", [self.event.test boolValue]);
+	[PayPalMobile preconnectWithEnvironment:PayPalEnvironmentProduction];
+
 	// Choose whichever scope-values apply in your case. See `PayPalOAuthScopes.h` for a complete list of available scope-values.
 	NSSet *scopeValues = [NSSet setWithArray:@[kPayPalOAuth2ScopeEmail]];
 	
