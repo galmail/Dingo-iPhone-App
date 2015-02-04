@@ -316,7 +316,7 @@ static const NSUInteger pushAlert =		2243;
 	BOOL notificationsOn;
 	if ([[UIApplication sharedApplication] respondsToSelector:@selector(currentUserNotificationSettings)]) {
 		//ios8 and up
-		notificationsOn = ([[UIApplication sharedApplication] currentUserNotificationSettings] != UIUserNotificationTypeNone);
+		notificationsOn = ([[UIApplication sharedApplication] currentUserNotificationSettings] != UIUserNotificationTypeNone) && [[UIApplication sharedApplication] isRegisteredForRemoteNotifications];
 	} else {
 		//ios7 and down
 		notificationsOn = ([[UIApplication sharedApplication] enabledRemoteNotificationTypes] != UIRemoteNotificationTypeNone);

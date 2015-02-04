@@ -48,19 +48,19 @@
 - (void)updateMyTicketsViewControllerButtons {
 	NSInteger ticketsSelling = [[DataManager shared] ticketsSelling].count;
 	if (ticketsSelling > 0) {
-		self.lblSelling.text = [NSString stringWithFormat:@"Selling (%i)", ticketsSelling];
+		self.lblSelling.text = [NSString stringWithFormat:@"Selling (%li)", (long)ticketsSelling];
 	} else {
 		self.lblSelling.text = @"Selling";
 	}
 	NSInteger ticketsSold = [[DataManager shared] ticketsSold].count;
 	if (ticketsSold > 0) {
-		self.lblSold.text = [NSString stringWithFormat:@"Sold (%i)", ticketsSold];
+		self.lblSold.text = [NSString stringWithFormat:@"Sold (%li)", (long)ticketsSold];
 	} else {
 		self.lblSold.text = @"Sold";
 	}
 	NSInteger ticketsPurchased = [[DataManager shared] ticketsPurchased].count;
 	if (ticketsPurchased > 0) {
-		self.lblPurchased.text = [NSString stringWithFormat:@"Purchased (%i)", ticketsPurchased];
+		self.lblPurchased.text = [NSString stringWithFormat:@"Purchased (%li)", (long)ticketsPurchased];
 	} else {
 		self.lblPurchased.text = @"Purchased";
 	}
