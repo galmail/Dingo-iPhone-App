@@ -133,15 +133,16 @@ static const NSUInteger listTicketsVCIndex = 1;
 #pragma mark - Private
 
 - (void)adjustTabBar {
-    NSArray *items = self.tabBar.items;
-    
-    for (UITabBarItem *item in items) {
-        UIImage *image = item.image;
-        item.image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        image = [image imageWithColor:[DingoUISettings backgroundColor]];
-        item.selectedImage = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        item.titlePositionAdjustment = UIOffsetMake(0, -3);
-    }
+	self.tabBar.tintColor = [UIColor whiteColor];
+	
+//    NSArray *items = self.tabBar.items;
+//    for (UITabBarItem *item in items) {
+//        UIImage *image = item.image;
+//        item.image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+//        //image = [image imageWithColor:[DingoUISettings titleBackgroundColor]];
+//        //item.selectedImage = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+//        //item.titlePositionAdjustment = UIOffsetMake(0, -3);
+//    }
 }
 
 - (UITabBarItem *)messagesTabBarItem {

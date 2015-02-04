@@ -225,7 +225,7 @@ static const NSUInteger commentCellIndex = 5;
 
         } else {
             //Add new ticket
-            NSLog(@"Create");
+            DLog(@"Create Ticket");
             
             NSDictionary *params = @{ @"event_id" : self.event.event_id,
                                       @"price" : [self.ticket.price stringValue],
@@ -238,30 +238,39 @@ static const NSUInteger commentCellIndex = 5;
                                       @"ticket_type" : self.ticket.ticket_type
                                       };
             
-            NSLog(@"param %@", params);
-            
-            [WebServiceManager createTicket:params photos:self.photos completion:^(id response, NSError *error) {
-                if (!error ) {
-                    if (response[@"id"]) {
-                        // ticket created
-                        [loadingView hide];
-                        
-                        [AppManager sharedManager].draftTicket = nil;
-                        
-                        [self.navigationController.viewControllers[0] setSelectedIndex:0];
-                        [self.navigationController popToRootViewControllerAnimated:YES];
-                        
-                    } else {
-                         [loadingView hide];
-                        [AppManager showAlert:@"Unable to create ticket."];
-                    }
-                } else {
-                    [loadingView hide];
-                    [WebServiceManager handleError:error];
-                }
-                
-                
-            }];
+            DLog(@"param %@", params);
+			
+			//lets create a ticket without any photos and then lets upate it with
+			[WebServiceManager createTicket:params photos:nil completion:^(id response, NSError *error) {
+				if (!error ) {
+					if (response[@"id"]) {
+						// ticket created, now lets update it with the photos without a spinner
+						[loadingView hide];
+
+						DLog(@"Upload photos for ticked with id: %@", response[@"id"]);
+						[WebServiceManager updateTicket:@{@"ticket_id":response[@"id"]} photos:self.photos completion:^(id response, NSError *error) {
+							if (!error ) {
+								if (!response[@"id"]) {
+									[AppManager showAlert:@"Unable to upload photos to ticket."];
+								}
+							} else {
+								[WebServiceManager handleError:error];
+							}
+						}];
+						
+						[AppManager sharedManager].draftTicket = nil;
+						
+						[self.navigationController.viewControllers[0] setSelectedIndex:0];
+						[self.navigationController popToRootViewControllerAnimated:YES];
+					} else {
+						[loadingView hide];
+						[AppManager showAlert:@"Unable to create ticket."];
+					}
+				} else {
+					[loadingView hide];
+					[WebServiceManager handleError:error];
+				}
+			}];
         }
     }
 }
@@ -348,34 +357,40 @@ static const NSUInteger commentCellIndex = 5;
                                               @"ticket_type" : self.ticket.ticket_type
                                               };
                     
-                    [WebServiceManager createTicket:params photos:self.photos completion:^(id response, NSError *error) {
-                        if (response[@"id"]) {
-                            
-                            // ticket created
-                            [loadingView hide];
-							
-//Dont show the aler again
-//                            UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Your tickets will be listed once validated by Dingo" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-//                           
-//                            [alert show];
-
-                            [AppManager sharedManager].draftTicket = nil;
-                            [self.navigationController.viewControllers[0] setSelectedIndex:0];
-                            [self.navigationController popToRootViewControllerAnimated:YES];
-                        } else {
-                            [loadingView hide];
-                            if (error) {
-                                [WebServiceManager handleError:error];
-                            }
-                           
-                        }
-                        
-                        
-                        
-                    }];
+					//lets create a ticket without any photos and then lets upate it with
+					[WebServiceManager createTicket:params photos:nil completion:^(id response, NSError *error) {
+						if (!error ) {
+							if (response[@"id"]) {
+								// ticket created, now lets update it with the photos without a spinner
+								[loadingView hide];
+								
+								DLog(@"Upload photos for ticked with id: %@", response[@"id"]);
+								[WebServiceManager updateTicket:@{@"ticket_id":response[@"id"]} photos:self.photos completion:^(id response, NSError *error) {
+									if (!error ) {
+										if (!response[@"id"]) {
+											[AppManager showAlert:@"Unable to upload photos to ticket."];
+										}
+									} else {
+										[WebServiceManager handleError:error];
+									}
+								}];
+								
+								[AppManager sharedManager].draftTicket = nil;
+								
+								[self.navigationController.viewControllers[0] setSelectedIndex:0];
+								[self.navigationController popToRootViewControllerAnimated:YES];
+							} else {
+								[loadingView hide];
+								[AppManager showAlert:@"Unable to create ticket."];
+							}
+						} else {
+							[loadingView hide];
+							[WebServiceManager handleError:error];
+						}
+					}];
                 }else{
                     [loadingView hide];
-                    [WebServiceManager genericError];
+                    [WebServiceManager handleError:error];
                 }
             } else {
                 [loadingView hide];
