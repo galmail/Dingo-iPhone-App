@@ -158,7 +158,7 @@
 	
 	[AppManager sharedManager].deviceToken = newToken;
 	
-	NSLog(@"AD deviceToken - %@",newToken);
+	DLog(@"deviceToken - %@",newToken);
 	if (NSSTRING_HAS_DATA([AppManager sharedManager].userInfo[@"email"]) || [[NSUserDefaults standardUserDefaults] objectForKey:@"users_email"]) {
 		
 		

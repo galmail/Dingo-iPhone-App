@@ -267,6 +267,7 @@ static const NSUInteger pushAlert =		2243;
 
 	if (self.pushNotificationSwitch.on) {
 		if (![self pushNotificationEnabledInSettings]) {
+			DLog(@"PUSH DISABLED IN SETTINGS >>> SHOW ALERT");
 			self.pushNotificationSwitch.on = NO;
 			
 			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notifications disabled" message:@"Push notification need to be enabled in Settings." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
@@ -277,6 +278,8 @@ static const NSUInteger pushAlert =		2243;
 			alert.tag = pushAlert;
 			[alert show];
 		} else {
+			DLog(@"PUSH ENABLED IN SETTINGS >>> NO NEED TO SHOW ALERT");
+			
 			[[AppManager sharedManager].userInfo setValue:@YES forKey:@"allow_push_notifications"];
 			//keep in mind this would be a "better" (more standard) way to check for api availability
 			//if ([[UIApplication sharedApplication] respondsToSelector:@selector(registerUserNotificationSettings:)])
@@ -309,6 +312,7 @@ static const NSUInteger pushAlert =		2243;
 	} else {
 		notificationsOn = ([[UIApplication sharedApplication] enabledRemoteNotificationTypes] != UIRemoteNotificationTypeNone);
 	}
+	DLog(@"pushNotificationEnabledInSettings: %i", notificationsOn);
 	return notificationsOn;
 }
 
