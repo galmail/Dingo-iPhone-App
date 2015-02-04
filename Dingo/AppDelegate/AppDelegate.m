@@ -159,6 +159,10 @@
 	[AppManager sharedManager].deviceToken = newToken;
 	
 	DLog(@"deviceToken - %@",newToken);
+	DLog(@"NSSTRING_HAS_DATA - %i", NSSTRING_HAS_DATA([AppManager sharedManager].userInfo[@"email"]));
+	DLog(@"[[NSUserDefaults standardUserDefaults] objectForKey:@\"users_email\"] - %@", [[NSUserDefaults standardUserDefaults] objectForKey:@"users_email"]);
+	
+	
 	if (NSSTRING_HAS_DATA([AppManager sharedManager].userInfo[@"email"]) || [[NSUserDefaults standardUserDefaults] objectForKey:@"users_email"]) {
 		
 		DLog(@">>>>PASSED CHECK (if (NSSTRING_HAS_DATA([AppManager sharedManager].userInf...)");
