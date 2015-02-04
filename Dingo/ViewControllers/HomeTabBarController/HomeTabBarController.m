@@ -135,14 +135,14 @@ static const NSUInteger listTicketsVCIndex = 1;
 - (void)adjustTabBar {
 	self.tabBar.tintColor = [UIColor whiteColor];
 	
-//    NSArray *items = self.tabBar.items;
-//    for (UITabBarItem *item in items) {
-//        UIImage *image = item.image;
-//        item.image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-//        //image = [image imageWithColor:[DingoUISettings titleBackgroundColor]];
-//        //item.selectedImage = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-//        //item.titlePositionAdjustment = UIOffsetMake(0, -3);
-//    }
+    NSArray *items = self.tabBar.items;
+    for (UITabBarItem *item in items) {
+        UIImage *image = item.image;
+        item.image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        //image = [image imageWithColor:[DingoUISettings titleBackgroundColor]];
+        //item.selectedImage = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        //item.titlePositionAdjustment = UIOffsetMake(0, -3);
+    }
 }
 
 - (UITabBarItem *)messagesTabBarItem {

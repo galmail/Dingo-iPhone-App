@@ -753,26 +753,31 @@ static const NSUInteger comfirmCellIndex = 16;
         if (self.priceField.text.length > 0) {
             
 			float priceFieldValue= [[self.priceField.text stringByReplacingOccurrencesOfString:@"£" withString:@""] floatValue];
-            float facePriceValue=[[self.faceValueField.text stringByReplacingOccurrencesOfString:@"£" withString:@""] floatValue];
-            
-            if ((priceFieldValue > facePriceValue) &&  self.faceValueField.text.length > 0) {
-                [self showFaceValueAlertMessage];
-            } else{
-				self.ticket.face_value_per_ticket = @([self.faceValueField.text floatValue]); //?
-                self.ticket.price = @([self.priceField.text floatValue]);
+			
+			if (priceFieldValue > 0) {
+				float facePriceValue=[[self.faceValueField.text stringByReplacingOccurrencesOfString:@"£" withString:@""] floatValue];
 				
-				//new
-				self.priceField.text = [NSString stringWithCurrencyFormattingForPrice:self.ticket.price];
-				
-				self.event.fromPrice = @([self.priceField.text floatValue]);
-                lblPrice.textColor = [UIColor blackColor];
-                self.changed = YES;
-				
-				if (![self.priceField.text hasPrefix:@"£"])
-                    [self.priceField setText:[NSString stringWithFormat:@"£%@",self.priceField.text]];
-                
-                    }
-        }    }
+				if ((priceFieldValue > facePriceValue) &&  self.faceValueField.text.length > 0) {
+					[self showFaceValueAlertMessage];
+				} else{
+					self.ticket.face_value_per_ticket = @([self.faceValueField.text floatValue]); //?
+					self.ticket.price = @([self.priceField.text floatValue]);
+					
+					//new
+					self.priceField.text = [NSString stringWithCurrencyFormattingForPrice:self.ticket.price];
+					
+					self.event.fromPrice = @([self.priceField.text floatValue]);
+					lblPrice.textColor = [UIColor blackColor];
+					self.changed = YES;
+					
+					if (![self.priceField.text hasPrefix:@"£"])
+						[self.priceField setText:[NSString stringWithFormat:@"£%@",self.priceField.text]];
+				}
+			} else {
+				[self showPriceAlertMessage];
+			}
+        }
+	}
 
     if (textField == self.faceValueField) {
         if (self.faceValueField.text.length > 0) {
@@ -781,29 +786,36 @@ static const NSUInteger comfirmCellIndex = 16;
             
             float priceFieldValue= [[self.priceField.text stringByReplacingOccurrencesOfString:@"£" withString:@""] floatValue];
             float facePriceValue=[[self.faceValueField.text stringByReplacingOccurrencesOfString:@"£" withString:@""] floatValue];
-            
-            if ((priceFieldValue > facePriceValue) ) {
-                [self showFaceValueAlertMessage];
-            } else{
-                self.ticket.face_value_per_ticket = @([self.faceValueField.text floatValue]);
-				
-				//new
-				self.faceValueField.text = [NSString stringWithCurrencyFormattingForPrice:self.ticket.face_value_per_ticket];
-				
-				lblFaceValue.textColor = [UIColor blackColor];
-				
-                if (![self.faceValueField.text hasPrefix:@"£"])
-					[self.faceValueField setText:[NSString stringWithFormat:@"£%@",self.faceValueField.text]];
-                
-            }
+			if (facePriceValue > 0) {
+				if ((priceFieldValue > facePriceValue) ) {
+					[self showFaceValueAlertMessage];
+				} else{
+					self.ticket.face_value_per_ticket = @([self.faceValueField.text floatValue]);
+					
+					//new
+					self.faceValueField.text = [NSString stringWithCurrencyFormattingForPrice:self.ticket.face_value_per_ticket];
+					
+					lblFaceValue.textColor = [UIColor blackColor];
+					
+					if (![self.faceValueField.text hasPrefix:@"£"])
+						[self.faceValueField setText:[NSString stringWithFormat:@"£%@",self.faceValueField.text]];
+				}
+			} else {
+				[self showPriceAlertMessage];
+			}
         }
     }
 
     if (textField == self.ticketsCountField) {
         if (self.ticketsCountField.text.length > 0) {
-            self.ticket.number_of_tickets = @([self.ticketsCountField.text intValue]);
-            lblTicketCount.textColor = [UIColor blackColor];
-            self.changed = YES;
+			int numberOfTickets = [self.ticketsCountField.text intValue];
+			if (numberOfTickets > 0) {
+				self.ticket.number_of_tickets = @(numberOfTickets);
+				lblTicketCount.textColor = [UIColor blackColor];
+				self.changed = YES;
+			} else {
+				[self showTicketNumberMessage];
+			}
         }
     }
     
@@ -813,6 +825,19 @@ static const NSUInteger comfirmCellIndex = 16;
             self.changed = YES;
         }
     }
+}
+
+- (void)showTicketNumberMessage{
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Must sell at least one ticket." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+	[alert show];
+	[self.ticketsCountField setText:@""];
+}
+
+- (void)showPriceAlertMessage{
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"All tickets must be listed for at least 1p." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+	[alert show];
+	[self.priceField setText:@""];
+	[self.faceValueField setText:@""];
 }
 
 - (void)showFaceValueAlertMessage{
