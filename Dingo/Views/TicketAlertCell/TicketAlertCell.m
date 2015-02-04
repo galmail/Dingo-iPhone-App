@@ -53,9 +53,9 @@
             UIView *backgroundCoverDefaultControl = [[UIView alloc] initWithFrame:CGRectMake(0,0, 64, 33)];
             [backgroundCoverDefaultControl setBackgroundColor:[UIColor whiteColor]];//assuming your view has a white BG
             [[subview.subviews objectAtIndex:0] addSubview:backgroundCoverDefaultControl];
-            subview.backgroundColor = [UIColor colorWithRed:220. / 255
-                                                      green:55. / 255
-                                                       blue:55. / 255
+            subview.backgroundColor = [UIColor colorWithRed:200. / 255
+                                                      green:200. / 255
+                                                       blue:200. / 255
                                                       alpha:1];
         }
         //the rest handles ios7

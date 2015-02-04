@@ -15,6 +15,5 @@
 @interface ManageListsViewController : UITableViewController
 
 @property (nonatomic, assign) id<ManageListsViewControllerDelegate> delegate;
-- (void)setTickets:(NSArray*)tickets;
 
 @end

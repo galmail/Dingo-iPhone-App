@@ -80,19 +80,6 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 	ManageListsViewController *vc = [segue destinationViewController];
 	vc.title = segue.identifier;
-	if ([segue.identifier isEqualToString:@"Selling"]) {
-		vc.delegate = self;
-		vc.tickets = [[DataManager shared] ticketsSelling];
-		return;
-	}
-	if ([segue.identifier isEqualToString:@"Sold"]) {
-		vc.tickets = [[DataManager shared] ticketsSold];
-		return;
-	}
-	if ([segue.identifier isEqualToString:@"Purchased"]) {
-		vc.tickets = [[DataManager shared] ticketsPurchased];
-		return;
-	}
 }
 
 

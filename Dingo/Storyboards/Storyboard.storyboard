@@ -2082,7 +2082,6 @@
                             <outlet property="delegate" destination="NDK-Xp-Bqe" id="G9Z-QY-AXI"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Home" image="HomeIcon.png" id="zed-Gj-lia"/>
                     <navigationItem key="navigationItem" title="Selling" id="Rbd-cc-6ls">
                         <barButtonItem key="leftBarButtonItem" image="nav_back_icon.png" id="M1W-Zw-xJU" userLabel="back">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

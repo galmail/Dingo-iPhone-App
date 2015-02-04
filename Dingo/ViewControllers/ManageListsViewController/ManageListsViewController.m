@@ -24,8 +24,16 @@
 
 @implementation ManageListsViewController
 
-- (void)setTickets:(NSArray*)tickets {
-	self.arraTickets = [self sortEvents:tickets];
+- (void)loadTickets {
+	if ([self.title isEqualToString:@"Selling"]) {
+		self.arraTickets = [self sortEvents:[[DataManager shared] ticketsSelling]];
+	}
+	if ([self.title isEqualToString:@"Sold"]) {
+		self.arraTickets = [self sortEvents:[[DataManager shared] ticketsSold]];
+	}
+	if ([self.title isEqualToString:@"Purchased"]) {
+		self.arraTickets = [self sortEvents:[[DataManager shared] ticketsPurchased]];
+	}
 }
 
 #pragma amrk - UIViewController
@@ -45,7 +53,13 @@
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
 	
+	[self loadTickets];
+	
 	if (self.arraTickets.count == 0) {
+		UIView *bg = [[UIView alloc] initWithFrame:self.view.bounds];
+		bg.backgroundColor = [UIColor whiteColor];
+		self.view = bg;
+		
 		UILabel *lblNoTickets = [[UILabel alloc] initWithFrame:CGRectMake(30, 100, 260, 60)];
 		
 		if ([self.title isEqualToString:@"Selling"]) {
