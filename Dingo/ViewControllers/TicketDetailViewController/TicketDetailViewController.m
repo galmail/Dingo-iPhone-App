@@ -155,8 +155,12 @@ static const NSUInteger commentCellIndex = 5;
     [names addObject:@""];
     
 
+	DLog(@">>>>>> fb_id: %@", [AppManager sharedManager].userInfo[@"fb_id"]);
+	
     if ([[AppManager sharedManager].userInfo[@"fb_id"] length] > 0){
 
+	DLog(@">>>>> will open active fb session");
+		
         [FBSession openActiveSessionWithReadPermissions:@[@"user_friends",@"public_profile",@"email"]
                                            allowLoginUI:YES
                                       completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
@@ -165,11 +169,13 @@ static const NSUInteger commentCellIndex = 5;
                                               [AppManager showAlert:[error localizedDescription]];
                                               
                                           } else {
+											  DLog(@">>>>> state: %i", state);
                                               if (state == FBSessionStateOpen) {
-                                                  
+												  
+												  DLog(@">>>>> get fb friends");
                                                   [self getCurrentUserFriends];
 
-                                              }
+											  } else DLog(@">>>>> dont get fb friends");
                                           }
                                       }];
     }
@@ -205,7 +211,7 @@ static const NSUInteger commentCellIndex = 5;
 }
 
 - (void)getCurrentUserFriends{
-    
+	DLog();
     [FBRequestConnection startWithGraphPath:@"/me/friends"
                                  parameters:nil
                                  HTTPMethod:@"GET"
@@ -217,7 +223,7 @@ static const NSUInteger commentCellIndex = 5;
                               /* handle the result */
                               
                               if (result != nil) {
-//                                  NSLog(@"result %@", result);
+								  DLog(@"result %@", result);
                                   
                                   if ([result isKindOfClass:[NSDictionary class]]) {
                                       NSDictionary *dict = result;
@@ -230,7 +236,7 @@ static const NSUInteger commentCellIndex = 5;
                                       
                                       [self getTicketOwnerFriends];
                                   }
-                              }
+							  } else DLog(@"error: %@", error.localizedDescription);
                           }];
     
 }
