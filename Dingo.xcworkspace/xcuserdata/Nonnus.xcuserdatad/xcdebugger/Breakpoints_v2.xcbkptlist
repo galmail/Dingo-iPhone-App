@@ -228,11 +228,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "Yes"
             filePath = "Dingo/AppDelegate/AppDelegate.m"
-            timestampString = "444692213.675663"
+            timestampString = "444748927.994906"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "231"
-            endingLineNumber = "231"
+            startingLineNumber = "235"
+            endingLineNumber = "235"
             landmarkName = "@implementation AppDelegate"
             landmarkType = "3">
             <Actions>

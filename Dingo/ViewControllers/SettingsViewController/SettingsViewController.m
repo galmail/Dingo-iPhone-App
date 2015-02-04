@@ -264,8 +264,9 @@ static const NSUInteger pushAlert =		2243;
 }
 
 - (IBAction)pushNotificationSwitchValueChanged {
-
+	DLog();
 	if (self.pushNotificationSwitch.on) {
+		DLog(@"PUSH SWITCH ON");
 		if (![self pushNotificationEnabledInSettings]) {
 			DLog(@"PUSH DISABLED IN SETTINGS >>> SHOW ALERT");
 			self.pushNotificationSwitch.on = NO;
@@ -292,6 +293,7 @@ static const NSUInteger pushAlert =		2243;
 			}
 		}
 	} else {
+		DLog(@"PUSH SWITCH OFF");
 		[[AppManager sharedManager].userInfo setValue:@NO forKey:@"allow_push_notifications"];
 		[[UIApplication sharedApplication] unregisterForRemoteNotifications];
 	}
@@ -306,10 +308,17 @@ static const NSUInteger pushAlert =		2243;
 #pragma mark push notifications stuff
 
 - (BOOL)pushNotificationEnabledInSettings {
+	
+//	DLog(@"isRegisteredForRemoteNotifications: %i", [[UIApplication sharedApplication] isRegisteredForRemoteNotifications]);
+//	DLog(@"currentUserNotificationSettings is ON: %i", ([[UIApplication sharedApplication] currentUserNotificationSettings] != UIUserNotificationTypeNone));
+//	DLog(@"enabledRemoteNotificationTypes is ON: %i", ([[UIApplication sharedApplication] enabledRemoteNotificationTypes] != UIRemoteNotificationTypeNone));
+	
 	BOOL notificationsOn;
-	if ([[UIApplication sharedApplication] respondsToSelector:@selector(isRegisteredForRemoteNotifications)]) {
-		notificationsOn = [[UIApplication sharedApplication] isRegisteredForRemoteNotifications];
+	if ([[UIApplication sharedApplication] respondsToSelector:@selector(currentUserNotificationSettings)]) {
+		//ios8 and up
+		notificationsOn = ([[UIApplication sharedApplication] currentUserNotificationSettings] != UIUserNotificationTypeNone);
 	} else {
+		//ios7 and down
 		notificationsOn = ([[UIApplication sharedApplication] enabledRemoteNotificationTypes] != UIRemoteNotificationTypeNone);
 	}
 	DLog(@"pushNotificationEnabledInSettings: %i", notificationsOn);
@@ -317,6 +326,8 @@ static const NSUInteger pushAlert =		2243;
 }
 
 - (void)updateNotificationsSwitch {
+	
+	
 	BOOL notificationsOn = [self pushNotificationEnabledInSettings];
 	self.pushNotificationSwitch.on = [[[AppManager sharedManager].userInfo valueForKey:@"allow_push_notifications"] boolValue] && notificationsOn;
 }
