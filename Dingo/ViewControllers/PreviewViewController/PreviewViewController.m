@@ -251,7 +251,7 @@ static const NSUInteger commentCellIndex = 5;
 						[WebServiceManager updateTicket:@{@"ticket_id":response[@"id"]} photos:self.photos completion:^(id response, NSError *error) {
 							if (!error ) {
 								if (!response[@"id"]) {
-									[AppManager showAlert:@"Unable to upload photos to ticket."];
+									[AppManager showAlert:@"Unable to upload photos for your listing. Please add later."];
 								}
 							} else {
 								[WebServiceManager handleError:error];

@@ -34,6 +34,7 @@ UIAlertView *alert = nil;
 
 static const NSUInteger genericAlert = 39453;
 static const NSUInteger internetAlert = 98690;
+static const NSUInteger messageAlert = 6654;
 
 @implementation WebServiceManager
 
@@ -212,11 +213,11 @@ static const NSUInteger internetAlert = 98690;
                                                                                 };
                                                       
                                                       if (update) {
-                                                          NSLog(@"update");
+                                                          DLog(@"updateProfile: %@", params);
                                                           
                                                           [WebServiceManager updateProfile:params completion:^(id response, NSError *error) {
                                                               if (response) {
-																  NSLog(@"update Profile response: %@", response);
+																  DLog(@"update Profile response: %@", response);
                                                                   if (response[@"authentication_token"] ) {
                                                                       
                                                                   
@@ -394,6 +395,8 @@ static const NSUInteger internetAlert = 98690;
 + (void)events:(NSDictionary *)params completion:( void (^) (id response, NSError *error))handler {
     
     NSMutableURLRequest *request = [self requestForGetMethod:@"events" withParams:[params urlEncodedString]];
+	DLog(@"allHTTPHeaderFields: %@", [request allHTTPHeaderFields]);
+	
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
         NSURLResponse* response = nil;
@@ -1021,9 +1024,6 @@ static const NSUInteger internetAlert = 98690;
 	if ([error.domain isEqualToString:NSURLErrorDomain] && (error.code == -1009)) {
 		[WebServiceManager noInternetError];
 	} else {
-		//lets dismiss the previous alert, if it was present
-		[alert dismissWithClickedButtonIndex:-1 animated:NO];
-		
 		//we can show the user some error info
 		[WebServiceManager genericErrorWithMessage:error];
 		
@@ -1046,10 +1046,16 @@ static const NSUInteger internetAlert = 98690;
 
 + (void)genericErrorWithMessage:(NSError *)error{
 	//lets dismiss the previous alert, if it was present
-	[alert dismissWithClickedButtonIndex:-1 animated:NO];
-	
-    alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:[error localizedDescription] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [alert show];
+	if (alert.tag != messageAlert) {
+		[alert dismissWithClickedButtonIndex:-1 animated:NO];
+		
+		alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:[error localizedDescription] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+		alert.tag = messageAlert;
+		[alert show];
+	} else {
+		//lets try to be fancy
+		alert.message = error.localizedDescription;
+	}
 }
 
 + (void)noInternetError{

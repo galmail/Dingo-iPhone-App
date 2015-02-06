@@ -135,6 +135,7 @@
 	
 	NSDictionary *params = @{ @"id" : self.ticket.ticket_id};
 	
+	DLog(@"params: %@", params);
 	[WebServiceManager tickets:params completion:^(id response, NSError *error) {
 		NSLog(@"CVC tickets response %@", response);
 		

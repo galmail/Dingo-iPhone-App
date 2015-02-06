@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "3F10DDD419388E6F002D3B43"
                BuildableName = "Dingo.app"
-               BlueprintName = "Dingo.temp_caseinsensitive_rename.temp_caseinsensitive_rename"
+               BlueprintName = "Dingo"
                ReferencedContainer = "container:Dingo.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -34,7 +34,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3F10DDD419388E6F002D3B43"
             BuildableName = "Dingo.app"
-            BlueprintName = "Dingo.temp_caseinsensitive_rename.temp_caseinsensitive_rename"
+            BlueprintName = "Dingo"
             ReferencedContainer = "container:Dingo.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -53,7 +53,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3F10DDD419388E6F002D3B43"
             BuildableName = "Dingo.app"
-            BlueprintName = "Dingo.temp_caseinsensitive_rename.temp_caseinsensitive_rename"
+            BlueprintName = "Dingo"
             ReferencedContainer = "container:Dingo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -71,7 +71,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3F10DDD419388E6F002D3B43"
             BuildableName = "Dingo.app"
-            BlueprintName = "Dingo.temp_caseinsensitive_rename.temp_caseinsensitive_rename"
+            BlueprintName = "Dingo"
             ReferencedContainer = "container:Dingo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

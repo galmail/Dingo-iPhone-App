@@ -2417,9 +2417,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		3F10DDD419388E6F002D3B43 /* Dingo.temp_caseinsensitive_rename.temp_caseinsensitive_rename */ = {
+		3F10DDD419388E6F002D3B43 /* Dingo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3F10DE0119388E6F002D3B43 /* Build configuration list for PBXNativeTarget "Dingo.temp_caseinsensitive_rename.temp_caseinsensitive_rename" */;
+			buildConfigurationList = 3F10DE0119388E6F002D3B43 /* Build configuration list for PBXNativeTarget "Dingo" */;
 			buildPhases = (
 				C030EA83B63E4C78A95D8978 /* Check Pods Manifest.lock */,
 				3F10DDD119388E6F002D3B43 /* Sources */,
@@ -2431,7 +2431,7 @@
 			);
 			dependencies = (
 			);
-			name = Dingo.temp_caseinsensitive_rename.temp_caseinsensitive_rename;
+			name = Dingo;
 			productName = Dingo;
 			productReference = 3F10DDD519388E6F002D3B43 /* Dingo.app */;
 			productType = "com.apple.product-type.application";
@@ -2446,7 +2446,7 @@
 				ORGANIZATIONNAME = Dingo;
 				TargetAttributes = {
 					3F10DDD419388E6F002D3B43 = {
-						DevelopmentTeam = 4CD8YXV564;
+						DevelopmentTeam = KF7AL49U88;
 					};
 				};
 			};
@@ -2493,7 +2493,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				3F10DDD419388E6F002D3B43 /* Dingo.temp_caseinsensitive_rename.temp_caseinsensitive_rename */,
+				3F10DDD419388E6F002D3B43 /* Dingo */,
 			);
 		};
 /* End PBXProject section */
@@ -3152,7 +3152,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Nuno Pereira (4QHQK7K4L9)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -3170,6 +3170,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "6e099d13-4afb-4c77-802d-a96d9eb7e0d7";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -3191,7 +3192,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -3202,6 +3203,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PROVISIONING_PROFILE = "a8966e6c-389c-4c5b-81d0-538e2d26d98a";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -3214,8 +3216,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_NS_ASSERTIONS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3243,7 +3243,6 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = Dingo;
-				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3255,8 +3254,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_NS_ASSERTIONS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3284,7 +3281,6 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = Dingo;
-				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3302,7 +3298,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3F10DE0119388E6F002D3B43 /* Build configuration list for PBXNativeTarget "Dingo.temp_caseinsensitive_rename.temp_caseinsensitive_rename" */ = {
+		3F10DE0119388E6F002D3B43 /* Build configuration list for PBXNativeTarget "Dingo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3F10DE0219388E6F002D3B43 /* Debug */,

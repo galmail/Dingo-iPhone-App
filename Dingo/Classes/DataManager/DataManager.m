@@ -92,7 +92,7 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     }
 
 	[WebServiceManager events:params completion:^(id response, NSError *error) {
-        
+		//DLog(@"DM events: %@", response);
         if (response[@"events"]) {
             NSArray *events = response[@"events"];
             
