@@ -239,10 +239,10 @@
     viewNotification=[[UIView alloc] initWithFrame:CGRectMake(0,-64, screenSize.width, 64)];
     [viewNotification setBackgroundColor:[UIColor colorWithRed:48.f/255.0f green:73.0f/255.0f blue:80.0f/255.0f alpha:1.0f]];
 	
-    //UIButton *btnCross=[UIButton buttonWithType:UIButtonTypeCustom];
-    //[btnCross setFrame:CGRectMake(screenSize.width-45, 22, 20, 20)];
-    //[btnCross setImage:[UIImage imageNamed:@"cross.png"]  forState:UIControlStateNormal];
-    //[btnCross addTarget:self action:@selector(removeNotificationView) forControlEvents:UIControlEventTouchUpInside];
+    UIButton *btnCross=[UIButton buttonWithType:UIButtonTypeCustom];
+    [btnCross setFrame:CGRectMake(screenSize.width-45, 22, 30, 30)];
+    [btnCross setImage:[UIImage imageNamed:@"cross.png"]  forState:UIControlStateNormal];
+    [btnCross addTarget:self action:@selector(removeNotificationView) forControlEvents:UIControlEventTouchUpInside];
     
     UIImageView *imageViewIcon=[[UIImageView alloc] initWithFrame:CGRectMake(10, 9.5, 45, 45)];
     [imageViewIcon setImage:[UIImage imageNamed:@"placeholder_avatar2.jpg"]];
@@ -265,7 +265,7 @@
     [viewNotification addSubview:lblMessageText];
     
     
-    //[viewNotification addSubview:btnCross];
+    [viewNotification addSubview:btnCross];
     
     
     

@@ -4,6 +4,11 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="SourceSansPro-Regular.otf">
+            <string>SourceSansPro-Regular</string>
+        </mutableArray>
+    </customFonts>
     <scenes>
         <!--Dingo Navigation Controller-->
         <scene sceneID="Z94-yg-9rg">
@@ -1096,57 +1101,54 @@
             <objects>
                 <viewController storyboardIdentifier="LoginView" id="1lZ-5W-lRB" customClass="LoginViewController" sceneMemberID="viewController">
                     <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="m2l-X7-fHn">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blueBG.png" id="tC2-Vk-7SE">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Loginpw.png" id="tC2-Vk-7SE">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dingo_logo.png" id="eSF-II-zVA" userLabel="Logo">
-                                <rect key="frame" x="139" y="55" width="43" height="50"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We'll never post anything without your permission." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Lnv-If-vBX" userLabel="fb_description">
+                                <rect key="frame" x="5" y="329" width="311" height="53"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="7LE-Jv-vSi" userLabel="fb_login_button">
-                                <rect key="frame" x="25" y="150" width="270" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="btnFBLogin.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="btnFBLoginTap:" destination="1lZ-5W-lRB" eventType="touchUpInside" id="EeV-Ck-tBv"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There will be no evidence of Dingo on your Facebook unless you decide to share something with your friends" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Lnv-If-vBX" userLabel="fb_description">
-                                <rect key="frame" x="25" y="206" width="270" height="53"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
-                                <color key="textColor" red="0.1333333333" green="0.40000000000000002" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="13"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="or_icon.png" id="pcY-wv-FSo" userLabel="or_icon">
-                                <rect key="frame" x="138" y="284" width="44" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="JHs-st-1bz" userLabel="guest_login_button" customClass="DingoButton">
-                                <rect key="frame" x="36" y="361" width="248" height="35"/>
+                                <rect key="frame" x="49" y="457" width="222" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.23921568630000001" green="0.56470588239999997" blue="0.67450980390000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="tintColor" red="0.1960784314" green="0.3921568627" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" image="btnGuest.png">
+                                <state key="normal" image="btnGuestpw.png">
                                     <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="btnGuestTap:" destination="1lZ-5W-lRB" eventType="touchUpInside" id="Cg6-aT-gvy"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="7LE-Jv-vSi" userLabel="fb_login_button">
+                                <rect key="frame" x="49" y="302" width="222" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="btnFBLoginpw.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnFBLoginTap:" destination="1lZ-5W-lRB" eventType="touchUpInside" id="EeV-Ck-tBv"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="or_icon.png" id="pcY-wv-FSo" userLabel="or_icon">
+                                <rect key="frame" x="138" y="389" width="44" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.2470588235" green="0.59999999999999998" blue="0.73333333329999995" alpha="1" colorSpace="calibratedRGB"/>
                     </scrollView>
                     <navigationItem key="navigationItem" title="Dingo profile" id="tT3-vd-E5d"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="scrollView" destination="m2l-X7-fHn" id="fDp-vS-shP"/>
@@ -4476,6 +4478,7 @@
         <image name="HomeIcon.png" width="28" height="26"/>
         <image name="Hurray.png" width="146" height="17"/>
         <image name="ListTicketsIcon.png" width="46" height="33"/>
+        <image name="Loginpw.png" width="640" height="1096"/>
         <image name="MyTicketsCellBackground" width="320" height="48"/>
         <image name="PayPalBtn.png" width="226" height="46"/>
         <image name="SellBar" width="640" height="71"/>
@@ -4488,8 +4491,8 @@
         <image name="blueBG.png" width="320" height="568"/>
         <image name="btnDeleteAlert.png" width="248" height="40"/>
         <image name="btnDots.png" width="33" height="10"/>
-        <image name="btnFBLogin.png" width="279" height="39"/>
-        <image name="btnGuest.png" width="248" height="35"/>
+        <image name="btnFBLoginpw.png" width="451" height="91"/>
+        <image name="btnGuestpw.png" width="451" height="85"/>
         <image name="btnNavBarAdd.png" width="17" height="18"/>
         <image name="btnPrivacyPolicy.png" width="320" height="48"/>
         <image name="btnSend.png" width="83" height="30"/>
@@ -4497,7 +4500,6 @@
         <image name="checkout.png" width="58" height="56"/>
         <image name="concerts.png" width="140" height="100"/>
         <image name="contact_us_icon.png" width="30" height="30"/>
-        <image name="dingo_logo.png" width="43" height="50"/>
         <image name="emptyTicketAlerts.png" width="285" height="209"/>
         <image name="faq_icon.png" width="25" height="27"/>
         <image name="faq_icon_gray.png" width="50" height="50"/>
