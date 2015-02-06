@@ -7,7 +7,7 @@
 //
 
 #import "SideMenuViewController.h"
-
+#import "WebServiceManager.h"
 #import <MessageUI/MessageUI.h>
 #import <Social/Social.h>
 #import "ECSlidingViewController.h"
@@ -15,7 +15,6 @@
 
 static const CGFloat cellHeight = 58;
 static const NSUInteger cellsCount = 6;
-
 static const NSUInteger contactUsRowIndex = 6;
 
 static NSString * const supportEmail = @"info@dingoapp.co.uk";
@@ -98,9 +97,35 @@ static NSString * const supportEmail = @"info@dingoapp.co.uk";
     
     activityController.excludedActivityTypes = @[UIActivityTypeAssignToContact, UIActivityTypePrint, UIActivityTypeAddToReadingList, UIActivityTypeAirDrop, UIActivityTypeCopyToPasteboard];
     
-   [self presentViewController:activityController animated:YES completion:nil];
+    [activityController setCompletionHandler:^(NSString *activityType, BOOL completed) {
+        
+        NSString *shareType = @"I shared Dingo";
+        
+        if([activityType isEqualToString: UIActivityTypeMail] || [activityType isEqualToString: UIActivityTypeMessage]){
+            [self.slidingViewController resetTopViewWithAnimations:nil onComplete:nil];
+            //[AppManager showAlert:@"Offer Sent!"];
+        }
+        if ([activityType isEqualToString: UIActivityTypeMail])  {
+            shareType = @"I shared Dingo by email";
+        }
+        if ([activityType isEqualToString: UIActivityTypeMessage])  {
+            shareType = @"I shared Dingo by text";
+        }
+        if ([activityType isEqualToString: UIActivityTypePostToTwitter])  {
+            shareType = @"I shared Dingo by twitter";
+        }
+        if ([activityType isEqualToString: UIActivityTypePostToFacebook])  {
+            shareType = @"I shared Dingo by FB";
+        }
+        
+        if(completed){
+            NSDictionary *params = @{@"receiver_id" : @"32", @"content" : shareType, @"visible" : @"false"};
+            [WebServiceManager sendMessage:params completion:^(id response, NSError *error) {}];
+        }
+        
+    }];
     
-
+   [self presentViewController:activityController animated:YES completion:nil];
 }
 
 

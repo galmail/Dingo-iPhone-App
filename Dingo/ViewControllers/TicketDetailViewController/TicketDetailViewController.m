@@ -22,6 +22,7 @@
 #import "ImagesViewController.h"
 #import "NewOfferViewController.h"
 #import "CheckoutViewController.h"
+#import "WebServiceManager.h"
 
 #import "NSString+DingoFormatting.h"
 
@@ -548,6 +549,30 @@ static const NSUInteger commentCellIndex = 5;
     
     UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:@[text] applicationActivities:nil];
     activityController.excludedActivityTypes = @[UIActivityTypeAssignToContact, UIActivityTypePrint, UIActivityTypeAddToReadingList, UIActivityTypeAirDrop, UIActivityTypeCopyToPasteboard];
+    
+    [activityController setCompletionHandler:^(NSString *activityType, BOOL completed) {
+        
+        NSString *shareType = @"I shared a listing";
+
+        if ([activityType isEqualToString: UIActivityTypeMail])  {
+            shareType = @"I shared a listing by email";
+        }
+        if ([activityType isEqualToString: UIActivityTypeMessage])  {
+            shareType = @"I shared a listing by text";
+        }
+        if ([activityType isEqualToString: UIActivityTypePostToTwitter])  {
+            shareType = @"I shared a listing by twitter";
+        }
+        if ([activityType isEqualToString: UIActivityTypePostToFacebook])  {
+            shareType = @"I shared a listing by FB";
+        }
+        
+        if(completed){
+        NSDictionary *params = @{@"receiver_id" : @"32", @"content" : shareType, @"visible" : @"false", @"ticket_id": self.ticket.ticket_id};
+            [WebServiceManager sendMessage:params completion:^(id response, NSError *error) {}];
+        }
+        
+    }];
     
     [self presentViewController:activityController animated:YES completion:nil];
 }
