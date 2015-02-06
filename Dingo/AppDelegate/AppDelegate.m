@@ -240,7 +240,7 @@
     [viewNotification setBackgroundColor:[UIColor colorWithRed:48.f/255.0f green:73.0f/255.0f blue:80.0f/255.0f alpha:1.0f]];
 	
     UIButton *btnCross=[UIButton buttonWithType:UIButtonTypeCustom];
-    [btnCross setFrame:CGRectMake(screenSize.width-45, 22, 30, 30)];
+    [btnCross setFrame:CGRectMake(screenSize.width-45, 15, 40, 40)];
     [btnCross setImage:[UIImage imageNamed:@"cross.png"]  forState:UIControlStateNormal];
     [btnCross addTarget:self action:@selector(removeNotificationView) forControlEvents:UIControlEventTouchUpInside];
     

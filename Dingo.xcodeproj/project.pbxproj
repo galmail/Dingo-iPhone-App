@@ -3244,6 +3244,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Phillip Watts (Q5Z9DB6255)";
 				ENABLE_NS_ASSERTIONS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3271,6 +3272,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = Dingo;
+				PROVISIONING_PROFILE = "789f6144-a426-49e9-a706-815d00785bff";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3309,6 +3311,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = Dingo;
+				PROVISIONING_PROFILE = "789f6144-a426-49e9-a706-815d00785bff";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
