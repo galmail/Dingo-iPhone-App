@@ -50,7 +50,8 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     
     NSManagedObjectContext *context = [AppManager sharedManager].managedObjectContext;
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Event"];
-    [request setPredicate:[NSPredicate predicateWithFormat:@"(tickets != %d)",0]];
+    //[request setPredicate:[NSPredicate predicateWithFormat:@"(tickets != %d)",0]];
+    request.predicate = [NSPredicate predicateWithFormat:@"for_sale == 1"];
 
     request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES]];
     
@@ -148,6 +149,7 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     event.thumbUrl = thumbUrl;
 	event.primary_ticket_seller_url = primary_ticket_seller_url;
     event.featured = [NSNumber numberWithInt:[info[@"featured"] intValue]];
+    event.for_sale = [NSNumber numberWithInt:[info[@"for_sale"] intValue]];
     event.fromPrice = [NSNumber numberWithFloat:[info[@"min_price"] floatValue]];
     event.tickets = [NSNumber numberWithInt:[info[@"available_tickets"] intValue]];
     event.test = [NSNumber numberWithBool:[info[@"test"] boolValue]];

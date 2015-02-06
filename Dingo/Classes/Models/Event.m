@@ -20,6 +20,7 @@
 @dynamic thumbUrl;
 @dynamic primary_ticket_seller_url;
 @dynamic featured;
+@dynamic for_sale;
 @dynamic fromPrice;
 @dynamic test;
 @dynamic tickets;

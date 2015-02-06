@@ -147,6 +147,7 @@
                         date = [formatter dateFromString:[dict valueForKey:@"end_date"]];
                         event.endDate = date;
                         event.featured = [dict valueForKey:@"featured"];
+                        event.for_sale = [dict valueForKey:@"for_sale"];
                         event.event_id = [dict valueForKey:@"id"];
                         event.fromPrice = [NSNumber numberWithInt:[[dict valueForKey:@"min_price"] intValue]];
                         event.name = [dict valueForKey:@"name"];

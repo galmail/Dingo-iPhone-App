@@ -23,6 +23,7 @@
     EventCell *eventCell;
     MKMapView *locationMapView;
 	UIView *noSellers;
+    UIView *UrlLink;
 }
 
 
@@ -97,7 +98,18 @@
 		} else {
 			[self showNoSellers];
 		}
-		
+        
+        //phil - if no sellers but event is for_sale (i.e. has URL link) display URL link
+        NSNumber* for_sale2 = self.eventData.for_sale;
+        int for_sale3 = [for_sale2 intValue];
+        
+        if (for_sale3 == 1 && [[DataManager shared] allTicketsByEventID:self.eventData.event_id].count == 0 ) {
+            [self showUrlLink ];
+        } else {
+            [self hideUrlLink];
+        }
+        
+        
 		if (sender) [self.refreshControl endRefreshing];
 			
         [[DataManager shared] allAlertsWithCompletion:^(BOOL finished) {
@@ -109,34 +121,69 @@
     }];
 }
 
+
 - (void)showNoSellers {
-	CGFloat bottomOfTable = CGRectGetMaxY([[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]] frame]);
-	noSellers = [[UILabel alloc] initWithFrame:CGRectMake(30, bottomOfTable + 40, 260, 100)];
-	noSellers.userInteractionEnabled = YES;
-	
-	UILabel *lblNoSellers = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 260, 30)];
-	lblNoSellers.text = @"No sellers on Dingo :(";
-	lblNoSellers.textAlignment = NSTextAlignmentCenter;
-	lblNoSellers.textColor = [UIColor colorWithRed:(170/255.0) green:(170/255.0) blue:(170/255.0) alpha:1];
-	lblNoSellers.font = [DingoUISettings fontWithSize:20];
-	lblNoSellers.numberOfLines = 0;
-	[noSellers addSubview:lblNoSellers];
-	
-	UIButton *btnNoSellers = [UIButton buttonWithType:UIButtonTypeCustom];
-	btnNoSellers.frame = CGRectMake(0, 60, 260, 30);
-	[btnNoSellers setTitle: @"But you can buy tickets here >" forState:UIControlStateNormal];
-	[btnNoSellers setTitleColor:[UIColor colorWithRed:(170/255.0) green:(170/255.0) blue:(170/255.0) alpha:1] forState:UIControlStateNormal];
-	btnNoSellers.titleLabel.textAlignment = NSTextAlignmentCenter;
-	btnNoSellers.titleLabel.font = [DingoUISettings fontWithSize:20];
-	[btnNoSellers addTarget:self action:@selector(buyTicket:) forControlEvents:UIControlEventTouchUpInside];
-	
-	[noSellers addSubview:btnNoSellers];
-	[self.view addSubview:noSellers];
+    CGFloat bottomOfTable = CGRectGetMaxY([[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]] frame]);
+    noSellers = [[UILabel alloc] initWithFrame:CGRectMake(30, bottomOfTable + 40, 260, 100)];
+    noSellers.userInteractionEnabled = YES;
+    
+    UILabel *lblNoSellers = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 260, 30)];
+    lblNoSellers.text = @"No sellers on Dingo :(";
+    lblNoSellers.textAlignment = NSTextAlignmentCenter;
+    lblNoSellers.textColor = [UIColor colorWithRed:(170/255.0) green:(170/255.0) blue:(170/255.0) alpha:1];
+    lblNoSellers.font = [DingoUISettings fontWithSize:20];
+    lblNoSellers.numberOfLines = 0;
+    [noSellers addSubview:lblNoSellers];
+    
+    // UIButton *btnNoSellers = [UIButton buttonWithType:UIButtonTypeCustom];
+    // btnNoSellers.frame = CGRectMake(0, 60, 260, 30);
+    // [btnNoSellers setTitle: @"But you can buy tickets here >" forState:UIControlStateNormal];
+    // [btnNoSellers setTitleColor:[UIColor colorWithRed:(170/255.0) green:(170/255.0) blue:(170/255.0) alpha:1] forState:UIControlStateNormal];
+    // btnNoSellers.titleLabel.textAlignment = NSTextAlignmentCenter;
+    // btnNoSellers.titleLabel.font = [DingoUISettings fontWithSize:20];
+    // [btnNoSellers addTarget:self action:@selector(buyTicket:) forControlEvents:UIControlEventTouchUpInside];
+    
+    // [noSellers addSubview:btnNoSellers];
+    [self.view addSubview:noSellers];
 }
 
 - (void)hideNoSellers {
 	[noSellers removeFromSuperview];
 }
+
+
+
+- (void)showUrlLink {
+    CGFloat bottomOfTable = CGRectGetMaxY([[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]] frame]);
+    UrlLink = [[UILabel alloc] initWithFrame:CGRectMake(30, bottomOfTable + 40, 260, 100)];
+    UrlLink.userInteractionEnabled = YES;
+    
+    // UILabel *lblUrlLink = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 260, 30)];
+    // lblUrlLink.text = @"No sellers on Dingo :(";
+    // lblUrlLink.textAlignment = NSTextAlignmentCenter;
+    // lblUrlLink.textColor = [UIColor colorWithRed:(170/255.0) green:(170/255.0) blue:(170/255.0) alpha:1];
+    // lblUrlLink.font = [DingoUISettings fontWithSize:20];
+    // lblUrlLink.numberOfLines = 0;
+    // [UrlLink addSubview:lblUrlLink];
+    
+    
+    UIButton *btnUrlLink = [UIButton buttonWithType:UIButtonTypeCustom];
+    btnUrlLink.frame = CGRectMake(0, 60, 260, 30);
+    [btnUrlLink setTitle: @"But you can buy tickets here >" forState:UIControlStateNormal];
+    [btnUrlLink setTitleColor:[UIColor colorWithRed:(170/255.0) green:(170/255.0) blue:(170/255.0) alpha:1] forState:UIControlStateNormal];
+    btnUrlLink.titleLabel.textAlignment = NSTextAlignmentCenter;
+    btnUrlLink.titleLabel.font = [DingoUISettings fontWithSize:20];
+    [btnUrlLink addTarget:self action:@selector(buyTicket:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [UrlLink addSubview:btnUrlLink];
+    [self.view addSubview:UrlLink];
+}
+
+- (void)hideUrlLink {
+    [UrlLink removeFromSuperview];
+}
+
+
 
 - (void)buyTicket:(id)sender {
 	[self performSegueWithIdentifier:@"WebSegue" sender:self];
@@ -297,6 +344,7 @@
     tempEvent.event_desc = self.eventData.event_desc;
     tempEvent.event_id = self.eventData.event_id;
     tempEvent.featured = self.eventData.featured;
+    tempEvent.for_sale = self.eventData.for_sale;
     tempEvent.fromPrice = self.eventData.fromPrice;
     tempEvent.name = self.eventData.name;
     tempEvent.postalCode = self.eventData.postalCode;

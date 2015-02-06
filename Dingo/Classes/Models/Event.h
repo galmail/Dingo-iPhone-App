@@ -20,6 +20,7 @@
 @property (nonatomic, retain) NSData * thumb;
 @property (nonatomic, retain) NSString * thumbUrl;
 @property (nonatomic, retain) NSNumber * featured;
+@property (nonatomic, retain) NSNumber * for_sale;
 @property (nonatomic, retain) NSNumber * fromPrice;
 @property (nonatomic, retain) NSNumber * test;
 @property (nonatomic, retain) NSNumber * tickets;
