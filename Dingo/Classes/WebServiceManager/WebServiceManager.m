@@ -1038,7 +1038,7 @@ static const NSUInteger messageAlert = 6654;
 	if (alert.tag != genericAlert) {
 		[alert dismissWithClickedButtonIndex:-1 animated:NO];
 		
-		alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Oops massive fail, please try again later" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+		alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Oops, please try again later" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
 		alert.tag = genericAlert;
 		[alert show];
 	}

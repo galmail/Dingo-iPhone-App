@@ -456,7 +456,7 @@ static const NSUInteger commentCellIndex = 5;
     
     if (![[[AppManager sharedManager].userInfo valueForKey:@"fb_id"] length]) {
         
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Log in via Facebook?" message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Login", nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Please login to Facebook to contact other users." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Login", nil];
         alert.tag = 11;
         [alert show];
         
@@ -475,7 +475,7 @@ static const NSUInteger commentCellIndex = 5;
     
     if (![[[AppManager sharedManager].userInfo valueForKey:@"fb_id"] length]) {
         
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Log in via Facebook?" message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Login", nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Please login to Facebook to buy tickets." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Login", nil];
         alert.tag = 12;
         [alert show];
         
@@ -493,7 +493,7 @@ static const NSUInteger commentCellIndex = 5;
     
     if (![[[AppManager sharedManager].userInfo valueForKey:@"fb_id"] length]) {
         
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Log in via Facebook?" message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Login", nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Please login to Facebook to buy tickets." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Login", nil];
         alert.tag = 13;
         [alert show];
         

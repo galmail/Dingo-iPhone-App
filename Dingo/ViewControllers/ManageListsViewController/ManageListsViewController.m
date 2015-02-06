@@ -63,11 +63,11 @@
 		UILabel *lblNoTickets = [[UILabel alloc] initWithFrame:CGRectMake(30, 100, 260, 60)];
 		
 		if ([self.title isEqualToString:@"Selling"]) {
-			lblNoTickets.text = @"You currently have no tickets for sale";
+			lblNoTickets.text = @"You currently have no tickets for sale.";
 		} else if ([self.title isEqualToString:@"Sold"]) {
-			lblNoTickets.text = @"You currently have no sold tickets";
+			lblNoTickets.text = @"You haven't sold any tickets.";
 		} else {
-			lblNoTickets.text = @"You currently have no purchased tickets";
+			lblNoTickets.text = @"You haven't purchased any tickets.";
 		}
 		
 		lblNoTickets.textAlignment = NSTextAlignmentCenter;

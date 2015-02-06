@@ -857,7 +857,7 @@ static const NSUInteger comfirmCellIndex = 16;
     
     if (![[AppManager sharedManager].userInfo[@"fb_id"] length] && [identifier isEqualToString:@"PreviewSegue"]) {
         
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Facebook login is required when selling tickets to promote a safe community. Don’t worry, we won’t share anything on your wall." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Login", nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Please login to Facebook to sell tickets." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Login", nil];
         [alert show];
         return NO;
     }

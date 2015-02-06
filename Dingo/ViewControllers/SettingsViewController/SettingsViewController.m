@@ -250,7 +250,7 @@ static const NSUInteger pushAlert =		2243;
     if (self.facebookLoginSwitch.on) {
         if (![[[AppManager sharedManager].userInfo valueForKey:@"fb_id"] length]) {
             
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Log in via Facebook?" message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Login", nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Please login to Facebook to join the Dingo community." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Login", nil];
 			alert.tag = fbLoginAlert;
             [alert show];
            
