@@ -42,19 +42,19 @@
     
     //add OR image and guest button if screen hieght > iphone 4s
     if(self.view.frame.size.height > 500) {
-        UIImageView *orIcon=[[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2 - 22, 382, 44, 44)];
+        UIImageView *orIcon=[[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2 - 15, 378, 30, 30)];
         [orIcon setImage:[UIImage imageNamed:@"or_icon.png"]];
         [self.view addSubview:orIcon];
         
         UIButton *btnGuest=[UIButton buttonWithType:UIButtonTypeCustom];
-        [btnGuest setFrame:CGRectMake(self.view.frame.size.width/2 - 111, 446, 220, 40)];
+        [btnGuest setFrame:CGRectMake(self.view.frame.size.width/2 - 110, 422, 220, 40)];
         [btnGuest setImage:[UIImage imageNamed:@"btnGuestpw.png"]  forState:UIControlStateNormal];
         [btnGuest addTarget:self action:@selector(btnGuestTap:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:btnGuest];
         
     } else {
         UIButton *btnGuest=[UIButton buttonWithType:UIButtonTypeCustom];
-        [btnGuest setFrame:CGRectMake(self.view.frame.size.width/2 - 111, 370, 220, 40)];
+        [btnGuest setFrame:CGRectMake(self.view.frame.size.width/2 - 110, 370, 220, 40)];
         [btnGuest setImage:[UIImage imageNamed:@"btnGuestpw.png"]  forState:UIControlStateNormal];
         [btnGuest addTarget:self action:@selector(btnGuestTap:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:btnGuest];

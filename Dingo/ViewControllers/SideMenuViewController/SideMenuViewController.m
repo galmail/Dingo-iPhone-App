@@ -9,7 +9,7 @@
 #import "SideMenuViewController.h"
 
 #import <MessageUI/MessageUI.h>
-
+#import <Social/Social.h>
 #import "ECSlidingViewController.h"
 #import "DingoUISettings.h"
 
@@ -52,7 +52,17 @@ static NSString * const supportEmail = @"info@dingoapp.co.uk";
     //
     
     [self layoutTableView];
+    
+    
+    UIButton *btnShare=[UIButton buttonWithType:UIButtonTypeCustom];
+    [btnShare setFrame:CGRectMake(self.view.frame.size.width/2 - 150, 5, 300, 40)];
+    [btnShare setImage:[UIImage imageNamed:@"InviteFriends.png"]  forState:UIControlStateNormal];
+    [btnShare addTarget:self action:@selector(share:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btnShare];
+    
 }
+
+
 
 #pragma mark - UITableViewDelegate
 
@@ -78,6 +88,21 @@ static NSString * const supportEmail = @"info@dingoapp.co.uk";
     tableRect.origin.y = floorf((tableRect.size.height - cellHeight * cellsCount) / 2) - cellHeight;
     self.tableView.frame = tableRect;
 }
+
+
+- (IBAction)share:(id)sender {
+    
+    NSString *text = [NSString stringWithFormat:@"Check out this great app for buying and selling tickets - www.dingoapp.co.uk." ];
+    
+    UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:@[text] applicationActivities:nil];
+    
+    activityController.excludedActivityTypes = @[UIActivityTypeAssignToContact, UIActivityTypePrint, UIActivityTypeAddToReadingList, UIActivityTypeAirDrop, UIActivityTypeCopyToPasteboard];
+    
+   [self presentViewController:activityController animated:YES completion:nil];
+    
+
+}
+
 
 - (void)showEmailComposer {
     if (![MFMailComposeViewController canSendMail]) {

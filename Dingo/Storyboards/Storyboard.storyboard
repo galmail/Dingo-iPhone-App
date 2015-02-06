@@ -666,16 +666,6 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Dyn-uC-Rbt" id="f9f-qS-Lcz">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="58"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Menu" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HI0-7q-1TM" userLabel="title">
-                                                    <rect key="frame" x="28" y="37" width="55" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                    <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="12"/>
-                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -866,7 +856,6 @@
                         </connections>
                     </tableView>
                     <connections>
-                        <outlet property="lblTitle1" destination="HI0-7q-1TM" id="z6D-KR-GAJ"/>
                         <outlet property="lblTitle2" destination="zH8-2r-O0H" id="ALk-5c-Sgv"/>
                         <outlet property="lblTitle3" destination="Aa2-Tf-8Nc" id="lga-NU-eMl"/>
                         <outlet property="lblTitle4" destination="96f-UA-5s4" id="5dP-iy-64b"/>
