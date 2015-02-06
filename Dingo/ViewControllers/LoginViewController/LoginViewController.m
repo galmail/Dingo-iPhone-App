@@ -33,7 +33,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
     //phil adding t and c comment
     ZSLabel *labelTandC = [[ZSLabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2 - 120, self.view.frame.size.height - 50, 240, 30)];
     labelTandC.delegate = self;
@@ -41,7 +40,14 @@
     [self.view addSubview:labelTandC];
     
     
+    //add OR image if screen hieght > iphone 4s
     
+    if(self.view.frame.size.height > 500) {
+        UIImageView *orIcon=[[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2 - 22, 382, 44, 44)];
+        [orIcon setImage:[UIImage imageNamed:@"or_icon.png"]];
+        [self.view addSubview:orIcon];
+        
+    }
     
     self.scrollView.contentSize = self.scrollView.frame.size;
     
@@ -67,7 +73,6 @@
         
         if (response) {
             
-            
             //setting city as london and then send to homepage
             NSString *txtCity = @"London";
             [[AppManager sharedManager].userInfo setObject:txtCity forKey:@"city"];
@@ -77,7 +82,6 @@
             viewController.modalTransitionStyle =  UIModalTransitionStyleFlipHorizontal;
             [self presentViewController:viewController animated:YES completion:nil];
             
-            
             //sending to city select
             //    SelectCityViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SelectCityViewController"];
             //    [self.navigationController pushViewController:viewController animated:YES];
@@ -86,31 +90,19 @@
         }
     }];
     
-    
-    
-    
-    
     //old pop up
     
     //    termsAlertView = [[UIAlertView alloc] initWithTitle:@"Terms and Conditions" message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Agree", nil];
-    
     //    termsAlertView.tag = 1;
-    
     //    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(10, 0, 220, 90)];
-    
     //    ZSLabel *label = [[ZSLabel alloc] initWithFrame:CGRectMake(10, 0, 240, 90)];
     //    label.delegate = self;
     //    [label setText:[NSString stringWithFormat:@"<font face='SourceSansPro-Regular' size=14 color='#000000'>By pressing \"Agree\", you agree to Dingo's terms and conditions and privacy policy.<br>They can be found <a href='showTerms'>Here</a></font>"]];
     //    [view addSubview:label];
-    
     //    [termsAlertView setValue:view forKey:@"accessoryView"];
     //    [termsAlertView show];
     
 }
-
-
-
-
 
 
 - (IBAction)btnGuestTap:(id)sender {
