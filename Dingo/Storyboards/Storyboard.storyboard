@@ -1115,20 +1115,6 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="JHs-st-1bz" userLabel="guest_login_button" customClass="DingoButton">
-                                <rect key="frame" x="49" y="448" width="222" height="42"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.23921568630000001" green="0.56470588239999997" blue="0.67450980390000004" alpha="1" colorSpace="calibratedRGB"/>
-                                <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="tintColor" red="0.1960784314" green="0.3921568627" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" image="btnGuestpw.png">
-                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="btnGuestTap:" destination="1lZ-5W-lRB" eventType="touchUpInside" id="Cg6-aT-gvy"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="7LE-Jv-vSi" userLabel="fb_login_button">
                                 <rect key="frame" x="49" y="302" width="222" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -4487,7 +4473,6 @@
         <image name="btnDeleteAlert.png" width="248" height="40"/>
         <image name="btnDots.png" width="33" height="10"/>
         <image name="btnFBLoginpw.png" width="451" height="91"/>
-        <image name="btnGuestpw.png" width="451" height="85"/>
         <image name="btnNavBarAdd.png" width="17" height="18"/>
         <image name="btnPrivacyPolicy.png" width="320" height="48"/>
         <image name="btnSend.png" width="83" height="30"/>

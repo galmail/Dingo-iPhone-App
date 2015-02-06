@@ -40,14 +40,26 @@
     [self.view addSubview:labelTandC];
     
     
-    //add OR image if screen hieght > iphone 4s
-    
+    //add OR image and guest button if screen hieght > iphone 4s
     if(self.view.frame.size.height > 500) {
         UIImageView *orIcon=[[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2 - 22, 382, 44, 44)];
         [orIcon setImage:[UIImage imageNamed:@"or_icon.png"]];
         [self.view addSubview:orIcon];
         
+        UIButton *btnGuest=[UIButton buttonWithType:UIButtonTypeCustom];
+        [btnGuest setFrame:CGRectMake(self.view.frame.size.width/2 - 111, 446, 220, 40)];
+        [btnGuest setImage:[UIImage imageNamed:@"btnGuestpw.png"]  forState:UIControlStateNormal];
+        [btnGuest addTarget:self action:@selector(btnGuestTap:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:btnGuest];
+        
+    } else {
+        UIButton *btnGuest=[UIButton buttonWithType:UIButtonTypeCustom];
+        [btnGuest setFrame:CGRectMake(self.view.frame.size.width/2 - 111, 370, 220, 40)];
+        [btnGuest setImage:[UIImage imageNamed:@"btnGuestpw.png"]  forState:UIControlStateNormal];
+        [btnGuest addTarget:self action:@selector(btnGuestTap:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:btnGuest];
     }
+    
     
     self.scrollView.contentSize = self.scrollView.frame.size;
     
