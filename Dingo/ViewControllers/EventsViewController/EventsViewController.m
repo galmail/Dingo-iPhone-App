@@ -83,10 +83,10 @@ static const CGFloat categoriesHeight = 110;
                 
                 //[[DataManager shared] allTiketsForEvents:[eventIDs mutableCopy] withCompletion:^(BOOL finished) {
                     
-//                    [[DataManager shared] fetchMessagesWithCompletion:^(BOOL finished) {
+                    [[DataManager shared] fetchMessagesWithCompletion:^(BOOL finished) {
 //                        
 //                       
-//                        [(HomeTabBarController*)self.tabBarController updateMessageCount];
+                      [(HomeTabBarController*)self.tabBarController updateMessageCount];
                 
                         [self.tableView reloadData];
                         [loadingView hide];
@@ -94,20 +94,20 @@ static const CGFloat categoriesHeight = 110;
                         if ([[AppManager sharedManager] justInstalled]) {
                             [self setupTips];
                         }
-                   // }];
+                    }];
                // }];
             } else {
                 
-                //[[DataManager shared] fetchMessagesWithCompletion:^(BOOL finished) {
+                [[DataManager shared] fetchMessagesWithCompletion:^(BOOL finished) {
                     
-                   // [(HomeTabBarController*)self.tabBarController updateMessageCount];
+                   [(HomeTabBarController*)self.tabBarController updateMessageCount];
                     
                     [self.tableView reloadData];
                     [loadingView hide];
                     if ([[AppManager sharedManager] justInstalled]) {
                         [self setupTips];
                     }
-                //}];
+                }];
             }
             
            
@@ -117,6 +117,17 @@ static const CGFloat categoriesHeight = 110;
     }];
     [(HomeTabBarController*)self.tabBarController updateMessageCount];
 }
+
+
+
+
+
+
+
+
+
+
+
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
