@@ -185,8 +185,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="19"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="No fees. No comm.png" id="RR6-BV-7Ed">
-                                                    <rect key="frame" x="73" y="26" width="174" height="13"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Hurray.png" id="RR6-BV-7Ed">
+                                                    <rect key="frame" x="88" y="23" width="145" height="17"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                                                 </imageView>
                                             </subviews>
@@ -473,15 +473,29 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="GSi-ub-46A">
-                                                            <rect key="frame" x="8" y="34" width="305" height="136"/>
+                                                            <rect key="frame" x="49" y="78" width="222" height="44"/>
                                                             <autoresizingMask key="autoresizingMask"/>
-                                                            <state key="normal" backgroundImage="paypal_logo_with_text.png">
+                                                            <state key="normal" backgroundImage="PayPalBtn.png">
                                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                             </state>
                                                             <connections>
                                                                 <action selector="paypalChanged:" destination="0ch-Q5-uzn" eventType="touchUpInside" id="8D5-y9-4aH"/>
                                                             </connections>
                                                         </button>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You will receive 100% of the funds 48 hours after the event. Please see our FAQ's for more info." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dI2-ks-xPX">
+                                                            <rect key="frame" x="7" y="13" width="304" height="43"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                            <color key="textColor" red="0.34509803921568627" green="0.34509803921568627" blue="0.35294117647058826" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Either sign in with PayPal now, or later when your funds are available." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="eQJ-SV-osd">
+                                                            <rect key="frame" x="7" y="140" width="304" height="43"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                            <color key="textColor" red="0.34509803919999998" green="0.34509803919999998" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
                                                     </subviews>
                                                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                 </view>
@@ -1392,34 +1406,6 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="75" id="pnn-jZ-S4S">
-                                        <rect key="frame" x="0.0" y="272" width="320" height="75"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pnn-jZ-S4S" id="ao4-Zf-lLs">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="74"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Seller name:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="RYk-me-9bA">
-                                                    <rect key="frame" x="153" y="13" width="155" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="name" minimumFontSize="17" id="5Sq-dP-vOK" customClass="ZSTextField">
-                                                    <rect key="frame" x="153" y="33" width="120" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="0.5" colorSpace="calibratedRGB"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                </textField>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="joe_bloggs.png" id="Q9a-32-N4R" userLabel="icon" customClass="RoundedImageView">
-                                                    <rect key="frame" x="33" y="6" width="61" height="61"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="113" id="T0Y-rD-xDh">
                                         <rect key="frame" x="0.0" y="509" width="320" height="206"/>
                                         <autoresizingMask key="autoresizingMask"/>
@@ -1432,7 +1418,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" red="0.066666666669999999" green="0.63921568630000003" blue="0.74117647060000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="19"/>
-                                                    <state key="normal" title="Buy">
+                                                    <state key="normal" title="Buy Now">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     </state>
@@ -1465,13 +1451,11 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="btnBuy" destination="cb8-mQ-CJ2" id="d0C-sW-x9C"/>
-                        <outlet property="imgSeller" destination="Q9a-32-N4R" id="4BM-KL-v0F"/>
                         <outlet property="lblDingoFee" destination="JoS-WQ-f8f" id="TNL-VI-kT1"/>
                         <outlet property="lblEvent" destination="a8D-36-hkU" id="skw-Ax-zYy"/>
                         <outlet property="lblNumber" destination="0hL-Pw-DXy" id="KOC-Sf-qZ5"/>
                         <outlet property="lblPaymentOption" destination="oNH-wU-5Zs" id="Hye-bS-Wqy"/>
                         <outlet property="lblPrice" destination="k7S-7X-cB4" id="g8T-hz-2DO"/>
-                        <outlet property="lblSeller" destination="RYk-me-9bA" id="cx9-L8-hCY"/>
                         <outlet property="lblTotal" destination="XE7-eI-4re" id="ppk-Ff-kEF"/>
                         <outlet property="lblWhyCharged" destination="OpG-Bb-3gv" id="V9Z-Ag-8dS"/>
                         <outlet property="lblWhyChargedSub" destination="OvI-3j-8k5" id="azl-Uu-BSa"/>
@@ -1480,7 +1464,6 @@
                         <outlet property="txtNumber" destination="Kgp-nv-xTx" id="JgM-4A-5fw"/>
                         <outlet property="txtPayment" destination="LRM-Ux-Njd" id="i2Y-ce-0Eg"/>
                         <outlet property="txtPrice" destination="PQI-7E-ZsV" id="Ohd-S5-jrG"/>
-                        <outlet property="txtSellerName" destination="5Sq-dP-vOK" id="jCG-An-E66"/>
                         <outlet property="txtTotal" destination="a7D-Wa-N0h" id="37e-ml-Bc7"/>
                     </connections>
                 </tableViewController>
@@ -1506,12 +1489,12 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="concerts.png" id="YGu-T0-LiQ" userLabel="back">
-                                            <rect key="frame" x="-8" y="-63" width="320" height="560"/>
+                                            <rect key="frame" x="1" y="0.0" width="320" height="200"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </imageView>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="jz_live.png" id="WFk-rF-f9y" userLabel="icon_view" customClass="RoundedImageView">
-                                            <rect key="frame" x="5" y="28" width="120" height="120"/>
+                                            <rect key="frame" x="5" y="28" width="110" height="110"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                         <view contentMode="scaleToFill" id="qo3-lr-8ma" userLabel="ticket_info">
@@ -1548,7 +1531,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="QzJ-hB-k2X">
-                                                    <rect key="frame" x="145" y="122" width="75" height="22"/>
+                                                    <rect key="frame" x="155" y="122" width="75" height="22"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" image="AlertButton">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -1579,7 +1562,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Arrow.png" id="02G-cO-D4r" userLabel="arrow">
-                                            <rect key="frame" x="7640" y="-1" width="16" height="16"/>
+                                            <rect key="frame" x="7960" y="4" width="16" height="16"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                     </subviews>
@@ -2501,7 +2484,7 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ta_bg_description.png" id="akp-kx-rKt">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AlertEventName.png" id="akp-kx-rKt">
                                 <rect key="frame" x="0.0" y="10" width="320" height="35"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
@@ -2518,7 +2501,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="YTc-QP-iAJ">
                                 <rect key="frame" x="0.0" y="302" width="320" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
-                                <state key="normal" image="btnConfirmAlert.png">
+                                <state key="normal" image="Add.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -2526,7 +2509,7 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Description" minimumFontSize="17" id="7hH-Ao-aD6" customClass="ZSTextField">
-                                <rect key="frame" x="93" y="13" width="219" height="30"/>
+                                <rect key="frame" x="106" y="13" width="206" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -2538,8 +2521,8 @@
                                 <rect key="frame" x="109" y="157" width="102" height="102"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dingo will notify you when a new ticket with this description is listed." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="d2b-Cc-WZf">
-                                <rect key="frame" x="20" y="67" width="281" height="48"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dingo will notify you when a ticket for this event is listed." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="d2b-Cc-WZf">
+                                <rect key="frame" x="20" y="67" width="280" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="calibratedRGB"/>
@@ -4483,24 +4466,26 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Add.png" width="248" height="40"/>
         <image name="AlertButton" width="147" height="42"/>
         <image name="AlertButtonOn" width="153" height="48"/>
+        <image name="AlertEventName.png" width="320" height="35"/>
         <image name="Arrow.png" width="37" height="47"/>
         <image name="EventCell.png" width="320" height="79"/>
         <image name="EventIcon.png" width="60" height="59"/>
         <image name="HomeIcon.png" width="28" height="26"/>
+        <image name="Hurray.png" width="146" height="17"/>
         <image name="ListTicketsIcon.png" width="46" height="33"/>
         <image name="MyTicketsCellBackground" width="320" height="48"/>
-        <image name="No fees. No comm.png" width="347" height="26"/>
+        <image name="PayPalBtn.png" width="226" height="46"/>
         <image name="SellBar" width="640" height="71"/>
-        <image name="SellTicketButton" width="147" height="42"/>
+        <image name="SellTicketButton" width="74" height="21"/>
         <image name="about_icon.png" width="27" height="27"/>
         <image name="about_logo.png" width="179" height="121"/>
         <image name="add_photo_icon.png" width="76" height="75"/>
         <image name="arrow.png" width="6" height="10"/>
         <image name="arrow_white.png" width="5" height="9"/>
         <image name="blueBG.png" width="320" height="568"/>
-        <image name="btnConfirmAlert.png" width="248" height="40"/>
         <image name="btnDeleteAlert.png" width="248" height="40"/>
         <image name="btnDots.png" width="33" height="10"/>
         <image name="btnFBLogin.png" width="279" height="39"/>
@@ -4530,12 +4515,10 @@
         <image name="newOffer.png" width="48" height="52"/>
         <image name="offers_cells.png" width="320" height="85"/>
         <image name="or_icon.png" width="43" height="43"/>
-        <image name="paypal_logo_with_text.png" width="305" height="136"/>
         <image name="search_icon.png" width="26" height="26"/>
         <image name="settings_icon.png" width="27" height="27"/>
         <image name="settings_icon_gray.png" width="50" height="50"/>
         <image name="t&amp;c_icon_gray.png" width="50" height="50"/>
-        <image name="ta_bg_description.png" width="320" height="35"/>
         <image name="ta_big_bell.png" width="102" height="102"/>
         <image name="tickertAlertCellBellIcon.png" width="59" height="59"/>
         <image name="ticket-icon.png" width="288" height="226"/>
