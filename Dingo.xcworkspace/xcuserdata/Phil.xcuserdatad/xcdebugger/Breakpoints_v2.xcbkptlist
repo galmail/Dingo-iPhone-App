@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Dingo/ViewControllers/SideMenuViewController/SideMenuViewController.m"
-            timestampString = "444950838.572189"
+            timestampString = "445021282.371377"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "111"
-            endingLineNumber = "111"
+            startingLineNumber = "133"
+            endingLineNumber = "133"
             landmarkName = "-showEmailComposer"
             landmarkType = "5">
          </BreakpointContent>

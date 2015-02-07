@@ -90,7 +90,7 @@ static NSString * const supportEmail = @"info@dingoapp.co.uk";
 
 
 - (IBAction)share:(id)sender {
-    
+    [self.slidingViewController resetTopViewWithAnimations:nil onComplete:nil];
     NSString *text = [NSString stringWithFormat:@"Check out this great app for buying and selling tickets - www.dingoapp.co.uk." ];
     
     UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:@[text] applicationActivities:nil];
@@ -101,10 +101,6 @@ static NSString * const supportEmail = @"info@dingoapp.co.uk";
         
         NSString *shareType = @"I shared Dingo";
         
-        if([activityType isEqualToString: UIActivityTypeMail] || [activityType isEqualToString: UIActivityTypeMessage]){
-            [self.slidingViewController resetTopViewWithAnimations:nil onComplete:nil];
-            //[AppManager showAlert:@"Offer Sent!"];
-        }
         if ([activityType isEqualToString: UIActivityTypeMail])  {
             shareType = @"I shared Dingo by email";
         }
