@@ -344,7 +344,7 @@ static const NSUInteger commentCellIndex = 5;
                 return [super tableView:tableView heightForRowAtIndexPath:indexPath];
             }
         }
-        case 9:{
+        case 10:{
             if (self.mutualFriendCell.isHidden) {
                 return 0;
             } else {
