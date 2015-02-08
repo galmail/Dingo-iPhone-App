@@ -84,6 +84,26 @@
     return NO;
 }
 
+
+//phil - dynamically change height of category cell based on no. of categories.
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    selectedCategories = [[[DataManager shared] allCategories] valueForKey:@"category_id"];
+    NSUInteger numObjects = [selectedCategories count];
+    switch (indexPath.row) {
+        case 2: {
+            if (numObjects > 2) {
+                return 230;
+            } else {
+                return 145;
+            }
+            break;
+        }
+    }
+    return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+}
+
+
+
 #pragma mark - Category Selection Delegate
 - (void)didSelectedCategories:(NSArray*)selectionArray{
     selectedCategories = selectionArray;
