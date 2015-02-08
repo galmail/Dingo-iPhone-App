@@ -55,7 +55,7 @@ static NSString * const supportEmail = @"info@dingoapp.co.uk";
     
     UIButton *btnShare=[UIButton buttonWithType:UIButtonTypeCustom];
     [btnShare setFrame:CGRectMake(self.view.frame.size.width/2 - 150, 5, 300, 40)];
-    [btnShare setImage:[UIImage imageNamed:@"InviteFriends.png"]  forState:UIControlStateNormal];
+    [btnShare setImage:[UIImage imageNamed:@"InviteFriends2.png"]  forState:UIControlStateNormal];
     [btnShare addTarget:self action:@selector(share:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btnShare];
     
