@@ -169,7 +169,7 @@ static const NSUInteger commentCellIndex = 5;
                                               [AppManager showAlert:[error localizedDescription]];
                                               
                                           } else {
-											  DLog(@">>>>> state: %i", state);
+											  //DLog(@">>>>> state: %i", state);
                                               if (state == FBSessionStateOpen) {
 												  
 												  DLog(@">>>>> get fb friends");

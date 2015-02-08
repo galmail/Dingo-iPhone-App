@@ -254,7 +254,8 @@ static const NSUInteger commentCellIndex = 5;
 									[AppManager showAlert:@"Unable to upload photos for your listing. Please add later."];
 								}
 							} else {
-								[WebServiceManager handleError:error];
+								DLog(@"photos upload error");
+								[AppManager showAlert:@"Unable to upload photos for your listing. Please add later."];
 							}
 						}];
 						
@@ -269,6 +270,7 @@ static const NSUInteger commentCellIndex = 5;
 				} else {
 					[loadingView hide];
 					[WebServiceManager handleError:error];
+					DLog(@"photos upload error ???");
 				}
 			}];
         }
