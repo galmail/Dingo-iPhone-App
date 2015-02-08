@@ -246,17 +246,23 @@ static const NSUInteger commentCellIndex = 5;
 					if (response[@"id"]) {
 						// ticket created, now lets update it with the photos without a spinner
 						[loadingView hide];
-
-						DLog(@"Upload photos for ticked with id: %@", response[@"id"]);
-						[WebServiceManager updateTicket:@{@"ticket_id":response[@"id"]} photos:self.photos completion:^(id response, NSError *error) {
-							if (!error ) {
-								if (!response[@"id"]) {
+						
+						//upload photos one by one
+						for (int i = 0; i < self.photos.count; i++) {
+							DLog(@"Uploading photo #%i for ticked with id: %@", i, response[@"id"]);
+							[WebServiceManager updateTicket:@{@"ticket_id":response[@"id"]}
+													 photos:@[self.photos[i]]
+												 completion:^(id response, NSError *error) {
+								if (!error ) {
+									if (!response[@"id"]) {
+										[AppManager showAlert:@"Unable to upload photos for your listing. Please add later."];
+									}
+								} else {
+									DLog(@"photos upload error");
 									[AppManager showAlert:@"Unable to upload photos for your listing. Please add later."];
 								}
-							} else {
-								[WebServiceManager handleError:error];
-							}
-						}];
+							}];
+						}
 						
 						[AppManager sharedManager].draftTicket = nil;
 						
@@ -269,6 +275,7 @@ static const NSUInteger commentCellIndex = 5;
 				} else {
 					[loadingView hide];
 					[WebServiceManager handleError:error];
+					DLog(@"photos upload error ???");
 				}
 			}];
         }

@@ -2,9 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:ContinGuestpw@2x.png">
-   </FileRef>
-   <FileRef
       location = "group:Dingo.xcodeproj">
    </FileRef>
    <FileRef
