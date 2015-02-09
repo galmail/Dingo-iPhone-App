@@ -9,9 +9,7 @@
 #import "AppManager.h"
 
 //global ivar to make sure we only see one alert
-UIAlertView *alert = nil;
-
-static const NSUInteger genericAlert = 39453;
+UIAlertView *appManagerAlert = nil;
 
 @implementation AppManager
 
@@ -146,10 +144,10 @@ static const NSUInteger genericAlert = 39453;
 
 + (void)showAlert:(NSString*)message {
 	//don't repeat alerts with same message
-	if (![alert.message isEqualToString:message]) {
-		alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-		alert.delegate = self;
-		[alert show];
+	if (![appManagerAlert.message isEqualToString:message]) {
+		appManagerAlert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+		appManagerAlert.delegate = self;
+		[appManagerAlert show];
 	}
 }
 
@@ -158,14 +156,14 @@ static const NSUInteger genericAlert = 39453;
 // Called when a button is clicked. The view will be automatically dismissed after this call returns
 + (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
 	DLog();
-	alert = nil;
+	appManagerAlert = nil;
 }
 
 // Called when we cancel a view (eg. the user clicks the Home button). This is not called when the user clicks the cancel button.
 // If not defined in the delegate, we simulate a click in the cancel button
 + (void)alertViewCancel:(UIAlertView *)alertView {
 	DLog();
-	alert = nil;
+	appManagerAlert = nil;
 }
 
 @end

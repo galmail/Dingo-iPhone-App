@@ -30,7 +30,7 @@ static NSString* placesUrl = @"https://maps.googleapis.com/maps/api/place/autoco
 static NSString* placeDetailUrl = @"https://maps.googleapis.com/maps/api/place/details/json";
 
 //global ivar to make sure we only see one alert
-UIAlertView *alert = nil;
+UIAlertView *webServiceAlert = nil;
 
 static const NSUInteger genericAlert = 39453;
 static const NSUInteger internetAlert = 98690;
@@ -1035,37 +1035,37 @@ static const NSUInteger messageAlert = 6654;
 
 + (void)genericError{
 	//lets dismiss the previous alert, if it was present and not a generic error
-	if (alert.tag != genericAlert) {
-		[alert dismissWithClickedButtonIndex:-1 animated:NO];
+	if (webServiceAlert.tag != genericAlert) {
+		[webServiceAlert dismissWithClickedButtonIndex:-1 animated:NO];
 		
-		alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Oops, please try again later" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-		alert.tag = genericAlert;
-		[alert show];
+		webServiceAlert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Oops, please try again later" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+		webServiceAlert.tag = genericAlert;
+		[webServiceAlert show];
 	}
 }
 
 + (void)genericErrorWithMessage:(NSError *)error{
 	//lets dismiss the previous alert, if it was present
-	if (alert.tag != messageAlert) {
-		[alert dismissWithClickedButtonIndex:-1 animated:NO];
+	if (webServiceAlert.tag != messageAlert) {
+		[webServiceAlert dismissWithClickedButtonIndex:-1 animated:NO];
 		
-		alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:[error localizedDescription] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-		alert.tag = messageAlert;
-		[alert show];
+		webServiceAlert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:[error localizedDescription] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+		webServiceAlert.tag = messageAlert;
+		[webServiceAlert show];
 	} else {
 		//lets try to be fancy
-		alert.message = error.localizedDescription;
+		webServiceAlert.message = error.localizedDescription;
 	}
 }
 
 + (void)noInternetError{
 	//lets dismiss the previous alert, if it was present and not internet error
-	if (alert.tag != internetAlert) {
-		[alert dismissWithClickedButtonIndex:-1 animated:NO];
+	if (webServiceAlert.tag != internetAlert) {
+		[webServiceAlert dismissWithClickedButtonIndex:-1 animated:NO];
 		
-		alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Dingo needs internet - feed me!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-		alert.tag = internetAlert;
-		[alert show];
+		webServiceAlert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Dingo needs internet - feed me!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+		webServiceAlert.tag = internetAlert;
+		[webServiceAlert show];
 	}
 }
 
@@ -1074,14 +1074,14 @@ static const NSUInteger messageAlert = 6654;
 // Called when a button is clicked. The view will be automatically dismissed after this call returns
 + (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
 	DLog();
-	alert = nil;
+	webServiceAlert = nil;
 }
 
 // Called when we cancel a view (eg. the user clicks the Home button). This is not called when the user clicks the cancel button.
 // If not defined in the delegate, we simulate a click in the cancel button
 + (void)alertViewCancel:(UIAlertView *)alertView {
 	DLog();
-	alert = nil;
+	webServiceAlert = nil;
 }
 
 @end
