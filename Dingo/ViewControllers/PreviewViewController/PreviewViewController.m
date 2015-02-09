@@ -204,10 +204,27 @@ static const NSUInteger commentCellIndex = 5;
             
             NSLog(@"params %lu", (unsigned long)[self.photos count]);
             
-            [WebServiceManager updateTicket:params photos:self.photos completion:^(id response, NSError *error) {
+            [WebServiceManager updateTicket:params photos:nil completion:^(id response, NSError *error) {
                 NSLog(@"PVC updateTicket response %@", response);
                 
                 if (response[@"id"]) {
+					//upload photos one by one
+					for (int i = 0; i < self.photos.count; i++) {
+						DLog(@"Uploading photo #%i for ticked with id: %@", i, response[@"id"]);
+						[WebServiceManager updateTicket:@{@"ticket_id":response[@"id"]}
+												 photos:@[self.photos[i]]
+											 completion:^(id response, NSError *error) {
+												 if (!error ) {
+													 if (!response[@"id"]) {
+														 [AppManager showAlert:@"Unable to upload photos for your listing. Please add later."];
+													 }
+												 } else {
+													 DLog(@"photos upload error");
+													 [AppManager showAlert:@"Unable to upload photos for your listing. Please add later."];
+												 }
+											 }];
+					}
+					
                     [[DataManager shared] addOrUpdateTicket:response];
                     [[AppManager sharedManager] saveContext];
                     [AppManager sharedManager].draftTicket = nil;
