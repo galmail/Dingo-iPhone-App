@@ -74,7 +74,7 @@
     
     lblTotal.font= txtTotal.font=[DingoUISettings boldFontWithSize:14];
     [lblWhyChargedSub setFont:[DingoUISettings lightFontWithSize:12]];
-    [lblWhyChargedSub setText:@"Dingo charges a small commission to cover all PayPal fees and \n our Dingo guarantee."];
+    [lblWhyChargedSub setText:@"Dingo charges a small commission to cover all PayPal fees and \nour Dingo fruad guarantee."];
     txtNumber.keyboardType = UIKeyboardTypeNumberPad;
     txtNumber.enabled = NO;
     [txtNumber showToolbarWithDone];
