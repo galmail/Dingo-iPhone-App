@@ -123,7 +123,11 @@ static const NSUInteger commentCellIndex = 5;
     self.photosPreviewCell.photos = photos;
     self.photosPreviewCell.parentViewController = self;
     
-    self.ticketsCountlabel.text = [self.ticket.number_of_tickets stringValue];
+    if ([[self.ticket.number_of_tickets stringValue] isEqual: @"0"]) {
+        self.ticketsCountlabel.text = [self.ticket.number_of_tickets_sold stringValue];
+    } else {
+        self.ticketsCountlabel.text = [self.ticket.number_of_tickets stringValue];
+    }
 	
 	//old
 	//self.faceValueLabel.text = [NSString stringWithFormat:@"£%@",[self.ticket.face_value_per_ticket stringValue]];

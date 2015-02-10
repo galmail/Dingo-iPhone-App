@@ -74,15 +74,17 @@
 
 
 - (void)buildWithTicketData:(Ticket *)data {
-    
-    
     Event *event = [[DataManager shared] eventByID:data.event_id];
-    
     [self buildWithData:event];
     [super buildWithTicketData:data];
-    [self setTickets:[data.number_of_tickets intValue]];
-    
-//    self.offers = [data[@"offers"] floatValue];
+    if ([data.number_of_tickets intValue] == 0) {
+        [self setTickets:[data.number_of_tickets_sold intValue]];
+    } else {
+        [self setTickets:[data.number_of_tickets intValue]];
+    }
+    // self.offers = [data[@"offers"] floatValue];
 }
+
+
 
 @end

@@ -15,6 +15,7 @@
 @dynamic event_id;
 @dynamic face_value_per_ticket;
 @dynamic number_of_tickets;
+@dynamic number_of_tickets_sold;
 @dynamic payment_options;
 @dynamic photo1;
 @dynamic photo2;

@@ -272,9 +272,9 @@
     //[self.window.rootViewController.view addSubview:viewNotification];
     [[[UIApplication sharedApplication] keyWindow] addSubview:viewNotification];
     
-    [UIView animateWithDuration:0.6 animations:^{
+    [UIView animateWithDuration:0.2 animations:^{
         [viewNotification setFrame:CGRectMake(0, 0, screenSize.width, 64)];
-        [self performSelector:@selector(removeNotificationView) withObject:nil afterDelay:3];
+        [self performSelector:@selector(removeNotificationView) withObject:nil afterDelay:1.5];
     }];
     
     
@@ -282,7 +282,7 @@
 
 -(void)removeNotificationView{
     if (viewNotification) {
-        [UIView animateWithDuration:0.6 animations:^{
+        [UIView animateWithDuration:0.2 animations:^{
         [viewNotification setFrame:CGRectMake(0, -64, screenSize.width, 64)];
         } completion:^(BOOL finish){
             if (finish) {

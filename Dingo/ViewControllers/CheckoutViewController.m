@@ -74,7 +74,7 @@
     
     lblTotal.font= txtTotal.font=[DingoUISettings boldFontWithSize:14];
     [lblWhyChargedSub setFont:[DingoUISettings lightFontWithSize:12]];
-    [lblWhyChargedSub setText:@"Dingo charges a small commission to cover all PayPal fees and \nour Dingo fruad guarantee."];
+    [lblWhyChargedSub setText:@"Dingo charges a small commission to cover all PayPal fees and \nour Dingo fraud guarantee."];
     txtNumber.keyboardType = UIKeyboardTypeNumberPad;
     txtNumber.enabled = NO;
     [txtNumber showToolbarWithDone];
@@ -164,7 +164,7 @@
 				PayPalPayment *payment = [[PayPalPayment alloc] init];
 				payment.amount = (NSDecimalNumber*)[currencyFormatter numberFromString:txtTotal.text];
 				payment.currencyCode = @"GBP";
-				payment.shortDescription = @"Dingo Payment ";
+				payment.shortDescription = [NSString stringWithFormat:@"Dingo Payment (%@)", self.event.name];
 				
 				PayPalPaymentViewController *paymentViewController = [[PayPalPaymentViewController alloc] initWithPayment:payment
 																											configuration:payPalConfig                                                                                                                     delegate:self];

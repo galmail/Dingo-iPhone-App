@@ -1474,7 +1474,7 @@
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </imageView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="jz_live.png" id="WFk-rF-f9y" userLabel="icon_view" customClass="RoundedImageView">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dingo_logo.png" id="WFk-rF-f9y" userLabel="icon_view" customClass="RoundedImageView">
                                             <rect key="frame" x="5" y="28" width="110" height="110"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
@@ -3424,7 +3424,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="319" height="35"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price per ticktet:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ixv-gY-3Kc" userLabel="label">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price per ticket:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ixv-gY-3Kc" userLabel="label">
                                                     <rect key="frame" x="12" y="7" width="129" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
@@ -4523,6 +4523,7 @@ Don't worry we've got you covered! Any issues, get in touch at info@dingoapp.co.
         <image name="checkout.png" width="58" height="56"/>
         <image name="concerts.png" width="140" height="100"/>
         <image name="contact_us_icon.png" width="30" height="30"/>
+        <image name="dingo_logo.png" width="43" height="50"/>
         <image name="emptyTicketAlerts.png" width="285" height="209"/>
         <image name="faq_icon.png" width="25" height="27"/>
         <image name="faq_icon_gray.png" width="50" height="50"/>

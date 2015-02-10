@@ -16,6 +16,7 @@
 @property (nonatomic, retain) NSString * event_id;
 @property (nonatomic, retain) NSNumber * face_value_per_ticket;
 @property (nonatomic, retain) NSNumber * number_of_tickets;
+@property (nonatomic, retain) NSNumber * number_of_tickets_sold;
 @property (nonatomic, retain) NSString * payment_options;
 @property (nonatomic, retain) NSData * photo1;
 @property (nonatomic, retain) NSData * photo2;

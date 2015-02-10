@@ -754,6 +754,7 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
     ticket.event_id = eventID;
     ticket.delivery_options = info[@"delivery_options"];
     ticket.number_of_tickets = @([info[@"number_of_tickets"] intValue]);
+    ticket.number_of_tickets_sold = @([info[@"number_of_tickets_sold"] intValue]);
     ticket.payment_options = ![info[@"payment_options"] isKindOfClass:[NSNull class]] ? info[@"payment_options"] : @"";
     ticket.ticket_type = info[@"ticket_type"];
     ticket.face_value_per_ticket =  @([info[@"face_value_per_ticket"] floatValue]);

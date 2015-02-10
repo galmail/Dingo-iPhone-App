@@ -468,13 +468,15 @@
         
         MFMailComposeViewController *mailComposer = [[MFMailComposeViewController alloc] init];
         [mailComposer setToRecipients:@[@"report@dingoapp.co.uk"]];
-        [mailComposer setMessageBody:@""
+        [mailComposer setMessageBody:[NSString stringWithFormat:@"I would like to report %@ (user ID %@) on ticket (#%@). \n\nThe reason I'd like to report him/her is: \n",self.receiverName, self.receiverID, self.ticket.ticket_id]
                               isHTML:YES];
         mailComposer.mailComposeDelegate = self;
         [self presentViewController:mailComposer animated:YES completion:nil];
     }
 
 }
+
+
 
 -(void)mailComposeController:(MFMailComposeViewController *)controller
          didFinishWithResult:(MFMailComposeResult)result
