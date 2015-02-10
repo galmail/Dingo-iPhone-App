@@ -53,6 +53,10 @@
     }
     
      [txtDescription setPopoverSize:CGRectMake(0, txtDescription.frame.origin.y + txtDescription.frame.size.height, 320.0, 130.0)];
+    
+    [txtDescription showToolbarWithDone];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning

@@ -15,6 +15,7 @@
 #import "ZSLoadingView.h"
 #import "ZSPickerView.h"
 #import "ZSDatePicker.h"
+#import "ZSTextField.h"
 
 @interface SearchTicketsViewController () <UITextFieldDelegate, UITableViewDataSource,CategorySelectionDelegate,ZSPickerDelegate,ZSDatePickerDelegate>{
     ZSPickerView *cityPicker;
@@ -27,11 +28,12 @@
 }
 
 @property (nonatomic, weak) IBOutlet CategorySelectionCell *categoriesCell;
-@property (nonatomic, weak) IBOutlet UITextField *keywordsField;
+@property (nonatomic, weak) IBOutlet ZSTextField *keywordsField;
 @property (nonatomic, weak) IBOutlet UITextField *cityField;
 @property (nonatomic, weak) IBOutlet UITextField *dateField;
 
 @end
+
 
 @implementation SearchTicketsViewController
 
@@ -59,6 +61,8 @@
     self.cityField.inputView = cityPicker;
     
     self.tableView.separatorInset = UIEdgeInsetsZero;
+    
+    [self.keywordsField showToolbarWithDone];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

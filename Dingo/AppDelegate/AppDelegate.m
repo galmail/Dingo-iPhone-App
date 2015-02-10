@@ -259,7 +259,7 @@
     [viewNotification addSubview:lblName];
     
     UILabel *lblMessageText=[[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(imageViewIcon.frame)+8, CGRectGetMaxY(lblName.frame)-5, 200, 25)];
-    [lblMessageText setText:([arrayApsMessages count]>1?[arrayApsMessages objectAtIndex:1]:@"Last line of conversation goes here")];
+    [lblMessageText setText:([arrayApsMessages count]>1?[arrayApsMessages objectAtIndex:1]:@" ")];
     [lblMessageText setFont:[DingoUISettings fontWithSize:13]];
     [lblMessageText setTextColor:[UIColor whiteColor]];
     [viewNotification addSubview:lblMessageText];

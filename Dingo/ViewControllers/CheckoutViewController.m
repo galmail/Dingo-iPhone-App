@@ -74,7 +74,7 @@
     
     lblTotal.font= txtTotal.font=[DingoUISettings boldFontWithSize:14];
     [lblWhyChargedSub setFont:[DingoUISettings lightFontWithSize:12]];
-    [lblWhyChargedSub setText:@"Dingo charges a small commission to cover all PayPal fees and \n  our secure payment and dispute service."];
+    [lblWhyChargedSub setText:@"Dingo charges a small commission to cover all PayPal fees and \n our Dingo guarantee."];
     txtNumber.keyboardType = UIKeyboardTypeNumberPad;
     txtNumber.enabled = NO;
     [txtNumber showToolbarWithDone];
@@ -164,7 +164,7 @@
 				PayPalPayment *payment = [[PayPalPayment alloc] init];
 				payment.amount = (NSDecimalNumber*)[currencyFormatter numberFromString:txtTotal.text];
 				payment.currencyCode = @"GBP";
-				payment.shortDescription = @"Dingo Test Payment ";
+				payment.shortDescription = @"Dingo Payment ";
 				
 				PayPalPaymentViewController *paymentViewController = [[PayPalPaymentViewController alloc] initWithPayment:payment
 																											configuration:payPalConfig                                                                                                                     delegate:self];
@@ -268,7 +268,7 @@
                             [self.navigationController pushViewController:vc animated:YES];
 							
 							//refresh chat after 1 second, is it really enough?
-							[vc performSelector:@selector(reloadMessagesWithCompletion:) withObject:nil afterDelay:1];
+							[vc performSelector:@selector(reloadMessagesWithCompletion:) withObject:nil afterDelay:3];
                             
                             [WebServiceManager payPalSuccess:@{@"order_id":response[@"id"]} completion:^(id response, NSError *error) {
                                 

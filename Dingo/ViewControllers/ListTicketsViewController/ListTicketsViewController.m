@@ -154,6 +154,7 @@ static const NSUInteger comfirmCellIndex = 16;
     
     self.descriptionTextView.placeholder = @"Add any additional comments about the tickets or collection.";
     [self.descriptionTextView showToolbarWithDone];
+    [self.nameField showToolbarWithDone];
 	
 	payPalConfig = [[PayPalConfiguration alloc] init];
 	payPalConfig.languageOrLocale = @"en";

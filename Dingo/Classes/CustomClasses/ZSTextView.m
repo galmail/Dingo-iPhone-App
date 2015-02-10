@@ -97,7 +97,7 @@
     [btnDone setFrame:CGRectMake(240, 6, 70, 33)];
     
     [btnDone setBackgroundImage:image forState:UIControlStateNormal];
-    [btnDone setTitle:@"Done" forState:UIControlStateNormal];
+    [btnDone setTitle:@"Close" forState:UIControlStateNormal];
     btnDone.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:16.0f];
     [btnDone addTarget:self action:@selector(closeKeyboard:) forControlEvents:UIControlEventTouchUpInside];
     
