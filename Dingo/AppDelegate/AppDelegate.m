@@ -25,6 +25,7 @@
 #import "SearchTicketsViewController.h"
 #import "MessagesViewController.h"
 #import "ListTicketsViewController.h"
+#import "ChatViewController.h"
 
 #import "GAI.h"
 
@@ -202,7 +203,7 @@
 	DLog(@"userInfo: %@ ", userInfo);
 	
 	// if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive) {
-	[self showNotiFicationView:userInfo];
+	//[self showNotiFicationView:userInfo];
 	//    }else{
 	//            UIAlertView *alertView=[[UIAlertView alloc] initWithTitle:@"Dingo" message:@"You received a new message." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
 	//            [alertView show];
@@ -224,6 +225,17 @@
 				
 				
 			}];
+            //this sets the variable sender to the sender ID
+            NSArray *arrayApsMessages=[[[userInfo objectForKey:@"aps"] objectForKey:@"alert"] componentsSeparatedByString:@":"];
+            NSString *sender = ([arrayApsMessages count]>0?[arrayApsMessages objectAtIndex:0]:@"Dingo");
+            
+            //check if on chat with the message sender
+            if ([tabBarConroller isKindOfClass:[ChatViewController class]] && [sender isEqualToString:lastChatUser]){
+                DLog();
+                
+            } else {
+                [self showNotiFicationView:userInfo];
+            }
 		}
   
 	}

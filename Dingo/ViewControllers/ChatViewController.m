@@ -31,6 +31,8 @@
 
 @end
 
+NSString *lastChatUser;
+
 @implementation ChatViewController
 @synthesize messageData;
 
@@ -87,6 +89,7 @@
     //============================================================
    
 	self.title = self.receiverName;
+    lastChatUser = self.receiverName;
 	
 	//we dont need to fetch messages as they are already loaded ;)
 //    [self reloadMessagesWithCompletion:^(BOOL finished) {

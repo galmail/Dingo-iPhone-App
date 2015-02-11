@@ -16,3 +16,5 @@
 
 -(void)showNotiFicationView:(NSDictionary *)payLoad;
 @end
+
+extern NSString *lastChatUser;
