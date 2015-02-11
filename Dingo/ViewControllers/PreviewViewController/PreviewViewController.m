@@ -173,9 +173,12 @@ static const NSUInteger commentCellIndex = 5;
 
     if (self.event.event_id.length == 0) {
         
-        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Your tickets will be listed once validated by Dingo." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [alert setTag:8989];
-        [alert show];
+        [self listTicketsForNewEvent];
+        
+//      old when "Dingo will validate listing" alert displayed before going to homepage
+//        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Your tickets will be listed once validated by Dingo." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//        [alert setTag:8989];
+//        [alert show];
 	
 	} else {        // create ticket
 
@@ -233,6 +236,7 @@ static const NSUInteger commentCellIndex = 5;
 
                     [self.navigationController.viewControllers[0] setSelectedIndex:0];
                     [self.navigationController popToRootViewControllerAnimated:YES];
+                    [AppManager showAlert:@"Tickets Listed :-)"];
                     [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"kDingo_ticket_editTicket"];
 
                 } else {
@@ -286,6 +290,7 @@ static const NSUInteger commentCellIndex = 5;
 						
 						[self.navigationController.viewControllers[0] setSelectedIndex:0];
 						[self.navigationController popToRootViewControllerAnimated:YES];
+                        [AppManager showAlert:@"Tickets Listed :-)"];
 					} else {
 						[loadingView hide];
 						[AppManager showAlert:@"Unable to create ticket."];
@@ -302,9 +307,11 @@ static const NSUInteger commentCellIndex = 5;
 
 #pragma mark - alert view delegate
 
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    
-    if (alertView.tag == 8989) {
+// old when "Dingo will validate listing" alert displayed before going to homepage
+//-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+//    if (alertView.tag == 8989) {
+
+-(void)listTicketsForNewEvent{
         
     
     ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please wait..."];
@@ -404,6 +411,7 @@ static const NSUInteger commentCellIndex = 5;
 								
 								[self.navigationController.viewControllers[0] setSelectedIndex:0];
 								[self.navigationController popToRootViewControllerAnimated:YES];
+                                [AppManager showAlert:@"Thanks! We'll just take a quick look and list your tickets shortly :-)"];
 							} else {
 								[loadingView hide];
 								[AppManager showAlert:@"Unable to create ticket."];
@@ -426,7 +434,7 @@ static const NSUInteger commentCellIndex = 5;
             
         }];
     }];
-    }
+ //   }
 
 }
 
