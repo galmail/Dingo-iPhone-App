@@ -252,7 +252,7 @@
 }
 
 - (void)updateActionsButton {
-	if (self.ticket && self.navigationItem.rightBarButtonItem == nil && [bubbleData count] > 0){
+	if (self.ticket && [bubbleData count] > 0){
 		self.navigationItem.rightBarButtonItem = actionsButton;
 	} else {
 		self.navigationItem.rightBarButtonItem = nil;
