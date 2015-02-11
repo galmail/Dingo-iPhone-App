@@ -233,6 +233,7 @@ static const NSUInteger commentCellIndex = 5;
 
                     [self.navigationController.viewControllers[0] setSelectedIndex:0];
                     [self.navigationController popToRootViewControllerAnimated:YES];
+                    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"kDingo_ticket_editTicket"];
 
                 } else {
                     [loadingView hide];
