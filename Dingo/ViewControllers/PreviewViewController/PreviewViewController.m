@@ -216,11 +216,11 @@ static const NSUInteger commentCellIndex = 5;
 											 completion:^(id response, NSError *error) {
 												 if (!error ) {
 													 if (!response[@"id"]) {
-														 [AppManager showAlert:@"Unable to upload photos for your listing. Please add later."];
+														 [AppManager showAlert:@"There was a problem uploading your photos. Go to My Tickets to re-add :-)"];
 													 }
 												 } else {
 													 DLog(@"photos upload error");
-													 [AppManager showAlert:@"Unable to upload photos for your listing. Please add later."];
+													 [AppManager showAlert:@"There was a problem uploading your photos. Go to My Tickets to re-add :-)"];
 												 }
 											 }];
 					}
@@ -272,11 +272,11 @@ static const NSUInteger commentCellIndex = 5;
 												 completion:^(id response, NSError *error) {
 								if (!error ) {
 									if (!response[@"id"]) {
-										[AppManager showAlert:@"Unable to upload photos for your listing. Please add later."];
+										[AppManager showAlert:@"There was a problem uploading your photos. Go to My Tickets to re-add :-)"];
 									}
 								} else {
 									DLog(@"photos upload error");
-									[AppManager showAlert:@"Unable to upload photos for your listing. Please add later."];
+									[AppManager showAlert:@"There was a problem uploading your photos. Go to My Tickets to re-add :-)"];
 								}
 							}];
 						}
