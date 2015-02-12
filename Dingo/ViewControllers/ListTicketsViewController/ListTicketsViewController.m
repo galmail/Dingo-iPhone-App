@@ -34,12 +34,12 @@
 //static const CGFloat paypalCellShrinkedHeight = 120;
 static const CGFloat paypalCellExpandedHeight = 240;
 
-static const NSUInteger previewPhotosCellIndex = 9;
-static const NSUInteger editPhotosCellIndex = 10;
-static const NSUInteger uploadPhotosCellIndex = 11;
-static const NSUInteger payPalCellIndex = 12;
-static const NSUInteger previewCellIndex = 15;
-static const NSUInteger comfirmCellIndex = 16;
+static const NSUInteger previewPhotosCellIndex = 8;
+static const NSUInteger editPhotosCellIndex = 9;
+static const NSUInteger uploadPhotosCellIndex = 10;
+static const NSUInteger payPalCellIndex = 11;
+static const NSUInteger previewCellIndex = 14;
+static const NSUInteger comfirmCellIndex = 15;
 
 @interface ListTicketsViewController () <UITextFieldDelegate, UITableViewDataSource, UploadPhotosVCDelegate, ZSTextFieldDelegate, ZSDatePickerDelegate , ZSPickerDelegate ,CategorySelectionDelegate, UITextViewDelegate, PayPalProfileSharingDelegate> {
     
