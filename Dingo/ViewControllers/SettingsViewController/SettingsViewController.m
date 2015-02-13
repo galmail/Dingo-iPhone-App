@@ -148,10 +148,11 @@ static const NSUInteger pushAlert =		2243;
     
     //check for valid email address
     NSString *emailString = _emailField.text;
+    NSString *nameString  = _firstNameField.text;
     NSString *emailReg = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
     NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",emailReg];
     
-    if (([emailTest evaluateWithObject:emailString] != YES) || [emailString isEqualToString:@""]) {
+    if ( ![nameString isEqualToString:@"Guest"] && (([emailTest evaluateWithObject:emailString] != YES) || [emailString isEqualToString:@""])) {
         
         UIAlertView *loginalert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Please enter valid email." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         
