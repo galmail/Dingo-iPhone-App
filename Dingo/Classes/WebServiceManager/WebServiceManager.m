@@ -230,6 +230,7 @@ static const NSUInteger messageAlert = 6654;
                                                                   [AppManager sharedManager].userInfo = [
                                                                                                          @{@"id":response[@"id"],
                                                                                                            @"email":user[@"email"],
+                                                                                                           @"notification_email":user[@"email"],
                                                                                                            @"name": user.first_name,
                                                                                                            @"surname": user.last_name,
                                                                                                            @"allow_dingo_emails": response[@"allow_dingo_emails"],
@@ -257,7 +258,7 @@ static const NSUInteger messageAlert = 6654;
                                                                       if (response[@"authentication_token"]) {
                                                                           [AppManager sharedManager].token = response[@"authentication_token"];
                                                                           
-                                                                          [AppManager sharedManager].userInfo = [@{ @"id":response[@"id"], @"fb_id" : user.objectID, @"email":user[@"email"], @"name": user.first_name, @"surname": user.last_name, @"photo_url":[NSString stringWithFormat:@"http://graph.facebook.com/v2.0/%@/picture?redirect=1&height=200&type=normal&width=200",user.objectID], @"city":user.location ? [[user.location.name componentsSeparatedByString:@","] firstObject] : @"London",
+                                                                          [AppManager sharedManager].userInfo = [@{ @"id":response[@"id"], @"fb_id" : user.objectID, @"email":user[@"email"], @"notification_email":user[@"email"], @"name": user.first_name, @"surname": user.last_name, @"photo_url":[NSString stringWithFormat:@"http://graph.facebook.com/v2.0/%@/picture?redirect=1&height=200&type=normal&width=200",user.objectID], @"city":user.location ? [[user.location.name componentsSeparatedByString:@","] firstObject] : @"London",
                                                                                                                     @"paypal_account": (![response[@"paypal_account"] isKindOfClass:[NSNull class]] && [response[@"paypal_account"] length]) ? response[@"paypal_account"] : @""} mutableCopy];
                                                                           
                                                                           [[NSUserDefaults standardUserDefaults] setObject:response[@"authentication_token"] forKey:@"auth_token"];
@@ -287,6 +288,7 @@ static const NSUInteger messageAlert = 6654;
                                                                                           [AppManager sharedManager].userInfo = [
                                                                                                                                  @{@"id":response[@"id"],
                                                                                                                                    @"email":user[@"email"],
+                                                                                                                                   @"notification_email":user[@"email"],
                                                                                                                                    @"name": user.first_name,
                                                                                                                                    @"surname": user.last_name,
                                                                                                                                    @"allow_dingo_emails": response[@"allow_dingo_emails"],

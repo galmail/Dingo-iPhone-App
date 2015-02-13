@@ -90,8 +90,8 @@ static const NSUInteger pushAlert =		2243;
         self.cityField.text =[[AppManager sharedManager].userInfo valueForKey:@"city"];
     }
     
-    if ([[AppManager sharedManager].userInfo valueForKey:@"email"]) {
-        self.emailField.text =[[AppManager sharedManager].userInfo valueForKey:@"email"];
+    if ([[AppManager sharedManager].userInfo valueForKey:@"notification_email"]) {
+        self.emailField.text =[[AppManager sharedManager].userInfo valueForKey:@"notification_email"];
     }
     
     if ([[[AppManager sharedManager].userInfo valueForKey:@"fb_id"] length]) {
@@ -120,6 +120,7 @@ static const NSUInteger pushAlert =		2243;
     //phil turning fields to not edit
     _surnameField.enabled = NO;
     _firstNameField.enabled = NO;
+    _emailField.enabled = YES;
 }
 
 #pragma mark - UITextFieldDelegate
@@ -152,6 +153,9 @@ static const NSUInteger pushAlert =		2243;
     if (self.surnameField.text.length>0) {
         [params setValue:self.surnameField.text forKey:@"surname"];
     }
+    if (self.emailField.text.length>0) {
+        [params setValue:self.emailField.text forKey:@"notification_email"];
+    }
     
     [params setObject:[NSNumber numberWithBool:self.pushNotificationSwitch.on] forKey:@"allow_push_notifications"];
     [params setObject:[NSNumber numberWithBool:self.dingoEmailsSwitch.on] forKey:@"allow_dingo_emails"];
@@ -176,7 +180,7 @@ static const NSUInteger pushAlert =		2243;
             }
             [[AppManager sharedManager].userInfo setValue:self.firstNameField.text forKey:@"name"];
             [[AppManager sharedManager].userInfo setValue:self.cityField.text forKey:@"city"];
-            [[AppManager sharedManager].userInfo setValue:self.surnameField.text forKey:@"surname"];
+            [[AppManager sharedManager].userInfo setValue:self.emailField.text forKey:@"notification_email"];
             if (!self.facebookLoginSwitch.on) {
                 [[AppManager sharedManager].userInfo setObject:@"" forKey:@"fb_id"];
             }
@@ -206,6 +210,9 @@ static const NSUInteger pushAlert =		2243;
     if (self.surnameField.text.length>0) {
         [params setValue:self.surnameField.text forKey:@"surname"];
     }
+    if (self.emailField.text.length>0) {
+        [params setValue:self.emailField.text forKey:@"notification_email"];
+    }
     
     [params setObject:[NSNumber numberWithBool:self.pushNotificationSwitch.on] forKey:@"allow_push_notifications"];
     [params setObject:[NSNumber numberWithBool:self.dingoEmailsSwitch.on] forKey:@"allow_dingo_emails"];
@@ -228,7 +235,7 @@ static const NSUInteger pushAlert =		2243;
             }
             [[AppManager sharedManager].userInfo setValue:self.firstNameField.text forKey:@"name"];
             [[AppManager sharedManager].userInfo setValue:self.cityField.text forKey:@"city"];
-            [[AppManager sharedManager].userInfo setValue:self.surnameField.text forKey:@"surname"];
+            [[AppManager sharedManager].userInfo setValue:self.emailField.text forKey:@"notification_email"];
             if (!self.facebookLoginSwitch.on) {
                 [[AppManager sharedManager].userInfo setObject:@"" forKey:@"fb_id"];
             }
