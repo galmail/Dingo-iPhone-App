@@ -23,6 +23,7 @@
 #import "NewOfferViewController.h"
 #import "CheckoutViewController.h"
 #import "WebServiceManager.h"
+#import <MessageUI/MessageUI.h>
 
 #import "NSString+DingoFormatting.h"
 
@@ -33,7 +34,7 @@
 static const NSUInteger commentCellIndex = 5;
 
 
-@interface TicketDetailViewController () <BottomBarDelegate, UICollectionViewDataSource, UICollectionViewDelegate> {
+@interface TicketDetailViewController () <BottomBarDelegate, UICollectionViewDataSource, UICollectionViewDelegate,MFMailComposeViewControllerDelegate> {
     BottomEditBar *bottomBar;
     
     __weak IBOutlet UILabel *lblTicketCount;
@@ -348,7 +349,7 @@ static const NSUInteger commentCellIndex = 5;
                 return [super tableView:tableView heightForRowAtIndexPath:indexPath];
             }
         }
-        case 10:{
+        case 11:{
             if (self.mutualFriendCell.isHidden) {
                 return 0;
             } else {
@@ -580,6 +581,31 @@ static const NSUInteger commentCellIndex = 5;
     
     [self presentViewController:activityController animated:YES completion:nil];
 }
+
+
+#pragma mark - MFMailComposeViewControllerDelegate
+
+-(void)mailComposeController:(MFMailComposeViewController *)controller
+         didFinishWithResult:(MFMailComposeResult)result
+                       error:(NSError *)error{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+- (IBAction)reportListing:(id)sender {
+    if (![MFMailComposeViewController canSendMail]) {
+        NSLog(@"Mail sending not available");
+        return;
+    }
+    MFMailComposeViewController *mailComposer = [[MFMailComposeViewController alloc] init];
+    [mailComposer setToRecipients:@[@"report@dingoapp.co.uk"]];
+    [mailComposer setSubject:@"Report Listing"];
+    [mailComposer setMessageBody:[NSString stringWithFormat:@"I would like to report this listing (#%@) because:\n", self.ticket.ticket_id]
+                          isHTML:YES];
+    mailComposer.mailComposeDelegate = self;
+    [self presentViewController:mailComposer animated:YES completion:nil];
+}
+
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{

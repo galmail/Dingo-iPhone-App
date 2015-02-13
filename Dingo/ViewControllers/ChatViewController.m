@@ -471,6 +471,7 @@ NSString *lastChatUser;
         
         MFMailComposeViewController *mailComposer = [[MFMailComposeViewController alloc] init];
         [mailComposer setToRecipients:@[@"report@dingoapp.co.uk"]];
+        [mailComposer setSubject:@"Report User"];
         [mailComposer setMessageBody:[NSString stringWithFormat:@"I would like to report %@ (user ID %@) on ticket (#%@). \n\nThe reason I'd like to report him/her is: \n",self.receiverName, self.receiverID, self.ticket.ticket_id]
                               isHTML:YES];
         mailComposer.mailComposeDelegate = self;
