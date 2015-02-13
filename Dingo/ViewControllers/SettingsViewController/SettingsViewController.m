@@ -14,6 +14,8 @@
 #import "DingoUISettings.h"
 #import <FacebookSDK/FacebookSDK.h>
 #import "UIDevice+Additions.h"
+#import "ZSTextField.h"
+
 
 
 static const NSUInteger fbLoginAlert =	4847;
@@ -32,7 +34,7 @@ static const NSUInteger pushAlert =		2243;
 
 @property (nonatomic, weak) IBOutlet UITextField *firstNameField;
 @property (nonatomic, weak) IBOutlet UITextField *surnameField;
-@property (nonatomic, weak) IBOutlet UITextField *emailField;
+@property (nonatomic, weak) IBOutlet ZSTextField *emailField;
 @property (nonatomic, weak) IBOutlet UITextField *cityField;
 @property (nonatomic, weak) IBOutlet UISwitch *facebookLoginSwitch;
 @property (nonatomic, weak) IBOutlet UISwitch *pushNotificationSwitch;
@@ -66,6 +68,7 @@ static const NSUInteger pushAlert =		2243;
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(remoteNotificationsChangedNotification:) name:@"RemoteNotificationsChanged" object:nil];
     
+    [self.emailField showToolbarWithDone];
     [self reloadData];
 }
 
@@ -143,6 +146,19 @@ static const NSUInteger pushAlert =		2243;
 
 - (IBAction)back {
     
+    //check for valid email address
+    NSString *emailString = _emailField.text;
+    NSString *emailReg = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",emailReg];
+    
+    if (([emailTest evaluateWithObject:emailString] != YES) || [emailString isEqualToString:@""]) {
+        
+        UIAlertView *loginalert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Please enter valid email." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        
+        [loginalert show];
+        
+    } else {
+    
     NSMutableDictionary *params = [NSMutableDictionary new];
     if (self.firstNameField.text.length>0) {
         [params setValue:self.firstNameField.text forKey:@"name"];
@@ -195,7 +211,7 @@ static const NSUInteger pushAlert =		2243;
         [self.navigationController popViewControllerAnimated:YES];
     }];
 
-    
+    }
     
 }
 
