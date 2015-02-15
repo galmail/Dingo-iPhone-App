@@ -1306,9 +1306,25 @@ static const NSUInteger comfirmCellIndex = 15;
 }
 
 -(void)displayTick{
-    UIImageView *orIcon=[[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2 + 110, 532, 44, 35)];
-    [orIcon setImage:[UIImage imageNamed:@"GreenTick.png"]];
-    [self.view addSubview:orIcon];
+    //tick with pictures
+    UIImageView *tickPictures=[[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2 + 110, 640, 44, 35)];
+    [tickPictures setImage:[UIImage imageNamed:@"GreenTick.png"]];
+    [tickPictures setTag:1];
+    //tick without pictures
+    UIImageView *tickNoPictures=[[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2 + 110, 532, 44, 35)];
+    [tickNoPictures setImage:[UIImage imageNamed:@"GreenTick.png"]];
+    [tickNoPictures setTag:2];
+    
+    if (photos.count == 0) {
+        [tickPictures removeFromSuperview];
+        [[self.view viewWithTag:1] removeFromSuperview];
+        [self.view addSubview:tickNoPictures];
+    }
+    if (photos.count > 0) {
+        [tickNoPictures removeFromSuperview];
+        [[self.view viewWithTag:2] removeFromSuperview];
+        [self.view addSubview:tickPictures];
+    }
 }
 
 #pragma mark PayPalProfileSharingDelegate methods
