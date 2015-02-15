@@ -1299,7 +1299,7 @@ static const NSUInteger comfirmCellIndex = 15;
 }
 
 -(void)displayTick{
-    UIImageView *orIcon=[[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2 + 110, 520, 44, 35)];
+    UIImageView *orIcon=[[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2 + 110, 530, 44, 35)];
     [orIcon setImage:[UIImage imageNamed:@"GreenTick.png"]];
     [self.view addSubview:orIcon];
 }
