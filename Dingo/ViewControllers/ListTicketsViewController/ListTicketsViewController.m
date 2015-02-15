@@ -294,6 +294,13 @@ static const NSUInteger comfirmCellIndex = 15;
         [self.endDateField setUserInteractionEnabled:true];
     }
     
+    //display tick if logged into PayPal
+    NSString *PayPalInfo =[[AppManager sharedManager].userInfo valueForKey:@"paypal_account"];
+    //[AppManager showAlert:[NSString stringWithFormat: @"Stored for user is %@.", PayPalInfo]];
+    
+    if (PayPalInfo.length>10) {
+        [self displayTick];
+    }
     
 }
 
@@ -1291,6 +1298,11 @@ static const NSUInteger comfirmCellIndex = 15;
 	}
 }
 
+-(void)displayTick{
+    UIImageView *orIcon=[[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2 + 110, 520, 44, 35)];
+    [orIcon setImage:[UIImage imageNamed:@"GreenTick.png"]];
+    [self.view addSubview:orIcon];
+}
 
 #pragma mark PayPalProfileSharingDelegate methods
 
@@ -1301,9 +1313,9 @@ static const NSUInteger comfirmCellIndex = 15;
 	ALog();
 	
 	//should we remove paypal info ?
-	[[AppManager sharedManager].userInfo removeObjectForKey:@"paypal_account"];
-	[[NSUserDefaults standardUserDefaults] removeObjectForKey:@"paypal_account"];
-	[[NSUserDefaults standardUserDefaults] synchronize];
+//	[[AppManager sharedManager].userInfo removeObjectForKey:@"paypal_account"];
+//	[[NSUserDefaults standardUserDefaults] removeObjectForKey:@"paypal_account"];
+//	[[NSUserDefaults standardUserDefaults] synchronize];
 	
 	self.changed = YES;
 	[self dismissViewControllerAnimated:YES completion:nil];
@@ -1329,9 +1341,12 @@ static const NSUInteger comfirmCellIndex = 15;
 		NSLog(@"updateProfile response %@", response);
 		[loadingView hide];
 		
-		if (error) {
-			[WebServiceManager handleError:error];
-		}
+        if (error) {
+            [WebServiceManager handleError:error];
+        } else {
+            [[AppManager sharedManager].userInfo setValue: authorization_code forKey:@"paypal_account"];
+            [self displayTick];
+        }
 		
 	}];
 	

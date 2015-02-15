@@ -254,6 +254,7 @@
 		4AE2BCF71A877C6100E0DF8B /* InviteFriends2.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AE2BCF61A877C6100E0DF8B /* InviteFriends2.png */; };
 		4AE2BCF91A877C6A00E0DF8B /* InviteFriends2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AE2BCF81A877C6A00E0DF8B /* InviteFriends2@2x.png */; };
 		4AE2BCFF1A8780E600E0DF8B /* btnGuestpw@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AE2BCFE1A8780E600E0DF8B /* btnGuestpw@2x.png */; };
+		4AF847FF1A90EA2900AFDA2E /* GreenTick@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AF847FE1A90EA2900AFDA2E /* GreenTick@2x.png */; };
 		593593FA1A52DB320004311E /* PlaceHolderManageListing.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 593593F81A52DB320004311E /* PlaceHolderManageListing.jpg */; };
 		593593FB1A52DB320004311E /* PlaceHolderManageListing@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 593593F91A52DB320004311E /* PlaceHolderManageListing@2x.jpg */; };
 		59453D341A40017F00423F35 /* paypal_logo_with_text@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 59453D331A40017F00423F35 /* paypal_logo_with_text@2x.png */; };
@@ -699,6 +700,7 @@
 		4AE2BCF61A877C6100E0DF8B /* InviteFriends2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = InviteFriends2.png; sourceTree = "<group>"; };
 		4AE2BCF81A877C6A00E0DF8B /* InviteFriends2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "InviteFriends2@2x.png"; sourceTree = "<group>"; };
 		4AE2BCFE1A8780E600E0DF8B /* btnGuestpw@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnGuestpw@2x.png"; sourceTree = "<group>"; };
+		4AF847FE1A90EA2900AFDA2E /* GreenTick@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GreenTick@2x.png"; sourceTree = "<group>"; };
 		593593F81A52DB320004311E /* PlaceHolderManageListing.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = PlaceHolderManageListing.jpg; sourceTree = "<group>"; };
 		593593F91A52DB320004311E /* PlaceHolderManageListing@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "PlaceHolderManageListing@2x.jpg"; sourceTree = "<group>"; };
 		59453D331A40017F00423F35 /* paypal_logo_with_text@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "paypal_logo_with_text@2x.png"; sourceTree = "<group>"; };
@@ -1891,6 +1893,7 @@
 		3F62C66E1948318F00D7D6B1 /* other_icons */ = {
 			isa = PBXGroup;
 			children = (
+				4AF847FE1A90EA2900AFDA2E /* GreenTick@2x.png */,
 				4AE2BCF81A877C6A00E0DF8B /* InviteFriends2@2x.png */,
 				4AE2BCF61A877C6100E0DF8B /* InviteFriends2.png */,
 				4A9EA41A1A8537F90080D179 /* InviteFriends.png */,
@@ -2612,6 +2615,7 @@
 				84A457071970182C000ABA73 /* welcomeText2@2x.png in Resources */,
 				3F62C69A1948318F00D7D6B1 /* list_tickets_cell3@2x.png in Resources */,
 				3F62C6891948318F00D7D6B1 /* menu_icon@2x.png in Resources */,
+				4AF847FF1A90EA2900AFDA2E /* GreenTick@2x.png in Resources */,
 				3AB28AE8197BCC3A009C1DDC /* welcome4BG-568h@2x.png in Resources */,
 				3F62C6EC1949B67800D7D6B1 /* theatre@2x.png in Resources */,
 				3A97DDDA19D971B000B4C33E /* bellOn@2x.png in Resources */,
