@@ -705,6 +705,13 @@ static const NSUInteger comfirmCellIndex = 15;
     return YES;
 }
 
+
+//set limit on characters for decription field
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    return textView.text.length + (text.length - range.length) <= 220;
+}
+
+
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     
     if (textField == self.nameField) {
@@ -1299,7 +1306,7 @@ static const NSUInteger comfirmCellIndex = 15;
 }
 
 -(void)displayTick{
-    UIImageView *orIcon=[[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2 + 110, 530, 44, 35)];
+    UIImageView *orIcon=[[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2 + 110, 532, 44, 35)];
     [orIcon setImage:[UIImage imageNamed:@"GreenTick.png"]];
     [self.view addSubview:orIcon];
 }
