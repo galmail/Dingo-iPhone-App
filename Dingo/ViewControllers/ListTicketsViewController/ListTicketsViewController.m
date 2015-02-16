@@ -873,6 +873,7 @@ static const NSUInteger comfirmCellIndex = 15;
     if (![[AppManager sharedManager].userInfo[@"fb_id"] length] && [identifier isEqualToString:@"PreviewSegue"]) {
         
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Please login to Facebook to sell tickets." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Login", nil];
+        alert.tag = 101;
         [alert show];
         return NO;
     }
@@ -1232,6 +1233,13 @@ static const NSUInteger comfirmCellIndex = 15;
 
 - (IBAction)paypalChanged:(id)sender {
 	[self saveDraft];
+    
+    //check if user is logged in via FB, if not display alert
+    if (![[AppManager sharedManager].userInfo[@"fb_id"] length]) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Please login to Facebook to sell tickets." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Login", nil];
+        alert.tag = 201;
+        [alert show];
+    } else {
 	
 	DLog(@"self.event.test: %i", [self.event.test boolValue]);
 	[PayPalMobile preconnectWithEnvironment:PayPalEnvironmentProduction];
@@ -1245,6 +1253,7 @@ static const NSUInteger comfirmCellIndex = 15;
 	
 	// Present the PayPalProfileSharingViewController
 	[self presentViewController:psViewController animated:YES completion:nil];
+    }
 }
 
 - (IBAction)inPersonChanged:(id)sender {
@@ -1288,22 +1297,41 @@ static const NSUInteger comfirmCellIndex = 15;
 #pragma mark UIAlertView delegates
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-	
-	if (buttonIndex == 1) {
-		ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please wait..."];
-		[loadingView show];
-		[WebServiceManager signInWithFBAndUpdate:NO completion:^(id response, NSError *error) {
-			[loadingView hide];
-			if (response) {
-				if ([self shouldPerformSegueWithIdentifier:@"PreviewSegue" sender:self]) {
-					[self performSegueWithIdentifier:@"PreviewSegue" sender:self];
-				}
-			}else{
-				[WebServiceManager handleError:error];
-			}
-		}];
-	}
+    //if user pressed Preview
+    if (alertView.tag == 101) {
+        if (buttonIndex == 1) {
+            ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please wait..."];
+            [loadingView show];
+            [WebServiceManager signInWithFBAndUpdate:NO completion:^(id response, NSError *error) {
+                [loadingView hide];
+                if (response) {
+                    if ([self shouldPerformSegueWithIdentifier:@"PreviewSegue" sender:self]) {
+                        [self performSegueWithIdentifier:@"PreviewSegue" sender:self];
+                    }
+                }else{
+                    [WebServiceManager handleError:error];
+                }
+            }];
+        }
+    }
+    //if user pressed PayPal login
+    if (alertView.tag == 201) {
+        
+        if (buttonIndex == 1) {
+            ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please wait..."];
+            [loadingView show];
+            [WebServiceManager signInWithFBAndUpdate:NO completion:^(id response, NSError *error) {
+                [loadingView hide];
+                if (response) {
+                    [self paypalChanged:nil];
+                }else{
+                    [WebServiceManager handleError:error];
+                }
+            }];
+        }
+    }
 }
+
 
 -(void)displayTick{
     //tick with pictures
