@@ -1458,7 +1458,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="concerts.png" id="YGu-T0-LiQ" userLabel="back">
-                                            <rect key="frame" x="0.0" y="10" width="320" height="180"/>
+                                            <rect key="frame" x="0.0" y="25" width="320" height="120"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </imageView>
@@ -1500,12 +1500,12 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="QzJ-hB-k2X">
-                                                    <rect key="frame" x="155" y="122" width="75" height="22"/>
+                                                    <rect key="frame" x="160" y="122" width="75" height="22"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" image="AlertButton">
+                                                    <state key="normal" image="AlertMe.png">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
-                                                    <state key="selected" image="AlertButtonOn"/>
+                                                    <state key="selected" image="AlertMeOn.png"/>
                                                     <connections>
                                                         <action selector="bellOnOff:" destination="UTV-Tz-0Ch" eventType="touchUpInside" id="xqe-kf-amA"/>
                                                     </connections>
@@ -1531,7 +1531,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Arrow.png" id="02G-cO-D4r" userLabel="arrow">
-                                            <rect key="frame" x="9880" y="0.0" width="16" height="16"/>
+                                            <rect key="frame" x="10200" y="63" width="16" height="16"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                     </subviews>
@@ -4505,9 +4505,9 @@ Don't worry we've got you covered! Any issues, get in touch at info@dingoapp.co.
     </scenes>
     <resources>
         <image name="Add.png" width="248" height="40"/>
-        <image name="AlertButton" width="147" height="42"/>
-        <image name="AlertButtonOn" width="153" height="48"/>
         <image name="AlertEventName.png" width="320" height="35"/>
+        <image name="AlertMe.png" width="75" height="22"/>
+        <image name="AlertMeOn.png" width="77" height="24"/>
         <image name="Arrow.png" width="37" height="47"/>
         <image name="EventCell.png" width="320" height="79"/>
         <image name="EventIcon.png" width="60" height="59"/>
