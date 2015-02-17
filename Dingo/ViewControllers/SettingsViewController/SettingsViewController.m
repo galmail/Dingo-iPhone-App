@@ -161,15 +161,15 @@ static const NSUInteger pushAlert =		2243;
     } else {
     
     NSMutableDictionary *params = [NSMutableDictionary new];
-    if (self.firstNameField.text.length>0) {
-        [params setValue:self.firstNameField.text forKey:@"name"];
-    }
+    //if (self.firstNameField.text.length>0) {
+    //    [params setValue:self.firstNameField.text forKey:@"name"];
+    //}
     if (self.cityField.text.length>0) {
         [params setValue:self.cityField.text forKey:@"city"];
     }
-    if (self.surnameField.text.length>0) {
-        [params setValue:self.surnameField.text forKey:@"surname"];
-    }
+    //if (self.surnameField.text.length>0) {
+    //    [params setValue:self.surnameField.text forKey:@"surname"];
+    //}
     if (self.emailField.text.length>0) {
         [params setValue:self.emailField.text forKey:@"notification_email"];
     }
