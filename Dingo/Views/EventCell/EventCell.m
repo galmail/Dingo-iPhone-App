@@ -86,10 +86,22 @@ const CGFloat eventCellHeight = 78;
     }
 }
 
+
 - (void)setLocation:(NSString *)location {
-    _location = location;
-    self.locationLabel.text = location;
+    
+    if ([NSStringFromClass([self class]) isEqual:@"TicketCell"] || [NSStringFromClass([self class]) isEqual:@"EventCell"] ) {
+        NSArray* myArray = [location  componentsSeparatedByString:@","];
+        NSString* addressString = [myArray objectAtIndex:0];
+        NSString* cityString = [myArray objectAtIndex:1];
+        NSString* locationWithoutPostcode = [NSString stringWithFormat:@"%@,%@", addressString, cityString];
+        
+        self.locationLabel.text = locationWithoutPostcode; } else {
+            
+            _location = location;
+            self.locationLabel.text = location;
+        }
 }
+
 
 - (void)setOn:(BOOL)on {
     self.btnBell.selected = on;
