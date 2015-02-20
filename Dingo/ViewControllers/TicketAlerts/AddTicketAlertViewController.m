@@ -89,7 +89,7 @@
         NSArray *filteredEvents = [events filteredArrayUsingPredicate:predicate];
         if (filteredEvents.count == 0) {
 			
-			[AppManager showAlert:@"Sorry, no event matches your description"];
+			[AppManager showAlert:@"Sorry, no event matches your description :(\n\nGet in touch through 'Give us Feedback' and we will add it for you :)"];
             return;
         }
     }

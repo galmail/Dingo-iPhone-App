@@ -91,7 +91,7 @@ static NSString * const supportEmail = @"info@dingoapp.co.uk";
 
 - (IBAction)share:(id)sender {
     [self.slidingViewController resetTopViewWithAnimations:nil onComplete:nil];
-    NSString *text = [NSString stringWithFormat:@"Check out this great app for buying and selling tickets - www.dingoapp.co.uk." ];
+    NSString *text = [NSString stringWithFormat:@"Hey, check out this great app for buying and selling tickets - www.dingoapp.co.uk." ];
     
     UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:@[text] applicationActivities:nil];
     
