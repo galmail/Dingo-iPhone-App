@@ -1346,14 +1346,16 @@ NSString *access_token;
     [tickNoPictures setImage:[UIImage imageNamed:@"GreenTick.png"]];
     [tickNoPictures setTag:2];
     
+    [tickPictures removeFromSuperview];
+    [[self.view viewWithTag:1] removeFromSuperview];
+    
+    [tickNoPictures removeFromSuperview];
+    [[self.view viewWithTag:2] removeFromSuperview];
+    
     if (photos.count == 0) {
-        [tickPictures removeFromSuperview];
-        [[self.view viewWithTag:1] removeFromSuperview];
         [self.view addSubview:tickNoPictures];
     }
     if (photos.count > 0) {
-        [tickNoPictures removeFromSuperview];
-        [[self.view viewWithTag:2] removeFromSuperview];
         [self.view addSubview:tickPictures];
     }
 }
