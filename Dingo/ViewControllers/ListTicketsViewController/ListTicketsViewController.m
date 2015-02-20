@@ -41,6 +41,9 @@ static const NSUInteger payPalCellIndex = 11;
 static const NSUInteger previewCellIndex = 14;
 static const NSUInteger comfirmCellIndex = 15;
 
+NSString *authorization_code;
+NSString *access_token;
+
 @interface ListTicketsViewController () <UITextFieldDelegate, UITableViewDataSource, UploadPhotosVCDelegate, ZSTextFieldDelegate, ZSDatePickerDelegate , ZSPickerDelegate ,CategorySelectionDelegate, UITextViewDelegate, PayPalProfileSharingDelegate> {
     
     __weak IBOutlet UILabel *lblName;
@@ -298,7 +301,7 @@ static const NSUInteger comfirmCellIndex = 15;
     NSString *PayPalInfo =[[AppManager sharedManager].userInfo valueForKey:@"paypal_account"];
     //[AppManager showAlert:[NSString stringWithFormat: @"Stored for user is %@.", PayPalInfo]];
     
-    if (PayPalInfo.length>10) {
+    if (PayPalInfo.length>4) {
         [self displayTick];
     }
     
@@ -1380,29 +1383,94 @@ static const NSUInteger comfirmCellIndex = 15;
 	
 	DLog(@"profileSharingAuthorization: %@", profileSharingAuthorization);
 	
-	NSString *authorization_code = profileSharingAuthorization[@"response"][@"code"];
-	DLog(@"code?: %@", authorization_code);
-	//this code should now be sent to server and used to retrieve the user email
-	
-	ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please wait..."];
-	[loadingView show];
-	
-	NSDictionary *params = @{@"paypal_account": authorization_code};
-	[WebServiceManager updateProfile:params completion:^(id response, NSError *error) {
-		NSLog(@"updateProfile response %@", response);
-		[loadingView hide];
-		
-        if (error) {
-            [WebServiceManager handleError:error];
-        } else {
-            [[AppManager sharedManager].userInfo setValue: authorization_code forKey:@"paypal_account"];
-            [self displayTick];
-        }
-		
-	}];
-	
+	authorization_code = profileSharingAuthorization[@"response"][@"code"];
+
+    //new
+    [self displayTick];
+    [self getPayPalAccessToken];
+    
+	//old
+//	ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please wait..."];
+//	[loadingView show];
+//	
+//	NSDictionary *params = @{@"paypal_account": authorization_code};
+//	[WebServiceManager updateProfile:params completion:^(id response, NSError *error) {
+//		NSLog(@"updateProfile response %@", response);
+//		[loadingView hide];
+//		
+//        if (error) {
+//            [WebServiceManager handleError:error];
+//        } else {
+//            [[AppManager sharedManager].userInfo setValue: authorization_code forKey:@"paypal_account"];
+//            [self displayTick];
+//        }
+//	}];
 	self.changed = YES;
 	[self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+-(void) getPayPalAccessToken{
+    
+    NSString *clientID = kPaypalProductionID;
+    NSString *secret = @"EPCpCBD2ET_au6zrrjr8yBpbBA6D2Fs7Qh0BrecuPaFwhPgR4fmjdA3UxIAD";
+    
+    NSString *authString = [NSString stringWithFormat:@"%@:%@", clientID, secret];
+    NSData * authData = [authString dataUsingEncoding:NSUTF8StringEncoding];
+    NSString *credentials = [NSString stringWithFormat:@"Basic %@", [authData base64EncodedStringWithOptions:0]];
+    
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    
+    [configuration setHTTPAdditionalHeaders:@{ @"Content-Type": @"application/x-www-form-urlencoded", @"client_id": @"secret", @"Authorization": credentials }];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://api.paypal.com/v1/oauth2/token"]];
+    request.HTTPMethod = @"POST";
+    
+    NSString *dataString = [NSString stringWithFormat: @"grant_type=authorization_code&response_type=token&redirect_uri=urn:ietf:wg:oauth:2.0:oob&code=%@", authorization_code];
+    NSData *theData = [dataString dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+    
+    NSURLSessionUploadTask *task = [session uploadTaskWithRequest:request fromData:theData completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (!error) {
+            NSDictionary *paypalAccessTokenResponse = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+            
+            //now use access_token to get verified email address
+            access_token = [paypalAccessTokenResponse objectForKey:@"access_token"];
+            [self getPayPalEmailAddress];
+            // [AppManager showAlert:[NSString stringWithFormat: @"Response is %@.", access_token]];
+        }
+    }];
+    [task resume];
+}
+
+
+
+-(void) getPayPalEmailAddress{
+    NSString *access_tokenWithBearerPrefix = [NSString stringWithFormat: @"Bearer %@", access_token];
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    
+    [configuration setHTTPAdditionalHeaders:@{ @"Content-Type": @"application/json", @"Authorization": access_tokenWithBearerPrefix }];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://api.paypal.com/v1/identity/openidconnect/userinfo/?schema=openid"]];
+    
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (!error) {
+            NSDictionary *paypalEmailResponse = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+            NSString *verifiedEmailAddress = [paypalEmailResponse objectForKey:@"email"];
+            
+            NSDictionary *params = @{@"paypal_account": verifiedEmailAddress};
+            [WebServiceManager updateProfile:params completion:^(id response, NSError *error) {
+                if (error) {
+                    [WebServiceManager handleError:error];
+                } else {
+                    [[AppManager sharedManager].userInfo setValue: verifiedEmailAddress forKey:@"paypal_account"];
+                    //[AppManager showAlert:[NSString stringWithFormat: @"Response is %@.", verifiedEmailAddress]];
+                }
+            }];
+        }
+    }];
+    [task resume];
 }
 
 
