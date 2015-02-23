@@ -173,7 +173,7 @@
 			} else {
 				//no tickets available
 				[loadingView hide];
-				[AppManager showAlert:@"Too late - ticket has already been purchased! :("];
+				[AppManager showAlert:@"Too late - ticket(s) have already been purchased! :("];
 			}
 		} else {
 			//odd error
