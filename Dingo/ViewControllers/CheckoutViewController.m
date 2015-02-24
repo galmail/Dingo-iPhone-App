@@ -88,7 +88,7 @@
 //    }
     
    // if ([self.ticket.payment_options rangeOfString:@"PayPal"].location != NSNotFound) {
-        txtPayment.text= @"PayPal or Credit Card";
+        txtPayment.text= @"PayPal";
    // }
     
     txtSellerName.text = self.ticket.user_name;
@@ -97,7 +97,7 @@
     [self calculateTotal];
     
     payPalConfig = [[PayPalConfiguration alloc] init];
-    payPalConfig.acceptCreditCards = YES;
+    payPalConfig.acceptCreditCards = NO;
     payPalConfig.languageOrLocale = @"en";
 	payPalConfig.merchantName = PAYPAL_MERCHANT_NAME;
 	payPalConfig.merchantPrivacyPolicyURL = PAYPAL_MERCHANT_PRIVACY_POLICY_URL;
