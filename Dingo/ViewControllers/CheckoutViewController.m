@@ -15,6 +15,7 @@
 #import "CardIO.h"
 #import "ChatViewController.h"
 #import "ZSLoadingView.h"
+#import <Parse/Parse.h>
 
 @interface CheckoutViewController () <PayPalPaymentDelegate, CardIOPaymentViewControllerDelegate, UIPopoverControllerDelegate>{
     
@@ -49,6 +50,8 @@
     NSString *payPalKey;
     
     NSString *SecretKey;
+    
+    NSString *checkoutTotal;
 }
 
 @end
@@ -240,6 +243,7 @@
     }
 }
 
+
 - (void)calculateTotal {
     int numberOfTickets = [txtNumber.text intValue];
     double price = 0;
@@ -254,6 +258,8 @@
         total=total+(total*10)/100;
         
     txtTotal.text = [currencyFormatter stringFromNumber:@( total)];
+    
+    checkoutTotal = [NSString stringWithFormat:@"%g", (total*100)];
 }
 
 
@@ -300,12 +306,12 @@
                             
                             [self.navigationController pushViewController:vc animated:YES];
 							
+                            [AppManager showAlert:@"Ticket(s) purchased! You have been redirected to a chat with the seller. Please arrage ticket delivery here."];
+                            
 							//refresh chat after 3 seconds
 							[vc performSelector:@selector(reloadMessagesWithCompletion:) withObject:nil afterDelay:3];
                             
-                            [WebServiceManager payPalSuccess:@{@"order_id":response[@"id"]} completion:^(id response, NSError *error) {
-                                
-                            }];
+                            [WebServiceManager payPalSuccess:@{@"order_id":response[@"id"]} completion:^(id response, NSError *error) {}];
                             
                         } else {
                             [AppManager showAlert:@"Payment received but unable to complete ticket purchase. Please get in touch at info@dingoapp.co.uk."];
@@ -319,6 +325,7 @@
         
     }];
 }
+
 
 - (void)payPalPaymentDidCancel:(PayPalPaymentViewController *)paymentViewController {
     NSLog(@"PayPal Payment Canceled");
@@ -340,52 +347,105 @@
     NSLog(@"Scan succeeded with info: %@", info);
     
     [self dismissViewControllerAnimated:YES completion:^{
+    
+    //set card details
+    STPCard *card = [[STPCard alloc] init];
+    card.number = info.cardNumber;
+    card.expMonth = info.expiryMonth;
+    card.expYear = info.expiryYear;
+    card.cvc = info.cvv;
         
-        float originalPrice=[txtNumber.text intValue]*[self.ticket.price doubleValue];
-        
-            NSDictionary *params = @{ @"ticket_id" : self.ticket.ticket_id,
-                                      @"num_tickets": txtNumber.text,
-                                      @"amount" : [NSNumber numberWithFloat:originalPrice],
-                                      @"delivery_options" : self.ticket.delivery_options,
-                                      @"order_paid":@"1",
-                                      };
+    
+    ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please wait..."];
+    [loadingView show];
+    
+    //create Stripe token with card details
+    [[STPAPIClient sharedClient] createTokenWithCard:card completion:^(STPToken *token, NSError *error) {
+        if (error) {
+            //obtaining token failed
+            [loadingView hide];
+            DLog(@"failed to create a card token: %@", error);
+            [AppManager showAlert:@"Unable to complete transaction. Please check card details and try again!"];
             
-            ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please wait..."];
-            [loadingView show];
+        } else {
+            //successfully obtained token
+            DLog(@"Token obtained: %@", token);
             
-            [WebServiceManager makeOrder:params completion:^(id response, NSError *error) {
-                [loadingView hide];
-                if (!error) {
+            //now use token to charge card
+            [self createBackendChargeWithToken:token completion:^(STPBackendChargeResult status, NSError *error) {
+                if (status == STPBackendChargeResultSuccess) {
                     
-                    NSLog(@"make order - %@", response);
-                    if (response) {
-                        
-                        if (response[@"id"]) {
+                        //successfully charged card, now complete order with Dingo backend
+                        DLog(@"Card Charged!");
+                        float originalPrice=[txtNumber.text intValue]*[self.ticket.price doubleValue];
+                    
+                        NSDictionary *params = @{ @"ticket_id" : self.ticket.ticket_id,
+                                                  @"num_tickets": txtNumber.text,
+                                                  @"amount" : [NSNumber numberWithFloat:originalPrice],
+                                                  @"delivery_options" : self.ticket.delivery_options,
+                                                  @"order_paid":@"1",
+                                                  };
+                    
+                        [WebServiceManager makeOrder:params completion:^(id response, NSError *error) {
+                        [loadingView hide];
                             
-                            ChatViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"ChatViewController"];
-                            vc.receiverID=response[@"receiver_id"];
-                            vc.ticket = self.ticket;
-                            
-                            [self.navigationController pushViewController:vc animated:YES];
-                            
-                            //refresh chat page after 4 seconds
-                            [vc performSelector:@selector(reloadMessagesWithCompletion:) withObject:nil afterDelay:4];
-                            
-                            [WebServiceManager payPalSuccess:@{@"order_id":response[@"id"]} completion:^(id response, NSError *error) {
-                                
-                            }];
-                            
-                        } else {
-                            [AppManager showAlert:@"Payment received but unable to complete ticket purchase. Please get in touch at info@dingoapp.co.uk."];
-                        }
-                    }
-                }else{
-                    [WebServiceManager handleError:error];
+                            if (!error) {
+                                NSLog(@"make order - %@", response);
+                                if (response) {
+                                    
+                                    if (response[@"id"]) {
+                                        
+                                        ChatViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"ChatViewController"];
+                                        vc.receiverID=response[@"receiver_id"];
+                                        vc.ticket = self.ticket;
+                                        
+                                        [self.navigationController pushViewController:vc animated:YES];
+                                        
+                                        [AppManager showAlert:@"Ticket(s) purchased! You have been redirected to a chat with the seller. Please arrage ticket delivery here."];
+                                        
+                                        //refresh chat page after 4 seconds
+                                        [vc performSelector:@selector(reloadMessagesWithCompletion:) withObject:nil afterDelay:4];
+                                        
+                                        [WebServiceManager payPalSuccess:@{@"order_id":response[@"id"]} completion:^(id response, NSError *error) {}];
+                                        
+                                    } else {
+                                        [AppManager showAlert:@"Payment received but unable to complete ticket purchase. Please get in touch at info@dingoapp.co.uk."];
+                                    }
+                                }
+                            }else{
+                                [WebServiceManager handleError:error];
+                            }
+                        }];
+                    
+                } else {
+                    //failed to charge card
+                    [loadingView hide];
+                    DLog(@"failed to charge card: %@", error);
+                    [AppManager showAlert:@"Unable to complete transaction. Please check card details and try again!"];
                 }
             }];
+        }
+    }];
     }];
 }
 
+
+- (void)createBackendChargeWithToken:(STPToken *)token completion:(STPTokenSubmissionHandler)completion {
+    
+    DLog(@"About to request charge using SecretKey: %@", SecretKey);
+    DLog(@"Checkout total should be: %@", checkoutTotal);
+    
+    NSDictionary *chargeParams = @{ @"token": token.tokenId, @"currency": @"gbp", @"amount": checkoutTotal, @"SecretKey": SecretKey };
+    
+    // This passes the token off to Parse backend, which will then actually complete charging the card using Stripe account's secret key
+    [PFCloud callFunctionInBackground:@"charge" withParameters:chargeParams block:^(id object, NSError *error) {
+                if (error) {
+                    completion(STPBackendChargeResultFailure, error);
+                    return;
+                }
+                completion(STPBackendChargeResultSuccess, nil);
+     }];
+}
 
 
 @end

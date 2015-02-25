@@ -10,6 +10,7 @@
 #import "Event.h"
 #import "Ticket.h"
 #import "CardIOPaymentViewControllerDelegate.h"
+#import "Stripe.h"
 
 @interface CheckoutViewController : UITableViewController
 
