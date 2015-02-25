@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Event.h"
 #import "Ticket.h"
+#import "CardIOPaymentViewControllerDelegate.h"
 
 @interface CheckoutViewController : UITableViewController
 

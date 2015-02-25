@@ -1342,39 +1342,6 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="35" id="XGj-VD-naT">
-                                        <rect key="frame" x="0.0" y="227" width="320" height="35"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XGj-VD-naT" id="epS-ma-po1">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="34"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Payment methods:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="oNH-wU-5Zs">
-                                                    <rect key="frame" x="12" y="6" width="155" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="options" minimumFontSize="17" id="LRM-Ux-Njd" customClass="ZSTextField">
-                                                    <rect key="frame" x="150" y="2" width="162" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="0.5" colorSpace="calibratedRGB"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                </textField>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="10" id="hNX-0E-E7P">
-                                        <rect key="frame" x="0.0" y="262" width="320" height="10"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hNX-0E-E7P" id="Evd-Kv-LlJ">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="9"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="113" id="T0Y-rD-xDh">
                                         <rect key="frame" x="0.0" y="509" width="320" height="206"/>
                                         <autoresizingMask key="autoresizingMask"/>
@@ -1383,16 +1350,29 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="cb8-mQ-CJ2" userLabel="buy" customClass="DingoButton">
-                                                    <rect key="frame" x="37" y="16" width="246" height="38"/>
+                                                    <rect key="frame" x="37" y="7" width="246" height="38"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" red="0.066666666669999999" green="0.63921568630000003" blue="0.74117647060000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="19"/>
-                                                    <state key="normal" title="Buy Now">
+                                                    <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="18"/>
+                                                    <state key="normal" title="Buy Now - PayPal">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
                                                         <action selector="buy:" destination="M7a-TM-oGr" eventType="touchUpInside" id="O77-HJ-Ln7"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="sjn-6Q-a6d" userLabel="buy" customClass="DingoButton">
+                                                    <rect key="frame" x="37" y="66" width="246" height="38"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" red="0.066666666669999999" green="0.63921568630000003" blue="0.74117647060000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="18"/>
+                                                    <state key="normal" title="Buy Now - Credit/Debit Card">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="buywWithCard:" destination="M7a-TM-oGr" eventType="touchUpInside" id="Loq-yb-94K"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -1423,7 +1403,6 @@
                         <outlet property="lblDingoFee" destination="JoS-WQ-f8f" id="TNL-VI-kT1"/>
                         <outlet property="lblEvent" destination="a8D-36-hkU" id="skw-Ax-zYy"/>
                         <outlet property="lblNumber" destination="0hL-Pw-DXy" id="KOC-Sf-qZ5"/>
-                        <outlet property="lblPaymentOption" destination="oNH-wU-5Zs" id="Hye-bS-Wqy"/>
                         <outlet property="lblPrice" destination="k7S-7X-cB4" id="g8T-hz-2DO"/>
                         <outlet property="lblTotal" destination="XE7-eI-4re" id="ppk-Ff-kEF"/>
                         <outlet property="lblWhyCharged" destination="OpG-Bb-3gv" id="V9Z-Ag-8dS"/>
@@ -1431,7 +1410,6 @@
                         <outlet property="txtFieldfee" destination="EJq-9T-T1C" id="GL2-Wq-JV2"/>
                         <outlet property="txtName" destination="2fn-45-2Ao" id="iev-CL-Svh"/>
                         <outlet property="txtNumber" destination="Kgp-nv-xTx" id="JgM-4A-5fw"/>
-                        <outlet property="txtPayment" destination="LRM-Ux-Njd" id="i2Y-ce-0Eg"/>
                         <outlet property="txtPrice" destination="PQI-7E-ZsV" id="Ohd-S5-jrG"/>
                         <outlet property="txtTotal" destination="a7D-Wa-N0h" id="37e-ml-Bc7"/>
                     </connections>

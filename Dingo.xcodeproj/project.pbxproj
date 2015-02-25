@@ -11,7 +11,6 @@
 		1B90B3F21A75534300F6ABC7 /* NSString+DingoFormatting.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B90B3F11A75534300F6ABC7 /* NSString+DingoFormatting.m */; };
 		1BE505D21A78232800172D6F /* MyTicketsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BE505D11A78232800172D6F /* MyTicketsViewController.m */; };
 		3A02687C19A5F9C000C8CD8E /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A02687B19A5F9C000C8CD8E /* Social.framework */; };
-		3A29C24C19EDC2DC00578F0D /* libPayPalMobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A29C24419EDC2DC00578F0D /* libPayPalMobile.a */; };
 		3A9441D319CB62920003DA85 /* newOffer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A9441D219CB62920003DA85 /* newOffer@2x.png */; };
 		3A97DDB619D3630500B4C33E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A97DDB519D3630500B4C33E /* AudioToolbox.framework */; };
 		3A97DDB819D3631800B4C33E /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A97DDB719D3631800B4C33E /* AVFoundation.framework */; };
@@ -244,6 +243,7 @@
 		4A6C7BA41A922CC1008F0C60 /* AlertMeOn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A6C7BA31A922CC1008F0C60 /* AlertMeOn@2x.png */; };
 		4A7768EE1A694EDF00168192 /* placeholder_avatar2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4A7768EC1A694EDF00168192 /* placeholder_avatar2.jpg */; };
 		4A7768EF1A694EDF00168192 /* placeholder_avatar2@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4A7768ED1A694EDF00168192 /* placeholder_avatar2@2x.jpg */; };
+		4A9972861A9DCD7400F189EC /* libPayPalMobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A99727D1A9DCD7400F189EC /* libPayPalMobile.a */; };
 		4A9EA4191A8537EF0080D179 /* InviteFriends@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A9EA4181A8537EF0080D179 /* InviteFriends@2x.png */; };
 		4A9EA41B1A8537F90080D179 /* InviteFriends.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A9EA41A1A8537F90080D179 /* InviteFriends.png */; };
 		4AC23DC31A84E3EF004753DC /* Add.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AC23DC21A84E3EF004753DC /* Add.png */; };
@@ -365,7 +365,6 @@
 		1BE505D01A78232800172D6F /* MyTicketsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTicketsViewController.h; sourceTree = "<group>"; };
 		1BE505D11A78232800172D6F /* MyTicketsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTicketsViewController.m; sourceTree = "<group>"; };
 		3A02687B19A5F9C000C8CD8E /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
-		3A29C24419EDC2DC00578F0D /* libPayPalMobile.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libPayPalMobile.a; sourceTree = "<group>"; };
 		3A29C24519EDC2DC00578F0D /* PayPalConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalConfiguration.h; sourceTree = "<group>"; };
 		3A29C24619EDC2DC00578F0D /* PayPalFuturePaymentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalFuturePaymentViewController.h; sourceTree = "<group>"; };
 		3A29C24719EDC2DC00578F0D /* PayPalMobile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalMobile.h; sourceTree = "<group>"; };
@@ -694,6 +693,15 @@
 		4A6C7BA31A922CC1008F0C60 /* AlertMeOn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AlertMeOn@2x.png"; sourceTree = "<group>"; };
 		4A7768EC1A694EDF00168192 /* placeholder_avatar2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = placeholder_avatar2.jpg; sourceTree = "<group>"; };
 		4A7768ED1A694EDF00168192 /* placeholder_avatar2@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "placeholder_avatar2@2x.jpg"; sourceTree = "<group>"; };
+		4A99727D1A9DCD7400F189EC /* libPayPalMobile.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libPayPalMobile.a; sourceTree = "<group>"; };
+		4A99727E1A9DCD7400F189EC /* CardIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardIO.h; sourceTree = "<group>"; };
+		4A99727F1A9DCD7400F189EC /* CardIOCreditCardInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardIOCreditCardInfo.h; sourceTree = "<group>"; };
+		4A9972801A9DCD7400F189EC /* CardIODetectionMode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardIODetectionMode.h; sourceTree = "<group>"; };
+		4A9972811A9DCD7400F189EC /* CardIOPaymentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardIOPaymentViewController.h; sourceTree = "<group>"; };
+		4A9972821A9DCD7400F189EC /* CardIOPaymentViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardIOPaymentViewControllerDelegate.h; sourceTree = "<group>"; };
+		4A9972831A9DCD7400F189EC /* CardIOUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardIOUtilities.h; sourceTree = "<group>"; };
+		4A9972841A9DCD7400F189EC /* CardIOView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardIOView.h; sourceTree = "<group>"; };
+		4A9972851A9DCD7400F189EC /* CardIOViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardIOViewDelegate.h; sourceTree = "<group>"; };
 		4A9EA4181A8537EF0080D179 /* InviteFriends@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "InviteFriends@2x.png"; sourceTree = "<group>"; };
 		4A9EA41A1A8537F90080D179 /* InviteFriends.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = InviteFriends.png; sourceTree = "<group>"; };
 		4AC23DC21A84E3EF004753DC /* Add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Add.png; sourceTree = "<group>"; };
@@ -859,8 +867,8 @@
 				3F08EC0619471D6B00CDFBD8 /* Accelerate.framework in Frameworks */,
 				3F10DDDB19388E6F002D3B43 /* CoreGraphics.framework in Frameworks */,
 				3F10DDDD19388E6F002D3B43 /* UIKit.framework in Frameworks */,
+				4A9972861A9DCD7400F189EC /* libPayPalMobile.a in Frameworks */,
 				3F10DDD919388E6F002D3B43 /* Foundation.framework in Frameworks */,
-				3A29C24C19EDC2DC00578F0D /* libPayPalMobile.a in Frameworks */,
 				3E24F9C81D9E48F08275CAA9 /* libPods-Dingo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -899,7 +907,15 @@
 		3A29C24319EDC2DC00578F0D /* PayPalMobile */ = {
 			isa = PBXGroup;
 			children = (
-				3A29C24419EDC2DC00578F0D /* libPayPalMobile.a */,
+				4A99727D1A9DCD7400F189EC /* libPayPalMobile.a */,
+				4A99727E1A9DCD7400F189EC /* CardIO.h */,
+				4A99727F1A9DCD7400F189EC /* CardIOCreditCardInfo.h */,
+				4A9972801A9DCD7400F189EC /* CardIODetectionMode.h */,
+				4A9972811A9DCD7400F189EC /* CardIOPaymentViewController.h */,
+				4A9972821A9DCD7400F189EC /* CardIOPaymentViewControllerDelegate.h */,
+				4A9972831A9DCD7400F189EC /* CardIOUtilities.h */,
+				4A9972841A9DCD7400F189EC /* CardIOView.h */,
+				4A9972851A9DCD7400F189EC /* CardIOViewDelegate.h */,
 				3A29C24519EDC2DC00578F0D /* PayPalConfiguration.h */,
 				3A29C24619EDC2DC00578F0D /* PayPalFuturePaymentViewController.h */,
 				3A29C24719EDC2DC00578F0D /* PayPalMobile.h */,

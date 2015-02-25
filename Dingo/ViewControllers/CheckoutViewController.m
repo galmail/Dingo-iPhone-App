@@ -12,11 +12,11 @@
 #import "DingoUISettings.h"
 #import "WebServiceManager.h"
 #import "PayPalMobile.h"
-
+#import "CardIO.h"
 #import "ChatViewController.h"
 #import "ZSLoadingView.h"
 
-@interface CheckoutViewController () <PayPalPaymentDelegate, UIPopoverControllerDelegate>{
+@interface CheckoutViewController () <PayPalPaymentDelegate, CardIOPaymentViewControllerDelegate, UIPopoverControllerDelegate>{
     
     __weak IBOutlet UILabel *lblEvent;
     __weak IBOutlet UILabel *lblNumber;
@@ -47,6 +47,8 @@
     PayPalConfiguration *payPalConfig;
     
     NSString *payPalKey;
+    
+    NSString *SecretKey;
 }
 
 @end
@@ -83,13 +85,7 @@
     txtNumber.text = [self.ticket.number_of_tickets stringValue];
     txtPrice.text = [currencyFormatter stringFromNumber:self.ticket.price];
     
-//    if ([self.ticket.payment_options rangeOfString:@"Cash"].location != NSNotFound) {
-//        txtPayment.text= @"Cash in person";
-//    }
-    
-   // if ([self.ticket.payment_options rangeOfString:@"PayPal"].location != NSNotFound) {
-        txtPayment.text= @"PayPal";
-   // }
+    txtPayment.text= @"PayPal";
     
     txtSellerName.text = self.ticket.user_name;
     imgSeller.image = [UIImage imageWithData:self.ticket.user_photo];
@@ -104,31 +100,25 @@
     payPalConfig.merchantUserAgreementURL = PAYPAL_MERCHANT_USER_AGREEMENT_URL;
 }
 
+
 - (void)viewWillAppear:(BOOL)animated {
+    [CardIOUtilities preload];
 //    [PayPalMobile preconnectWithEnvironment:PayPalEnvironmentSandbox];
 }
 
-- (void)didReceiveMemoryWarning
-{
+
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 - (IBAction)back:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+
 - (IBAction)buy:(id)sender {
-    
-//    if ([self.ticket.payment_options rangeOfString:@"Cash"].location != NSNotFound) {
-//        ChatViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"ChatViewController"];
-//        vc.ticket = self.ticket;
-//        
-//        [self.navigationController pushViewController:vc animated:YES];
-//        
-//        return;
-//    }
-	
 	
 	ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please wait..."];
 	[loadingView show];
@@ -154,11 +144,7 @@
 				if ([self.event.test boolValue]) {
 					[PayPalMobile preconnectWithEnvironment:PayPalEnvironmentSandbox];
 				} else {
-					//#ifdef kProductionMode
 					[PayPalMobile preconnectWithEnvironment:PayPalEnvironmentProduction];
-					//#else
-					//        [PayPalMobile preconnectWithEnvironment:PayPalEnvironmentSandbox];
-					//#endif
 				}
 				
 				PayPalPayment *payment = [[PayPalPayment alloc] init];
@@ -183,10 +169,61 @@
 	}];
 }
 
+
+- (IBAction)buywWithCard:(id)sender {
+    
+    ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please wait..."];
+    [loadingView show];
+    
+    NSDictionary *params = @{ @"id" : self.ticket.ticket_id};
+    
+    DLog(@"params: %@", params);
+    [WebServiceManager tickets:params completion:^(id response, NSError *error) {
+        NSLog(@"CVC tickets response %@", response);
+        
+        if (error) {
+            [loadingView hide];
+            [WebServiceManager handleError:error];
+        } else if (response) {
+            //AVAILABLE = TRUE
+            NSArray *responseArray = response[@"tickets"];
+            NSDictionary *responseDictionary = responseArray[0];
+            BOOL ticketAvailable = [responseDictionary[@"available"] boolValue];
+            
+            if (ticketAvailable) {
+                
+                if ([self.event.test boolValue]) {
+                    //set test keys for stripe
+                    SecretKey = @"sk_test_oOtIVbTqQwYv4akcaF44jY4I";
+                } else {
+                    //set production keys for stripe
+                    SecretKey = @"sk_live_B9Hy26fXoyBjWFj010RWOCtO";
+                }
+                
+                [loadingView hide];
+                
+                CardIOPaymentViewController *scanViewController = [[CardIOPaymentViewController alloc] initWithPaymentDelegate:self];
+                scanViewController.modalPresentationStyle = UIModalPresentationFormSheet;
+                [self presentViewController:scanViewController animated:YES completion:nil];
+                
+            } else {
+                //no tickets available
+                [loadingView hide];
+                [AppManager showAlert:@"Too late - ticket(s) have already been purchased! :("];
+            }
+        } else {
+            //odd error
+            [loadingView hide];
+            [WebServiceManager genericError];
+        }
+    }];
+    
+}
+
+
 - (void)textFieldDidEndEditing:(UITextField*)textField {
     
     if (textField == txtNumber) {
-        
         // validate ticket number
         int number = [txtNumber.text intValue];
         if (self.ticket.number_of_tickets.intValue < number) {
@@ -199,12 +236,8 @@
             [AppManager showAlert:@"Enter valid number of tickets"];
             return;
         }
-        
         [self calculateTotal];
-        
     }
-    
-    
 }
 
 - (void)calculateTotal {
@@ -215,7 +248,6 @@
     } else {
         price = [txtPrice.text intValue];
     }
-    
     double total = price * numberOfTickets;
     if (total>0)
         txtFieldfee.text=[currencyFormatter stringFromNumber:@( (total*10)/100)];
@@ -223,6 +255,7 @@
         
     txtTotal.text = [currencyFormatter stringFromNumber:@( total)];
 }
+
 
 #pragma mark PayPalPaymentDelegate methods
 
@@ -267,7 +300,7 @@
                             
                             [self.navigationController pushViewController:vc animated:YES];
 							
-							//refresh chat after 1 second, is it really enough?
+							//refresh chat after 3 seconds
 							[vc performSelector:@selector(reloadMessagesWithCompletion:) withObject:nil afterDelay:3];
                             
                             [WebServiceManager payPalSuccess:@{@"order_id":response[@"id"]} completion:^(id response, NSError *error) {
@@ -275,12 +308,12 @@
                             }];
                             
                         } else {
-                            [AppManager showAlert:@"Unable to buy!"];
+                            [AppManager showAlert:@"Payment received but unable to complete ticket purchase. Please get in touch at info@dingoapp.co.uk."];
                         }
-                        
                     }
                 }else{
-                     [WebServiceManager handleError:error];                }
+                     [WebServiceManager handleError:error];
+                }
             }];
         }
         
@@ -292,5 +325,67 @@
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+
+
+#pragma mark - CardIOPaymentViewControllerDelegate
+
+- (void)userDidCancelPaymentViewController:(CardIOPaymentViewController *)paymentViewController {
+    NSLog(@"User cancelled scan");
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+- (void)userDidProvideCreditCardInfo:(CardIOCreditCardInfo *)info inPaymentViewController:(CardIOPaymentViewController *)paymentViewController {
+    NSLog(@"Scan succeeded with info: %@", info);
+    
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+        float originalPrice=[txtNumber.text intValue]*[self.ticket.price doubleValue];
+        
+            NSDictionary *params = @{ @"ticket_id" : self.ticket.ticket_id,
+                                      @"num_tickets": txtNumber.text,
+                                      @"amount" : [NSNumber numberWithFloat:originalPrice],
+                                      @"delivery_options" : self.ticket.delivery_options,
+                                      @"order_paid":@"1",
+                                      };
+            
+            ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please wait..."];
+            [loadingView show];
+            
+            [WebServiceManager makeOrder:params completion:^(id response, NSError *error) {
+                [loadingView hide];
+                if (!error) {
+                    
+                    NSLog(@"make order - %@", response);
+                    if (response) {
+                        
+                        if (response[@"id"]) {
+                            
+                            ChatViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"ChatViewController"];
+                            vc.receiverID=response[@"receiver_id"];
+                            vc.ticket = self.ticket;
+                            
+                            [self.navigationController pushViewController:vc animated:YES];
+                            
+                            //refresh chat page after 4 seconds
+                            [vc performSelector:@selector(reloadMessagesWithCompletion:) withObject:nil afterDelay:4];
+                            
+                            [WebServiceManager payPalSuccess:@{@"order_id":response[@"id"]} completion:^(id response, NSError *error) {
+                                
+                            }];
+                            
+                        } else {
+                            [AppManager showAlert:@"Payment received but unable to complete ticket purchase. Please get in touch at info@dingoapp.co.uk."];
+                        }
+                    }
+                }else{
+                    [WebServiceManager handleError:error];
+                }
+            }];
+    }];
+}
+
+
 
 @end
