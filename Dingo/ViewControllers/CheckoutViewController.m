@@ -51,9 +51,11 @@
     
     NSString *SecretKey;
     
-    NSString *checkoutTotal;
+    NSString *checkoutTotalInPenceString;
     
     NSString * StripePublishableKey;
+    
+    int checkoutTotalInPenceInt;
 }
 
 @end
@@ -177,6 +179,10 @@
 
 - (IBAction)buywWithCard:(id)sender {
     
+    if (checkoutTotalInPenceInt < 50){
+        [AppManager showAlert:@"Checkout total must be above 50p to pay by credit card!"];
+    } else {
+    
     ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please wait..."];
     [loadingView show];
     
@@ -228,7 +234,7 @@
             [WebServiceManager genericError];
         }
     }];
-    
+    }
 }
 
 
@@ -267,7 +273,10 @@
         
     txtTotal.text = [currencyFormatter stringFromNumber:@( total)];
     
-    checkoutTotal = [NSString stringWithFormat:@"%g", (total*100)];
+    double totalInPence = total *100;
+    checkoutTotalInPenceInt = (int)(round(totalInPence));
+    checkoutTotalInPenceString = [NSString stringWithFormat:@"%d", checkoutTotalInPenceInt];
+    
 }
 
 
@@ -442,11 +451,9 @@
     
     DLog(@"About to request charge using SecretKey: %@", SecretKey);
     DLog(@"About to request charge using StripePublishableKey: %@", StripePublishableKey);
+    DLog(@"Checkout total is: %@", checkoutTotalInPenceString);
     
-
-    DLog(@"Checkout total should be: %@", checkoutTotal);
-    
-    NSDictionary *chargeParams = @{ @"token": token.tokenId, @"currency": @"gbp", @"amount": checkoutTotal, @"SecretKey": SecretKey };
+    NSDictionary *chargeParams = @{ @"token": token.tokenId, @"currency": @"gbp", @"amount": checkoutTotalInPenceString, @"SecretKey": SecretKey };
     
     // This passes the token off to Parse backend, which will then actually complete charging the card using Stripe account's secret key
     [PFCloud callFunctionInBackground:@"charge" withParameters:chargeParams block:^(id object, NSError *error) {
