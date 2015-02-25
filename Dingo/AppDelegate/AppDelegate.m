@@ -31,7 +31,6 @@
 
 #import "GAI.h"
 
-NSString * const StripePublishableKey =  @"pk_test_3z444VHmE8tZV8iwtQ0skD9I"; //@"pk_live_vRGO5VfAT0G4xhA5OcbcnS9s"; //
 NSString *const ParseApplicationId = @"dMbvCzjKMZ5xTHjHOgZkfGGiGbT3ywroxEgx0AqC";
 NSString *const ParseClientKey = @"NEoNP3THWgHj8ytKmoH4Wt63KSQMvIjGTD5MfCke";
 
@@ -43,9 +42,6 @@ NSString *const ParseClientKey = @"NEoNP3THWgHj8ytKmoH4Wt63KSQMvIjGTD5MfCke";
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    if (StripePublishableKey) {
-        [Stripe setDefaultPublishableKey:StripePublishableKey];
-    }
     if (ParseApplicationId && ParseClientKey) {
         [Parse setApplicationId:ParseApplicationId clientKey:ParseClientKey];
     }

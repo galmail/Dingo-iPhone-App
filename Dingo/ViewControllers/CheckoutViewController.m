@@ -52,6 +52,8 @@
     NSString *SecretKey;
     
     NSString *checkoutTotal;
+    
+    NSString * StripePublishableKey;
 }
 
 @end
@@ -198,9 +200,15 @@
                 if ([self.event.test boolValue]) {
                     //set test keys for stripe
                     SecretKey = @"sk_test_oOtIVbTqQwYv4akcaF44jY4I";
+                    StripePublishableKey =  @"pk_test_3z444VHmE8tZV8iwtQ0skD9I";
                 } else {
                     //set production keys for stripe
                     SecretKey = @"sk_live_B9Hy26fXoyBjWFj010RWOCtO";
+                    StripePublishableKey = @"pk_live_vRGO5VfAT0G4xhA5OcbcnS9s";
+                }
+                
+                if (StripePublishableKey) {
+                    [Stripe setDefaultPublishableKey:StripePublishableKey];
                 }
                 
                 [loadingView hide];
@@ -433,6 +441,9 @@
 - (void)createBackendChargeWithToken:(STPToken *)token completion:(STPTokenSubmissionHandler)completion {
     
     DLog(@"About to request charge using SecretKey: %@", SecretKey);
+    DLog(@"About to request charge using StripePublishableKey: %@", StripePublishableKey);
+    
+
     DLog(@"Checkout total should be: %@", checkoutTotal);
     
     NSDictionary *chargeParams = @{ @"token": token.tokenId, @"currency": @"gbp", @"amount": checkoutTotal, @"SecretKey": SecretKey };
