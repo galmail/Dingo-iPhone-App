@@ -1058,8 +1058,19 @@ NSString *access_token;
         
         NSArray* events = [[DataManager shared] allEventsWithAndWithoutTickets];
         NSMutableArray *dataForPopover = [NSMutableArray new];
+        
         for (Event *tmpEvent in events) {
-            [dataForPopover addObject:@{@"DisplayText": tmpEvent.name, @"CustomObject":tmpEvent}];
+            //old not with date
+            //[dataForPopover addObject:@{@"DisplayText": tmpEvent.name, @"CustomObject":tmpEvent}];
+            
+            //new displayed with date
+            NSDate *shortDate = tmpEvent.date;
+            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+            formatter.dateFormat = @"dd MMMM";
+            NSString *shortDateString = [formatter stringFromDate:shortDate];
+            
+            [dataForPopover addObject:@{@"DisplayText": [NSString stringWithFormat: @"%@ - %@", tmpEvent.name, shortDateString], @"CustomObject":tmpEvent}];
+            
         }
         
         return dataForPopover;
