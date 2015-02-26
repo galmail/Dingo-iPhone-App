@@ -23,6 +23,8 @@
 
 @end
 
+NSString *trimmedDescriptionWithOutDate;
+
 @implementation AddTicketAlertViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -83,8 +85,19 @@
         return;
     }
 	else {
+        
+        //trimming date off the event description
+        NSString *descriptionWithDate = txtDescription.text;
+        NSRange match = [descriptionWithDate rangeOfString:@"-"];
+        if(match.location != NSNotFound)
+        {
+            NSString *descriptionWithOutDate = [descriptionWithDate substringWithRange: NSMakeRange (0, match.location)];
+            trimmedDescriptionWithOutDate = [descriptionWithOutDate stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
+        }
+        
+        //now check to see if we have the event
         NSArray* events = [[DataManager shared] allEventsWithAndWithoutTickets];
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name == %@", txtDescription.text];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name == %@", trimmedDescriptionWithOutDate];
         
         NSArray *filteredEvents = [events filteredArrayUsingPredicate:predicate];
         if (filteredEvents.count == 0) {
@@ -95,7 +108,7 @@
     }
 	
     NSDictionary *params = @{@"on":@YES,
-                             @"description": txtDescription.text,
+                             @"description": trimmedDescriptionWithOutDate,
                              @"event_id":self.alert.event_id,
                              @"price":@99999
                              };
@@ -138,7 +151,16 @@
         NSArray* events = [[DataManager shared] allEventsWithAndWithoutTickets];
         NSMutableArray *dataForPopover = [NSMutableArray new];
         for (Event *tmpEvent in events) {
-            [dataForPopover addObject:@{@"DisplayText": tmpEvent.name, @"CustomObject":tmpEvent}];
+            //old
+            //[dataForPopover addObject:@{@"DisplayText": tmpEvent.name, @"CustomObject":tmpEvent}];
+            
+            //new displayed with date
+            NSDate *shortDate = tmpEvent.date;
+            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+            formatter.dateFormat = @"dd MMMM";
+            NSString *shortDateString = [formatter stringFromDate:shortDate];
+            
+            [dataForPopover addObject:@{@"DisplayText": [NSString stringWithFormat: @"%@ - %@", tmpEvent.name, shortDateString], @"CustomObject":tmpEvent}];
         }
         
         return dataForPopover;
