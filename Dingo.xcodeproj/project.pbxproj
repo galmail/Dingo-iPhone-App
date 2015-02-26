@@ -262,7 +262,6 @@
 		4A9972C21A9DD7C300F189EC /* STPFormEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9972B01A9DD7C300F189EC /* STPFormEncoder.m */; };
 		4A9972C31A9DD7C300F189EC /* STPToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9972B11A9DD7C300F189EC /* STPToken.m */; };
 		4A9972C41A9DD7C300F189EC /* StripeError.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9972B21A9DD7C300F189EC /* StripeError.m */; };
-		4A9972C61A9DD7D200F189EC /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9972C51A9DD7D200F189EC /* Parse.framework */; };
 		4A9EA4191A8537EF0080D179 /* InviteFriends@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A9EA4181A8537EF0080D179 /* InviteFriends@2x.png */; };
 		4A9EA41B1A8537F90080D179 /* InviteFriends.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A9EA41A1A8537F90080D179 /* InviteFriends.png */; };
 		4AC23DC31A84E3EF004753DC /* Add.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AC23DC21A84E3EF004753DC /* Add.png */; };
@@ -759,7 +758,6 @@
 		4A9972B01A9DD7C300F189EC /* STPFormEncoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STPFormEncoder.m; sourceTree = "<group>"; };
 		4A9972B11A9DD7C300F189EC /* STPToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STPToken.m; sourceTree = "<group>"; };
 		4A9972B21A9DD7C300F189EC /* StripeError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StripeError.m; sourceTree = "<group>"; };
-		4A9972C51A9DD7D200F189EC /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		4A9EA4181A8537EF0080D179 /* InviteFriends@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "InviteFriends@2x.png"; sourceTree = "<group>"; };
 		4A9EA41A1A8537F90080D179 /* InviteFriends.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = InviteFriends.png; sourceTree = "<group>"; };
 		4AC23DC21A84E3EF004753DC /* Add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Add.png; sourceTree = "<group>"; };
@@ -913,7 +911,6 @@
 				3AFEC18A19DED9E70062AA64 /* libz.dylib in Frameworks */,
 				3AA4300619F162070053D6F8 /* libGoogleAnalyticsServices.a in Frameworks */,
 				3A97DDBE19D3636600B4C33E /* SystemConfiguration.framework in Frameworks */,
-				4A9972C61A9DD7D200F189EC /* Parse.framework in Frameworks */,
 				3A97DDBC19D3634E00B4C33E /* MobileCoreServices.framework in Frameworks */,
 				3A97DDBA19D3633600B4C33E /* CoreMedia.framework in Frameworks */,
 				3A97DDB819D3631800B4C33E /* AVFoundation.framework in Frameworks */,
@@ -1424,7 +1421,6 @@
 		3AF360A419767564009A14FD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4A9972C51A9DD7D200F189EC /* Parse.framework */,
 				4A9972871A9DD7C300F189EC /* Stripe */,
 				3AA42FFA19F162070053D6F8 /* GoogleAnalytics */,
 				3A29C24319EDC2DC00578F0D /* PayPalMobile */,

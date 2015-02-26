@@ -15,7 +15,6 @@
 #import "CardIO.h"
 #import "ChatViewController.h"
 #import "ZSLoadingView.h"
-#import <Parse/Parse.h>
 
 @interface CheckoutViewController () <PayPalPaymentDelegate, CardIOPaymentViewControllerDelegate, UIPopoverControllerDelegate>{
     
@@ -205,11 +204,11 @@
                 
                 if ([self.event.test boolValue]) {
                     //set test keys for stripe
-                    SecretKey = @"sk_test_oOtIVbTqQwYv4akcaF44jY4I";
+                    SecretKey = @"TEST";
                     StripePublishableKey =  @"pk_test_3z444VHmE8tZV8iwtQ0skD9I";
                 } else {
                     //set production keys for stripe
-                    SecretKey = @"sk_live_B9Hy26fXoyBjWFj010RWOCtO";
+                    SecretKey = @"LIVE";
                     StripePublishableKey = @"pk_live_vRGO5VfAT0G4xhA5OcbcnS9s";
                 }
                 
@@ -394,6 +393,7 @@
                     
                         //successfully charged card, now complete order with Dingo backend
                         DLog(@"Card Charged!");
+                    
                         float originalPrice=[txtNumber.text intValue]*[self.ticket.price doubleValue];
                     
                         NSDictionary *params = @{ @"ticket_id" : self.ticket.ticket_id,
@@ -453,16 +453,29 @@
     DLog(@"About to request charge using StripePublishableKey: %@", StripePublishableKey);
     DLog(@"Checkout total is: %@", checkoutTotalInPenceString);
     
-    NSDictionary *chargeParams = @{ @"token": token.tokenId, @"currency": @"gbp", @"amount": checkoutTotalInPenceString, @"SecretKey": SecretKey };
+    NSDictionary *chargeParams = @{ @"token": token.tokenId, @"currency": @"gbp", @"amount": checkoutTotalInPenceString, @"description": SecretKey };
     
-    // This passes the token off to Parse backend, which will then actually complete charging the card using Stripe account's secret key
-    [PFCloud callFunctionInBackground:@"charge" withParameters:chargeParams block:^(id object, NSError *error) {
-                if (error) {
-                    completion(STPBackendChargeResultFailure, error);
-                    return;
-                }
-                completion(STPBackendChargeResultSuccess, nil);
-     }];
+    [WebServiceManager stripePayment:chargeParams completion:^(id response, NSError *error) {
+        
+        DLog(@"response total is: %@", response);
+        DLog(@"error total is: %@", error);
+        
+        if (response[@"description"]) {
+            completion(STPBackendChargeResultSuccess, nil);
+        } else {
+            
+            completion(STPBackendChargeResultFailure, error);
+        }
+    }];
+
+    // Old. Charged to parse backend
+//    [PFCloud callFunctionInBackground:@"charge" withParameters:chargeParams block:^(id object, NSError *error) {
+//                if (error) {
+//                    completion(STPBackendChargeResultFailure, error);
+//                    return;
+//                }
+//                completion(STPBackendChargeResultSuccess, nil);
+//     }];
 }
 
 

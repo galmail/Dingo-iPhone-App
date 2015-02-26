@@ -27,12 +27,10 @@
 #import "ListTicketsViewController.h"
 #import "ChatViewController.h"
 #import "Stripe.h"
-#import <Parse/Parse.h>
+
 
 #import "GAI.h"
 
-NSString *const ParseApplicationId = @"dMbvCzjKMZ5xTHjHOgZkfGGiGbT3ywroxEgx0AqC";
-NSString *const ParseClientKey = @"NEoNP3THWgHj8ytKmoH4Wt63KSQMvIjGTD5MfCke";
 
 @implementation AppDelegate
 
@@ -41,10 +39,6 @@ NSString *const ParseClientKey = @"NEoNP3THWgHj8ytKmoH4Wt63KSQMvIjGTD5MfCke";
 #pragma mark - app delegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
-    if (ParseApplicationId && ParseClientKey) {
-        [Parse setApplicationId:ParseApplicationId clientKey:ParseClientKey];
-    }
 	
     [Appirater setAppId:@"893538091"];
     [Appirater setDaysUntilPrompt:1];
