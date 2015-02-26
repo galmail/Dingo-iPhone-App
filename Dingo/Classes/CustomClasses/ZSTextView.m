@@ -90,15 +90,20 @@
 - (void) showToolbarWithDone {
     
     UIView * keyboardHeader = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
-    keyboardHeader.backgroundColor = [UIColor darkGrayColor];
+    keyboardHeader.backgroundColor = [UIColor colorWithRed:240/255.0f green:240/255.0f blue:240/255.0f alpha:1.0f];
+    keyboardHeader.layer.borderColor = [UIColor colorWithRed:173/255.0f green:179/255.0f blue:189/255.0f alpha:1.0f].CGColor;
+    keyboardHeader.layer.borderWidth = 1.0f;
+    
+    
     UIImage *image = [UIImage imageNamed:@"barButton"];
     image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 12, 0.0, 12)];
     UIButton *btnDone = [UIButton buttonWithType:UIButtonTypeCustom];
     [btnDone setFrame:CGRectMake(240, 6, 70, 33)];
     
     [btnDone setBackgroundImage:image forState:UIControlStateNormal];
-    [btnDone setTitle:@"Close" forState:UIControlStateNormal];
-    btnDone.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:16.0f];
+    [btnDone setTitle:@"Done" forState:UIControlStateNormal];
+    btnDone.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:16.0f];
+    [btnDone setTitleColor:[UIColor colorWithRed:0/255.0f green:122/255.0f blue:255/255.0f alpha:1.0f] forState:UIControlStateNormal];
     [btnDone addTarget:self action:@selector(closeKeyboard:) forControlEvents:UIControlEventTouchUpInside];
     
     [keyboardHeader addSubview:btnDone];

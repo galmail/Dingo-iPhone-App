@@ -180,7 +180,7 @@
 - (IBAction)buywWithCard:(id)sender {
     
     if (checkoutTotalInPenceInt < 50){
-        [AppManager showAlert:@"Checkout total must be above 50p to pay by credit card!"];
+        [AppManager showAlert:@"Checkout total must be above 50p to pay by credit/debit card!"];
     } else {
     
     ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please wait..."];
