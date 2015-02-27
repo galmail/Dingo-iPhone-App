@@ -30,7 +30,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    NSString* filePath =   [[NSBundle mainBundle] pathForResource:@"TermsConditionsV4.docx" ofType:nil];
+    NSString* filePath =   [[NSBundle mainBundle] pathForResource:@"TermsConditionsV4.1.docx" ofType:nil];
     NSURLRequest * urlReq = [[NSURLRequest alloc] initWithURL:[NSURL fileURLWithPath:filePath]];
     
     [webView loadRequest:urlReq];

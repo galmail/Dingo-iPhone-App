@@ -237,6 +237,7 @@
 		3F98FD081945EECE00E6B3C4 /* DiscountView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F98FD071945EECE00E6B3C4 /* DiscountView.m */; };
 		4A40E8C01A972C5700A5EB6D /* AlertMeOn2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A40E8BF1A972C5700A5EB6D /* AlertMeOn2@2x.png */; };
 		4A40E8C21A972C6400A5EB6D /* AlertMeOn2.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A40E8C11A972C6400A5EB6D /* AlertMeOn2.png */; };
+		4A62CEA01AA075F100B2F3B2 /* TermsConditionsV4.1.docx in Resources */ = {isa = PBXBuildFile; fileRef = 4A62CE9F1AA075F100B2F3B2 /* TermsConditionsV4.1.docx */; };
 		4A6C7B9E1A922CA4008F0C60 /* AlertMe.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A6C7B9D1A922CA4008F0C60 /* AlertMe.png */; };
 		4A6C7BA01A922CAD008F0C60 /* AlertMe@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A6C7B9F1A922CAD008F0C60 /* AlertMe@2x.png */; };
 		4A6C7BA21A922CB7008F0C60 /* AlertMeOn.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A6C7BA11A922CB7008F0C60 /* AlertMeOn.png */; };
@@ -274,7 +275,6 @@
 		4AE2BCF71A877C6100E0DF8B /* InviteFriends2.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AE2BCF61A877C6100E0DF8B /* InviteFriends2.png */; };
 		4AE2BCF91A877C6A00E0DF8B /* InviteFriends2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AE2BCF81A877C6A00E0DF8B /* InviteFriends2@2x.png */; };
 		4AE2BCFF1A8780E600E0DF8B /* btnGuestpw@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AE2BCFE1A8780E600E0DF8B /* btnGuestpw@2x.png */; };
-		4AF4C08B1A94A9EE008C1023 /* TermsConditionsV4.docx in Resources */ = {isa = PBXBuildFile; fileRef = 4AF4C08A1A94A9EE008C1023 /* TermsConditionsV4.docx */; };
 		4AF4C08D1A94AA05008C1023 /* PrivacyPolicyV1.docx in Resources */ = {isa = PBXBuildFile; fileRef = 4AF4C08C1A94AA05008C1023 /* PrivacyPolicyV1.docx */; };
 		4AF847FF1A90EA2900AFDA2E /* GreenTick@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AF847FE1A90EA2900AFDA2E /* GreenTick@2x.png */; };
 		593593FA1A52DB320004311E /* PlaceHolderManageListing.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 593593F81A52DB320004311E /* PlaceHolderManageListing.jpg */; };
@@ -368,8 +368,6 @@
 		84A457081970182C000ABA73 /* btnContinue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A456F11970182C000ABA73 /* btnContinue@2x.png */; };
 		84A457091970182C000ABA73 /* btnFinish@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A456F21970182C000ABA73 /* btnFinish@2x.png */; };
 		84E2CBEC19B5CDF7003102F3 /* TermsAndCondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E2CBEB19B5CDF7003102F3 /* TermsAndCondViewController.m */; };
-		84E2CBEE19B5D359003102F3 /* TermsConditions.docx in Resources */ = {isa = PBXBuildFile; fileRef = 84E2CBED19B5CF77003102F3 /* TermsConditions.docx */; };
-		84E2CBF019B5D80B003102F3 /* PrivacyPolicy.docx in Resources */ = {isa = PBXBuildFile; fileRef = 84E2CBEF19B5D808003102F3 /* PrivacyPolicy.docx */; };
 		84E2CBF319B5D8CF003102F3 /* PrivacyPolicyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E2CBF219B5D8CF003102F3 /* PrivacyPolicyViewController.m */; };
 		84E4E2EE19A77A360049A6A8 /* ta_alert_cell_delete.png in Resources */ = {isa = PBXBuildFile; fileRef = 84E4E2EC19A77A360049A6A8 /* ta_alert_cell_delete.png */; };
 		84E4E2EF19A77A360049A6A8 /* ta_alert_cell_delete@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84E4E2ED19A77A360049A6A8 /* ta_alert_cell_delete@2x.png */; };
@@ -705,6 +703,7 @@
 		3F98FD071945EECE00E6B3C4 /* DiscountView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DiscountView.m; path = DiscountView/DiscountView.m; sourceTree = "<group>"; };
 		4A40E8BF1A972C5700A5EB6D /* AlertMeOn2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AlertMeOn2@2x.png"; sourceTree = "<group>"; };
 		4A40E8C11A972C6400A5EB6D /* AlertMeOn2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AlertMeOn2.png; sourceTree = "<group>"; };
+		4A62CE9F1AA075F100B2F3B2 /* TermsConditionsV4.1.docx */ = {isa = PBXFileReference; lastKnownFileType = file; path = TermsConditionsV4.1.docx; sourceTree = "<group>"; };
 		4A6C7B9D1A922CA4008F0C60 /* AlertMe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AlertMe.png; sourceTree = "<group>"; };
 		4A6C7B9F1A922CAD008F0C60 /* AlertMe@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AlertMe@2x.png"; sourceTree = "<group>"; };
 		4A6C7BA11A922CB7008F0C60 /* AlertMeOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AlertMeOn.png; sourceTree = "<group>"; };
@@ -770,7 +769,6 @@
 		4AE2BCF61A877C6100E0DF8B /* InviteFriends2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = InviteFriends2.png; sourceTree = "<group>"; };
 		4AE2BCF81A877C6A00E0DF8B /* InviteFriends2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "InviteFriends2@2x.png"; sourceTree = "<group>"; };
 		4AE2BCFE1A8780E600E0DF8B /* btnGuestpw@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnGuestpw@2x.png"; sourceTree = "<group>"; };
-		4AF4C08A1A94A9EE008C1023 /* TermsConditionsV4.docx */ = {isa = PBXFileReference; lastKnownFileType = file; path = TermsConditionsV4.docx; sourceTree = "<group>"; };
 		4AF4C08C1A94AA05008C1023 /* PrivacyPolicyV1.docx */ = {isa = PBXFileReference; lastKnownFileType = file; path = PrivacyPolicyV1.docx; sourceTree = "<group>"; };
 		4AF847FE1A90EA2900AFDA2E /* GreenTick@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GreenTick@2x.png"; sourceTree = "<group>"; };
 		593593F81A52DB320004311E /* PlaceHolderManageListing.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = PlaceHolderManageListing.jpg; sourceTree = "<group>"; };
@@ -890,8 +888,6 @@
 		84A456F21970182C000ABA73 /* btnFinish@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnFinish@2x.png"; sourceTree = "<group>"; };
 		84E2CBEA19B5CDF7003102F3 /* TermsAndCondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TermsAndCondViewController.h; sourceTree = "<group>"; };
 		84E2CBEB19B5CDF7003102F3 /* TermsAndCondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TermsAndCondViewController.m; sourceTree = "<group>"; };
-		84E2CBED19B5CF77003102F3 /* TermsConditions.docx */ = {isa = PBXFileReference; lastKnownFileType = file; path = TermsConditions.docx; sourceTree = "<group>"; };
-		84E2CBEF19B5D808003102F3 /* PrivacyPolicy.docx */ = {isa = PBXFileReference; lastKnownFileType = file; path = PrivacyPolicy.docx; sourceTree = "<group>"; };
 		84E2CBF119B5D8CF003102F3 /* PrivacyPolicyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivacyPolicyViewController.h; sourceTree = "<group>"; };
 		84E2CBF219B5D8CF003102F3 /* PrivacyPolicyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivacyPolicyViewController.m; sourceTree = "<group>"; };
 		84E4E2EC19A77A360049A6A8 /* ta_alert_cell_delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ta_alert_cell_delete.png; sourceTree = "<group>"; };
@@ -1849,10 +1845,8 @@
 			isa = PBXGroup;
 			children = (
 				840CD24119B84ADF00699E26 /* Chat */,
-				84E2CBED19B5CF77003102F3 /* TermsConditions.docx */,
+				4A62CE9F1AA075F100B2F3B2 /* TermsConditionsV4.1.docx */,
 				4AF4C08C1A94AA05008C1023 /* PrivacyPolicyV1.docx */,
-				4AF4C08A1A94A9EE008C1023 /* TermsConditionsV4.docx */,
-				84E2CBEF19B5D808003102F3 /* PrivacyPolicy.docx */,
 				3AADC18E19DD124300023130 /* FAQs.plist */,
 				3A9D206119B1992E00FE163E /* Tickets */,
 				841C508B19A6082400BD4141 /* TicketAlerts */,
@@ -2705,7 +2699,6 @@
 				4AE2BCF71A877C6100E0DF8B /* InviteFriends2.png in Resources */,
 				3AA160EB19E5C8EF00895508 /* AppiraterLocalizable.strings in Resources */,
 				840BA3C019A23D4D00198277 /* ticket_alerts_icon@2x.png in Resources */,
-				84E2CBEE19B5D359003102F3 /* TermsConditions.docx in Resources */,
 				84E4E2EF19A77A360049A6A8 /* ta_alert_cell_delete@2x.png in Resources */,
 				840CD24519B84ADF00699E26 /* btnSend@2x.png in Resources */,
 				3AA160F519E5C8EF00895508 /* AppiraterLocalizable.strings in Resources */,
@@ -2833,6 +2826,7 @@
 				3AA1610019E5C8EF00895508 /* AppiraterLocalizable.strings in Resources */,
 				3F62C6AA1948318F00D7D6B1 /* arrow@2x.png in Resources */,
 				4AE2BCFF1A8780E600E0DF8B /* btnGuestpw@2x.png in Resources */,
+				4A62CEA01AA075F100B2F3B2 /* TermsConditionsV4.1.docx in Resources */,
 				841C509319A60A6F00BD4141 /* emptyTicketAlerts@2x.png in Resources */,
 				3F62C6ED1949B67800D7D6B1 /* travel@2x.png in Resources */,
 				4A40E8C01A972C5700A5EB6D /* AlertMeOn2@2x.png in Resources */,
@@ -2871,7 +2865,6 @@
 				3AA160F619E5C8EF00895508 /* AppiraterLocalizable.strings in Resources */,
 				59453D341A40017F00423F35 /* paypal_logo_with_text@2x.png in Resources */,
 				3AA4359619911D2900D626D1 /* SourceSansPro-Semibold.otf in Resources */,
-				4AF4C08B1A94A9EE008C1023 /* TermsConditionsV4.docx in Resources */,
 				84A456FC1970182C000ABA73 /* welcomeText3.png in Resources */,
 				3A97DDC219D4329200B4C33E /* bubbleWhite@2x.png in Resources */,
 				849F591E19A74C770076B830 /* ta_bg_description@2x.png in Resources */,
@@ -2896,7 +2889,6 @@
 				3F62C6CF1948A2BE00D7D6B1 /* TicketCell.xib in Resources */,
 				84513F0919A4F2AC00C4A254 /* btnTermsAndConditions@2x.png in Resources */,
 				3F62C6DB19499D9400D7D6B1 /* events.plist in Resources */,
-				84E2CBF019B5D80B003102F3 /* PrivacyPolicy.docx in Resources */,
 				840CD24D19B84B6100699E26 /* bubbleMine@2x.png in Resources */,
 				84A457051970182C000ABA73 /* welcomeText4@2x.png in Resources */,
 				3F62C6AB1948318F00D7D6B1 /* category_default@2x.png in Resources */,
