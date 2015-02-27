@@ -24,7 +24,7 @@
     [super viewDidLoad];
     
     self.questionLabel.font = [DingoUISettings boldFontWithSize:20];
-    self.answerTextView.font = [DingoUISettings lightFontWithSize:20];
+    self.answerTextView.font = [DingoUISettings lightFontWithSize:16];
     
     self.questionLabel.text = self.question;
     self.answerTextView.text = self.answer;
