@@ -45,6 +45,9 @@ NSString *trimmedDescriptionWithOutDate;
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    txtDescription.clearButtonMode = UITextFieldViewModeUnlessEditing;
+    
     lblHint.font = [DingoUISettings fontWithSize:18];
     if (!self.alert) {
         btnDelete.hidden = YES;

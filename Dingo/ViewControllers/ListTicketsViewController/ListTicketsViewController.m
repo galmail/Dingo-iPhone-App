@@ -295,7 +295,14 @@ NSString *access_token;
         [self.locationField setUserInteractionEnabled:true];
         [self.startDateField setUserInteractionEnabled:true];
         [self.endDateField setUserInteractionEnabled:true];
+        _nameField.clearButtonMode = UITextFieldViewModeUnlessEditing;
+        _startDateField.clearButtonMode = UITextFieldViewModeUnlessEditing;
     }
+    
+    _priceField.clearButtonMode = UITextFieldViewModeUnlessEditing;
+    _faceValueField.clearButtonMode = UITextFieldViewModeUnlessEditing;
+    _ticketsCountField.clearButtonMode = UITextFieldViewModeUnlessEditing;
+    _typeTicketField.clearButtonMode = UITextFieldViewModeUnlessEditing;
     
     //display tick if logged into PayPal
     NSString *PayPalInfo =[[AppManager sharedManager].userInfo valueForKey:@"paypal_account"];

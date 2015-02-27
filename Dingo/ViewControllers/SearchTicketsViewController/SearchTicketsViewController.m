@@ -70,6 +70,8 @@
     self.parentViewController.navigationItem.title = self.navigationItem.title;
     self.categoriesCell.multipleSelection = YES;
     self.categoriesCell.delegate = self;
+    
+    _keywordsField.clearButtonMode = UITextFieldViewModeUnlessEditing;
 }
 
 
