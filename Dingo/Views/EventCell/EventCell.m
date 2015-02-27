@@ -87,9 +87,10 @@ const CGFloat eventCellHeight = 78;
 }
 
 
+
 - (void)setLocation:(NSString *)location {
     
-    if ([NSStringFromClass([self class]) isEqual:@"TicketCell"] || [NSStringFromClass([self class]) isEqual:@"EventCell"] ) {
+    if ([NSStringFromClass([self class]) isEqual:@"TicketCell"] || [NSStringFromClass([self class]) isEqual:@"EventCell"] || [NSStringFromClass([self class]) isEqual:@"ManageListsCell"] ) {
         NSArray* myArray = [location  componentsSeparatedByString:@","];
         NSString* addressString = [myArray objectAtIndex:0];
         NSString* cityString = [myArray objectAtIndex:1];
