@@ -331,7 +331,13 @@ static const NSUInteger pushAlert =		2243;
 		notificationsOn = ([[[UIApplication sharedApplication] currentUserNotificationSettings] types] != UIUserNotificationTypeNone);
 	} else {
 		//ios7 and down
-		notificationsOn = ([[UIApplication sharedApplication] enabledRemoteNotificationTypes] != UIRemoteNotificationTypeNone);
+        //for some reason this doesn't always work. Therefore replace with just the pop up.
+		//notificationsOn = ([[UIApplication sharedApplication] enabledRemoteNotificationTypes] != UIRemoteNotificationTypeNone);
+        
+        if ([[UIApplication sharedApplication] enabledRemoteNotificationTypes] == UIRemoteNotificationTypeNone) {
+            [AppManager showAlert: @"Please make sure push notifications are switched ON in your phone settings to receive messages!"];
+        }
+        notificationsOn = TRUE;
 	}
 	return notificationsOn;
 }
