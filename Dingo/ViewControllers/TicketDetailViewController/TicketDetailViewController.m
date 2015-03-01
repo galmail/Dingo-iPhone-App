@@ -549,7 +549,7 @@ static const NSUInteger commentCellIndex = 5;
 
 - (IBAction)share:(id)sender {
     
-    NSString *text = [NSString stringWithFormat:@"Hey, check out these tickets to %@. You can find them on Dingo, download the app here %@" , self.event.name, @"http://dingoapp.co.uk" ];
+    NSString *text = [NSString stringWithFormat:@"Hey, check out these tickets to %@. You can find them on Dingo, download the app here %@" , self.event.name, @"https://itunes.apple.com/gb/app/dingo/id893538091?mt=8." ];
    
     
     UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:@[text] applicationActivities:nil];
