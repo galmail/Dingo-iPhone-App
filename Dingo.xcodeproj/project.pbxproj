@@ -272,7 +272,7 @@
 		4AC23DCF1A84FFD9004753DC /* PayPalBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AC23DCE1A84FFD9004753DC /* PayPalBtn@2x.png */; };
 		4AC23DD11A8502F4004753DC /* btnFBLoginpw@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AC23DD01A8502F4004753DC /* btnFBLoginpw@2x.png */; };
 		4AC23DD31A850367004753DC /* Loginpw.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AC23DD21A850367004753DC /* Loginpw.png */; };
-		4ACBD1821AA742A60027D3C5 /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4ACBD1811AA742A60027D3C5 /* PassKit.framework */; };
+		4ACBD1821AA742A60027D3C5 /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4ACBD1811AA742A60027D3C5 /* PassKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		4ADF88B81AA3688E00287E4A /* about_logoD2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4ADF88B71AA3688E00287E4A /* about_logoD2@2x.png */; };
 		4AE2BCF71A877C6100E0DF8B /* InviteFriends2.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AE2BCF61A877C6100E0DF8B /* InviteFriends2.png */; };
 		4AE2BCF91A877C6A00E0DF8B /* InviteFriends2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AE2BCF81A877C6A00E0DF8B /* InviteFriends2@2x.png */; };
