@@ -1323,7 +1323,7 @@ NSString *access_token;
         if (buttonIndex == 1) {
             ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please wait..."];
             [loadingView show];
-            [WebServiceManager signInWithFBAndUpdate:NO completion:^(id response, NSError *error) {
+            [WebServiceManager signInWithFBAndUpdate:YES completion:^(id response, NSError *error) {
                 [loadingView hide];
                 if (response) {
                     if ([self shouldPerformSegueWithIdentifier:@"PreviewSegue" sender:self]) {
@@ -1341,7 +1341,7 @@ NSString *access_token;
         if (buttonIndex == 1) {
             ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please wait..."];
             [loadingView show];
-            [WebServiceManager signInWithFBAndUpdate:NO completion:^(id response, NSError *error) {
+            [WebServiceManager signInWithFBAndUpdate:YES completion:^(id response, NSError *error) {
                 [loadingView hide];
                 if (response) {
                     [self paypalChanged:nil];
