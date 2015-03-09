@@ -161,7 +161,7 @@ static const NSUInteger messageAlert = 6654;
 
 + (void)signInWithFBAndUpdate:(BOOL)update completion:( void (^) (id response, NSError *error))handler {
     
-    [FBSession openActiveSessionWithReadPermissions:@[@"email", @"user_birthday", @"user_location", @"user_friends"]
+    [FBSession openActiveSessionWithReadPermissions:@[@"email"]
                                        allowLoginUI:YES
                                   completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
                                       
