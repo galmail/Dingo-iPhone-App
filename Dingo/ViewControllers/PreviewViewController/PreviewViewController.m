@@ -236,7 +236,7 @@ static const NSUInteger commentCellIndex = 5;
 
                     [self.navigationController.viewControllers[0] setSelectedIndex:0];
                     [self.navigationController popToRootViewControllerAnimated:YES];
-                    [AppManager showAlert:@"Tickets Listed :-)"];
+                    [AppManager showAlert:@"Tickets Listed :-)\n\nPlease turn on push notifications and check your contact info within settings so we can let you know when they have sold!"];
                     [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"kDingo_ticket_editTicket"];
 
                 } else {
@@ -290,7 +290,7 @@ static const NSUInteger commentCellIndex = 5;
 						
 						[self.navigationController.viewControllers[0] setSelectedIndex:0];
 						[self.navigationController popToRootViewControllerAnimated:YES];
-                        [AppManager showAlert:@"Tickets Listed :-)"];
+                        [AppManager showAlert:@"Tickets Listed :-)\n\nPlease turn on push notifications and check your contact info within settings so we can let you know when they have sold!"];
 					} else {
 						[loadingView hide];
 						[AppManager showAlert:@"Unable to create ticket."];
