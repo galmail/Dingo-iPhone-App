@@ -26,6 +26,8 @@
 
 @end
 
+NSString *emailPreFix;
+
 @implementation LoginViewController
 
 #pragma mark - UIViewController
@@ -121,9 +123,29 @@
     
     ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please wait..."];
     [loadingView show];
+
+    //set device token for prefix of guest email
+    NSString *emailDeviceToken = [NSString stringWithFormat:@"%@", [AppManager sharedManager].deviceToken];
     
-    NSString *email = [NSString stringWithFormat:@"%@@guest.dingoapp.co.uk", [[UIDevice currentDevice] uniqueDeviceIdentifier]];
+    //if device token is empty, use "identifierForVendor" instead but trim first
+    NSString *identifierForVendorString = [NSString stringWithFormat:@"%@", [[UIDevice currentDevice] identifierForVendor]];
+    NSString *newidentifierForVendor = [identifierForVendorString stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
+    NSString *newidentifierForVendor2 = [newidentifierForVendor stringByReplacingOccurrencesOfString:@" " withString:@""];
+    
+    //check
+    if ([emailDeviceToken  isEqual: @"(null)"] || [emailDeviceToken  isEqual: @""] ) {
+        emailPreFix = newidentifierForVendor2;
+    } else {
+        emailPreFix = emailDeviceToken;
+    }
+    
+    //old
+    //NSString *email = [NSString stringWithFormat:@"%@@guest.dingoapp.co.uk", [[UIDevice currentDevice] uniqueDeviceIdentifier]];
+    
+    //new
+    NSString *email = [NSString stringWithFormat:@"%@@guest.dingoapp.co.uk", emailPreFix];
     NSLog(@"email: %@", email);
+
     NSString *pass = [NSString stringWithFormat:@"uid%@", [[UIDevice currentDevice] uniqueDeviceIdentifier]];
     
     NSDictionary *params = @{ @"name" : @"Guest",
