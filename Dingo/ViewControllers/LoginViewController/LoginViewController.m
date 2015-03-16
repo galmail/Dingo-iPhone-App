@@ -74,35 +74,106 @@ NSString *emailPreFix;
     }
     
     
+
     //twitter loging
     TWTRLogInButton *logInButton = [TWTRLogInButton buttonWithLogInCompletion:^(TWTRSession *session, NSError *error) {
         if (session) {
             NSLog(@"signed in as %@", [session userName]);
             
-            
+            //signed in, now get email address
             if ([[Twitter sharedInstance] session]) {
-                TWTRShareEmailViewController* shareEmailViewController =
-                [[TWTRShareEmailViewController alloc]
-                 initWithCompletion:^(NSString* email, NSError* error) {
+                TWTRShareEmailViewController* shareEmailViewController = [[TWTRShareEmailViewController alloc]initWithCompletion:^(NSString* email, NSError* error) {
                      NSLog(@"Email %@, Error: %@", email, error);
+                    
+                    if(email) {
+                        // allowed email, now register user and send to homepage...
+                        [AppManager showAlert:@"Received email!"];
+                        
+
+                        
+                        
+                    } else {
+                        // didn't allow email, show error...
+                        [AppManager showAlert:@"Must provide your email to log in to Dingo"];
+                        
+                        
+                        //**********************************
+                        NSString *twitterURL = [NSString stringWithFormat: @"https://api.twitter.com/1.1/users/show.json?screen_name=%@&user_id=%@", [session userName], [session userName]];
+                        NSDictionary *params = @{@"id" : [session userName]};
+                        NSError *clientError;
+                        NSURLRequest *twitterRequest = [[[Twitter sharedInstance] APIClient]
+                                                  URLRequestWithMethod:@"GET"
+                                                  URL:twitterURL
+                                                  parameters:params
+                                                  error:&clientError];
+                        
+                        if (twitterRequest) {
+                            [[[Twitter sharedInstance] APIClient] sendTwitterRequest:twitterRequest
+                             completion:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+                                 if (data) {
+                                     // handle the response data e.g.
+                                     NSError *jsonError;
+                                     NSDictionary *json = [NSJSONSerialization
+                                                           JSONObjectWithData:data
+                                                           options:0
+                                                           error:&jsonError];
+                                     NSLog(@"requestReply: %@", json);
+                                     
+                                     NSString* fullName = [NSString stringWithFormat:@"%@%@", json[@"name"], @" empty"];
+                                     NSArray* firstLastStrings = [fullName componentsSeparatedByString:@" "];
+                                     NSString* firstName = [firstLastStrings objectAtIndex:0];
+                                     NSString* lastName = [firstLastStrings objectAtIndex:1];
+                                     
+        
+                                     NSDictionary *params = @{ @"name" : firstName,
+                                                               @"surname": lastName,
+                                                               //@"email" : email,
+                                                               @"password" : [NSString stringWithFormat:@"fb%@", [session userName]],
+                                                               @"fb_id" : [session userName],
+                                                               @"city": @"London",
+                                                               @"photo_url": json[@"profile_image_url"], //need to edit
+                                                               @"device_uid":[AppManager sharedManager].deviceToken.length > 0 ? [AppManager sharedManager].deviceToken : @"",
+                                                               @"device_brand":@"Apple",
+                                                               @"device_model": [[UIDevice currentDevice] platformString],
+                                                               @"device_os":[[UIDevice currentDevice] systemVersion],
+                                                               @"device_location" : [NSString stringWithFormat:@"%f,%f", [AppManager sharedManager].currentLocation.coordinate.latitude, [AppManager sharedManager].currentLocation.coordinate.longitude ]
+                                                               };
+                                     
+                                     
+                                     NSLog(@"params: %@", params);
+                                     
+                                     
+                                     
+                                 }
+                                 else {
+                                     NSLog(@"Error: %@", connectionError);
+                                 }
+                             }];
+                        }
+                        else {
+                            NSLog(@"Error: %@", clientError);
+                        }
+                        //**********************************
+                        
+                        
+                        
+                    }
                  }];
-                [self presentViewController:shareEmailViewController
-                                   animated:YES
-                                 completion:nil];
-            } else {
-                // TODO: Handle user not signed in (e.g.
-                // attempt to log in or show an alert)
+                
+                [self presentViewController:shareEmailViewController animated:YES completion:nil];
+                
             }
-            
-            
-            
         } else {
             NSLog(@"error: %@", [error localizedDescription]);
+            [AppManager showAlert:@"Oops, something went wrong. Please try again."];
         }
     }];
+    
     logInButton.center = self.view.center;
     [self.view addSubview:logInButton];
+    
 }
+
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -149,7 +220,6 @@ NSString *emailPreFix;
     //    [termsAlertView show];
     
 }
-
 
 - (IBAction)btnGuestTap:(id)sender {
     
