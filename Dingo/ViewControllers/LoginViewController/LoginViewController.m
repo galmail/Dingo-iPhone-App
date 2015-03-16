@@ -16,6 +16,8 @@
 #import "ZSLoadingView.h"
 #import "SlidingViewController.h"
 #import "AboutViewController.h"
+#import <TwitterKit/TwitterKit.h>
+
 
 @interface LoginViewController () <UITextFieldDelegate, ZSLabelDelegate> {
     UIAlertView *termsAlertView;
@@ -70,6 +72,36 @@ NSString *emailPreFix;
         viewController.modalTransitionStyle =  UIModalTransitionStyleFlipHorizontal;
         [self presentViewController:viewController animated:YES completion:nil];
     }
+    
+    
+    //twitter loging
+    TWTRLogInButton *logInButton = [TWTRLogInButton buttonWithLogInCompletion:^(TWTRSession *session, NSError *error) {
+        if (session) {
+            NSLog(@"signed in as %@", [session userName]);
+            
+            
+            if ([[Twitter sharedInstance] session]) {
+                TWTRShareEmailViewController* shareEmailViewController =
+                [[TWTRShareEmailViewController alloc]
+                 initWithCompletion:^(NSString* email, NSError* error) {
+                     NSLog(@"Email %@, Error: %@", email, error);
+                 }];
+                [self presentViewController:shareEmailViewController
+                                   animated:YES
+                                 completion:nil];
+            } else {
+                // TODO: Handle user not signed in (e.g.
+                // attempt to log in or show an alert)
+            }
+            
+            
+            
+        } else {
+            NSLog(@"error: %@", [error localizedDescription]);
+        }
+    }];
+    logInButton.center = self.view.center;
+    [self.view addSubview:logInButton];
 }
 
 - (void)viewWillAppear:(BOOL)animated

@@ -267,6 +267,9 @@
 		4A9A21131AB72BCA009D651F /* MapButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A9A21121AB72BCA009D651F /* MapButton@2x.png */; };
 		4A9EA4191A8537EF0080D179 /* InviteFriends@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A9EA4181A8537EF0080D179 /* InviteFriends@2x.png */; };
 		4A9EA41B1A8537F90080D179 /* InviteFriends.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A9EA41A1A8537F90080D179 /* InviteFriends.png */; };
+		4AA3D2711AB7332B00CE5072 /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AA3D26E1AB7332B00CE5072 /* TwitterKit.framework */; };
+		4AA3D2721AB7332B00CE5072 /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4AA3D26F1AB7332B00CE5072 /* TwitterKitResources.bundle */; };
+		4AA3D2731AB7332B00CE5072 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AA3D2701AB7332B00CE5072 /* Fabric.framework */; };
 		4AC23DC31A84E3EF004753DC /* Add.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AC23DC21A84E3EF004753DC /* Add.png */; };
 		4AC23DC51A84E3FB004753DC /* Add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AC23DC41A84E3FB004753DC /* Add@2x.png */; };
 		4AC23DC71A84E4C3004753DC /* AlertEventName@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AC23DC61A84E4C3004753DC /* AlertEventName@2x.png */; };
@@ -765,6 +768,9 @@
 		4A9A21121AB72BCA009D651F /* MapButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MapButton@2x.png"; sourceTree = "<group>"; };
 		4A9EA4181A8537EF0080D179 /* InviteFriends@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "InviteFriends@2x.png"; sourceTree = "<group>"; };
 		4A9EA41A1A8537F90080D179 /* InviteFriends.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = InviteFriends.png; sourceTree = "<group>"; };
+		4AA3D26E1AB7332B00CE5072 /* TwitterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TwitterKit.framework; sourceTree = SOURCE_ROOT; };
+		4AA3D26F1AB7332B00CE5072 /* TwitterKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TwitterKitResources.bundle; path = TwitterKit.framework/Versions/A/Resources/TwitterKitResources.bundle; sourceTree = SOURCE_ROOT; };
+		4AA3D2701AB7332B00CE5072 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = SOURCE_ROOT; };
 		4AC23DC21A84E3EF004753DC /* Add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Add.png; sourceTree = "<group>"; };
 		4AC23DC41A84E3FB004753DC /* Add@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Add@2x.png"; sourceTree = "<group>"; };
 		4AC23DC61A84E4C3004753DC /* AlertEventName@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AlertEventName@2x.png"; sourceTree = "<group>"; };
@@ -910,6 +916,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4ACBD1821AA742A60027D3C5 /* PassKit.framework in Frameworks */,
+				4AA3D2711AB7332B00CE5072 /* TwitterKit.framework in Frameworks */,
 				3AA4300819F163860053D6F8 /* libsqlite3.dylib in Frameworks */,
 				3AFEC18C19DEDBC70062AA64 /* libxml2.dylib in Frameworks */,
 				3AA1607F19E5BF1700895508 /* FacebookSDK.framework in Frameworks */,
@@ -919,6 +926,7 @@
 				3A97DDBC19D3634E00B4C33E /* MobileCoreServices.framework in Frameworks */,
 				3A97DDBA19D3633600B4C33E /* CoreMedia.framework in Frameworks */,
 				3A97DDB819D3631800B4C33E /* AVFoundation.framework in Frameworks */,
+				4AA3D2731AB7332B00CE5072 /* Fabric.framework in Frameworks */,
 				3A97DDB619D3630500B4C33E /* AudioToolbox.framework in Frameworks */,
 				3A02687C19A5F9C000C8CD8E /* Social.framework in Frameworks */,
 				3AC8525519A4CF9C00FCDE16 /* MapKit.framework in Frameworks */,
@@ -1426,6 +1434,9 @@
 		3AF360A419767564009A14FD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4AA3D26E1AB7332B00CE5072 /* TwitterKit.framework */,
+				4AA3D26F1AB7332B00CE5072 /* TwitterKitResources.bundle */,
+				4AA3D2701AB7332B00CE5072 /* Fabric.framework */,
 				4A9972871A9DD7C300F189EC /* Stripe */,
 				3AA42FFA19F162070053D6F8 /* GoogleAnalytics */,
 				3A29C24319EDC2DC00578F0D /* PayPalMobile */,
@@ -2621,6 +2632,7 @@
 				3F10DDD219388E6F002D3B43 /* Frameworks */,
 				3F10DDD319388E6F002D3B43 /* Resources */,
 				67C8011E87CE4A7A932C3A68 /* Copy Pods Resources */,
+				4AA3D26D1AB7329A00CE5072 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -2782,6 +2794,7 @@
 				3AA160F219E5C8EF00895508 /* AppiraterLocalizable.strings in Resources */,
 				3F2864EA194B283D002A3576 /* faq_icon_gray@2x.png in Resources */,
 				3F62C6DC19499D9400D7D6B1 /* messages.plist in Resources */,
+				4AA3D2721AB7332B00CE5072 /* TwitterKitResources.bundle in Resources */,
 				84A456F41970182C000ABA73 /* welcome2BG.png in Resources */,
 				3F62C6A61948318F00D7D6B1 /* john_smith@2x.png in Resources */,
 				3F62C6A51948318F00D7D6B1 /* joe_bloggs@2x.png in Resources */,
@@ -2929,6 +2942,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		4AA3D26D1AB7329A00CE5072 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run 353ad0c99ca0f5aaef9baf350411b039537790a2 ff93d719ba82a0c928598a606b34045ce816db270b24ff54f0c2fae796f030bd";
+		};
 		67C8011E87CE4A7A932C3A68 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

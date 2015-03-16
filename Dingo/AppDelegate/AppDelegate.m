@@ -27,6 +27,8 @@
 #import "ListTicketsViewController.h"
 #import "ChatViewController.h"
 #import "Stripe.h"
+#import <Fabric/Fabric.h>
+#import <TwitterKit/TwitterKit.h>
 
 
 #import "GAI.h"
@@ -65,6 +67,7 @@
     self.locationManager.distanceFilter = 50;
     [self.locationManager startUpdatingLocation];
     
+    [Fabric with:@[TwitterKit]];
     
     //-- Set Notification
 	//keep in mind this would be a "better" (more standard) way to check for api availability
