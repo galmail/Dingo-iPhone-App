@@ -44,27 +44,6 @@ NSString *emailPreFix;
     [self.view addSubview:labelTandC];
     
     
-    //add OR image and guest button if screen hieght > iphone 4s
-    if(self.view.frame.size.height > 500) {
-        UIImageView *orIcon=[[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2 - 15, 378, 30, 30)];
-        [orIcon setImage:[UIImage imageNamed:@"or_icon.png"]];
-        //[self.view addSubview:orIcon];
-        
-        UIButton *btnGuest=[UIButton buttonWithType:UIButtonTypeCustom];
-        [btnGuest setFrame:CGRectMake(self.view.frame.size.width/2 - 110, 422, 220, 40)];
-        [btnGuest setImage:[UIImage imageNamed:@"btnGuestpw.png"]  forState:UIControlStateNormal];
-        [btnGuest addTarget:self action:@selector(btnGuestTap:) forControlEvents:UIControlEventTouchUpInside];
-        //[self.view addSubview:btnGuest];
-        
-    } else {
-        UIButton *btnGuest=[UIButton buttonWithType:UIButtonTypeCustom];
-        [btnGuest setFrame:CGRectMake(self.view.frame.size.width/2 - 110, 370, 220, 40)];
-        [btnGuest setImage:[UIImage imageNamed:@"btnGuestpw.png"]  forState:UIControlStateNormal];
-        [btnGuest addTarget:self action:@selector(btnGuestTap:) forControlEvents:UIControlEventTouchUpInside];
-        //[self.view addSubview:btnGuest];
-    }
-    
-    
     self.scrollView.contentSize = self.scrollView.frame.size;
     
     if ([AppManager sharedManager].token) {
@@ -74,7 +53,6 @@ NSString *emailPreFix;
     }
     
     
-
     //twitter loging
     TWTRLogInButton *logInButton = [TWTRLogInButton buttonWithLogInCompletion:^(TWTRSession *session, NSError *error) {
         if (session) {
@@ -86,82 +64,81 @@ NSString *emailPreFix;
                      NSLog(@"Email %@, Error: %@", email, error);
                     
                     if(email) {
-                        // allowed email, now register user and send to homepage...
-                        [AppManager showAlert:@"Received email!"];
+                        // email received, now get user details
+                        //**********************************
+                        NSString *twitterURL = [NSString stringWithFormat: @"https://api.twitter.com/1.1/users/show.json?screen_name=%@&user_id=%@", [session userName], [session userName]];
+                        NSDictionary *params = @{@"id" : [session userName]};
+                        NSError *clientError;
+                        NSURLRequest *twitterRequest = [[[Twitter sharedInstance] APIClient]
+                                                        URLRequestWithMethod:@"GET"
+                                                        URL:twitterURL
+                                                        parameters:params
+                                                        error:&clientError];
+                        if (twitterRequest) {
+                            [[[Twitter sharedInstance] APIClient] sendTwitterRequest:twitterRequest
+                                  completion:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+                                if (data) {
+                                      //received user data, now register on backend and send to homepage
+                                      NSError *jsonError;
+                                      NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
+                                                NSLog(@"requestReply: %@", json);
+                                    
+                                                //split name
+                                                NSString* fullName = [NSString stringWithFormat:@"%@%@", json[@"name"], @" empty"];
+                                                NSArray* firstLastStrings = [fullName componentsSeparatedByString:@" "];
+                                                NSString* firstName = [firstLastStrings objectAtIndex:0];
+                                                NSString* lastName = [firstLastStrings objectAtIndex:1];
+                                    
+                                                //edit picture URL to resize
+                                                NSString *profileURL = json[@"profile_image_url"];
+                                                profileURL = [profileURL stringByReplacingOccurrencesOfString:@"normal"withString:@"bigger"];
+                                                                                  
+                                                NSDictionary *params = @{ @"name" : firstName,
+                                                                          @"surname": lastName,
+                                                                          @"email" : email,
+                                                                          @"password" : [NSString stringWithFormat:@"fb%@", [session userName]],
+                                                                          @"fb_id" : [session userName],
+                                                                          @"city": @"London",
+                                                                          @"photo_url": profileURL,
+                                                                          @"device_uid":[AppManager sharedManager].deviceToken.length > 0 ? [AppManager sharedManager].deviceToken : @"",
+                                                                          @"device_brand":@"Apple",
+                                                                          @"device_model": [[UIDevice currentDevice] platformString],
+                                                                          @"device_os":[[UIDevice currentDevice] systemVersion],
+                                                                          @"device_location" : [NSString stringWithFormat:@"%f,%f", [AppManager sharedManager].currentLocation.coordinate.latitude, [AppManager sharedManager].currentLocation.coordinate.longitude ] };
+                                                //now set up profile
+                                                NSLog(@"params: %@", params);
+                                                                                  
+                                    
+                                    
+                                    
+                                                                                  
+                                    } else {
+                                    //failed to receive user data
+                                    //TEST this error handling! show pop up?
+                                    NSLog(@"Error: %@", connectionError);
+                                    }
+                            }];
+                        }
+                        else {
+                        //failed to obtain twitter details to send request
+                        //TEST this error handling! show pop up?
+                        NSLog(@"Error: %@", clientError);
+                        }
+                        //**********************************
+                        
+                        
+                        
                         
 
                         
                         
                     } else {
                         // didn't allow email, show error...
-                        [AppManager showAlert:@"Must provide your email to log in to Dingo"];
-                        
-                        
-                        //**********************************
-                        NSString *twitterURL = [NSString stringWithFormat: @"https://api.twitter.com/1.1/users/show.json?screen_name=%@&user_id=%@", [session userName], [session userName]];
-                        NSDictionary *params = @{@"id" : [session userName]};
-                        NSError *clientError;
-                        NSURLRequest *twitterRequest = [[[Twitter sharedInstance] APIClient]
-                                                  URLRequestWithMethod:@"GET"
-                                                  URL:twitterURL
-                                                  parameters:params
-                                                  error:&clientError];
-                        
-                        if (twitterRequest) {
-                            [[[Twitter sharedInstance] APIClient] sendTwitterRequest:twitterRequest
-                             completion:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-                                 if (data) {
-                                     // handle the response data e.g.
-                                     NSError *jsonError;
-                                     NSDictionary *json = [NSJSONSerialization
-                                                           JSONObjectWithData:data
-                                                           options:0
-                                                           error:&jsonError];
-                                     NSLog(@"requestReply: %@", json);
-                                     
-                                     NSString* fullName = [NSString stringWithFormat:@"%@%@", json[@"name"], @" empty"];
-                                     NSArray* firstLastStrings = [fullName componentsSeparatedByString:@" "];
-                                     NSString* firstName = [firstLastStrings objectAtIndex:0];
-                                     NSString* lastName = [firstLastStrings objectAtIndex:1];
-                                     
-        
-                                     NSDictionary *params = @{ @"name" : firstName,
-                                                               @"surname": lastName,
-                                                               //@"email" : email,
-                                                               @"password" : [NSString stringWithFormat:@"fb%@", [session userName]],
-                                                               @"fb_id" : [session userName],
-                                                               @"city": @"London",
-                                                               @"photo_url": json[@"profile_image_url"], //need to edit
-                                                               @"device_uid":[AppManager sharedManager].deviceToken.length > 0 ? [AppManager sharedManager].deviceToken : @"",
-                                                               @"device_brand":@"Apple",
-                                                               @"device_model": [[UIDevice currentDevice] platformString],
-                                                               @"device_os":[[UIDevice currentDevice] systemVersion],
-                                                               @"device_location" : [NSString stringWithFormat:@"%f,%f", [AppManager sharedManager].currentLocation.coordinate.latitude, [AppManager sharedManager].currentLocation.coordinate.longitude ]
-                                                               };
-                                     
-                                     
-                                     NSLog(@"params: %@", params);
-                                     
-                                     
-                                     
-                                 }
-                                 else {
-                                     NSLog(@"Error: %@", connectionError);
-                                 }
-                             }];
-                        }
-                        else {
-                            NSLog(@"Error: %@", clientError);
-                        }
-                        //**********************************
-                        
-                        
-                        
+                        [AppManager showAlert:@"Please share your Twitter email to login to Dingo!"];
                     }
                  }];
                 
                 [self presentViewController:shareEmailViewController animated:YES completion:nil];
-                
             }
         } else {
             NSLog(@"error: %@", [error localizedDescription]);
@@ -169,9 +146,46 @@ NSString *emailPreFix;
         }
     }];
     
-    logInButton.center = self.view.center;
-    [self.view addSubview:logInButton];
+        //set additional buttons and labels
+        if(self.view.frame.size.height > 500) {
+            //old iphone
+            UIImageView *orIcon=[[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2 - 15, 371, 30, 30)];
+            [orIcon setImage:[UIImage imageNamed:@"or_icon.png"]];
+            [self.view addSubview:orIcon];
+            
+            [logInButton setFrame:CGRectMake(self.view.frame.size.width/2 - 109, 417, 218, 35)];
+            [self.view addSubview:logInButton];
+            
+            ZSLabel *label = [[ZSLabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2 - 150, 460, 300, 30)];
+            label.delegate = self;
+            [label setText:[NSString stringWithFormat:@"<font face='SourceSansPro-Regular' size=13 color='#FFFFFF'><center>We'll never post anything without your permission.</center></font>"]];
+            [self.view addSubview:label];
+            
+            //old guest button
+            //UIButton *btnGuest=[UIButton buttonWithType:UIButtonTypeCustom];
+            //[btnGuest setFrame:CGRectMake(self.view.frame.size.width/2 - 110, 422, 220, 40)];
+            //[btnGuest setImage:[UIImage imageNamed:@"btnGuestpw.png"]  forState:UIControlStateNormal];
+            //[btnGuest addTarget:self action:@selector(btnGuestTap:) forControlEvents:UIControlEventTouchUpInside];
+            //[self.view addSubview:btnGuest];
     
+        } else {
+            
+            //later iphones
+            [logInButton setFrame:CGRectMake(self.view.frame.size.width/2 - 109, 367, 218, 35)];
+            [self.view addSubview:logInButton];
+            
+            ZSLabel *label = [[ZSLabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2 - 150, 405, 300, 30)];
+            label.delegate = self;
+            [label setText:[NSString stringWithFormat:@"<font face='SourceSansPro-Regular' size=13 color='#FFFFFF'><center>We'll never post anything without your permission.</center></font>"]];
+            [self.view addSubview:label];
+            
+            //old guest button
+            //UIButton *btnGuest=[UIButton buttonWithType:UIButtonTypeCustom];
+            //[btnGuest setFrame:CGRectMake(self.view.frame.size.width/2 - 110, 370, 220, 40)];
+            //[btnGuest setImage:[UIImage imageNamed:@"btnGuestpw.png"]  forState:UIControlStateNormal];
+            //[btnGuest addTarget:self action:@selector(btnGuestTap:) forControlEvents:UIControlEventTouchUpInside];
+            //[self.view addSubview:btnGuest];
+        }
 }
 
 
