@@ -47,14 +47,14 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    locationMapView = [[MKMapView alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 80)];
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapOnMap:)];
-    [locationMapView addGestureRecognizer:tap];
-    
-    //**********Adding Arrow on the map for navigat full screen
-    UIImageView *imgViewArrow=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arrow_map.png"]];
-    [imgViewArrow setFrame:CGRectMake(screenSize.width-30, CGRectGetMidY(locationMapView.frame)-13.5, 20, 27)];
-    [locationMapView addSubview:imgViewArrow];
+    //stop load of old map with arrow
+//    locationMapView = [[MKMapView alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 80)];
+//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapOnMap:)];
+//    [locationMapView addGestureRecognizer:tap];
+//    
+//    UIImageView *imgViewArrow=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arrow_map.png"]];
+//    [imgViewArrow setFrame:CGRectMake(screenSize.width-30, CGRectGetMidY(locationMapView.frame)-13.5, 20, 27)];
+//    [locationMapView addSubview:imgViewArrow];
     
     
     [WebServiceManager addressToLocation:[DataManager eventLocation:self.eventData] completion:^(id response, NSError *error) {
@@ -211,8 +211,9 @@
 		case 0:
 			return featureCellHeight;
 			break;
+            //set map frame to 0 (old = 80)
 		case 1:
-			return 80;
+			return 0;
 			break;
 		case 2:
 			return 40;
@@ -369,6 +370,12 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+
+- (IBAction)pressMapButton:(id)sender {
+    [self performSegueWithIdentifier:@"MapSegue" sender:self];
+}
+
+//old
 - (IBAction)tapOnMap:(UIGestureRecognizer *)gesture{
     [self performSegueWithIdentifier:@"MapSegue" sender:self];
 }
