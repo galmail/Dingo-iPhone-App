@@ -2872,31 +2872,6 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="50" id="Gqc-Zj-AiK" userLabel="facebook_login">
-                                        <rect key="frame" x="0.0" y="296" width="320" height="50"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Gqc-Zj-AiK" id="O8E-Ou-6fI">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Facebook log in" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="efW-7s-kIk" userLabel="label">
-                                                    <rect key="frame" x="12" y="14" width="129" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
-                                                    <color key="textColor" red="0.27450980390000002" green="0.27450980390000002" blue="0.27450980390000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <switch contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="e0f-IS-uil" userLabel="fb_login_switch">
-                                                    <rect key="frame" x="260" y="9" width="51" height="31"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                    <connections>
-                                                        <action selector="facebookLoginSwitchValueChanged" destination="luz-yd-ISX" eventType="valueChanged" id="NJz-2P-0fp"/>
-                                                    </connections>
-                                                </switch>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
-                                    </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="50" id="5PC-Fd-Tqw" userLabel="push_notif">
                                         <rect key="frame" x="0.0" y="346" width="320" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -2949,11 +2924,9 @@
                     <connections>
                         <outlet property="cityField" destination="sIm-1F-6HI" id="8bg-S5-v3p"/>
                         <outlet property="emailField" destination="hKT-Bw-OQL" id="MbI-cU-WBy"/>
-                        <outlet property="facebookLoginSwitch" destination="e0f-IS-uil" id="IPG-7o-jTd"/>
                         <outlet property="firstNameField" destination="bie-hZ-yRF" id="LJ1-yo-ZuZ"/>
                         <outlet property="lblCity" destination="DNM-oY-CFc" id="FcP-55-Tjr"/>
                         <outlet property="lblEmail" destination="S29-Qz-U2K" id="AsF-Sq-7YS"/>
-                        <outlet property="lblFB" destination="efW-7s-kIk" id="AFz-zZ-BqP"/>
                         <outlet property="lblFirstName" destination="fhc-RE-uvS" id="E7v-2F-MDu"/>
                         <outlet property="lblSurname" destination="68j-r1-xYy" id="b5h-01-QBg"/>
                         <outlet property="pushNotificationSwitch" destination="B0C-Gl-oCX" id="usm-AL-uGg"/>

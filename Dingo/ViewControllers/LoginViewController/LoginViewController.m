@@ -60,13 +60,13 @@ NSString *emailPreFix;
             
             //signed in, now get email address
             if ([[Twitter sharedInstance] session]) {
-                TWTRShareEmailViewController* shareEmailViewController = [[TWTRShareEmailViewController alloc]initWithCompletion:^(NSString* email2, NSError* error) {
-                    NSLog(@"Email %@, Error: %@", email2, error);
+                TWTRShareEmailViewController* shareEmailViewController = [[TWTRShareEmailViewController alloc]initWithCompletion:^(NSString* email, NSError* error) {
+                    NSLog(@"Email %@, Error: %@", email, error);
                     
                     ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please wait..."];
                     [loadingView show];
                     
-                    NSString *email = @"temptwitterb@email.com";
+                    //NSString *email = @"test@email.com";
                     if(email) {
                         // email received, now get user twitter details
                         //**********************************
