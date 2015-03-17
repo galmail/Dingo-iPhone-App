@@ -97,18 +97,19 @@ static const NSUInteger pushAlert =		2243;
         self.emailField.text =[[AppManager sharedManager].userInfo valueForKey:@"notification_email"];
     }
     
-    if ([[[AppManager sharedManager].userInfo valueForKey:@"fb_id"] length]) {
-        if ([[[AppManager sharedManager].userInfo valueForKey:@"fb_id"] isKindOfClass:[NSNull class]]) {
-            self.facebookLoginSwitch.on = NO;
-        } else {
-            NSString * fb_id = [[AppManager sharedManager].userInfo valueForKey:@"fb_id"];
-            if (fb_id.length == 0) {
-                self.facebookLoginSwitch.on = NO;
-            }
-        }
-    } else {
-        self.facebookLoginSwitch.on = NO;
-    }
+//    if ([[[AppManager sharedManager].userInfo valueForKey:@"fb_id"] length]) {
+//        if ([[[AppManager sharedManager].userInfo valueForKey:@"fb_id"] isKindOfClass:[NSNull class]]) {
+//            self.facebookLoginSwitch.on = NO;
+//        } else {
+//            NSString * fb_id = [[AppManager sharedManager].userInfo valueForKey:@"fb_id"];
+//            if (fb_id.length == 0) {
+//                self.facebookLoginSwitch.on = NO;
+//            }
+//        }
+//    } else {
+//        self.facebookLoginSwitch.on = NO;
+//    }
+    
     if ([[AppManager sharedManager].userInfo valueForKey:@"allow_dingo_emails"]) {
         self.dingoEmailsSwitch.on =[[[AppManager sharedManager].userInfo valueForKey:@"allow_dingo_emails"] boolValue];
     }
@@ -176,9 +177,9 @@ static const NSUInteger pushAlert =		2243;
     
     [params setObject:[NSNumber numberWithBool:self.pushNotificationSwitch.on] forKey:@"allow_push_notifications"];
     [params setObject:[NSNumber numberWithBool:self.dingoEmailsSwitch.on] forKey:@"allow_dingo_emails"];
-    if (!self.facebookLoginSwitch.on) {
-        [params setObject:@YES forKey:@"disconnect_fb_account"];
-    }
+//    if (!self.facebookLoginSwitch.on) {
+//        [params setObject:@YES forKey:@"disconnect_fb_account"];
+//    }
     
     //DLog(@"token %@", [AppManager sharedManager].token );
     
@@ -198,16 +199,16 @@ static const NSUInteger pushAlert =		2243;
             [[AppManager sharedManager].userInfo setValue:self.firstNameField.text forKey:@"name"];
             [[AppManager sharedManager].userInfo setValue:self.cityField.text forKey:@"city"];
             [[AppManager sharedManager].userInfo setValue:self.emailField.text forKey:@"notification_email"];
-            if (!self.facebookLoginSwitch.on) {
-                [[AppManager sharedManager].userInfo setObject:@"" forKey:@"fb_id"];
-            }
+//            if (!self.facebookLoginSwitch.on) {
+//                [[AppManager sharedManager].userInfo setObject:@"" forKey:@"fb_id"];
+//            }
             
             [[AppManager sharedManager].userInfo setObject:[NSNumber numberWithBool:self.pushNotificationSwitch.on] forKey:@"allow_push_notifications"];
             [[AppManager sharedManager].userInfo setObject:[NSNumber numberWithBool:self.dingoEmailsSwitch.on] forKey:@"allow_dingo_emails"];
             
-            if (!self.facebookLoginSwitch.on) {
-                
-            }
+//            if (!self.facebookLoginSwitch.on) {
+//                
+//            }
         }
         [self.navigationController popViewControllerAnimated:YES];
     }];
