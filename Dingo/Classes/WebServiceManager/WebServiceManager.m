@@ -245,6 +245,9 @@ static const NSUInteger messageAlert = 6654;
                                                           
                                                       } else {
                                                           NSLog(@"not update");
+                                                          
+                                                          
+                                                          
                                                           [WebServiceManager signUp:params completion:^(id response, NSError *error) {
                                                               NSLog(@"signUp response %@", response);
                                                               if (error) {

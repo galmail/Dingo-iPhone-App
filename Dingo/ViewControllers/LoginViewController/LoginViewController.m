@@ -60,11 +60,15 @@ NSString *emailPreFix;
             
             //signed in, now get email address
             if ([[Twitter sharedInstance] session]) {
-                TWTRShareEmailViewController* shareEmailViewController = [[TWTRShareEmailViewController alloc]initWithCompletion:^(NSString* email, NSError* error) {
-                     NSLog(@"Email %@, Error: %@", email, error);
+                TWTRShareEmailViewController* shareEmailViewController = [[TWTRShareEmailViewController alloc]initWithCompletion:^(NSString* email2, NSError* error) {
+                    NSLog(@"Email %@, Error: %@", email2, error);
                     
+                    ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please wait..."];
+                    [loadingView show];
+                    
+                    NSString *email = @"temptwitterb@email.com";
                     if(email) {
-                        // email received, now get user details
+                        // email received, now get user twitter details
                         //**********************************
                         NSString *twitterURL = [NSString stringWithFormat: @"https://api.twitter.com/1.1/users/show.json?screen_name=%@&user_id=%@", [session userName], [session userName]];
                         NSDictionary *params = @{@"id" : [session userName]};
@@ -105,17 +109,135 @@ NSString *emailPreFix;
                                                                           @"device_model": [[UIDevice currentDevice] platformString],
                                                                           @"device_os":[[UIDevice currentDevice] systemVersion],
                                                                           @"device_location" : [NSString stringWithFormat:@"%f,%f", [AppManager sharedManager].currentLocation.coordinate.latitude, [AppManager sharedManager].currentLocation.coordinate.longitude ] };
-                                                //now set up profile
-                                                NSLog(@"params: %@", params);
-                                                                                  
-                                    
-                                    
-                                    
-                                                                                  
+                                                //now signin
+                                                NSLog(@"Sign up: %@", params);
+                                                //********************************
+                                                [WebServiceManager signUp:params completion:^(id response, NSError *error) {
+                                                    NSLog(@"signUp response %@", response);
+                                                        if (error) {
+                                                            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                                                            [loadingView hide];
+                                                            [alert show];
+                                                            
+                                                        } else {
+                                                        if (response) {
+                                                            NSLog(@"WSM signUP response: %@", response);
+                                                            //new user
+                                                            if (response[@"authentication_token"]) {
+                                                                [AppManager sharedManager].token = response[@"authentication_token"];
+                                                    
+                                                                [AppManager sharedManager].userInfo = [@{ @"id":response[@"id"],
+                                                                                                          @"fb_id": response[@"fb_id"],
+                                                                                                          @"email":response[@"email"],
+                                                                                                          @"notification_email":response[@"email"],
+                                                                                                          @"name": response[@"name"],
+                                                                                                          @"surname": response[@"surname"],
+                                                                                                          @"photo_url":response[@"photo_url"],
+                                                                                                          @"city":response[@"city"],
+                                                                                                          @"paypal_account": (![response[@"paypal_account"] isKindOfClass:[NSNull class]] && [response[@"paypal_account"] length]) ? response[@"paypal_account"] : @""} mutableCopy];
+                                                    
+                                                                [[NSUserDefaults standardUserDefaults] setObject:response[@"authentication_token"] forKey:@"auth_token"];
+                                                                [[NSUserDefaults standardUserDefaults] setObject:response[@"email"] forKey:@"users_email"];
+                                                                [[NSUserDefaults standardUserDefaults] synchronize];
+                                                                
+                                                                [loadingView hide];
+                                                                //setting city as london and then send to homepage
+                                                                NSString *txtCity = @"London";
+                                                                [[AppManager sharedManager].userInfo setObject:txtCity forKey:@"city"];
+                                                                [[NSUserDefaults standardUserDefaults] setObject:txtCity forKey:@"city"];
+                                                                [[NSUserDefaults standardUserDefaults] synchronize];
+                                                                SlidingViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SlidingViewController"];
+                                                                viewController.modalTransitionStyle =  UIModalTransitionStyleFlipHorizontal;
+                                                                [self presentViewController:viewController animated:YES completion:nil];
+                                                    
+                                                            } else {
+                                                            // old user, therefore login
+                                                            NSDictionary *params = @{ @"email" : email,
+                                                                                      @"password" : [NSString stringWithFormat:@"fb%@", [session userName]] };
+                                                    
+                                                                [WebServiceManager signIn:params completion:^(id response, NSError *error) {
+                                                                NSLog(@"login response %@", response);
+                                                                    if (error ) {
+                                                                        [WebServiceManager handleError:error];
+                                                                    } else {
+                                                                    if (response) {
+                                                                        if ([response[@"success"] boolValue]) {
+                                                                            [AppManager sharedManager].token = response[@"auth_token"];
+                                                                            [AppManager sharedManager].userInfo = [
+                                                                                                           @{@"id": response[@"id"],
+                                                                                                             @"email": response[@"email"],
+                                                                                                             @"notification_email": response[@"email"],
+                                                                                                             @"name": response[@"name"],
+                                                                                                             @"surname": response[@"surname"],
+                                                                                                             @"allow_dingo_emails": response[@"allow_dingo_emails"],
+                                                                                                             @"allow_push_notifications":  response[@"allow_push_notifications"],
+                                                                                                             @"fb_id":response[@"fb_id"],
+                                                                                                             @"photo_url":profileURL,
+                                                                                                             @"city" : @"London",
+                                                                                                             @"paypal_account":(![response[@"paypal_account"] isKindOfClass:[NSNull class]] && [response[@"paypal_account"] length]) ? response[@"paypal_account"] : @""} mutableCopy];
+                                                                            if (response[@"auth_token"] ) {
+                                                                        
+                                                                                [[NSUserDefaults standardUserDefaults] setObject:response[@"auth_token"] forKey:@"auth_token"];
+                                                                                [[NSUserDefaults standardUserDefaults] setObject:response[@"email"] forKey:@"users_email"];
+                                                                                [[NSUserDefaults standardUserDefaults] synchronize];
+                                                                            }
+                                                                    
+                                                                            //not sure why we're getting events and caterogies here?
+                                                                            //[[DataManager shared] allCategoriesWithCompletion:^(BOOL finished) {}];
+                                                                            //[[DataManager shared] allEventsWithCompletion:^(BOOL finished) { }];
+                                                                            
+                                                                            if ([AppManager sharedManager].deviceToken.length > 0) {
+                                                                                // register device
+                                                                                NSDictionary *deviceParams = @{ @"uid":[AppManager sharedManager].deviceToken.length > 0 ? [AppManager sharedManager].deviceToken : @"",
+                                                                                                        @"brand":@"Apple",
+                                                                                                        @"model": [[UIDevice currentDevice] platformString],
+                                                                                                        @"os":[[UIDevice currentDevice] systemVersion],
+                                                                                                        @"app_version": [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"],
+                                                                                                        @"location" : [NSString stringWithFormat:@"%f,%f", [AppManager sharedManager].currentLocation.coordinate.latitude, [AppManager sharedManager].currentLocation.coordinate.longitude ]
+                                                                                                        };
+                                                                        
+                                                                                [WebServiceManager registerDevice:deviceParams completion:^(id response, NSError *error) {
+                                                                                    NSLog(@"WSM registerDevice response - %@", response);
+                                                                                    NSLog(@"WSM registerDevice error - %@", error);
+                                                                                }];
+                                                                            }
+                                                                            [loadingView hide];
+                                                                            //setting city as london and then send to homepage
+                                                                            NSString *txtCity = @"London";
+                                                                            [[AppManager sharedManager].userInfo setObject:txtCity forKey:@"city"];
+                                                                            [[NSUserDefaults standardUserDefaults] setObject:txtCity forKey:@"city"];
+                                                                            [[NSUserDefaults standardUserDefaults] synchronize];
+                                                                            SlidingViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SlidingViewController"];
+                                                                            viewController.modalTransitionStyle =  UIModalTransitionStyleFlipHorizontal;
+                                                                            [self presentViewController:viewController animated:YES completion:nil];
+                                                                            
+                                                                            
+                                                                        } else {
+                                                                            [loadingView hide];
+                                                                            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Unable to sign in, please try later" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                                                                            [alert show];
+                                                                        }
+                                                                    } else {
+                                                                        [loadingView hide];
+                                                                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Unable to sign in, please try later" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                                                                        [alert show];
+                                                                    }
+                                                                }
+                                                            }];
+                                                            }
+                                                        } else {
+                                                            [loadingView hide];
+                                                            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:@"Unable to sign up, please try later" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                                                            [alert show];
+                                                        }
+                                                    }
+                                                    }];
+                                            //********************************
                                     } else {
                                     //failed to receive user data
                                     //TEST this error handling! show pop up?
                                     NSLog(@"Error: %@", connectionError);
+                                    [loadingView hide];
                                     }
                             }];
                         }
@@ -123,17 +245,12 @@ NSString *emailPreFix;
                         //failed to obtain twitter details to send request
                         //TEST this error handling! show pop up?
                         NSLog(@"Error: %@", clientError);
+                        [loadingView hide];
                         }
                         //**********************************
-                        
-                        
-                        
-                        
-
-                        
-                        
                     } else {
                         // didn't allow email, show error...
+                        [loadingView hide];
                         [AppManager showAlert:@"Please share your Twitter email to login to Dingo!"];
                     }
                  }];
@@ -141,10 +258,12 @@ NSString *emailPreFix;
                 [self presentViewController:shareEmailViewController animated:YES completion:nil];
             }
         } else {
+            //twitter login failed
             NSLog(@"error: %@", [error localizedDescription]);
             [AppManager showAlert:@"Oops, something went wrong. Please try again."];
         }
     }];
+    
     
         //set additional buttons and labels
         if(self.view.frame.size.height > 500) {
