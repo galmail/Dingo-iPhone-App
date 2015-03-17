@@ -252,7 +252,7 @@ NSString *emailPreFix;
                     } else {
                         // didn't allow email, show error...
                         [loadingView hide];
-                        [AppManager showAlert:@"Oops, something went wrong. Please make sure you allow access to your email to login to Dingo!"];
+                        [AppManager showAlert:@"Oops, something went wrong. Please allow access to your email to login."];
                     }
                  }];
                 
