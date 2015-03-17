@@ -158,7 +158,8 @@ NSString *emailPreFix;
                                                                 [WebServiceManager signIn:params completion:^(id response, NSError *error) {
                                                                 NSLog(@"login response %@", response);
                                                                     if (error ) {
-                                                                        [WebServiceManager handleError:error];
+                                                                        [loadingView hide];
+                                                                        [AppManager showAlert:@"Looks like you've already signed in via Facebook. Please continue via Facebook."];
                                                                     } else {
                                                                     if (response) {
                                                                         if ([response[@"success"] boolValue]) {
