@@ -235,23 +235,23 @@ NSString *emailPreFix;
                                             //********************************
                                     } else {
                                     //failed to receive user data
-                                    //TEST this error handling! show pop up?
                                     NSLog(@"Error: %@", connectionError);
                                     [loadingView hide];
+                                    [AppManager showAlert:@"Oops, something went wrong. Please try again."];
                                     }
                             }];
                         }
                         else {
                         //failed to obtain twitter details to send request
-                        //TEST this error handling! show pop up?
                         NSLog(@"Error: %@", clientError);
                         [loadingView hide];
+                        [AppManager showAlert:@"Oops, something went wrong. Please try again."];
                         }
                         //**********************************
                     } else {
                         // didn't allow email, show error...
                         [loadingView hide];
-                        [AppManager showAlert:@"Please share your Twitter email to login to Dingo!"];
+                        [AppManager showAlert:@"Oops, something went wrong. Please make sure you allow access to your email to login to Dingo!"];
                     }
                  }];
                 
