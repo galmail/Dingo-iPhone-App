@@ -103,7 +103,7 @@ static const NSUInteger pushAlert =		2243;
 //        } else {
 //            NSString * fb_id = [[AppManager sharedManager].userInfo valueForKey:@"fb_id"];
 //            if (fb_id.length == 0) {
-//                self.facebookLoginSwitch.on = NO;
+//                self.facebookLoginSwitch.on =  NO;
 //            }
 //        }
 //    } else {
