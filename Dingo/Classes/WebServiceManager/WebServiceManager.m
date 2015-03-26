@@ -189,6 +189,15 @@ static const NSUInteger messageAlert = 6654;
                                               [request startWithCompletionHandler:^(FBRequestConnection *connection, id<FBGraphUser> user, NSError *error) {
                                                   if (user) {
                                                       
+                                                      if (user[@"email"] == nil){
+                                                          //assign user an email
+                                                          NSString *email = [NSString stringWithFormat:@"%@%@@guest.dingoapp.co.uk", user.first_name,user.objectID];
+                                                          user[@"email"] = email;
+                                                      }
+                                                      
+                                                      NSLog(@"user email is: %@", user[@"email"]);
+                                                      
+                                                      
                                                       NSString *birtday = nil;
                                                       if(user.birthday.length > 0) {
                                                           // change date format from MM/DD/YYYY to DD/MM/YYYY
