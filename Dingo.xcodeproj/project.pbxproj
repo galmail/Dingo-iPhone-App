@@ -244,6 +244,9 @@
 		4A6C7BA41A922CC1008F0C60 /* AlertMeOn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A6C7BA31A922CC1008F0C60 /* AlertMeOn@2x.png */; };
 		4A7768EE1A694EDF00168192 /* placeholder_avatar2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4A7768EC1A694EDF00168192 /* placeholder_avatar2.jpg */; };
 		4A7768EF1A694EDF00168192 /* placeholder_avatar2@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4A7768ED1A694EDF00168192 /* placeholder_avatar2@2x.jpg */; };
+		4A973BAB1AC968FA00AB0F63 /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A973BAA1AC968FA00AB0F63 /* TwitterKit.framework */; };
+		4A973BAD1AC9692E00AB0F63 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A973BAC1AC9692E00AB0F63 /* Fabric.framework */; };
+		4A973BB61AC96BE700AB0F63 /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4A973BB51AC96BE700AB0F63 /* TwitterKitResources.bundle */; };
 		4A9972861A9DCD7400F189EC /* libPayPalMobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A99727D1A9DCD7400F189EC /* libPayPalMobile.a */; };
 		4A9972B31A9DD7C300F189EC /* STPAPIClient+ApplePay.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9972891A9DD7C300F189EC /* STPAPIClient+ApplePay.m */; };
 		4A9972B41A9DD7C300F189EC /* STPPaymentPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A99728A1A9DD7C300F189EC /* STPPaymentPresenter.m */; };
@@ -267,9 +270,6 @@
 		4A9A21131AB72BCA009D651F /* MapButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A9A21121AB72BCA009D651F /* MapButton@2x.png */; };
 		4A9EA4191A8537EF0080D179 /* InviteFriends@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A9EA4181A8537EF0080D179 /* InviteFriends@2x.png */; };
 		4A9EA41B1A8537F90080D179 /* InviteFriends.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A9EA41A1A8537F90080D179 /* InviteFriends.png */; };
-		4AA3D2711AB7332B00CE5072 /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AA3D26E1AB7332B00CE5072 /* TwitterKit.framework */; };
-		4AA3D2721AB7332B00CE5072 /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4AA3D26F1AB7332B00CE5072 /* TwitterKitResources.bundle */; };
-		4AA3D2731AB7332B00CE5072 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AA3D2701AB7332B00CE5072 /* Fabric.framework */; };
 		4AC23DC31A84E3EF004753DC /* Add.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AC23DC21A84E3EF004753DC /* Add.png */; };
 		4AC23DC51A84E3FB004753DC /* Add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AC23DC41A84E3FB004753DC /* Add@2x.png */; };
 		4AC23DC71A84E4C3004753DC /* AlertEventName@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AC23DC61A84E4C3004753DC /* AlertEventName@2x.png */; };
@@ -717,6 +717,9 @@
 		4A6C7BA31A922CC1008F0C60 /* AlertMeOn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AlertMeOn@2x.png"; sourceTree = "<group>"; };
 		4A7768EC1A694EDF00168192 /* placeholder_avatar2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = placeholder_avatar2.jpg; sourceTree = "<group>"; };
 		4A7768ED1A694EDF00168192 /* placeholder_avatar2@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "placeholder_avatar2@2x.jpg"; sourceTree = "<group>"; };
+		4A973BAA1AC968FA00AB0F63 /* TwitterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TwitterKit.framework; sourceTree = "<group>"; };
+		4A973BAC1AC9692E00AB0F63 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		4A973BB51AC96BE700AB0F63 /* TwitterKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TwitterKitResources.bundle; path = TwitterKit.framework/Versions/A/Resources/TwitterKitResources.bundle; sourceTree = "<group>"; };
 		4A99727D1A9DCD7400F189EC /* libPayPalMobile.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libPayPalMobile.a; sourceTree = "<group>"; };
 		4A99727E1A9DCD7400F189EC /* CardIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardIO.h; sourceTree = "<group>"; };
 		4A99727F1A9DCD7400F189EC /* CardIOCreditCardInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardIOCreditCardInfo.h; sourceTree = "<group>"; };
@@ -768,9 +771,6 @@
 		4A9A21121AB72BCA009D651F /* MapButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MapButton@2x.png"; sourceTree = "<group>"; };
 		4A9EA4181A8537EF0080D179 /* InviteFriends@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "InviteFriends@2x.png"; sourceTree = "<group>"; };
 		4A9EA41A1A8537F90080D179 /* InviteFriends.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = InviteFriends.png; sourceTree = "<group>"; };
-		4AA3D26E1AB7332B00CE5072 /* TwitterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TwitterKit.framework; sourceTree = SOURCE_ROOT; };
-		4AA3D26F1AB7332B00CE5072 /* TwitterKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TwitterKitResources.bundle; path = TwitterKit.framework/Versions/A/Resources/TwitterKitResources.bundle; sourceTree = SOURCE_ROOT; };
-		4AA3D2701AB7332B00CE5072 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = SOURCE_ROOT; };
 		4AC23DC21A84E3EF004753DC /* Add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Add.png; sourceTree = "<group>"; };
 		4AC23DC41A84E3FB004753DC /* Add@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Add@2x.png"; sourceTree = "<group>"; };
 		4AC23DC61A84E4C3004753DC /* AlertEventName@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AlertEventName@2x.png"; sourceTree = "<group>"; };
@@ -916,7 +916,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4ACBD1821AA742A60027D3C5 /* PassKit.framework in Frameworks */,
-				4AA3D2711AB7332B00CE5072 /* TwitterKit.framework in Frameworks */,
 				3AA4300819F163860053D6F8 /* libsqlite3.dylib in Frameworks */,
 				3AFEC18C19DEDBC70062AA64 /* libxml2.dylib in Frameworks */,
 				3AA1607F19E5BF1700895508 /* FacebookSDK.framework in Frameworks */,
@@ -926,16 +925,17 @@
 				3A97DDBC19D3634E00B4C33E /* MobileCoreServices.framework in Frameworks */,
 				3A97DDBA19D3633600B4C33E /* CoreMedia.framework in Frameworks */,
 				3A97DDB819D3631800B4C33E /* AVFoundation.framework in Frameworks */,
-				4AA3D2731AB7332B00CE5072 /* Fabric.framework in Frameworks */,
 				3A97DDB619D3630500B4C33E /* AudioToolbox.framework in Frameworks */,
 				3A02687C19A5F9C000C8CD8E /* Social.framework in Frameworks */,
 				3AC8525519A4CF9C00FCDE16 /* MapKit.framework in Frameworks */,
 				3A98E0AD197802EA006DA28A /* CoreLocation.framework in Frameworks */,
+				4A973BAB1AC968FA00AB0F63 /* TwitterKit.framework in Frameworks */,
 				3AF360B019768CF8009A14FD /* CoreData.framework in Frameworks */,
 				3F3D56541951797900FB2774 /* MessageUI.framework in Frameworks */,
 				3F08EC0619471D6B00CDFBD8 /* Accelerate.framework in Frameworks */,
 				3F10DDDB19388E6F002D3B43 /* CoreGraphics.framework in Frameworks */,
 				3F10DDDD19388E6F002D3B43 /* UIKit.framework in Frameworks */,
+				4A973BAD1AC9692E00AB0F63 /* Fabric.framework in Frameworks */,
 				4A9972861A9DCD7400F189EC /* libPayPalMobile.a in Frameworks */,
 				3F10DDD919388E6F002D3B43 /* Foundation.framework in Frameworks */,
 				3E24F9C81D9E48F08275CAA9 /* libPods-Dingo.a in Frameworks */,
@@ -1434,9 +1434,9 @@
 		3AF360A419767564009A14FD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4AA3D26E1AB7332B00CE5072 /* TwitterKit.framework */,
-				4AA3D26F1AB7332B00CE5072 /* TwitterKitResources.bundle */,
-				4AA3D2701AB7332B00CE5072 /* Fabric.framework */,
+				4A973BB51AC96BE700AB0F63 /* TwitterKitResources.bundle */,
+				4A973BAC1AC9692E00AB0F63 /* Fabric.framework */,
+				4A973BAA1AC968FA00AB0F63 /* TwitterKit.framework */,
 				4A9972871A9DD7C300F189EC /* Stripe */,
 				3AA42FFA19F162070053D6F8 /* GoogleAnalytics */,
 				3A29C24319EDC2DC00578F0D /* PayPalMobile */,
@@ -2794,7 +2794,7 @@
 				3AA160F219E5C8EF00895508 /* AppiraterLocalizable.strings in Resources */,
 				3F2864EA194B283D002A3576 /* faq_icon_gray@2x.png in Resources */,
 				3F62C6DC19499D9400D7D6B1 /* messages.plist in Resources */,
-				4AA3D2721AB7332B00CE5072 /* TwitterKitResources.bundle in Resources */,
+				4A973BB61AC96BE700AB0F63 /* TwitterKitResources.bundle in Resources */,
 				84A456F41970182C000ABA73 /* welcome2BG.png in Resources */,
 				3F62C6A61948318F00D7D6B1 /* john_smith@2x.png in Resources */,
 				3F62C6A51948318F00D7D6B1 /* joe_bloggs@2x.png in Resources */,
