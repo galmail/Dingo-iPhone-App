@@ -176,9 +176,7 @@ static const NSUInteger messageAlert = 6654;
 											  [[NSNotificationCenter defaultCenter] postNotificationName:@"FacebookError" object:error];
 										  }
                                           [AppManager showAlert:[error localizedDescription]];
-                                          
-                                          
-                                          
+
                                       } else {
                                           if (state == FBSessionStateOpen) {
                                               NSLog(@"start");
@@ -194,9 +192,6 @@ static const NSUInteger messageAlert = 6654;
                                                           NSString *email = [NSString stringWithFormat:@"%@%@@guest.dingoapp.co.uk", user.first_name,user.objectID];
                                                           user[@"email"] = email;
                                                       }
-                                                      
-                                                      NSLog(@"user email is: %@", user[@"email"]);
-                                                      
                                                       
                                                       NSString *birtday = nil;
                                                       if(user.birthday.length > 0) {

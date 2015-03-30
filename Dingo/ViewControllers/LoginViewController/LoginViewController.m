@@ -66,7 +66,6 @@ NSString *emailPreFix;
                     ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please wait..."];
                     [loadingView show];
                     
-                    //NSString *email = @"test@email.com";
                     if(email) {
                         // email received, now get user twitter details
                         //**********************************
