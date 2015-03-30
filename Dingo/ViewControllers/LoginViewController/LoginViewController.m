@@ -251,7 +251,7 @@ NSString *emailPreFix;
                     } else {
                         // didn't allow email, show error...
                         [loadingView hide];
-                        [AppManager showAlert:@"Oops, something went wrong. Please allow access to your email to login."];
+                        [AppManager showAlert:@"Oops. Please check you have an email address linked to your Twitter and allow access to login."];
                     }
                  }];
                 
