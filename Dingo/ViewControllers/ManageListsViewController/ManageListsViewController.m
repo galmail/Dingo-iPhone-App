@@ -40,14 +40,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    //remove edit button
+    self.navigationItem.rightBarButtonItem = nil;
+    
 		
-	//hide the edit button for sold and purchased and set it up as edit button for selling
-	if ([self.title isEqualToString:@"Selling"]) {
-		self.navigationItem.rightBarButtonItem = self.editButtonItem;
-		self.editButtonItem.tintColor = [UIColor whiteColor]; //this is silly, but needed nonetheless
-	} else	{
-		self.navigationItem.rightBarButtonItem = nil;
-	}
+	//old
+//	if ([self.title isEqualToString:@"Selling"]) {
+//		self.navigationItem.rightBarButtonItem = self.editButtonItem;
+//		self.editButtonItem.tintColor = [UIColor whiteColor]; //this is silly, but needed nonetheless
+//	} else	{
+//		self.navigationItem.rightBarButtonItem = nil;
+//	}
 }
 
 - (void)viewWillAppear:(BOOL)animated {

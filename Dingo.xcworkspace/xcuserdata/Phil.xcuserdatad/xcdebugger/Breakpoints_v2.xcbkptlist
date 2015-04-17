@@ -74,12 +74,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Dingo/ViewControllers/TicketsViewController/TicketsViewController.m"
-            timestampString = "448211571.441326"
+            timestampString = "449590362.888135"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "363"
-            endingLineNumber = "363"
-            landmarkName = "-addTicketsPressed:"
+            startingLineNumber = "370"
+            endingLineNumber = "370"
+            landmarkName = "-back"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
