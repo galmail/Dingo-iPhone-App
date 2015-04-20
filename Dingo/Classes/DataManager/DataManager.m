@@ -323,7 +323,8 @@ typedef void (^GroupsDelegate)(id eventDescription, NSUInteger groupIndex);
 	NSMutableArray *result = [NSMutableArray array];
 	
 	for (Ticket *ticket in tickets) {
-		if (ticket.user_id.intValue != [[AppManager sharedManager].userInfo[@"id"] intValue]) {
+		if (ticket.number_of_tickets.intValue == 0 &&
+            ticket.user_id.intValue != [[AppManager sharedManager].userInfo[@"id"] intValue]) {
 			[result addObject:ticket];
 		}
 	}
