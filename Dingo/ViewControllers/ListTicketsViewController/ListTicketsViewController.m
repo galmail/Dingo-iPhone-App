@@ -208,7 +208,7 @@ NSString *access_token;
 
         NSString *deliveryOptions = [[NSUserDefaults standardUserDefaults] stringForKey:@"kDingo_event_deliveryOptions"];
         inPersonSwitch.on = [deliveryOptions rangeOfString:@"In Person"].location != NSNotFound;
-        electronicSwitch.on = [deliveryOptions rangeOfString:@"Electronic"].location != NSNotFound;
+        electronicSwitch.on = [deliveryOptions rangeOfString:@"Email"].location != NSNotFound;
         postSwitch.on =  [deliveryOptions rangeOfString:@"Post"].location != NSNotFound;
         
         photos = [AppManager sharedManager].draftTicket[@"photos"];
@@ -384,7 +384,7 @@ NSString *access_token;
     if (ticket.delivery_options.length > 0) {
         NSString *deliveryOptions = ticket.delivery_options;
         inPersonSwitch.on = [deliveryOptions rangeOfString:@"In Person"].location != NSNotFound;
-        electronicSwitch.on = [deliveryOptions rangeOfString:@"Electronic"].location != NSNotFound;
+        electronicSwitch.on = [deliveryOptions rangeOfString:@"Email"].location != NSNotFound;
         postSwitch.on =  [deliveryOptions rangeOfString:@"Post"].location != NSNotFound;
         [[NSUserDefaults standardUserDefaults] setObject:self.ticket.delivery_options forKey:@"kDingo_event_deliveryOptions"];
     } else {
@@ -449,9 +449,9 @@ NSString *access_token;
     
     if (electronicSwitch.on) {
         if (deliveryOptions.length > 0) {
-            deliveryOptions = [deliveryOptions stringByAppendingFormat:@", %@", @"Electronic"];
+            deliveryOptions = [deliveryOptions stringByAppendingFormat:@", %@", @"Email"];
         } else {
-            deliveryOptions = @"Electronic";
+            deliveryOptions = @"Email";
         }
     }
     
@@ -517,9 +517,9 @@ NSString *access_token;
     
     if (electronicSwitch.on) {
         if (deliveryOptions.length > 0) {
-            deliveryOptions = [deliveryOptions stringByAppendingFormat:@", %@", @"Electronic"];
+            deliveryOptions = [deliveryOptions stringByAppendingFormat:@", %@", @"Email"];
         } else {
-            deliveryOptions = @"Electronic";
+            deliveryOptions = @"Email";
         }
     }
     
@@ -1001,9 +1001,9 @@ NSString *access_token;
         
         if (electronicSwitch.on) {
             if (deliveryOptions.length > 0) {
-                deliveryOptions = [deliveryOptions stringByAppendingFormat:@", %@", @"Electronic"];
+                deliveryOptions = [deliveryOptions stringByAppendingFormat:@", %@", @"Email"];
             } else {
-                deliveryOptions = @"Electronic";
+                deliveryOptions = @"Email";
             }
         }
         
