@@ -15,15 +15,33 @@
 
 @end
 
+NSString *sendToWeb;
+
 @implementation WebViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-	NSString *url = self.event.primary_ticket_seller_url;
-	if (![url hasPrefix:@"http://"]) url = [@"http://" stringByAppendingString:url];
-	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
-	[webView loadRequest:request];
+
+    if ([sendToWeb  isEqual: @"primarySellerSite"]) {
+        
+        NSString *url = self.event.primary_ticket_seller_url;
+        if (![url hasPrefix:@"http://"]) url = [@"http://" stringByAppendingString:url];
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+        [webView loadRequest:request];
+    }
+    
+    
+    if ([sendToWeb  isEqual: @"infoSite"]) {
+        
+        NSString *url = self.event.event_desc;
+        if (![url hasPrefix:@"http://"]) url = [@"http://" stringByAppendingString:url];
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+        [webView loadRequest:request];
+    }
+    
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {

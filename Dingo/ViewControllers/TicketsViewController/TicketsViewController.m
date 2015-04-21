@@ -80,6 +80,19 @@
     }];
             
     [self.tableView reloadData];
+    
+    //[AppManager showAlert:[NSString stringWithFormat: @"Stored for info url is %@", self.eventData.event_desc]];
+    
+    if(self.eventData.event_desc.length >0) {
+        
+        UIButton *infoButton=[UIButton buttonWithType:UIButtonTypeCustom];
+        [infoButton setFrame:CGRectMake(self.view.frame.size.width/2 - 39, 140, 50, 22)];
+        [infoButton setImage:[UIImage imageNamed:@"InfoButton.png"]  forState:UIControlStateNormal];
+        [infoButton addTarget:self action:@selector(infoButtonTap:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:infoButton];
+        
+    }
+    
 }
 
 #pragma mark -
@@ -186,7 +199,13 @@
 
 
 - (void)buyTicket:(id)sender {
-	[self performSegueWithIdentifier:@"WebSegue" sender:self];
+    sendToWeb = @"primarySellerSite";
+    [self performSegueWithIdentifier:@"WebSegue" sender:self];
+}
+
+- (void)infoButtonTap:(id)sender {
+    sendToWeb = @"infoSite";
+    [self performSegueWithIdentifier:@"WebSegue" sender:self];
 }
 
 #pragma mark - UITableViewDelegate

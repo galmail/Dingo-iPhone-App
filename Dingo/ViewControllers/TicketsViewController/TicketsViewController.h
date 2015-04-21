@@ -13,3 +13,5 @@
 @property (nonatomic, strong) Event *eventData;
 
 @end
+
+extern NSString *sendToWeb;
