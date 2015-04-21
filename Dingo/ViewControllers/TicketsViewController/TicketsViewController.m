@@ -93,6 +93,19 @@
         
     }
     
+    if ([self.eventData.postalCode isEqualToString:@"NOMAP"]) {
+        NSLog(@"postcode is NOMAP dont display mapbutton");
+    } else {
+        UIButton *infoButton=[UIButton buttonWithType:UIButtonTypeCustom];
+        [infoButton setFrame:CGRectMake(self.view.frame.size.width/2 + 20, 140, 50, 22)];
+        [infoButton setImage:[UIImage imageNamed:@"MapButton.png"]  forState:UIControlStateNormal];
+        [infoButton addTarget:self action:@selector(pressMapButton:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:infoButton];
+    }
+    
+    
+    
+    
 }
 
 #pragma mark -

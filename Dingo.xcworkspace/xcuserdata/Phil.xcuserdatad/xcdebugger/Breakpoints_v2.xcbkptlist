@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Dingo/ViewControllers/TicketsViewController/TicketsViewController.m"
-            timestampString = "451306843.811067"
+            timestampString = "451307591.11181"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "437"
-            endingLineNumber = "437"
+            startingLineNumber = "450"
+            endingLineNumber = "450"
             landmarkName = "@implementation TicketsViewController"
             landmarkType = "3">
          </BreakpointContent>
