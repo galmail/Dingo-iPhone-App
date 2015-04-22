@@ -10,6 +10,8 @@
 	<string>Dingo</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
+		<key>16ACBFB590A9E1151B4BE762DC3AC04A938B37EF</key>
+		<string>https://github.com/mixpanel/mixpanel-iphone.git</string>
 		<key>5A977FF4CC912BF75414C8BBF9DD3D1B7D0EE605</key>
 		<string>https://github.com/pyctex/Dingo.git</string>
 	</dict>
@@ -17,6 +19,8 @@
 	<string>Dingo.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
+		<key>16ACBFB590A9E1151B4BE762DC3AC04A938B37EF</key>
+		<string>../../mixpanel-iphone</string>
 		<key>5A977FF4CC912BF75414C8BBF9DD3D1B7D0EE605</key>
 		<string>..</string>
 	</dict>
@@ -35,6 +39,14 @@
 			<string>5A977FF4CC912BF75414C8BBF9DD3D1B7D0EE605</string>
 			<key>IDESourceControlWCCName</key>
 			<string>Dingo</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>16ACBFB590A9E1151B4BE762DC3AC04A938B37EF</string>
+			<key>IDESourceControlWCCName</key>
+			<string>mixpanel-iphone</string>
 		</dict>
 	</array>
 </dict>
