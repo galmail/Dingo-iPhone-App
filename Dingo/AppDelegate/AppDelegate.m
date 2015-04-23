@@ -29,6 +29,8 @@
 #import "Stripe.h"
 #import <Fabric/Fabric.h>
 #import <TwitterKit/TwitterKit.h>
+#import "Mixpanel.h"
+
 
 
 #import "GAI.h"
@@ -41,7 +43,19 @@
 #pragma mark - app delegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+#define MIXPANEL_TOKEN @"e596cf8b99f23cd3aa5bd2f16b898ae6"
+    
+    // Initialize the library with your
+    // Mixpanel project token, MIXPANEL_TOKEN
+    [Mixpanel sharedInstanceWithToken:MIXPANEL_TOKEN];
+    
+    // Later, you can get your instance with
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
 	
+    [mixpanel track:@"App Loaded"];
+    
+    
     [Appirater setAppId:@"893538091"];
     [Appirater setDaysUntilPrompt:1];
     [Appirater setUsesUntilPrompt:10];
