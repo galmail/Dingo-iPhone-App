@@ -17,6 +17,7 @@
 #import "SlidingViewController.h"
 #import "AboutViewController.h"
 #import <TwitterKit/TwitterKit.h>
+#import "Mixpanel.h"
 
 
 @interface LoginViewController () <UITextFieldDelegate, ZSLabelDelegate> {
@@ -47,14 +48,21 @@ NSString *emailPreFix;
     self.scrollView.contentSize = self.scrollView.frame.size;
     
     if ([AppManager sharedManager].token) {
+        
         SlidingViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SlidingViewController"];
         viewController.modalTransitionStyle =  UIModalTransitionStyleFlipHorizontal;
         [self presentViewController:viewController animated:YES completion:nil];
     }
     
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"New User"];
     
     //twitter loging
     TWTRLogInButton *logInButton = [TWTRLogInButton buttonWithLogInCompletion:^(TWTRSession *session, NSError *error) {
+        
+       // Mixpanel *mixpanel = [Mixpanel sharedInstance];
+        [mixpanel track:@"Start Twitter Login"];
+        
         if (session) {
             NSLog(@"signed in as %@", [session userName]);
             
@@ -141,6 +149,9 @@ NSString *emailPreFix;
                                                                 
                                                                 [loadingView hide];
                                                                 //setting city as london and then send to homepage
+                                                                
+                                                                [mixpanel track:@"Twitter Login Success"];
+                                                                
                                                                 NSString *txtCity = @"London";
                                                                 [[AppManager sharedManager].userInfo setObject:txtCity forKey:@"city"];
                                                                 [[NSUserDefaults standardUserDefaults] setObject:txtCity forKey:@"city"];
@@ -203,6 +214,9 @@ NSString *emailPreFix;
                                                                             }
                                                                             [loadingView hide];
                                                                             //setting city as london and then send to homepage
+                                                                            
+                                                                            [mixpanel track:@"Twitter Login Success"];
+                                                                            
                                                                             NSString *txtCity = @"London";
                                                                             [[AppManager sharedManager].userInfo setObject:txtCity forKey:@"city"];
                                                                             [[NSUserDefaults standardUserDefaults] setObject:txtCity forKey:@"city"];
@@ -316,12 +330,17 @@ NSString *emailPreFix;
 
 - (IBAction)btnFBLoginTap:(id)sender {
     
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Start FB Login"];
+    
     ZSLoadingView *loadingView = [[ZSLoadingView alloc] initWithLabel:@"Please wait..."];
     [loadingView show];
     [WebServiceManager signInWithFBAndUpdate:NO completion:^(id response, NSError *error) {
         [loadingView hide];
         
         if (response) {
+            
+            [mixpanel track:@"FB Login Success"];
             
             //setting city as london and then send to homepage
             NSString *txtCity = @"London";

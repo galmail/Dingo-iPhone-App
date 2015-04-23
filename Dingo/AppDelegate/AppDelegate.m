@@ -53,7 +53,7 @@
     // Later, you can get your instance with
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
 	
-    [mixpanel track:@"App Loaded"];
+    [mixpanel track:@"Open App"];
     
     
     [Appirater setAppId:@"893538091"];
@@ -111,6 +111,9 @@
     [[GAI sharedInstance] trackerWithTrackingId:@"UA-54649568-2"];
 	
     if ([AppManager sharedManager].token) {
+        
+        [mixpanel track:@"Returning User"];
+        
         SlidingViewController *viewController = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"SlidingViewController"];
         self.window.rootViewController = viewController;
     }
