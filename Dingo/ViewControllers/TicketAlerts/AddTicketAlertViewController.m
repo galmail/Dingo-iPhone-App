@@ -12,7 +12,6 @@
 #import "WebServiceManager.h"
 #import "ZSLoadingView.h"
 #import "ZSTextField.h"
-#import "Mixpanel.h"
 
 @interface AddTicketAlertViewController (){
     
@@ -108,10 +107,12 @@ NSString *trimmedDescriptionWithOutDate;
         NSArray *filteredEvents = [events filteredArrayUsingPredicate:predicate];
         if (filteredEvents.count == 0) {
             
-            Mixpanel *mixpanel = [Mixpanel sharedInstance];
-            [mixpanel track:@"Failed to add ticket alert" properties:@{ @"Alert for": descriptionWithDate}];
+            NSString *content = [NSString stringWithFormat: @"I failed to add an alert for %@", descriptionWithDate];
+            
+            NSDictionary *params = @{@"receiver_id" : @"32", @"content" : content, @"visible" : @"false"};
+            [WebServiceManager sendMessage:params completion:^(id response, NSError *error) {}];
 			
-			[AppManager showAlert:@"Sorry, no event matches your description :(\n\nGet in touch through 'Give us Feedback' and we will add it for you :)"];
+			[AppManager showAlert:@"Sorry, no event matches your description :(\n\nBut fear not, we got your request and will add it now! :)"];
             return;
             
         }
