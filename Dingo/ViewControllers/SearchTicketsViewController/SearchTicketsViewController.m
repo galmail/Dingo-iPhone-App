@@ -129,7 +129,6 @@
         [params setValue:self.keywordsField.text forKey:@"name"];
         [mixpanel track:@"Execute event search" properties:@{ @"Searched for": params[@"name"]}];
     }
-        [mixpanel track:@"Execute event search" properties:@{ @"Searched for": @"empty"}];
     
     if (self.cityField.text.length>0) {
         [params setValue:self.cityField.text forKey:@"city"];
