@@ -12,6 +12,7 @@
 #import "WebServiceManager.h"
 #import "ZSLoadingView.h"
 #import "ZSTextField.h"
+#import "Mixpanel.h"
 
 @interface AddTicketAlertViewController (){
     
@@ -83,6 +84,8 @@ NSString *trimmedDescriptionWithOutDate;
 
 
 - (IBAction)btnConfirmTap:(id)sender {
+    
+    
     if (txtDescription.text.length == 0) {
         [AppManager showAlert:@"Please enter description."];
         return;
@@ -107,6 +110,9 @@ NSString *trimmedDescriptionWithOutDate;
 			
 			[AppManager showAlert:@"Sorry, no event matches your description :(\n\nGet in touch through 'Give us Feedback' and we will add it for you :)"];
             return;
+            
+            Mixpanel *mixpanel = [Mixpanel sharedInstance];
+            [mixpanel track:@"Failed to add ticket alet"];
         }
     }
 	

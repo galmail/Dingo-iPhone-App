@@ -16,6 +16,7 @@
 #import "ZSPickerView.h"
 #import "ZSDatePicker.h"
 #import "ZSTextField.h"
+#import "Mixpanel.h"
 
 @interface SearchTicketsViewController () <UITextFieldDelegate, UITableViewDataSource,CategorySelectionDelegate,ZSPickerDelegate,ZSDatePickerDelegate>{
     ZSPickerView *cityPicker;
@@ -120,6 +121,9 @@
 
 - (IBAction)search {
     // login
+    
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Execute event search"];
     
     NSMutableDictionary *params = [NSMutableDictionary new];
     if (self.keywordsField.text.length>0) {
