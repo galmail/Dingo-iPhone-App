@@ -55,7 +55,6 @@
 	
     [mixpanel track:@"Open App"];
     
-    
     [Appirater setAppId:@"893538091"];
     [Appirater setDaysUntilPrompt:1];
     [Appirater setUsesUntilPrompt:10];
@@ -115,6 +114,7 @@
         [mixpanel identify: [[AppManager sharedManager].userInfo valueForKey:@"email"] ];
         [mixpanel.people set:@{@"Login": [[AppManager sharedManager].userInfo valueForKey:@"fb_id"], @"first_name": [[AppManager sharedManager].userInfo valueForKey:@"name"], @"$email": [[AppManager sharedManager].userInfo valueForKey:@"email"]}];
         [mixpanel track:@"Returning User"];
+        [mixpanel timeEvent:@"Session Time"];
         
         SlidingViewController *viewController = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"SlidingViewController"];
         self.window.rootViewController = viewController;
@@ -134,6 +134,9 @@
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     
     [[AppManager sharedManager] save];
+    
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Session Time"];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -155,6 +158,9 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     
     [[AppManager sharedManager] save];
+    
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Session Time"];
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
