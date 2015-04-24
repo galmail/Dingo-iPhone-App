@@ -112,6 +112,8 @@
 	
     if ([AppManager sharedManager].token) {
         
+        [mixpanel identify: [[AppManager sharedManager].userInfo valueForKey:@"email"] ];
+        [mixpanel.people set:@{@"Login": [[AppManager sharedManager].userInfo valueForKey:@"fb_id"], @"first_name": [[AppManager sharedManager].userInfo valueForKey:@"name"], @"$email": [[AppManager sharedManager].userInfo valueForKey:@"email"]}];
         [mixpanel track:@"Returning User"];
         
         SlidingViewController *viewController = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"SlidingViewController"];
