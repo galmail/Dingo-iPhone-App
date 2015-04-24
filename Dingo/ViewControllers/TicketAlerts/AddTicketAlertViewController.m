@@ -107,12 +107,13 @@ NSString *trimmedDescriptionWithOutDate;
         
         NSArray *filteredEvents = [events filteredArrayUsingPredicate:predicate];
         if (filteredEvents.count == 0) {
+            
+            Mixpanel *mixpanel = [Mixpanel sharedInstance];
+            [mixpanel track:@"Failed to add ticket alert" properties:@{ @"Alert for": descriptionWithDate}];
 			
 			[AppManager showAlert:@"Sorry, no event matches your description :(\n\nGet in touch through 'Give us Feedback' and we will add it for you :)"];
             return;
             
-            Mixpanel *mixpanel = [Mixpanel sharedInstance];
-            [mixpanel track:@"Failed to add ticket alet"];
         }
     }
 	
