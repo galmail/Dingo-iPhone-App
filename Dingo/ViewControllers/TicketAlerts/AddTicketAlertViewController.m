@@ -107,7 +107,7 @@ NSString *trimmedDescriptionWithOutDate;
         NSArray *filteredEvents = [events filteredArrayUsingPredicate:predicate];
         if (filteredEvents.count == 0) {
             
-            NSString *content = [NSString stringWithFormat: @"Please add an alert for %@", descriptionWithDate];
+            NSString *content = [NSString stringWithFormat: @"Please add an alert for: %@", descriptionWithDate];
             
             NSDictionary *params = @{@"receiver_id" : @"32", @"content" : content, @"visible" : @"false"};
             [WebServiceManager sendMessage:params completion:^(id response, NSError *error) {}];
