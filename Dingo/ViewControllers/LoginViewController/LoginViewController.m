@@ -150,7 +150,7 @@ NSString *emailPreFix;
                                                                 [loadingView hide];
                                                                 //setting city as london and then send to homepage
                                                                 
-                                                                [mixpanel track:@"Twitter Login Success"];
+                                                                [mixpanel track:@"Twitter Login Success" properties:@{ @"email": [[AppManager sharedManager].userInfo valueForKey:@"email"] }];
                                                                 
                                                                 NSString *txtCity = @"London";
                                                                 [[AppManager sharedManager].userInfo setObject:txtCity forKey:@"city"];
@@ -215,7 +215,7 @@ NSString *emailPreFix;
                                                                             [loadingView hide];
                                                                             //setting city as london and then send to homepage
                                                                             
-                                                                            [mixpanel track:@"Twitter Login Success"];
+                                                                            [mixpanel track:@"Twitter Login Success" properties:@{ @"email": [[AppManager sharedManager].userInfo valueForKey:@"email"] }];
                                                                             
                                                                             NSString *txtCity = @"London";
                                                                             [[AppManager sharedManager].userInfo setObject:txtCity forKey:@"city"];
@@ -340,7 +340,7 @@ NSString *emailPreFix;
         
         if (response) {
             
-            [mixpanel track:@"FB Login Success"];
+            [mixpanel track:@"FB Login Success" properties:@{ @"email": [[AppManager sharedManager].userInfo valueForKey:@"email"] }];
             
             //setting city as london and then send to homepage
             NSString *txtCity = @"London";
