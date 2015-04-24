@@ -290,6 +290,9 @@
 		4AE2BCFF1A8780E600E0DF8B /* btnGuestpw@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AE2BCFE1A8780E600E0DF8B /* btnGuestpw@2x.png */; };
 		4AF4C08D1A94AA05008C1023 /* PrivacyPolicyV1.docx in Resources */ = {isa = PBXBuildFile; fileRef = 4AF4C08C1A94AA05008C1023 /* PrivacyPolicyV1.docx */; };
 		4AF847FF1A90EA2900AFDA2E /* GreenTick@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AF847FE1A90EA2900AFDA2E /* GreenTick@2x.png */; };
+		4AF958471AEAA940000F3213 /* libAppsFlyerLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AF958461AEAA940000F3213 /* libAppsFlyerLib.a */; };
+		4AF958491AEAA9A9000F3213 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AF958481AEAA9A9000F3213 /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		4AF9584B1AEAA9F9000F3213 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AF9584A1AEAA9F9000F3213 /* iAd.framework */; };
 		593593FA1A52DB320004311E /* PlaceHolderManageListing.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 593593F81A52DB320004311E /* PlaceHolderManageListing.jpg */; };
 		593593FB1A52DB320004311E /* PlaceHolderManageListing@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 593593F91A52DB320004311E /* PlaceHolderManageListing@2x.jpg */; };
 		59453D341A40017F00423F35 /* paypal_logo_with_text@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 59453D331A40017F00423F35 /* paypal_logo_with_text@2x.png */; };
@@ -796,6 +799,10 @@
 		4AE2BCFE1A8780E600E0DF8B /* btnGuestpw@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnGuestpw@2x.png"; sourceTree = "<group>"; };
 		4AF4C08C1A94AA05008C1023 /* PrivacyPolicyV1.docx */ = {isa = PBXFileReference; lastKnownFileType = file; path = PrivacyPolicyV1.docx; sourceTree = "<group>"; };
 		4AF847FE1A90EA2900AFDA2E /* GreenTick@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GreenTick@2x.png"; sourceTree = "<group>"; };
+		4AF958451AEAA940000F3213 /* AppsFlyerTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppsFlyerTracker.h; sourceTree = "<group>"; };
+		4AF958461AEAA940000F3213 /* libAppsFlyerLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAppsFlyerLib.a; sourceTree = "<group>"; };
+		4AF958481AEAA9A9000F3213 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		4AF9584A1AEAA9F9000F3213 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		593593F81A52DB320004311E /* PlaceHolderManageListing.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = PlaceHolderManageListing.jpg; sourceTree = "<group>"; };
 		593593F91A52DB320004311E /* PlaceHolderManageListing@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "PlaceHolderManageListing@2x.jpg"; sourceTree = "<group>"; };
 		59453D331A40017F00423F35 /* paypal_logo_with_text@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "paypal_logo_with_text@2x.png"; sourceTree = "<group>"; };
@@ -926,6 +933,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4AF9584B1AEAA9F9000F3213 /* iAd.framework in Frameworks */,
+				4AF958491AEAA9A9000F3213 /* AdSupport.framework in Frameworks */,
 				4A04E35A1AE8084A00349305 /* libMPCategoryHelpers.a in Frameworks */,
 				4A04E3581AE8057600349305 /* libicucore.dylib in Frameworks */,
 				4A04E3561AE8037E00349305 /* QuartzCore.framework in Frameworks */,
@@ -953,6 +962,7 @@
 				4A973BAD1AC9692E00AB0F63 /* Fabric.framework in Frameworks */,
 				4A9972861A9DCD7400F189EC /* libPayPalMobile.a in Frameworks */,
 				3F10DDD919388E6F002D3B43 /* Foundation.framework in Frameworks */,
+				4AF958471AEAA940000F3213 /* libAppsFlyerLib.a in Frameworks */,
 				3E24F9C81D9E48F08275CAA9 /* libPods-Dingo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1449,6 +1459,7 @@
 		3AF360A419767564009A14FD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4AF958441AEAA940000F3213 /* AF-iOS-SDK-v2 */,
 				4A973BB51AC96BE700AB0F63 /* TwitterKitResources.bundle */,
 				4A973BAC1AC9692E00AB0F63 /* Fabric.framework */,
 				4A973BAA1AC968FA00AB0F63 /* TwitterKit.framework */,
@@ -1575,6 +1586,8 @@
 		3F10DDD719388E6F002D3B43 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4AF9584A1AEAA9F9000F3213 /* iAd.framework */,
+				4AF958481AEAA9A9000F3213 /* AdSupport.framework */,
 				4A04E3591AE8084A00349305 /* libMPCategoryHelpers.a */,
 				4A04E3571AE8057600349305 /* libicucore.dylib */,
 				4A04E3541AE8033000349305 /* CoreTelephony.framework */,
@@ -2452,6 +2465,15 @@
 				4A9972A31A9DD7C300F189EC /* STPCheckoutViewController.h */,
 			);
 			path = Checkout;
+			sourceTree = "<group>";
+		};
+		4AF958441AEAA940000F3213 /* AF-iOS-SDK-v2 */ = {
+			isa = PBXGroup;
+			children = (
+				4AF958451AEAA940000F3213 /* AppsFlyerTracker.h */,
+				4AF958461AEAA940000F3213 /* libAppsFlyerLib.a */,
+			);
+			path = "AF-iOS-SDK-v2";
 			sourceTree = "<group>";
 		};
 		591041701A4D9904002381A2 /* ImageResize */ = {
@@ -3504,6 +3526,7 @@
 					"$(PROJECT_DIR)/Dingo/Frameworks/PayPalMobile",
 					"$(PROJECT_DIR)/Dingo/Frameworks/GoogleAnalytics",
 					"/Users/Phil/Desktop/mixpanel-iphone/Mixpanel",
+					"$(PROJECT_DIR)/Dingo/Frameworks/AF-iOS-SDK-v2",
 				);
 				OTHER_CFLAGS = (
 					"$(inherited)",
@@ -3545,6 +3568,7 @@
 					"$(PROJECT_DIR)/Dingo/Frameworks/PayPalMobile",
 					"$(PROJECT_DIR)/Dingo/Frameworks/GoogleAnalytics",
 					"/Users/Phil/Desktop/mixpanel-iphone/Mixpanel",
+					"$(PROJECT_DIR)/Dingo/Frameworks/AF-iOS-SDK-v2",
 				);
 				OTHER_CFLAGS = (
 					"$(inherited)",

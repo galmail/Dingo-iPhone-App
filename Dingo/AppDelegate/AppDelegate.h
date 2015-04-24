@@ -7,6 +7,8 @@
 //
 
 #import <CoreLocation/CoreLocation.h>
+#import "AppsFlyerTracker.h"
+
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, CLLocationManagerDelegate>
 

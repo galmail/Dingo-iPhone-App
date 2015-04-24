@@ -30,6 +30,7 @@
 #import <Fabric/Fabric.h>
 #import <TwitterKit/TwitterKit.h>
 #import "Mixpanel.h"
+#import "AppsFlyerTracker.h"
 
 
 
@@ -44,7 +45,12 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-#define MIXPANEL_TOKEN @"e596cf8b99f23cd3aa5bd2f16b898ae6"
+    [AppsFlyerTracker sharedTracker].appleAppID = @"893538091"; // The Apple app ID. Example 34567899
+    [AppsFlyerTracker sharedTracker].appsFlyerDevKey = @"qXbMEujGAHWM74qmW5XfUH";
+    [AppsFlyerTracker sharedTracker].currencyCode = @"GBP";
+    //[[AppsFlyerTracker sharedTracker].customerUserID =@"YOUR_CUSTOM_DEVICE_ID"];???
+    
+    #define MIXPANEL_TOKEN @"e596cf8b99f23cd3aa5bd2f16b898ae6"
     
     // Initialize the library with your
     // Mixpanel project token, MIXPANEL_TOKEN
@@ -145,6 +151,9 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    
+    [[AppsFlyerTracker sharedTracker] trackAppLaunch];
+    
     application.applicationIconBadgeNumber = 0;
     
     [[Harpy sharedInstance] checkVersionDaily];
