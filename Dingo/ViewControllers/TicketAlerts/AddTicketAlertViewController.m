@@ -112,7 +112,7 @@ NSString *trimmedDescriptionWithOutDate;
             NSDictionary *params = @{@"receiver_id" : @"32", @"content" : content, @"visible" : @"false"};
             [WebServiceManager sendMessage:params completion:^(id response, NSError *error) {}];
 			
-			[AppManager showAlert:@"Sorry, no event matches your description :(\n\nBut fear not, we got your request and will add it now! :)"];
+			[AppManager showAlert:@"Sorry, no event matches your description :(\n\nBut fear not, we got your request and we'll add it for you! :)"];
             return;
             
         }
