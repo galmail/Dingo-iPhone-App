@@ -48,7 +48,6 @@
     [AppsFlyerTracker sharedTracker].appleAppID = @"893538091"; // The Apple app ID. Example 34567899
     [AppsFlyerTracker sharedTracker].appsFlyerDevKey = @"qXbMEujGAHWM74qmW5XfUH";
     [AppsFlyerTracker sharedTracker].currencyCode = @"GBP";
-    //[[AppsFlyerTracker sharedTracker].customerUserID =@"YOUR_CUSTOM_DEVICE_ID"];???
     
     #define MIXPANEL_TOKEN @"e596cf8b99f23cd3aa5bd2f16b898ae6"
     

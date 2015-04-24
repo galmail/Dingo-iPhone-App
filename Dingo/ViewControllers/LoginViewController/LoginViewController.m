@@ -156,7 +156,8 @@ NSString *emailPreFix;
                                                                 [mixpanel track:@"Twitter Login Success"];
                                                                 [mixpanel timeEvent:@"Session Time"];
                                                                 
-                                                                [[AppsFlyerTracker sharedTracker] trackEvent:@"Twitter Login Success" withValue:@""];
+                                                                NSString *trackEvent = [NSString stringWithFormat: @"Twitter Login with: %@", [[AppManager sharedManager].userInfo valueForKey:@"email"]];
+                                                                [[AppsFlyerTracker sharedTracker] trackEvent:trackEvent withValue:@""];
                                                                 
                                                                 NSString *txtCity = @"London";
                                                                 [[AppManager sharedManager].userInfo setObject:txtCity forKey:@"city"];
@@ -227,7 +228,8 @@ NSString *emailPreFix;
                                                                             [mixpanel track:@"Twitter Login Success"];
                                                                             [mixpanel timeEvent:@"Session Time"];
                                                                             
-                                                                            [[AppsFlyerTracker sharedTracker] trackEvent:@"Twitter Login Success" withValue:@""];
+                                                                            NSString *trackEvent = [NSString stringWithFormat: @"Twitter Login with: %@", [[AppManager sharedManager].userInfo valueForKey:@"email"]];
+                                                                            [[AppsFlyerTracker sharedTracker] trackEvent:trackEvent withValue:@""];
 
                                                                             
                                                                             NSString *txtCity = @"London";
@@ -358,7 +360,8 @@ NSString *emailPreFix;
             [mixpanel track:@"FB Login Success"];
             [mixpanel timeEvent:@"Session Time"];
             
-            [[AppsFlyerTracker sharedTracker] trackEvent:@"FB Login Success" withValue:@""];
+            NSString *trackEvent = [NSString stringWithFormat: @"FB Login with: %@", [[AppManager sharedManager].userInfo valueForKey:@"email"]];
+            [[AppsFlyerTracker sharedTracker] trackEvent:trackEvent withValue:@""];
             
             //setting city as london and then send to homepage
             NSString *txtCity = @"London";
