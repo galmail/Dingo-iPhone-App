@@ -250,6 +250,7 @@
 		4A7768EE1A694EDF00168192 /* placeholder_avatar2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4A7768EC1A694EDF00168192 /* placeholder_avatar2.jpg */; };
 		4A7768EF1A694EDF00168192 /* placeholder_avatar2@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4A7768ED1A694EDF00168192 /* placeholder_avatar2@2x.jpg */; };
 		4A8532A51AEE4608001C4E13 /* libMPCategoryHelpers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A8532A41AEE4608001C4E13 /* libMPCategoryHelpers.a */; };
+		4A8532A91AEE4E95001C4E13 /* libMPCategoryHelpers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A8532A81AEE4E95001C4E13 /* libMPCategoryHelpers.a */; };
 		4A973BAB1AC968FA00AB0F63 /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A973BAA1AC968FA00AB0F63 /* TwitterKit.framework */; };
 		4A973BAD1AC9692E00AB0F63 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A973BAC1AC9692E00AB0F63 /* Fabric.framework */; };
 		4A973BB61AC96BE700AB0F63 /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4A973BB51AC96BE700AB0F63 /* TwitterKitResources.bundle */; };
@@ -732,6 +733,7 @@
 		4A7768EC1A694EDF00168192 /* placeholder_avatar2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = placeholder_avatar2.jpg; sourceTree = "<group>"; };
 		4A7768ED1A694EDF00168192 /* placeholder_avatar2@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "placeholder_avatar2@2x.jpg"; sourceTree = "<group>"; };
 		4A8532A41AEE4608001C4E13 /* libMPCategoryHelpers.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMPCategoryHelpers.a; sourceTree = "<group>"; };
+		4A8532A81AEE4E95001C4E13 /* libMPCategoryHelpers.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMPCategoryHelpers.a; sourceTree = "<group>"; };
 		4A973BAA1AC968FA00AB0F63 /* TwitterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TwitterKit.framework; sourceTree = "<group>"; };
 		4A973BAC1AC9692E00AB0F63 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		4A973BB51AC96BE700AB0F63 /* TwitterKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TwitterKitResources.bundle; path = TwitterKit.framework/Versions/A/Resources/TwitterKitResources.bundle; sourceTree = "<group>"; };
@@ -944,6 +946,7 @@
 				3AA4300819F163860053D6F8 /* libsqlite3.dylib in Frameworks */,
 				3AFEC18C19DEDBC70062AA64 /* libxml2.dylib in Frameworks */,
 				3AA1607F19E5BF1700895508 /* FacebookSDK.framework in Frameworks */,
+				4A8532A91AEE4E95001C4E13 /* libMPCategoryHelpers.a in Frameworks */,
 				3AFEC18A19DED9E70062AA64 /* libz.dylib in Frameworks */,
 				3AA4300619F162070053D6F8 /* libGoogleAnalyticsServices.a in Frameworks */,
 				3A97DDBE19D3636600B4C33E /* SystemConfiguration.framework in Frameworks */,
@@ -1633,6 +1636,7 @@
 		3F10DE0719388EC1002D3B43 /* AppDelegate */ = {
 			isa = PBXGroup;
 			children = (
+				4A8532A81AEE4E95001C4E13 /* libMPCategoryHelpers.a */,
 				3F10DE0819388EC1002D3B43 /* AppDelegate.h */,
 				3F10DE0919388EC1002D3B43 /* AppDelegate.m */,
 			);
@@ -3530,6 +3534,7 @@
 					"/Users/Phil/Desktop/mixpanel-iphone/Mixpanel",
 					"$(PROJECT_DIR)/Dingo/Frameworks/AF-iOS-SDK-v2",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Dingo/AppDelegate",
 				);
 				OTHER_CFLAGS = (
 					"$(inherited)",
@@ -3574,6 +3579,7 @@
 					"/Users/Phil/Desktop/mixpanel-iphone/Mixpanel",
 					"$(PROJECT_DIR)/Dingo/Frameworks/AF-iOS-SDK-v2",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Dingo/AppDelegate",
 				);
 				OTHER_CFLAGS = (
 					"$(inherited)",

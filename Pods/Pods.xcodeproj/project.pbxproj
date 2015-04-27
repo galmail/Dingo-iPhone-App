@@ -10,7 +10,6 @@
 		11AE9D90D33440F68BD64669 /* libPods-Dingo-ECSlidingViewController.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 92D57AAA6D2D4015A22535E9 /* libPods-Dingo-ECSlidingViewController.a */; };
 		2CE3CCE88DB546959E7D2670 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB55A9007E4B4ADB8CE3B501 /* Foundation.framework */; };
 		4A6F90CE1AE8FEE80083D30A /* _MPTweakBindObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F90531AE8FEE70083D30A /* _MPTweakBindObserver.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		4A6F90CF1AE8FEE80083D30A /* libMPCategoryHelpers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A6F90541AE8FEE70083D30A /* libMPCategoryHelpers.a */; };
 		4A6F90D01AE8FEE80083D30A /* Mixpanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F90561AE8FEE70083D30A /* Mixpanel.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		4A6F90D11AE8FEE80083D30A /* MPAbstractABTestDesignerMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F90581AE8FEE70083D30A /* MPAbstractABTestDesignerMessage.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		4A6F90D21AE8FEE80083D30A /* MPABTestDesignerChangeRequestMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F905A1AE8FEE70083D30A /* MPABTestDesignerChangeRequestMessage.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
@@ -98,7 +97,6 @@
 		48D11086B09B4D3D8CE1B918 /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		4A6F90521AE8FEE70083D30A /* _MPTweakBindObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _MPTweakBindObserver.h; sourceTree = "<group>"; };
 		4A6F90531AE8FEE70083D30A /* _MPTweakBindObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _MPTweakBindObserver.m; sourceTree = "<group>"; };
-		4A6F90541AE8FEE70083D30A /* libMPCategoryHelpers.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMPCategoryHelpers.a; sourceTree = "<group>"; };
 		4A6F90551AE8FEE70083D30A /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		4A6F90561AE8FEE70083D30A /* Mixpanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Mixpanel.m; sourceTree = "<group>"; };
 		4A6F90571AE8FEE70083D30A /* MPAbstractABTestDesignerMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAbstractABTestDesignerMessage.h; sourceTree = "<group>"; };
@@ -241,7 +239,6 @@
 			files = (
 				C3D980F47D8F4FBD83752281 /* Foundation.framework in Frameworks */,
 				11AE9D90D33440F68BD64669 /* libPods-Dingo-ECSlidingViewController.a in Frameworks */,
-				4A6F90CF1AE8FEE80083D30A /* libMPCategoryHelpers.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,7 +283,6 @@
 				4A6F910E1AE900860083D30A /* Mixpanel.h */,
 				4A6F90521AE8FEE70083D30A /* _MPTweakBindObserver.h */,
 				4A6F90531AE8FEE70083D30A /* _MPTweakBindObserver.m */,
-				4A6F90541AE8FEE70083D30A /* libMPCategoryHelpers.a */,
 				4A6F90551AE8FEE70083D30A /* Media.xcassets */,
 				4A6F90561AE8FEE70083D30A /* Mixpanel.m */,
 				4A6F90571AE8FEE70083D30A /* MPAbstractABTestDesignerMessage.h */,
