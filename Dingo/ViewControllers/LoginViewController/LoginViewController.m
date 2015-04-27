@@ -57,6 +57,7 @@ NSString *emailPreFix;
     
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"New User"];
+    [[AppsFlyerTracker sharedTracker] trackEvent:@"New User" withValue:@""];
     
     //twitter loging
     TWTRLogInButton *logInButton = [TWTRLogInButton buttonWithLogInCompletion:^(TWTRSession *session, NSError *error) {
