@@ -293,8 +293,15 @@ static const NSUInteger commentCellIndex = 5;
 						[self.navigationController popToRootViewControllerAnimated:YES];
                         [AppManager showAlert:@"Tickets Listed :-)\n\nPlease turn on push notifications and check your contact info within settings so we can let you know when they have sold!"];
                         
+                        double ticketPrice = [self.ticket.price doubleValue];
+                        double ticketNumber = [self.ticket.number_of_tickets doubleValue];
+                        double grossSaleDouble = ticketPrice * ticketNumber;
+                        NSNumber *grossSaleDoubleNSnumber = [NSNumber numberWithDouble: grossSaleDouble];
+                        
                         Mixpanel *mixpanel = [Mixpanel sharedInstance];
-                        [mixpanel track:@"Ticket listed" properties:@{ @"Ticket": self.event.name }];
+                        
+                        [mixpanel.people increment:@"Total tickets listed" by: self.ticket.number_of_tickets];
+                        [mixpanel.people increment:@"Gross ticket value listed" by: grossSaleDoubleNSnumber];
                         
 					} else {
 						[loadingView hide];
@@ -418,8 +425,15 @@ static const NSUInteger commentCellIndex = 5;
 								[self.navigationController popToRootViewControllerAnimated:YES];
                                 [AppManager showAlert:@"Thanks! We'll just take a quick look and list your tickets shortly :-)"];
                                 
+                                double ticketPrice = [self.ticket.price doubleValue];
+                                double ticketNumber = [self.ticket.number_of_tickets doubleValue];
+                                double grossSaleDouble = ticketPrice * ticketNumber;
+                                NSNumber *grossSaleDoubleNSnumber = [NSNumber numberWithDouble: grossSaleDouble];
+                                
                                 Mixpanel *mixpanel = [Mixpanel sharedInstance];
-                                [mixpanel track:@"Ticket listed" properties:@{ @"Ticket": self.event.name }];
+                                
+                                [mixpanel.people increment:@"Total tickets listed" by: self.ticket.number_of_tickets];
+                                [mixpanel.people increment:@"Gross ticket value listed" by: grossSaleDoubleNSnumber];
                                 
 							} else {
 								[loadingView hide];
