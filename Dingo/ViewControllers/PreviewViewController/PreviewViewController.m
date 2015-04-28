@@ -15,6 +15,7 @@
 #import "AppManager.h"
 #import <MapKit/MapKit.h>
 #import "MapViewController.h"
+#import "Mixpanel.h"
 
 static const NSUInteger photosCellIndex = 8;
 static const NSUInteger commentCellIndex = 5;
@@ -291,6 +292,10 @@ static const NSUInteger commentCellIndex = 5;
 						[self.navigationController.viewControllers[0] setSelectedIndex:0];
 						[self.navigationController popToRootViewControllerAnimated:YES];
                         [AppManager showAlert:@"Tickets Listed :-)\n\nPlease turn on push notifications and check your contact info within settings so we can let you know when they have sold!"];
+                        
+                        Mixpanel *mixpanel = [Mixpanel sharedInstance];
+                        [mixpanel track:@"Ticket listed" properties:@{ @"Ticket": self.event.name }];
+                        
 					} else {
 						[loadingView hide];
 						[AppManager showAlert:@"Unable to create ticket."];
@@ -412,6 +417,10 @@ static const NSUInteger commentCellIndex = 5;
 								[self.navigationController.viewControllers[0] setSelectedIndex:0];
 								[self.navigationController popToRootViewControllerAnimated:YES];
                                 [AppManager showAlert:@"Thanks! We'll just take a quick look and list your tickets shortly :-)"];
+                                
+                                Mixpanel *mixpanel = [Mixpanel sharedInstance];
+                                [mixpanel track:@"Ticket listed" properties:@{ @"Ticket": self.event.name }];
+                                
 							} else {
 								[loadingView hide];
 								[AppManager showAlert:@"Unable to create ticket."];
