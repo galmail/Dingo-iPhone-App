@@ -642,6 +642,7 @@
 			baseConfigurationReference = AA13CD6B24404F17AF38817F /* Pods-Dingo.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Phillip Watts (Q5Z9DB6255)";
 				COPY_PHASE_STRIP = NO;
 				DSTROOT = /tmp/xcodeproj.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -674,6 +675,7 @@
 			baseConfigurationReference = 7659374AE33E47D1B1B25591 /* Pods-Dingo-ECSlidingViewController-Private.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "";
 				COPY_PHASE_STRIP = YES;
 				DSTROOT = /tmp/xcodeproj.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -705,6 +707,7 @@
 			baseConfigurationReference = AA13CD6B24404F17AF38817F /* Pods-Dingo.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Allington Ventures Ltd (KF7AL49U88)";
 				COPY_PHASE_STRIP = YES;
 				DSTROOT = /tmp/xcodeproj.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -739,6 +742,7 @@
 			baseConfigurationReference = 7659374AE33E47D1B1B25591 /* Pods-Dingo-ECSlidingViewController-Private.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "";
 				COPY_PHASE_STRIP = NO;
 				DSTROOT = /tmp/xcodeproj.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
