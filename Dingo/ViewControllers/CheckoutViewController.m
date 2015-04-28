@@ -15,6 +15,8 @@
 #import "CardIO.h"
 #import "ChatViewController.h"
 #import "ZSLoadingView.h"
+#import "Mixpanel.h"
+
 
 @interface CheckoutViewController () <PayPalPaymentDelegate, CardIOPaymentViewControllerDelegate, UIPopoverControllerDelegate>{
     
@@ -315,12 +317,18 @@
                     if (response) {
 		
                         if (response[@"id"]) {
-							
+                            
                             ChatViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"ChatViewController"];
                             vc.receiverID=response[@"receiver_id"];
                             vc.ticket = self.ticket;
                             
                             [self.navigationController pushViewController:vc animated:YES];
+                            
+                            double commissionDouble = (double)checkoutTotalInPenceInt / 1100;
+                            NSNumber *commissionNSnumber = [NSNumber numberWithDouble: commissionDouble ];
+                            
+                            Mixpanel *mixpanel = [Mixpanel sharedInstance];
+                            [mixpanel.people trackCharge: commissionNSnumber ];
 							
                             [AppManager showAlert:@"Ticket(s) purchased! You have been redirected to a chat with the seller. Please arrage ticket delivery here."];
                             
@@ -417,6 +425,12 @@
                                         vc.ticket = self.ticket;
                                         
                                         [self.navigationController pushViewController:vc animated:YES];
+                                        
+                                        double commissionDouble = (double)checkoutTotalInPenceInt / 1100;
+                                        NSNumber *commissionNSnumber = [NSNumber numberWithDouble: commissionDouble ];
+                                        
+                                        Mixpanel *mixpanel = [Mixpanel sharedInstance];
+                                        [mixpanel.people trackCharge: commissionNSnumber ];
                                         
                                         [AppManager showAlert:@"Ticket(s) purchased! You have been redirected to a chat with the seller. Please arrage ticket delivery here."];
                                         
