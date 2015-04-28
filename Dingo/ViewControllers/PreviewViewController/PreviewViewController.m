@@ -16,6 +16,8 @@
 #import <MapKit/MapKit.h>
 #import "MapViewController.h"
 #import "Mixpanel.h"
+#import "AppsFlyerTracker.h"
+
 
 static const NSUInteger photosCellIndex = 8;
 static const NSUInteger commentCellIndex = 5;
@@ -434,6 +436,10 @@ static const NSUInteger commentCellIndex = 5;
                                 
                                 [mixpanel.people increment:@"Total tickets listed" by: self.ticket.number_of_tickets];
                                 [mixpanel.people increment:@"Gross ticket value listed" by: grossSaleDoubleNSnumber];
+                                
+                                [[AppsFlyerTracker sharedTracker] trackEvent:@"Tickets listed" withValue: [NSString stringWithFormat:@"%@", self.ticket.number_of_tickets]];
+                                [[AppsFlyerTracker sharedTracker] trackEvent:@"Tickets listed total value" withValue: [NSString stringWithFormat:@"%@", grossSaleDoubleNSnumber]];
+                                
                                 
 							} else {
 								[loadingView hide];
