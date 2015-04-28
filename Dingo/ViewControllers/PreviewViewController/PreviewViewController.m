@@ -423,7 +423,7 @@ static const NSUInteger commentCellIndex = 5;
 								
 								[self.navigationController.viewControllers[0] setSelectedIndex:0];
 								[self.navigationController popToRootViewControllerAnimated:YES];
-                                [AppManager showAlert:@"Thanks! We'll just take a quick look and list your tickets shortly :-)"];
+                                [AppManager showAlert:@"Thanks! We'll just take a quick look and list your tickets shortly :-)\n\nPlease turn on push notifications and check your contact info within settings so we can let you know when they have sold!"];
                                 
                                 double ticketPrice = [self.ticket.price doubleValue];
                                 double ticketNumber = [self.ticket.number_of_tickets doubleValue];
