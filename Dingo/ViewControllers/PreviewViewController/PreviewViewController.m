@@ -298,12 +298,17 @@ static const NSUInteger commentCellIndex = 5;
                         double ticketPrice = [self.ticket.price doubleValue];
                         double ticketNumber = [self.ticket.number_of_tickets doubleValue];
                         double grossSaleDouble = ticketPrice * ticketNumber;
-                        NSNumber *grossSaleDoubleNSnumber = [NSNumber numberWithDouble: grossSaleDouble];
+                        double grossSaleCommissionDouble = grossSaleDouble / 10;
+                        NSNumber *grossSaleNSnumber = [NSNumber numberWithDouble: grossSaleDouble];
+                        NSNumber *grossSaleCommissionNSnumber = [NSNumber numberWithDouble: grossSaleCommissionDouble];
                         
                         Mixpanel *mixpanel = [Mixpanel sharedInstance];
                         
                         [mixpanel.people increment:@"Total tickets listed" by: self.ticket.number_of_tickets];
-                        [mixpanel.people increment:@"Gross ticket value listed" by: grossSaleDoubleNSnumber];
+                        [mixpanel.people increment:@"Gross ticket value listed" by: grossSaleNSnumber];
+                        
+                        [[AppsFlyerTracker sharedTracker] trackEvent:@"Tickets listed commission" withValue: [NSString stringWithFormat:@"%@", grossSaleCommissionNSnumber]];
+                        
                         
 					} else {
 						[loadingView hide];
