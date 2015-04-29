@@ -16,7 +16,7 @@
 #import "ChatViewController.h"
 #import "ZSLoadingView.h"
 #import "Mixpanel.h"
-
+#import "AppsFlyerTracker.h"
 
 @interface CheckoutViewController () <PayPalPaymentDelegate, CardIOPaymentViewControllerDelegate, UIPopoverControllerDelegate>{
     
@@ -329,6 +329,8 @@
                             
                             Mixpanel *mixpanel = [Mixpanel sharedInstance];
                             [mixpanel.people trackCharge: commissionNSnumber ];
+                            
+                            [[AppsFlyerTracker sharedTracker] trackEvent:@"Tickets purchased commission" withValue: [NSString stringWithFormat:@"%@", commissionNSnumber]];
 							
                             [AppManager showAlert:@"Ticket(s) purchased! You have been redirected to a chat with the seller. Please arrage ticket delivery here."];
                             
@@ -431,6 +433,8 @@
                                         
                                         Mixpanel *mixpanel = [Mixpanel sharedInstance];
                                         [mixpanel.people trackCharge: commissionNSnumber ];
+                                        
+                                        [[AppsFlyerTracker sharedTracker] trackEvent:@"Tickets purchased commission" withValue: [NSString stringWithFormat:@"%@", commissionNSnumber]];
                                         
                                         [AppManager showAlert:@"Ticket(s) purchased! You have been redirected to a chat with the seller. Please arrage ticket delivery here."];
                                         
