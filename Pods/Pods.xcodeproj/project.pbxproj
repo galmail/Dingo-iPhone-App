@@ -742,7 +742,7 @@
 			baseConfigurationReference = 7659374AE33E47D1B1B25591 /* Pods-Dingo-ECSlidingViewController-Private.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Allington Ventures Ltd (KF7AL49U88)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Phillip Watts (Q5Z9DB6255)";
 				COPY_PHASE_STRIP = NO;
 				DSTROOT = /tmp/xcodeproj.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -782,7 +782,7 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Allington Ventures Ltd (KF7AL49U88)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Phillip Watts (Q5Z9DB6255)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -800,7 +800,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "459c1f58-89c7-4acb-a199-3d85d08978e7";
+				PROVISIONING_PROFILE = "";
 				STRIP_INSTALLED_PRODUCT = NO;
 			};
 			name = Debug;
