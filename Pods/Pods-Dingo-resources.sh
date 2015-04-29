@@ -1,4 +1,3 @@
-#!/bin/sh
 set -e
 
 RESOURCES_TO_COPY=${PODS_ROOT}/resources-to-copy-${TARGETNAME}.txt
