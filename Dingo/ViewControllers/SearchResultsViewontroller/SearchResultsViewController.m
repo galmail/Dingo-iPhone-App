@@ -23,8 +23,11 @@
     [super viewDidLoad];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     if (self.searchedEvents.count==0) {
-        UILabel * lblNoResults = [[UILabel alloc] initWithFrame:CGRectMake(100, 70, 120, 30)];
+        UILabel * lblNoResults = [[UILabel alloc] initWithFrame:CGRectMake(50, 70, 220, 90)];
         lblNoResults.textColor = [UIColor grayColor];
+        lblNoResults.lineBreakMode = NSLineBreakByWordWrapping;
+        lblNoResults.numberOfLines = 4;
+        lblNoResults.textAlignment = NSTextAlignmentCenter;
         lblNoResults.text = @"No results found - try setting up a ticket alert to be notified when tickets goes on sale!";
         lblNoResults.font = [DingoUISettings fontWithSize:16];
         [self.tableView addSubview:lblNoResults];
