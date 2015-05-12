@@ -25,7 +25,7 @@
     if (self.searchedEvents.count==0) {
         UILabel * lblNoResults = [[UILabel alloc] initWithFrame:CGRectMake(100, 70, 120, 30)];
         lblNoResults.textColor = [UIColor grayColor];
-        lblNoResults.text = @"No Results Found";
+        lblNoResults.text = @"No results found - try setting up a ticket alert to be notified when tickets goes on sale!";
         lblNoResults.font = [DingoUISettings fontWithSize:16];
         [self.tableView addSubview:lblNoResults];
     }
