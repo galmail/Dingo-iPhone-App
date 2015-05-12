@@ -120,6 +120,8 @@
         
         if([[AppManager sharedManager].userInfo valueForKey:@"fb_id"]){
             [mixpanel.people set:@{@"Login": [[AppManager sharedManager].userInfo valueForKey:@"fb_id"], @"first_name": [[AppManager sharedManager].userInfo valueForKey:@"name"], @"$email": [[AppManager sharedManager].userInfo valueForKey:@"email"]}];
+        } else {
+            [mixpanel.people set:@{@"first_name": [[AppManager sharedManager].userInfo valueForKey:@"name"], @"$email": [[AppManager sharedManager].userInfo valueForKey:@"email"]}];
         }
         
         [mixpanel track:@"Returning User"];
