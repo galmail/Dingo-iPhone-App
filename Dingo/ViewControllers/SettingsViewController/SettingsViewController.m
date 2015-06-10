@@ -210,7 +210,12 @@ static const NSUInteger pushAlert =		2243;
 //                
 //            }
         }
-        [self.navigationController popViewControllerAnimated:YES];
+//        [self.navigationController popViewControllerAnimated:YES];
+        
+        //send to homepage
+        [self.navigationController.viewControllers[0] setSelectedIndex:0];
+        [self.navigationController popToRootViewControllerAnimated:YES];
+        
     }];
 
     }
