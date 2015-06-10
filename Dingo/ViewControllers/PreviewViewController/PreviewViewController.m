@@ -303,7 +303,8 @@ static const NSUInteger commentCellIndex = 5;
                         //new
                         SettingsViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SettingsViewController"];
                         [self.navigationController pushViewController:viewController animated:YES];
-                        [AppManager showAlert:@"Tickets Listed :-)\n\nPlease update your email and turn on push notifications so we can let you know if they sell"];
+                        [AppManager showAlert:@"Please update your email and turn on push notifications so we can let you know if they sell!"];
+                        [AppManager showAlert:@"Tickets Listed :-)"];
                         
                         
                         double ticketPrice = [self.ticket.price doubleValue];
@@ -446,7 +447,9 @@ static const NSUInteger commentCellIndex = 5;
                                 //new
                                 SettingsViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SettingsViewController"];
                                 [self.navigationController pushViewController:viewController animated:YES];
-                                [AppManager showAlert:@"Your tickets will be listed once verified :-)\n\nPlease update your email and turn on push notifications so we can let you know if they sell"];
+                                
+                                [AppManager showAlert:@"Please update your email and turn on push notifications so we can let you know if they sell!"];
+                                [AppManager showAlert:@"Your tickets will be listed once verified :-)"];
                                 
                                 
                                 double ticketPrice = [self.ticket.price doubleValue];
