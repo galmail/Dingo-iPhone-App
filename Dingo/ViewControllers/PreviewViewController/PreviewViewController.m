@@ -246,7 +246,7 @@ static const NSUInteger commentCellIndex = 5;
                     //new
                     SettingsViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SettingsViewController"];
                     [self.navigationController pushViewController:viewController animated:YES];
-                    [AppManager showAlert:@"update text"];
+                    [AppManager showAlert:@"update text (not new event"];
                     
                     
                     [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"kDingo_ticket_editTicket"];
@@ -309,7 +309,7 @@ static const NSUInteger commentCellIndex = 5;
                         //new
                         SettingsViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SettingsViewController"];
                         [self.navigationController pushViewController:viewController animated:YES];
-                        [AppManager showAlert:@"update text"];
+                        [AppManager showAlert:@"update text edited (not new event)"];
                         
                         
                         double ticketPrice = [self.ticket.price doubleValue];
@@ -445,9 +445,15 @@ static const NSUInteger commentCellIndex = 5;
 								
 								[AppManager sharedManager].draftTicket = nil;
 								
-								[self.navigationController.viewControllers[0] setSelectedIndex:0];
-								[self.navigationController popToRootViewControllerAnimated:YES];
-                                [AppManager showAlert:@"Thanks! We'll just take a quick look and list your tickets shortly :-)\n\nPlease turn on push notifications and check your contact info within settings so we can let you know when they have sold!"];
+//								[self.navigationController.viewControllers[0] setSelectedIndex:0];
+//								[self.navigationController popToRootViewControllerAnimated:YES];
+//                                [AppManager showAlert:@"Thanks! We'll just take a quick look and list your tickets shortly :-)\n\nPlease turn on push notifications and check your contact info within settings so we can let you know when they have sold!"];
+                                
+                                //new
+                                SettingsViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SettingsViewController"];
+                                [self.navigationController pushViewController:viewController animated:YES];
+                                [AppManager showAlert:@"update text fresh (new event)"];
+                                
                                 
                                 double ticketPrice = [self.ticket.price doubleValue];
                                 double ticketNumber = [self.ticket.number_of_tickets doubleValue];
