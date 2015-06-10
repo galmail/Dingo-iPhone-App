@@ -240,7 +240,7 @@ static const NSUInteger commentCellIndex = 5;
 
                     [self.navigationController.viewControllers[0] setSelectedIndex:0];
                     [self.navigationController popToRootViewControllerAnimated:YES];
-                    [AppManager showAlert:@"Edit Saved"];
+                    [AppManager showAlert:@"Changes Saved!"];
                     
                     
                     [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"kDingo_ticket_editTicket"];
@@ -303,7 +303,7 @@ static const NSUInteger commentCellIndex = 5;
                         //new
                         SettingsViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SettingsViewController"];
                         [self.navigationController pushViewController:viewController animated:YES];
-                        [AppManager showAlert:@"update text not through edit (not new event)"];
+                        [AppManager showAlert:@"Tickets Listed :-)\n\nPlease update your email and turn on push notifications so we can let you know if they sell"];
                         
                         
                         double ticketPrice = [self.ticket.price doubleValue];
@@ -446,7 +446,7 @@ static const NSUInteger commentCellIndex = 5;
                                 //new
                                 SettingsViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SettingsViewController"];
                                 [self.navigationController pushViewController:viewController animated:YES];
-                                [AppManager showAlert:@"update text fresh (new event)"];
+                                [AppManager showAlert:@"Your tickets will be listed once verified :-)\n\nPlease update your email and turn on push notifications so we can let you know if they sell"];
                                 
                                 
                                 double ticketPrice = [self.ticket.price doubleValue];
