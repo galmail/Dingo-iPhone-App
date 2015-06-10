@@ -17,6 +17,7 @@
 #import "MapViewController.h"
 #import "Mixpanel.h"
 #import "AppsFlyerTracker.h"
+#import "SettingsViewController.h"
 
 
 static const NSUInteger photosCellIndex = 8;
@@ -237,9 +238,17 @@ static const NSUInteger commentCellIndex = 5;
                     
                     [loadingView hide];
 
-                    [self.navigationController.viewControllers[0] setSelectedIndex:0];
-                    [self.navigationController popToRootViewControllerAnimated:YES];
-                    [AppManager showAlert:@"Tickets Listed :-)\n\nPlease turn on push notifications and check your contact info within settings so we can let you know when they have sold!"];
+                    //old
+//                    [self.navigationController.viewControllers[0] setSelectedIndex:0];
+//                    [self.navigationController popToRootViewControllerAnimated:YES];
+//                    [AppManager showAlert:@"Tickets Listed :-)\n\nPlease turn on push notifications and check your contact info within settings so we can let you know when they have sold!"];
+                    
+                    //new
+                    SettingsViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SettingsViewController"];
+                    [self.navigationController pushViewController:viewController animated:YES];
+                    [AppManager showAlert:@"update text"];
+                    
+                    
                     [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"kDingo_ticket_editTicket"];
 
                 } else {
@@ -291,9 +300,17 @@ static const NSUInteger commentCellIndex = 5;
 						
 						[AppManager sharedManager].draftTicket = nil;
 						
-						[self.navigationController.viewControllers[0] setSelectedIndex:0];
-						[self.navigationController popToRootViewControllerAnimated:YES];
-                        [AppManager showAlert:@"Tickets Listed :-)\n\nPlease turn on push notifications and check your contact info within settings so we can let you know when they have sold!"];
+                        //old
+//						[self.navigationController.viewControllers[0] setSelectedIndex:0];
+//						[self.navigationController popToRootViewControllerAnimated:YES];
+//                        [AppManager showAlert:@"Tickets Listed :-)\n\nPlease turn on push notifications and check your contact info within settings so we can let you know when they have sold!"];
+                        
+                        
+                        //new
+                        SettingsViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SettingsViewController"];
+                        [self.navigationController pushViewController:viewController animated:YES];
+                        [AppManager showAlert:@"update text"];
+                        
                         
                         double ticketPrice = [self.ticket.price doubleValue];
                         double ticketNumber = [self.ticket.number_of_tickets doubleValue];
