@@ -275,7 +275,11 @@ NSString *lastChatUser;
 #pragma mark - Navigation
 
 - (IBAction)back {
-    [self.navigationController popViewControllerAnimated:YES];
+    //[self.navigationController popViewControllerAnimated:YES];
+    
+    //send to homepage
+    [self.navigationController.viewControllers[0] setSelectedIndex:0];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (IBAction)actions:(id)sender {
