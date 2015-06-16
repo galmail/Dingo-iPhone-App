@@ -280,7 +280,34 @@ NSString *lastChatUser;
     //send to homepage
     [self.navigationController.viewControllers[0] setSelectedIndex:0];
     [self.navigationController popToRootViewControllerAnimated:YES];
+    
+    //show alert for push
+    BOOL notificationsOn = [self pushNotificationEnabledInSettings];
+    
+    if(!([[[AppManager sharedManager].userInfo valueForKey:@"allow_push_notifications"] boolValue] && notificationsOn)){
+        [AppManager showAlert: @"turn on push biatch"];
+    }
+    
 }
+
+#pragma mark - Notifcations
+
+- (BOOL)pushNotificationEnabledInSettings {
+    
+    BOOL notificationsOn;
+    if ([[UIApplication sharedApplication] respondsToSelector:@selector(currentUserNotificationSettings)]) {
+        //ios8 and up
+        notificationsOn = ([[[UIApplication sharedApplication] currentUserNotificationSettings] types] != UIUserNotificationTypeNone);
+    } else {
+        //ios7 and down
+        notificationsOn = TRUE;
+    }
+    
+    return notificationsOn;
+}
+
+
+
 
 - (IBAction)actions:(id)sender {
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"View Listing", @"Report User", nil];
