@@ -17,6 +17,7 @@
 #import "ZSLabel.h"
 #import "TicketDetailViewController.h"
 #import <MessageUI/MessageUI.h>
+#import "SettingsViewController.h"
 
 @interface ChatViewController ()<UIBubbleTableViewDataSource, ZSLabelDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate>{
     IBOutlet UIBubbleTableView *bubbleTable;
@@ -277,16 +278,20 @@ NSString *lastChatUser;
 - (IBAction)back {
     //[self.navigationController popViewControllerAnimated:YES];
     
-    //send to homepage
-    [self.navigationController.viewControllers[0] setSelectedIndex:0];
-    [self.navigationController popToRootViewControllerAnimated:YES];
-    
-    //show alert for push
     BOOL notificationsOn = [self pushNotificationEnabledInSettings];
     
     if(!([[[AppManager sharedManager].userInfo valueForKey:@"allow_push_notifications"] boolValue] && notificationsOn)){
         
-        [AppManager showAlert:[NSString stringWithFormat:@"Turn on push to hear back from %@", lastChatUser]];
+        //show alert to turn on push
+        NSString* alertText = [NSString stringWithFormat:@"Want to hear back from %@? You need to turn on push notifcations!", lastChatUser];
+
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:alertText delegate:self cancelButtonTitle:@"Go to Settings" otherButtonTitles:nil];
+        [alert show];
+        
+    } else {
+        //send to homepage
+        [self.navigationController.viewControllers[0] setSelectedIndex:0];
+        [self.navigationController popToRootViewControllerAnimated:YES];
     }
 
 }
@@ -307,6 +312,17 @@ NSString *lastChatUser;
     return notificationsOn;
 }
 
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+ 
+            if (buttonIndex == 1){
+                //button 1 is empty
+            } else {
+                //send user to settings
+                SettingsViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SettingsViewController"];
+                [self.navigationController pushViewController:viewController animated:YES];
+    }
+}
 
 
 
