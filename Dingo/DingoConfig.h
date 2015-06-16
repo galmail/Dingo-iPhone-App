@@ -9,15 +9,15 @@
 //#define kProductionMode 
 
 // production
-#define kProductionAPI @"http://dingoapp-staging.herokuapp.com/api/v1/"
-#define kProductionSignUpUrl @"http://dingoapp-staging.herokuapp.com/users/sign_up"
-#define kProductionSignInUrl @"http://dingoapp-staging.herokuapp.com/users/sign_in";
+#define kProductionAPI @"http://dingoapp.herokuapp.com/api/v1/"
+#define kProductionSignUpUrl @"http://dingoapp.herokuapp.com/users/sign_up"
+#define kProductionSignInUrl @"http://dingoapp.herokuapp.com/users/sign_in";
 
 // development
 
-#define kDevelopmentAPI @"http://dingoapp-staging.herokuapp.com/api/v1/"
-#define kDevelopmentSignUpUrl @"http://dingoapp-staging.herokuapp.com/users/sign_up"
-#define kDevelopmentSignInUrl @"http://dingoapp-staging.herokuapp.com/users/sign_in";
+#define kDevelopmentAPI @"http://dingoapp.herokuapp.com/api/v1/"
+#define kDevelopmentSignUpUrl @"http://dingoapp.herokuapp.com/users/sign_up"
+#define kDevelopmentSignInUrl @"http://dingoapp.herokuapp.com/users/sign_in";
 
 // paypal
 #define kPaypalProductionID @"AYMqghD3IhKeJXOLh3siE-ImJftpSQLRRWebOHlDUCN7x_i5nWDB7V3zHnC5"
