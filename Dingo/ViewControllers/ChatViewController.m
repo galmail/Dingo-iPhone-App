@@ -285,9 +285,10 @@ NSString *lastChatUser;
     BOOL notificationsOn = [self pushNotificationEnabledInSettings];
     
     if(!([[[AppManager sharedManager].userInfo valueForKey:@"allow_push_notifications"] boolValue] && notificationsOn)){
-        [AppManager showAlert: @"turn on push biatch"];
+        
+        [AppManager showAlert:[NSString stringWithFormat:@"Turn on push to hear back from %@", lastChatUser]];
     }
-    
+
 }
 
 #pragma mark - Notifcations
