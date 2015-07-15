@@ -18,6 +18,7 @@
 #import "ZSLoadingView.h"
 #import "WebServiceManager.h"
 #import <MapKit/MapKit.h>
+#import "SettingsViewController.h"
 
 @interface TicketsViewController () <UITableViewDelegate, UITableViewDataSource> {
     EventCell *eventCell;
@@ -343,7 +344,21 @@
         if (response) {
             
             if (sender.selected) {
+                
+                //show additional alert if push notifcations are swtiched off
+                BOOL notificationsOn = [self pushNotificationEnabledInSettings];
+                
+                if(!([[[AppManager sharedManager].userInfo valueForKey:@"allow_push_notifications"] boolValue] && notificationsOn)){
+                    
+                    //show alert to turn on push
+                    NSString* alertText = [NSString stringWithFormat:@"Your notifcations aren't swicthed on"];
+                    
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:alertText delegate:self cancelButtonTitle:@"Go to Settings" otherButtonTitles:nil];
+                    [alert show];
+                }
+                
                 [AppManager showAlert:@"Ticket alert for this event has been added. When a new ticket is listed we'll let you know"];
+                
             } else {
                 [AppManager showAlert:@"Ticket alert removed."];
                 
@@ -356,6 +371,38 @@
         
     }];
 }
+
+//********************** check for notifcations and set up alert
+
+- (BOOL)pushNotificationEnabledInSettings {
+    
+    BOOL notificationsOn;
+    if ([[UIApplication sharedApplication] respondsToSelector:@selector(currentUserNotificationSettings)]) {
+        //ios8 and up
+        notificationsOn = ([[[UIApplication sharedApplication] currentUserNotificationSettings] types] != UIUserNotificationTypeNone);
+    } else {
+        //ios7 and down
+        notificationsOn = TRUE;
+    }
+    
+    return notificationsOn;
+}
+
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    if (buttonIndex == 1){
+        //button 1 is empty
+    } else {
+        //send user to settings
+        SettingsViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SettingsViewController"];
+        [self.navigationController pushViewController:viewController animated:YES];
+    }
+}
+
+//**********************
+
+
 
 - (IBAction)addTicketsPressed:(UIButton *)sender {
     
