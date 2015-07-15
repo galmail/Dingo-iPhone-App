@@ -351,7 +351,7 @@
                 if(!([[[AppManager sharedManager].userInfo valueForKey:@"allow_push_notifications"] boolValue] && notificationsOn)){
                     
                     //show alert to turn on push
-                    NSString* alertText = [NSString stringWithFormat:@"Your notifcations aren't swicthed on"];
+                    NSString* alertText = [NSString stringWithFormat:@"Your notifcations are swicthed off :-( \n\nTurn them on in settings."];
                     
                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:alertText delegate:self cancelButtonTitle:@"Go to Settings" otherButtonTitles:nil];
                     [alert show];

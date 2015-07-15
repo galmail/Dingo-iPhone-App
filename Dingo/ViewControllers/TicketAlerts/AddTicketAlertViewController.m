@@ -12,6 +12,7 @@
 #import "WebServiceManager.h"
 #import "ZSLoadingView.h"
 #import "ZSTextField.h"
+#import "SettingsViewController.h"
 
 @interface AddTicketAlertViewController (){
     
@@ -111,11 +112,13 @@ NSString *trimmedDescriptionWithOutDate;
             
             NSDictionary *params = @{@"receiver_id" : @"32", @"content" : content, @"visible" : @"false"};
             [WebServiceManager sendMessage:params completion:^(id response, NSError *error) {}];
+            
 			
 			[AppManager showAlert:@"This alert will be added to your profile shortly! :-)"];
             return;
             
         }
+        
     }
 	
     NSDictionary *params = @{@"on":@YES,
@@ -135,8 +138,22 @@ NSString *trimmedDescriptionWithOutDate;
             [WebServiceManager handleError:error];
         }
         
-       
-        [self back];
+        //show additional alert if push notifcations are swtiched off
+        BOOL notificationsOn = [self pushNotificationEnabledInSettings];
+        
+        if(!([[[AppManager sharedManager].userInfo valueForKey:@"allow_push_notifications"] boolValue] && notificationsOn)){
+            
+            //show alert to turn on push
+            NSString* alertText = [NSString stringWithFormat:@"Ticket alert set! \n\nPlease turn on push notifcations in settings."];
+            
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:alertText delegate:self cancelButtonTitle:@"Go to Settings" otherButtonTitles:nil];
+            [alert show];
+        } else {
+            
+            [self back];
+            
+        }
+
     }];
   
 }
@@ -145,6 +162,38 @@ NSString *trimmedDescriptionWithOutDate;
     [[AppManager sharedManager].managedObjectContext deleteObject:self.alert];
     [self back];
 }
+
+
+//********************** check for notifcations and set up alert
+
+- (BOOL)pushNotificationEnabledInSettings {
+    
+    BOOL notificationsOn;
+    if ([[UIApplication sharedApplication] respondsToSelector:@selector(currentUserNotificationSettings)]) {
+        //ios8 and up
+        notificationsOn = ([[[UIApplication sharedApplication] currentUserNotificationSettings] types] != UIUserNotificationTypeNone);
+    } else {
+        //ios7 and down
+        notificationsOn = TRUE;
+    }
+    
+    return notificationsOn;
+}
+
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    if (buttonIndex == 1){
+        //button 1 is empty
+    } else {
+        //send user to settings
+        SettingsViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SettingsViewController"];
+        [self.navigationController pushViewController:viewController animated:YES];
+    }
+}
+
+//**********************
+
 
 #pragma mark - UITextFieldDelegate
 
