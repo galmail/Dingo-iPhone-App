@@ -113,8 +113,14 @@ NSString *trimmedDescriptionWithOutDate;
             NSDictionary *params = @{@"receiver_id" : @"32", @"content" : content, @"visible" : @"false"};
             [WebServiceManager sendMessage:params completion:^(id response, NSError *error) {}];
             
-			
-			[AppManager showAlert:@"This alert will be added to your profile shortly! :-)"];
+			//[AppManager showAlert:@"This alert will be added to your profile shortly! :-)"];
+            
+            //show alert to turn on push
+            NSString* alertText = [NSString stringWithFormat:@"This alert will be added to your profile! \n\nMake sure your push notifcations are switched on."];
+            
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dingo" message:alertText delegate:self cancelButtonTitle:@"Go to Settings" otherButtonTitles:nil];
+            [alert show];
+        
             return;
             
         }
